@@ -8,9 +8,6 @@ import { notesActions } from "../../../redux/slice/notes.slice";
 import style from "./Notes-Main.module.scss";
 
 export const NotesMain: FC = () => {
-   const [ title, setTitle ] = useState<string>("");
-   const [ body, setBody ] = useState<string>("");
-
    const dispatch = useAppDispatch();
    const { activeNote } = useAppSelector(state => state.notesReducer);
 
@@ -24,23 +21,12 @@ export const NotesMain: FC = () => {
 
       dispatch(notesActions.updateNote(updatedNote));
 
-      if (field === "title") {
-         setTitle(value);
-      }
-
-      if (field === "body") {
-         setBody(value);
-      }
    };
 
    const saveNoteToDb = () => {
       const loading = toast.loading("Зачекайте...");
 
-      const noteToSave = {
-         title: title ? title : "Нова замітка",
-         body: body,
-         last_modified: Date.now(),
-      };
+      console.log(activeNote);
 
       toast.dismiss(loading);
       toast.success("Замітка збережена");

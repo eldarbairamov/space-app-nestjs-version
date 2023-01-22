@@ -1,19 +1,28 @@
 import React, { type FC } from "react";
 
-import { type INote } from "../../../../interface/note.interface";
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";
+import { notesActions } from "../../../../redux/slice/notes.slice";
+import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
 
 import style from "./Notes-Sidebar.module.scss";
 
-interface INotesSidebar {
-   addNote: () => void,
-   notes: INote[]
-   setActiveNoteId: React.Dispatch<React.SetStateAction<number | undefined>>
-   activeNoteId: number | undefined
-}
 
-export const NotesSidebar: FC<INotesSidebar> = ({ addNote, notes, setActiveNoteId, activeNoteId }) => {
+export const NotesSidebar: FC = () => {
+   const dispatch = useAppDispatch();
+   const { notes } = useAppSelector(state => state.notesReducer);
+
+   const addNote = (): void => {
+      const newNote = {
+         id: Date.now(),
+         body: "",
+         title: "Нова замітка",
+         last_modified: Date.now(),
+      };
+
+      dispatch(notesActions.addNote(newNote));
+   };
+
 
    return (
       <div className={ style.NotesSidebar }>
@@ -24,11 +33,7 @@ export const NotesSidebar: FC<INotesSidebar> = ({ addNote, notes, setActiveNoteI
          <div className={ style.scroll_section }>
             <div className={ style.note_list }>
 
-               { notes && notes.map(item =>
-                  <NotesItem key={ uuid() }
-                             note={ item }
-                             setActiveNoteId={ setActiveNoteId }
-                             activeNoteId={ activeNoteId }/>) }
+               { notes && notes.map(item => <NotesItem key={ uuid() } note={ item }/>) }
 
             </div>
          </div>
