@@ -1,0 +1,133 @@
+%flex {
+   display: flex;
+   align-items: center;
+}
+
+%flex_cl_c {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.EditProfilePage {
+   @extend %flex;
+   justify-content: center;
+   gap: 60px;
+
+   width: 80vw;
+   min-height: calc(100vh - 170px);
+
+   .left_side {
+      @extend %flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;
+      position: relative;
+
+      min-width: 500px;
+      height: 600px;
+
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+      background: white;
+      border-radius: 15px;
+
+      .username {
+         font-size: 35px;
+         font-weight: bold;
+         color: #df8281;
+      }
+
+      .avatar_block {
+         @extend %flex;
+         flex-direction: column;
+         justify-content: center;
+         gap: 10px;
+
+         p {
+            font-size: 15px;
+         }
+
+         button {
+            margin-top: 15px;
+            font-size: 15px;
+            padding: 5px 15px;
+            border: none;
+            cursor: pointer;
+            background: #24292e;
+            color: white;
+            border-radius: 5px;
+
+            &:hover {
+               background: #3D8DAE;
+            }
+         }
+
+         p {
+            color: #7d7d7d;
+
+            &:hover {
+               color: #4e4e51;
+            }
+         }
+      }
+
+      .edit_avatar {
+         display: flex;
+         gap: 10px;
+         cursor: pointer;
+      }
+
+      .name_block {
+         @extend %flex_cl_c;
+         gap: 15px;
+
+         margin-bottom: 150px;
+
+         .fullname {
+            font-weight: bold;
+            font-size: 20px;
+         }
+      }
+
+      .auth_settings {
+         display: flex;
+         align-items: center;
+         flex-direction: column;
+         gap: 5px;
+
+         font-size: 16px;
+
+         p {
+            color: #7d7d7d;
+            cursor: pointer;
+
+            &:hover {
+               color: #4e4e51;
+            }
+         }
+
+         position: absolute;
+         top: 520px;
+      }
+   }
+
+   .right_side {
+      @extend %flex_cl_c;
+   }
+}
+
+@media screen and (max-height: 800px) {
+   .EditProfilePage {
+      height: 900px;
+   }
+}
+
+@media screen and (max-width: 1300px) {
+   .EditProfilePage {
+      flex-direction: column;
+
+      margin-top: 50px;
+      margin-bottom: 50px;
+   }
+}

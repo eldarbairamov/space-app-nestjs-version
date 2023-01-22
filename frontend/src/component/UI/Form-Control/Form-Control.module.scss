@@ -1,0 +1,53 @@
+.FormControl {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   gap: 15px;
+
+   input {
+      border: none;
+      outline: none;
+      color: #24292e;
+      width: 90%;
+      height: 100%;
+   }
+
+   input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 30px white inset;
+   }
+
+   label {
+      color: #68696b;
+   }
+}
+
+.input_field {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 25px;
+   width: 96%;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+   margin: 0 auto;
+   transition: .1s;
+}
+
+.input_field[data-error='true'] {
+   border-bottom: 2px solid #df8281;
+}
+
+
+.password_wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   p {
+      color: #9b9b9b;
+      cursor: pointer;
+
+      &:hover {
+         color: #4e4e51;
+      }
+   }
+}

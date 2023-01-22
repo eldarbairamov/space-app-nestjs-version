@@ -1,0 +1,35 @@
+%flex {
+   display: flex;
+   align-items: center;
+}
+
+.DashboardPage {
+   @extend %flex;
+   flex-direction: column;
+   justify-content: center;
+
+   width: 80vw;
+   height: calc(100vh - 170px);
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   background: white;
+   border-radius: 15px;
+}
+
+.top_side {
+   height: 50%;
+   width: 100%;
+}
+
+.bottom_side {
+   @extend %flex;
+   justify-content: space-evenly;
+
+   height: 50%;
+   width: 100%;
+}
+
+@media screen and (max-height: 800px) {
+   .DashboardPage {
+      height: 800px;
+   }
+}
