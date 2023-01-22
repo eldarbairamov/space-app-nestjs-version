@@ -11,7 +11,7 @@ import style from "./Form-Control.module.scss";
 
 interface IInput {
    labelName: string,
-   fieldName: "username" | "email" | "password" | "repeat_password" | "name" | "surname" | "dateOfBirth" | "current_password",
+   fieldName: "username" | "email" | "password" | "repeat_password" | "name" | "surname" | "current_password",
    errorMessage: string | undefined,
    isPassword: boolean
    register: UseFormRegister<Partial<IUserDto>>,

@@ -11,7 +11,7 @@ export const ActivationForm: FC = () => {
 
    const navigate = useNavigate();
 
-   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+   const handleChange = (value: string) => setValue(value);
 
    const handleSubmit = async (e: FormEvent<HTMLButtonElement>): Promise<void> => {
       try {
@@ -72,7 +72,9 @@ export const ActivationForm: FC = () => {
 
          {/* Input */ }
          <div className={ style.input_field }>
-            <input type="text" value={ value } onChange={ (e: ChangeEvent<HTMLInputElement>) => handleChange(e) }/>
+            <input type="text"
+                   value={ value }
+                   onChange={ (e: ChangeEvent<HTMLInputElement>) => handleChange(e.target.value) }/>
          </div>
 
          {/* Submit button */ }

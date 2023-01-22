@@ -11,14 +11,36 @@
    height: 95%;
    width: 95%;
 
-   .title {
+   .header {
       @extend %flex;
       justify-content: center;
 
-      border-bottom: 3px #d7d7d7 solid;
+      border-bottom: 2px #d7d7d7 solid;
       width: 100%;
       height: 7%;
-      font-weight: 500;
+      position: relative;
+
+      input {
+         text-align: center;
+         border: none;
+         font-weight: 500;
+         outline: none;
+      }
+
+      label {
+         cursor: pointer;
+      }
+
+      p {
+         cursor: pointer;
+         position: absolute;
+         right: 0;
+         color: #7d7d7d;
+
+         &:hover {
+            color: #d78052;
+         }
+      }
    }
 
    .textarea {
@@ -27,5 +49,18 @@
 
       width: 100%;
       height: 97%;
+
+      textarea {
+         width: 95%;
+         height: 95%;
+         border: 0;
+         resize: none;
+         outline: none;
+      }
    }
+
+}
+
+.no_any_notes {
+   color: #7d7d7d;
 }
