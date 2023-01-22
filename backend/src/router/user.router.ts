@@ -8,7 +8,7 @@ export const userRouter = Router();
 userRouter.get(
    "/get_info",
    authMiddleware.isAccessTokenValid,
-   userController.getUserInfo
+   userController.getUserInfo,
 );
 
 userRouter.patch(

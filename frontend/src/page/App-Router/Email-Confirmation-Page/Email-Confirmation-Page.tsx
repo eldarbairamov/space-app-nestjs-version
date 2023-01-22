@@ -1,7 +1,7 @@
 import React, { type FC } from "react";
 
 import {
-   EmailConfirmationMessage
+   EmailConfirmationMessage,
 } from "../../../component";
 
 import style from "./Email-Confirmation-Page.module.scss";

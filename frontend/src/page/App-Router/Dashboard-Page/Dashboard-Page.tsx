@@ -1,17 +1,21 @@
 import React, { type FC, useEffect } from "react";
 
 import { GoalsStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
-
-import style from "./Dashboard-Page.module.scss";
 import { asyncAuthActions } from "../../../redux/slice/auth.slice";
 import { useAppDispatch } from "../../../hook/redux.hook";
+import toast from "react-hot-toast";
+
+import style from "./Dashboard-Page.module.scss";
 
 export const DashboardPage: FC = () => {
 
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(asyncAuthActions.getUserInfo())
+      const loading = toast.loading("Зачекайте...");
+      dispatch(asyncAuthActions.getUserInfo());
+      toast.dismiss(loading);
+
    }, []);
 
    return (

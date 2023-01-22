@@ -13,8 +13,8 @@ export const resetPasswordService = async (token: string, password: string) => {
    const hashedPassword = await bcrypt
       .hash(password, 8)
       .catch(e => {
-      throw new ApiError('Помилка при хешуванні паролю', 500)
-   });
+         throw new ApiError("Помилка при хешуванні паролю", 500);
+      });
 
    // Update password
    await UserRepository.findOneAndUpdate({ _id: actionTokenInfo.tokenOwnerId }, { password: hashedPassword });

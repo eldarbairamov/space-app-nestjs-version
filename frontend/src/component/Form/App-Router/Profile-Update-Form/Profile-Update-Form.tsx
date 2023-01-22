@@ -23,7 +23,7 @@ export const ProfileUpdateForm: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(asyncAuthActions.getUserInfo())
+      dispatch(asyncAuthActions.getUserInfo());
    }, []);
 
    useEffect(() => {

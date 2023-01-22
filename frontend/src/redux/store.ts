@@ -5,7 +5,7 @@ import { notesReducer } from "./slice/notes.slice";
 export const store = configureStore({
    reducer: {
       authReducer,
-      notesReducer
+      notesReducer,
    },
 });
 

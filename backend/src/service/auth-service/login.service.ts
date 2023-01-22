@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { accessTokenPairGenerator } from "../token.service";
 import { ApiError } from "../../error/Api.error";
 import { AccessTokenPairDto } from "../../dto/access-token-pair.dto";
-import { type IAccessTokenPairDto, type IUserDatabase, type ILoginDto} from "../../interface";
+import { type IAccessTokenPairDto, type IUserDatabase, type ILoginDto } from "../../interface";
 import { OAuthRepository } from "../../repository/OAuth.repository";
 
 export const loginService = async (loginDto: ILoginDto, userFromDb: IUserDatabase): Promise<IAccessTokenPairDto> => {
