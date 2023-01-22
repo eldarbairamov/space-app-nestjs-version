@@ -1,25 +1,28 @@
-import React, { useState, type ChangeEvent, type FC } from "react";
+import React, { useState, type ChangeEvent, type FC, useEffect } from "react";
 
 import { type INote } from "../../../interface/note.interface";
+import toast, { Toaster } from "react-hot-toast";
+import { useAppDispatch, useAppSelector } from "../../../hook/redux.hook";
+import { notesActions } from "../../../redux/slice/notes.slice";
 
 import style from "./Notes-Main.module.scss";
-import toast, { Toaster } from "react-hot-toast";
 
-interface INotesMain {
-   activeNote: INote;
-   onUpdateNote: (updatedNote: INote) => void;
-}
-
-export const NotesMain: FC<INotesMain> = ({ activeNote, onUpdateNote }) => {
+export const NotesMain: FC = () => {
    const [ title, setTitle ] = useState<string>("");
    const [ body, setBody ] = useState<string>("");
 
-   const onEditField = (field: string, value: string) => {
-      onUpdateNote({
+   const dispatch = useAppDispatch();
+   const { activeNote } = useAppSelector(state => state.notesReducer);
+
+   const onEditFields = (field: string, value: string) => {
+
+      const updatedNote = {
          ...activeNote,
          [field]: value,
          last_modified: Date.now(),
-      });
+      } as INote;
+
+      dispatch(notesActions.updateNote(updatedNote));
 
       if (field === "title") {
          setTitle(value);
@@ -34,18 +37,16 @@ export const NotesMain: FC<INotesMain> = ({ activeNote, onUpdateNote }) => {
       const loading = toast.loading("Зачекайте...");
 
       const noteToSave = {
-         title: title ? title : 'Нова замітка',
+         title: title ? title : "Нова замітка",
          body: body,
          last_modified: Date.now(),
       };
 
       toast.dismiss(loading);
-      toast.success('Замітка збережена');
-
-      console.log(noteToSave);
+      toast.success("Замітка збережена");
    };
 
-   if (!activeNote) return <div className={style.no_any_notes}> Заміток немає </div>;
+   if (!activeNote) return <div className={ style.no_any_notes }> Заміток немає </div>;
 
    return (
       <div className={ style.Main }>
@@ -78,17 +79,17 @@ export const NotesMain: FC<INotesMain> = ({ activeNote, onUpdateNote }) => {
             <input type="text" id={ "title" }
                    value={ activeNote.title }
                    autoFocus
-                   onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditField("title", e.target.value) }/>
+                   onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }/>
 
-            <p onClick={saveNoteToDb}> Зберегти </p>
+            <p onClick={ saveNoteToDb }> Зберегти </p>
 
          </div>
 
          <div className={ style.textarea }>
-            <textarea id={'body'}
-                      value={activeNote.body}
-                      placeholder={'Розкажи мені щось цікаве...'}
-                      onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onEditField('body', e.target.value)}/>
+            <textarea id={ "body" }
+                      value={ activeNote.body }
+                      placeholder={ "Розкажи мені щось цікаве..." }
+                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => onEditFields("body", e.target.value) }/>
          </div>
 
       </div>
