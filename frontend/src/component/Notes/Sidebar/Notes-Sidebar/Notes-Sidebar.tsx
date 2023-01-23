@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { type FC, useEffect } from "react";
 
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";
@@ -22,6 +22,10 @@ export const NotesSidebar: FC = () => {
 
       dispatch(notesActions.addNote(newNote));
    };
+
+   useEffect(() => {
+
+   }, [])
 
 
    return (

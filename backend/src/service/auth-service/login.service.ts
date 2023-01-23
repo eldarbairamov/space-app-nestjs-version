@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { accessTokenPairGenerator } from "../token.service";
 import { ApiError } from "../../error/Api.error";
-import { AccessTokenPairDto } from "../../dto/access-token-pair.dto";
+import { AccessTokenPairPresenter } from "../../presenter/access-token-pair.presenter";
 import { type IAccessTokenPairDto, type IUserDatabase, type ILoginDto } from "../../interface";
 import { OAuthRepository } from "../../repository/OAuth.repository";
 
@@ -11,7 +11,12 @@ export const loginService = async (loginDto: ILoginDto, userFromDb: IUserDatabas
    if (!userFromDb.isActivated) throw new ApiError("Активуйте аккаунт", 403);
 
    // Compare passwords
-   const isPasswordSame = await bcrypt.compare(loginDto.password!, userFromDb.password!);
+   const isPasswordSame = await bcrypt
+      .compare(loginDto.password!, userFromDb.password!)
+      .catch(e => {
+         throw new ApiError("Помилка при хешуванні паролю", 500);
+      });
+
    if (!isPasswordSame) throw new ApiError("Невірна електронна пошта або пароль", 400);
 
    // Generate access token pair
@@ -25,6 +30,6 @@ export const loginService = async (loginDto: ILoginDto, userFromDb: IUserDatabas
    });
 
    // Return presented data for client
-   return AccessTokenPairDto(tokensData);
+   return AccessTokenPairPresenter(tokensData);
 
 };

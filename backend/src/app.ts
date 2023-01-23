@@ -6,6 +6,7 @@ import { errorMiddleware } from "./middleware";
 import { config } from "./config";
 import { authRouter } from "./router/auth.router";
 import { userRouter } from "./router/user.router";
+import { notesRouter } from "./router/notes.router";
 
 const app: Application = express();
 mongoose.set("strictQuery", false);
@@ -18,6 +19,7 @@ app.use(cors());
 // Routing
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/notes", notesRouter)
 
 // Error middleware
 app.use(errorMiddleware);

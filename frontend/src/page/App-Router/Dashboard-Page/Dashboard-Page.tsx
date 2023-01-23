@@ -12,10 +12,7 @@ export const DashboardPage: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      const loading = toast.loading("Зачекайте...");
       dispatch(asyncAuthActions.getUserInfo());
-      toast.dismiss(loading);
-
    }, []);
 
    return (

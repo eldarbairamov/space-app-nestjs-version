@@ -9,19 +9,8 @@ export interface IOAuthSchema {
 
 export interface IOAuthDatabase extends IOAuthSchema {
    _id: Types.ObjectId,
-   createdAt: string,
-   updatedAt: string,
-}
-
-export interface IAccessTokenPair {
-   accessToken: string,
-   refreshToken: string
-}
-
-export interface IAccessTokenPairDto extends IAccessTokenPair {
-   tokenOwnerId: Types.ObjectId,
-   tokenOwnerUsername: string,
-   tokenId: Types.ObjectId,
+   createdAt: Date,
+   updatedAt: Date,
 }
 
 export interface IUserSchema {
@@ -36,8 +25,8 @@ export interface IUserSchema {
 
 export interface IUserDatabase extends IUserSchema {
    _id: Types.ObjectId,
-   createdAt: string,
-   updatedAt: string,
+   createdAt: Date,
+   updatedAt: Date,
 }
 
 export interface IActionTokenSchema {
@@ -48,6 +37,18 @@ export interface IActionTokenSchema {
 
 export interface IActionTokenDatabase extends IActionTokenSchema {
    _id: Types.ObjectId,
-   createdAt: string,
-   updatedAt: string,
+   createdAt: Date,
+   updatedAt: Date,
+}
+
+export interface INoteSchema {
+   noteOwnerId: Types.ObjectId,
+   title: string,
+   body: string,
+}
+
+export interface INoteDatabase extends INoteSchema {
+   _id: Types.ObjectId,
+   createdAt: Date,
+   updatedAt: Date,
 }

@@ -4,3 +4,9 @@ export interface INote {
    body: string,
    last_modified: number
 }
+
+export interface INoteDto {
+   title: string,
+   body: string,
+   lastModified: Date
+}
