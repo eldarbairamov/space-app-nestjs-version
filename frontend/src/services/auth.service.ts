@@ -1,6 +1,5 @@
 import { type IOAuthDto, type IUserDto } from "../interface";
 import { axiosInstance } from "./axios.service";
-import { AxiosResponse } from "axios";
 
 export const authService = {
    userRegistration: async (dto: Partial<IUserDto>): Promise<string> => {
@@ -40,7 +39,6 @@ export const authService = {
 
    logout: async () => {
       const accessToken = localStorage.getItem("accessToken");
-
 
       await axiosInstance.get<{ message: string }>("/auth/logout", {
          headers: {

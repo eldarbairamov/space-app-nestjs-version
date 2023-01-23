@@ -17,3 +17,18 @@ export interface RequestWithCustomVar extends Request {
    userId?: string;
    user?: IUserDatabase;
 }
+
+export interface RequestWithBodyVarParams<B, P> extends Request<P, {}, B> {
+   body: B;
+   params: P;
+   user?: IUserDatabase;
+   token?: string;
+   userId?: string;
+}
+
+export interface RequestWithCustomVarAndParams<P> extends Request<P> {
+   params: P,
+   user?: IUserDatabase;
+   token?: string;
+   userId?: string;
+}

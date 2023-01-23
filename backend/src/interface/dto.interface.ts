@@ -8,7 +8,8 @@ export interface IAccessTokenPairDto extends IAccessTokenPair {
 }
 
 export interface INoteDto {
+   id: Types.ObjectId
    title: string,
    body: string,
-   lastModified: Date
+   lastModified: number
 }

@@ -6,3 +6,5 @@ export const notesRouter = Router();
 
 notesRouter.get("/initial", authMiddleware.isAccessTokenValid, notesController.addNote);
 notesRouter.get("/", authMiddleware.isAccessTokenValid, notesController.getNotes);
+notesRouter.put("/:noteId", authMiddleware.isAccessTokenValid, notesController.saveNote);
+notesRouter.delete("/:noteId", authMiddleware.isAccessTokenValid, notesController.deleteNote);
