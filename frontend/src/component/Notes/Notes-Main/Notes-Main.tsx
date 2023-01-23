@@ -55,10 +55,9 @@ export const NotesMain: FC = () => {
             <input type="text" id={ "title" }
                    value={ activeNote.title }
                    autoFocus
+                   onBlur={ saveNoteToDb }
                    onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }
             />
-
-            {/*<p onClick={ saveNoteToDb }> Зберегти </p>*/}
 
          </div>
 
