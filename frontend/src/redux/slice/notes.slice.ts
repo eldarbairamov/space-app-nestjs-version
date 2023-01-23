@@ -90,6 +90,9 @@ const notesSlice = createSlice({
          });
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       },
+      showDefaultNote: (state, {payload}: PayloadAction<INoteDto>) => {
+         state.activeNote = payload
+      }
    },
    extraReducers: builder => builder
       // Add note
