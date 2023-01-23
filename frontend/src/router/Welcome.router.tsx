@@ -1,5 +1,15 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { ActivationPage, ForgotPasswordPage, LoginPage, RegistrationPage, ResetPasswordPage, LogoPage } from "../page";
+import {
+   ActivationPage,
+   ForgotPasswordPage,
+   LoginPage,
+   RegistrationPage,
+   ResetPasswordPage,
+   LogoPage,
+} from "../page";
+import {
+   EmailConfirmationPage
+} from "../page/Welcome-Router/Email-Confirmation-Page (signed-out)/Email-Confirmation-Page";
 
 export const WelcomeRouter = createBrowserRouter([
    {
@@ -29,5 +39,9 @@ export const WelcomeRouter = createBrowserRouter([
    {
       path: "*",
       element: <Navigate to={ "/" }/>,
+   },
+   {
+      path: "email_confirmation/:token",
+      element: <EmailConfirmationPage/>,
    },
 ]);

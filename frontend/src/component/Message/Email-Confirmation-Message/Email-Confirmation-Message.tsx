@@ -30,7 +30,7 @@ export const EmailConfirmationMessage: FC = () => {
             toast.dismiss(loading);
 
             setTimeout(() => {
-               navigate("/");
+               navigate("/login");
             }, 5000);
          })
          .catch(err => {
@@ -38,7 +38,7 @@ export const EmailConfirmationMessage: FC = () => {
             toast.dismiss(loading);
 
             setTimeout(() => {
-               navigate("/");
+               navigate("/login");
             }, 5000);
          });
 
