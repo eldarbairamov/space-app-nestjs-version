@@ -13,7 +13,7 @@ export const OAuthRepository = {
          });
    },
 
-   delete: async (filterQuery: FilterQuery<IOAuthSchema>): Promise<DeleteResult> => {
+   delete: async (filterQuery: FilterQuery<IOAuthSchema>): Promise<DeleteResult | void> => {
       return OAuthModel
          .deleteOne(filterQuery)
          .catch(e => {

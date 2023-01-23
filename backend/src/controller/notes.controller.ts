@@ -1,8 +1,13 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response } from "express";
 import { addInitialNoteService } from "../service/notes-service/add-initial-note.service";
-import { type RequestWithCustomVar } from "../interface";
+import {
+   type INoteSchema,
+   type RequestWithBodyVarParams,
+   type RequestWithCustomVar, RequestWithCustomVarAndParams,
+} from "../interface";
 import { getNotesService } from "../service/notes-service/get-notes.service";
+import { NoteRepository } from "../repository/Note.repository";
 
 export const notesController = {
 
@@ -13,6 +18,17 @@ export const notesController = {
 
    getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
       const notes = await getNotesService(req.userId!);
-      res.json(notes)
+      res.json(notes);
    }),
+
+   saveNote: expressAsyncHandler(async (req: RequestWithBodyVarParams<Partial<INoteSchema>, { noteId: string }>, res: Response<{ message: string }>) => {
+      await NoteRepository.findByIdAndUpdate({ _id: req.params.noteId, noteOwnerId: req.userId }, req.body);
+      res.json({ message: "Замітка збережена" });
+   }),
+
+   deleteNote: (expressAsyncHandler(async (req: RequestWithCustomVarAndParams<{ noteId: string }>, res: Response<{ message: string }>) => {
+      await NoteRepository.deleteById(req.params.noteId);
+      res.json({ message: "Замітка видалена" });
+   })),
+
 };

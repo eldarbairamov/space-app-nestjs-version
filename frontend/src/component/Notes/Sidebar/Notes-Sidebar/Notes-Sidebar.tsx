@@ -2,30 +2,20 @@ import React, { type FC, useEffect } from "react";
 
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";
-import { notesActions } from "../../../../redux/slice/notes.slice";
+import { asyncNotesActions } from "../../../../redux/slice/notes.slice";
 import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
+import toast from "react-hot-toast";
 
 import style from "./Notes-Sidebar.module.scss";
-
 
 export const NotesSidebar: FC = () => {
    const dispatch = useAppDispatch();
    const { notes } = useAppSelector(state => state.notesReducer);
 
-   const addNote = (): void => {
-      const newNote = {
-         id: Date.now(),
-         body: "",
-         title: "Нова замітка",
-         last_modified: Date.now(),
-      };
-
-      dispatch(notesActions.addNote(newNote));
+   const addNote = () => {
+      dispatch(asyncNotesActions.addNote());
    };
 
-   useEffect(() => {
-
-   }, [])
 
 
    return (

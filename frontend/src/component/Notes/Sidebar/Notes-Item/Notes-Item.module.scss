@@ -10,6 +10,7 @@
    border-radius: 10px;
    text-align: center;
    cursor: pointer;
+   position: relative;
 
    overflow: hidden;
 
@@ -18,14 +19,29 @@
       text-align: left;
    }
 
+   .delete {
+      position: absolute;
+      right: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #c00000;
+      cursor: pointer;
+
+      &:hover {
+         color: darkred;
+      }
+   }
+
    .body {
-      font-size: 15px;
+      font-size: 14px;
       text-align: left;
+      color: #7d7d7d;
    }
 
    .date {
       font-size: 13px;
       color: #d78052;
+      font-weight: 500;
       text-align: right;
    }
 }

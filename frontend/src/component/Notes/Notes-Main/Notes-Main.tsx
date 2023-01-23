@@ -1,9 +1,11 @@
-import React, { useState, type ChangeEvent, type FC, useEffect } from "react";
+import React, { type ChangeEvent, type FC } from "react";
 
-import { type INote } from "../../../interface/note.interface";
-import toast, { Toaster } from "react-hot-toast";
+import { type INoteDto } from "../../../interface/note.interface";
+import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../../hook/redux.hook";
 import { notesActions } from "../../../redux/slice/notes.slice";
+import { noteService } from "../../../services/note.service";
+import { type AxiosApiError } from "../../../services";
 
 import style from "./Notes-Main.module.scss";
 
@@ -16,20 +18,32 @@ export const NotesMain: FC = () => {
       const updatedNote = {
          ...activeNote,
          [field]: value,
-         last_modified: Date.now(),
-      } as INote;
+      } as INoteDto;
 
       dispatch(notesActions.updateNote(updatedNote));
-
    };
 
-   const saveNoteToDb = () => {
-      const loading = toast.loading("Зачекайте...");
+   const saveNoteToDb = async () => {
+      try {
+         const loading = toast.loading("Зачекайте...");
 
-      console.log(activeNote);
+         const noteToSave = {
+            title: activeNote?.title,
+            body: activeNote?.body,
+         };
 
-      toast.dismiss(loading);
-      toast.success("Замітка збережена");
+         await noteService.saveNote(noteToSave, activeNote?.id!);
+
+         toast.dismiss(loading);
+         toast.success("Замітка збережена");
+
+      } catch (e) {
+         const axiosError = e as AxiosApiError;
+         const response = axiosError.response?.data.message as string;
+
+         toast.dismiss();
+         toast.error(response ? response : axiosError.message);
+      }
    };
 
    if (!activeNote) return <div className={ style.no_any_notes }> Заміток немає </div>;
@@ -37,37 +51,14 @@ export const NotesMain: FC = () => {
    return (
       <div className={ style.Main }>
 
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
-
          <div className={ style.header }>
-
             <input type="text" id={ "title" }
                    value={ activeNote.title }
                    autoFocus
-                   onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }/>
+                   onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }
+            />
 
-            <p onClick={ saveNoteToDb }> Зберегти </p>
+            {/*<p onClick={ saveNoteToDb }> Зберегти </p>*/}
 
          </div>
 
@@ -75,7 +66,9 @@ export const NotesMain: FC = () => {
             <textarea id={ "body" }
                       value={ activeNote.body }
                       placeholder={ "Розкажи мені щось цікаве..." }
-                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => onEditFields("body", e.target.value) }/>
+                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => onEditFields("body", e.target.value) }
+                      onBlur={ saveNoteToDb }
+            />
          </div>
 
       </div>
