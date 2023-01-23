@@ -1,4 +1,4 @@
-import React, { type ChangeEvent, type FC } from "react";
+import React, { type ChangeEvent, type FC, useEffect } from "react";
 
 import { type INoteDto } from "../../../interface/note.interface";
 import toast from "react-hot-toast";
@@ -11,7 +11,11 @@ import style from "./Notes-Main.module.scss";
 
 export const NotesMain: FC = () => {
    const dispatch = useAppDispatch();
-   const { activeNote } = useAppSelector(state => state.notesReducer);
+   const { activeNote, notes } = useAppSelector(state => state.notesReducer);
+
+   useEffect(() => {
+      dispatch(notesActions.showDefaultNote(notes[0]))
+   }, [])
 
    const onEditFields = (field: string, value: string) => {
 
@@ -35,7 +39,7 @@ export const NotesMain: FC = () => {
          await noteService.saveNote(noteToSave, activeNote?.id!);
 
          toast.dismiss(loading);
-         toast.success("Замітка збережена");
+         toast.success("Замітка збережена", {duration: 800});
 
       } catch (e) {
          const axiosError = e as AxiosApiError;

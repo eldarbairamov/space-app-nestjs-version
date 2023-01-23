@@ -19,7 +19,6 @@ export const NotesPage: FC = () => {
    return (
       <div className={ style.NotesPage }>
 
-
             <>
                {/* Toaster */ }
                <Toaster

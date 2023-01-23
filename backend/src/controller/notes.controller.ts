@@ -4,7 +4,7 @@ import { addInitialNoteService } from "../service/notes-service/add-initial-note
 import {
    type INoteSchema,
    type RequestWithBodyVarParams,
-   type RequestWithCustomVar, RequestWithCustomVarAndParams,
+   type RequestWithCustomVar, type RequestWithCustomVarAndParams,
 } from "../interface";
 import { getNotesService } from "../service/notes-service/get-notes.service";
 import { NoteRepository } from "../repository/Note.repository";
