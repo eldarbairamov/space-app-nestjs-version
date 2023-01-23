@@ -1,11 +1,10 @@
-import React, { type FC, useEffect } from "react";
+import React, { type FC } from "react";
 
 import { type INoteDto } from "../../../../interface/note.interface";
 import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
 import { asyncNotesActions, notesActions } from "../../../../redux/slice/notes.slice";
 
 import style from "./Notes-Item.module.scss";
-import toast from "react-hot-toast";
 
 interface INotesItem {
    note: INoteDto;

@@ -16,8 +16,6 @@ export const NotesSidebar: FC = () => {
       dispatch(asyncNotesActions.addNote());
    };
 
-
-
    return (
       <div className={ style.NotesSidebar }>
          <div className={ style.header }>

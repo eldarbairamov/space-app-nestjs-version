@@ -7,13 +7,15 @@ import toast from "react-hot-toast";
 interface INotesInitialState {
    activeNoteId: string | undefined,
    notes: INoteDto[],
-   activeNote: INoteDto | undefined
+   activeNote: INoteDto | undefined,
+   lastNote: INoteDto | undefined
 }
 
 const initialState: INotesInitialState = {
    activeNoteId: undefined,
    notes: [],
    activeNote: undefined,
+   lastNote: undefined,
 };
 
 export const addNote = createAsyncThunk<INoteDto, void, { rejectValue: string }>(
@@ -101,13 +103,18 @@ const notesSlice = createSlice({
       // Get all notes
       .addCase(getNotes.fulfilled, (state, { payload }) => {
          state.notes = payload;
+         state.lastNote = state.notes[0];
       })
 
       // Delete note
       .addCase(deleteNote.fulfilled, (state, { meta }) => {
          const targetId = meta.arg.noteId;
+         const targetNoteIndex = state.notes.findIndex(item => item.id === targetId);
+
          state.notes = state.notes.filter(item => item.id !== targetId);
-      })
+         state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : undefined;
+         state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
+      }),
 
 });
 
