@@ -1,10 +1,9 @@
-import React, { type FC, useEffect } from "react";
+import React, { type FC } from "react";
 
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";
 import { asyncNotesActions } from "../../../../redux/slice/notes.slice";
 import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
-import toast from "react-hot-toast";
 
 import style from "./Notes-Sidebar.module.scss";
 

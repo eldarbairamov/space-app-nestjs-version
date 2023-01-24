@@ -19,6 +19,7 @@ export const NoteRepository = {
          .find(filterQuery)
          .sort({ updatedAt: "desc" })
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
@@ -27,6 +28,7 @@ export const NoteRepository = {
       return NoteModel
          .findByIdAndUpdate(filterQuery, body)
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
@@ -35,6 +37,7 @@ export const NoteRepository = {
       return NoteModel
          .findByIdAndDelete(filterQuery)
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },

@@ -11,11 +11,11 @@ interface INotesItem {
 }
 
 export const NotesItem: FC<INotesItem> = ({ note }) => {
-   const bodyCondition = note.body && note.body.split("").length > 35;
+   const bodyCondition = note.body && note.body.split("").length > 25;
    const titleCondition = note.title.split("").length > 20;
 
    const dispatch = useAppDispatch();
-   const { activeNoteId } = useAppSelector(state => state.notesReducer);
+   const { activeNote } = useAppSelector(state => state.notesReducer);
 
    const deleteNote = (noteId: string, e: React.MouseEvent<HTMLParagraphElement>): void => {
       e.stopPropagation();
@@ -24,14 +24,14 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
 
    return (
       <div className={ style.NotesItem } onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
-           data-active={ note.id === activeNoteId }>
+           data-active={ note.id === activeNote?.id }>
 
          <p className={ style.title }> { titleCondition ? note.title.substring(0, 20) + "..." : note.title } </p>
 
          <p className={ style.delete }
             onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }> Видалити </p>
 
-         <p className={ style.body }> { bodyCondition ? note.body.substring(0, 35) + "..." : note.body } </p>
+         <p className={ style.body }> { bodyCondition ? note.body.substring(0, 25) + "..." : note.body } </p>
 
          <p className={ style.date }>
             { new Date(note.lastModified).toLocaleDateString("en-GB", {
