@@ -11,6 +11,7 @@ import { emailValidator } from "../../../../validator/auth.validator";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
 
 import style from "./ForgotPasswordForm.module.scss";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ForgotPasswordForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({
@@ -35,40 +36,12 @@ export const ForgotPasswordForm: FC = () => {
          }, 1500);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e)
       }
    };
 
    return (
       <form className={ style.ForgotPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Message  */ }
          <p className={ style.message }>

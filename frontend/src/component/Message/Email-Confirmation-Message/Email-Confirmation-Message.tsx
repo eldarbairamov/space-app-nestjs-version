@@ -47,8 +47,6 @@ export const EmailConfirmationMessage: FC = () => {
 
    return (
       <>
-         {/* Toaster */ }
-         <Toaster/>
 
          {/* Messages */ }
          { status === "valid"

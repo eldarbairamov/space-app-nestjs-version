@@ -22,6 +22,7 @@ export const NotesMain: FC = () => {
       const updatedNote = {
          ...activeNote,
          [field]: value,
+         lastModified: Date.now()
       } as INoteDto;
 
       dispatch(notesActions.updateNote(updatedNote));

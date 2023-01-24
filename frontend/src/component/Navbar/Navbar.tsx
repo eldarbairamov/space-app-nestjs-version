@@ -17,10 +17,10 @@ export const Navbar: FC = () => {
       try {
          await authService.logout();
 
+         navigate(0);
+
          toast.dismiss(loading);
 
-         navigate("/");
-         navigate(0);
       } catch (e) {
          toast.dismiss(loading);
       }

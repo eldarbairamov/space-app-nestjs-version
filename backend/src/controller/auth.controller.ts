@@ -43,7 +43,7 @@ export const authController = {
 
    logout: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
       await OAuthRepository.delete({ accessToken: req.token });
-      res.json({ message: 'Ок' });
+      res.json({ message: 'Успішно' });
    }),
 
 };

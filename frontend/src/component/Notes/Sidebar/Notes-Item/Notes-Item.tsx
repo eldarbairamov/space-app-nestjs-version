@@ -3,10 +3,9 @@ import React, { type FC } from "react";
 import { type INoteDto } from "../../../../interface/note.interface";
 import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
 import { asyncNotesActions, notesActions } from "../../../../redux/slice/notes.slice";
-import { DeleteFilled } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
 import style from "./Notes-Item.module.scss";
-import deleteIcon from '../../../../asset/delete-3.png'
 
 interface INotesItem {
    note: INoteDto;
@@ -31,7 +30,7 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
          <p className={ style.title }> { titleCondition ? note.title.substring(0, 20) + "..." : note.title } </p>
 
          <p className={ style.delete }
-            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }><img src={deleteIcon} alt="delete"/> </p>
+            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }> <DeleteOutlined style={{fontSize: '15px'}}/> </p>
 
          <p className={ style.body }> { bodyCondition ? note.body.substring(0, 25) + "..." : note.body } </p>
 

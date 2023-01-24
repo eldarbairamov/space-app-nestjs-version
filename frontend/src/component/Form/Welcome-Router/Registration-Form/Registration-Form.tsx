@@ -11,6 +11,7 @@ import { registrationValidator } from "../../../../validator/auth.validator";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
 
 import style from "./Registration-Form.module.scss";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const RegistrationForm: FC = () => {
       const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
@@ -23,7 +24,7 @@ export const RegistrationForm: FC = () => {
       const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data) => {
          try {
             const loading = toast.loading("Зачекайте...");
-            const message = await authService.userRegistration(data);
+            const message = await authService.registration(data);
 
             toast.dismiss(loading);
             toast.success(`${ message }. Посилання на активацію аккаунту вже летить на вашу електронну пошту ;)`, {
@@ -36,40 +37,12 @@ export const RegistrationForm: FC = () => {
             }, 5000);
 
          } catch (e) {
-            const axiosError = e as AxiosApiError;
-            const response = axiosError.response?.data.message as string;
-
-            toast.dismiss();
-            toast.error(response ? response : axiosError.message);
+           catchErrors(e)
          }
       };
 
       return (
          <form className={ style.RegistrationForm } onSubmit={ handleSubmit(onSubmit) }>
-
-            {/* Toaster */ }
-            <Toaster
-               toastOptions={ {
-                  error: {
-                     style: {
-                        textAlign: "center",
-                     },
-                     iconTheme: {
-                        primary: "#df8281",
-                        secondary: "white",
-                     },
-                  },
-                  success: {
-                     style: {
-                        textAlign: "center",
-                     },
-                     iconTheme: {
-                        primary: "#84df81",
-                        secondary: "white",
-                     },
-                  },
-               } }
-            />
 
             {/* FormControlDate fields */ }
             <FormControl labelName={ "Ім'я користувача" } fieldName={ "username" } register={ register }

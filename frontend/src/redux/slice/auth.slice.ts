@@ -1,28 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { type AxiosApiError, userService } from "../../services";
 import { type IUserInfoDto } from "../../interface";
-
+import toast from "react-hot-toast";
 
 interface IAuthInitialState {
-   accessToken: string | null;
-   isLogin: boolean,
    username: string,
    name?: string,
    surname?: string,
-   dateOfBirth?: Date | null
    avatar?: string,
-   errors: string | undefined,
 }
 
 const initialState: IAuthInitialState = {
-   isLogin: !!localStorage.getItem("accessToken"),
-   accessToken: localStorage.getItem("accessToken"),
    username: "",
    name: "",
    surname: "",
-   dateOfBirth: null,
    avatar: "",
-   errors: undefined,
 };
 
 const getUserInfo = createAsyncThunk<IUserInfoDto, void, { rejectValue: string }>(
@@ -35,6 +27,7 @@ const getUserInfo = createAsyncThunk<IUserInfoDto, void, { rejectValue: string }
          const axiosError = e as AxiosApiError;
          const response = axiosError.response?.data.message as string;
 
+         toast.error(response ? response : axiosError.message);
          return rejectWithValue(response);
       }
    });
@@ -49,9 +42,6 @@ const authSlice = createSlice({
          state.name = payload.name;
          state.surname = payload.surname;
          state.username = payload.username;
-      })
-      .addCase(getUserInfo.rejected, (state, { payload }) => {
-         state.errors = payload;
       }),
 });
 

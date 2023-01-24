@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { authService, type AxiosApiError } from "../../../../services";
 
 import style from "./ActivationForm.module.scss";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ActivationForm: FC = () => {
    const [ value, setValue ] = useState<string>("");
@@ -30,40 +31,12 @@ export const ActivationForm: FC = () => {
          }, 1500);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e)
       }
    };
 
    return (
       <div className={ style.ActivationForm }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Message */ }
          <p className={ style.message }>

@@ -3,6 +3,7 @@ import { type INoteDto } from "../../interface/note.interface";
 import { type AxiosApiError } from "../../services";
 import { noteService } from "../../services/note.service";
 import toast from "react-hot-toast";
+import { catchErrors } from "../../helper/catch-errors.helper";
 
 interface INotesInitialState {
    activeNoteId: string | undefined,
@@ -20,7 +21,7 @@ const initialState: INotesInitialState = {
    count: 0,
 };
 
-export const addNote = createAsyncThunk<INoteDto, void, { rejectValue: string }>(
+export const addNote = createAsyncThunk<INoteDto, void>(
    "notesSlice/getInitialNote",
    async (_, { rejectWithValue }) => {
       try {
@@ -29,20 +30,16 @@ export const addNote = createAsyncThunk<INoteDto, void, { rejectValue: string }>
          const { data } = await noteService.addNote();
 
          toast.dismiss(loading);
+
          return data;
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
-         return rejectWithValue(response);
+         return rejectWithValue(e);
       }
    },
 );
 
-export const getNotes = createAsyncThunk<INoteDto[], void, { rejectValue: string }>(
+export const getNotes = createAsyncThunk<INoteDto[], void>(
    "notesSlice/getNotes",
    async (_, { rejectWithValue }) => {
       try {
@@ -50,34 +47,24 @@ export const getNotes = createAsyncThunk<INoteDto[], void, { rejectValue: string
          return data;
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
-         return rejectWithValue(response);
+         return rejectWithValue(e);
       }
    },
 );
 
-export const deleteNote = createAsyncThunk<void, { noteId: string }, { rejectValue: string }>(
+export const deleteNote = createAsyncThunk<void, { noteId: string }>(
    "notesSlice/deleteNote",
    async ({ noteId }, { rejectWithValue }) => {
       try {
          await noteService.deleteNote(noteId);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
-         return rejectWithValue(response);
+         return rejectWithValue(e);
       }
    },
 );
 
-export const getNotesCount = createAsyncThunk<number, void, { rejectValue: string }>(
+export const getNotesCount = createAsyncThunk<number, void>(
    "notesSlice/getNotesCount",
    async (_, { rejectWithValue }) => {
       try {
@@ -85,12 +72,7 @@ export const getNotesCount = createAsyncThunk<number, void, { rejectValue: strin
          return data;
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
-         return rejectWithValue(response);
+         return rejectWithValue(e);
       }
    },
 );
@@ -98,6 +80,7 @@ export const getNotesCount = createAsyncThunk<number, void, { rejectValue: strin
 const notesSlice = createSlice({
    name: "notes",
    initialState,
+
    reducers: {
       setActiveNoteId: (state, { payload }: PayloadAction<string>) => {
          state.activeNoteId = payload;
@@ -115,6 +98,7 @@ const notesSlice = createSlice({
          state.activeNote = payload;
       },
    },
+
    extraReducers: builder => builder
       // Add note
       .addCase(addNote.fulfilled, (state, { payload }) => {
@@ -123,16 +107,26 @@ const notesSlice = createSlice({
          state.activeNoteId = payload.id;
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       })
+      .addCase(addNote.rejected, (state, { payload }) => {
+         catchErrors(payload);
+      })
 
       // Get notes count
       .addCase(getNotesCount.fulfilled, (state, { payload }) => {
          state.count = payload;
       })
+      .addCase(getNotesCount.rejected, (state, { payload }) => {
+         catchErrors(payload);
+
+      })
 
       // Get all notes
       .addCase(getNotes.fulfilled, (state, { payload }) => {
          state.notes = payload;
-         state.activeNote = payload[0]
+         state.activeNote = payload[0];
+      })
+      .addCase(getNotes.rejected, (state, { payload }) => {
+         catchErrors(payload);
       })
 
       // Delete note
@@ -143,6 +137,9 @@ const notesSlice = createSlice({
          state.notes = state.notes.filter(item => item.id !== targetId);
          state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : undefined;
          state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
+      })
+      .addCase(deleteNote.rejected, (state, { payload }) => {
+         catchErrors(payload);
       }),
 
 });

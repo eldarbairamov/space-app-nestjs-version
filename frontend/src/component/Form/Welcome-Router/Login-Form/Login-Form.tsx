@@ -11,6 +11,8 @@ import { loginValidator } from "../../../../validator/auth.validator";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
 
 import style from "./Login-Form.module.scss";
+import { useAppDispatch } from "../../../../hook/redux.hook";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const LoginForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({
@@ -24,23 +26,18 @@ export const LoginForm: FC = () => {
       try {
          const loading = toast.loading("Зачекайте");
 
-         const username = await authService.userLogin(data);
+         const username = await authService.login(data);
 
          toast.dismiss(loading);
          toast.success(`Привіт, ${ username }`);
 
          setTimeout(() => {
             resetFields(setValue);
-            navigate("/");
             navigate(0);
          }, 1500);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         const { response } = catchErrors(e);
 
          if (response === "Активуйте аккаунт") {
             setTimeout(() => {
@@ -52,30 +49,6 @@ export const LoginForm: FC = () => {
 
    return (
       <form className={ style.LoginForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Form controls */ }
          <FormControl labelName={ "Електронна пошта" } fieldName={ "email" } register={ register }

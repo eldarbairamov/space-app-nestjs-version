@@ -11,6 +11,7 @@ import { authService, type AxiosApiError } from "../../../../services";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
 
 import style from "./Reset-Password-Form.module.scss";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ResetPasswordForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({
@@ -46,40 +47,12 @@ export const ResetPasswordForm: FC = () => {
          }
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e)
       }
    };
 
    return (
       <form className={ style.ResetPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Form controls */ }
          <FormControl labelName={ "Введіть ваш новий пароль" }
