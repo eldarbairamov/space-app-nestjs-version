@@ -14,8 +14,8 @@ export const NotesMain: FC = () => {
    const { activeNote, notes } = useAppSelector(state => state.notesReducer);
 
    useEffect(() => {
-      dispatch(notesActions.showDefaultNote(notes[0]))
-   }, [])
+      dispatch(notesActions.showDefaultNote(notes[0]));
+   }, []);
 
    const onEditFields = (field: string, value: string) => {
 
@@ -29,17 +29,12 @@ export const NotesMain: FC = () => {
 
    const saveNoteToDb = async () => {
       try {
-         const loading = toast.loading("Зачекайте...");
-
          const noteToSave = {
             title: activeNote?.title,
             body: activeNote?.body,
          };
 
          await noteService.saveNote(noteToSave, activeNote?.id!);
-
-         toast.dismiss(loading);
-         toast.success("Замітка збережена", {duration: 800});
 
       } catch (e) {
          const axiosError = e as AxiosApiError;
@@ -50,7 +45,9 @@ export const NotesMain: FC = () => {
       }
    };
 
-   if (!activeNote) return <div className={ style.no_any_notes }> Заміток немає </div>;
+   if (!activeNote) {
+      return <div className={ style.no_any_notes }> Заміток немає </div>
+   }
 
    return (
       <div className={ style.Main }>

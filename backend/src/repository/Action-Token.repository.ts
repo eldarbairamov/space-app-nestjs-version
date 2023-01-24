@@ -8,6 +8,7 @@ export const ActionTokenRepository = {
       return ActionTokenModel
          .create(filterQuery)
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
@@ -16,6 +17,7 @@ export const ActionTokenRepository = {
       return ActionTokenModel
          .findOneAndDelete(filterQuery)
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },

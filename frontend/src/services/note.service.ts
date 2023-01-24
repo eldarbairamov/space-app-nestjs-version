@@ -24,6 +24,14 @@ export const noteService = {
 
    },
 
+   getNotesCount: async (): Promise<AxiosResponse<number>> => {
+      return axiosInstance.get<number>("/notes/count", {
+         headers: {
+            "Authorization": `Bearer ${ accessToken }`,
+         },
+      });
+   },
+
    saveNote: async (note: Partial<INoteDto>, noteId: string): Promise<AxiosResponse<void>> => {
       return axiosInstance.put<void>(`/notes/${ noteId }`, note, {
          headers: {

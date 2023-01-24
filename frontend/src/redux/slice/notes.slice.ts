@@ -8,7 +8,8 @@ interface INotesInitialState {
    activeNoteId: string | undefined,
    notes: INoteDto[],
    activeNote: INoteDto | undefined,
-   lastNote: INoteDto | undefined
+   lastNote: INoteDto | undefined,
+   count: number
 }
 
 const initialState: INotesInitialState = {
@@ -16,6 +17,7 @@ const initialState: INotesInitialState = {
    notes: [],
    activeNote: undefined,
    lastNote: undefined,
+   count: 0,
 };
 
 export const addNote = createAsyncThunk<INoteDto, void, { rejectValue: string }>(
@@ -75,6 +77,24 @@ export const deleteNote = createAsyncThunk<void, { noteId: string }, { rejectVal
    },
 );
 
+export const getNotesCount = createAsyncThunk<number, void, { rejectValue: string }>(
+   "notesSlice/getNotesCount",
+   async (_, { rejectWithValue }) => {
+      try {
+         const { data } = await noteService.getNotesCount();
+         return data;
+
+      } catch (e) {
+         const axiosError = e as AxiosApiError;
+         const response = axiosError.response?.data.message as string;
+
+         toast.dismiss();
+         toast.error(response ? response : axiosError.message);
+         return rejectWithValue(response);
+      }
+   },
+);
+
 const notesSlice = createSlice({
    name: "notes",
    initialState,
@@ -88,11 +108,12 @@ const notesSlice = createSlice({
             if (note.id === payload.id) return payload;
             return note;
          });
-         state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
+         state.activeNote = state.notes.find(({ id }) => id === payload.id)!;
+         state.notes = state.notes.sort((a, b) => b.lastModified - a.lastModified);
       },
-      showDefaultNote: (state, {payload}: PayloadAction<INoteDto>) => {
-         state.activeNote = payload
-      }
+      showDefaultNote: (state, { payload }: PayloadAction<INoteDto>) => {
+         state.activeNote = payload;
+      },
    },
    extraReducers: builder => builder
       // Add note
@@ -103,10 +124,14 @@ const notesSlice = createSlice({
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       })
 
+      // Get notes count
+      .addCase(getNotesCount.fulfilled, (state, { payload }) => {
+         state.count = payload;
+      })
+
       // Get all notes
       .addCase(getNotes.fulfilled, (state, { payload }) => {
          state.notes = payload;
-         state.lastNote = state.notes[0];
       })
 
       // Delete note
@@ -127,4 +152,5 @@ export const asyncNotesActions = {
    addNote,
    getNotes,
    deleteNote,
+   getNotesCount,
 };

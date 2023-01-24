@@ -8,6 +8,7 @@ import {
 } from "../interface";
 import { getNotesService } from "../service/notes-service/get-notes.service";
 import { NoteRepository } from "../repository/Note.repository";
+import { NoteModel } from "../model/Note.model";
 
 export const notesController = {
 
@@ -19,6 +20,11 @@ export const notesController = {
    getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
       const notes = await getNotesService(req.userId!);
       res.json(notes);
+   }),
+
+   getNotesCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
+      const count = await NoteModel.count({ noteOwnerId: req.userId });
+      res.json(count);
    }),
 
    saveNote: expressAsyncHandler(async (req: RequestWithBodyVarParams<Partial<INoteSchema>, { noteId: string }>, res: Response<{ message: string }>) => {

@@ -9,6 +9,7 @@ export const OAuthRepository = {
       return OAuthModel
          .create(filterQuery)
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
@@ -17,6 +18,7 @@ export const OAuthRepository = {
       return OAuthModel
          .deleteOne(filterQuery)
          .catch(e => {
+            console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
