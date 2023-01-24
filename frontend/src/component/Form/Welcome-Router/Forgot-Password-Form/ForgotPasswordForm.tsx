@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
 import { emailValidator } from "../../../../validator/auth.validator";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
 

@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { type INoteDto } from "../../interface/note.interface";
-import { type AxiosApiError } from "../../services";
 import { noteService } from "../../services/note.service";
 import toast from "react-hot-toast";
 import { catchErrors } from "../../helper/catch-errors.helper";

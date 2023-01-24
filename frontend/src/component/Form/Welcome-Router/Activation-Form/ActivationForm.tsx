@@ -1,11 +1,11 @@
 import React, { type ChangeEvent, type FC, type FormEvent, useState } from "react";
 
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { authService, type AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./ActivationForm.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ActivationForm: FC = () => {
    const [ value, setValue ] = useState<string>("");

@@ -2,16 +2,16 @@ import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, type AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./Reset-Password-Form.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ResetPasswordForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({
@@ -19,7 +19,7 @@ export const ResetPasswordForm: FC = () => {
       mode: "onTouched",
    });
 
-   const [ searchParams, setSearchParams ] = useSearchParams();
+   const [ searchParams ] = useSearchParams();
    const resetPasswordToken = searchParams.get("token");
 
    const navigate = useNavigate();

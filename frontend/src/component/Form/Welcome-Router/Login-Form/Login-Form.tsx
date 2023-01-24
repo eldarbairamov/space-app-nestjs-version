@@ -2,17 +2,16 @@ import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast, { Toaster } from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, type AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
 import { loginValidator } from "../../../../validator/auth.validator";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./Login-Form.module.scss";
-import { useAppDispatch } from "../../../../hook/redux.hook";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const LoginForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({

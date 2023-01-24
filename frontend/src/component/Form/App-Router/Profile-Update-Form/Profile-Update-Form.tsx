@@ -2,15 +2,15 @@ import React, { FC, useEffect } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { updateProfile } from "../../../../validator/user.validator";
-import { type AxiosApiError, userService } from "../../../../services";
+import { userService } from "../../../../services";
 import { useAppSelector } from "../../../../hook/redux.hook";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./Profile-Update-Form.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ProfileUpdateForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({

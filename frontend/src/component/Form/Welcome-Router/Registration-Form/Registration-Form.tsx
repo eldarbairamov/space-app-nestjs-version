@@ -3,15 +3,15 @@ import React, { type FC } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { joiResolver } from "@hookform/resolvers/joi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, type AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
 import { registrationValidator } from "../../../../validator/auth.validator";
 import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./Registration-Form.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const RegistrationForm: FC = () => {
       const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({

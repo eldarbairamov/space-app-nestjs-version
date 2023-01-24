@@ -2,15 +2,15 @@ import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { emailValidator } from "../../../../validator/auth.validator";
 import { useNavigate } from "react-router-dom";
-import { type AxiosApiError, userService } from "../../../../services";
+import { userService } from "../../../../services";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./Email-Update-Form.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const EmailUpdateForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({

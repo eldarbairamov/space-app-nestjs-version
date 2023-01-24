@@ -2,15 +2,15 @@ import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { changePasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { type AxiosApiError, userService } from "../../../../services";
+import { userService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
+import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 import style from "./Password-Update-Form.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const PasswordUpdateForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
