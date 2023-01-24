@@ -132,6 +132,7 @@ const notesSlice = createSlice({
       // Get all notes
       .addCase(getNotes.fulfilled, (state, { payload }) => {
          state.notes = payload;
+         state.activeNote = payload[0]
       })
 
       // Delete note

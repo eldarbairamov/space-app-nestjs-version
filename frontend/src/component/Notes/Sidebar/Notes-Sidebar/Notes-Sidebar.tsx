@@ -6,6 +6,7 @@ import { asyncNotesActions } from "../../../../redux/slice/notes.slice";
 import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
 
 import style from "./Notes-Sidebar.module.scss";
+import add from "../../../../asset/note.png";
 
 export const NotesSidebar: FC = () => {
    const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ export const NotesSidebar: FC = () => {
    return (
       <div className={ style.NotesSidebar }>
          <div className={ style.header }>
-            <p onClick={ addNote }> Додати </p>
+            <img onClick={ addNote } src={ add } alt={ "add" }/>
          </div>
 
          <div className={ style.scroll_section }>
