@@ -12,7 +12,7 @@ import {
    registrationService,
    resetPasswordService,
 } from "../service";
-import { OAuthRepository } from "../repository/OAuth.repository";
+import { OAuthRepository } from "../repository";
 
 export const authController = {
 

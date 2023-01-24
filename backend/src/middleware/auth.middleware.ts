@@ -7,8 +7,8 @@ import {
    type RequestWithBodyAndCustomVar,
    type RequestWithCustomVar,
 } from "../interface";
-import { authValidator } from "../validator/auth.validator";
-import { UserRepository } from "../repository/User.repository";
+import { UserRepository } from "../repository";
+import { authValidator } from "../validator";
 import * as jwt from "jsonwebtoken";
 
 export const authMiddleware = {

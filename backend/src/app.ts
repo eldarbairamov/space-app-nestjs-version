@@ -4,9 +4,7 @@ import "dotenv/config";
 import express, { type Application } from "express";
 import { errorMiddleware } from "./middleware";
 import { config } from "./config";
-import { authRouter } from "./router/auth.router";
-import { userRouter } from "./router/user.router";
-import { notesRouter } from "./router/notes.router";
+import { authRouter, userRouter, notesRouter } from "./router";
 
 const app: Application = express();
 mongoose.set("strictQuery", false);

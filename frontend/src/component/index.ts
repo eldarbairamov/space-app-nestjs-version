@@ -1,6 +1,11 @@
+export * from "./Navbar/Navbar";
+
 export * from "./Logo/Welcome-Logo/Welcome-Logo";
 export * from "./Logo/App-Logo/App-Logo";
-export * from "./Navbar/Navbar";
+
+export * from "./Notes/Notes-Main/Notes-Main";
+export * from "./Notes/Sidebar/Notes-Sidebar/Notes-Sidebar";
+export * from "./Notes/Sidebar/Notes-Item/Notes-Item";
 
 export * from "./Form/Welcome-Router/Registration-Form/Registration-Form";
 export * from "./Form/Welcome-Router/Login-Form/Login-Form";

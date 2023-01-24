@@ -1,4 +1,4 @@
-import React, { type FC, useEffect, useLayoutEffect } from "react";
+import React, { type FC, useLayoutEffect } from "react";
 
 import { RouterProvider } from "react-router-dom";
 import { AppRouter, WelcomeRouter } from "./router";
@@ -6,7 +6,7 @@ import { AppRouter, WelcomeRouter } from "./router";
 export const App: FC = () => {
    const isLogin = localStorage.getItem('accessToken')
 
-   useEffect(() => {
+   useLayoutEffect(() => {
       if (isLogin) import ("./style/app.scss");
 
       if (!isLogin) import("./style/welcome.scss");

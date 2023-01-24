@@ -1,4 +1,4 @@
-import { ActionTokenRepository } from "../../repository/Action-Token.repository";
+import { ActionTokenRepository } from "../../repository";
 import { emailSender } from "../email.service";
 import * as jwt from "jsonwebtoken";
 

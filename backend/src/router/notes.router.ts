@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { notesController } from "../controller/notes.controller";
-import { authMiddleware } from "../middleware";
-import { noteMiddleware } from "../middleware/note.middleware";
+import { notesController } from "../controller";
+import { authMiddleware, noteMiddleware } from "../middleware";
 
 export const notesRouter = Router();
 
@@ -12,7 +11,8 @@ notesRouter.get(
 );
 
 notesRouter.get(
-   "/", authMiddleware.isAccessTokenValid,
+   "/",
+   authMiddleware.isAccessTokenValid,
    notesController.getNotes,
 );
 

@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { type INoteDto } from "../../interface/note.interface";
-import { noteService } from "../../services/note.service";
+import { type INoteDto } from "../../interface";
+import { noteService } from "../../services";
 import toast from "react-hot-toast";
-import { catchErrors } from "../../helper/catch-errors.helper";
+import { catchErrors } from "../../helper";
 
 interface INotesInitialState {
    activeNoteId: string | undefined,

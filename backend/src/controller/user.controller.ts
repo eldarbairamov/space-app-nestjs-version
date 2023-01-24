@@ -4,11 +4,8 @@ import {
    type RequestWithBodyAndCustomVar, type RequestWithCustomVar,
 } from "../interface";
 import { type NextFunction, type Response } from "express";
-import { UserRepository } from "../repository/User.repository";
-import { updateEmailService } from "../service/user-service/update-email.service";
-import { changeEmailService } from "../service/user-service/change-email.service";
-import { changePasswordService } from "../service/user-service/change-password.service";
-import { getUserInfoService } from "../service/user-service/get-user-info.service";
+import { UserRepository } from "../repository";
+import { changeEmailService, changePasswordService, getUserInfoService, updateEmailService } from "../service";
 
 export const userController = {
 

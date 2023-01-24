@@ -1,14 +1,13 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response } from "express";
-import { addInitialNoteService } from "../service/notes-service/add-initial-note.service";
+import { addInitialNoteService, getNotesService } from "../service";
 import {
    type INoteSchema,
    type RequestWithBodyVarParams,
    type RequestWithCustomVar, type RequestWithCustomVarAndParams,
 } from "../interface";
-import { getNotesService } from "../service/notes-service/get-notes.service";
-import { NoteRepository } from "../repository/Note.repository";
-import { NoteModel } from "../model/Note.model";
+import { NoteRepository } from "../repository";
+import { NoteModel } from "../model";
 
 export const notesController = {
 

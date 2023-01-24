@@ -1,9 +1,9 @@
 import expressAsyncHandler from "express-async-handler";
 import { type IUserSchema, type RequestWithBody, type RequestWithBodyAndCustomVar } from "../interface";
 import { type NextFunction, type Response } from "express";
-import { emailValidator, updateProfileValidator } from "../validator/user.validator";
+import { emailValidator, updateProfileValidator } from "../validator";
 import { ApiError } from "../error/Api.error";
-import { UserRepository } from "../repository/User.repository";
+import { UserRepository } from "../repository";
 
 export const userMiddleware = {
    isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IUserSchema>, res: Response, next: NextFunction) => {
