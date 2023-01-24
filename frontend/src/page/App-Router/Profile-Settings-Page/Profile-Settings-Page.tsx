@@ -2,7 +2,7 @@ import React, { type FC, useEffect } from "react";
 
 import { CameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hook/redux.hook";
+import { useAppSelector } from "../../../hook";
 import { Toaster } from "react-hot-toast";
 
 import style from "./Profile-Settings-Page.module.scss";

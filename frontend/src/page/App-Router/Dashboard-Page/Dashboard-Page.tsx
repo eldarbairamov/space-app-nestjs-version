@@ -35,12 +35,12 @@ export const DashboardPage: FC = () => {
          />
 
          {/* Top side */ }
-         <div className={ style.top_side }>
+         <div className={ style.top }>
             <ProfilePreview/>
          </div>
 
          {/* Bottom side */ }
-         <div className={ style.bottom_side }>
+         <div className={ style.bottom }>
             <NotesStat/>
             <GoalsStat/>
             <MomentsStat/>

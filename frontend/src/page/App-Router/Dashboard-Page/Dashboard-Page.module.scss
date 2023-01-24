@@ -15,12 +15,12 @@
    border-radius: 15px;
 }
 
-.top_side {
+.top {
    height: 50%;
    width: 100%;
 }
 
-.bottom_side {
+.bottom {
    @extend %flex;
    justify-content: space-evenly;
 

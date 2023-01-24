@@ -4,12 +4,76 @@
 }
 
 .GoalPage {
+   @extend %flex;
+   flex-direction: column;
+   justify-content: center;
+
+   gap: 25px;
    width: 80vw;
    background: white;
    border-radius: 15px;
    height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+
+   .top {
+      @extend %flex;
+      justify-content: center;
+
+      height: 10%;
+      width: 90%;
+
+      border-bottom: 2px #d7d7d7 solid;
+
+      .header {
+      }
+   }
+
+   .bottom {
+      overflow-y: scroll;
+      height: 90%;
+      width: 100%;
+      padding: 0 30px 30px 30px;
+
+      .plan_list {
+         display: flex;
+         flex-wrap: wrap;
+         align-content: flex-start;
+         gap: 20px;
+
+         .plan {
+            @extend %flex;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 20px;
+            gap: 20px;
+
+
+            background: rgb(244, 244, 244);
+            height: 220px;
+            width: calc(100% / 4 - 15px);
+            position: relative;
+
+            .plan_name {
+               font-weight: 500;
+               font-size: 18px;
+            }
+
+            .plan_date {
+               position: absolute;
+               right: 20px;
+               bottom: 15px;
+               font-weight: 500;
+               font-size: 12px;
+            }
+
+            img {
+               height: 80px;
+            }
+         }
+      }
+   }
 }
+
 
 @media screen and (max-height: 800px) {
    .GoalPage {
