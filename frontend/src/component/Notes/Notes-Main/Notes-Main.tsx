@@ -59,7 +59,6 @@ export const NotesMain: FC = () => {
                    onBlur={ saveNoteToDb }
                    onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }
             />
-
          </div>
 
          <div className={ style.textarea }>
