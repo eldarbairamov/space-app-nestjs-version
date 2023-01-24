@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import style from "./Profile-Preview.module.scss";
 import { useAppSelector } from "../../../hook/redux.hook";
-import toast, { Toaster } from "react-hot-toast";
 
 export const ProfilePreview: FC = () => {
    const navigate = useNavigate();
