@@ -13,8 +13,3 @@ export interface INoteDto {
    body: string,
    lastModified: number
 }
-
-export interface INotesDto {
-   notes: INoteDto[],
-   count: number
-}

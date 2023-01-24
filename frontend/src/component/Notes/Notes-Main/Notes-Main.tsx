@@ -1,11 +1,11 @@
 import React, { type ChangeEvent, type FC, useEffect } from "react";
 
 import { type INoteDto } from "../../../interface/note.interface";
-import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../../hook/redux.hook";
 import { notesActions } from "../../../redux/slice/notes.slice";
 import { noteService } from "../../../services/note.service";
-import { type AxiosApiError } from "../../../services";
+import { catchErrors } from "../../../helper/catch-errors.helper";
+import { noteValidator } from "../../../validator/note.validator";
 
 import style from "./Notes-Main.module.scss";
 
@@ -22,7 +22,7 @@ export const NotesMain: FC = () => {
       const updatedNote = {
          ...activeNote,
          [field]: value,
-         lastModified: Date.now()
+         lastModified: Date.now(),
       } as INoteDto;
 
       dispatch(notesActions.updateNote(updatedNote));
@@ -35,19 +35,18 @@ export const NotesMain: FC = () => {
             body: activeNote?.body,
          };
 
+         const validation = noteValidator.validate(noteToSave);
+         if (validation.error) throw new Error();
+
          await noteService.saveNote(noteToSave, activeNote?.id!);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e);
       }
    };
 
    if (!activeNote) {
-      return <div className={ style.no_any_notes }> Заміток немає </div>
+      return <div className={ style.no_any_notes }> Заміток немає </div>;
    }
 
    return (
