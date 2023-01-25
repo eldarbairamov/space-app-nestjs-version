@@ -1,6 +1,6 @@
 import React, { type FC, useEffect } from "react";
 
-import { GoalsStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
+import { PlansStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
 import { Toaster } from "react-hot-toast";
 
 import style from "./Dashboard-Page.module.scss";
@@ -42,7 +42,7 @@ export const DashboardPage: FC = () => {
          {/* Bottom side */ }
          <div className={ style.bottom }>
             <NotesStat/>
-            <GoalsStat/>
+            <PlansStat/>
             <MomentsStat/>
          </div>
 

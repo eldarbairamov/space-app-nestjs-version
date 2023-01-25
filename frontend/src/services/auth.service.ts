@@ -1,7 +1,9 @@
 import { type IOAuthDto, type IUserDto } from "../interface";
 import { axiosInstance } from "./axios.service";
+import { storageService } from "./storage.service";
 
 export const authService = {
+
    registration: async (dto: Partial<IUserDto>): Promise<string> => {
       const result = await axiosInstance.post<{ message: string }>("/auth/registration", dto);
       return result.data.message;
@@ -10,7 +12,7 @@ export const authService = {
    login: async (dto: Partial<IUserDto>): Promise<string> => {
       const result = await axiosInstance.post<IOAuthDto>("/auth/login", dto);
 
-      localStorage.setItem("accessToken", result.data.accessToken);
+      storageService.setAccessToken(result.data.accessToken);
 
       return result.data.tokenOwnerUsername;
    },
@@ -46,6 +48,7 @@ export const authService = {
          },
       });
 
-      localStorage.removeItem("accessToken");
+      storageService.deleteAccessToken();
    },
+
 };

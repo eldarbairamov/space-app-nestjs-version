@@ -1,51 +1,16 @@
-import { axiosInstance } from "./axios.service";
-import { INoteDto } from "../interface/note.interface";
-import { AxiosResponse } from "axios";
-
-const accessToken = localStorage.getItem("accessToken");
+import { axiosInstance, type AxiosRes } from "./axios.service";
+import { type INoteDto } from "../interface";
 
 export const noteService = {
 
-   addNote: async (): Promise<AxiosResponse<INoteDto>> => {
-      return axiosInstance.get<INoteDto>("/notes/initial", {
-         headers: {
-            "Authorization": `Bearer ${ accessToken }`,
-         },
-      });
+   addNote: async (): AxiosRes<INoteDto> => axiosInstance.get<INoteDto>("/notes/initial"),
 
-   },
+   getNotes: async (): AxiosRes<INoteDto[]> => axiosInstance.get<INoteDto[]>("/notes"),
 
-   getNotes: async (): Promise<AxiosResponse<INoteDto[]>> => {
-      return axiosInstance.get<INoteDto[]>("/notes", {
-         headers: {
-            "Authorization": `Bearer ${ accessToken }`,
-         },
-      });
+   getNotesCount: async (): AxiosRes<number> => axiosInstance.get<number>("/notes/count"),
 
-   },
+   saveNote: async (note: Partial<INoteDto>, noteId: string): AxiosRes<void> => axiosInstance.put<void>(`/notes/${ noteId }`, note),
 
-   getNotesCount: async (): Promise<AxiosResponse<number>> => {
-      return axiosInstance.get<number>("/notes/count", {
-         headers: {
-            "Authorization": `Bearer ${ accessToken }`,
-         },
-      });
-   },
-
-   saveNote: async (note: Partial<INoteDto>, noteId: string): Promise<AxiosResponse<void>> => {
-      return axiosInstance.put<void>(`/notes/${ noteId }`, note, {
-         headers: {
-            "Authorization": `Bearer ${ accessToken }`,
-         },
-      });
-   },
-
-   deleteNote: async (noteId: string): Promise<AxiosResponse<void>> => {
-      return axiosInstance.delete<void>(`/notes/${ noteId }`, {
-         headers: {
-            "Authorization": `Bearer ${ accessToken }`,
-         },
-      });
-   },
+   deleteNote: async (noteId: string): AxiosRes<void> => axiosInstance.delete<void>(`/notes/${ noteId }`),
 
 };

@@ -22,4 +22,13 @@ export const OAuthRepository = {
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
+
+   findOne: async (filterQuery: FilterQuery<IOAuthSchema>): Promise<IOAuthDatabase | null> => {
+      return OAuthModel
+         .findOne(filterQuery)
+         .catch(e => {
+            console.log(e);
+            throw new ApiError("Помилка при роботі з базою даних", 500);
+         });
+   },
 };

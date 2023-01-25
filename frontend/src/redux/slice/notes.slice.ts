@@ -116,7 +116,6 @@ const notesSlice = createSlice({
       })
       .addCase(getNotesCount.rejected, (state, { payload }) => {
          catchErrors(payload);
-
       })
 
       // Get all notes

@@ -1,22 +1,26 @@
 import React, { type FC, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { v4 } from "uuid";
 
-import style from "./Goals-Page.module.scss";
-import folder from "../../../asset/brain.png";
+import style from "./Plans-Page.module.scss";
+import brain from "../../../asset/brain.png";
+import { useNavigate } from "react-router-dom";
 
 interface IGoalSection {
+   id: string
    sectionName: string,
    lastModified: number
 }
 
-export const Goals: FC = () => {
-   const date = Date.now();
-
+export const PlansPage: FC = () => {
    const [ sections, setSections ] = useState<IGoalSection[]>([]);
+
+   const navigate = useNavigate();
 
    const addSection = () => {
 
       const newSection: IGoalSection = {
+         id: v4(),
          sectionName: "Новий план",
          lastModified: Date.now(),
       };
@@ -24,8 +28,10 @@ export const Goals: FC = () => {
       setSections([ ...sections, newSection ]);
    };
 
+   const choosePlan = (planId: string) => navigate(`/plans/${ planId }`);
+
    return (
-      <div className={ style.GoalPage }>
+      <div className={ style.PlansPage }>
 
          {/* Toaster */ }
          <Toaster
@@ -52,18 +58,19 @@ export const Goals: FC = () => {
          />
 
          <div className={ style.top }>
-            <p className={style.header} onClick={ addSection }> Додати план </p>
+            <button className={ style.header } onClick={ addSection }> Додати план +</button>
          </div>
 
          <div className={ style.bottom }>
 
-            <div className={style.plan_list}>
+            <div className={ style.plan_list }>
                { sections && sections.map(item => (
-                  <div className={ style.plan }>
+
+                  <div className={ style.plans_item } onClick={ () => choosePlan(item.id) }>
 
                      <p className={ style.plan_name }> { item.sectionName }  </p>
 
-                     <img src={ folder } alt="folder"/>
+                     <img src={ brain } alt="folder"/>
 
                      <p className={ style.plan_date }>
                         { new Date(item.lastModified).toLocaleDateString("en-GB", {
@@ -73,6 +80,7 @@ export const Goals: FC = () => {
                      </p>
 
                   </div>
+
                )) }
             </div>
 

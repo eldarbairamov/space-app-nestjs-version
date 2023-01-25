@@ -1,8 +1,8 @@
 import React, { type FC } from "react";
 
-import { type INoteDto } from "../../../../interface/note.interface";
-import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
-import { asyncNotesActions, notesActions } from "../../../../redux/slice/notes.slice";
+import { type INoteDto } from "../../../../interface";
+import { useAppDispatch, useAppSelector } from "../../../../hook";
+import { asyncNotesActions, notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
 
 import style from "./Notes-Item.module.scss";
@@ -24,13 +24,15 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
    };
 
    return (
-      <div className={ style.NotesItem } onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
-           data-active={ note.id === activeNote?.id }>
+      <div className={ style.NotesItem }
+                  onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
+                  data-active={ note.id === activeNote?.id }
+      >
 
          <p className={ style.title }> { titleCondition ? note.title.substring(0, 20) + "..." : note.title } </p>
 
          <p className={ style.delete }
-            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }> <DeleteOutlined style={{fontSize: '15px'}}/> </p>
+            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }> <DeleteOutlined style={{fontSize: '17px'}}/> </p>
 
          <p className={ style.body }> { bodyCondition ? note.body.substring(0, 25) + "..." : note.body } </p>
 

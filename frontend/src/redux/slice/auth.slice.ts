@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { type AxiosApiError, userService } from "../../services";
+import { userService } from "../../services";
 import { type IUserInfoDto } from "../../interface";
-import toast from "react-hot-toast";
+import { catchErrors } from "../../helper";
 
 interface IAuthInitialState {
    username: string,
@@ -17,18 +17,14 @@ const initialState: IAuthInitialState = {
    avatar: "",
 };
 
-const getUserInfo = createAsyncThunk<IUserInfoDto, void, { rejectValue: string }>(
+const getUserInfo = createAsyncThunk<IUserInfoDto, void>(
    "authSlice/getUser",
    async (_, { rejectWithValue }) => {
       try {
          return userService.getUserInfo();
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.error(response ? response : axiosError.message);
-         return rejectWithValue(response);
+         return rejectWithValue(e);
       }
    });
 
@@ -42,6 +38,9 @@ const authSlice = createSlice({
          state.name = payload.name;
          state.surname = payload.surname;
          state.username = payload.username;
+      })
+      .addCase(getUserInfo.rejected, (state, { payload }) => {
+         catchErrors(payload);
       }),
 });
 

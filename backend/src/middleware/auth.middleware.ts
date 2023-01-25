@@ -7,7 +7,7 @@ import {
    type RequestWithBodyAndCustomVar,
    type RequestWithCustomVar,
 } from "../interface";
-import { UserRepository } from "../repository";
+import { OAuthRepository, UserRepository } from "../repository";
 import { authValidator } from "../validator";
 import * as jwt from "jsonwebtoken";
 
@@ -45,6 +45,9 @@ export const authMiddleware = {
    isAccessTokenValid: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response, next: NextFunction) => {
       const token = req.headers.authorization?.split(" ")[1];
       if (!token) throw new ApiError("Токен не валідний", 401);
+
+      const isAccessTokenExists = await OAuthRepository.findOne({ accessToken: token });
+      if (!isAccessTokenExists) throw new ApiError("Користувач не авторизований", 401);
 
       const { userId } = jwt.verify(token, "secret access token key") as { userId: string };
       if (!userId) throw new ApiError("Токен не валідний", 401);

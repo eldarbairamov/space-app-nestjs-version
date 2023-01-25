@@ -17,7 +17,7 @@ export * from "./Form/App-Router/Email-Update-Form/Email-Update-Form";
 export * from "./Form/App-Router/Profile-Update-Form/Profile-Update-Form";
 export * from "./Form/App-Router/Password-Update-Form/Password-Update-Form";
 
-export * from "./Dashboard/Statistic/Goals-Stat/Goals-Stat";
+export * from "./Dashboard/Statistic/Plans-Stat/Plans-Stat";
 export * from "./Dashboard/Statistic/Notes-Stat/Notes-Stat";
 export * from "./Dashboard/Statistic/Moments-Stat/Moments-Stat";
 export * from "./Dashboard/Profile-Preview/Profile-Preview";
