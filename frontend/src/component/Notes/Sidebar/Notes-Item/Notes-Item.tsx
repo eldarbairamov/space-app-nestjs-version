@@ -12,7 +12,7 @@ interface INotesItem {
 }
 
 export const NotesItem: FC<INotesItem> = ({ note }) => {
-   const bodyCondition = note.body && note.body.split("").length > 25;
+   const bodyCondition = note.body && note.body.split("").length > 35;
    const titleCondition = note.title.split("").length > 20;
 
    const dispatch = useAppDispatch();
@@ -34,7 +34,7 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
          <p className={ style.delete }
             onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }> <DeleteOutlined style={{fontSize: '17px'}}/> </p>
 
-         <p className={ style.body }> { bodyCondition ? note.body.substring(0, 25) + "..." : note.body } </p>
+         <p className={ style.body }> { bodyCondition ? note.body.substring(0, 35) + "..." : note.body } </p>
 
          <p className={ style.date }>
             { new Date(note.lastModified).toLocaleDateString("en-GB", {

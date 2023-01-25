@@ -1,10 +1,10 @@
 import React, { type ChangeEvent, type FC, useEffect } from "react";
 
-import { type INoteDto } from "../../../interface/note.interface";
-import { useAppDispatch, useAppSelector } from "../../../hook/redux.hook";
-import { notesActions } from "../../../redux/slice/notes.slice";
-import { noteService } from "../../../services/note.service";
-import { catchErrors } from "../../../helper/catch-errors.helper";
+import { type INoteDto } from "../../../interface";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { notesActions } from "../../../redux/slice";
+import { noteService } from "../../../services";
+import { catchErrors } from "../../../helper";
 import { noteValidator } from "../../../validator/note.validator";
 
 import style from "./Notes-Main.module.scss";

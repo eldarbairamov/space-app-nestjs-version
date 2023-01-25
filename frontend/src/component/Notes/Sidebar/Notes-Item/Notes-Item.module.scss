@@ -35,7 +35,7 @@
    }
 
    .date {
-      font-size: 12px;
+      font-size: 13px;
       color: #d78052;
       font-weight: 500;
       text-align: right;
@@ -43,5 +43,6 @@
 }
 
 .NotesItem[data-active='true'] {
-   background: rgb(227, 227, 227);
+   //background: rgb(227, 227, 227);
+   background: #fff2dd;
 }

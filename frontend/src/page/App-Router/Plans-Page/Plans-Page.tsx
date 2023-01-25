@@ -1,34 +1,35 @@
 import React, { type FC, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { v4 } from "uuid";
-
-import style from "./Plans-Page.module.scss";
 import brain from "../../../asset/brain.png";
 import { useNavigate } from "react-router-dom";
 
-interface IGoalSection {
+import style from "./Plans-Page.module.scss";
+
+export interface IPlan {
    id: string
    sectionName: string,
    lastModified: number
 }
 
 export const PlansPage: FC = () => {
-   const [ sections, setSections ] = useState<IGoalSection[]>([]);
+   const [ plan, setPlan ] = useState<IPlan[]>([]);
 
    const navigate = useNavigate();
 
-   const addSection = () => {
-
-      const newSection: IGoalSection = {
+   const addPlan = () => {
+      const newPlan: IPlan = {
          id: v4(),
          sectionName: "Новий план",
          lastModified: Date.now(),
       };
 
-      setSections([ ...sections, newSection ]);
+      setPlan([ ...plan, newPlan ]);
    };
 
-   const choosePlan = (planId: string) => navigate(`/plans/${ planId }`);
+   const choosePlan = (planId: string, item: IPlan) => {
+      navigate(`/plans/${ planId }`, { state: { plan: item } });
+   }
 
    return (
       <div className={ style.PlansPage }>
@@ -58,15 +59,16 @@ export const PlansPage: FC = () => {
          />
 
          <div className={ style.top }>
-            <button className={ style.header } onClick={ addSection }> Додати план +</button>
+            <button className={style.header}> + </button>
+            <button className={ style.header } onClick={ addPlan }> Додати план </button>
          </div>
 
          <div className={ style.bottom }>
 
             <div className={ style.plan_list }>
-               { sections && sections.map(item => (
+               { plan && plan.map(item => (
 
-                  <div className={ style.plans_item } onClick={ () => choosePlan(item.id) }>
+                  <div key={ item.id } className={ style.plans_item } onClick={ () => choosePlan(item.id, item) }>
 
                      <p className={ style.plan_name }> { item.sectionName }  </p>
 

@@ -10,7 +10,7 @@ import {
    ChangePassMessagePage,
 } from "../page";
 import { EmailUpdateForm, PasswordUpdateForm, ProfileUpdateForm } from "../component";
-import { PlansItemPage } from "../page/App-Router/Plans-Item-Page/Plans-Item-Page";
+import { SinglePlanPage } from "../page/App-Router/Single-Plan-Page/Single-Plan-Page";
 
 export const AppRouter = createBrowserRouter([
    {
@@ -65,7 +65,7 @@ export const AppRouter = createBrowserRouter([
          },
          {
             path: "plans/:planId",
-            element: <PlansItemPage/>,
+            element: <SinglePlanPage/>,
          },
          {
             path: "*",
