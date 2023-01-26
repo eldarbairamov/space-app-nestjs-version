@@ -10,7 +10,7 @@ export const NoteRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -20,7 +20,7 @@ export const NoteRepository = {
          .sort({ updatedAt: "desc" })
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -29,7 +29,7 @@ export const NoteRepository = {
          .findByIdAndUpdate(filter, body, {new: true})
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -38,7 +38,7 @@ export const NoteRepository = {
          .findByIdAndDelete(noteId)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -47,7 +47,7 @@ export const NoteRepository = {
          .count({ noteOwnerId: noteId })
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 

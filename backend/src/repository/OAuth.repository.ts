@@ -11,7 +11,7 @@ export const OAuthRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -20,7 +20,7 @@ export const OAuthRepository = {
          .deleteOne(filter)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -29,7 +29,7 @@ export const OAuthRepository = {
          .findOne(filter)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 

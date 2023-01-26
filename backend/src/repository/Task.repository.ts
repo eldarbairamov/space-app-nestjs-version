@@ -10,7 +10,7 @@ export const TaskRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -19,7 +19,7 @@ export const TaskRepository = {
          .findByIdAndDelete(taskId)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -28,7 +28,7 @@ export const TaskRepository = {
          .findByIdAndUpdate(taskId, update, { new: true })
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -37,7 +37,16 @@ export const TaskRepository = {
          .find(filter)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
+         });
+   },
+
+   findById: (taskId: string): Promise<ITaskDatabase | null> => {
+      return TaskModel
+         .findById(taskId)
+         .catch(e => {
+            console.log(e);
+            throw ApiError.Database();
          });
    },
 

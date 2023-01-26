@@ -10,7 +10,7 @@ export const UserRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -19,7 +19,7 @@ export const UserRepository = {
          .findOne(filter)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -28,7 +28,7 @@ export const UserRepository = {
          .findByIdAndUpdate(userId, update, { new: true })
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 

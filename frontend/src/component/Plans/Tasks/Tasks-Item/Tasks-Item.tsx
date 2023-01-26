@@ -1,9 +1,10 @@
 import React, { type FC  } from "react";
 
+import { type ITask } from "../../../../interface/task.interface";
+
 import style from './Tasks-Item.module.scss'
 import complete from "../../../../asset/complete.svg";
 import incomplete from "../../../../asset/incomplete.svg";
-import { ITask } from "../../../../interface/task.interface";
 
 interface ITasksItem {
    task: ITask
@@ -12,14 +13,14 @@ interface ITasksItem {
 export const TasksItem:FC<ITasksItem> = ({task}) => {
 
    const setTaskStatus = (id: number): void => {
-      const tasksArrCopy = [ ...tasks ];
-      const task = tasksArrCopy.find(item => item.id === id);
+      // const tasksArrCopy = [ ...tasks ];
+      // const task = tasksArrCopy.find(item => item.id === id);
 
       if (task) {
          task.isCompleted = !task.isCompleted;
       }
 
-      setTasks(tasksArrCopy);
+      // setTasks(tasksArrCopy);
    };
 
    return (

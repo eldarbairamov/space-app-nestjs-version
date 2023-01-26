@@ -10,7 +10,7 @@ export const ActionTokenRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -19,7 +19,7 @@ export const ActionTokenRepository = {
          .findOneAndDelete(filter)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 

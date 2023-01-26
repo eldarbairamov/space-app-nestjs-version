@@ -1,6 +1,6 @@
-import { PlanModel } from "../model";
+import { PlanModel, TaskModel } from "../model";
 import { ApiError } from "../error/Api.error";
-import { type IPlanDatabase, type IPlanSchema } from "../interface";
+import { type IPlanDatabase, type IPlanSchema, ITaskDatabase } from "../interface";
 import { type FilterQuery, type UpdateQuery } from "mongoose";
 
 export const PlanRepository = {
@@ -10,7 +10,7 @@ export const PlanRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -19,7 +19,16 @@ export const PlanRepository = {
          .find(filter)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
+         });
+   },
+
+   findById: (planId: string): Promise<IPlanDatabase | null> => {
+      return PlanModel
+         .findById(planId)
+         .catch(e => {
+            console.log(e);
+            throw ApiError.Database();
          });
    },
 
@@ -28,7 +37,7 @@ export const PlanRepository = {
          .findByIdAndUpdate(planId, update, { new: true })
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 
@@ -37,7 +46,7 @@ export const PlanRepository = {
          .findByIdAndDelete(planId)
          .catch(e => {
             console.log(e);
-            throw ApiError.DatabaseError();
+            throw ApiError.Database();
          });
    },
 

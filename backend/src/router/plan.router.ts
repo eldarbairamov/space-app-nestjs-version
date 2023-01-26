@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { authMiddleware, commonMiddleware } from "../middleware";
 import { planController } from "../controller";
+import { planMiddleware } from "../middleware";
 
 export const planRouter = Router();
 
@@ -22,6 +23,8 @@ planRouter.get(
 planRouter.put(
    "/:planId",
    authMiddleware.isAccessTokenValid,
+   planMiddleware.isObjectIdValid,
+   planMiddleware.isPlanExists,
    commonMiddleware.isRequestEmpty,
    planController.updatePlan,
 );
@@ -30,5 +33,7 @@ planRouter.put(
 planRouter.delete(
    "/:planId",
    authMiddleware.isAccessTokenValid,
+   planMiddleware.isObjectIdValid,
+   planMiddleware.isPlanExists,
    planController.deletePlan,
 );
