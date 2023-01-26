@@ -1,5 +1,5 @@
-import { NoteRepository } from "../../repository/Note.repository";
-import { allNotesPresenter } from "../../presenter/note.presenter";
+import { NoteRepository } from "../../repository";
+import { allNotesPresenter } from "../../presenter";
 
 export const getNotesService = async (userId: string) => {
 
@@ -8,4 +8,5 @@ export const getNotesService = async (userId: string) => {
 
    // Return presented data for client
    return allNotesPresenter(notesFromDb);
+
 };

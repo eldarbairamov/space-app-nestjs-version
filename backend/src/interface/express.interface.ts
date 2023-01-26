@@ -1,5 +1,6 @@
 import { type Request } from "express";
-import { IUserDatabase } from "./mongoose.interface";
+import { type IUserDatabase } from "./db.interface";
+import { type ObjectId } from "mongoose";
 
 export interface RequestWithBody<B> extends Request<{}, {}, B> {
    body: B;

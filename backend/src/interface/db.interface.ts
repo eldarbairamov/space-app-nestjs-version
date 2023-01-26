@@ -1,14 +1,12 @@
-import { Types } from "mongoose";
-
 export interface IOAuthSchema {
-   tokenOwnerId: Types.ObjectId,
+   tokenOwnerId: string,
    tokenOwnerUsername: string,
    accessToken: string,
    refreshToken: string,
 }
 
 export interface IOAuthDatabase extends IOAuthSchema {
-   _id: Types.ObjectId,
+   _id: string,
    createdAt: Date,
    updatedAt: Date,
 }
@@ -24,55 +22,55 @@ export interface IUserSchema {
 }
 
 export interface IUserDatabase extends IUserSchema {
-   _id: Types.ObjectId,
-   createdAt: Date,
-   updatedAt: Date,
+   _id: string,
+   createdAt: string,
+   updatedAt: string,
 }
 
 export interface IActionTokenSchema {
-   tokenOwnerId: Types.ObjectId,
+   tokenOwnerId: string,
    tokenType: string,
    token: string
 }
 
 export interface IActionTokenDatabase extends IActionTokenSchema {
-   _id: Types.ObjectId,
-   createdAt: Date,
-   updatedAt: Date,
+   _id: string,
+   createdAt: string,
+   updatedAt: string,
 }
 
 export interface INoteSchema {
-   noteOwnerId: Types.ObjectId,
+   noteOwnerId: string,
    title: string,
    body: string,
 }
 
 export interface INoteDatabase extends INoteSchema {
-   _id: Types.ObjectId,
-   createdAt: Date,
-   updatedAt: Date,
+   _id: string,
+   createdAt: string,
+   updatedAt: string,
 }
 
 export interface IPlanSchema {
-   planOwnerId: Types.ObjectId
+   planOwnerId: string
    title: string,
 }
 
 export interface IPlanDatabase extends IPlanSchema {
-   _id: Types.ObjectId,
-   createdAt: Date,
-   updatedAt: Date,
+   _id: string,
+   createdAt: string,
+   updatedAt: string,
 }
 
 export interface ITaskSchema {
-   taskOwnerId: Types.ObjectId,
-   planId: Types.ObjectId,
+   taskOwnerId: string,
+   planId: string,
    title: string,
    isCompleted: boolean
 }
 
 export interface ITaskDatabase extends ITaskSchema {
-   _id: Types.ObjectId,
-   createdAt: Date,
-   updatedAt: Date,
+   _id: string,
+   createdAt: string,
+   updatedAt: string,
 }

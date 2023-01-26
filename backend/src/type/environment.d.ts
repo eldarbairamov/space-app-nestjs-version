@@ -1,4 +1,4 @@
-import { IUserDatabase } from "../interface";
+import { type IUserDatabase } from "../interface";
 
 export {};
 

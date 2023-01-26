@@ -1,22 +1,21 @@
-import { type FilterQuery, type UpdateQuery } from "mongoose";
-import { type INoteDatabase, type INoteDto, type INoteSchema, IOAuthSchema } from "../interface";
+import { type FilterQuery , type UpdateQuery } from "mongoose";
+import { type INoteDatabase, type INoteDto, type INoteSchema } from "../interface";
 import { ApiError } from "../error/Api.error";
-import { NoteModel } from "../model/Note.model";
-import { DeleteResult } from "mongodb";
+import { NoteModel } from "../model";
 
 export const NoteRepository = {
 
-   create: async (filterQuery: FilterQuery<INoteSchema>): Promise<INoteDatabase> => {
+   create: async (body: Partial<INoteSchema>): Promise<INoteDatabase> => {
       return NoteModel
-         .create(filterQuery)
+         .create(body)
          .catch(e => {
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
 
-   findAll: async (filterQuery: FilterQuery<INoteSchema>): Promise<INoteDatabase[]> => {
+   findAll: async (filter: FilterQuery<INoteSchema>): Promise<INoteDatabase[]> => {
       return NoteModel
-         .find(filterQuery)
+         .find(filter)
          .sort({ updatedAt: "desc" })
          .catch(e => {
             console.log(e);
@@ -24,18 +23,18 @@ export const NoteRepository = {
          });
    },
 
-   findByIdAndUpdate: async (filterQuery: UpdateQuery<INoteSchema>, body: Partial<INoteDto>): Promise<INoteDatabase | null> => {
+   findOneAndUpdate: async (filter: FilterQuery<INoteSchema>, body: UpdateQuery<Partial<INoteDto>>): Promise<INoteDatabase | null> => {
       return NoteModel
-         .findByIdAndUpdate(filterQuery, body)
+         .findByIdAndUpdate(filter, body)
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
 
-   deleteById: async (filterQuery: string): Promise<any> => {
+   deleteById: async (id: string): Promise<any> => {
       return NoteModel
-         .findByIdAndDelete(filterQuery)
+         .findByIdAndDelete(id)
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);

@@ -1,9 +1,8 @@
-import { Types } from "mongoose";
 import * as jwt from "jsonwebtoken";
 import { ApiError } from "../error/Api.error";
 import { type IAccessTokenPair } from "../interface";
 
-export const accessTokenPairGenerator = (userId: Types.ObjectId): IAccessTokenPair => {
+export const accessTokenPairGenerator = (userId: string): IAccessTokenPair => {
    try {
       return {
          accessToken: jwt.sign({ userId }, "secret access token key", { expiresIn: "1d" }),

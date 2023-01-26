@@ -1,6 +1,7 @@
-import { UserRepository } from "../../repository/User.repository";
+import { UserRepository } from "../../repository";
 import bcrypt from "bcrypt";
 import { ApiError } from "../../error/Api.error";
+import { Types } from "mongoose";
 
 export const changePasswordService = async (newPassword: string, currentPassword: string, userId: string) => {
 

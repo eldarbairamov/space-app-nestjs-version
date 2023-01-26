@@ -1,4 +1,4 @@
-import { UserRepository } from "../../repository/User.repository";
+import { UserRepository } from "../../repository";
 
 export const getUserInfoService = async (userId: string) => {
    const user = await UserRepository.findOne({ _id: userId });

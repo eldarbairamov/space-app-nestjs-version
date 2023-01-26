@@ -1,5 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
-import { type Response, type NextFunction, type Request } from "express";
+import { type Response, type NextFunction } from "express";
 import { ApiError } from "../error/Api.error";
 import {
    type RequestWithBody,

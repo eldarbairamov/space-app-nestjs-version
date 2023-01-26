@@ -1,7 +1,7 @@
 import * as jwt from "jsonwebtoken";
 import { ApiError } from "../../error/Api.error";
-import { ActionTokenRepository } from "../../repository/Action-Token.repository";
-import { UserRepository } from "../../repository/User.repository";
+import { ActionTokenRepository } from "../../repository";
+import { UserRepository } from "../../repository";
 
 export const changeEmailService = async (confirmationToken: string) => {
 
@@ -17,6 +17,6 @@ export const changeEmailService = async (confirmationToken: string) => {
    if (!actionToken) throw new ApiError("Токен не валідний", 401);
 
    // Update email
-   await UserRepository.findOneAndUpdate({ _id: userId }, { email: email });
+   await UserRepository.findByIdAndUpdate(userId, { email: email });
 
 };

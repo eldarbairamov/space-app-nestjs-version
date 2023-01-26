@@ -5,9 +5,9 @@ import { ApiError } from "../error/Api.error";
 
 export const UserRepository = {
 
-   create: async (filterQuery: FilterQuery<IUserSchema>): Promise<IUserDatabase> => {
+   create: async (body: Partial<IUserSchema>): Promise<IUserDatabase> => {
       return UserModel
-         .create(filterQuery)
+         .create(body)
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
@@ -23,9 +23,9 @@ export const UserRepository = {
          });
    },
 
-   findOneAndUpdate: async (filterQuery: FilterQuery<IUserDatabase>, user: UpdateQuery<IUserSchema>): Promise<IUserDatabase | null> => {
+   findByIdAndUpdate: async (id: string, update: UpdateQuery<IUserSchema>): Promise<IUserDatabase | null> => {
       return UserModel
-         .findOneAndUpdate(filterQuery, user, { new: true })
+         .findByIdAndUpdate(id, update, { new: true })
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);

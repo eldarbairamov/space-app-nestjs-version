@@ -5,27 +5,28 @@ import { ApiError } from "../error/Api.error";
 import { type DeleteResult } from "mongodb";
 
 export const OAuthRepository = {
-   create: async (filterQuery: FilterQuery<IOAuthSchema>): Promise<IOAuthDatabase> => {
+
+   create: async (body: IOAuthSchema): Promise<IOAuthDatabase> => {
       return OAuthModel
-         .create(filterQuery)
+         .create(body)
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
 
-   delete: async (filterQuery: FilterQuery<IOAuthSchema>): Promise<DeleteResult | void> => {
+   delete: async (filter: FilterQuery<IOAuthSchema>): Promise<DeleteResult | void> => {
       return OAuthModel
-         .deleteOne(filterQuery)
+         .deleteOne(filter)
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);
          });
    },
 
-   findOne: async (filterQuery: FilterQuery<IOAuthSchema>): Promise<IOAuthDatabase | null> => {
+   findOne: async (filter: FilterQuery<IOAuthSchema>): Promise<IOAuthDatabase | null> => {
       return OAuthModel
-         .findOne(filterQuery)
+         .findOne(filter)
          .catch(e => {
             console.log(e);
             throw new ApiError("Помилка при роботі з базою даних", 500);

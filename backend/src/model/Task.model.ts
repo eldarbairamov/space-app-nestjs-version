@@ -2,9 +2,9 @@ import { model, Schema, type SchemaDefinitionProperty, Types } from "mongoose";
 import { type ITaskDatabase, type ITaskSchema } from "../interface";
 
 const TaskSchema = new Schema<ITaskSchema>({
-   taskOwnerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<Types.ObjectId>,
-   planId: { type: Types.ObjectId, ref: "Plan" } as SchemaDefinitionProperty<Types.ObjectId>,
-   title: { type: String, default: "Новий план" },
+   taskOwnerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<string | undefined>,
+   planId: { type: Types.ObjectId, ref: "Plan" } as SchemaDefinitionProperty<string | undefined>,
+   title: { type: String },
    isCompleted: { type: Boolean, default: false },
 });
 

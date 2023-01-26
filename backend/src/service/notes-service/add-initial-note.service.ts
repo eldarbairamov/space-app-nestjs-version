@@ -1,5 +1,6 @@
 import { NoteRepository } from "../../repository";
 import { notePresenter } from "../../presenter";
+import { ObjectId } from "mongoose";
 
 export const addInitialNoteService = async (userId: string) => {
 
@@ -13,6 +14,6 @@ export const addInitialNoteService = async (userId: string) => {
    const noteInitialStateDb = await NoteRepository.create(noteInitialState);
 
    // Return presented data for client
-   return notePresenter(noteInitialStateDb)
+   return notePresenter(noteInitialStateDb);
 
 };

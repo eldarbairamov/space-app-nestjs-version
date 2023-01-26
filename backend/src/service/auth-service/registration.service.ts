@@ -1,8 +1,7 @@
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
 import { emailSender } from "../email.service";
-import { UserRepository } from "../../repository/User.repository";
-import { ActionTokenRepository } from "../../repository/Action-Token.repository";
+import { UserRepository, ActionTokenRepository } from "../../repository";
 import { ApiError } from "../../error/Api.error";
 import { type IRegistrationDto } from "../../interface";
 

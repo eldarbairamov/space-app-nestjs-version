@@ -9,6 +9,9 @@ export const resetPasswordService = async (token: string, password: string) => {
    const actionTokenInfo = await ActionTokenRepository.findOneAndDelete({ token });
    if (!actionTokenInfo) throw new ApiError("Токен не валідний", 401);
 
+   // Defined token owner ID
+   const tokenOwnerId = actionTokenInfo.tokenOwnerId as unknown as string;
+
    // Hash password
    const hashedPassword = await bcrypt
       .hash(password, 8)
@@ -17,6 +20,6 @@ export const resetPasswordService = async (token: string, password: string) => {
       });
 
    // Update password
-   await UserRepository.findOneAndUpdate({ _id: actionTokenInfo.tokenOwnerId }, { password: hashedPassword });
+   await UserRepository.findByIdAndUpdate(tokenOwnerId, { password: hashedPassword });
 
 };

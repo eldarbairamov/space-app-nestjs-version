@@ -1,9 +1,14 @@
 import expressAsyncHandler from "express-async-handler";
+import { type RequestWithCustomVar } from "../interface";
+import { type Response } from "express";
+import { planRepository } from "../repository";
 
 export const planController = {
 
-   addPlan: expressAsyncHandler(async (req, res) => {
+   addPlan: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
+      const plan = await planRepository.create({ planOwnerId: req.userId });
 
+      res.json(plan);
    }),
 
    updatePlan: expressAsyncHandler(async (req, res) => {
@@ -16,6 +21,6 @@ export const planController = {
 
    getAllPlans: expressAsyncHandler(async (req, res) => {
 
-   })
+   }),
 
 };

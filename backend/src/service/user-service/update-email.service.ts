@@ -14,7 +14,7 @@ export const updateEmailService = async (userId: string, email: string): Promise
       tokenType: "Email Confirmation",
       token: confirmationToken,
    });
-   
+
    // Send email
    await emailSender(email, "Підтвердження електронної пошти", confirmationLink);
 
