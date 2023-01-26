@@ -13,10 +13,10 @@ export const changeEmailService = async (confirmationToken: string) => {
    if (!userId) throw new ApiError("Токен не валідний", 401);
 
    // Delete action token
-   const actionToken = await ActionTokenRepository.findOneAndDelete({ token: confirmationToken });
+   const actionToken = await ActionTokenRepository.deleteOne({ token: confirmationToken });
    if (!actionToken) throw new ApiError("Токен не валідний", 401);
 
    // Update email
-   await UserRepository.findByIdAndUpdate(userId, { email: email });
+   await UserRepository.updateById(userId, { email: email });
 
 };

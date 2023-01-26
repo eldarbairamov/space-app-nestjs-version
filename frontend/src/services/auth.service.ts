@@ -1,12 +1,12 @@
 import { type IOAuthDto, type IUserDto } from "../interface";
 import { axiosInstance } from "./axios.service";
 import { storageService } from "./storage.service";
+import { type AxiosResponse } from "axios";
 
 export const authService = {
 
-   registration: async (dto: Partial<IUserDto>): Promise<string> => {
-      const result = await axiosInstance.post<{ message: string }>("/auth/registration", dto);
-      return result.data.message;
+   registration: async (dto: Partial<IUserDto>): Promise<AxiosResponse> => {
+      return axiosInstance.post("/auth/registration", dto);
    },
 
    login: async (dto: Partial<IUserDto>): Promise<string> => {
@@ -23,20 +23,16 @@ export const authService = {
       return result.data.message;
    },
 
-   accountActivation: async (activationCode: string): Promise<string> => {
+   accountActivation: async (activationCode: string): Promise<AxiosResponse> => {
       const activationDto = { activationCode };
 
-      const result = await axiosInstance.post<{ message: string }>("/auth/activation", activationDto);
-
-      return result.data.message;
+      return axiosInstance.post("/auth/activation", activationDto);
    },
 
-   resetPassword: async (password: string, resetPasswordToken: string): Promise<string> => {
+   resetPassword: async (password: string, resetPasswordToken: string): Promise<AxiosResponse> => {
       const forgotPasswordDto = { resetPasswordToken, password };
 
-      const result = await axiosInstance.post<{ message: string }>("/auth/password_reset", forgotPasswordDto);
-
-      return result.data.message;
+      return axiosInstance.post("/auth/password_reset", forgotPasswordDto);
    },
 
    logout: async () => {

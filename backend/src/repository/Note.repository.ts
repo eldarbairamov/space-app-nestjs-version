@@ -1,4 +1,4 @@
-import { type FilterQuery , type UpdateQuery } from "mongoose";
+import { type FilterQuery, type UpdateQuery } from "mongoose";
 import { type INoteDatabase, type INoteDto, type INoteSchema } from "../interface";
 import { ApiError } from "../error/Api.error";
 import { NoteModel } from "../model";
@@ -9,7 +9,8 @@ export const NoteRepository = {
       return NoteModel
          .create(body)
          .catch(e => {
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            console.log(e);
+            throw ApiError.DatabaseError();
          });
    },
 
@@ -19,25 +20,34 @@ export const NoteRepository = {
          .sort({ updatedAt: "desc" })
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 
-   findOneAndUpdate: async (filter: FilterQuery<INoteSchema>, body: UpdateQuery<Partial<INoteDto>>): Promise<INoteDatabase | null> => {
+   updateById: async (filter: FilterQuery<INoteSchema>, body: UpdateQuery<Partial<INoteDto>>): Promise<INoteDatabase | null> => {
       return NoteModel
-         .findByIdAndUpdate(filter, body)
+         .findByIdAndUpdate(filter, body, {new: true})
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 
-   deleteById: async (id: string): Promise<any> => {
+   deleteById: async (noteId: string): Promise<INoteDatabase | null> => {
       return NoteModel
-         .findByIdAndDelete(id)
+         .findByIdAndDelete(noteId)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
+         });
+   },
+
+   getCount: async (noteId: string): Promise<number> => {
+      return NoteModel
+         .count({ noteOwnerId: noteId })
+         .catch(e => {
+            console.log(e);
+            throw ApiError.DatabaseError();
          });
    },
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { type FC, useEffect } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
@@ -7,8 +7,8 @@ import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { updateProfile } from "../../../../validator/user.validator";
 import { userService } from "../../../../services";
-import { useAppSelector } from "../../../../hook/redux.hook";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
+import { useAppSelector } from "../../../../hook";
+import { catchErrors } from "../../../../helper";
 
 import style from "./Profile-Update-Form.module.scss";
 
@@ -31,10 +31,10 @@ export const ProfileUpdateForm: FC = () => {
       try {
          const loading = toast.loading("Зачекайте...");
 
-         const message = await userService.profileUpdate(data);
+         await userService.profileUpdate(data);
 
          toast.dismiss(loading);
-         toast.success(message, { duration: 5000 });
+         toast.success("Ви успішно оновили профіль", { duration: 5000 });
 
       } catch (e) {
          catchErrors(e);

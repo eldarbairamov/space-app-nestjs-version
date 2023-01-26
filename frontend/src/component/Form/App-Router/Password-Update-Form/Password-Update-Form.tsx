@@ -8,7 +8,7 @@ import { changePasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { userService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
+import { catchErrors } from "../../../../helper";
 
 import style from "./Password-Update-Form.module.scss";
 

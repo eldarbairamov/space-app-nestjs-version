@@ -3,9 +3,9 @@ import React, { type FC } from "react";
 import {
    EmailConfirmationMessage,
 } from "../../../component";
+import { Toaster } from "react-hot-toast";
 
 import style from "./Email-Confirmation-Page.module.scss";
-import { Toaster } from "react-hot-toast";
 
 export const EmailConfirmationPage: FC = () => {
 

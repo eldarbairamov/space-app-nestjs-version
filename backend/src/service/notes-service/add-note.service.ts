@@ -1,8 +1,7 @@
 import { NoteRepository } from "../../repository";
 import { notePresenter } from "../../presenter";
-import { ObjectId } from "mongoose";
 
-export const addInitialNoteService = async (userId: string) => {
+export const addNoteService = async (userId: string) => {
 
    // Create note initial state
    const noteInitialState = {

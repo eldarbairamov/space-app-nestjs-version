@@ -1,12 +1,13 @@
 import { UserRepository } from "../../repository";
 import bcrypt from "bcrypt";
 import { ApiError } from "../../error/Api.error";
-import { Types } from "mongoose";
+import { type HydratedDocument } from "mongoose";
+import { type IUserSchema } from "../../interface";
 
 export const changePasswordService = async (newPassword: string, currentPassword: string, userId: string) => {
 
    // Find user in DB
-   const user = await UserRepository.findOne({ _id: userId });
+   const user = await UserRepository.findOne({ _id: userId }) as HydratedDocument<IUserSchema> | null;
 
    // Compare passwords
    const isPasswordSame = await bcrypt.compare(currentPassword, user?.password!);

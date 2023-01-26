@@ -3,4 +3,9 @@ export class ApiError extends Error {
       super(message);
       this.status = status;
    }
+
+   static DatabaseError() {
+      return new ApiError('Помилка при роботі з базою даних', 500)
+   }
+
 }

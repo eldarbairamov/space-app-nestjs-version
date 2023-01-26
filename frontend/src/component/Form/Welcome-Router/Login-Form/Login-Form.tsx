@@ -8,8 +8,7 @@ import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { loginValidator } from "../../../../validator/auth.validator";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
+import { resetFields, catchErrors } from "../../../../helper";
 
 import style from "./Login-Form.module.scss";
 

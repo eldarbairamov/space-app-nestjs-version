@@ -1,0 +1,40 @@
+%flex {
+   display: flex;
+   align-items: center;
+}
+
+.PlansItem {
+   @extend %flex;
+   justify-content: center;
+   flex-direction: column;
+   border-radius: 20px;
+   gap: 20px;
+
+   background: rgb(244, 244, 244);
+   height: 220px;
+   width: calc(100% / 4 - 22.5px);
+   position: relative;
+   cursor: pointer;
+
+   &:hover {
+      //background: rgb(227, 227, 227);
+      background: #f2f9ff;
+   }
+
+   .plan_name {
+      font-weight: 500;
+      font-size: 18px;
+   }
+
+   .plan_date {
+      position: absolute;
+      right: 20px;
+      bottom: 15px;
+      font-weight: 500;
+      font-size: 13px;
+   }
+
+   img {
+      height: 90px;
+   }
+}

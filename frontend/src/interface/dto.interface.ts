@@ -1,3 +1,22 @@
+export interface INoteDto {
+   id: string,
+   title: string,
+   body: string,
+   lastModified: number
+}
+
+export interface IOAuthDto {
+   tokenId: string,
+   tokenOwnerId: string,
+   tokenOwnerUsername: string,
+   accessToken: string,
+   refreshToken: string
+}
+
+export interface IPlanDto {
+   title: string;
+}
+
 export interface IUserDto {
    name: string,
    surname: string,

@@ -8,8 +8,7 @@ import { type IUserDto } from "../../../../interface";
 import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
+import { resetFields, catchErrors } from "../../../../helper";
 
 import style from "./Reset-Password-Form.module.scss";
 
@@ -32,10 +31,10 @@ export const ResetPasswordForm: FC = () => {
          if ((password && resetPasswordToken) && (password === repeatPassword)) {
             const loading = toast.loading("Зачекайте");
 
-            const message = await authService.resetPassword(password, resetPasswordToken!);
+            await authService.resetPassword(password, resetPasswordToken!);
 
             toast.dismiss(loading);
-            toast.success(message);
+            toast.success("Вітаємо! У вас новий пароль.");
 
             setTimeout(() => {
                resetFields(setValue);
@@ -47,7 +46,7 @@ export const ResetPasswordForm: FC = () => {
          }
 
       } catch (e) {
-         catchErrors(e)
+         catchErrors(e);
       }
    };
 

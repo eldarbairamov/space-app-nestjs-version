@@ -1,35 +1,28 @@
 import React, { type FC, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { v4 } from "uuid";
-import brain from "../../../asset/brain.png";
-import { useNavigate } from "react-router-dom";
 
 import style from "./Plans-Page.module.scss";
+import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
 
 export interface IPlan {
    id: string
-   planTitle: string,
+   title: string,
    lastModified: number
 }
 
 export const PlansPage: FC = () => {
    const [ plan, setPlan ] = useState<IPlan[]>([]);
 
-   const navigate = useNavigate();
-
    const addPlan = () => {
       const newPlan: IPlan = {
          id: v4(),
-         planTitle: "Новий план",
+         title: "Новий план",
          lastModified: Date.now(),
       };
 
       setPlan([ ...plan, newPlan ]);
    };
-
-   const choosePlan = (planId: string, item: IPlan) => {
-      navigate(`/plans/${ planId }`, { state: { plan: item } });
-   }
 
    return (
       <div className={ style.PlansPage }>
@@ -59,31 +52,14 @@ export const PlansPage: FC = () => {
          />
 
          <div className={ style.top }>
-            <button className={style.header}> + </button>
-            <button className={ style.header } onClick={ addPlan }> Додати план </button>
+            <button className={ style.header }> +</button>
+            <button className={ style.header } onClick={ addPlan }> Додати план</button>
          </div>
 
          <div className={ style.bottom }>
 
             <div className={ style.plan_list }>
-               { plan && plan.map(item => (
-
-                  <div key={ item.id } className={ style.plan_item } onClick={ () => choosePlan(item.id, item) }>
-
-                     <p className={ style.plan_name }> { item.planTitle }  </p>
-
-                     <img src={ brain } alt="folder"/>
-
-                     <p className={ style.plan_date }>
-                        { new Date(item.lastModified).toLocaleDateString("en-GB", {
-                           hour: "2-digit",
-                           minute: "2-digit",
-                        }) }
-                     </p>
-
-                  </div>
-
-               )) }
+               { plan && plan.map(item => <PlansItem plan={ item }/>) }
             </div>
 
          </div>

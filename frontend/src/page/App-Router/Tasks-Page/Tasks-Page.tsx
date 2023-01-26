@@ -2,17 +2,13 @@ import React, { type FC, useState } from "react";
 
 import { useLocation } from "react-router";
 import { type IPlan } from "../Plans-Page/Plans-Page";
-import { dateFormat } from "../../../helper/date-format.helper";
+import { dateFormat } from "../../../helper";
+import { type ITask } from "../../../interface/task.interface";
 
 import style from "./Tasks-Page.module.scss";
 import incomplete from "../../../asset/incomplete.svg";
 import complete from "../../../asset/complete.svg";
 
-interface ITask {
-   id: number,
-   title: string,
-   isCompleted: boolean
-}
 
 interface IInputFields {
    planTitle: string,
@@ -23,7 +19,7 @@ export const TasksPage: FC = () => {
    const { plan } = useLocation().state as { plan: IPlan };
 
    const [ tasks, setTasks ] = useState<ITask[]>([]);
-   const [ inputFields, setInputFields ] = useState<IInputFields>({ planTitle: plan.planTitle, taskTitle: "" });
+   const [ inputFields, setInputFields ] = useState<IInputFields>({ planTitle: plan.title, taskTitle: "" });
 
    const addTask = (): void => {
       if (inputFields.taskTitle !== "") {
@@ -72,7 +68,7 @@ export const TasksPage: FC = () => {
          </div>
 
          <div className={ style.mid }>
-            <div className={ style.add }>
+            <div className={ style.header }>
                <p onClick={ addTask }> + </p>
                <input type={ "text" }
                       id={ "taskTitle" }
@@ -99,7 +95,6 @@ export const TasksPage: FC = () => {
                      <div className={ style.task_title }>
                         <p> { task.title } </p>
                      </div>
-
                   </div>
 
                )) }

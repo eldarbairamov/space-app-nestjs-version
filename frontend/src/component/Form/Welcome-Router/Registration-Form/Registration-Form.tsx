@@ -8,8 +8,7 @@ import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { registrationValidator } from "../../../../validator/auth.validator";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
+import { resetFields, catchErrors  } from "../../../../helper";
 
 import style from "./Registration-Form.module.scss";
 
@@ -24,10 +23,10 @@ export const RegistrationForm: FC = () => {
       const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data) => {
          try {
             const loading = toast.loading("Зачекайте...");
-            const message = await authService.registration(data);
+            await authService.registration(data);
 
             toast.dismiss(loading);
-            toast.success(`${ message }. Посилання на активацію аккаунту вже летить на вашу електронну пошту ;)`, {
+            toast.success(`Ви успішно зареєструвались. Посилання на активацію аккаунту вже летить на вказану електронну пошту`, {
                duration: 5000,
             });
 

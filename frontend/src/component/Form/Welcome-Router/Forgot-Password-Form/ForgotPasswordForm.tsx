@@ -8,10 +8,9 @@ import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { emailValidator } from "../../../../validator/auth.validator";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { resetFields, catchErrors } from "../../../../helper";
 
 import style from "./ForgotPasswordForm.module.scss";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
 
 export const ForgotPasswordForm: FC = () => {
    const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({
@@ -28,7 +27,7 @@ export const ForgotPasswordForm: FC = () => {
          const message = await authService.forgotPassword(data);
 
          toast.dismiss(loading);
-         toast.success(message);
+         toast.success("Лист із посиланням вже летить на вказану електронну пошту");
 
          setTimeout(() => {
             resetFields(setValue);
@@ -36,7 +35,7 @@ export const ForgotPasswordForm: FC = () => {
          }, 1500);
 
       } catch (e) {
-         catchErrors(e)
+         catchErrors(e);
       }
    };
 

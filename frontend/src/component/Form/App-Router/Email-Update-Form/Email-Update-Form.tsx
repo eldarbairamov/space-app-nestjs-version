@@ -8,7 +8,7 @@ import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { emailValidator } from "../../../../validator/auth.validator";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../../../services";
-import { catchErrors } from "../../../../helper/catch-errors.helper";
+import { catchErrors } from "../../../../helper";
 
 import style from "./Email-Update-Form.module.scss";
 
@@ -24,17 +24,17 @@ export const EmailUpdateForm: FC = () => {
       try {
          const loading = toast.loading("Зачекайте...");
 
-         const message = await userService.emailUpdate({ email: data.email! });
+         await userService.emailUpdate({ email: data.email! });
 
          toast.dismiss(loading);
-         toast.success(message, { duration: 6000 });
+         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 6000 });
 
          setTimeout(() => {
             navigate("/");
          }, 6000);
 
       } catch (e) {
-         catchErrors(e)
+         catchErrors(e);
       }
    };
 

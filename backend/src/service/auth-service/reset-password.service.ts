@@ -6,7 +6,7 @@ import { UserRepository } from "../../repository/User.repository";
 export const resetPasswordService = async (token: string, password: string) => {
 
    // Delete action token
-   const actionTokenInfo = await ActionTokenRepository.findOneAndDelete({ token });
+   const actionTokenInfo = await ActionTokenRepository.deleteOne({ token });
    if (!actionTokenInfo) throw new ApiError("Токен не валідний", 401);
 
    // Defined token owner ID
@@ -20,6 +20,6 @@ export const resetPasswordService = async (token: string, password: string) => {
       });
 
    // Update password
-   await UserRepository.findByIdAndUpdate(tokenOwnerId, { password: hashedPassword });
+   await UserRepository.updateById(tokenOwnerId, { password: hashedPassword });
 
 };

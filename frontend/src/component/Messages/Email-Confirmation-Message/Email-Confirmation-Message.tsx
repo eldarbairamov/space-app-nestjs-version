@@ -1,11 +1,11 @@
 import React, { type FC, useEffect, useState } from "react";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
-import applause from "../../../asset/applause.png";
-import sad from "../../../asset/sad.png";
+import toast from "react-hot-toast";
 import { userService } from "../../../services";
 
+import sad from "../../../asset/sad.png";
+import applause from "../../../asset/applause.png";
 import style from "./Email-Confirmation-Message.module.scss";
 
 export const EmailConfirmationMessage: FC = () => {

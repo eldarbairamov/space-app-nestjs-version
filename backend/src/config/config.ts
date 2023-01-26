@@ -1,6 +1,6 @@
 export const config = {
    PORT: process.env.PORT || 5400,
-   MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/fullstack",
+   MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/view-app",
    API_URL: process.env.API_URL || "https://0.0.0.0:5400/api",
    CLIENT_URL: process.env.CLIENT_URL || "http://localhost:5173",
 

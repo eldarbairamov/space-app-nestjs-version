@@ -3,7 +3,7 @@ import { type INoteDto } from "../interface";
 
 export const noteService = {
 
-   addNote: async (): AxiosRes<INoteDto> => axiosInstance.get<INoteDto>("/notes/initial"),
+   addNote: async (): AxiosRes<INoteDto> => axiosInstance.get<INoteDto>("/notes/add"),
 
    getNotes: async (): AxiosRes<INoteDto[]> => axiosInstance.get<INoteDto[]>("/notes"),
 

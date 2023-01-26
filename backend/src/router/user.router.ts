@@ -24,7 +24,7 @@ userRouter.post(
    commonMiddleware.isRequestEmpty,
    userMiddleware.isEmailValid,
    authMiddleware.isEmailUnique,
-   userController.emailUpdateRequest,
+   userController.emailUpdate,
 );
 
 userRouter.patch(

@@ -1,5 +1,5 @@
 import { UserModel } from "../model";
-import { type FilterQuery, type HydratedDocument, type UpdateQuery } from "mongoose";
+import { type FilterQuery, type UpdateQuery } from "mongoose";
 import { type IUserDatabase, type IUserSchema } from "../interface";
 import { ApiError } from "../error/Api.error";
 
@@ -10,25 +10,25 @@ export const UserRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 
-   findOne: async (filterQuery: FilterQuery<IUserDatabase>): Promise<HydratedDocument<IUserDatabase> | null> => {
+   findOne: async (filter: FilterQuery<IUserDatabase>): Promise<IUserDatabase | null> => {
       return UserModel
-         .findOne(filterQuery)
+         .findOne(filter)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 
-   findByIdAndUpdate: async (id: string, update: UpdateQuery<IUserSchema>): Promise<IUserDatabase | null> => {
+   updateById: async (userId: string, update: UpdateQuery<IUserSchema>): Promise<IUserDatabase | null> => {
       return UserModel
-         .findByIdAndUpdate(id, update, { new: true })
+         .findByIdAndUpdate(userId, update, { new: true })
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 

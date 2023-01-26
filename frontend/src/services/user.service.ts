@@ -4,16 +4,12 @@ import { type AxiosResponse } from "axios";
 
 export const userService = {
 
-   profileUpdate: async (dto: Partial<IUserDto>): Promise<string> => {
-      const result = await axiosInstance.patch<{ message: string }>("/user/profile_update", dto);
-
-      return result.data.message;
+   profileUpdate: async (dto: Partial<IUserDto>): Promise<AxiosResponse> => {
+      return  axiosInstance.patch<{ message: string }>("/user/profile_update", dto);
    },
 
-   emailUpdate: async (email: { email: string }): Promise<string> => {
-      const result = await axiosInstance.post<{ message: string }>("/user/email_change", email);
-
-      return result.data.message;
+   emailUpdate: async (email: { email: string }): Promise<AxiosResponse> => {
+      return axiosInstance.post<{ message: string }>("/user/email_change", email);
    },
 
    changeEmail: async (confirmationToken: string): Promise<AxiosResponse> => {
@@ -32,4 +28,5 @@ export const userService = {
       const { data } = await axiosInstance.get<IUserInfoDto>("/user/get_info");
       return data;
    },
+
 };

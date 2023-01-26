@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { type INoteDto } from "../../interface";
 import { noteService } from "../../services";
-import toast from "react-hot-toast";
 import { catchErrors } from "../../helper";
 
 interface INotesInitialState {
@@ -24,12 +23,7 @@ export const addNote = createAsyncThunk<INoteDto, void>(
    "notesSlice/getInitialNote",
    async (_, { rejectWithValue }) => {
       try {
-         const loading = toast.loading("Зачекайте...");
-
          const { data } = await noteService.addNote();
-
-         toast.dismiss(loading);
-
          return data;
 
       } catch (e) {

@@ -4,24 +4,28 @@ import { authMiddleware, noteMiddleware } from "../middleware";
 
 export const notesRouter = Router();
 
+// Add note
 notesRouter.get(
-   "/initial",
+   "/add",
    authMiddleware.isAccessTokenValid,
    notesController.addNote,
 );
 
+// Get all notes
 notesRouter.get(
    "/",
    authMiddleware.isAccessTokenValid,
    notesController.getNotes,
 );
 
+// Get count
 notesRouter.get(
    "/count",
    authMiddleware.isAccessTokenValid,
    notesController.getNotesCount,
 );
 
+// Save note
 notesRouter.put(
    "/:noteId",
    authMiddleware.isAccessTokenValid,
@@ -29,6 +33,7 @@ notesRouter.put(
    notesController.saveNote,
 );
 
+// Delete note
 notesRouter.delete(
    "/:noteId",
    authMiddleware.isAccessTokenValid,

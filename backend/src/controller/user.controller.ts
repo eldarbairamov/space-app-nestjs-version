@@ -10,26 +10,26 @@ import { changeEmailService, changePasswordService, getUserInfoService, updateEm
 export const userController = {
 
    profileUpdate: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<{ message: string }>) => {
-      await UserRepository.findByIdAndUpdate(req.userId!, req.body);
-      res.json({ message: "Ви успішно оновили профіль" });
+      await UserRepository.updateById(req.userId!, req.body);
+      res.json({ message: "Успішно" });
    }),
 
-   changePassword: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ newPassword: string, currentPassword: string }>, res: Response) => {
+   changePassword: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ newPassword: string, currentPassword: string }>, res: Response<{ message: string }>) => {
       await changePasswordService(req.body.newPassword, req.body.currentPassword, req.userId!);
-      res.json({ message: "Ви успішно оновили свій пароль" });
+      res.json({ message: "Успішно" });
    }),
 
-   emailUpdateRequest: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ email: string }>, res: Response) => {
+   emailUpdate: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ email: string }>, res: Response<{ message: string, token: string }>) => {
       const confirmationToken = await updateEmailService(req.userId!, req.body.email);
       res.json({
-         message: "Лист із посиланням на підтведження вже летить на вказану електронну пошту!",
+         message: "Успішно",
          token: confirmationToken,
       });
    }),
 
-   changeEmail: expressAsyncHandler(async (req: RequestWithBody<{ confirmationToken: string }>, res: Response, next: NextFunction) => {
+   changeEmail: expressAsyncHandler(async (req: RequestWithBody<{ confirmationToken: string }>, res: Response<{ message: string }>, next: NextFunction) => {
       await changeEmailService(req.body.confirmationToken);
-      res.json({ message: "Ви успішно оновили адресу електронної пошти" });
+      res.json({ message: "Успішно" });
    }),
 
    getUserInfo: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response, next: NextFunction) => {

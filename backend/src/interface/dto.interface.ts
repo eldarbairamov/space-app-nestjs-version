@@ -1,4 +1,3 @@
-import { type ObjectId } from "mongoose";
 import { type IAccessTokenPair } from "./o-auth.interface";
 
 export interface IAccessTokenPairDto extends IAccessTokenPair {
@@ -22,6 +21,7 @@ export interface IPlanDto {
 
 export interface ITaskDto {
    id: string,
+   planId: string,
    title: string,
    isCompleted: boolean
 }

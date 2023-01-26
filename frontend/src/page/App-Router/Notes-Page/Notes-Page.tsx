@@ -1,9 +1,8 @@
-import React, { type FC, useEffect, useLayoutEffect } from "react";
+import React, { type FC, useEffect } from "react";
 
-import { NotesMain } from "../../../component/Notes/Notes-Main/Notes-Main";
-import { NotesSidebar } from "../../../component/Notes/Sidebar/Notes-Sidebar/Notes-Sidebar";
-import { useAppDispatch, useAppSelector } from "../../../hook/redux.hook";
-import { asyncNotesActions } from "../../../redux/slice/notes.slice";
+import { NotesMain, NotesSidebar } from "../../../component";
+import { useAppDispatch } from "../../../hook";
+import { asyncNotesActions } from "../../../redux/slice";
 import { Toaster } from "react-hot-toast";
 
 import style from "./Notes-Page.module.scss";

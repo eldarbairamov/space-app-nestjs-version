@@ -11,7 +11,7 @@ export const OAuthRepository = {
          .create(body)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 
@@ -20,7 +20,7 @@ export const OAuthRepository = {
          .deleteOne(filter)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
 
@@ -29,7 +29,8 @@ export const OAuthRepository = {
          .findOne(filter)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.DatabaseError();
          });
    },
+
 };
