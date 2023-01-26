@@ -52,3 +52,27 @@ export interface INoteDatabase extends INoteSchema {
    createdAt: Date,
    updatedAt: Date,
 }
+
+export interface IPlanSchema {
+   planOwnerId: Types.ObjectId
+   title: string,
+}
+
+export interface IPlanDatabase extends IPlanSchema {
+   _id: Types.ObjectId,
+   createdAt: Date,
+   updatedAt: Date,
+}
+
+export interface ITaskSchema {
+   taskOwnerId: Types.ObjectId,
+   planId: Types.ObjectId,
+   title: string,
+   isCompleted: boolean
+}
+
+export interface ITaskDatabase extends ITaskSchema {
+   _id: Types.ObjectId,
+   createdAt: Date,
+   updatedAt: Date,
+}

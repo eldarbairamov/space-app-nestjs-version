@@ -8,7 +8,7 @@ import style from "./Plans-Page.module.scss";
 
 export interface IPlan {
    id: string
-   sectionName: string,
+   planTitle: string,
    lastModified: number
 }
 
@@ -20,7 +20,7 @@ export const PlansPage: FC = () => {
    const addPlan = () => {
       const newPlan: IPlan = {
          id: v4(),
-         sectionName: "Новий план",
+         planTitle: "Новий план",
          lastModified: Date.now(),
       };
 
@@ -68,9 +68,9 @@ export const PlansPage: FC = () => {
             <div className={ style.plan_list }>
                { plan && plan.map(item => (
 
-                  <div key={ item.id } className={ style.plans_item } onClick={ () => choosePlan(item.id, item) }>
+                  <div key={ item.id } className={ style.plan_item } onClick={ () => choosePlan(item.id, item) }>
 
-                     <p className={ style.plan_name }> { item.sectionName }  </p>
+                     <p className={ style.plan_name }> { item.planTitle }  </p>
 
                      <img src={ brain } alt="folder"/>
 

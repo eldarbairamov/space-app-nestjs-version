@@ -3,7 +3,7 @@
    align-items: center;
 }
 
-.SinglePlanPage {
+.TasksPage {
    @extend %flex;
    flex-direction: column;
    justify-content: center;
@@ -33,7 +33,7 @@
          background: transparent;
       }
 
-      .date {
+      .plan_date {
          position: absolute;
          font-size: 15px;
          right: 30px;
@@ -83,7 +83,7 @@
          margin: 0 auto;
          width: 500px;
 
-         .task {
+         .task_item {
             @extend %flex;
             justify-content: center;
 
@@ -92,7 +92,7 @@
             margin-bottom: 20px;
             border-radius: 10px;
 
-            .image {
+            .task_status {
                @extend %flex;
                justify-content: center;
 

@@ -18,7 +18,6 @@ export const NotesMain: FC = () => {
    }, []);
 
    const onEditFields = (field: string, value: string) => {
-
       const updatedNote = {
          ...activeNote,
          [field]: value,
@@ -53,11 +52,12 @@ export const NotesMain: FC = () => {
       <div className={ style.Main }>
 
          <div className={ style.header }>
-            <input type="text" id={ "title" }
+            <input type={'text'}
+                   id={ "title" }
                    value={ activeNote.title }
                    autoFocus
-                   onBlur={ saveNoteToDb }
                    onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }
+                   onBlur={ saveNoteToDb }
             />
          </div>
 

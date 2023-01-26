@@ -1,5 +1,5 @@
 import { model, Schema, type SchemaDefinitionProperty, Types } from "mongoose";
-import { IActionTokenDatabase, IActionTokenSchema } from "../interface";
+import { type IActionTokenDatabase, type IActionTokenSchema } from "../interface";
 
 const actionTokenSchema = new Schema<IActionTokenSchema>({
    tokenOwnerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<Types.ObjectId>,

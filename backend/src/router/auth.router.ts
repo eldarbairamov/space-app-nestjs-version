@@ -1,19 +1,19 @@
 import { Router } from "express";
 import { authController } from "../controller";
-import { authMiddleware } from "../middleware";
+import { authMiddleware, commonMiddleware } from "../middleware";
 
 export const authRouter = Router();
 
 authRouter.post(
    "/registration",
-   authMiddleware.isRequestEmpty,
+   commonMiddleware.isRequestEmpty,
    authMiddleware.isRequestValid,
    authMiddleware.isEmailUnique,
    authController.registration);
 
 authRouter.post(
    "/login",
-   authMiddleware.isRequestEmpty,
+   commonMiddleware.isRequestEmpty,
    authMiddleware.isUserExists,
    authMiddleware.isRequestValid,
    authController.login,

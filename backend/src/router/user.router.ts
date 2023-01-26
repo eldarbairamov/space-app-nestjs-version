@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { userController } from "../controller";
-import { userMiddleware, authMiddleware } from "../middleware";
+import { userMiddleware, authMiddleware, commonMiddleware } from "../middleware";
 
 export const userRouter = Router();
 
@@ -21,7 +21,7 @@ userRouter.patch(
 userRouter.post(
    "/email_change",
    authMiddleware.isAccessTokenValid,
-   authMiddleware.isRequestEmpty,
+   commonMiddleware.isRequestEmpty,
    userMiddleware.isEmailValid,
    authMiddleware.isEmailUnique,
    userController.emailUpdateRequest,

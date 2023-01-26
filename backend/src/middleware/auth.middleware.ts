@@ -1,5 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
-import { type Response, type NextFunction } from "express";
+import { type Response, type NextFunction, type Request } from "express";
 import { ApiError } from "../error/Api.error";
 import {
    type RequestWithBody,
@@ -12,12 +12,6 @@ import { authValidator } from "../validator";
 import * as jwt from "jsonwebtoken";
 
 export const authMiddleware = {
-
-   isRequestEmpty: expressAsyncHandler(async (req: RequestWithBody<IUserSchema>, res: Response, next: NextFunction) => {
-      if (!Object.entries(req.body).length) throw new ApiError("Запит пустий", 400);
-
-      next();
-   }),
 
    isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IUserSchema>, res: Response, next: NextFunction) => {
       const validation = authValidator.validate(req.body);

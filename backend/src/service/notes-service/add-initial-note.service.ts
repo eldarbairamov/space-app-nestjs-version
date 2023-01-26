@@ -1,12 +1,11 @@
-import { NoteRepository } from "../../repository/Note.repository";
-import { notePresenter } from "../../presenter/note.presenter";
+import { NoteRepository } from "../../repository";
+import { notePresenter } from "../../presenter";
 
 export const addInitialNoteService = async (userId: string) => {
 
    // Create note initial state
    const noteInitialState = {
       noteOwnerId: userId,
-      title: "Нова замітка",
       body: "",
    };
 

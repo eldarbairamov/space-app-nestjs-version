@@ -3,7 +3,7 @@ import { type INoteDatabase, type INoteSchema } from "../interface";
 
 const NoteSchema = new Schema<INoteSchema>({
    noteOwnerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<Types.ObjectId>,
-   title: { type: String },
+   title: { type: String, default: 'Нова замітка' },
    body: { type: String },
 }, {timestamps: true, versionKey: false});
 

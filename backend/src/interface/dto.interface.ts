@@ -13,3 +13,15 @@ export interface INoteDto {
    body: string,
    lastModified: number
 }
+
+export interface IPlanDto {
+   id: Types.ObjectId,
+   title: string,
+   lastModified: number
+}
+
+export interface ITaskDto {
+   id: Types.ObjectId,
+   title: string,
+   isCompleted: boolean
+}

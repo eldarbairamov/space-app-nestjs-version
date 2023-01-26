@@ -6,6 +6,7 @@ import { asyncNotesActions, notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
 
 import style from "./Notes-Item.module.scss";
+import { dateFormat } from "../../../../helper/date-format.helper";
 
 interface INotesItem {
    note: INoteDto;
@@ -23,25 +24,23 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
       dispatch(asyncNotesActions.deleteNote({ noteId }));
    };
 
+   const formatDate = dateFormat(note.lastModified);
+
    return (
       <div className={ style.NotesItem }
-                  onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
-                  data-active={ note.id === activeNote?.id }
+           onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
+           data-active={ note.id === activeNote?.id }
       >
 
          <p className={ style.title }> { titleCondition ? note.title.substring(0, 20) + "..." : note.title } </p>
 
          <p className={ style.delete }
-            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }> <DeleteOutlined style={{fontSize: '17px'}}/> </p>
+            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }><DeleteOutlined
+            style={ { fontSize: "17px" } }/></p>
 
          <p className={ style.body }> { bodyCondition ? note.body.substring(0, 35) + "..." : note.body } </p>
 
-         <p className={ style.date }>
-            { new Date(note.lastModified).toLocaleDateString("en-GB", {
-               hour: "2-digit",
-               minute: "2-digit",
-            }) }
-         </p>
+         <p className={ style.date }> { formatDate } </p>
 
       </div>
    );
