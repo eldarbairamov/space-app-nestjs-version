@@ -17,14 +17,9 @@ export const EmailConfirmationMessage: FC = () => {
    const navigate = useNavigate();
 
    useEffect(() => {
-
-      const emailConfirmation = async () => {
-         await userService.changeEmail(confirmationToken!);
-      };
-
       const loading = toast.loading("Зачекайте...");
 
-      emailConfirmation()
+      userService.changeEmail(confirmationToken!)
          .then(res => {
             setStatus("valid");
             toast.dismiss(loading);

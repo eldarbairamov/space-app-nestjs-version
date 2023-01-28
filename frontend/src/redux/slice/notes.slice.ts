@@ -57,19 +57,6 @@ export const deleteNote = createAsyncThunk<void, { noteId: string }>(
    },
 );
 
-export const getNotesCount = createAsyncThunk<number, void>(
-   "notesSlice/getNotesCount",
-   async (_, { rejectWithValue }) => {
-      try {
-         const { data } = await noteService.getNotesCount();
-         return data;
-
-      } catch (e) {
-         return rejectWithValue(e);
-      }
-   },
-);
-
 const notesSlice = createSlice({
    name: "notes",
    initialState,
@@ -104,14 +91,6 @@ const notesSlice = createSlice({
          catchErrors(payload);
       })
 
-      // Get notes count
-      .addCase(getNotesCount.fulfilled, (state, { payload }) => {
-         state.count = payload;
-      })
-      .addCase(getNotesCount.rejected, (state, { payload }) => {
-         catchErrors(payload);
-      })
-
       // Get all notes
       .addCase(getNotes.fulfilled, (state, { payload }) => {
          state.notes = payload;
@@ -142,5 +121,4 @@ export const asyncNotesActions = {
    addNote,
    getNotes,
    deleteNote,
-   getNotesCount,
 };

@@ -2,7 +2,7 @@ import React, { type FC, useEffect } from "react";
 
 import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hook/redux.hook";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Profile-Preview.module.scss";
 

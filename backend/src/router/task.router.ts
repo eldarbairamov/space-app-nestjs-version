@@ -5,7 +5,7 @@ import { taskMiddleware } from "../middleware";
 
 export const taskRouter = Router();
 
-taskRouter.get(
+taskRouter.post(
    "/",
    authMiddleware.isAccessTokenValid,
    taskController.getAllTasks,

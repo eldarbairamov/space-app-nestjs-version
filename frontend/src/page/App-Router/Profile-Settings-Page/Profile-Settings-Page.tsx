@@ -13,7 +13,7 @@ export const ProfileSettingsPage: FC = () => {
    const { username, name, surname, avatar } = useAppSelector(state => state.authReducer);
 
    return (
-      <div className={ style.EditProfilePage }>
+      <div className={ style.ProfileSettingsPage }>
 
          {/* Toaster */ }
          <Toaster

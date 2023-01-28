@@ -1,6 +1,6 @@
-import { PlanModel, TaskModel } from "../model";
+import { PlanModel } from "../model";
 import { ApiError } from "../error/Api.error";
-import { type IPlanDatabase, type IPlanSchema, ITaskDatabase } from "../interface";
+import { type IPlanDatabase, type IPlanSchema } from "../interface";
 import { type FilterQuery, type UpdateQuery } from "mongoose";
 
 export const PlanRepository = {
@@ -17,6 +17,7 @@ export const PlanRepository = {
    findAll: async (filter: FilterQuery<IPlanSchema>): Promise<IPlanDatabase[]> => {
       return PlanModel
          .find(filter)
+         .sort({ updatedAt: "desc" })
          .catch(e => {
             console.log(e);
             throw ApiError.Database();
@@ -44,6 +45,15 @@ export const PlanRepository = {
    deleteById: async (planId: string): Promise<IPlanDatabase | null> => {
       return PlanModel
          .findByIdAndDelete(planId)
+         .catch(e => {
+            console.log(e);
+            throw ApiError.Database();
+         });
+   },
+
+   getCount: async (userId: string): Promise<number> => {
+      return PlanModel
+         .count({ planOwnerId: userId })
          .catch(e => {
             console.log(e);
             throw ApiError.Database();

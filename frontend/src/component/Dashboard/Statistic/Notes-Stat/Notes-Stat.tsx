@@ -1,17 +1,18 @@
-import React, { type FC, useEffect } from "react";
+import React, { type FC, useEffect, useState } from "react";
 
 import { Divider } from "antd";
-import { useAppDispatch, useAppSelector } from "../../../../hook";
-import { asyncNotesActions } from "../../../../redux/slice";
+import { noteService } from "../../../../services";
 
 import style from "./Notes-Stat.module.scss";
+import { catchErrors } from "../../../../helper";
 
 export const NotesStat: FC = () => {
-   const { count } = useAppSelector(state => state.notesReducer);
-   const dispatch = useAppDispatch();
+   const [count, setCount] = useState<number>()
 
    useEffect(() => {
-      dispatch(asyncNotesActions.getNotesCount());
+      noteService.getNotesCount()
+         .then(res => setCount(res.data))
+         .catch(e => catchErrors(e))
    }, []);
 
    return (

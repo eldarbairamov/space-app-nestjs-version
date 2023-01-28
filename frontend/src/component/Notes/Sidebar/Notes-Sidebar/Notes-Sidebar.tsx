@@ -2,8 +2,8 @@ import React, { type FC } from "react";
 
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";
-import { asyncNotesActions } from "../../../../redux/slice/notes.slice";
-import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
+import { asyncNotesActions } from "../../../../redux/slice";
+import { useAppDispatch, useAppSelector } from "../../../../hook";
 
 import style from "./Notes-Sidebar.module.scss";
 import add from "../../../../asset/note.png";
@@ -24,9 +24,7 @@ export const NotesSidebar: FC = () => {
 
          <div className={ style.scroll_section }>
             <div className={ style.note_list }>
-
-               { notes && notes.map(item => <NotesItem key={ uuid() } note={ item }/>) }
-
+                  { notes && notes.map(item => <NotesItem key={ uuid() } note={ item }/>) }
             </div>
          </div>
       </div>

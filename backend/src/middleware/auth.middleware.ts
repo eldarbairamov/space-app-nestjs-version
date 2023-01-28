@@ -1,15 +1,16 @@
 import expressAsyncHandler from "express-async-handler";
-import { type Response, type NextFunction } from "express";
+import { type NextFunction, type Response } from "express";
 import { ApiError } from "../error/Api.error";
 import {
-   type RequestWithBody,
    type IUserSchema,
+   type RequestWithBody,
    type RequestWithBodyAndCustomVar,
    type RequestWithCustomVar,
 } from "../interface";
 import { OAuthRepository, UserRepository } from "../repository";
 import { authValidator } from "../validator";
-import * as jwt from "jsonwebtoken";
+import { jwtVerifierService } from "../service/auth-service/jwt-verifier.service";
+import { tokenTypeEnum } from "../enum/token-type.enum";
 
 export const authMiddleware = {
 
@@ -43,10 +44,7 @@ export const authMiddleware = {
       const isAccessTokenExists = await OAuthRepository.findOne({ accessToken: token });
       if (!isAccessTokenExists) throw new ApiError("Користувач не авторизований", 401);
 
-      const { userId } = jwt.verify(token, "secret access token key") as { userId: string };
-      if (!userId) throw new ApiError("Токен не валідний", 401);
-
-      req.userId = userId;
+      req.userId = jwtVerifierService(token, tokenTypeEnum.ACCESS_TOKEN);
       req.token = token;
 
       next();

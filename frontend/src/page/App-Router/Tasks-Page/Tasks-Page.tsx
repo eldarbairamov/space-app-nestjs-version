@@ -1,57 +1,59 @@
-import React, { type FC, useState } from "react";
+import React, { type FC, useEffect, useState } from "react";
 
 import { useLocation } from "react-router";
-import { type IPlan } from "../Plans-Page/Plans-Page";
-import { dateFormat } from "../../../helper";
-import { type ITask } from "../../../interface/task.interface";
+import { catchErrors, dateFormat } from "../../../helper";
+import { type ITaskDto } from "../../../interface/task.interface";
+import { type IPlanDto } from "../../../interface";
+import { planService, taskService } from "../../../services";
 
 import style from "./Tasks-Page.module.scss";
 import incomplete from "../../../asset/incomplete.svg";
 import complete from "../../../asset/complete.svg";
+import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
 
-
-interface IInputFields {
+export interface IInputFields {
    planTitle: string,
    taskTitle: string
 }
 
 export const TasksPage: FC = () => {
-   const { plan } = useLocation().state as { plan: IPlan };
+   const { plan } = useLocation().state as { plan: IPlanDto };
 
-   const [ tasks, setTasks ] = useState<ITask[]>([]);
+   const [ tasks, setTasks ] = useState<ITaskDto[]>([]);
    const [ inputFields, setInputFields ] = useState<IInputFields>({ planTitle: plan.title, taskTitle: "" });
 
-   const addTask = (): void => {
+   const addTask = async (): Promise<void> => {
       if (inputFields.taskTitle !== "") {
-         setTasks([
-            ...tasks,
-            {
-               id: Number(new Date()),
-               title: inputFields.taskTitle,
-               isCompleted: false,
-            },
-         ]);
+         try {
+            setInputFields({ ...inputFields, taskTitle: "" });
 
-         setInputFields({ ...inputFields, taskTitle: "" });
+            const { data } = await taskService.addTask(plan.id, inputFields.taskTitle);
+
+            setTasks([ ...tasks, data ]);
+         } catch (e) {
+            catchErrors(e);
+         }
       }
-   };
-
-   const setTaskStatus = (id: number): void => {
-      const tasksArrCopy = [ ...tasks ];
-      const task = tasksArrCopy.find(item => item.id === id);
-
-      if (task) {
-         task.isCompleted = !task.isCompleted;
-      }
-
-      setTasks(tasksArrCopy);
    };
 
    const onChangeFields = (field: string, value: string) => {
       setInputFields({ ...inputFields, [field]: value });
    };
 
+   const changePlansTitle = async (): Promise<void> => {
+      try {
+         await planService.updatePlan(plan.id, inputFields.planTitle);
+
+      } catch (e) {
+         catchErrors(e);
+      }
+   };
+
    const formatDate = dateFormat(plan.lastModified);
+
+   useEffect(() => {
+      taskService.getAllTasks(plan.id).then(res => setTasks(res.data));
+   }, []);
 
    return (
       <div className={ style.TasksPage }>
@@ -62,13 +64,14 @@ export const TasksPage: FC = () => {
                    id={ "planTitle" }
                    value={ inputFields.planTitle }
                    onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onChangeFields("planTitle", e.target.value) }
+                   onBlur={ (changePlansTitle) }
                    autoFocus
             />
             <p className={ style.plan_date }> { formatDate } </p>
          </div>
 
          <div className={ style.mid }>
-            <div className={ style.header }>
+            <div className={ style.add_task }>
                <p onClick={ addTask }> + </p>
                <input type={ "text" }
                       id={ "taskTitle" }
@@ -81,22 +84,8 @@ export const TasksPage: FC = () => {
 
          <div className={ style.bottom }>
             <div className={ style.task_list }>
-               { tasks && tasks.map((task: any) => (
-
-                  <div className={ style.task_item }>
-                     <div className={ style.task_status }>
-                        { task.isCompleted ?
-                           <img onClick={ () => setTaskStatus(task.id) } src={ complete } alt="incomplete"/>
-                           :
-                           <img onClick={ () => setTaskStatus(task.id) } src={ incomplete } alt="incomplete"/>
-                        }
-                     </div>
-
-                     <div className={ style.task_title }>
-                        <p> { task.title } </p>
-                     </div>
-                  </div>
-
+               { tasks && tasks.map(task => (
+                  <TasksItem task={task} setTasks={setTasks} tasks={tasks}/>
                )) }
             </div>
          </div>

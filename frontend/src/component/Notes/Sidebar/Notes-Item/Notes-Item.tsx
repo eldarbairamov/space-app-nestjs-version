@@ -4,7 +4,7 @@ import { type INoteDto } from "../../../../interface";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { asyncNotesActions, notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
-import { dateFormat } from "../../../../helper/date-format.helper";
+import { dateFormat } from "../../../../helper";
 
 import style from "./Notes-Item.module.scss";
 
@@ -28,8 +28,8 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
 
    return (
       <div className={ style.NotesItem }
-           onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
-           data-active={ note.id === activeNote?.id }
+                  onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
+                  data-active={ note.id === activeNote?.id }
       >
 
          <p className={ style.title }> { titleCondition ? note.title.substring(0, 30) + "..." : note.title } </p>

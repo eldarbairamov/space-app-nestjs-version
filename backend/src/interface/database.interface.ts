@@ -54,6 +54,7 @@ export interface INoteDatabase extends INoteSchema {
 export interface IPlanSchema {
    planOwnerId: string
    title: string,
+   tasksIds: string[]
 }
 
 export interface IPlanDatabase extends IPlanSchema {

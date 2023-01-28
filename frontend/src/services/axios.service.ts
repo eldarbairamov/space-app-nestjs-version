@@ -39,5 +39,5 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
          throw new Error("Токен не валідний");
       }
 
-      throw new Error("Не передбачена помилка... Спробуйте пізніше");
+      return Promise.reject(e)
    });

@@ -2,22 +2,19 @@ import { type AxiosResponse } from "axios";
 import { axiosInstance } from "./axios.service";
 import { type IPlanDto } from "../interface";
 
-export const PlanService = {
+export const planService = {
 
-   addPlan: (): Promise<AxiosResponse> => {
-      return axiosInstance.get("/plans/add");
+   addPlan: async () => axiosInstance.get<IPlanDto>("/plans/add"),
+
+   deletePlan: async (planId: string): Promise<AxiosResponse> => axiosInstance.delete(`/plans/${ planId }`),
+
+   updatePlan: async (planId: string, title: string): Promise<AxiosResponse> => {
+      const planDto = { title };
+      return axiosInstance.put(`/plans/${ planId }`, planDto);
    },
 
-   deletePlan: (planId: string): Promise<AxiosResponse> => {
-      return axiosInstance.delete(`/plans/${ planId }`);
-   },
+   getAllPlans: async () => axiosInstance.get<IPlanDto[]>("/plans"),
 
-   updatePlan: (planId: string, plan: IPlanDto): Promise<AxiosResponse> => {
-      return axiosInstance.put(`/plans/${ planId }`, plan);
-   },
-
-   getAllPlans: (): Promise<AxiosResponse> => {
-      return axiosInstance.get("/plans");
-   },
+   getPlansCount: async () => axiosInstance.get<number>("/plans/count"),
 
 };

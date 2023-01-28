@@ -14,7 +14,9 @@ export interface IOAuthDto {
 }
 
 export interface IPlanDto {
-   title: string;
+   id: string,
+   title: string,
+   lastModified: number
 }
 
 export interface IUserDto {

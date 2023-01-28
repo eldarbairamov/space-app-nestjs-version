@@ -49,7 +49,7 @@
       height: 15%;
       width: 100%;
 
-      .header {
+      .add_task {
          @extend %flex;
          justify-content: center;
          gap: 10px;
@@ -75,48 +75,32 @@
       height: 75%;
       width: 100%;
       overflow-y: scroll;
+      padding-bottom: 30px;
 
       .task_list {
          @extend %flex;
          flex-direction: column;
-
          margin: 0 auto;
-         width: 500px;
-
-         .task_item {
-            @extend %flex;
-            justify-content: center;
-
-            padding: 20px 40px;
-            background: #f2f9ff;
-            margin-bottom: 20px;
-            border-radius: 10px;
-
-            .task_status {
-               @extend %flex;
-               justify-content: center;
-
-               width: 15%;
-               height: 100%;
-
-               img {
-                  height: 25px;
-                  left: 30px;
-               }
-            }
-
-            .task_title {
-               @extend %flex;
-               justify-content: center;
-
-               padding: 0 0 0 20px;
-
-               p {
-                  width: 300px;
-               }
-            }
-         }
       }
 
+   }
+}
+
+@media screen and (max-height: 800px) {
+   .TasksPage {
+      height: 800px;
+   }
+}
+
+
+@media screen and (max-width: 1200px) {
+   .TasksPage {
+      width: 70vw;
+   }
+}
+
+@media screen and (max-width: 800px) {
+   .TasksPage {
+      width: 80vw;
    }
 }

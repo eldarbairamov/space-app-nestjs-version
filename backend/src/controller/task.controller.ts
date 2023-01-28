@@ -3,8 +3,7 @@ import { type Response } from "express";
 import { addTaskService } from "../service/task-service/add-task.service";
 import {
    type ITaskDto,
-   type RequestWithBodyAndCustomVar, RequestWithBodyAndParams,
-   type RequestWithCustomVar,
+   type RequestWithBodyAndCustomVar, type RequestWithBodyAndParams,
    type RequestWithParams,
 } from "../interface";
 import { getTasksService } from "../service/task-service/get-tasks.service";
@@ -27,8 +26,8 @@ export const taskController = {
       res.json({ message: "Успішно" });
    }),
 
-   getAllTasks: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<Partial<ITaskDto>[]>) => {
-      const tasks = await getTasksService(req.userId!);
+   getAllTasks: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ planId: string }>, res: Response<Partial<ITaskDto>[]>) => {
+      const tasks = await getTasksService(req.userId!, req.body.planId);
       res.json(tasks);
    }),
 

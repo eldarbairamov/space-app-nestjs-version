@@ -1,5 +1,5 @@
-export interface ITask {
-   id: number,
+export interface ITaskDto {
+   id: string,
    title: string,
    isCompleted: boolean
 }

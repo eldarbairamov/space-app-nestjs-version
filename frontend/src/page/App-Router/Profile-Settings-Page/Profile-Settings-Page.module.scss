@@ -10,7 +10,7 @@
    justify-content: center;
 }
 
-.EditProfilePage {
+.ProfileSettingsPage {
    @extend %flex;
    justify-content: center;
    gap: 60px;
@@ -118,13 +118,13 @@
 }
 
 @media screen and (max-height: 800px) {
-   .EditProfilePage {
+   .ProfileSettingsPage {
       height: 900px;
    }
 }
 
 @media screen and (max-width: 1300px) {
-   .EditProfilePage {
+   .ProfileSettingsPage {
       flex-direction: column;
 
       margin-top: 50px;

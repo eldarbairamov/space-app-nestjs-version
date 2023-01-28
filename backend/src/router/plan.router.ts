@@ -19,6 +19,13 @@ planRouter.get(
    planController.addPlan,
 );
 
+// Get count
+planRouter.get(
+   '/count',
+   authMiddleware.isAccessTokenValid,
+   planController.getPlansCount
+)
+
 // Update plan
 planRouter.put(
    "/:planId",

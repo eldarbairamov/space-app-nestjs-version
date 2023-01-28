@@ -2,13 +2,12 @@ import expressAsyncHandler from "express-async-handler";
 import {
    type IPlanDto,
    type RequestWithBodyVarParams,
-   type RequestWithCustomVar,
-   type RequestWithCustomVarAndParams, RequestWithParams,
+   type RequestWithCustomVar, type RequestWithParams,
 } from "../interface";
 import { type Response } from "express";
 import { addPlanService } from "../service/plans-service/add-plan.service";
 import { getPlansService } from "../service/plans-service/get-plans.service";
-import { PlanRepository } from "../repository";
+import { NoteRepository, PlanRepository } from "../repository";
 
 export const planController = {
 
@@ -30,6 +29,11 @@ export const planController = {
    deletePlan: expressAsyncHandler(async (req: RequestWithParams<{ planId: string }>, res: Response<{ message: string }>) => {
       await PlanRepository.deleteById(req.params.planId);
       res.json({ message: "Успішно" });
+   }),
+
+   getPlansCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {
+      const count = await PlanRepository.getCount(req.userId!);
+      res.json(count);
    }),
 
 };

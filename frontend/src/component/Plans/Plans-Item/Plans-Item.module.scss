@@ -8,16 +8,15 @@
    justify-content: center;
    flex-direction: column;
    border-radius: 20px;
-   gap: 20px;
+   gap: 28px;
 
    background: rgb(244, 244, 244);
-   height: 220px;
+   height: 250px;
    width: calc(100% / 4 - 22.5px);
    position: relative;
    cursor: pointer;
 
    &:hover {
-      //background: rgb(227, 227, 227);
       background: #f2f9ff;
    }
 
@@ -27,14 +26,30 @@
    }
 
    .plan_date {
-      position: absolute;
-      right: 20px;
-      bottom: 15px;
       font-weight: 500;
       font-size: 13px;
    }
 
+   .delete {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+   }
+
    img {
       height: 90px;
+   }
+}
+
+@media screen and (max-width: 1300px) {
+   .PlansItem {
+      width: calc(100% / 2 - 15px);
+
+   }
+}
+
+@media screen and (max-width: 900px) {
+   .PlansItem {
+      width: 100%;
    }
 }

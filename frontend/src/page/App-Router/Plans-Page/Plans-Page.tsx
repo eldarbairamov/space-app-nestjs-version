@@ -1,28 +1,32 @@
-import React, { type FC, useState } from "react";
+import React, { type FC, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { v4 } from "uuid";
+import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
+import { planService } from "../../../services";
+import { type IPlanDto } from "../../../interface";
 
 import style from "./Plans-Page.module.scss";
-import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
-
-export interface IPlan {
-   id: string
-   title: string,
-   lastModified: number
-}
 
 export const PlansPage: FC = () => {
-   const [ plan, setPlan ] = useState<IPlan[]>([]);
+   const [ plans, setPlans ] = useState<IPlanDto[]>([]);
 
-   const addPlan = () => {
-      const newPlan: IPlan = {
-         id: v4(),
-         title: "Новий план",
-         lastModified: Date.now(),
-      };
-
-      setPlan([ ...plan, newPlan ]);
+   const addPlan = async () => {
+      const { data } = await planService.addPlan();
+      setPlans([ ...plans, data ]
+         .sort((a, b) => b.lastModified - a.lastModified));
    };
+
+   const deletePlan = async (e: React.MouseEvent<HTMLParagraphElement>, targetId: string): Promise<void> => {
+      e.stopPropagation();
+      const updatedArr = plans.filter(item => item.id !== targetId);
+      await planService.deletePlan(targetId);
+
+      setPlans(updatedArr);
+   };
+
+   useEffect(() => {
+      planService.getAllPlans()
+         .then(res => setPlans(res.data));
+   }, []);
 
    return (
       <div className={ style.PlansPage }>
@@ -59,7 +63,7 @@ export const PlansPage: FC = () => {
          <div className={ style.bottom }>
 
             <div className={ style.plan_list }>
-               { plan && plan.map(item => <PlansItem plan={ item }/>) }
+                  { plans && plans.map(item => <PlansItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }
             </div>
 
          </div>
