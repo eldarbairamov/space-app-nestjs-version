@@ -5,13 +5,12 @@
 
    padding: 10px 20px;
    background: rgb(244, 244, 244);
-   width: 95%;
+   width: 90%;
    min-height: 85px;
    border-radius: 10px;
    text-align: center;
    cursor: pointer;
    position: relative;
-
    overflow: hidden;
 
    .title {
@@ -27,14 +26,6 @@
       font-weight: 500;
       color: indianred;
       cursor: pointer;
-
-      img {
-         width: 10px;
-      }
-
-      &:hover {
-         color: #a24848;
-      }
    }
 
    .body {
@@ -52,5 +43,5 @@
 }
 
 .NotesItem[data-active='true'] {
-   background: rgb(227, 227, 227);
+   background: #fff2dd;
 }

@@ -1,8 +1,8 @@
-import { ActionTokenRepository } from "../../repository/Action-Token.repository";
+import { ActionTokenRepository } from "../../repository";
 import { emailSender } from "../email.service";
 import * as jwt from "jsonwebtoken";
 
-export const updateEmailService = async (userId: string, email: string): Promise<string> => {
+export const updateEmailService = async (userId: string, email: string): Promise<void> => {
 
    // Generate link
    const confirmationToken = jwt.sign({ userId, email }, "secret confirmation token key", { expiresIn: "1d" });
@@ -14,10 +14,8 @@ export const updateEmailService = async (userId: string, email: string): Promise
       tokenType: "Email Confirmation",
       token: confirmationToken,
    });
-   
+
    // Send email
    await emailSender(email, "Підтвердження електронної пошти", confirmationLink);
-
-   return confirmationToken;
 
 };

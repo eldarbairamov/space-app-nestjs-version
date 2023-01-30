@@ -4,12 +4,13 @@ import {
    DashboardPage,
    MomentsPage,
    NotesPage,
-   Goals,
+   PlansPage,
    ProfileSettingsPage,
    EmailConfirmationPage,
    ChangePassMessagePage,
 } from "../page";
 import { EmailUpdateForm, PasswordUpdateForm, ProfileUpdateForm } from "../component";
+import { TasksPage } from "../page/App-Router/Tasks-Page/Tasks-Page";
 
 export const AppRouter = createBrowserRouter([
    {
@@ -59,8 +60,12 @@ export const AppRouter = createBrowserRouter([
             element: <MomentsPage/>,
          },
          {
-            path: "goals",
-            element: <Goals/>,
+            path: "plans",
+            element: <PlansPage/>,
+         },
+         {
+            path: "plans/:planId",
+            element: <TasksPage/>,
          },
          {
             path: "*",

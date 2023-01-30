@@ -1,4 +1,5 @@
-import { IUserDatabase } from "../interface";
+import { type IUserDatabase } from "../interface";
+import { Secret } from "jsonwebtoken";
 
 export {};
 
@@ -11,6 +12,8 @@ declare global {
          CLIENT_URL: string,
          EMAIL_SERVICE_USER: string,
          EMAIL_SERVICE_PASS: string
+         SECRET_ACCESS_TOKEN_KEY: Secret,
+         SECRET_REFRESH_TOKEN_KEY: Secret,
       }
    }
 }

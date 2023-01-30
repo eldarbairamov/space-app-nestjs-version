@@ -1,14 +1,14 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
 import { emailValidator } from "../../../../validator/auth.validator";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { resetFields, catchErrors } from "../../../../helper";
 
 import style from "./ForgotPasswordForm.module.scss";
 
@@ -27,7 +27,7 @@ export const ForgotPasswordForm: FC = () => {
          const message = await authService.forgotPassword(data);
 
          toast.dismiss(loading);
-         toast.success(message);
+         toast.success("Лист із посиланням вже летить на вказану електронну пошту");
 
          setTimeout(() => {
             resetFields(setValue);
@@ -35,40 +35,12 @@ export const ForgotPasswordForm: FC = () => {
          }, 1500);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e);
       }
    };
 
    return (
       <form className={ style.ForgotPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Message  */ }
          <p className={ style.message }>

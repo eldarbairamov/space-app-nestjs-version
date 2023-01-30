@@ -1,51 +1,53 @@
 import { type IOAuthDto, type IUserDto } from "../interface";
 import { axiosInstance } from "./axios.service";
+import { storageService } from "./storage.service";
+import { type AxiosResponse } from "axios";
+import { authRequests } from "../config/config";
 
 export const authService = {
-   userRegistration: async (dto: Partial<IUserDto>): Promise<string> => {
-      const result = await axiosInstance.post<{ message: string }>("/auth/registration", dto);
-      return result.data.message;
+
+   registration: async (dto: Partial<IUserDto>): Promise<AxiosResponse> => {
+      return axiosInstance.post(authRequests.registration, dto);
    },
 
-   userLogin: async (dto: Partial<IUserDto>): Promise<string> => {
-      const result = await axiosInstance.post<IOAuthDto>("/auth/login", dto);
+   login: async (dto: Partial<IUserDto>): Promise<string> => {
+      const result = await axiosInstance.post<IOAuthDto>(authRequests.login, dto);
 
-      localStorage.setItem("accessToken", result.data.accessToken);
+      storageService.setAccessToken(result.data.accessToken);
+      storageService.setRefreshToken(result.data.refreshToken);
 
       return result.data.tokenOwnerUsername;
    },
 
    forgotPassword: async (dto: Partial<IUserDto>): Promise<string> => {
-      const result = await axiosInstance.post<{ message: string }>("auth/password_forgot", dto);
+      const result = await axiosInstance.post<{ message: string }>(authRequests.forgotPassword, dto);
 
       return result.data.message;
    },
 
-   accountActivation: async (activationCode: string): Promise<string> => {
+   accountActivation: async (activationCode: string): Promise<AxiosResponse> => {
       const activationDto = { activationCode };
 
-      const result = await axiosInstance.post<{ message: string }>("/auth/activation", activationDto);
-
-      return result.data.message;
+      return axiosInstance.post(authRequests.accountActivation, activationDto);
    },
 
-   resetPassword: async (password: string, resetPasswordToken: string): Promise<string> => {
+   resetPassword: async (password: string, resetPasswordToken: string): Promise<AxiosResponse> => {
       const forgotPasswordDto = { resetPasswordToken, password };
 
-      const result = await axiosInstance.post<{ message: string }>("/auth/password_reset", forgotPasswordDto);
-
-      return result.data.message;
+      return axiosInstance.post(authRequests.resetPassword, forgotPasswordDto);
    },
 
    logout: async () => {
       const accessToken = localStorage.getItem("accessToken");
 
-      await axiosInstance.get<{ message: string }>("/auth/logout", {
+      await axiosInstance.get(authRequests.logout, {
          headers: {
             "Authorization": `Bearer ${ accessToken }`,
          },
       });
 
-      localStorage.removeItem("accessToken");
+      storageService.deleteAccessToken();
+      storageService.deleteRefreshToken();
    },
+
 };

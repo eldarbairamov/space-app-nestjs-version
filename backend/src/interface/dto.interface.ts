@@ -1,20 +1,46 @@
-import { Types } from "mongoose";
 import { type IAccessTokenPair } from "./o-auth.interface";
 
 export interface IAccessTokenPairDto extends IAccessTokenPair {
-   tokenOwnerId: Types.ObjectId,
+   tokenOwnerId: string,
    tokenOwnerUsername: string,
-   tokenId: Types.ObjectId,
+   tokenId: string,
 }
 
 export interface INoteDto {
-   id: Types.ObjectId
+   id: string
    title: string,
    body: string,
    lastModified: number
 }
 
-export interface INotesDto {
-   notes: INoteDto[],
-   count: number
+export interface IPlanDto {
+   id: string,
+   title: string,
+   lastModified: number
+}
+
+export interface ITaskDto {
+   id: string,
+   planId: string,
+   title: string,
+   isCompleted: boolean
+}
+
+export interface IRegistrationDto {
+   username: string,
+   email: string,
+   password: string
+}
+
+export interface ILoginDto {
+   email: string,
+   password: string
+}
+
+export interface IUserInfoDto {
+   name: string,
+   surname: string,
+   username: string,
+   email: string,
+   avatar: string
 }

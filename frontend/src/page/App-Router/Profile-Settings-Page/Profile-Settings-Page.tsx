@@ -2,7 +2,8 @@ import React, { type FC, useEffect } from "react";
 
 import { CameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hook/redux.hook";
+import { useAppSelector } from "../../../hook";
+import { Toaster } from "react-hot-toast";
 
 import style from "./Profile-Settings-Page.module.scss";
 
@@ -12,7 +13,31 @@ export const ProfileSettingsPage: FC = () => {
    const { username, name, surname, avatar } = useAppSelector(state => state.authReducer);
 
    return (
-      <div className={ style.EditProfilePage }>
+      <div className={ style.ProfileSettingsPage }>
+
+         {/* Toaster */ }
+         <Toaster
+            toastOptions={ {
+               error: {
+                  style: {
+                     textAlign: "center",
+                  },
+                  iconTheme: {
+                     primary: "#df8281",
+                     secondary: "white",
+                  },
+               },
+               success: {
+                  style: {
+                     textAlign: "center",
+                  },
+                  iconTheme: {
+                     primary: "#84df81",
+                     secondary: "white",
+                  },
+               },
+            } }
+         />
 
          {/* Left side */ }
          <div className={ style.left_side }>

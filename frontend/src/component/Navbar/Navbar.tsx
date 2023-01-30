@@ -17,10 +17,10 @@ export const Navbar: FC = () => {
       try {
          await authService.logout();
 
+         navigate(0);
+
          toast.dismiss(loading);
 
-         navigate("/");
-         navigate(0);
       } catch (e) {
          toast.dismiss(loading);
       }
@@ -44,7 +44,7 @@ export const Navbar: FC = () => {
                <NavLink className={ style.category } to={ "/notes" }> Замітки </NavLink>
             </div>
             <div className={ style.todo_link }>
-               <NavLink className={ style.category } to={ "/goals" }> Задачі </NavLink>
+               <NavLink className={ style.category } to={ "/plans" }> Плани </NavLink>
             </div>
             <div className={ style.moments_link }>
                <NavLink className={ style.category } to={ "/moments" }> Моменти </NavLink>

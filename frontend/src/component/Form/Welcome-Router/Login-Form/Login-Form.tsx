@@ -2,13 +2,13 @@ import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast, { Toaster } from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, type AxiosApiError } from "../../../../services";
+import { authService } from "../../../../services";
 import { loginValidator } from "../../../../validator/auth.validator";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { resetFields, catchErrors } from "../../../../helper";
 
 import style from "./Login-Form.module.scss";
 
@@ -22,25 +22,20 @@ export const LoginForm: FC = () => {
 
    const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data): Promise<void> => {
       try {
-         const loading = toast.loading("Зачекайте");
+         const loading = toast.loading("Зачекайте...");
 
-         const username = await authService.userLogin(data);
+         const username = await authService.login(data);
 
          toast.dismiss(loading);
          toast.success(`Привіт, ${ username }`);
 
          setTimeout(() => {
             resetFields(setValue);
-            navigate("/");
             navigate(0);
          }, 1500);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         const { response } = catchErrors(e);
 
          if (response === "Активуйте аккаунт") {
             setTimeout(() => {
@@ -52,30 +47,6 @@ export const LoginForm: FC = () => {
 
    return (
       <form className={ style.LoginForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Form controls */ }
          <FormControl labelName={ "Електронна пошта" } fieldName={ "email" } register={ register }

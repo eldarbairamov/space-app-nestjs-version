@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import { accessTokenPairGenerator } from "../token.service";
 import { ApiError } from "../../error/Api.error";
-import { AccessTokenPairPresenter } from "../../presenter/access-token-pair.presenter";
+import { AccessTokenPairPresenter } from "../../presenter";
 import { type IAccessTokenPairDto, type IUserDatabase, type ILoginDto } from "../../interface";
-import { OAuthRepository } from "../../repository/OAuth.repository";
+import { OAuthRepository } from "../../repository";
 
 export const loginService = async (loginDto: ILoginDto, userFromDb: IUserDatabase): Promise<IAccessTokenPairDto> => {
 
@@ -29,7 +29,7 @@ export const loginService = async (loginDto: ILoginDto, userFromDb: IUserDatabas
       ...accessTokenPair,
    });
 
-   // Return presented data for client
+   // Return presented data to client
    return AccessTokenPairPresenter(tokensData);
 
 };

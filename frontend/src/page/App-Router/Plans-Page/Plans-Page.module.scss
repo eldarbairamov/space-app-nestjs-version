@@ -1,0 +1,82 @@
+%flex {
+   display: flex;
+   align-items: center;
+}
+
+.PlansPage {
+   @extend %flex;
+   flex-direction: column;
+   justify-content: center;
+
+   width: 80vw;
+   background: white;
+   border-radius: 15px;
+   height: calc(100vh - 170px);
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+
+   .top {
+      @extend %flex;
+      justify-content: center;
+      gap: 10px;
+
+      height: 10%;
+      width: 100%;
+
+      position: relative;
+
+      border-bottom: 2px #d7d7d7 solid;
+
+      button:nth-child(1) {
+         font-size: 20px;
+         font-weight: 500;
+         cursor: pointer;
+      }
+
+      .search_bar {
+         position: absolute;
+         right: 30px;
+
+         input {
+            outline: none;
+            background: none;
+            text-align: center;
+            border: none;
+         }
+      }
+
+      .add_plan {
+         font-weight: 500;
+         background: transparent;
+         border: none;
+         cursor: pointer;
+
+         &:hover {
+            color: #3D8DAE;
+         }
+      }
+   }
+
+   .bottom {
+      overflow-y: scroll;
+      height: 90%;
+      width: 100%;
+
+      .plan_list {
+         display: flex;
+         flex-wrap: wrap;
+         align-content: flex-start;
+         gap: 30px;
+
+         width: 95%;
+         margin: 0 auto;
+         padding: 30px 10px 30px 10px;
+      }
+   }
+}
+
+
+@media screen and (max-height: 800px) {
+   .PlansPage {
+      height: 800px;
+   }
+}

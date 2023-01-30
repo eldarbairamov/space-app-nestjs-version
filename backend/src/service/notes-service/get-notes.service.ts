@@ -1,11 +1,13 @@
-import { NoteRepository } from "../../repository/Note.repository";
-import { allNotesPresenter } from "../../presenter/note.presenter";
+import { NoteRepository } from "../../repository";
+import { allNotesPresenter } from "../../presenter";
+import { type INoteDto } from "../../interface";
 
-export const getNotesService = async (userId: string) => {
+export const getNotesService = async (userId: string): Promise<INoteDto[]> => {
 
    // Find all notes in DB
-   const notesFromDb = await NoteRepository.findAll({ noteOwnerId: userId });
+   const notes = await NoteRepository.findAll({ noteOwnerId: userId });
 
-   // Return presented data for client
-   return allNotesPresenter(notesFromDb);
+   // Return presented data to client
+   return allNotesPresenter(notes);
+
 };

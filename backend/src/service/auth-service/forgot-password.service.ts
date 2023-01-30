@@ -1,7 +1,6 @@
-import { v4 as uuid } from "uuid";
 import { emailSender } from "../email.service";
 import { type IUserDatabase } from "../../interface";
-import { ActionTokenRepository } from "../../repository/Action-Token.repository";
+import { ActionTokenRepository } from "../../repository";
 import * as jwt from "jsonwebtoken";
 
 export const forgotPasswordService = async (emailFromReq: string, userFromDb: IUserDatabase) => {

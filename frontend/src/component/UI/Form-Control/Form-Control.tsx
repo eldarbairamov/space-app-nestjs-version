@@ -35,7 +35,7 @@ export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, lab
       <>
          <ValidationErrorToaster error={ validationError }/>
 
-         {/* FormControlDate wrapper */ }
+         {/* FormControl wrapper */ }
          <div className={ style.FormControl }>
             <div className={ style.password_wrapper }>
                <label htmlFor={ "password" }> { labelName } </label>
@@ -43,6 +43,7 @@ export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, lab
             </div>
             <div data-error={ !!errorMessage } className={ style.input_field }>
                <input id={ labelName } type={ passwordCondition } { ...register(fieldName) }/>
+
                {/* Error icon */ }
                { errorMessage &&
                   <motion.div

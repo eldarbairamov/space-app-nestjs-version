@@ -1,44 +1,53 @@
 import { type FilterQuery, type UpdateQuery } from "mongoose";
-import { type INoteDatabase, type INoteDto, type INoteSchema, IOAuthSchema } from "../interface";
+import { type INoteDatabase, type INoteDto, type INoteSchema } from "../interface";
 import { ApiError } from "../error/Api.error";
-import { NoteModel } from "../model/Note.model";
-import { DeleteResult } from "mongodb";
+import { NoteModel } from "../model";
 
 export const NoteRepository = {
 
-   create: async (filterQuery: FilterQuery<INoteSchema>): Promise<INoteDatabase> => {
+   create: async (body: Partial<INoteSchema>): Promise<INoteDatabase> => {
       return NoteModel
-         .create(filterQuery)
+         .create(body)
          .catch(e => {
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            console.log(e);
+            throw ApiError.Database();
          });
    },
 
-   findAll: async (filterQuery: FilterQuery<INoteSchema>): Promise<INoteDatabase[]> => {
+   findAll: async (filter: FilterQuery<INoteSchema>): Promise<INoteDatabase[]> => {
       return NoteModel
-         .find(filterQuery)
+         .find(filter)
          .sort({ updatedAt: "desc" })
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.Database();
          });
    },
 
-   findByIdAndUpdate: async (filterQuery: UpdateQuery<INoteSchema>, body: Partial<INoteDto>): Promise<INoteDatabase | null> => {
+   updateById: async (filter: FilterQuery<INoteSchema>, body: UpdateQuery<Partial<INoteDto>>): Promise<INoteDatabase | null> => {
       return NoteModel
-         .findByIdAndUpdate(filterQuery, body)
+         .findByIdAndUpdate(filter, body, {new: true})
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.Database();
          });
    },
 
-   deleteById: async (filterQuery: string): Promise<any> => {
+   deleteById: async (noteId: string): Promise<INoteDatabase | null> => {
       return NoteModel
-         .findByIdAndDelete(filterQuery)
+         .findByIdAndDelete(noteId)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.Database();
+         });
+   },
+
+   getCount: async (noteId: string): Promise<number> => {
+      return NoteModel
+         .count({ noteOwnerId: noteId })
+         .catch(e => {
+            console.log(e);
+            throw ApiError.Database();
          });
    },
 

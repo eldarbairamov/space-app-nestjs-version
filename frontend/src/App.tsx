@@ -2,22 +2,18 @@ import React, { type FC, useEffect } from "react";
 
 import { RouterProvider } from "react-router-dom";
 import { AppRouter, WelcomeRouter } from "./router";
-import { useAppSelector } from "./hook/redux.hook";
+import { storageService } from "./services";
 
 export const App: FC = () => {
-   const { isLogin } = useAppSelector(state => state.authReducer);
+   const isLogin = storageService.getAccessToken()
 
    useEffect(() => {
       if (isLogin) import ("./style/app.scss");
-
-      if (!isLogin) import("./style/welcome.scss");
+      else import("./style/welcome.scss");
 
    }, [ isLogin ]);
 
-
    return (
-      <>
-         <RouterProvider router={ isLogin ? AppRouter : WelcomeRouter }/>
-      </>
+      <> <RouterProvider router={ isLogin ? AppRouter : WelcomeRouter }/> </>
    );
 };

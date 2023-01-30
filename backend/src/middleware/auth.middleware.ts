@@ -1,25 +1,21 @@
 import expressAsyncHandler from "express-async-handler";
-import { type Response, type NextFunction } from "express";
+import { type NextFunction, type Response } from "express";
 import { ApiError } from "../error/Api.error";
 import {
-   type RequestWithBody,
+   type IRegistrationDto,
    type IUserSchema,
+   type RequestWithBody,
    type RequestWithBodyAndCustomVar,
    type RequestWithCustomVar,
 } from "../interface";
-import { authValidator } from "../validator/auth.validator";
-import { UserRepository } from "../repository/User.repository";
-import * as jwt from "jsonwebtoken";
+import { OAuthRepository, UserRepository } from "../repository";
+import { authValidator } from "../validator";
+import { jwtVerifierService } from "../service/auth-service/jwt-verifier.service";
+import { tokenTypeEnum } from "../enum/token-type.enum";
 
 export const authMiddleware = {
 
-   isRequestEmpty: expressAsyncHandler(async (req: RequestWithBody<IUserSchema>, res: Response, next: NextFunction) => {
-      if (!Object.entries(req.body).length) throw new ApiError("Запит пустий", 400);
-
-      next();
-   }),
-
-   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IUserSchema>, res: Response, next: NextFunction) => {
+   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IRegistrationDto>, res: Response, next: NextFunction) => {
       const validation = authValidator.validate(req.body);
       if (validation.error) throw new ApiError("Дані не валідні", 400);
 
@@ -37,7 +33,7 @@ export const authMiddleware = {
 
    isEmailUnique: expressAsyncHandler(async (req: RequestWithBody<{ email: string }>, res: Response, next: NextFunction) => {
       const user = await UserRepository.findOne({ email: req.body.email });
-      if (user) throw new ApiError("Такий користувач вже існує", 401);
+      if (user) throw new ApiError("Такий користувач вже існує", 409);
 
       next();
    }),
@@ -46,12 +42,13 @@ export const authMiddleware = {
       const token = req.headers.authorization?.split(" ")[1];
       if (!token) throw new ApiError("Токен не валідний", 401);
 
-      const { userId } = jwt.verify(token, "secret access token key") as { userId: string };
-      if (!userId) throw new ApiError("Токен не валідний", 401);
+      const isAccessTokenExists = await OAuthRepository.findOne({ accessToken: token });
+      if (!isAccessTokenExists) throw new ApiError("Користувач не авторизований", 401);
 
-      req.userId = userId;
+      req.userId = jwtVerifierService(token, tokenTypeEnum.ACCESS_TOKEN);
       req.token = token;
 
       next();
    }),
+
 };

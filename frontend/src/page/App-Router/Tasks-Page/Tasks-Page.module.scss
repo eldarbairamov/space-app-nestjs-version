@@ -1,0 +1,106 @@
+%flex {
+   display: flex;
+   align-items: center;
+}
+
+.TasksPage {
+   @extend %flex;
+   flex-direction: column;
+   justify-content: center;
+
+   width: 50vw;
+   background: white;
+   border-radius: 15px;
+   height: calc(100vh - 170px);
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+
+   .top {
+      @extend %flex;
+      justify-content: center;
+
+      position: relative;
+      height: 10%;
+      width: 100%;
+      border-bottom: 2px #d7d7d7 solid;
+
+      .plan_title {
+         font-weight: 500;
+         font-size: 18px;
+         text-align: center;
+         border: none;
+         outline: none;
+         width: 500px;
+         background: transparent;
+      }
+
+      .plan_date {
+         position: absolute;
+         font-size: 15px;
+         right: 30px;
+         font-weight: 500;
+         color: #7d7d7d;
+      }
+   }
+
+   .mid {
+      @extend %flex;
+      justify-content: center;
+
+      height: 15%;
+      width: 100%;
+
+      .add_task {
+         @extend %flex;
+         justify-content: center;
+         gap: 10px;
+
+         height: 60px;
+         width: 280px;
+
+         p {
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+         }
+
+         input {
+            border: none;
+            outline: none;
+            background: transparent;
+         }
+      }
+   }
+
+   .bottom {
+      height: 75%;
+      width: 100%;
+      overflow-y: scroll;
+      padding-bottom: 30px;
+
+      .task_list {
+         @extend %flex;
+         flex-direction: column;
+         margin: 0 auto;
+      }
+
+   }
+}
+
+@media screen and (max-height: 800px) {
+   .TasksPage {
+      height: 800px;
+   }
+}
+
+
+@media screen and (max-width: 1200px) {
+   .TasksPage {
+      width: 70vw;
+   }
+}
+
+@media screen and (max-width: 800px) {
+   .TasksPage {
+      width: 80vw;
+   }
+}

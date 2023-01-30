@@ -2,13 +2,13 @@ import React, { type FC } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService, type AxiosApiError } from "../../../../services";
-import { resetFields } from "../../../../helper/reset-fIelds.helper";
+import { authService } from "../../../../services";
+import { resetFields, catchErrors } from "../../../../helper";
 
 import style from "./Reset-Password-Form.module.scss";
 
@@ -18,7 +18,7 @@ export const ResetPasswordForm: FC = () => {
       mode: "onTouched",
    });
 
-   const [ searchParams, setSearchParams ] = useSearchParams();
+   const [ searchParams ] = useSearchParams();
    const resetPasswordToken = searchParams.get("token");
 
    const navigate = useNavigate();
@@ -31,10 +31,10 @@ export const ResetPasswordForm: FC = () => {
          if ((password && resetPasswordToken) && (password === repeatPassword)) {
             const loading = toast.loading("Зачекайте");
 
-            const message = await authService.resetPassword(password, resetPasswordToken!);
+            await authService.resetPassword(password, resetPasswordToken!);
 
             toast.dismiss(loading);
-            toast.success(message);
+            toast.success("Вітаємо! У вас новий пароль.");
 
             setTimeout(() => {
                resetFields(setValue);
@@ -46,40 +46,12 @@ export const ResetPasswordForm: FC = () => {
          }
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e);
       }
    };
 
    return (
       <form className={ style.ResetPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Form controls */ }
          <FormControl labelName={ "Введіть ваш новий пароль" }

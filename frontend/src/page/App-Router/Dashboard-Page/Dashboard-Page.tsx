@@ -1,32 +1,48 @@
 import React, { type FC, useEffect } from "react";
 
-import { GoalsStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
-import { asyncAuthActions } from "../../../redux/slice/auth.slice";
-import { useAppDispatch } from "../../../hook/redux.hook";
-import toast from "react-hot-toast";
+import { PlansStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
+import { Toaster } from "react-hot-toast";
 
 import style from "./Dashboard-Page.module.scss";
 
 export const DashboardPage: FC = () => {
 
-   const dispatch = useAppDispatch();
-
-   useEffect(() => {
-      dispatch(asyncAuthActions.getUserInfo());
-   }, []);
-
    return (
       <div className={ style.DashboardPage }>
 
+         {/* Toaster */ }
+         <Toaster
+            toastOptions={ {
+               error: {
+                  style: {
+                     textAlign: "center",
+                  },
+                  iconTheme: {
+                     primary: "#df8281",
+                     secondary: "white",
+                  },
+               },
+               success: {
+                  style: {
+                     textAlign: "center",
+                  },
+                  iconTheme: {
+                     primary: "#84df81",
+                     secondary: "white",
+                  },
+               },
+            } }
+         />
+
          {/* Top side */ }
-         <div className={ style.top_side }>
+         <div className={ style.top }>
             <ProfilePreview/>
          </div>
 
          {/* Bottom side */ }
-         <div className={ style.bottom_side }>
+         <div className={ style.bottom }>
             <NotesStat/>
-            <GoalsStat/>
+            <PlansStat/>
             <MomentsStat/>
          </div>
 

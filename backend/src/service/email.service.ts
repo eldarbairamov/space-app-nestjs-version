@@ -3,6 +3,7 @@ import { config } from "../config";
 import { ApiError } from "../error/Api.error";
 
 export const emailSender = async (to: string, subject: string, message: string = "") => {
+
    const transporter = nodemailer.createTransport({
       service: "gmail",
       from: "no reply",

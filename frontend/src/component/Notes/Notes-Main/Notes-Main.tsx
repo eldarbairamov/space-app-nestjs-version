@@ -1,11 +1,11 @@
 import React, { type ChangeEvent, type FC, useEffect } from "react";
 
-import { type INoteDto } from "../../../interface/note.interface";
-import toast from "react-hot-toast";
-import { useAppDispatch, useAppSelector } from "../../../hook/redux.hook";
-import { notesActions } from "../../../redux/slice/notes.slice";
-import { noteService } from "../../../services/note.service";
-import { type AxiosApiError } from "../../../services";
+import { type INoteDto } from "../../../interface";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { notesActions } from "../../../redux/slice";
+import { noteService } from "../../../services";
+import { catchErrors } from "../../../helper";
+import { noteValidator } from "../../../validator/note.validator";
 
 import style from "./Notes-Main.module.scss";
 
@@ -18,10 +18,10 @@ export const NotesMain: FC = () => {
    }, []);
 
    const onEditFields = (field: string, value: string) => {
-
       const updatedNote = {
          ...activeNote,
          [field]: value,
+         lastModified: Date.now(),
       } as INoteDto;
 
       dispatch(notesActions.updateNote(updatedNote));
@@ -34,30 +34,30 @@ export const NotesMain: FC = () => {
             body: activeNote?.body,
          };
 
+         const validation = noteValidator.validate(noteToSave);
+         if (validation.error) throw new Error();
+
          await noteService.saveNote(noteToSave, activeNote?.id!);
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e);
       }
    };
 
    if (!activeNote) {
-      return <div className={ style.no_any_notes }> Заміток немає </div>
+      return <div className={ style.no_any_notes }> Заміток немає </div>;
    }
 
    return (
       <div className={ style.Main }>
 
          <div className={ style.header }>
-            <input type="text" id={ "title" }
+            <input type={'text'}
+                   id={ "title" }
                    value={ activeNote.title }
                    autoFocus
-                   onBlur={ saveNoteToDb }
                    onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }
+                   onBlur={ saveNoteToDb }
             />
          </div>
 

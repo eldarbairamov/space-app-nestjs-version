@@ -1,30 +1,24 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { type FC, useEffect } from "react";
 
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { updateProfile } from "../../../../validator/user.validator";
-import { type AxiosApiError, userService } from "../../../../services";
-import { useAppDispatch, useAppSelector } from "../../../../hook/redux.hook";
-import { asyncAuthActions } from "../../../../redux/slice/auth.slice";
+import { userService } from "../../../../services";
+import { useAppSelector } from "../../../../hook";
+import { catchErrors } from "../../../../helper";
 
 import style from "./Profile-Update-Form.module.scss";
 
 export const ProfileUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
+   const { register, handleSubmit, formState: { errors }, setValue } = useForm<Partial<IUserDto>>({
       resolver: joiResolver(updateProfile),
       mode: "onTouched",
    });
 
    const { username, name, surname } = useAppSelector(state => state.authReducer);
-
-   const dispatch = useAppDispatch();
-
-   useEffect(() => {
-      dispatch(asyncAuthActions.getUserInfo());
-   }, []);
 
    useEffect(() => {
       setValue("username", username);
@@ -37,46 +31,18 @@ export const ProfileUpdateForm: FC = () => {
       try {
          const loading = toast.loading("Зачекайте...");
 
-         const message = await userService.profileUpdate(data);
+         await userService.profileUpdate(data);
 
          toast.dismiss(loading);
-         toast.success(message, { duration: 5000 });
+         toast.success("Ви успішно оновили профіль", { duration: 5000 });
 
       } catch (e) {
-         const axiosError = e as AxiosApiError;
-         const response = axiosError.response?.data.message as string;
-
-         toast.dismiss();
-         toast.error(response ? response : axiosError.message);
+         catchErrors(e);
       }
    };
 
    return (
       <form className={ style.ProfileUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
-
-         {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
 
          {/* Form controls */ }
          <FormControl labelName={ "Ім'я користувача" } fieldName={ "username" }

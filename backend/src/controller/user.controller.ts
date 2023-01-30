@@ -1,43 +1,38 @@
 import expressAsyncHandler from "express-async-handler";
 import {
+   type IUserInfoDto,
    type RequestWithBody,
    type RequestWithBodyAndCustomVar, type RequestWithCustomVar,
 } from "../interface";
-import { type NextFunction, type Response } from "express";
-import { UserRepository } from "../repository/User.repository";
-import { updateEmailService } from "../service/user-service/update-email.service";
-import { changeEmailService } from "../service/user-service/change-email.service";
-import { changePasswordService } from "../service/user-service/change-password.service";
-import { getUserInfoService } from "../service/user-service/get-user-info.service";
+import { type Response } from "express";
+import { UserRepository } from "../repository";
+import { changeEmailService, changePasswordService, getUserInfoService, updateEmailService } from "../service";
 
 export const userController = {
 
    profileUpdate: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<{ message: string }>) => {
-      await UserRepository.findOneAndUpdate({ _id: req.userId }, req.body);
-      res.json({ message: "Ви успішно оновили профіль" });
+      await UserRepository.updateById(req.userId!, req.body);
+      res.json({ message: "Успішно" });
    }),
 
-   changePassword: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ newPassword: string, currentPassword: string }>, res: Response) => {
+   changePassword: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ newPassword: string, currentPassword: string }>, res: Response<{ message: string }>) => {
       await changePasswordService(req.body.newPassword, req.body.currentPassword, req.userId!);
-      res.json({ message: "Ви успішно оновили свій пароль" });
+      res.json({ message: "Успішно" });
    }),
 
-   emailUpdateRequest: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ email: string }>, res: Response) => {
-      const confirmationToken = await updateEmailService(req.userId!, req.body.email);
-      res.json({
-         message: "Лист із посиланням на підтведження вже летить на вказану електронну пошту!",
-         token: confirmationToken,
-      });
+   changeEmailRequest: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ email: string }>, res: Response<{ message: string}>) => {
+      await updateEmailService(req.userId!, req.body.email);
+      res.json({ message: "Успішно" });
    }),
 
-   changeEmail: expressAsyncHandler(async (req: RequestWithBody<{ confirmationToken: string }>, res: Response, next: NextFunction) => {
+   changeEmail: expressAsyncHandler(async (req: RequestWithBody<{ confirmationToken: string }>, res: Response<{ message: string }>) => {
       await changeEmailService(req.body.confirmationToken);
-      res.json({ message: "Ви успішно оновили адресу електронної пошти" });
+      res.json({ message: "Успішно" });
    }),
 
-   getUserInfo: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response, next: NextFunction) => {
-      const userDto = await getUserInfoService(req.userId!);
-      res.json(userDto);
+   getUserInfo: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<Partial<IUserInfoDto>>) => {
+      const userInfoDto = await getUserInfoService(req.userId!);
+      res.json(userInfoDto);
    }),
 
 };

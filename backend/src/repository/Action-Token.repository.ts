@@ -4,21 +4,24 @@ import { ActionTokenModel } from "../model";
 import { ApiError } from "../error/Api.error";
 
 export const ActionTokenRepository = {
-   create: async (filterQuery: FilterQuery<IActionTokenSchema>): Promise<IActionTokenDatabase> => {
+
+   create: async (body: IActionTokenSchema): Promise<IActionTokenDatabase> => {
       return ActionTokenModel
-         .create(filterQuery)
+         .create(body)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.Database();
          });
    },
 
-   findOneAndDelete: async (filterQuery: FilterQuery<IActionTokenSchema>): Promise<IActionTokenDatabase | null> => {
+   deleteOne: async (filter: FilterQuery<IActionTokenSchema>): Promise<IActionTokenDatabase | null> => {
       return ActionTokenModel
-         .findOneAndDelete(filterQuery)
+         .findOneAndDelete(filter)
          .catch(e => {
             console.log(e);
-            throw new ApiError("Помилка при роботі з базою даних", 500);
+            throw ApiError.Database();
          });
    },
+
+
 };
