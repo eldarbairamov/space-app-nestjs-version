@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { INoteDto } from "../interface/note.interface";
+import { type INoteDto } from "../interface";
 
 export const noteValidator = Joi.object<Partial<INoteDto>>({
 

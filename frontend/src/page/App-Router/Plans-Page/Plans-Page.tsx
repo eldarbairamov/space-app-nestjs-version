@@ -8,6 +8,7 @@ import style from "./Plans-Page.module.scss";
 
 export const PlansPage: FC = () => {
    const [ plans, setPlans ] = useState<IPlanDto[]>([]);
+   const [ searchKey, setSearchKey ] = useState<string>("");
 
    const addPlan = async () => {
       const { data } = await planService.addPlan();
@@ -23,10 +24,21 @@ export const PlansPage: FC = () => {
       setPlans(updatedArr);
    };
 
+   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
+
    useEffect(() => {
-      planService.getAllPlans()
-         .then(res => setPlans(res.data));
-   }, []);
+      if (searchKey === "") {
+         planService
+            .getAllPlans()
+            .then(res => setPlans(res.data));
+      }
+
+      if (searchKey !== "") {
+         planService
+            .getPlansBySearch(searchKey)
+            .then(res => setPlans(res.data));
+      }
+   }, [ searchKey ]);
 
    return (
       <div className={ style.PlansPage }>
@@ -56,14 +68,22 @@ export const PlansPage: FC = () => {
          />
 
          <div className={ style.top }>
-            <button className={ style.header }> +</button>
-            <button className={ style.header } onClick={ addPlan }> Додати план</button>
+            <button className={ style.add_plan }> +</button>
+            <button className={ style.add_plan } onClick={ addPlan }> Додати план</button>
+
+            <div className={ style.search_bar }>
+               <input type="text"
+                      value={ searchKey }
+                      onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleInput(e) }
+                      placeholder={ "Пошук" }
+               />
+            </div>
          </div>
 
          <div className={ style.bottom }>
 
             <div className={ style.plan_list }>
-                  { plans && plans.map(item => <PlansItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }
+               { plans && plans.map(item => <PlansItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }
             </div>
 
          </div>

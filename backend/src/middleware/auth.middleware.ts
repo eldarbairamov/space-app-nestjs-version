@@ -2,6 +2,7 @@ import expressAsyncHandler from "express-async-handler";
 import { type NextFunction, type Response } from "express";
 import { ApiError } from "../error/Api.error";
 import {
+   type IRegistrationDto,
    type IUserSchema,
    type RequestWithBody,
    type RequestWithBodyAndCustomVar,
@@ -14,7 +15,7 @@ import { tokenTypeEnum } from "../enum/token-type.enum";
 
 export const authMiddleware = {
 
-   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IUserSchema>, res: Response, next: NextFunction) => {
+   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IRegistrationDto>, res: Response, next: NextFunction) => {
       const validation = authValidator.validate(req.body);
       if (validation.error) throw new ApiError("Дані не валідні", 400);
 
@@ -32,7 +33,7 @@ export const authMiddleware = {
 
    isEmailUnique: expressAsyncHandler(async (req: RequestWithBody<{ email: string }>, res: Response, next: NextFunction) => {
       const user = await UserRepository.findOne({ email: req.body.email });
-      if (user) throw new ApiError("Такий користувач вже існує", 401);
+      if (user) throw new ApiError("Такий користувач вже існує", 409);
 
       next();
    }),
@@ -49,4 +50,5 @@ export const authMiddleware = {
 
       next();
    }),
+
 };

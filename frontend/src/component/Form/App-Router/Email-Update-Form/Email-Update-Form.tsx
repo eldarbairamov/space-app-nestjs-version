@@ -24,7 +24,7 @@ export const EmailUpdateForm: FC = () => {
       try {
          const loading = toast.loading("Зачекайте...");
 
-         await userService.emailUpdate({ email: data.email! });
+         await userService.changeEmailRequest({ email: data.email! });
 
          toast.dismiss(loading);
          toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 6000 });

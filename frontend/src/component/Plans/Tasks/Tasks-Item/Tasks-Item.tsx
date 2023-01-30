@@ -1,9 +1,9 @@
 import React, { type FC } from "react";
 
-import { type ITaskDto } from "../../../../interface/task.interface";
 import { catchErrors } from "../../../../helper";
 import { taskService } from "../../../../services";
 import { DeleteOutlined } from "@ant-design/icons";
+import { type ITaskDto } from "../../../../interface";
 
 import style from "./Tasks-Item.module.scss";
 import complete from "../../../../asset/complete.svg";

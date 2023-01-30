@@ -1,18 +1,22 @@
-import { NoteRepository } from "../../repository";
+import { NoteRepository, UserRepository } from "../../repository";
 import { notePresenter } from "../../presenter";
+import { type INoteDto } from "../../interface";
 
-export const addNoteService = async (userId: string) => {
+export const addNoteService = async (userId: string): Promise<INoteDto> => {
 
    // Create note initial state
-   const noteInitialState = {
+   const initialNote = {
       noteOwnerId: userId,
       body: "",
    };
 
    // Save note initial state to DB
-   const noteInitialStateDb = await NoteRepository.create(noteInitialState);
+   const note = await NoteRepository.create(initialNote);
 
-   // Return presented data for client
-   return notePresenter(noteInitialStateDb);
+   // Update user
+   await UserRepository.updateById(userId, { $push: { notesIds: note._id } });
+
+   // Return presented data to client
+   return notePresenter(note);
 
 };

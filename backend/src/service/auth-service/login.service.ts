@@ -29,7 +29,7 @@ export const loginService = async (loginDto: ILoginDto, userFromDb: IUserDatabas
       ...accessTokenPair,
    });
 
-   // Return presented data for client
+   // Return presented data to client
    return AccessTokenPairPresenter(tokensData);
 
 };

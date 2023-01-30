@@ -39,3 +39,10 @@ notesRouter.delete(
    authMiddleware.isAccessTokenValid,
    notesController.deleteNote,
 );
+
+// Get notes by search
+notesRouter.get(
+   "/search",
+   authMiddleware.isAccessTokenValid,
+   notesController.getNotesBySearch,
+);

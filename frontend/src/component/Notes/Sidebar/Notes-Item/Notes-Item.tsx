@@ -14,7 +14,7 @@ interface INotesItem {
 
 export const NotesItem: FC<INotesItem> = ({ note }) => {
    const bodyCondition = note.body && note.body.split("").length > 35;
-   const titleCondition = note.title.split("").length > 30;
+   const titleCondition = note.title && note.title.split("").length > 30;
 
    const dispatch = useAppDispatch();
    const { activeNote } = useAppSelector(state => state.notesReducer);

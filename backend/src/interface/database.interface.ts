@@ -19,6 +19,9 @@ export interface IUserSchema {
    password: string,
    isActivated: boolean,
    avatar: string
+   notesIds: string
+   plansIds: string
+   memoriesIds: string
 }
 
 export interface IUserDatabase extends IUserSchema {

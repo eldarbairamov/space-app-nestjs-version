@@ -8,7 +8,8 @@ interface INotesInitialState {
    notes: INoteDto[],
    activeNote: INoteDto | undefined,
    lastNote: INoteDto | undefined,
-   count: number
+   count: number,
+   searchKey: string
 }
 
 const initialState: INotesInitialState = {
@@ -17,6 +18,7 @@ const initialState: INotesInitialState = {
    activeNote: undefined,
    lastNote: undefined,
    count: 0,
+   searchKey: "",
 };
 
 export const addNote = createAsyncThunk<INoteDto, void>(
@@ -44,6 +46,18 @@ export const getNotes = createAsyncThunk<INoteDto[], void>(
       }
    },
 );
+
+export const getNotesBySearch = createAsyncThunk<INoteDto[], { searchKey: string }>(
+   "notesSlice/getNotesBySearch",
+   async ({ searchKey }, { rejectWithValue }) => {
+      try {
+         const { data } = await noteService.getNotesBySearch(searchKey);
+         return data;
+
+      } catch (e) {
+         return rejectWithValue(e);
+      }
+   });
 
 export const deleteNote = createAsyncThunk<void, { noteId: string }>(
    "notesSlice/deleteNote",
@@ -76,6 +90,9 @@ const notesSlice = createSlice({
       },
       showDefaultNote: (state, { payload }: PayloadAction<INoteDto>) => {
          state.activeNote = payload;
+      },
+      setSearchKey: (state, { payload }) => {
+         state.searchKey = payload;
       },
    },
 
@@ -111,6 +128,14 @@ const notesSlice = createSlice({
       })
       .addCase(deleteNote.rejected, (state, { payload }) => {
          catchErrors(payload);
+      })
+
+      // Get notes by search
+      .addCase(getNotesBySearch.fulfilled, (state, { payload }) => {
+         state.notes = payload;
+      })
+      .addCase(getNotesBySearch.rejected, (state, { payload }) => {
+         catchErrors(payload);
       }),
 
 });
@@ -121,4 +146,5 @@ export const asyncNotesActions = {
    addNote,
    getNotes,
    deleteNote,
+   getNotesBySearch,
 };

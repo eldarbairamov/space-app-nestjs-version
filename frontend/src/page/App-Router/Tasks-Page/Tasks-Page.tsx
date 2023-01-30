@@ -2,14 +2,11 @@ import React, { type FC, useEffect, useState } from "react";
 
 import { useLocation } from "react-router";
 import { catchErrors, dateFormat } from "../../../helper";
-import { type ITaskDto } from "../../../interface/task.interface";
-import { type IPlanDto } from "../../../interface";
+import { type IPlanDto, type ITaskDto } from "../../../interface";
 import { planService, taskService } from "../../../services";
+import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
 
 import style from "./Tasks-Page.module.scss";
-import incomplete from "../../../asset/incomplete.svg";
-import complete from "../../../asset/complete.svg";
-import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
 
 export interface IInputFields {
    planTitle: string,
@@ -30,6 +27,7 @@ export const TasksPage: FC = () => {
             const { data } = await taskService.addTask(plan.id, inputFields.taskTitle);
 
             setTasks([ ...tasks, data ]);
+
          } catch (e) {
             catchErrors(e);
          }

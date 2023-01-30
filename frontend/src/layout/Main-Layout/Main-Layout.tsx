@@ -2,10 +2,10 @@ import React, { type FC, useEffect } from "react";
 
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../../component";
+import { asyncAuthActions } from "../../redux/slice";
+import { useAppDispatch } from "../../hook";
 
 import style from "./Main-Layout.module.scss";
-import { asyncAuthActions } from "../../redux/slice/auth.slice";
-import { useAppDispatch } from "../../hook/redux.hook";
 
 export const MainLayout: FC = () => {
    const dispatch = useAppDispatch();

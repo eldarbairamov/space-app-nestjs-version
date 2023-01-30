@@ -1,7 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
-import { NextFunction, Request, Response } from "express";
+import { type NextFunction, type Request, type Response } from "express";
 import { ApiError } from "../error/Api.error";
-import { RequestWithParams } from "../interface";
 
 export const commonMiddleware = {
 

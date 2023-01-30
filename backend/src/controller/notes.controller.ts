@@ -5,20 +5,21 @@ import {
    type INoteDto,
    type INoteSchema,
    type RequestWithBodyVarParams,
-   type RequestWithCustomVar, type RequestWithCustomVarAndParams,
+   type RequestWithCustomVar, type RequestWithCustomVarAndParams, RequestWithCustomVarAndQuery,
 } from "../interface";
-import { NoteRepository } from "../repository";
+import { NoteRepository, UserRepository } from "../repository";
+import { getNotesBySearchService } from "../service";
 
 export const notesController = {
 
    addNote: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<INoteDto>) => {
-      const noteStater = await addNoteService(req.userId!);
-      res.json(noteStater);
+      const initialNoteDto = await addNoteService(req.userId!);
+      res.json(initialNoteDto);
    }),
 
    getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<INoteDto[]>) => {
-      const notes = await getNotesService(req.userId!);
-      res.json(notes);
+      const notesDto = await getNotesService(req.userId!);
+      res.json(notesDto);
    }),
 
    getNotesCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {
@@ -33,7 +34,13 @@ export const notesController = {
 
    deleteNote: (expressAsyncHandler(async (req: RequestWithCustomVarAndParams<{ noteId: string }>, res: Response<{ message: string }>) => {
       await NoteRepository.deleteById(req.params.noteId);
+      await UserRepository.updateById(req.userId!, { $pull: { notesIds: req.params.noteId } });
       res.json({ message: "Успішно" });
    })),
+
+   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response) => {
+      const notesBySearchDto = await getNotesBySearchService(req.query.searchKey, req.userId!);
+      res.json(notesBySearchDto);
+   }),
 
 };

@@ -4,6 +4,7 @@ import { authMiddleware, commonMiddleware } from "../middleware";
 
 export const authRouter = Router();
 
+// Registration
 authRouter.post(
    "/registration",
    commonMiddleware.isRequestEmpty,
@@ -11,6 +12,7 @@ authRouter.post(
    authMiddleware.isEmailUnique,
    authController.registration);
 
+// Login
 authRouter.post(
    "/login",
    commonMiddleware.isRequestEmpty,
@@ -19,22 +21,27 @@ authRouter.post(
    authController.login,
 );
 
+// Account activation
 authRouter.post(
    "/activation",
    authController.activation,
 );
 
+// Forgot password
 authRouter.post(
    "/password_forgot",
    authMiddleware.isUserExists,
    authController.forgotPassword,
 );
 
+// Reset password
 authRouter.post(
    "/password_reset",
    authController.resetPassword,
 );
 
+
+// Logout
 authRouter.get(
    "/logout",
    authMiddleware.isAccessTokenValid,

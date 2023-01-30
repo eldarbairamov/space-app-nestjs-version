@@ -1,4 +1,4 @@
-import { AxiosApiError } from "../services";
+import { type AxiosApiError } from "../services";
 import toast from "react-hot-toast";
 
 export const catchErrors = (e: unknown) => {

@@ -5,10 +5,10 @@ import { tokenTypeEnum } from "../../enum/token-type.enum";
 
 export const jwtVerifierService = (token: string, type: string) => {
 
-   // Defined the secret key variable
+   // Define the secret key variable
    let secretKey: string = "";
 
-   // Write the key
+   // Define the secret key value
    if (type === tokenTypeEnum.ACCESS_TOKEN) secretKey = config.SECRET_ACCESS_TOKEN_KEY as string;
    if (type === tokenTypeEnum.REFRESH_TOKEN) secretKey = config.SECRET_REFRESH_TOKEN_KEY as string;
 

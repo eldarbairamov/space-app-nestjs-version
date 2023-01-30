@@ -22,7 +22,7 @@ export const LoginForm: FC = () => {
 
    const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data): Promise<void> => {
       try {
-         const loading = toast.loading("Зачекайте");
+         const loading = toast.loading("Зачекайте...");
 
          const username = await authService.login(data);
 

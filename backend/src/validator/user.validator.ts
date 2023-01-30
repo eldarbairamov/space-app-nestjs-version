@@ -8,11 +8,11 @@ export const updateProfileValidator = Joi.object<Partial<IUserSchema>>({
       "string.empty": "Поле неповинно залишитись пустим",
    }),
 
-   name: Joi.string().pattern(onlyLettersRegex).trim().optional().messages({
+   name: Joi.string().pattern(onlyLettersRegex).trim().optional().allow(null, "").messages({
       "string.pattern.base": "Тільки букви",
    }),
 
-   surname: Joi.string().pattern(onlyLettersRegex).trim().optional().messages({
+   surname: Joi.string().pattern(onlyLettersRegex).trim().optional().allow(null, "").messages({
       "string.pattern.base": "Тільки букви",
    }),
 

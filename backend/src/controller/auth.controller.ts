@@ -23,7 +23,7 @@ export const authController = {
 
    login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
       const accessTokenPairDto = await loginService(req.body, req.user!);
-      res.json({ ...accessTokenPairDto });
+      res.json(accessTokenPairDto);
    }),
 
    activation: expressAsyncHandler(async (req: RequestWithBody<{ activationCode: string }>, res: Response) => {
@@ -43,7 +43,7 @@ export const authController = {
 
    logout: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
       await OAuthRepository.delete({ accessToken: req.token });
-      res.json({ message: 'Успішно' });
+      res.json({ message: "Успішно" });
    }),
 
 };

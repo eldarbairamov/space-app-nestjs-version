@@ -1,6 +1,5 @@
 import { type Request } from "express";
 import { type IUserDatabase } from "./database.interface";
-import { type ObjectId } from "mongoose";
 
 export interface RequestWithBody<B> extends Request<{}, {}, B> {
    body: B;
@@ -8,7 +7,7 @@ export interface RequestWithBody<B> extends Request<{}, {}, B> {
 
 export interface RequestWithBodyAndParams<B, P> extends Request<P, {}, B> {
    body: B;
-   params: P
+   params: P;
 }
 
 export interface RequestWithBodyAndCustomVar<B> extends Request<{}, {}, B> {
@@ -40,5 +39,12 @@ export interface RequestWithCustomVarAndParams<P> extends Request<P> {
 }
 
 export interface RequestWithParams<P> extends Request<P> {
-   params: P
+   params: P;
+}
+
+export interface RequestWithCustomVarAndQuery<Q> extends Request<{}, {}, {}, Q> {
+   query: Q;
+   user?: IUserDatabase;
+   token?: string;
+   userId?: string;
 }

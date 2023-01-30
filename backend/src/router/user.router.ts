@@ -24,11 +24,11 @@ userRouter.post(
    commonMiddleware.isRequestEmpty,
    userMiddleware.isEmailValid,
    authMiddleware.isEmailUnique,
-   userController.emailUpdate,
+   userController.changeEmailRequest,
 );
 
 userRouter.patch(
-   "/email_reset",
+   "/email_change",
    authMiddleware.isAccessTokenValid,
    userController.changeEmail,
 );

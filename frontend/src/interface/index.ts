@@ -1,1 +1,1 @@
-export * from './dto.interface'
+export * from "./dto.interface";

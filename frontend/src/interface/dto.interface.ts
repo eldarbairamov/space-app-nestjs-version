@@ -37,3 +37,9 @@ export interface IUserInfoDto {
    email: string,
    avatar: string
 }
+
+export interface ITaskDto {
+   id: string,
+   title: string,
+   isCompleted: boolean
+}

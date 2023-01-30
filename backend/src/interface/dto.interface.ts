@@ -36,3 +36,11 @@ export interface ILoginDto {
    email: string,
    password: string
 }
+
+export interface IUserInfoDto {
+   name: string,
+   surname: string,
+   username: string,
+   email: string,
+   avatar: string
+}

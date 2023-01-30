@@ -1,19 +1,18 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response } from "express";
-import { addTaskService } from "../service/task-service/add-task.service";
+import { addTaskService, getTasksService } from "../service";
 import {
    type ITaskDto,
    type RequestWithBodyAndCustomVar, type RequestWithBodyAndParams,
    type RequestWithParams,
 } from "../interface";
-import { getTasksService } from "../service/task-service/get-tasks.service";
 import { TaskRepository } from "../repository";
 
 export const taskController = {
 
    addTask: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<ITaskDto>, res: Response<Partial<ITaskDto>>) => {
-      const task = await addTaskService(req.userId!, req.body.planId, req.body.title);
-      res.json(task);
+      const taskDto = await addTaskService(req.userId!, req.body.planId, req.body.title);
+      res.json(taskDto);
    }),
 
    deleteTask: expressAsyncHandler(async (req: RequestWithParams<{ taskId: string }>, res: Response<{ message: string }>) => {
@@ -27,8 +26,8 @@ export const taskController = {
    }),
 
    getAllTasks: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ planId: string }>, res: Response<Partial<ITaskDto>[]>) => {
-      const tasks = await getTasksService(req.userId!, req.body.planId);
-      res.json(tasks);
+      const tasksDto = await getTasksService(req.userId!, req.body.planId);
+      res.json(tasksDto);
    }),
 
 };

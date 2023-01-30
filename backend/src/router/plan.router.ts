@@ -44,3 +44,10 @@ planRouter.delete(
    planMiddleware.isPlanExists,
    planController.deletePlan,
 );
+
+// Get plans by search
+planRouter.get(
+   '/search',
+   authMiddleware.isAccessTokenValid,
+   planController.getPlansBySearch
+)

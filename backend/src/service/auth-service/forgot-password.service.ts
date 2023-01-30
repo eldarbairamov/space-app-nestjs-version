@@ -1,4 +1,3 @@
-import { v4 as uuid } from "uuid";
 import { emailSender } from "../email.service";
 import { type IUserDatabase } from "../../interface";
 import { ActionTokenRepository } from "../../repository";

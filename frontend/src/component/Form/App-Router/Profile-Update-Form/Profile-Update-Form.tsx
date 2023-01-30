@@ -13,7 +13,7 @@ import { catchErrors } from "../../../../helper";
 import style from "./Profile-Update-Form.module.scss";
 
 export const ProfileUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
+   const { register, handleSubmit, formState: { errors }, setValue } = useForm<Partial<IUserDto>>({
       resolver: joiResolver(updateProfile),
       mode: "onTouched",
    });
