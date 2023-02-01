@@ -1,53 +1,51 @@
 import { type ITaskDatabase, type ITaskSchema } from "../interface";
 import { TaskModel } from "../model";
-import { ApiError } from "../error/Api.error";
+import { ApiException } from "../error/api.expception";
 import { type FilterQuery, type UpdateQuery } from "mongoose";
 
 export const TaskRepository = {
 
-   create: (body: Partial<ITaskSchema>): Promise<ITaskDatabase> => {
-      return TaskModel
-         .create(body)
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+   create: async (body: Partial<ITaskSchema>): Promise<ITaskDatabase> => {
+      try {
+         return TaskModel.create(body);
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
    },
 
-   deleteById: (taskId: string): Promise<ITaskDatabase | null> => {
-      return TaskModel
-         .findByIdAndDelete(taskId)
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+   findByIdAndDelete: async (taskId: string): Promise<ITaskDatabase | null> => {
+      try {
+         return TaskModel.findByIdAndDelete(taskId);
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
+
    },
 
-   updateById: (taskId: string, update: UpdateQuery<ITaskSchema>): Promise<ITaskDatabase | null> => {
-      return TaskModel
-         .findByIdAndUpdate(taskId, update, { new: true })
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+   findByIdAndUpdate: async (taskId: string, update: UpdateQuery<ITaskSchema>): Promise<ITaskDatabase | null> => {
+      try {
+         return TaskModel.findByIdAndUpdate(taskId, update, { new: true });
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
+
    },
 
-   findAll: (filter: FilterQuery<ITaskSchema>): Promise<ITaskDatabase[]> => {
-      return TaskModel
-         .find(filter)
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+   find: async (filter: FilterQuery<ITaskSchema>): Promise<ITaskDatabase[]> => {
+      try {
+         return TaskModel.find(filter);
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
+
    },
 
-   findById: (taskId: string): Promise<ITaskDatabase | null> => {
-      return TaskModel
-         .findById(taskId)
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+   findById: async (taskId: string): Promise<ITaskDatabase | null> => {
+      try {
+         return TaskModel.findById(taskId);
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
    },
 
 };

@@ -1,14 +1,14 @@
 import { UserRepository } from "../../repository";
-import { type IUserInfoDto } from "../../interface";
+import { IUserDatabase, type IUserInfoDto } from "../../interface";
 
 export const getUserInfoService = async (userId: string): Promise<Partial<IUserInfoDto>> => {
-   const user = await UserRepository.findOne({ _id: userId });
+   const user = await UserRepository.findById(userId) as IUserDatabase;
 
    return {
-      name: user?.name,
-      surname: user?.surname,
-      username: user?.username,
-      email: user?.email,
-      avatar: user?.avatar,
+      name: user.name,
+      surname: user.surname,
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar,
    };
 };

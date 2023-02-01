@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
-import { type ApiError } from "../error/Api.error";
+import { type ApiException } from "../error/api.expception";
 
-export const errorMiddleware = (err: ApiError, req: Request, res: Response, next: NextFunction) => {
+export const errorMiddleware = (err: ApiException, req: Request, res: Response, next: NextFunction) => {
    res
       .status(err.status || 500)
       .json({

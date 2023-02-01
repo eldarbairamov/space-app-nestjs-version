@@ -5,7 +5,7 @@ import { type INoteDto } from "../../interface";
 export const getNotesService = async (userId: string): Promise<INoteDto[]> => {
 
    // Find all notes in DB
-   const notes = await NoteRepository.findAll({ ownerId: userId });
+   const notes = await NoteRepository.find({ ownerId: userId });
 
    // Return presented data to client
    return allNotesPresenter(notes);

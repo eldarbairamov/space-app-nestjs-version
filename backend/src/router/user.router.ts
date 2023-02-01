@@ -28,13 +28,12 @@ userRouter.post(
 );
 
 userRouter.patch(
-   "/email_change",
-   authMiddleware.isAccessTokenValid,
+   "/email_new",
    userController.changeEmail,
 );
 
 userRouter.patch(
-   "/password_change",
+   "/password_new",
    authMiddleware.isAccessTokenValid,
    userController.changePassword,
 );

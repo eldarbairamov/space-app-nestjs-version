@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
 import { planService } from "../../../services";
 import { type IPlanDto } from "../../../interface";
+import { catchErrors } from "../../../helper";
 
 import style from "./Plans-Page.module.scss";
 
@@ -11,36 +12,50 @@ export const PlansPage: FC = () => {
    const [ searchKey, setSearchKey ] = useState<string>("");
 
    const addPlan = async () => {
-      const { data } = await planService.addPlan();
-      setPlans([ ...plans, data ]
-         .sort((a, b) => b.lastModified - a.lastModified));
+      try {
+         const { data } = await planService.addPlan();
+         setPlans([ ...plans, data ]
+            .sort((a, b) => b.lastModified - a.lastModified));
+
+      } catch (e) {
+         catchErrors(e);
+      }
    };
 
    const deletePlan = async (e: React.MouseEvent<HTMLParagraphElement>, targetId: string): Promise<void> => {
-      e.stopPropagation();
-      const updatedArr = plans.filter(item => item.id !== targetId);
-      await planService.deletePlan(targetId);
+      try {
+         e.stopPropagation();
+         const updatedArr = plans.filter(item => item.id !== targetId);
+         await planService.deletePlan(targetId);
 
-      setPlans(updatedArr);
+         setPlans(updatedArr);
+
+      } catch (e) {
+         catchErrors(e);
+      }
    };
 
    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
 
    useEffect(() => {
-      if (searchKey === "") {
-         planService
-            .getAllPlans()
-            .then(res => {
-               console.log(res);
-               setPlans(res.data)
-            });
+      try {
+         if (searchKey === "") {
+            planService
+               .getAllPlans()
+               .then(res => {
+                  setPlans(res.data);
+               });
+         }
+
+         if (searchKey !== "") {
+            planService
+               .getPlansBySearch(searchKey)
+               .then(res => setPlans(res.data));
+         }
+      } catch (e) {
+         catchErrors(e);
       }
 
-      if (searchKey !== "") {
-         planService
-            .getPlansBySearch(searchKey)
-            .then(res => setPlans(res.data));
-      }
    }, [ searchKey ]);
 
    return (

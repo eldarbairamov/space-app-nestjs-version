@@ -1,27 +1,24 @@
 import { type FilterQuery } from "mongoose";
 import { type IActionTokenDatabase, type IActionTokenSchema } from "../interface";
 import { ActionTokenModel } from "../model";
-import { ApiError } from "../error/Api.error";
+import { ApiException } from "../error/api.expception";
 
 export const ActionTokenRepository = {
 
    create: async (body: IActionTokenSchema): Promise<IActionTokenDatabase> => {
-      return ActionTokenModel
-         .create(body)
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+      try {
+         return ActionTokenModel.create(body);
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
    },
 
-   deleteOne: async (filter: FilterQuery<IActionTokenSchema>): Promise<IActionTokenDatabase | null> => {
-      return ActionTokenModel
-         .findOneAndDelete(filter)
-         .catch(e => {
-            console.log(e);
-            throw ApiError.Database();
-         });
+   findOneAndDelete: async (filter: FilterQuery<IActionTokenSchema>): Promise<IActionTokenDatabase | null> => {
+      try {
+         return ActionTokenModel.findOneAndDelete(filter);
+      } catch (e) {
+         throw ApiException.Database(e);
+      }
    },
-
 
 };

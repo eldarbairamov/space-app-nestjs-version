@@ -1,6 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response, type Request } from "express";
 import {
+   IAccessTokenPairDto,
    type RequestWithBody,
    type RequestWithBodyAndCustomVar,
    type RequestWithCustomVar,
@@ -21,13 +22,12 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
+   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IAccessTokenPairDto>) => {
       const accessTokenPairDto = await loginService(req.body, req.user!);
-      console.log(accessTokenPairDto);
       res.json(accessTokenPairDto);
    }),
 
-   activation: expressAsyncHandler(async (req: RequestWithBody<{ activationCode: string }>, res: Response) => {
+   activation: expressAsyncHandler(async (req: RequestWithBody<{ activationCode: string }>, res: Response<{ message: string }>) => {
       await activationService(req.body.activationCode);
       res.json({ message: "Успішно" });
    }),
@@ -42,8 +42,8 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   logout: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
-      await OAuthRepository.delete({ accessToken: req.token });
+   logout: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<{ message: string }>) => {
+      await OAuthRepository.deleteOne({ accessToken: req.token });
       res.json({ message: "Успішно" });
    }),
 

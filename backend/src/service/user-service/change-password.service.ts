@@ -1,6 +1,6 @@
 import { UserRepository } from "../../repository";
 import bcrypt from "bcrypt";
-import { ApiError } from "../../error/Api.error";
+import { ApiException } from "../../error/api.expception";
 import { type HydratedDocument } from "mongoose";
 import { type IUserSchema } from "../../interface";
 
@@ -11,13 +11,13 @@ export const changePasswordService = async (newPassword: string, currentPassword
 
    // Compare passwords
    const isPasswordSame = await bcrypt.compare(currentPassword, user?.password!);
-   if (!isPasswordSame) throw new ApiError("Поточний пароль не валідний", 400);
+   if (!isPasswordSame) throw new ApiException("Поточний пароль не валідний", 400);
 
    // Hash password
    user!.password = await bcrypt
       .hash(newPassword, 8)
-      .catch(e => {
-         throw new ApiError("Помилка при хешуванні паролю", 500);
+      .catch(() => {
+         throw new ApiException("Помилка при хешуванні паролю", 500);
       });
 
    // Update user

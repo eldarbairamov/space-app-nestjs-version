@@ -1,6 +1,7 @@
 import { ActionTokenRepository } from "../../repository";
 import { emailSender } from "../email.service";
 import * as jwt from "jsonwebtoken";
+import { EMAIL_CONFIRMATION_TOKEN_TYPE } from "../../constant";
 
 export const updateEmailService = async (userId: string, email: string): Promise<void> => {
 
@@ -11,7 +12,7 @@ export const updateEmailService = async (userId: string, email: string): Promise
    // Save action token to DB
    await ActionTokenRepository.create({
       token: confirmationToken,
-      tokenType: "Email Confirmation",
+      tokenType: EMAIL_CONFIRMATION_TOKEN_TYPE,
       ownerId: userId,
    });
 

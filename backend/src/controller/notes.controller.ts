@@ -23,22 +23,22 @@ export const notesController = {
    }),
 
    getNotesCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {
-      const count = await NoteRepository.getCount(req.userId!);
+      const count = await NoteRepository.count(req.userId!);
       res.json(count);
    }),
 
    saveNote: expressAsyncHandler(async (req: RequestWithBodyVarParams<Partial<INoteSchema>, { noteId: string }>, res: Response<{ message: string }>) => {
-      await NoteRepository.updateById(req.params.noteId, req.body);
+      await NoteRepository.findByIdAndUpdate(req.params.noteId, req.body);
       res.json({ message: "Успішно" });
    }),
 
    deleteNote: (expressAsyncHandler(async (req: RequestWithCustomVarAndParams<{ noteId: string }>, res: Response<{ message: string }>) => {
-      await NoteRepository.deleteById(req.params.noteId);
-      await UserRepository.updateById(req.userId!, { $pull: { notesIds: req.params.noteId } });
+      await NoteRepository.findByIdAndDelete(req.params.noteId);
+      await UserRepository.findByIdAndUpdate(req.userId!, { $pull: { notesIds: req.params.noteId } });
       res.json({ message: "Успішно" });
    })),
 
-   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response) => {
+   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<INoteDto[]>) => {
       const notesBySearchDto = await getNotesBySearchService(req.query.searchKey, req.userId!);
       res.json(notesBySearchDto);
    }),

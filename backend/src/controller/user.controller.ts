@@ -11,7 +11,7 @@ import { changeEmailService, changePasswordService, getUserInfoService, updateEm
 export const userController = {
 
    profileUpdate: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<{ message: string }>) => {
-      await UserRepository.updateById(req.userId!, req.body);
+      await UserRepository.findByIdAndUpdate(req.userId!, req.body);
       res.json({ message: "Успішно" });
    }),
 

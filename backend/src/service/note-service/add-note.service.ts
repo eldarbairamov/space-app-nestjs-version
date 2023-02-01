@@ -14,7 +14,7 @@ export const addNoteService = async (userId: string): Promise<INoteDto> => {
    const note = await NoteRepository.create(initialNote);
 
    // Update user
-   await UserRepository.updateById(userId, { $push: { notesIds: note._id } });
+   await UserRepository.findByIdAndUpdate(userId, { $push: { notesIds: note._id } });
 
    // Return presented data to client
    return notePresenter(note);

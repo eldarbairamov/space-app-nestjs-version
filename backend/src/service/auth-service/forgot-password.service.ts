@@ -2,6 +2,7 @@ import { emailSender } from "../email.service";
 import { type IUserDatabase } from "../../interface";
 import { ActionTokenRepository } from "../../repository";
 import * as jwt from "jsonwebtoken";
+import { RESET_PASSWORD_SUBJECT, RESET_PASSWORD_TOKEN_TYPE } from "../../constant";
 
 export const forgotPasswordService = async (emailFromReq: string, userFromDb: IUserDatabase) => {
 
@@ -12,11 +13,11 @@ export const forgotPasswordService = async (emailFromReq: string, userFromDb: IU
    // Save action token to DB
    await ActionTokenRepository.create({
       token: resetPasswordToken,
-      tokenType: "Reset Password",
+      tokenType: RESET_PASSWORD_TOKEN_TYPE,
       ownerId: userFromDb._id,
    });
 
    // Send email
-   await emailSender(emailFromReq, "Відновлення паролю", resetPasswordLink);
+   await emailSender(emailFromReq, RESET_PASSWORD_SUBJECT, resetPasswordLink);
 
 };

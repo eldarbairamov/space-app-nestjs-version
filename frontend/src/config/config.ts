@@ -5,8 +5,8 @@ export const config = {
 export const userRequests = {
    profileUpdate: "/user/profile_update",
    changeEmailRequest: "/user/email_change",
-   changeEmail: "/user/email_change",
-   changePassword: "/user/password_change",
+   changeEmail: "/user/email_new",
+   changePassword: "/user/password_new",
    getUserInfo: "/user/get_info",
 };
 

@@ -8,7 +8,7 @@ export const addTaskService = async (userId: string, planId: string, title: stri
    const task = await TaskRepository.create({ ownerId: userId, planId, title });
 
    // Push task ref to the Plan document
-   await PlanRepository.updateById(planId, { $push: { tasksIds: task._id } });
+   await PlanRepository.findByIdAndUpdate(planId, { $push: { tasksIds: task._id } });
 
    // Return presented data to client
    return taskPresenter(task);

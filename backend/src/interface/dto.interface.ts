@@ -1,7 +1,7 @@
 import { type IAccessTokenPair } from "./o-auth.interface";
 
 export interface IAccessTokenPairDto extends IAccessTokenPair {
-   ownerUsername: string,
+   username: string,
 }
 
 export interface INoteDto {

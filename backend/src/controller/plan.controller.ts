@@ -3,7 +3,7 @@ import {
    type IPlanDto,
    type RequestWithBodyVarParams,
    type RequestWithCustomVar, RequestWithCustomVarAndParams,
-   type RequestWithCustomVarAndQuery
+   type RequestWithCustomVarAndQuery,
 } from "../interface";
 import { type Response } from "express";
 import { addPlanService, getPlansService, getPlansBySearchService } from "../service";
@@ -23,22 +23,22 @@ export const planController = {
    }),
 
    updatePlan: expressAsyncHandler(async (req: RequestWithBodyVarParams<IPlanDto, { planId: string }>, res: Response<{ message: string }>) => {
-      await PlanRepository.updateById(req.params.planId, { title: req.body.title });
+      await PlanRepository.findByIdAndUpdate(req.params.planId, { title: req.body.title });
       res.json({ message: "Успішно" });
    }),
 
    deletePlan: expressAsyncHandler(async (req: RequestWithCustomVarAndParams<{ planId: string }>, res: Response<{ message: string }>) => {
-      await PlanRepository.deleteById(req.params.planId);
-      await UserRepository.updateById(req.userId!, { $pull: { notesIds: req.params.planId } });
+      await PlanRepository.findByIdAndDelete(req.params.planId);
+      await UserRepository.findByIdAndUpdate(req.userId!, { $pull: { notesIds: req.params.planId } });
       res.json({ message: "Успішно" });
    }),
 
    getPlansCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {
-      const count = await PlanRepository.getCount(req.userId!);
+      const count = await PlanRepository.count(req.userId!);
       res.json(count);
    }),
 
-   getPlansBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res) => {
+   getPlansBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<IPlanDto[]>) => {
       const plansBySearchDto = await getPlansBySearchService(req.query.searchKey, req.userId!);
       res.json(plansBySearchDto);
    }),

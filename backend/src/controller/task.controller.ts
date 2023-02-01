@@ -16,12 +16,12 @@ export const taskController = {
    }),
 
    deleteTask: expressAsyncHandler(async (req: RequestWithParams<{ taskId: string }>, res: Response<{ message: string }>) => {
-      await TaskRepository.deleteById(req.params.taskId);
+      await TaskRepository.findByIdAndDelete(req.params.taskId);
       res.json({ message: "Успішно" });
    }),
 
    updateTaskStatus: expressAsyncHandler(async (req: RequestWithBodyAndParams<ITaskDto, { taskId: string }>, res: Response<{ message: string }>) => {
-      await TaskRepository.updateById(req.params.taskId, { isCompleted: req.body.isCompleted });
+      await TaskRepository.findByIdAndUpdate(req.params.taskId, { isCompleted: req.body.isCompleted });
       res.json({ message: "Успішно" });
    }),
 

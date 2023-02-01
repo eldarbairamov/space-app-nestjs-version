@@ -34,7 +34,7 @@ export const ProfileUpdateForm: FC = () => {
          await userService.profileUpdate(data);
 
          toast.dismiss(loading);
-         toast.success("Ви успішно оновили профіль", { duration: 5000 });
+         toast.success("Ви успішно оновили профіль");
 
       } catch (e) {
          catchErrors(e);

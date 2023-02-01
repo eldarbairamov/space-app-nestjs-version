@@ -8,7 +8,7 @@ export const addPlanService = async (userId: string): Promise<IPlanDto> => {
    const plan = await PlanRepository.create({ ownerId: userId });
 
    // Update user
-   await UserRepository.updateById(userId, { $push: { plansIds: plan._id } });
+   await UserRepository.findByIdAndUpdate(userId, { $push: { plansIds: plan._id } });
 
    // Return presented data to client
    return planPresenter(plan);

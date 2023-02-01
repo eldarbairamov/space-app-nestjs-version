@@ -2,15 +2,21 @@ import React, { type FC, useEffect } from "react";
 
 import { CameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../hook";
 import { Toaster } from "react-hot-toast";
 
 import style from "./Profile-Settings-Page.module.scss";
+import { asyncAuthActions } from "../../../redux/slice";
 
 export const ProfileSettingsPage: FC = () => {
    const navigate = useNavigate();
+   const dispatch = useAppDispatch();
 
    const { username, name, surname, avatar } = useAppSelector(state => state.authReducer);
+
+   useEffect(() => {
+      dispatch(asyncAuthActions.getUserInfo());
+   }, [name, surname, avatar, surname]);
 
    return (
       <div className={ style.ProfileSettingsPage }>

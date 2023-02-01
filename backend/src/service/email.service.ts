@@ -1,6 +1,6 @@
 import * as nodemailer from "nodemailer";
 import { config } from "../config";
-import { ApiError } from "../error/Api.error";
+import { ApiException } from "../error/api.expception";
 
 export const emailSender = async (to: string, subject: string, message: string = "") => {
 
@@ -24,7 +24,7 @@ export const emailSender = async (to: string, subject: string, message: string =
             </div>
             `,
       })
-      .catch(e => {
-         throw new ApiError("Помилка при надсиланні листа", 500);
+      .catch(() => {
+         throw new ApiException("Помилка при надсиланні листа", 500);
       });
 };

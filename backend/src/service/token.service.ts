@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken";
-import { ApiError } from "../error/Api.error";
+import { ApiException } from "../error/api.expception";
 import { type IAccessTokenPair } from "../interface";
 import { config } from "../config";
 
@@ -10,6 +10,6 @@ export const accessTokenPairGenerator = (userId: string): IAccessTokenPair => {
          refreshToken: jwt.sign({ userId }, config.SECRET_REFRESH_TOKEN_KEY, { expiresIn: "7d" }),
       };
    } catch (e) {
-      throw new ApiError("Помилка при генеруванні токена", 500);
+      throw new ApiException("Помилка при генеруванні токена", 500);
    }
 };

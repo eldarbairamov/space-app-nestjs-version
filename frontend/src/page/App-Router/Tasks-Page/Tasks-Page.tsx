@@ -5,7 +5,9 @@ import { catchErrors, dateFormat } from "../../../helper";
 import { type IPlanDto, type ITaskDto } from "../../../interface";
 import { planService, taskService } from "../../../services";
 import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
-import { noteValidator } from "../../../validator/note.validator";
+import { taskValidator } from "../../../validator/task.validator";
+import { planValidator } from "../../../validator/plan.validator";
+import { Toaster } from "react-hot-toast";
 
 import style from "./Tasks-Page.module.scss";
 
@@ -25,7 +27,7 @@ export const TasksPage: FC = () => {
          try {
             setInputFields({ ...inputFields, taskTitle: "" });
 
-            const validation = noteValidator.validate(inputFields.taskTitle);
+            const validation = taskValidator.validate(inputFields.taskTitle);
             if (validation.error) throw new Error(validation.error.message);
 
             const { data } = await taskService.addTask(plan.id, inputFields.taskTitle);
@@ -44,6 +46,9 @@ export const TasksPage: FC = () => {
 
    const changePlansTitle = async (): Promise<void> => {
       try {
+         const validation = planValidator.validate(inputFields.planTitle);
+         if (validation.error) throw new Error(validation.error.message);
+
          await planService.updatePlan(plan.id, inputFields.planTitle);
 
       } catch (e) {
@@ -59,6 +64,30 @@ export const TasksPage: FC = () => {
 
    return (
       <div className={ style.TasksPage }>
+
+         {/* Toaster */ }
+         <Toaster
+            toastOptions={ {
+               error: {
+                  style: {
+                     textAlign: "center",
+                  },
+                  iconTheme: {
+                     primary: "#df8281",
+                     secondary: "white",
+                  },
+               },
+               success: {
+                  style: {
+                     textAlign: "center",
+                  },
+                  iconTheme: {
+                     primary: "#84df81",
+                     secondary: "white",
+                  },
+               },
+            } }
+         />
 
          <div className={ style.top }>
             <input type={ "text" }
