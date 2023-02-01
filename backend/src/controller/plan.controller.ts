@@ -3,8 +3,7 @@ import {
    type IPlanDto,
    type RequestWithBodyVarParams,
    type RequestWithCustomVar, RequestWithCustomVarAndParams,
-   type RequestWithCustomVarAndQuery,
-   type RequestWithParams,
+   type RequestWithCustomVarAndQuery
 } from "../interface";
 import { type Response } from "express";
 import { addPlanService, getPlansService, getPlansBySearchService } from "../service";
@@ -19,6 +18,7 @@ export const planController = {
 
    getPlans: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IPlanDto[]>) => {
       const plansDto = await getPlansService(req.userId!);
+      console.log(plansDto);
       res.json(plansDto);
    }),
 

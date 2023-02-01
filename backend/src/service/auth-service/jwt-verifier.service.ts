@@ -18,6 +18,6 @@ export const jwtVerifierService = (token: string, type: string) => {
       return userId;
 
    } catch (e) {
-      throw new ApiError("Токен не валідний", 401);
+      throw new ApiError("Токен невалідний", 401);
    }
 };

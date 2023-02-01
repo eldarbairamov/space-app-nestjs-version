@@ -10,9 +10,9 @@ export const updateEmailService = async (userId: string, email: string): Promise
 
    // Save action token to DB
    await ActionTokenRepository.create({
-      tokenOwnerId: userId,
-      tokenType: "Email Confirmation",
       token: confirmationToken,
+      tokenType: "Email Confirmation",
+      ownerId: userId,
    });
 
    // Send email

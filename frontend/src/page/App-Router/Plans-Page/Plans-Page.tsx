@@ -30,7 +30,10 @@ export const PlansPage: FC = () => {
       if (searchKey === "") {
          planService
             .getAllPlans()
-            .then(res => setPlans(res.data));
+            .then(res => {
+               console.log(res);
+               setPlans(res.data)
+            });
       }
 
       if (searchKey !== "") {

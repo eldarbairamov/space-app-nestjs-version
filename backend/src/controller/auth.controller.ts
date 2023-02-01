@@ -23,6 +23,7 @@ export const authController = {
 
    login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response) => {
       const accessTokenPairDto = await loginService(req.body, req.user!);
+      console.log(accessTokenPairDto);
       res.json(accessTokenPairDto);
    }),
 

@@ -24,9 +24,18 @@ export const NoteRepository = {
          });
    },
 
-   updateById: async (filter: FilterQuery<INoteSchema>, body: UpdateQuery<Partial<INoteDto>>): Promise<INoteDatabase | null> => {
+   findById: async (id: string): Promise<INoteDatabase | null> => {
       return NoteModel
-         .findByIdAndUpdate(filter, body, {new: true})
+         .findById(id)
+         .catch(e => {
+            console.log(e);
+            throw ApiError.Database();
+         });
+   },
+
+   updateById: async (noteId: string, body: UpdateQuery<Partial<INoteDto>>): Promise<INoteDatabase | null> => {
+      return NoteModel
+         .findByIdAndUpdate(noteId, body, { new: true })
          .catch(e => {
             console.log(e);
             throw ApiError.Database();

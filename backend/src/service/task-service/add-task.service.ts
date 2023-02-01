@@ -5,7 +5,7 @@ import { type ITaskDto } from "../../interface";
 export const addTaskService = async (userId: string, planId: string, title: string): Promise<Partial<ITaskDto>> => {
 
    // Save task to DB
-   const task = await TaskRepository.create({ taskOwnerId: userId, planId, title });
+   const task = await TaskRepository.create({ ownerId: userId, planId, title });
 
    // Push task ref to the Plan document
    await PlanRepository.updateById(planId, { $push: { tasksIds: task._id } });

@@ -10,7 +10,8 @@ authRouter.post(
    commonMiddleware.isRequestEmpty,
    authMiddleware.isRequestValid,
    authMiddleware.isEmailUnique,
-   authController.registration);
+   authController.registration
+);
 
 // Login
 authRouter.post(

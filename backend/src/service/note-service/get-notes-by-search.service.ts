@@ -5,12 +5,12 @@ import { type INoteDto } from "../../interface";
 export const getNotesBySearchService = async (searchKey: string, userId: string): Promise<INoteDto[]> => {
 
    // Search notes by search key
-   const plansBySearchKey = await NoteRepository.findAll({
-      noteOwnerId: userId,
+   const notesBySearchKey = await NoteRepository.findAll({
       title: { $regex: searchKey, $options: "i" },
+      ownerId: userId,
    });
 
    // Return presented data to client
-   return allNotesPresenter(plansBySearchKey);
+   return allNotesPresenter(notesBySearchKey);
 
 };

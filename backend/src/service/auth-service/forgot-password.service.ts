@@ -11,9 +11,9 @@ export const forgotPasswordService = async (emailFromReq: string, userFromDb: IU
 
    // Save action token to DB
    await ActionTokenRepository.create({
-      tokenOwnerId: userFromDb._id,
-      tokenType: "Reset Password",
       token: resetPasswordToken,
+      tokenType: "Reset Password",
+      ownerId: userFromDb._id,
    });
 
    // Send email

@@ -7,8 +7,7 @@ export interface INoteDto {
 
 export interface IOAuthDto {
    tokenId: string,
-   tokenOwnerId: string,
-   tokenOwnerUsername: string,
+   ownerUsername: string,
    accessToken: string,
    refreshToken: string
 }

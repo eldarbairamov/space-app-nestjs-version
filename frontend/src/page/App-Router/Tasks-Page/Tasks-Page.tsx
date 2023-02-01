@@ -5,6 +5,7 @@ import { catchErrors, dateFormat } from "../../../helper";
 import { type IPlanDto, type ITaskDto } from "../../../interface";
 import { planService, taskService } from "../../../services";
 import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
+import { noteValidator } from "../../../validator/note.validator";
 
 import style from "./Tasks-Page.module.scss";
 
@@ -23,6 +24,9 @@ export const TasksPage: FC = () => {
       if (inputFields.taskTitle !== "") {
          try {
             setInputFields({ ...inputFields, taskTitle: "" });
+
+            const validation = noteValidator.validate(inputFields.taskTitle);
+            if (validation.error) throw new Error(validation.error.message);
 
             const { data } = await taskService.addTask(plan.id, inputFields.taskTitle);
 
@@ -83,7 +87,7 @@ export const TasksPage: FC = () => {
          <div className={ style.bottom }>
             <div className={ style.task_list }>
                { tasks && tasks.map(task => (
-                  <TasksItem task={task} setTasks={setTasks} tasks={tasks}/>
+                  <TasksItem key={ task.id } task={ task } setTasks={ setTasks } tasks={ tasks }/>
                )) }
             </div>
          </div>

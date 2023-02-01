@@ -6,9 +6,9 @@ export const activationService = async (activationCode: string) => {
 
    // Find and delete action token
    const actionTokenInfo = await ActionTokenRepository.deleteOne({ token: activationCode });
-   if (!actionTokenInfo) throw new ApiError("Не валідний код активації", 401);
+   if (!actionTokenInfo) throw new ApiError("Невалідний код активації", 401);
 
    // Update user status
-   await UserRepository.updateById(actionTokenInfo.tokenOwnerId, { isActivated: true });
+   await UserRepository.updateById(actionTokenInfo.ownerId, { isActivated: true });
 
 };

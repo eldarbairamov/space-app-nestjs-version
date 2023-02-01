@@ -35,7 +35,7 @@ export const NotesMain: FC = () => {
          };
 
          const validation = noteValidator.validate(noteToSave);
-         if (validation.error) throw new Error();
+         if (validation.error) throw new Error(validation.error.message);
 
          await noteService.saveNote(noteToSave, activeNote?.id!);
 
@@ -52,7 +52,7 @@ export const NotesMain: FC = () => {
       <div className={ style.Main }>
 
          <div className={ style.header }>
-            <input type={'text'}
+            <input type={ "text" }
                    id={ "title" }
                    value={ activeNote.title }
                    autoFocus

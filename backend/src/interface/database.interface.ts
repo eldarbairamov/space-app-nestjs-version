@@ -1,6 +1,5 @@
 export interface IOAuthSchema {
-   tokenOwnerId: string,
-   tokenOwnerUsername: string,
+   ownerId: string,
    accessToken: string,
    refreshToken: string,
 }
@@ -31,7 +30,7 @@ export interface IUserDatabase extends IUserSchema {
 }
 
 export interface IActionTokenSchema {
-   tokenOwnerId: string,
+   ownerId: string,
    tokenType: string,
    token: string
 }
@@ -43,7 +42,7 @@ export interface IActionTokenDatabase extends IActionTokenSchema {
 }
 
 export interface INoteSchema {
-   noteOwnerId: string,
+   ownerId: string,
    title: string,
    body: string,
 }
@@ -55,7 +54,7 @@ export interface INoteDatabase extends INoteSchema {
 }
 
 export interface IPlanSchema {
-   planOwnerId: string
+   ownerId: string
    title: string,
    tasksIds: string[]
 }
@@ -67,7 +66,7 @@ export interface IPlanDatabase extends IPlanSchema {
 }
 
 export interface ITaskSchema {
-   taskOwnerId: string,
+   ownerId: string,
    planId: string,
    title: string,
    isCompleted: boolean

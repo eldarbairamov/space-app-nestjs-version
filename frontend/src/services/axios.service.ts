@@ -26,13 +26,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
    (e) => {
       const axiosError = e as AxiosApiError;
 
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Користувач не авторизований") {
-         AppRouter.navigate("/", { state: { status: "need to login" } });
-         AppRouter.navigate(0);
-         throw new Error("Ви не авторизовані");
-      }
-
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Токен не валідний") {
+      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Токен невалідний") {
          storageService.deleteAccessToken();
          AppRouter.navigate("/", { state: { status: "need to login" } });
          AppRouter.navigate(0);

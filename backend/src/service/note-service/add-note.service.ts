@@ -6,8 +6,8 @@ export const addNoteService = async (userId: string): Promise<INoteDto> => {
 
    // Create note initial state
    const initialNote = {
-      noteOwnerId: userId,
       body: "",
+      ownerId: userId,
    };
 
    // Save note initial state to DB

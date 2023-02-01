@@ -28,7 +28,7 @@ export const notesController = {
    }),
 
    saveNote: expressAsyncHandler(async (req: RequestWithBodyVarParams<Partial<INoteSchema>, { noteId: string }>, res: Response<{ message: string }>) => {
-      await NoteRepository.updateById({ _id: req.params.noteId, noteOwnerId: req.userId }, req.body);
+      await NoteRepository.updateById(req.params.noteId, req.body);
       res.json({ message: "Успішно" });
    }),
 

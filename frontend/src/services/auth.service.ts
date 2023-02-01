@@ -12,11 +12,12 @@ export const authService = {
 
    login: async (dto: Partial<IUserDto>): Promise<string> => {
       const result = await axiosInstance.post<IOAuthDto>(authRequests.login, dto);
+      console.log(result);
 
       storageService.setAccessToken(result.data.accessToken);
       storageService.setRefreshToken(result.data.refreshToken);
 
-      return result.data.tokenOwnerUsername;
+      return result.data.ownerUsername;
    },
 
    forgotPassword: async (dto: Partial<IUserDto>): Promise<string> => {

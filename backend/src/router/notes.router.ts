@@ -29,6 +29,8 @@ notesRouter.get(
 notesRouter.put(
    "/:noteId",
    authMiddleware.isAccessTokenValid,
+   noteMiddleware.isObjectIdValid,
+   noteMiddleware.isNoteExists,
    noteMiddleware.isRequestValid,
    notesController.saveNote,
 );
@@ -37,6 +39,8 @@ notesRouter.put(
 notesRouter.delete(
    "/:noteId",
    authMiddleware.isAccessTokenValid,
+   noteMiddleware.isObjectIdValid,
+   noteMiddleware.isNoteExists,
    notesController.deleteNote,
 );
 

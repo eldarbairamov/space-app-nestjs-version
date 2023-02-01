@@ -1,11 +1,9 @@
 import { type IOAuthDatabase, type IAccessTokenPairDto } from "../interface";
 
-export const AccessTokenPairPresenter = (document: IOAuthDatabase): IAccessTokenPairDto => {
+export const AccessTokenPairPresenter = (document: IOAuthDatabase, username: string): IAccessTokenPairDto => {
 
    return {
-      tokenOwnerId: document.tokenOwnerId,
-      tokenOwnerUsername: document.tokenOwnerUsername,
-      tokenId: document._id,
+      ownerUsername: username,
       accessToken: document.accessToken,
       refreshToken: document.refreshToken,
    };

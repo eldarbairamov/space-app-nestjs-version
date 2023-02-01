@@ -10,21 +10,21 @@ export const registrationService = async (registrationDto: IRegistrationDto) => 
    // Hash password
    const hashedPassword = await bcrypt
       .hash(registrationDto.password!, 8)
-      .catch(e => {
+      .catch(() => {
          throw new ApiError("Помилка при хешуванні паролю", 500);
       });
-
-   // Generate activation token
-   const activationToken = uuid();
 
    // Save user to DB
    const candidate = await UserRepository.create({ ...registrationDto, password: hashedPassword });
 
+   // Generate activation token
+   const activationToken = uuid();
+
    // Save action token to DB
    await ActionTokenRepository.create({
-      tokenOwnerId: candidate._id,
-      tokenType: "Activation Token",
       token: activationToken,
+      tokenType: "Activation Token",
+      ownerId: candidate._id,
    });
 
    // Send activation email

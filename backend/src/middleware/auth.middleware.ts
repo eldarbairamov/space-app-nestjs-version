@@ -10,7 +10,7 @@ import {
 } from "../interface";
 import { OAuthRepository, UserRepository } from "../repository";
 import { authValidator } from "../validator";
-import { jwtVerifierService } from "../service/auth-service/jwt-verifier.service";
+import { jwtVerifierService } from "../service";
 import { tokenTypeEnum } from "../enum/token-type.enum";
 
 export const authMiddleware = {
@@ -33,17 +33,17 @@ export const authMiddleware = {
 
    isEmailUnique: expressAsyncHandler(async (req: RequestWithBody<{ email: string }>, res: Response, next: NextFunction) => {
       const user = await UserRepository.findOne({ email: req.body.email });
-      if (user) throw new ApiError("Такий користувач вже існує", 409);
+      if (user) throw new ApiError("Користувач з такой електронною поштою вже існує", 409);
 
       next();
    }),
 
    isAccessTokenValid: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response, next: NextFunction) => {
       const token = req.headers.authorization?.split(" ")[1];
-      if (!token) throw new ApiError("Токен не валідний", 401);
+      if (!token) throw new ApiError("Токен невалідний", 401);
 
       const isAccessTokenExists = await OAuthRepository.findOne({ accessToken: token });
-      if (!isAccessTokenExists) throw new ApiError("Користувач не авторизований", 401);
+      if (!isAccessTokenExists) throw new ApiError("Токен невалідний", 401);
 
       req.userId = jwtVerifierService(token, tokenTypeEnum.ACCESS_TOKEN);
       req.token = token;

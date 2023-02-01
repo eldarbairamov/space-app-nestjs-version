@@ -6,8 +6,8 @@ export const getPlansBySearchService = async (searchKey: string, userId: string)
 
    // Search plans by search key
    const plansBySearchKey = await PlanRepository.findAll({
-      planOwnerId: userId,
       title: { $regex: searchKey, $options: "i" },
+      ownerId: userId,
    });
 
    // Return presented data to client
