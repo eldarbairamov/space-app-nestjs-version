@@ -4,23 +4,23 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { joiResolver } from "@hookform/resolvers/joi";
 import toast from "react-hot-toast";
-import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { registrationValidator } from "../../../../validator/auth.validator";
 import { resetFields, catchErrors  } from "../../../../helper";
+import { UserDto } from "../../../../dto";
 
 import style from "./Registration-Form.module.scss";
 
 export const RegistrationForm: FC = () => {
-      const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
+      const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<UserDto>>({
          resolver: joiResolver(registrationValidator),
          mode: "onTouched",
       });
 
       const navigate = useNavigate();
 
-      const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data) => {
+      const onSubmit: SubmitHandler<Partial<UserDto>> = async (data) => {
          try {
             const loading = toast.loading("Зачекайте...");
             await authService.registration(data);

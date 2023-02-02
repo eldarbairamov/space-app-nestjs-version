@@ -1,12 +1,11 @@
 import { type AxiosResponse } from "axios";
 import { axiosInstance } from "./axios.service";
-import { type IPlanDto } from "../interface";
 import { plansRequests } from "../config/config";
-
+import { PlanDto } from "../dto/intex";
 
 export const planService = {
 
-   addPlan: async () => axiosInstance.get<IPlanDto>(plansRequests.addPlan),
+   addPlan: async () => axiosInstance.get<PlanDto>(plansRequests.addPlan),
 
    deletePlan: async (planId: string): Promise<AxiosResponse> => axiosInstance.delete(plansRequests.deletePlan + planId),
 
@@ -15,11 +14,11 @@ export const planService = {
       return axiosInstance.put(plansRequests.updatePlan + planId, planDto);
    },
 
-   getAllPlans: async () => axiosInstance.get<IPlanDto[]>(plansRequests.getAllPlans),
+   getAllPlans: async () => axiosInstance.get<PlanDto[]>(plansRequests.getAllPlans),
 
    getPlansCount: async () => axiosInstance.get<number>(plansRequests.getPlansCount),
 
-   getPlansBySearch: async (searchKey: string) => axiosInstance.get<IPlanDto[]>(plansRequests.getPlansBySearch, {
+   getPlansBySearch: async (searchKey: string) => axiosInstance.get<PlanDto[]>(plansRequests.getPlansBySearch, {
       params: { searchKey },
    }),
 

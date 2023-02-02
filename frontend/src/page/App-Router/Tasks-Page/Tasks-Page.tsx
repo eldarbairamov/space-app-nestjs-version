@@ -2,14 +2,12 @@ import React, { type FC, useEffect, useState } from "react";
 
 import { useLocation } from "react-router";
 import { catchErrors, dateFormat } from "../../../helper";
-import { type IPlanDto, type ITaskDto } from "../../../interface";
 import { planService, taskService } from "../../../services";
 import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
-import { taskValidator } from "../../../validator/task.validator";
-import { planValidator } from "../../../validator/plan.validator";
 import { Toaster } from "react-hot-toast";
 
 import style from "./Tasks-Page.module.scss";
+import { PlanDto, TaskDto } from "../../../dto/intex";
 
 export interface IInputFields {
    planTitle: string,
@@ -17,18 +15,15 @@ export interface IInputFields {
 }
 
 export const TasksPage: FC = () => {
-   const { plan } = useLocation().state as { plan: IPlanDto };
+   const { plan } = useLocation().state as { plan: PlanDto };
 
-   const [ tasks, setTasks ] = useState<ITaskDto[]>([]);
+   const [ tasks, setTasks ] = useState<TaskDto[]>([]);
    const [ inputFields, setInputFields ] = useState<IInputFields>({ planTitle: plan.title, taskTitle: "" });
 
    const addTask = async (): Promise<void> => {
       if (inputFields.taskTitle !== "") {
          try {
             setInputFields({ ...inputFields, taskTitle: "" });
-
-            const validation = taskValidator.validate(inputFields.taskTitle);
-            if (validation.error) throw new Error(validation.error.message);
 
             const { data } = await taskService.addTask(plan.id, inputFields.taskTitle);
 
@@ -46,9 +41,6 @@ export const TasksPage: FC = () => {
 
    const changePlansTitle = async (): Promise<void> => {
       try {
-         const validation = planValidator.validate(inputFields.planTitle);
-         if (validation.error) throw new Error(validation.error.message);
-
          await planService.updatePlan(plan.id, inputFields.planTitle);
 
       } catch (e) {

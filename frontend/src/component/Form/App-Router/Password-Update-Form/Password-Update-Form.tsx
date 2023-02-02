@@ -3,24 +3,24 @@ import React, { type FC } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
-import { type IUserDto } from "../../../../interface";
 import { changePasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { userService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
 import { catchErrors } from "../../../../helper";
+import { UserDto } from "../../../../dto";
 
 import style from "./Password-Update-Form.module.scss";
 
 export const PasswordUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Partial<UserDto>>({
       resolver: joiResolver(changePasswordValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
       const newPassword = data.password;
       const currentPassword = data.current_password;
       const repeatPassword = data.repeat_password;

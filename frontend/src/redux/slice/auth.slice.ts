@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { userService } from "../../services";
-import { type IUserInfoDto } from "../../interface";
 import { catchErrors } from "../../helper";
+import { UserInfoDto } from "../../dto";
 
 interface IAuthInitialState {
    username: string,
@@ -17,7 +17,7 @@ const initialState: IAuthInitialState = {
    avatar: "",
 };
 
-const getUserInfo = createAsyncThunk<IUserInfoDto, void>(
+const getUserInfo = createAsyncThunk<UserInfoDto, void>(
    "authSlice/getUser",
    async (_, { rejectWithValue }) => {
       try {

@@ -3,17 +3,17 @@ import React, { type FC, useEffect } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
-import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { updateProfile } from "../../../../validator/user.validator";
 import { userService } from "../../../../services";
 import { useAppSelector } from "../../../../hook";
 import { catchErrors } from "../../../../helper";
+import { UserDto } from "../../../../dto";
 
 import style from "./Profile-Update-Form.module.scss";
 
 export const ProfileUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors }, setValue } = useForm<Partial<IUserDto>>({
+   const { register, handleSubmit, formState: { errors }, setValue } = useForm<Partial<UserDto>>({
       resolver: joiResolver(updateProfile),
       mode: "onTouched",
    });
@@ -27,7 +27,7 @@ export const ProfileUpdateForm: FC = () => {
 
    }, [ username, name, surname ]);
 
-   const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
       try {
          const loading = toast.loading("Зачекайте...");
 

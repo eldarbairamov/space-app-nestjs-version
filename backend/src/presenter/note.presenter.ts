@@ -1,6 +1,7 @@
-import { type INoteDatabase, type INoteDto } from "../interface";
+import { type INoteDatabase } from "../interface";
+import { NoteDto } from "../dto/note.dto";
 
-export const notePresenter = (document: INoteDatabase): INoteDto => {
+export const notePresenter = (document: INoteDatabase): NoteDto => {
 
    const date = new Date(document.updatedAt).getTime()
 
@@ -12,6 +13,6 @@ export const notePresenter = (document: INoteDatabase): INoteDto => {
    };
 };
 
-export const allNotesPresenter = (documents: INoteDatabase[]): INoteDto[] => {
+export const allNotesPresenter = (documents: INoteDatabase[]): NoteDto[] => {
    return documents.map(doc => notePresenter(doc));
 };

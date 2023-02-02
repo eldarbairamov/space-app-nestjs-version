@@ -1,13 +1,12 @@
 import React, { type ChangeEvent, type FC, useEffect } from "react";
 
-import { type INoteDto } from "../../../interface";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { notesActions } from "../../../redux/slice";
 import { noteService } from "../../../services";
 import { catchErrors } from "../../../helper";
-import { noteValidator } from "../../../validator/note.validator";
 
 import style from "./Notes-Main.module.scss";
+import { NoteDto } from "../../../dto";
 
 export const NotesMain: FC = () => {
    const dispatch = useAppDispatch();
@@ -22,7 +21,7 @@ export const NotesMain: FC = () => {
          ...activeNote,
          [field]: value,
          lastModified: Date.now(),
-      } as INoteDto;
+      } as NoteDto;
 
       dispatch(notesActions.updateNote(updatedNote));
    };
@@ -33,9 +32,6 @@ export const NotesMain: FC = () => {
             title: activeNote?.title,
             body: activeNote?.body,
          };
-
-         const validation = noteValidator.validate(noteToSave);
-         if (validation.error) throw new Error(validation.error.message);
 
          await noteService.saveNote(noteToSave, activeNote?.id!);
 

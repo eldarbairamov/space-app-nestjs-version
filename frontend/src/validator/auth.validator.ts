@@ -1,8 +1,8 @@
 import Joi from "joi";
-import { type IUserDto } from "../interface";
 import { emailRegex } from "../enum/regexp.enum";
+import { UserDto } from "../dto";
 
-export const registrationValidator = Joi.object<Partial<IUserDto>>({
+export const registrationValidator = Joi.object<Partial<UserDto>>({
 
    username: Joi.string().required().trim().messages({
       "string.empty": "Поле неповинно залишитись пустим",
@@ -24,7 +24,7 @@ export const registrationValidator = Joi.object<Partial<IUserDto>>({
 
 });
 
-export const loginValidator = Joi.object<Partial<IUserDto>>({
+export const loginValidator = Joi.object<Partial<UserDto>>({
 
    email: Joi.string().pattern(emailRegex).required().trim().messages({
       "string.pattern.base": "Не валідна електронна пошта",
@@ -41,7 +41,7 @@ export const loginValidator = Joi.object<Partial<IUserDto>>({
 
 });
 
-export const emailValidator = Joi.object<Partial<IUserDto>>({
+export const emailValidator = Joi.object<Partial<UserDto>>({
 
    email: Joi.string().pattern(emailRegex).required().trim().messages({
       "string.pattern.base": "Не валідна електронна пошта",
@@ -51,7 +51,7 @@ export const emailValidator = Joi.object<Partial<IUserDto>>({
 
 });
 
-export const resetPasswordValidator = Joi.object<Partial<IUserDto>>({
+export const resetPasswordValidator = Joi.object<Partial<UserDto>>({
 
    password: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Пароль не має містити більше 20-и символів",
@@ -69,7 +69,7 @@ export const resetPasswordValidator = Joi.object<Partial<IUserDto>>({
 
 });
 
-export const changePasswordValidator = Joi.object<Partial<IUserDto>>({
+export const changePasswordValidator = Joi.object<Partial<UserDto>>({
 
    password: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Пароль не має містити більше 20-и символів",

@@ -1,5 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
-import { type IUserSchema, type RequestWithBody, type RequestWithBodyAndCustomVar } from "../interface";
+import { type IUserSchema, type RequestWithBody, type RequestWithBodyAndVar } from "../interface";
 import { type NextFunction, type Response } from "express";
 import { emailValidator, updateProfileValidator } from "../validator";
 import { ApiException } from "../error/api.expception";
@@ -14,7 +14,7 @@ export const userMiddleware = {
       next();
    }),
 
-   isChangesSame: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<IUserSchema>, res: Response, next: NextFunction) => {
+   isChangesSame: expressAsyncHandler(async (req: RequestWithBodyAndVar<IUserSchema>, res: Response, next: NextFunction) => {
       const userDto = req.body;
       const userFromDb = await UserRepository.findOne({ _id: req.userId });
 

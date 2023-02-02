@@ -3,24 +3,24 @@ import React, { type FC } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
-import { type IUserDto } from "../../../../interface";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { emailValidator } from "../../../../validator/auth.validator";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../../../services";
 import { catchErrors } from "../../../../helper";
+import { UserDto } from "../../../../dto";
 
 import style from "./Email-Update-Form.module.scss";
 
 export const EmailUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue, getValues } = useForm<Partial<IUserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Partial<UserDto>>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
       try {
          const loading = toast.loading("Зачекайте...");
 

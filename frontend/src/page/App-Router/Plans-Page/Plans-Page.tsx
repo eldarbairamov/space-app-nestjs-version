@@ -2,13 +2,13 @@ import React, { type FC, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
 import { planService } from "../../../services";
-import { type IPlanDto } from "../../../interface";
 import { catchErrors } from "../../../helper";
+import { PlanDto } from "../../../dto";
 
 import style from "./Plans-Page.module.scss";
 
 export const PlansPage: FC = () => {
-   const [ plans, setPlans ] = useState<IPlanDto[]>([]);
+   const [ plans, setPlans ] = useState<PlanDto[]>([]);
    const [ searchKey, setSearchKey ] = useState<string>("");
 
    const addPlan = async () => {

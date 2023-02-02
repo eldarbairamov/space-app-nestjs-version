@@ -1,15 +1,15 @@
 import React, { type FC } from "react";
 
-import { type INoteDto } from "../../../../interface";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { asyncNotesActions, notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
 import { dateFormat } from "../../../../helper";
+import { NoteDto } from "../../../../dto";
 
 import style from "./Notes-Item.module.scss";
 
 interface INotesItem {
-   note: INoteDto;
+   note: NoteDto;
 }
 
 export const NotesItem: FC<INotesItem> = ({ note }) => {

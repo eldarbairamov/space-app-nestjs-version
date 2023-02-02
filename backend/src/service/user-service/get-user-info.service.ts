@@ -1,7 +1,8 @@
 import { UserRepository } from "../../repository";
-import { IUserDatabase, type IUserInfoDto } from "../../interface";
+import { IUserDatabase } from "../../interface";
+import { UserInfoDto } from "../../dto/user-info.dto";
 
-export const getUserInfoService = async (userId: string): Promise<Partial<IUserInfoDto>> => {
+export const getUserInfoService = async (userId: string): Promise<Partial<UserInfoDto>> => {
    const user = await UserRepository.findById(userId) as IUserDatabase;
 
    return {

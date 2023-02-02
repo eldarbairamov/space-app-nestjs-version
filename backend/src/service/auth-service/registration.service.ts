@@ -1,11 +1,11 @@
 import { v4 as uuid } from "uuid";
 import { emailSender } from "../email.service";
 import { UserRepository, ActionTokenRepository } from "../../repository";
-import { type IRegistrationDto } from "../../interface";
-import { passHasher } from "../../helper/pass-hasher";
+import { passHasher } from "../../helper";
 import { ACCOUNT_ACTIVATION_SUBJECT, ACTIVATION_TOKEN_TYPE } from "../../constant";
+import { RegistrationDto } from "../../dto/registration.dto";
 
-export const registrationService = async (registrationDto: IRegistrationDto) => {
+export const registrationService = async (registrationDto: RegistrationDto) => {
 
    // Hash password
    const hashedPassword = await passHasher(registrationDto.password!);

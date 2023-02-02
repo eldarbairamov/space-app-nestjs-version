@@ -1,9 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response, type Request } from "express";
 import {
-   IAccessTokenPairDto,
    type RequestWithBody,
-   type RequestWithBodyAndCustomVar,
+   type RequestWithBodyAndVar,
    type RequestWithCustomVar,
 } from "../interface";
 import {
@@ -14,6 +13,7 @@ import {
    resetPasswordService,
 } from "../service";
 import { OAuthRepository } from "../repository";
+import { AccessDto } from "../dto/access.dto";
 
 export const authController = {
 
@@ -22,7 +22,7 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IAccessTokenPairDto>) => {
+   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<AccessDto>) => {
       const accessTokenPairDto = await loginService(req.body, req.user!);
       res.json(accessTokenPairDto);
    }),
@@ -32,7 +32,7 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   forgotPassword: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<{ email: string }>, res: Response<{ message: string }>) => {
+   forgotPassword: expressAsyncHandler(async (req: RequestWithBodyAndVar<{ email: string }>, res: Response<{ message: string }>) => {
       await forgotPasswordService(req.body.email, req.user!);
       res.json({ message: "Успішно" });
    }),

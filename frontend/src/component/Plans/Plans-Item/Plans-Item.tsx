@@ -1,14 +1,14 @@
 import React, { type FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { dateFormat } from "../../../helper";
-import { IPlanDto } from "../../../interface";
 import { DeleteOutlined } from "@ant-design/icons";
+import { PlanDto } from "../../../dto";
 
 import style from "./Plans-Item.module.scss";
 import brain from "../../../asset/brain.png";
 
 interface IPlansItem {
-   plan: IPlanDto;
+   plan: PlanDto;
    deletePlan: (e: React.MouseEvent<HTMLParagraphElement>, targetId: string) => void;
 }
 
@@ -19,7 +19,7 @@ export const PlansItem: FC<IPlansItem> = ({ plan, deletePlan }) => {
 
    const navigate = useNavigate();
 
-   const choosePlan = (plan: IPlanDto) => navigate(`/plans/${ plan.id }`, { state: { plan } });
+   const choosePlan = (plan: PlanDto) => navigate(`/plans/${ plan.id }`, { state: { plan } });
 
 
    return (

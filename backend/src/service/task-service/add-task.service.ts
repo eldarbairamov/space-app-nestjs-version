@@ -1,8 +1,8 @@
 import { PlanRepository, TaskRepository } from "../../repository";
 import { taskPresenter } from "../../presenter/task.presenter";
-import { type ITaskDto } from "../../interface";
+import { TaskDto } from "../../dto/task.dto";
 
-export const addTaskService = async (userId: string, planId: string, title: string): Promise<Partial<ITaskDto>> => {
+export const addTaskService = async (userId: string, planId: string, title: string): Promise<Partial<TaskDto>> => {
 
    // Save task to DB
    const task = await TaskRepository.create({ ownerId: userId, planId, title });

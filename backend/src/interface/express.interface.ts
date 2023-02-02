@@ -5,12 +5,12 @@ export interface RequestWithBody<B> extends Request<{}, {}, B> {
    body: B;
 }
 
-export interface RequestWithBodyAndParams<B, P> extends Request<P, {}, B> {
+export interface RequestWithBodyAndParam<B, P> extends Request<P, {}, B> {
    body: B;
    params: P;
 }
 
-export interface RequestWithBodyAndCustomVar<B> extends Request<{}, {}, B> {
+export interface RequestWithBodyAndVar<B> extends Request<{}, {}, B> {
    body: B;
    user?: IUserDatabase;
    token?: string;
@@ -23,7 +23,7 @@ export interface RequestWithCustomVar extends Request {
    user?: IUserDatabase;
 }
 
-export interface RequestWithBodyVarParams<B, P> extends Request<P, {}, B> {
+export interface RequestWithBodyVarParam<B, P> extends Request<P, {}, B> {
    body: B;
    params: P;
    user?: IUserDatabase;
@@ -31,14 +31,14 @@ export interface RequestWithBodyVarParams<B, P> extends Request<P, {}, B> {
    userId?: string;
 }
 
-export interface RequestWithCustomVarAndParams<P> extends Request<P> {
+export interface RequestWithCustomVarAndParam<P> extends Request<P> {
    params: P,
    user?: IUserDatabase;
    token?: string;
    userId?: string;
 }
 
-export interface RequestWithParams<P> extends Request<P> {
+export interface RequestWithParam<P> extends Request<P> {
    params: P;
 }
 

@@ -8,6 +8,7 @@
          "./node_modules/@types",
          "./src/type"
       ],
+      "strictPropertyInitialization": false,
       "outDir": "./build",
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,

@@ -1,7 +1,7 @@
 import { ApiException } from "../../error/api.expception";
 import { ActionTokenRepository } from "../../repository";
 import { UserRepository } from "../../repository";
-import { passHasher } from "../../helper/pass-hasher";
+import { passHasher } from "../../helper";
 
 export const resetPasswordService = async (token: string, password: string) => {
 

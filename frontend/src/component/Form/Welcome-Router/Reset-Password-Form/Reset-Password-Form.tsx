@@ -4,16 +4,16 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { type IUserDto } from "../../../../interface";
 import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { resetFields, catchErrors } from "../../../../helper";
+import { UserDto } from "../../../../dto";
 
 import style from "./Reset-Password-Form.module.scss";
 
 export const ResetPasswordForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<IUserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<UserDto>>({
       resolver: joiResolver(resetPasswordValidator),
       mode: "onTouched",
    });
@@ -23,7 +23,7 @@ export const ResetPasswordForm: FC = () => {
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<IUserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
       const password = data.password;
       const repeatPassword = data.repeat_password;
 

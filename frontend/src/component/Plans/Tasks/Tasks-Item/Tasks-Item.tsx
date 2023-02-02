@@ -3,16 +3,16 @@ import React, { type FC } from "react";
 import { catchErrors } from "../../../../helper";
 import { taskService } from "../../../../services";
 import { DeleteOutlined } from "@ant-design/icons";
-import { type ITaskDto } from "../../../../interface";
+import { TaskDto } from "../../../../dto";
 
 import style from "./Tasks-Item.module.scss";
 import complete from "../../../../asset/complete.svg";
 import incomplete from "../../../../asset/incomplete.svg";
 
 interface ITasksItem {
-   task: ITaskDto;
-   tasks: ITaskDto[];
-   setTasks: React.Dispatch<React.SetStateAction<ITaskDto[]>>;
+   task: TaskDto;
+   tasks: TaskDto[];
+   setTasks: React.Dispatch<React.SetStateAction<TaskDto[]>>;
 }
 
 export const TasksItem: FC<ITasksItem> = ({ task, tasks, setTasks }) => {

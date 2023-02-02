@@ -1,11 +1,11 @@
-import { type IUserDto, type IUserInfoDto } from "../interface";
 import { axiosInstance } from "./axios.service";
 import { type AxiosResponse } from "axios";
 import { userRequests } from "../config/config";
+import { UserDto, UserInfoDto } from "../dto";
 
 export const userService = {
 
-   profileUpdate: async (dto: Partial<IUserDto>): Promise<AxiosResponse> => {
+   profileUpdate: async (dto: Partial<UserDto>): Promise<AxiosResponse> => {
       return axiosInstance.patch<{ message: string }>(userRequests.profileUpdate, dto);
    },
 
@@ -25,8 +25,8 @@ export const userService = {
       return axiosInstance.patch<{ message: string }>(userRequests.changePassword, resetPasswordDto);
    },
 
-   getUserInfo: async (): Promise<IUserInfoDto> => {
-      const { data } = await axiosInstance.get<IUserInfoDto>(userRequests.getUserInfo);
+   getUserInfo: async (): Promise<UserInfoDto> => {
+      const { data } = await axiosInstance.get<UserInfoDto>(userRequests.getUserInfo);
       return data;
    },
 

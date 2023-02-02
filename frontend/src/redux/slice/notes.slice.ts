@@ -1,13 +1,16 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { type INoteDto } from "../../interface";
 import { noteService } from "../../services";
 import { catchErrors } from "../../helper";
+import { NoteDto } from "../../dto/intex";
 
 interface INotesInitialState {
    activeNoteId: string | undefined,
-   notes: INoteDto[],
-   activeNote: INoteDto | undefined,
-   lastNote: INoteDto | undefined,
+
+   notes: NoteDto[],
+
+   activeNote: NoteDto | undefined,
+
+   lastNote: NoteDto | undefined,
    count: number,
    searchKey: string
 }
@@ -21,7 +24,8 @@ const initialState: INotesInitialState = {
    searchKey: "",
 };
 
-export const addNote = createAsyncThunk<INoteDto, void>(
+
+export const addNote = createAsyncThunk<NoteDto, void>(
    "notesSlice/getInitialNote",
    async (_, { rejectWithValue }) => {
       try {
@@ -34,7 +38,8 @@ export const addNote = createAsyncThunk<INoteDto, void>(
    },
 );
 
-export const getNotes = createAsyncThunk<INoteDto[], void>(
+
+export const getNotes = createAsyncThunk<NoteDto[], void>(
    "notesSlice/getNotes",
    async (_, { rejectWithValue }) => {
       try {
@@ -47,7 +52,8 @@ export const getNotes = createAsyncThunk<INoteDto[], void>(
    },
 );
 
-export const getNotesBySearch = createAsyncThunk<INoteDto[], { searchKey: string }>(
+
+export const getNotesBySearch = createAsyncThunk<NoteDto[], { searchKey: string }>(
    "notesSlice/getNotesBySearch",
    async ({ searchKey }, { rejectWithValue }) => {
       try {
@@ -80,7 +86,8 @@ const notesSlice = createSlice({
          state.activeNoteId = payload;
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       },
-      updateNote: (state, { payload }: PayloadAction<INoteDto>) => {
+
+      updateNote: (state, { payload }: PayloadAction<NoteDto>) => {
          state.notes = state.notes.map(note => {
             if (note.id === payload.id) return payload;
             return note;
@@ -88,7 +95,8 @@ const notesSlice = createSlice({
          state.activeNote = state.notes.find(({ id }) => id === payload.id)!;
          state.notes = state.notes.sort((a, b) => b.lastModified - a.lastModified);
       },
-      showDefaultNote: (state, { payload }: PayloadAction<INoteDto>) => {
+
+      showDefaultNote: (state, { payload }: PayloadAction<NoteDto>) => {
          state.activeNote = payload;
       },
       setSearchKey: (state, { payload }) => {

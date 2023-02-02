@@ -2,27 +2,27 @@ import expressAsyncHandler from "express-async-handler";
 import { type NextFunction, type Response } from "express";
 import { ApiException } from "../error/api.expception";
 import {
-   type IRegistrationDto,
    type IUserSchema,
    type RequestWithBody,
-   type RequestWithBodyAndCustomVar,
+   type RequestWithBodyAndVar,
    type RequestWithCustomVar,
 } from "../interface";
 import { OAuthRepository, UserRepository } from "../repository";
 import { authValidator } from "../validator";
 import { jwtVerifierService } from "../service";
 import { ACCESS_TOKEN_TYPE } from "../constant";
+import { RegistrationDto } from "../dto/registration.dto";
 
 export const authMiddleware = {
 
-   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<IRegistrationDto>, res: Response, next: NextFunction) => {
+   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<RegistrationDto>, res: Response, next: NextFunction) => {
       const validation = authValidator.validate(req.body);
       if (validation.error) throw new ApiException("Дані не валідні", 400);
 
       next();
    }),
 
-   isUserExists: expressAsyncHandler(async (req: RequestWithBodyAndCustomVar<IUserSchema>, res: Response, next: NextFunction) => {
+   isUserExists: expressAsyncHandler(async (req: RequestWithBodyAndVar<IUserSchema>, res: Response, next: NextFunction) => {
       const user = await UserRepository.findOne({ email: req.body.email });
       if (!user) throw new ApiException("Користувач не знайдений", 401);
 

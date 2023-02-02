@@ -1,8 +1,8 @@
 import { NoteRepository } from "../../repository";
 import { allNotesPresenter } from "../../presenter";
-import { type INoteDto } from "../../interface";
+import { NoteDto } from "../../dto/note.dto";
 
-export const getNotesBySearchService = async (searchKey: string, userId: string): Promise<INoteDto[]> => {
+export const getNotesBySearchService = async (searchKey: string, userId: string): Promise<NoteDto[]> => {
 
    // Search notes by search key
    const notesBySearchKey = await NoteRepository.find({

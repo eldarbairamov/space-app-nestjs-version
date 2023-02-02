@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "../../../../hook";
 
 import style from "./Notes-Sidebar.module.scss";
 import add from "../../../../asset/note.png";
-import { SearchOutlined } from "@ant-design/icons";
 
 export const NotesSidebar: FC = () => {
    const dispatch = useAppDispatch();

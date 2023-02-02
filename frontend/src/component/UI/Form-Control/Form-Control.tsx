@@ -3,9 +3,9 @@ import React, { FC, useState } from "react";
 import { motion } from "framer-motion";
 import { horizontalShakingVariant } from "../../../animation/horizontal-shaking.variant";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
-import { type IUserDto } from "../../../interface";
 import { type UseFormRegister } from "react-hook-form/dist/types/form";
 import { ValidationErrorToaster } from "../Validation-Error-Toaster/Validation-Error-Toaster";
+import { UserDto } from "../../../dto";
 
 import style from "./Form-Control.module.scss";
 
@@ -14,7 +14,7 @@ interface IInput {
    fieldName: "username" | "email" | "password" | "repeat_password" | "name" | "surname" | "current_password",
    errorMessage: string | undefined,
    isPassword: boolean
-   register: UseFormRegister<Partial<IUserDto>>,
+   register: UseFormRegister<Partial<UserDto>>,
 }
 
 export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, labelName, isPassword }) => {

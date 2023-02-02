@@ -1,8 +1,8 @@
 import Joi from "joi";
-import { type IUserInfoDto } from "../interface";
 import { onlyLettersRegex } from "../enum/regexp.enum";
+import { UserInfoDto } from "../dto";
 
-export const updateProfile = Joi.object<Partial<IUserInfoDto>>({
+export const updateProfile = Joi.object<Partial<UserInfoDto>>({
 
    username: Joi.string().trim().required().messages({
       "string.empty": "Поле неповинно залишитись пустим",
