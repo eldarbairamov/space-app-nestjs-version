@@ -1,10 +1,9 @@
 import { accessTokenPairGenerator } from "../token.service";
-import { ApiException } from "../../error/api.expception";
+import { ApiException } from "../../error/api.exception";
 import { type IUserDatabase } from "../../interface";
 import { OAuthRepository } from "../../repository";
 import { passComparer } from "../../helper";
-import { LoginDto } from "../../dto/login.dto";
-import { AccessDto } from "../../dto/access.dto";
+import { LoginDto, AccessDto } from "../../dto";
 
 export const loginService = async (loginDto: LoginDto, userFromDb: IUserDatabase): Promise<AccessDto> => {
 

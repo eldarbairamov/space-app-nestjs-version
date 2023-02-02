@@ -2,7 +2,7 @@ import expressAsyncHandler from "express-async-handler";
 import { type IUserSchema, type RequestWithBody, type RequestWithBodyAndVar } from "../interface";
 import { type NextFunction, type Response } from "express";
 import { emailValidator, updateProfileValidator } from "../validator";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import { UserRepository } from "../repository";
 
 export const userMiddleware = {

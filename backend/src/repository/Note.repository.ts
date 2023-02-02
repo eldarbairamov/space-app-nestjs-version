@@ -1,8 +1,8 @@
 import { type FilterQuery, type UpdateQuery } from "mongoose";
 import { type INoteDatabase, type INoteSchema } from "../interface";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import { NoteModel } from "../model";
-import { NoteDto } from "../dto/note.dto";
+import { NoteDto } from "../dto";
 
 export const NoteRepository = {
 

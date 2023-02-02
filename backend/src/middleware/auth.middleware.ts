@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { type NextFunction, type Response } from "express";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import {
    type IUserSchema,
    type RequestWithBody,
@@ -11,7 +11,7 @@ import { OAuthRepository, UserRepository } from "../repository";
 import { authValidator } from "../validator";
 import { jwtVerifierService } from "../service";
 import { ACCESS_TOKEN_TYPE } from "../constant";
-import { RegistrationDto } from "../dto/registration.dto";
+import { RegistrationDto } from "../dto";
 
 export const authMiddleware = {
 

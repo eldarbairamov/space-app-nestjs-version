@@ -1,11 +1,11 @@
 import expressAsyncHandler from "express-async-handler";
 import { type RequestWithBody, RequestWithParam } from "../interface";
 import { type NextFunction, type Response } from "express";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import { noteValidator } from "../validator";
 import { NoteRepository } from "../repository";
 import { Types } from "mongoose";
-import { NoteDto } from "../dto/note.dto";
+import { NoteDto } from "../dto";
 
 export const noteMiddleware = {
 

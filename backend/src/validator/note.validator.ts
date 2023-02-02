@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { NoteDto } from "../dto/note.dto";
+import { NoteDto } from "../dto";
 
 export const noteValidator = Joi.object<Partial<NoteDto>>({
 

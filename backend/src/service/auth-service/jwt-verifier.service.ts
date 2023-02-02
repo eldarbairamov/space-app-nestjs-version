@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken";
-import { ApiException } from "../../error/api.expception";
+import { ApiException } from "../../error/api.exception";
 import { config } from "../../config";
 import { ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE } from "../../constant";
 

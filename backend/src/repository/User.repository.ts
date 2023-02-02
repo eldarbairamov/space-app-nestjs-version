@@ -1,7 +1,7 @@
 import { UserModel } from "../model";
 import { type FilterQuery, type UpdateQuery } from "mongoose";
 import { type IUserDatabase, type IUserSchema } from "../interface";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 
 export const UserRepository = {
 

@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import { type IAccessTokenPair } from "../interface";
 import { config } from "../config";
 

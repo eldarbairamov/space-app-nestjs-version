@@ -13,7 +13,7 @@ import {
    resetPasswordService,
 } from "../service";
 import { OAuthRepository } from "../repository";
-import { AccessDto } from "../dto/access.dto";
+import { AccessDto } from "../dto";
 
 export const authController = {
 

@@ -8,7 +8,7 @@ import {
 } from "../interface";
 import { NoteRepository, UserRepository } from "../repository";
 import { getNotesBySearchService } from "../service";
-import { NoteDto } from "../dto/note.dto";
+import { NoteDto } from "../dto";
 
 export const notesController = {
 

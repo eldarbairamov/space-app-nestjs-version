@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 
 export const passHasher = async (dry: string) => {
    try {

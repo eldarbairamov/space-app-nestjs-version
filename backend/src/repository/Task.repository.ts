@@ -1,6 +1,6 @@
 import { type ITaskDatabase, type ITaskSchema } from "../interface";
 import { TaskModel } from "../model";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import { type FilterQuery, type UpdateQuery } from "mongoose";
 
 export const TaskRepository = {

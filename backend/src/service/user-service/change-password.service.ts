@@ -1,6 +1,6 @@
 import { UserRepository } from "../../repository";
 import bcrypt from "bcrypt";
-import { ApiException } from "../../error/api.expception";
+import { ApiException } from "../../error/api.exception";
 import { type HydratedDocument } from "mongoose";
 import { type IUserSchema } from "../../interface";
 

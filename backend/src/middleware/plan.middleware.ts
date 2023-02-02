@@ -1,7 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { type RequestWithParam } from "../interface";
 import { type NextFunction, type Response } from "express";
-import { ApiException } from "../error/api.expception";
+import { ApiException } from "../error/api.exception";
 import { PlanRepository } from "../repository";
 import { Types } from "mongoose";
 
