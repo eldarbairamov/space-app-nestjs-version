@@ -5,9 +5,11 @@ import { catchErrors, dateFormat } from "../../../helper";
 import { planService, taskService } from "../../../services";
 import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
 import { Toaster } from "react-hot-toast";
+import { type IPlan } from "../../../interface/plan.interface";
+import { type ITask } from "../../../interface/task.interface";
 
 import style from "./Tasks-Page.module.scss";
-import { PlanDto, TaskDto } from "../../../dto/intex";
+import { AddTaskDto } from "../../../dto/add-task.dto";
 
 export interface IInputFields {
    planTitle: string,
@@ -15,9 +17,10 @@ export interface IInputFields {
 }
 
 export const TasksPage: FC = () => {
-   const { plan } = useLocation().state as { plan: PlanDto };
+   const { plan } = useLocation().state as { plan: IPlan };
 
-   const [ tasks, setTasks ] = useState<TaskDto[]>([]);
+   const [ tasks, setTasks ] = useState<ITask[]>([]);
+
    const [ inputFields, setInputFields ] = useState<IInputFields>({ planTitle: plan.title, taskTitle: "" });
 
    const addTask = async (): Promise<void> => {
@@ -25,7 +28,9 @@ export const TasksPage: FC = () => {
          try {
             setInputFields({ ...inputFields, taskTitle: "" });
 
-            const { data } = await taskService.addTask(plan.id, inputFields.taskTitle);
+            const addTaskDto = { planId: plan.id, title: inputFields.taskTitle } as AddTaskDto;
+
+            const { data } = await taskService.addTask(addTaskDto);
 
             setTasks([ ...tasks, data ]);
 

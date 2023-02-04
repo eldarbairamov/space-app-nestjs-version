@@ -7,13 +7,13 @@ import toast from "react-hot-toast";
 import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
-import { resetFields, catchErrors } from "../../../../helper";
-import { UserDto } from "../../../../dto";
+import { catchErrors } from "../../../../helper";
+import { type IResetPasswordForm } from "../../../../interface/form.interface";
 
 import style from "./Reset-Password-Form.module.scss";
 
 export const ResetPasswordForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<UserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<IResetPasswordForm>({
       resolver: joiResolver(resetPasswordValidator),
       mode: "onTouched",
    });
@@ -23,13 +23,13 @@ export const ResetPasswordForm: FC = () => {
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<IResetPasswordForm> = async (data): Promise<void> => {
       const password = data.password;
       const repeatPassword = data.repeat_password;
 
       try {
          if ((password && resetPasswordToken) && (password === repeatPassword)) {
-            const loading = toast.loading("Зачекайте");
+            const loading = toast.loading("Зачекайте...");
 
             await authService.resetPassword(password, resetPasswordToken!);
 
@@ -37,12 +37,13 @@ export const ResetPasswordForm: FC = () => {
             toast.success("Вітаємо! У вас новий пароль.");
 
             setTimeout(() => {
-               resetFields(setValue);
+               setValue("password", "");
+               setValue("repeat_password", "");
                navigate("/login");
             }, 1500);
 
          } else {
-            toast.error("Паролі не співпадають");
+            toast.error("Паролі не співпадають.");
          }
 
       } catch (e) {

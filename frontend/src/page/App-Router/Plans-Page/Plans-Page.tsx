@@ -3,12 +3,13 @@ import { Toaster } from "react-hot-toast";
 import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
 import { planService } from "../../../services";
 import { catchErrors } from "../../../helper";
-import { PlanDto } from "../../../dto";
+import { type IPlan } from "../../../interface/plan.interface";
 
 import style from "./Plans-Page.module.scss";
 
 export const PlansPage: FC = () => {
-   const [ plans, setPlans ] = useState<PlanDto[]>([]);
+   const [ plans, setPlans ] = useState<IPlan[]>([]);
+
    const [ searchKey, setSearchKey ] = useState<string>("");
 
    const addPlan = async () => {

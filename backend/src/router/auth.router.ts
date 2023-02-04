@@ -8,7 +8,7 @@ export const authRouter = Router();
 authRouter.post(
    "/registration",
    commonMiddleware.isRequestEmpty,
-   authMiddleware.isRequestValid,
+   commonMiddleware.isRequestValid('auth'),
    authMiddleware.isEmailUnique,
    authController.registration
 );
@@ -18,7 +18,7 @@ authRouter.post(
    "/login",
    commonMiddleware.isRequestEmpty,
    authMiddleware.isUserExists,
-   authMiddleware.isRequestValid,
+   commonMiddleware.isRequestValid('auth'),
    authController.login,
 );
 

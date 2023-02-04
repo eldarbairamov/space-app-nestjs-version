@@ -17,16 +17,18 @@ export const ProfileSettingsPage: FC = () => {
    const filePicker = useRef(null);
 
    const navigate = useNavigate();
+
    const dispatch = useAppDispatch();
 
    const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-      const image = (event.target.files as FileList)[0];
-
-      const formData = new FormData();
-      formData.append("avatar", image);
-
       try {
+         const image = (event.target.files as FileList)[0];
+
+         const formData = new FormData();
+         formData.append("avatar", image);
+
          const imageName = await userService.uploadAvatar(formData);
+
          dispatch(userActions.setAvatar(imageName));
 
       } catch (e) {
@@ -42,6 +44,7 @@ export const ProfileSettingsPage: FC = () => {
    const deleteAvatar = async () => {
       try {
          await userService.deleteAvatar(avatar);
+
          dispatch(userActions.unsetAvatar());
 
       } catch (e) {

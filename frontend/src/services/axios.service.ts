@@ -26,12 +26,15 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
    (e) => {
       const axiosError = e as AxiosApiError;
 
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Токен невалідний") {
+      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Токен невалідний.") {
          storageService.deleteAccessToken();
          AppRouter.navigate("/", { state: { status: "need to login" } });
          AppRouter.navigate(0);
-         throw new Error("Токен не валідний");
       }
 
-      return Promise.reject(e)
+      if (axiosError.message === "Network Error") {
+         throw new Error("Непередбачена помилка.");
+      }
+
+      return Promise.reject(e);
    });

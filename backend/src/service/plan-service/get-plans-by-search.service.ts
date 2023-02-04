@@ -1,8 +1,8 @@
 import { PlanRepository } from "../../repository";
 import { allPlansPresenter } from "../../presenter";
-import { PlanDto } from "../../dto";
+import { PlanResponseDto } from "../../dto";
 
-export const getPlansBySearchService = async (searchKey: string, userId: string): Promise<PlanDto[]> => {
+export const getPlansBySearchService = async (searchKey: string, userId: string): Promise<PlanResponseDto[]> => {
 
    // Search plans by search key
    const plansBySearchKey = await PlanRepository.find({

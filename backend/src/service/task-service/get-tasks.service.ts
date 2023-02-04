@@ -1,9 +1,9 @@
 import { TaskRepository } from "../../repository";
-import { allTaskPresenter } from "../../presenter/task.presenter";
-import { TaskDto } from "../../dto/task.dto";
+import { allTaskPresenter } from "../../presenter";
+import { TaskResponseDto } from "../../dto";
 
 
-export const getTasksService = async (userId: string, planId: string): Promise<Partial<TaskDto>[]> => {
+export const getTasksService = async (userId: string, planId: string): Promise<Partial<TaskResponseDto>[]> => {
 
    // Find all tasks in DB
    const tasks = await TaskRepository.find({ ownerId: userId, planId });

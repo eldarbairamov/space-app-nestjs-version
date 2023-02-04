@@ -1,4 +1,9 @@
-export class UserInfoDto {
+export class ChangePasswordDto {
+   readonly newPassword: string;
+   readonly currentPassword: string;
+}
+
+export class UserInfoResponseDto {
    readonly userId: string;
    readonly name: string;
    readonly surname: string;

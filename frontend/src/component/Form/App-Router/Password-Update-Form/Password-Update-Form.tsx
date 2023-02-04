@@ -8,26 +8,26 @@ import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { userService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
 import { catchErrors } from "../../../../helper";
-import { UserDto } from "../../../../dto";
+import { type IUpdatePasswordForm } from "../../../../interface/form.interface";
 
 import style from "./Password-Update-Form.module.scss";
 
 export const PasswordUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Partial<UserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<IUpdatePasswordForm>({
       resolver: joiResolver(changePasswordValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<IUpdatePasswordForm> = async (data): Promise<void> => {
       const newPassword = data.password;
       const currentPassword = data.current_password;
       const repeatPassword = data.repeat_password;
 
       try {
-         if ((newPassword && currentPassword) && (newPassword === repeatPassword)) {
-            const loading = toast.loading("Зачекайте");
+         if (newPassword === repeatPassword) {
+            const loading = toast.loading("Зачекайте...");
 
             await userService.changePassword(newPassword, currentPassword);
 
@@ -36,11 +36,11 @@ export const PasswordUpdateForm: FC = () => {
             navigate("/change_password/message");
 
          } else {
-            toast.error("Паролі не співпадають");
+            toast.error("Паролі не співпадають.");
          }
 
       } catch (e) {
-         catchErrors(e)
+         catchErrors(e);
       }
    };
 

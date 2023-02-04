@@ -2,22 +2,21 @@ import expressAsyncHandler from "express-async-handler";
 import { type Response } from "express";
 import { addNoteService, getNotesService } from "../service";
 import {
-   type INoteSchema,
    type RequestWithBodyVarParam,
    type RequestWithCustomVar, type RequestWithCustomVarAndParam, RequestWithCustomVarAndQuery,
 } from "../interface";
 import { NoteRepository, UserRepository } from "../repository";
 import { getNotesBySearchService } from "../service";
-import { NoteDto } from "../dto";
+import { NoteResponseDto, NoteUpdateDto } from "../dto";
 
 export const notesController = {
 
-   addNote: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<NoteDto>) => {
+   addNote: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<NoteResponseDto>) => {
       const initialNoteDto = await addNoteService(req.userId!);
       res.json(initialNoteDto);
    }),
 
-   getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<NoteDto[]>) => {
+   getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<NoteResponseDto[]>) => {
       const notesDto = await getNotesService(req.userId!);
       res.json(notesDto);
    }),
@@ -27,7 +26,7 @@ export const notesController = {
       res.json(count);
    }),
 
-   saveNote: expressAsyncHandler(async (req: RequestWithBodyVarParam<Partial<INoteSchema>, { noteId: string }>, res: Response<{ message: string }>) => {
+   updateNote: expressAsyncHandler(async (req: RequestWithBodyVarParam<NoteUpdateDto, { noteId: string }>, res: Response<{ message: string }>) => {
       await NoteRepository.findByIdAndUpdate(req.params.noteId, req.body);
       res.json({ message: "Успішно" });
    }),
@@ -38,7 +37,7 @@ export const notesController = {
       res.json({ message: "Успішно" });
    })),
 
-   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<NoteDto[]>) => {
+   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<NoteResponseDto[]>) => {
       const notesBySearchDto = await getNotesBySearchService(req.query.searchKey, req.userId!);
       res.json(notesBySearchDto);
    }),

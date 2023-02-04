@@ -1,11 +1,11 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { NoteDto } from "../../dto";
+import { type INote } from "../../interface/note.interface";
 
 interface INotesInitialState {
    activeNoteId: string | null,
-   notes: NoteDto[],
-   activeNote: NoteDto | null,
-   lastNote: NoteDto | null,
+   notes: INote[],
+   activeNote: INote | null,
+   lastNote: INote | null,
    count: number,
    searchKey: string
 }
@@ -28,7 +28,7 @@ const notesSlice = createSlice({
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       },
 
-      updateNote: (state, { payload }: PayloadAction<NoteDto>) => {
+      updateNote: (state, { payload }: PayloadAction<INote>) => {
          state.notes = state.notes.map(note => {
             if (note.id === payload.id) return payload;
             return note;
@@ -37,26 +37,26 @@ const notesSlice = createSlice({
          state.notes = state.notes.sort((a, b) => b.lastModified - a.lastModified);
       },
 
-      showDefaultNote: (state, { payload }: PayloadAction<NoteDto>) => {
+      showDefaultNote: (state, { payload }: PayloadAction<INote>) => {
          state.activeNote = payload;
       },
-      setSearchKey: (state, { payload }) => {
+      setSearchKey: (state, { payload }: PayloadAction<string>) => {
          state.searchKey = payload;
       },
 
-      getNotes: (state, { payload }) => {
+      getNotes: (state, { payload }: PayloadAction<INote[]>) => {
          state.notes = payload;
          state.activeNote = payload[0];
       },
 
-      addNote: (state, { payload }) => {
+      addNote: (state, { payload }: PayloadAction<INote>) => {
          state.notes.push(payload);
          state.notes = state.notes.sort((a, b) => b.lastModified - a.lastModified);
          state.activeNoteId = payload.id;
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       },
 
-      deleteNote: (state, { payload }) => {
+      deleteNote: (state, { payload }: PayloadAction<string>) => {
          const targetId = payload;
          const targetNoteIndex = state.notes.findIndex(item => item.id === targetId);
 
@@ -65,9 +65,9 @@ const notesSlice = createSlice({
          state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
       },
 
-      getNotesBySearch: (state, {payload}) => {
+      getNotesBySearch: (state, { payload }: PayloadAction<INote[]>) => {
          state.notes = payload;
-      }
+      },
    },
 
 });

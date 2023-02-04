@@ -1,21 +1,34 @@
 import { axiosInstance, type AxiosRes } from "./axios.service";
 import { notesRequests } from "../config/config";
-import { NoteDto } from "../dto";
+import { GetNoteDto } from "../dto";
+import { UpdateNoteDto } from "../dto";
 
 export const noteService = {
 
-   addNote: async () => axiosInstance.get<NoteDto>(notesRequests.addNote),
+   addNote: async () => {
+      return axiosInstance.get<GetNoteDto>(notesRequests.addNote);
+   },
 
-   getNotes: async () => axiosInstance.get<NoteDto[]>(notesRequests.getNotes),
+   getNotes: async () => {
+      return axiosInstance.get<GetNoteDto[]>(notesRequests.getNotes);
+   },
 
-   getNotesCount: async (): AxiosRes<number> => axiosInstance.get<number>(notesRequests.getNotesCount),
+   getNotesCount: async (): AxiosRes<number> => {
+      return axiosInstance.get<number>(notesRequests.getNotesCount);
+   },
 
-   saveNote: async (note: Partial<NoteDto>, noteId: string): AxiosRes<void> => axiosInstance.put<void>(notesRequests.saveNote + noteId, note),
+   saveNote: async (dto: UpdateNoteDto, noteId: string): AxiosRes<void> => {
+      return axiosInstance.put<void>(notesRequests.saveNote + noteId, dto);
+   },
 
-   deleteNote: async (noteId: string): AxiosRes<void> => axiosInstance.delete<void>(notesRequests.deleteNote + noteId),
+   deleteNote: async (noteId: string): AxiosRes<void> => {
+      return axiosInstance.delete<void>(notesRequests.deleteNote + noteId);
+   },
 
-   getNotesBySearch: async (searchKey: string) => axiosInstance.get<NoteDto[]>(notesRequests.getNotesBySearch, {
-      params: { searchKey },
-   }),
+   getNotesBySearch: async (searchKey: string) => {
+      return axiosInstance.get<GetNoteDto[]>(notesRequests.getNotesBySearch, {
+         params: { searchKey },
+      });
+   },
 
 };

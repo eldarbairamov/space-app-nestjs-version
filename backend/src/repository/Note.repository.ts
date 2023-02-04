@@ -2,7 +2,7 @@ import { type FilterQuery, type UpdateQuery } from "mongoose";
 import { type INoteDatabase, type INoteSchema } from "../interface";
 import { ApiException } from "../exception/api.exception";
 import { NoteModel } from "../model";
-import { NoteDto } from "../dto";
+import { NoteResponseDto } from "../dto";
 
 export const NoteRepository = {
 
@@ -30,7 +30,7 @@ export const NoteRepository = {
       }
    },
 
-   findByIdAndUpdate: async (noteId: string, body: UpdateQuery<Partial<NoteDto>>): Promise<INoteDatabase | null> => {
+   findByIdAndUpdate: async (noteId: string, body: UpdateQuery<Partial<NoteResponseDto>>): Promise<INoteDatabase | null> => {
       try {
          return NoteModel.findByIdAndUpdate(noteId, body, { new: true });
       } catch (e) {

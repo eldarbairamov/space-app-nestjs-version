@@ -1,4 +1,4 @@
-export class UserInfoDto {
+export class GetUserInfoDto {
    readonly name: string;
    readonly surname: string;
    readonly username: string;

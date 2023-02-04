@@ -1,20 +1,11 @@
 import expressAsyncHandler from "express-async-handler";
-import { type RequestWithBody, RequestWithParam } from "../interface";
+import { RequestWithParam } from "../interface";
 import { type NextFunction, type Response } from "express";
 import { ApiException } from "../exception/api.exception";
-import { noteValidator } from "../validator";
 import { NoteRepository } from "../repository";
 import { Types } from "mongoose";
-import { NoteDto } from "../dto";
 
 export const noteMiddleware = {
-
-   isRequestValid: expressAsyncHandler(async (req: RequestWithBody<NoteDto>, res: Response, next: NextFunction) => {
-      const validation = noteValidator.validate(req.body);
-      if (validation.error) throw new ApiException("Дані не валідні", 400);
-
-      next();
-   }),
 
    isNoteExists: expressAsyncHandler(async (req: RequestWithParam<{ noteId: string }>, res: Response, next: NextFunction) => {
       const noteId = req.params.noteId;

@@ -3,19 +3,19 @@ import React, { type FC } from "react";
 import { catchErrors } from "../../../../helper";
 import { taskService } from "../../../../services";
 import { DeleteOutlined } from "@ant-design/icons";
-import { TaskDto } from "../../../../dto";
+import { type ITask } from "../../../../interface/task.interface";
 
 import style from "./Tasks-Item.module.scss";
 import complete from "../../../../asset/complete.svg";
 import incomplete from "../../../../asset/incomplete.svg";
 
 interface ITasksItem {
-   task: TaskDto;
-   tasks: TaskDto[];
-   setTasks: React.Dispatch<React.SetStateAction<TaskDto[]>>;
+   task: ITask;
+   tasks: ITask[];
+   setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
 
-export const TasksItem: FC<ITasksItem> = ({ task, tasks, setTasks }) => {
+export const TasksItem: FC<ITasksItem> = ({ task, tasks, setTasks}) => {
 
    const setTaskStatus = async (taskId: string): Promise<void> => {
       const tasksArrCopy = [ ...tasks ];
@@ -37,10 +37,14 @@ export const TasksItem: FC<ITasksItem> = ({ task, tasks, setTasks }) => {
 
    const deleteTask = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
       e.stopPropagation();
-      const updatedArr = tasks.filter(item => item.id !== task.id);
-      await taskService.deleteTask(task.id);
+      try {
+         const updatedArr = tasks.filter(item => item.id !== task.id);
+         await taskService.deleteTask(task.id, task.planId);
+         setTasks(updatedArr);
+      } catch (e) {
+         catchErrors(e);
+      }
 
-      setTasks(updatedArr);
    };
 
    return (

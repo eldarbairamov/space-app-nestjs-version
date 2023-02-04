@@ -8,28 +8,28 @@ import { emailValidator } from "../../../../validator/auth.validator";
 import { useNavigate } from "react-router-dom";
 import { userService } from "../../../../services";
 import { catchErrors } from "../../../../helper";
-import { UserDto } from "../../../../dto";
 
 import style from "./Email-Update-Form.module.scss";
 
 export const EmailUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Partial<UserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<{ email: string }>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<{ email: string }> = async (data): Promise<void> => {
       try {
          const loading = toast.loading("Зачекайте...");
 
          await userService.changeEmailRequest({ email: data.email! });
 
          toast.dismiss(loading);
-         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 6000 });
+         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту.", { duration: 6000 });
 
          setTimeout(() => {
+            setValue("email", "");
             navigate("/");
          }, 6000);
 

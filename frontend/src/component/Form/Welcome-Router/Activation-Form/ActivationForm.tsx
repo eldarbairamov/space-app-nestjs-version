@@ -18,12 +18,12 @@ export const ActivationForm: FC = () => {
       try {
          e.preventDefault();
 
-         const loading = toast.loading("Зачекайте");
+         const loading = toast.loading("Зачекайте...");
 
          await authService.accountActivation(value);
 
          toast.dismiss(loading);
-         toast.success('Ваш аккаунт активовано');
+         toast.success('Ваш аккаунт активовано.');
 
          setTimeout(() => {
             setValue("");

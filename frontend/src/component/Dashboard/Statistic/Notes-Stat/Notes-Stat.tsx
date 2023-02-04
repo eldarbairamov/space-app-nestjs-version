@@ -2,9 +2,9 @@ import React, { type FC, useEffect, useState } from "react";
 
 import { Divider } from "antd";
 import { noteService } from "../../../../services";
+import { catchErrors } from "../../../../helper";
 
 import style from "./Notes-Stat.module.scss";
-import { catchErrors } from "../../../../helper";
 
 export const NotesStat: FC = () => {
    const [count, setCount] = useState<number>()

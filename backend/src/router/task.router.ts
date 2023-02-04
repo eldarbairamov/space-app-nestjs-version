@@ -30,10 +30,11 @@ taskRouter.patch(
    taskController.updateTaskStatus,
 );
 
-// Delete task
-taskRouter.delete(
+// Send Plan ID and delete task
+taskRouter.post(
    "/:taskId",
    authMiddleware.isAccessTokenValid,
    taskMiddleware.isIdValid,
    taskMiddleware.isTaskExists,
-   taskController.deleteTask);
+   taskController.deleteTask
+);

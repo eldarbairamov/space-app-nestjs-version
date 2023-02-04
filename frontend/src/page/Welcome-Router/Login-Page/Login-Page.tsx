@@ -2,7 +2,7 @@ import React, { type FC, useEffect } from "react";
 
 import { LoginForm, WelcomeLogo } from "../../../component";
 import toast, { Toaster } from "react-hot-toast";
-import { useMatchMedia } from "../../../hook/use-match-media.hook";
+import { useMatchMedia } from "../../../hook";
 
 import style from "./Login-Page.module.scss";
 

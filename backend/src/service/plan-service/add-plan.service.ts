@@ -1,8 +1,8 @@
 import { PlanRepository, UserRepository } from "../../repository";
 import { planPresenter } from "../../presenter";
-import { PlanDto } from "../../dto";
+import { PlanResponseDto } from "../../dto";
 
-export const addPlanService = async (userId: string): Promise<PlanDto> => {
+export const addPlanService = async (userId: string): Promise<PlanResponseDto> => {
 
    // Save plan to DB
    const plan = await PlanRepository.create({ ownerId: userId });

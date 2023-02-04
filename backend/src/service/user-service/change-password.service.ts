@@ -11,13 +11,13 @@ export const changePasswordService = async (newPassword: string, currentPassword
 
    // Compare passwords
    const isPasswordSame = await bcrypt.compare(currentPassword, user?.password!);
-   if (!isPasswordSame) throw new ApiException("Поточний пароль не валідний", 400);
+   if (!isPasswordSame) throw new ApiException("Поточний пароль не валідний.", 400);
 
    // Hash password
    user!.password = await bcrypt
       .hash(newPassword, 8)
       .catch(() => {
-         throw new ApiException("Помилка при хешуванні паролю", 500);
+         throw new ApiException("Помилка при хешуванні паролю.", 500);
       });
 
    // Update user

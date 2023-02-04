@@ -7,30 +7,29 @@ import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { emailValidator } from "../../../../validator/auth.validator";
-import { resetFields, catchErrors } from "../../../../helper";
-import { UserDto } from "../../../../dto";
+import { catchErrors } from "../../../../helper";
 
 import style from "./ForgotPasswordForm.module.scss";
 
 export const ForgotPasswordForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<UserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<{ email: string }>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<{ email: string }> = async ({ email }): Promise<void> => {
       try {
-         const loading = toast.loading("Зачекайте");
+         const loading = toast.loading("Зачекайте...");
 
-         await authService.forgotPassword(data);
+         await authService.forgotPassword(email);
 
          toast.dismiss(loading);
-         toast.success("Лист із посиланням вже летить на вказану електронну пошту");
+         toast.success("Лист із посиланням вже летить на вказану електронну пошту.");
 
          setTimeout(() => {
-            resetFields(setValue);
+            setValue("email", "");
             navigate("/");
          }, 1500);
 
@@ -44,7 +43,7 @@ export const ForgotPasswordForm: FC = () => {
 
          {/* Message  */ }
          <p className={ style.message }>
-            Введіть адресу електронної пошти вашого аккаунту і ми пришлемо вам посилання на скидання пароля
+            Введіть адресу електронної пошти вашого аккаунту і ми пришлемо вам посилання на скидання пароля.
          </p>
 
          {/* Form control */ }

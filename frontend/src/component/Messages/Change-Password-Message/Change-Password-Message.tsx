@@ -19,7 +19,7 @@ export const ChangePasswordMessage: FC = () => {
    return (
       <div className={ style.ChangePasswordMessage }>
          <div className={ style.message }>
-            <p> Ви успішно оновили свій пароль </p>
+            <p> Ви успішно оновили свій пароль. </p>
          </div>
          <img src={ applause } alt="applause"/>
       </div>

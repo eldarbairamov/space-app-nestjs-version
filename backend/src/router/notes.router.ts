@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { notesController } from "../controller";
-import { authMiddleware, noteMiddleware } from "../middleware";
+import { authMiddleware, commonMiddleware, noteMiddleware } from "../middleware";
 
 export const notesRouter = Router();
 
@@ -31,8 +31,8 @@ notesRouter.put(
    authMiddleware.isAccessTokenValid,
    noteMiddleware.isIdValid,
    noteMiddleware.isNoteExists,
-   noteMiddleware.isRequestValid,
-   notesController.saveNote,
+   commonMiddleware.isRequestValid('note'),
+   notesController.updateNote,
 );
 
 // Delete note

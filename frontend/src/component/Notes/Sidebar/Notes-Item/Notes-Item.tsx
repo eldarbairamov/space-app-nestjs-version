@@ -4,13 +4,13 @@ import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
 import { catchErrors, dateFormat } from "../../../../helper";
-import { NoteDto } from "../../../../dto";
+import { noteService } from "../../../../services";
+import { type INote } from "../../../../interface/note.interface";
 
 import style from "./Notes-Item.module.scss";
-import { noteService } from "../../../../services";
 
 interface INotesItem {
-   note: NoteDto;
+   note: INote;
 }
 
 export const NotesItem: FC<INotesItem> = ({ note }) => {
@@ -18,13 +18,17 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
    const titleCondition = note.title && note.title.split("").length > 30;
 
    const dispatch = useAppDispatch();
+
    const { activeNote } = useAppSelector(state => state.notesReducer);
 
    const deleteNote = async (noteId: string, e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
-      e.stopPropagation();
       try {
+         e.stopPropagation();
+
          await noteService.deleteNote(noteId);
+
          dispatch(notesActions.deleteNote(noteId));
+
       } catch (e) {
          catchErrors(e);
       }

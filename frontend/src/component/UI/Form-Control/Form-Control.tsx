@@ -5,16 +5,15 @@ import { horizontalShakingVariant } from "../../../animation/horizontal-shaking.
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { type UseFormRegister } from "react-hook-form/dist/types/form";
 import { ValidationErrorToaster } from "../Validation-Error-Toaster/Validation-Error-Toaster";
-import { UserDto } from "../../../dto";
 
 import style from "./Form-Control.module.scss";
 
 interface IInput {
    labelName: string,
-   fieldName: "username" | "email" | "password" | "repeat_password" | "name" | "surname" | "current_password",
+   fieldName: string,
    errorMessage: string | undefined,
    isPassword: boolean
-   register: UseFormRegister<Partial<UserDto>>,
+   register: UseFormRegister<any>,
 }
 
 export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, labelName, isPassword }) => {

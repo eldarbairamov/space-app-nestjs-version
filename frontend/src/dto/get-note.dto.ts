@@ -1,6 +1,6 @@
-export class NoteDto {
+export class GetNoteDto {
    readonly id: string;
    readonly title: string;
    readonly body: string;
-   lastModified: number;
+   readonly lastModified: number;
 }

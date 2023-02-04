@@ -16,7 +16,7 @@ userRouter.get(
 userRouter.patch(
    "/profile_update",
    authMiddleware.isAccessTokenValid,
-   userMiddleware.isRequestValid,
+   commonMiddleware.isRequestValid("user"),
    userMiddleware.isChangesSame,
    userController.profileUpdate,
 );
@@ -52,7 +52,7 @@ userRouter.patch(
    userController.uploadAvatar,
 );
 
-// Delete avatar
+// Send image name and delete avatar
 userRouter.patch(
    "/avatar_delete",
    authMiddleware.isAccessTokenValid,

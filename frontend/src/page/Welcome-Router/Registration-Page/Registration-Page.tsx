@@ -1,7 +1,7 @@
 import React, { type FC } from "react";
 
 import { RegistrationForm, WelcomeLogo } from "../../../component";
-import { useMatchMedia } from "../../../hook/use-match-media.hook";
+import { useMatchMedia } from "../../../hook";
 
 import style from "./Registration-Page.module.scss";
 import { Toaster } from "react-hot-toast";

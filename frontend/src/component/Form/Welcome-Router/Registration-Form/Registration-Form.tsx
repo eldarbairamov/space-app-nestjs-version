@@ -7,36 +7,39 @@ import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { registrationValidator } from "../../../../validator/auth.validator";
-import { resetFields, catchErrors  } from "../../../../helper";
-import { UserDto } from "../../../../dto";
+import { catchErrors } from "../../../../helper";
+import { type IRegistrationForm } from "../../../../interface/form.interface";
 
 import style from "./Registration-Form.module.scss";
 
 export const RegistrationForm: FC = () => {
-      const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<UserDto>>({
+      const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<IRegistrationForm>({
          resolver: joiResolver(registrationValidator),
          mode: "onTouched",
       });
 
       const navigate = useNavigate();
 
-      const onSubmit: SubmitHandler<Partial<UserDto>> = async (data) => {
+      const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
          try {
             const loading = toast.loading("Зачекайте...");
             await authService.registration(data);
 
             toast.dismiss(loading);
-            toast.success(`Ви успішно зареєструвались. Посилання на активацію аккаунту вже летить на вказану електронну пошту`, {
-               duration: 5000,
-            });
+            toast.success(
+               `Ви успішно зареєструвались. Посилання на активацію аккаунту вже летить на вказану електронну пошту.`,
+               { duration: 5000 },
+            );
 
             setTimeout(() => {
-               resetFields(setValue);
+               setValue("username", "");
+               setValue("email", "");
+               setValue("password", "");
                navigate("/activation");
             }, 5000);
 
          } catch (e) {
-           catchErrors(e)
+            catchErrors(e);
          }
       };
 

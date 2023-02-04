@@ -8,13 +8,13 @@ import { updateProfile } from "../../../../validator/user.validator";
 import { userService } from "../../../../services";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { catchErrors } from "../../../../helper";
-import { UserDto } from "../../../../dto";
 import { userActions } from "../../../../redux/slice";
 
 import style from "./Profile-Update-Form.module.scss";
+import { type IUpdateProfileForm } from "../../../../interface/form.interface";
 
 export const ProfileUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors }, setValue } = useForm<Partial<UserDto>>({
+   const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateProfileForm>({
       resolver: joiResolver(updateProfile),
       mode: "onTouched",
    });
@@ -29,7 +29,7 @@ export const ProfileUpdateForm: FC = () => {
 
    }, [ username, name, surname ]);
 
-   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<IUpdateProfileForm> = async (data): Promise<void> => {
       try {
          const loading = toast.loading("Зачекайте...");
 
@@ -37,7 +37,7 @@ export const ProfileUpdateForm: FC = () => {
          dispatch(userActions.setInfo(result.data));
 
          toast.dismiss(loading);
-         toast.success("Ви успішно оновили профіль");
+         toast.success("Ви успішно оновили профіль.");
 
       } catch (e) {
          catchErrors(e);

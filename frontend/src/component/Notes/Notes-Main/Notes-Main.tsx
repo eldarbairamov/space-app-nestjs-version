@@ -4,34 +4,36 @@ import { useAppDispatch, useAppSelector } from "../../../hook";
 import { notesActions } from "../../../redux/slice";
 import { noteService } from "../../../services";
 import { catchErrors } from "../../../helper";
+import { UpdateNoteDto } from "../../../dto";
+import { type INote } from "../../../interface/note.interface";
 
 import style from "./Notes-Main.module.scss";
-import { NoteDto } from "../../../dto";
 
 export const NotesMain: FC = () => {
    const dispatch = useAppDispatch();
+
    const { activeNote, notes } = useAppSelector(state => state.notesReducer);
 
    useEffect(() => {
       dispatch(notesActions.showDefaultNote(notes[0]));
    }, []);
 
-   const onEditFields = (field: string, value: string) => {
+   const handleFields = (field: string, value: string) => {
       const updatedNote = {
          ...activeNote,
          [field]: value,
          lastModified: Date.now(),
-      } as NoteDto;
+      } as INote;
 
       dispatch(notesActions.updateNote(updatedNote));
    };
 
-   const saveNoteToDb = async () => {
+   const updateNote = async () => {
       try {
          const noteToSave = {
             title: activeNote?.title,
             body: activeNote?.body,
-         };
+         } as UpdateNoteDto;
 
          await noteService.saveNote(noteToSave, activeNote?.id!);
 
@@ -40,9 +42,7 @@ export const NotesMain: FC = () => {
       }
    };
 
-   if (!activeNote) {
-      return <div className={ style.no_any_notes }> Заміток немає </div>;
-   }
+   if (!activeNote) return <div className={ style.no_any_notes }> Заміток немає </div>;
 
    return (
       <div className={ style.Main }>
@@ -52,8 +52,8 @@ export const NotesMain: FC = () => {
                    id={ "title" }
                    value={ activeNote.title }
                    autoFocus
-                   onChange={ (e: ChangeEvent<HTMLInputElement>) => onEditFields("title", e.target.value) }
-                   onBlur={ saveNoteToDb }
+                   onChange={ (e: ChangeEvent<HTMLInputElement>) => handleFields("title", e.target.value) }
+                   onBlur={ updateNote }
             />
          </div>
 
@@ -61,8 +61,8 @@ export const NotesMain: FC = () => {
             <textarea id={ "body" }
                       value={ activeNote.body }
                       placeholder={ "Розкажи мені щось цікаве..." }
-                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => onEditFields("body", e.target.value) }
-                      onBlur={ saveNoteToDb }
+                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleFields("body", e.target.value) }
+                      onBlur={ updateNote }
             />
          </div>
 

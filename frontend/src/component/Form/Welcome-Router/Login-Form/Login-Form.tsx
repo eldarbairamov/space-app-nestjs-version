@@ -7,37 +7,38 @@ import { useNavigate } from "react-router-dom";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { loginValidator } from "../../../../validator/auth.validator";
-import { resetFields, catchErrors } from "../../../../helper";
-import { UserDto } from "../../../../dto";
+import { catchErrors } from "../../../../helper";
+import { type ILoginForm } from "../../../../interface/form.interface";
 
 import style from "./Login-Form.module.scss";
 
 export const LoginForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<Partial<UserDto>>({
+   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<ILoginForm>({
       resolver: joiResolver(loginValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<Partial<UserDto>> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<ILoginForm> = async (data): Promise<void> => {
       try {
          const loading = toast.loading("Зачекайте...");
 
          const username = await authService.login(data);
 
          toast.dismiss(loading);
-         toast.success(`Привіт, ${ username }`);
+         toast.success(`Привіт, ${ username }!`);
 
          setTimeout(() => {
-            resetFields(setValue);
+            setValue("email", "");
+            setValue("password", "");
             navigate(0);
          }, 1500);
 
       } catch (e) {
          const { response } = catchErrors(e);
 
-         if (response === "Активуйте аккаунт") {
+         if (response === "Активуйте аккаунт.") {
             setTimeout(() => {
                navigate("/activation");
             }, 2000);
