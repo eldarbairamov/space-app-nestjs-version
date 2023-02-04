@@ -2,8 +2,10 @@ import React, { type FC, useEffect } from "react";
 
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../../component";
-import { asyncAuthActions } from "../../redux/slice";
+import { userActions } from "../../redux/slice";
 import { useAppDispatch } from "../../hook";
+import { userService } from "../../services";
+import { catchErrors } from "../../helper";
 
 import style from "./Main-Layout.module.scss";
 
@@ -11,7 +13,10 @@ export const MainLayout: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(asyncAuthActions.getUserInfo());
+      userService
+         .getUser()
+         .then(res => dispatch(userActions.setInfo(res)))
+         .catch(e => catchErrors(e));
    }, []);
 
    return (

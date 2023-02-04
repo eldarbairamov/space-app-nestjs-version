@@ -20,15 +20,15 @@ export const EmailConfirmationMessage: FC = () => {
       const loading = toast.loading("Зачекайте...");
 
       userService.changeEmail(confirmationToken!)
-         .then(res => {
+         .then(() => {
             setStatus("valid");
             toast.dismiss(loading);
 
             setTimeout(() => {
                navigate("/login");
-            }, 5000);
+            }, 2000);
          })
-         .catch(err => {
+         .catch(() => {
             setStatus("invalid");
             toast.dismiss(loading);
 

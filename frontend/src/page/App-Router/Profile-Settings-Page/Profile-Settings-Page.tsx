@@ -1,22 +1,53 @@
-import React, { type FC, useEffect } from "react";
+import React, { type FC, useRef } from "react";
 
-import { CameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { Toaster } from "react-hot-toast";
+import { userActions } from "../../../redux/slice";
+import { config } from "../../../config/config";
+import { userService } from "../../../services";
+import { catchErrors } from "../../../helper";
 
 import style from "./Profile-Settings-Page.module.scss";
-import { asyncAuthActions } from "../../../redux/slice";
+import user from "../../../asset/user.png";
 
 export const ProfileSettingsPage: FC = () => {
+   const { username, name, surname, avatar } = useAppSelector(state => state.userReducer);
+
+   const filePicker = useRef(null);
+
    const navigate = useNavigate();
    const dispatch = useAppDispatch();
 
-   const { username, name, surname, avatar } = useAppSelector(state => state.authReducer);
+   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const image = (event.target.files as FileList)[0];
 
-   useEffect(() => {
-      dispatch(asyncAuthActions.getUserInfo());
-   }, [name, surname, avatar, surname]);
+      const formData = new FormData();
+      formData.append("avatar", image);
+
+      try {
+         const imageName = await userService.uploadAvatar(formData);
+         dispatch(userActions.setAvatar(imageName));
+
+      } catch (e) {
+         catchErrors(e);
+      }
+   };
+
+   const handlePick = () => {
+      // @ts-ignore
+      filePicker.current.click();
+   };
+
+   const deleteAvatar = async () => {
+      try {
+         await userService.deleteAvatar(avatar);
+         dispatch(userActions.unsetAvatar());
+
+      } catch (e) {
+         catchErrors(e);
+      }
+   };
 
    return (
       <div className={ style.ProfileSettingsPage }>
@@ -47,25 +78,26 @@ export const ProfileSettingsPage: FC = () => {
 
          {/* Left side */ }
          <div className={ style.left_side }>
-
             <div className={ style.avatar_block }>
                <div>
-                  { avatar && avatar }
-                  { !avatar && <UserOutlined style={ { fontSize: "150px" } }/> }
+                  { avatar &&
+                     <div className={ style.avatar }><img src={ config.SERVER_URL + avatar } alt="avatar"/></div> }
+                  { !avatar && <img className={ style.no_avatar } src={ user } alt="no avatar"/> }
                </div>
                <div className={ style.edit_avatar }>
-                  <p> Редагувати фото </p>
-                  <CameraOutlined/>
+                  <p onClick={ handlePick }> Змінити </p>
+                  { !!avatar && <p> | </p> }
+                  { !!avatar && <p onClick={ deleteAvatar }> Видалити </p> }
+                  <input ref={ filePicker } type="file" onChange={ handleChange }/>
                </div>
-               {/*<button> Зберегти</button>*/ }
             </div>
 
             <div className={ style.name_block }>
                <p className={ style.username }>
-                  { username }
+                  { username && username }
                </p>
                <p className={ style.fullname }>
-                  { (surname && name) && `${ surname } ${ name }` }
+                  { (surname && name) && `${ name } ${ surname }` }
                   { (name && !surname) && name }
                   { (surname && !name) && surname }
                </p>

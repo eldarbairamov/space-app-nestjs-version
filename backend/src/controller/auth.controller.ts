@@ -13,7 +13,7 @@ import {
    resetPasswordService,
 } from "../service";
 import { OAuthRepository } from "../repository";
-import { AccessDto } from "../dto";
+import { OAuthDto } from "../dto";
 
 export const authController = {
 
@@ -22,7 +22,7 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<AccessDto>) => {
+   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<OAuthDto>) => {
       const accessTokenPairDto = await loginService(req.body, req.user!);
       res.json(accessTokenPairDto);
    }),

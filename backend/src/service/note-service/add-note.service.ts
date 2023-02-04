@@ -1,6 +1,6 @@
 import { NoteRepository, UserRepository } from "../../repository";
 import { notePresenter } from "../../presenter";
-import { NoteDto } from "../../dto/note.dto";
+import { NoteDto } from "../../dto";
 
 export const addNoteService = async (userId: string): Promise<NoteDto> => {
 

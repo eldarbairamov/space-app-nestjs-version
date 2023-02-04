@@ -44,12 +44,22 @@ export const RegistrationForm: FC = () => {
          <form className={ style.RegistrationForm } onSubmit={ handleSubmit(onSubmit) }>
 
             {/* FormControlDate fields */ }
-            <FormControl labelName={ "Ім'я користувача" } fieldName={ "username" } register={ register }
+            <FormControl labelName={ "Ім'я користувача" }
+                         fieldName={ "username" }
+                         register={ register }
                          errorMessage={ errors.username?.message } isPassword={ false }/>
-            <FormControl labelName={ "Електронна пошта" } fieldName={ "email" } register={ register }
-                         errorMessage={ errors.email?.message } isPassword={ false }/>
-            <FormControl labelName={ "Пароль" } fieldName={ "password" } register={ register }
-                         errorMessage={ errors.password?.message } isPassword={ true }/>
+
+            <FormControl labelName={ "Електронна пошта" }
+                         fieldName={ "email" }
+                         register={ register }
+                         errorMessage={ errors.email?.message }
+                         isPassword={ false }/>
+
+            <FormControl labelName={ "Пароль" }
+                         fieldName={ "password" }
+                         register={ register }
+                         errorMessage={ errors.password?.message }
+                         isPassword={ true }/>
 
             {/* Submit button */ }
             <button disabled={ !isValid }> Зареєструватись</button>

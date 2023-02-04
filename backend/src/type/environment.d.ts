@@ -1,5 +1,6 @@
 import { type IUserDatabase } from "../interface";
 import { Secret } from "jsonwebtoken";
+import fileUpload from "express-fileupload";
 
 export {};
 
@@ -24,6 +25,7 @@ declare global {
          user?: IUserDatabase;
          token?: string;
          userId?: string;
+         files?: fileUpload.FileArray | null | undefined
       }
    }
 }

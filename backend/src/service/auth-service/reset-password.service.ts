@@ -1,4 +1,4 @@
-import { ApiException } from "../../error/api.exception";
+import { ApiException } from "../../exception/api.exception";
 import { ActionTokenRepository } from "../../repository";
 import { UserRepository } from "../../repository";
 import { passHasher } from "../../helper";

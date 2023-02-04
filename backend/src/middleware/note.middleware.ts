@@ -1,7 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { type RequestWithBody, RequestWithParam } from "../interface";
 import { type NextFunction, type Response } from "express";
-import { ApiException } from "../error/api.exception";
+import { ApiException } from "../exception/api.exception";
 import { noteValidator } from "../validator";
 import { NoteRepository } from "../repository";
 import { Types } from "mongoose";
@@ -26,7 +26,7 @@ export const noteMiddleware = {
       next();
    }),
 
-   isObjectIdValid: expressAsyncHandler(async (req: RequestWithParam<{ noteId: string }>, res: Response, next: NextFunction) => {
+   isIdValid: expressAsyncHandler(async (req: RequestWithParam<{ noteId: string }>, res: Response, next: NextFunction) => {
       const noteId = req.params.noteId;
 
       if (!Types.ObjectId.isValid(noteId)) throw ApiException.ObjectID();

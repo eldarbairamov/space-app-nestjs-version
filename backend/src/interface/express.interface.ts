@@ -1,5 +1,6 @@
 import { type Request } from "express";
 import { type IUserDatabase } from "./database.interface";
+import fileUpload from "express-fileupload";
 
 export interface RequestWithBody<B> extends Request<{}, {}, B> {
    body: B;
@@ -21,6 +22,7 @@ export interface RequestWithCustomVar extends Request {
    token?: string;
    userId?: string;
    user?: IUserDatabase;
+   files?: fileUpload.FileArray | null | undefined
 }
 
 export interface RequestWithBodyVarParam<B, P> extends Request<P, {}, B> {

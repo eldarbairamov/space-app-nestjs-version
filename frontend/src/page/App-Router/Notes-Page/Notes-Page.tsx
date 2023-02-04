@@ -2,8 +2,10 @@ import React, { type FC, useEffect } from "react";
 
 import { NotesMain, NotesSidebar } from "../../../component";
 import { useAppDispatch, useAppSelector } from "../../../hook";
-import { asyncNotesActions } from "../../../redux/slice";
+import { notesActions } from "../../../redux/slice";
 import { Toaster } from "react-hot-toast";
+import { noteService } from "../../../services";
+import { catchErrors } from "../../../helper";
 
 import style from "./Notes-Page.module.scss";
 
@@ -13,7 +15,12 @@ export const NotesPage: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      if (searchKey === "") dispatch(asyncNotesActions.getNotes());
+      if (searchKey === "") {
+         noteService
+            .getNotes()
+            .then(res => dispatch(notesActions.getNotes(res.data)))
+            .catch(e => catchErrors(e));
+      }
 
    }, [ searchKey ]);
 

@@ -1,6 +1,6 @@
 import { axiosInstance, type AxiosRes } from "./axios.service";
 import { notesRequests } from "../config/config";
-import { NoteDto } from "../dto/intex";
+import { NoteDto } from "../dto";
 
 export const noteService = {
 

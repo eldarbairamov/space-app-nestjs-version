@@ -7,7 +7,7 @@ import {
 import { type Response } from "express";
 import { addPlanService, getPlansService, getPlansBySearchService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
-import { PlanDto } from "../dto/plan.dto";
+import { PlanDto } from "../dto";
 
 export const planController = {
 
@@ -28,7 +28,7 @@ export const planController = {
 
    deletePlan: expressAsyncHandler(async (req: RequestWithCustomVarAndParam<{ planId: string }>, res: Response<{ message: string }>) => {
       await PlanRepository.findByIdAndDelete(req.params.planId);
-      await UserRepository.findByIdAndUpdate(req.userId!, { $pull: { notesIds: req.params.planId } });
+      await UserRepository.findByIdAndUpdate(req.userId!, { $pull: { plansIds: req.params.planId } });
       res.json({ message: "Успішно" });
    }),
 

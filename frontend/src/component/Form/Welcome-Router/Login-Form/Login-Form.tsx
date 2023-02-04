@@ -49,10 +49,17 @@ export const LoginForm: FC = () => {
       <form className={ style.LoginForm } onSubmit={ handleSubmit(onSubmit) }>
 
          {/* Form controls */ }
-         <FormControl labelName={ "Електронна пошта" } fieldName={ "email" } register={ register }
-                      errorMessage={ errors.email?.message } isPassword={ false }/>
-         <FormControl labelName={ "Пароль" } fieldName={ "password" } register={ register }
-                      errorMessage={ errors.password?.message } isPassword={ true }/>
+         <FormControl labelName={ "Електронна пошта" }
+                      fieldName={ "email" }
+                      register={ register }
+                      errorMessage={ errors.email?.message }
+                      isPassword={ false }/>
+
+         <FormControl labelName={ "Пароль" }
+                      fieldName={ "password" }
+                      register={ register }
+                      errorMessage={ errors.password?.message }
+                      isPassword={ true }/>
 
          {/* Submit button*/ }
          <button disabled={ !isValid }> Увійти</button>

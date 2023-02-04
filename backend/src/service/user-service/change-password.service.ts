@@ -1,10 +1,10 @@
 import { UserRepository } from "../../repository";
 import bcrypt from "bcrypt";
-import { ApiException } from "../../error/api.exception";
+import { ApiException } from "../../exception/api.exception";
 import { type HydratedDocument } from "mongoose";
 import { type IUserSchema } from "../../interface";
 
-export const changePasswordService = async (newPassword: string, currentPassword: string, userId: string) => {
+export const changePasswordService = async (newPassword: string, currentPassword: string, userId: string): Promise<void> => {
 
    // Find user in DB
    const user = await UserRepository.findOne({ _id: userId }) as HydratedDocument<IUserSchema> | null;

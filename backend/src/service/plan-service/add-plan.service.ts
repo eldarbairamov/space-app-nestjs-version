@@ -1,6 +1,6 @@
 import { PlanRepository, UserRepository } from "../../repository";
-import { planPresenter } from "../../presenter/plan.presenter";
-import { PlanDto } from "../../dto/plan.dto";
+import { planPresenter } from "../../presenter";
+import { PlanDto } from "../../dto";
 
 export const addPlanService = async (userId: string): Promise<PlanDto> => {
 

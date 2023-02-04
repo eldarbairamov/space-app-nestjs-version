@@ -1,7 +1,7 @@
 import { type FilterQuery } from "mongoose";
 import { type IActionTokenDatabase, type IActionTokenSchema } from "../interface";
 import { ActionTokenModel } from "../model";
-import { ApiException } from "../error/api.exception";
+import { ApiException } from "../exception/api.exception";
 
 export const ActionTokenRepository = {
 

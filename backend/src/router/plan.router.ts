@@ -30,7 +30,7 @@ planRouter.get(
 planRouter.put(
    "/:planId",
    authMiddleware.isAccessTokenValid,
-   planMiddleware.isObjectIdValid,
+   planMiddleware.isIdValid,
    planMiddleware.isPlanExists,
    commonMiddleware.isRequestEmpty,
    planController.updatePlan,
@@ -40,7 +40,7 @@ planRouter.put(
 planRouter.delete(
    "/:planId",
    authMiddleware.isAccessTokenValid,
-   planMiddleware.isObjectIdValid,
+   planMiddleware.isIdValid,
    planMiddleware.isPlanExists,
    planController.deletePlan,
 );

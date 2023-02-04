@@ -3,7 +3,7 @@ export * from "./auth-service/login.service";
 export * from "./auth-service/registration.service";
 export * from "./auth-service/forgot-password.service";
 export * from "./auth-service/reset-password.service";
-export * from "./auth-service/jwt-verifier.service";
+export * from "./auth-service/jwt-verify.service";
 
 export * from "./note-service/get-notes.service";
 export * from "./note-service/add-note.service";

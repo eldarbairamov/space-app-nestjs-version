@@ -12,7 +12,7 @@ export const ChangePasswordMessage: FC = () => {
 
       setTimeout(() => {
          navigate("/");
-      }, 5000);
+      }, 2000);
 
    }, []);
 

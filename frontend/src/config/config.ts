@@ -1,13 +1,16 @@
 export const config = {
    API_URL: import.meta.env.VITE_API_URL,
+   SERVER_URL: import.meta.env.VITE_SERVER_URL,
 };
 
 export const userRequests = {
    profileUpdate: "/user/profile_update",
-   changeEmailRequest: "/user/email_change",
-   changeEmail: "/user/email_new",
+   changeEmail: "/user/email_change",
+   changeEmailAccept: "/user/email_new",
    changePassword: "/user/password_new",
-   getUserInfo: "/user/get_info",
+   getUser: "/user/get_user",
+   uploadAvatar: "/user/avatar_upload",
+   deleteAvatar: "/user/avatar_delete",
 };
 
 export const notesRequests = {

@@ -2,11 +2,13 @@ import React, { type FC, useState } from "react";
 
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";
-import { asyncNotesActions, notesActions } from "../../../../redux/slice";
+import { notesActions } from "../../../../redux/slice";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 
 import style from "./Notes-Sidebar.module.scss";
 import add from "../../../../asset/note.png";
+import { noteService } from "../../../../services";
+import { catchErrors } from "../../../../helper";
 
 export const NotesSidebar: FC = () => {
    const dispatch = useAppDispatch();
@@ -14,14 +16,23 @@ export const NotesSidebar: FC = () => {
 
    const [ value, setValue ] = useState<string>("");
 
-   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const handleInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
+
       dispatch(notesActions.setSearchKey(e.target.value));
-      dispatch(asyncNotesActions.getNotesBySearch({ searchKey: e.target.value }));
+      try {
+         const { data } = await noteService.getNotesBySearch(e.target.value);
+         dispatch(notesActions.getNotesBySearch(data));
+      } catch (e) {
+         catchErrors(e);
+      }
    };
 
    const addNote = () => {
-      dispatch(asyncNotesActions.addNote());
+      noteService
+         .addNote()
+         .then(res => dispatch(notesActions.addNote(res.data)))
+         .catch(e => catchErrors(e));
    };
 
    return (

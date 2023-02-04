@@ -1,6 +1,6 @@
 import * as nodemailer from "nodemailer";
 import { config } from "../config";
-import { ApiException } from "../error/api.exception";
+import { ApiException } from "../exception/api.exception";
 
 export const emailSender = async (to: string, subject: string, message: string = "") => {
 

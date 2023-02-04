@@ -42,8 +42,11 @@ export const EmailUpdateForm: FC = () => {
       <form className={ style.EmailUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
 
          {/* Form controls */ }
-         <FormControl labelName={ "Введіть нову адресу електронної пошти" } fieldName={ "email" } register={ register }
-                      errorMessage={ errors.email?.message } isPassword={ false }/>
+         <FormControl labelName={ "Введіть нову адресу електронної пошти" }
+                      fieldName={ "email" }
+                      register={ register }
+                      errorMessage={ errors.email?.message }
+                      isPassword={ false }/>
 
          {/* Submit button */ }
          <button disabled={ !isValid }> Зберегти</button>

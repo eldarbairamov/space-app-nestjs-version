@@ -36,7 +36,7 @@ authRouter.post(
 );
 
 // Reset password
-authRouter.post(
+authRouter.patch(
    "/password_reset",
    authController.resetPassword,
 );

@@ -1,7 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { type RequestWithParam } from "../interface";
 import { type NextFunction, type Response } from "express";
-import { ApiException } from "../error/api.exception";
+import { ApiException } from "../exception/api.exception";
 import { PlanRepository } from "../repository";
 import { Types } from "mongoose";
 
@@ -17,7 +17,7 @@ export const planMiddleware = {
       next();
    }),
 
-   isObjectIdValid: expressAsyncHandler(async (req: RequestWithParam<{ planId: string }>, res: Response, next: NextFunction) => {
+   isIdValid: expressAsyncHandler(async (req: RequestWithParam<{ planId: string }>, res: Response, next: NextFunction) => {
       const planId = req.params.planId;
 
       if (!Types.ObjectId.isValid(planId)) throw ApiException.ObjectID();

@@ -1,12 +1,13 @@
 import React, { type FC } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../../hook";
-import { asyncNotesActions, notesActions } from "../../../../redux/slice";
+import { notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
-import { dateFormat } from "../../../../helper";
+import { catchErrors, dateFormat } from "../../../../helper";
 import { NoteDto } from "../../../../dto";
 
 import style from "./Notes-Item.module.scss";
+import { noteService } from "../../../../services";
 
 interface INotesItem {
    note: NoteDto;
@@ -19,17 +20,22 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
    const dispatch = useAppDispatch();
    const { activeNote } = useAppSelector(state => state.notesReducer);
 
-   const deleteNote = (noteId: string, e: React.MouseEvent<HTMLParagraphElement>): void => {
+   const deleteNote = async (noteId: string, e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
       e.stopPropagation();
-      dispatch(asyncNotesActions.deleteNote({ noteId }));
+      try {
+         await noteService.deleteNote(noteId);
+         dispatch(notesActions.deleteNote(noteId));
+      } catch (e) {
+         catchErrors(e);
+      }
    };
 
    const formatDate = dateFormat(note.lastModified);
 
    return (
       <div className={ style.NotesItem }
-                  onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
-                  data-active={ note.id === activeNote?.id }
+           onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
+           data-active={ note.id === activeNote?.id }
       >
 
          <p className={ style.title }> { titleCondition ? note.title.substring(0, 30) + "..." : note.title } </p>

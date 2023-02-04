@@ -24,7 +24,7 @@ taskRouter.post(
 taskRouter.patch(
    "/:taskId",
    authMiddleware.isAccessTokenValid,
-   taskMiddleware.isObjectIdValid,
+   taskMiddleware.isIdValid,
    taskMiddleware.isTaskExists,
    commonMiddleware.isRequestEmpty,
    taskController.updateTaskStatus,
@@ -34,6 +34,6 @@ taskRouter.patch(
 taskRouter.delete(
    "/:taskId",
    authMiddleware.isAccessTokenValid,
-   taskMiddleware.isObjectIdValid,
+   taskMiddleware.isIdValid,
    taskMiddleware.isTaskExists,
    taskController.deleteTask);

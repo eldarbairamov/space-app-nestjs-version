@@ -1,11 +1,11 @@
 import { accessTokenPairGenerator } from "../token.service";
-import { ApiException } from "../../error/api.exception";
+import { ApiException } from "../../exception/api.exception";
 import { type IUserDatabase } from "../../interface";
 import { OAuthRepository } from "../../repository";
 import { passComparer } from "../../helper";
-import { LoginDto, AccessDto } from "../../dto";
+import { LoginDto, OAuthDto } from "../../dto";
 
-export const loginService = async (loginDto: LoginDto, userFromDb: IUserDatabase): Promise<AccessDto> => {
+export const loginService = async (loginDto: LoginDto, userFromDb: IUserDatabase): Promise<OAuthDto> => {
 
    // Check is user activated
    if (!userFromDb.isActivated) throw new ApiException("Активуйте аккаунт", 403);
@@ -24,6 +24,7 @@ export const loginService = async (loginDto: LoginDto, userFromDb: IUserDatabase
    });
 
    // Return presented data to client
-   return { username: userFromDb.username, ...accessTokenPair };
+   return { username: userFromDb.username, ...accessTokenPair
+   };
 
 };

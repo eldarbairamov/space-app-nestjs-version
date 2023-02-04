@@ -4,26 +4,30 @@ import { type IUserSchema } from "../interface";
 
 export const updateProfileValidator = Joi.object<Partial<IUserSchema>>({
 
-   username: Joi.string().trim().required().messages({
-      "string.empty": "Поле неповинно залишитись пустим",
+   username: Joi.string().trim().messages({
+      "string.base": "Ім'я користувача: Недопустимий формат",
    }),
 
    name: Joi.string().pattern(ONLY_LETTERS_REGEXP).trim().optional().allow(null, "").messages({
-      "string.pattern.base": "Тільки букви",
+      "string.pattern.base": "Ім'я: Недопустимий формат. Тільки букви.",
    }),
 
    surname: Joi.string().pattern(ONLY_LETTERS_REGEXP).trim().optional().allow(null, "").messages({
-      "string.pattern.base": "Тільки букви",
+      "string.pattern.base": "Фамілія: Недопустимий формат. Тільки букви.",
    }),
+
+   avatar: Joi.string().optional().allow(null, '').messages({
+      "string.base": "Аватар: Недопустимий формат. Тільки букви.",
+   })
 
 });
 
 export const emailValidator = Joi.object<{ email: string }>({
 
    email: Joi.string().pattern(EMAIL_REGEXP).required().trim().messages({
-      "string.pattern.base": "Не валідна електронна пошта",
-      "string.empty": "Поле неповинно залишитись пустим",
-      "any.required": "Поле обов'язкове для заповнення",
+      "string.pattern.base": "Електронна пошта: Недопустимий формат",
+      "string.empty": "Електронна пошта: Поле неповинно залишитись пустим",
+      "any.required": "Електронна пошта: Поле обов'язкове для заповнення",
    }),
 
 });

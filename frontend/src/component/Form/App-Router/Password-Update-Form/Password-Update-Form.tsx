@@ -26,10 +26,10 @@ export const PasswordUpdateForm: FC = () => {
       const repeatPassword = data.repeat_password;
 
       try {
-         if (newPassword === repeatPassword) {
+         if ((newPassword && currentPassword) && (newPassword === repeatPassword)) {
             const loading = toast.loading("Зачекайте");
 
-            await userService.changePassword(newPassword!, currentPassword!);
+            await userService.changePassword(newPassword, currentPassword);
 
             toast.dismiss(loading);
 
@@ -48,16 +48,25 @@ export const PasswordUpdateForm: FC = () => {
       <form className={ style.PasswordUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
 
          {/* Form controls */ }
-         <FormControl labelName={ "Введіть ваш поточний пароль" } fieldName={ "current_password" } register={ register }
-                      errorMessage={ errors.current_password?.message } isPassword={ true }
+         <FormControl labelName={ "Введіть ваш поточний пароль" }
+                      fieldName={ "current_password" }
+                      register={ register }
+                      errorMessage={ errors.current_password?.message }
+                      isPassword={ true }
          />
 
-         <FormControl labelName={ "Введіть ваш новий пароль" } fieldName={ "password" } register={ register }
-                      errorMessage={ errors.password?.message } isPassword={ true }
+         <FormControl labelName={ "Введіть ваш новий пароль" }
+                      fieldName={ "password" }
+                      register={ register }
+                      errorMessage={ errors.password?.message }
+                      isPassword={ true }
          />
 
-         <FormControl labelName={ "Введіть пароль ще раз" } fieldName={ "repeat_password" } register={ register }
-                      errorMessage={ errors.repeat_password?.message } isPassword={ true }
+         <FormControl labelName={ "Введіть пароль ще раз" }
+                      fieldName={ "repeat_password" }
+                      register={ register }
+                      errorMessage={ errors.repeat_password?.message }
+                      isPassword={ true }
          />
 
          {/* Submit button */ }

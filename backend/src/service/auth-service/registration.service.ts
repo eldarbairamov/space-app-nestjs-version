@@ -3,7 +3,7 @@ import { emailSender } from "../email.service";
 import { UserRepository, ActionTokenRepository } from "../../repository";
 import { passHasher } from "../../helper";
 import { ACCOUNT_ACTIVATION_SUBJECT, ACTIVATION_TOKEN_TYPE } from "../../constant";
-import { RegistrationDto } from "../../dto/registration.dto";
+import { RegistrationDto } from "../../dto";
 
 export const registrationService = async (registrationDto: RegistrationDto) => {
 

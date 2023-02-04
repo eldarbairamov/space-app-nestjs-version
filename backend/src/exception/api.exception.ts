@@ -18,7 +18,7 @@ export class ApiException extends Error {
    }
 
    static ObjectID() {
-      return new ApiException("Не валідний ObjectID", 400);
+      return new ApiException("Невалідний ID", 400);
    }
 
 }

@@ -6,7 +6,7 @@ import {
    type RequestWithParam,
 } from "../interface";
 import { TaskRepository } from "../repository";
-import { TaskDto } from "../dto/task.dto";
+import { TaskDto } from "../dto";
 
 export const taskController = {
 

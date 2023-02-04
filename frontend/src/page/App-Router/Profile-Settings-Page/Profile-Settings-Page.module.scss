@@ -21,8 +21,6 @@
    .left_side {
       @extend %flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 50px;
       position: relative;
 
       min-width: 500px;
@@ -32,57 +30,76 @@
       background: white;
       border-radius: 15px;
 
-      .username {
-         font-size: 35px;
-         font-weight: bold;
-         color: #df8281;
-      }
-
       .avatar_block {
          @extend %flex;
          flex-direction: column;
          justify-content: center;
-         gap: 10px;
+         gap: 20px;
 
-         p {
-            font-size: 15px;
+         margin-top: 50px;
+         width: 100%;
+         height: 50%;
+
+         .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            img {
+               width: 300px;
+            }
          }
 
-         button {
-            margin-top: 15px;
-            font-size: 15px;
-            padding: 5px 15px;
-            border: none;
+         .no_avatar {
+            width: 200px;
+         }
+
+         .edit_avatar {
+            display: flex;
+            gap: 10px;
             cursor: pointer;
-            background: #24292e;
-            color: white;
-            border-radius: 5px;
 
-            &:hover {
-               background: #3D8DAE;
+            p {
+               font-size: 15px;
+               color: #7d7d7d;
+
+               &:hover {
+                  color: #4e4e51;
+               }
+            }
+
+            input {
+               display: none;
+               //opacity: 0;
+               //height: 0;
+               //width: 0;
+               //line-height: 0;
+               //overflow: hidden;
+               //padding: 0;
+               //margin: 0;
             }
          }
-
-         p {
-            color: #7d7d7d;
-
-            &:hover {
-               color: #4e4e51;
-            }
-         }
-      }
-
-      .edit_avatar {
-         display: flex;
-         gap: 10px;
-         cursor: pointer;
       }
 
       .name_block {
          @extend %flex_cl_c;
+         width: 100%;
+         height: 40%;
          gap: 15px;
 
+         margin-top: 20px;
          margin-bottom: 150px;
+
+         .username {
+            font-size: 35px;
+            font-weight: bold;
+            color: #df8281;
+         }
 
          .fullname {
             font-weight: bold;
@@ -119,6 +136,7 @@
 
 @media screen and (max-height: 800px) {
    .ProfileSettingsPage {
+      align-items: baseline;
       height: 900px;
    }
 }
@@ -126,8 +144,9 @@
 @media screen and (max-width: 1300px) {
    .ProfileSettingsPage {
       flex-direction: column;
+      align-items: center;
 
-      margin-top: 50px;
+      margin-top: 100px;
       margin-bottom: 50px;
    }
 }

@@ -34,7 +34,7 @@ export const authService = {
    resetPassword: async (password: string, resetPasswordToken: string): Promise<AxiosResponse> => {
       const forgotPasswordDto = { resetPasswordToken, password };
 
-      return axiosInstance.post(authRequests.resetPassword, forgotPasswordDto);
+      return axiosInstance.patch(authRequests.resetPassword, forgotPasswordDto);
    },
 
    logout: async () => {

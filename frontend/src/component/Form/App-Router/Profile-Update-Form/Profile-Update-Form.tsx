@@ -6,9 +6,10 @@ import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { updateProfile } from "../../../../validator/user.validator";
 import { userService } from "../../../../services";
-import { useAppSelector } from "../../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { catchErrors } from "../../../../helper";
 import { UserDto } from "../../../../dto";
+import { userActions } from "../../../../redux/slice";
 
 import style from "./Profile-Update-Form.module.scss";
 
@@ -18,7 +19,8 @@ export const ProfileUpdateForm: FC = () => {
       mode: "onTouched",
    });
 
-   const { username, name, surname } = useAppSelector(state => state.authReducer);
+   const { username, name, surname } = useAppSelector(state => state.userReducer);
+   const dispatch = useAppDispatch();
 
    useEffect(() => {
       setValue("username", username);
@@ -31,7 +33,8 @@ export const ProfileUpdateForm: FC = () => {
       try {
          const loading = toast.loading("Зачекайте...");
 
-         await userService.profileUpdate(data);
+         const result = await userService.profileUpdate(data);
+         dispatch(userActions.setInfo(result.data));
 
          toast.dismiss(loading);
          toast.success("Ви успішно оновили профіль");
@@ -45,14 +48,22 @@ export const ProfileUpdateForm: FC = () => {
       <form className={ style.ProfileUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
 
          {/* Form controls */ }
-         <FormControl labelName={ "Ім'я користувача" } fieldName={ "username" }
-                      errorMessage={ errors.username?.message } isPassword={ false }
+         <FormControl labelName={ "Ім'я користувача" }
+                      fieldName={ "username" }
+                      errorMessage={ errors.username?.message }
+                      isPassword={ false }
                       register={ register }/>
-         <FormControl labelName={ "Ім'я" } fieldName={ "name" }
-                      errorMessage={ errors.name?.message } isPassword={ false }
+
+         <FormControl labelName={ "Ім'я" }
+                      fieldName={ "name" }
+                      errorMessage={ errors.name?.message }
+                      isPassword={ false }
                       register={ register }/>
-         <FormControl labelName={ "Фамілія" } fieldName={ "surname" }
-                      errorMessage={ errors.surname?.message } isPassword={ false }
+
+         <FormControl labelName={ "Фамілія" }
+                      fieldName={ "surname" }
+                      errorMessage={ errors.surname?.message }
+                      isPassword={ false }
                       register={ register }/>
 
          {/* Submit button */ }

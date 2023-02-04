@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { type NextFunction, type Response } from "express";
-import { ApiException } from "../error/api.exception";
+import { ApiException } from "../exception/api.exception";
 import {
    type IUserSchema,
    type RequestWithBody,
@@ -9,7 +9,7 @@ import {
 } from "../interface";
 import { OAuthRepository, UserRepository } from "../repository";
 import { authValidator } from "../validator";
-import { jwtVerifierService } from "../service";
+import { jwtVerifyService } from "../service";
 import { ACCESS_TOKEN_TYPE } from "../constant";
 import { RegistrationDto } from "../dto";
 
@@ -45,7 +45,7 @@ export const authMiddleware = {
       const isAccessTokenExists = await OAuthRepository.findOne({ accessToken: token });
       if (!isAccessTokenExists) throw new ApiException("Токен невалідний", 401);
 
-      req.userId = jwtVerifierService(token, ACCESS_TOKEN_TYPE);
+      req.userId = jwtVerifyService(token, ACCESS_TOKEN_TYPE);
       req.token = token;
 
       next();
