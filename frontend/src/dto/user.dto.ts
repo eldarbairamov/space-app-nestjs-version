@@ -5,3 +5,9 @@ export class GetUserInfoDto {
    readonly email: string;
    readonly avatar: string;
 }
+
+export class UpdateProfileDto {
+   readonly username: string;
+   readonly name?: string;
+   readonly surname?: string;
+}

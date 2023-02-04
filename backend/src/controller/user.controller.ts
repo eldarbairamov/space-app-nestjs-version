@@ -1,9 +1,16 @@
 import expressAsyncHandler from "express-async-handler";
 import { type RequestWithBody, type RequestWithBodyAndVar, type RequestWithCustomVar } from "../interface";
 import { type Response } from "express";
-import { changeEmailService, changePasswordService, getUserInfoService, updateEmailService } from "../service";
+import {
+   changeEmailService,
+   uploadAvatarService,
+   updateUserService,
+   deleteAvatarService,
+   changePasswordService,
+   getUserInfoService,
+   updateEmailService,
+} from "../service";
 import { ChangePasswordDto, UserInfoResponseDto } from "../dto";
-import { uploadAvatarService, deleteAvatarService, updateUserService } from "../service";
 
 export const userController = {
 

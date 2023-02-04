@@ -1,7 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import {
    type RequestWithBodyVarParam,
-   type RequestWithCustomVar, RequestWithCustomVarAndParam,
+   type RequestWithCustomVar, type RequestWithCustomVarAndParam,
    type RequestWithCustomVarAndQuery,
 } from "../interface";
 import { type Response } from "express";
