@@ -1,8 +1,8 @@
 import { PlanRepository, UserRepository } from "../../repository";
 import { planPresenter } from "../../presenter";
-import { PlanResponseDto } from "../../dto";
+import { type IPlanResponse } from "../../interface";
 
-export const addPlanService = async (userId: string): Promise<PlanResponseDto> => {
+export const addPlanService = async (userId: string): Promise<IPlanResponse> => {
 
    // Save plan to DB
    const plan = await PlanRepository.create({ ownerId: userId });

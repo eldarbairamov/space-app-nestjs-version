@@ -1,11 +1,11 @@
-export class NoteResponseDto {
+export interface INoteResponse {
    id: string;
    title: string;
    body: string;
    lastModified: number;
 }
 
-export class NoteUpdateDto {
+export interface IUpdateNote {
    readonly title: string;
    readonly body: string;
 }

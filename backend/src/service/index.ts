@@ -15,6 +15,8 @@ export * from "./plan-service/add-plan.service";
 
 export * from "./task-service/get-tasks.service";
 export * from "./task-service/add-task.service";
+export * from "./task-service/update-task.service";
+export * from "./task-service/delete-task.service";
 
 export * from "./user-service/change-email.service";
 export * from "./user-service/get-user-info.service";

@@ -3,15 +3,21 @@ import { emailSender } from "../email.service";
 import { UserRepository, ActionTokenRepository } from "../../repository";
 import { passHasher } from "../../helper";
 import { ACCOUNT_ACTIVATION_SUBJECT, ACTIVATION_TOKEN_TYPE } from "../../constant";
-import { RegistrationDto } from "../../dto";
+import { type IRegistration } from "../../interface";
+import { registrationValidator } from "../../validator";
+import { ApiException } from "../../exception/api.exception";
 
-export const registrationService = async (registrationDto: RegistrationDto) => {
+export const registrationService = async (body: IRegistration) => {
+
+   // Validation
+   const validation = registrationValidator.validate({ ...body });
+   if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Hash password
-   const hashedPassword = await passHasher(registrationDto.password!);
+   const hashedPassword = await passHasher(body.password!);
 
    // Save user to DB
-   const candidate = await UserRepository.create({ ...registrationDto, password: hashedPassword });
+   const candidate = await UserRepository.create({ ...body, password: hashedPassword });
 
    // Generate activation token
    const activationToken = uuid();
@@ -24,6 +30,6 @@ export const registrationService = async (registrationDto: RegistrationDto) => {
    });
 
    // Send activation email
-   await emailSender(registrationDto.email!, ACCOUNT_ACTIVATION_SUBJECT, activationToken);
+   await emailSender(body.email!, ACCOUNT_ACTIVATION_SUBJECT, activationToken);
 
 };

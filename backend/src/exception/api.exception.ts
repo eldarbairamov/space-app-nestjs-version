@@ -13,7 +13,7 @@ export class ApiException extends Error {
       return new ApiException("Bad request", 400);
    }
 
-   static NotFound() {
+   static ObjectIsNotFound() {
       return new ApiException("Object is not found", 404);
    }
 

@@ -10,17 +10,23 @@ import {
    getUserInfoService,
    updateEmailService,
 } from "../service";
-import { ChangePasswordDto, UpdateProfileDto, UserInfoResponseDto } from "../dto";
+import {
+   type IChangeEmail,
+   type IChangePassword,
+   type IDeleteAvatar,
+   type IUpdateProfile,
+   type IUserInfoResponse,
+} from "../interface";
 
 export const userController = {
 
-   updateProfile: expressAsyncHandler(async (req: RequestWithBodyAndVar<UpdateProfileDto>, res: Response<UpdateProfileDto>) => {
+   updateProfile: expressAsyncHandler(async (req: RequestWithBodyAndVar<IUpdateProfile>, res: Response<IUpdateProfile>) => {
       const updatedUserDto = await updateProfileService(req.userId!, req.body);
       res.json(updatedUserDto);
    }),
 
-   changePassword: expressAsyncHandler(async (req: RequestWithBodyAndVar<ChangePasswordDto>, res: Response<{ message: string }>) => {
-      await changePasswordService(req.body.newPassword, req.body.currentPassword, req.userId!);
+   changePassword: expressAsyncHandler(async (req: RequestWithBodyAndVar<IChangePassword>, res: Response<{ message: string }>) => {
+      await changePasswordService(req.userId!, req.body);
       res.json({ message: "Успішно" });
    }),
 
@@ -29,12 +35,12 @@ export const userController = {
       res.json({ message: "Успішно" });
    }),
 
-   changeEmail: expressAsyncHandler(async (req: RequestWithBody<{ confirmationToken: string }>, res: Response<{ message: string }>) => {
+   changeEmail: expressAsyncHandler(async (req: RequestWithBody<IChangeEmail>, res: Response<{ message: string }>) => {
       await changeEmailService(req.body.confirmationToken);
       res.json({ message: "Успішно" });
    }),
 
-   getUser: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<UserInfoResponseDto>) => {
+   getUser: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IUserInfoResponse>) => {
       const userInfoDto = await getUserInfoService(req.userId!);
       res.json(userInfoDto);
    }),
@@ -44,8 +50,8 @@ export const userController = {
       res.json({ image: imageName });
    }),
 
-   deleteAvatar: expressAsyncHandler(async (req: RequestWithBodyAndVar<{ fileName: string }>, res: Response<{ message: string }>) => {
-      await deleteAvatarService(req.userId!, req.body.fileName);
+   deleteAvatar: expressAsyncHandler(async (req: RequestWithBodyAndVar<IDeleteAvatar>, res: Response<{ message: string }>) => {
+      await deleteAvatarService(req.userId!, req.body);
       res.json({ message: "Успішно" });
    }),
 

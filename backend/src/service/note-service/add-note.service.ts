@@ -1,8 +1,8 @@
 import { NoteRepository, UserRepository } from "../../repository";
 import { notePresenter } from "../../presenter";
-import { NoteResponseDto } from "../../dto";
+import { type INoteResponse } from "../../interface";
 
-export const addNoteService = async (userId: string): Promise<NoteResponseDto> => {
+export const addNoteService = async (userId: string): Promise<INoteResponse> => {
 
    // Create note initial state
    const initialNote = {

@@ -1,37 +1,29 @@
 import { Router } from "express";
 import { userController } from "../controller";
-import {
-   userMiddleware,
-   authMiddleware,
-   commonMiddleware,
-   isRequestValid,
-   fileMiddleware,
-   isAccessExists,
-} from "../middleware";
+import { authMiddleware, commonMiddleware, fileMiddleware } from "../middleware";
 
 export const userRouter = Router();
 
 // Get user info
 userRouter.get(
    "/get_user",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    userController.getUser,
 );
 
 // Update user profile
 userRouter.patch(
    "/profile_update",
-   isAccessExists,
-   isRequestValid("update_profile"),
-   userMiddleware.isChangesSame,
+   authMiddleware.isAccessExists,
+   commonMiddleware.isRequestEmpty,
    userController.updateProfile,
 );
 
 // Change email: request
 userRouter.post(
    "/email_change",
-   isAccessExists,
-   isRequestValid("change_email"),
+   authMiddleware.isAccessExists,
+   commonMiddleware.isRequestEmpty,
    authMiddleware.isEmailUnique,
    userController.changeEmailRequest,
 );
@@ -46,15 +38,15 @@ userRouter.patch(
 // Change password: request
 userRouter.patch(
    "/password_new",
-   isAccessExists,
-   isRequestValid("change_password"),
+   authMiddleware.isAccessExists,
+   commonMiddleware.isRequestEmpty,
    userController.changePassword,
 );
 
 // Upload avatar
 userRouter.patch(
    "/avatar_upload",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    fileMiddleware.imageChecker,
    userController.uploadAvatar,
 );
@@ -62,7 +54,7 @@ userRouter.patch(
 // Send image name and delete avatar
 userRouter.patch(
    "/avatar_delete",
-   isAccessExists,
-   isRequestValid("image_name"),
+   authMiddleware.isAccessExists,
+   commonMiddleware.isRequestEmpty,
    userController.deleteAvatar,
 );

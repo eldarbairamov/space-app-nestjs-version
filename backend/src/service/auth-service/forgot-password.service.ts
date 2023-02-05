@@ -3,8 +3,14 @@ import { type IUserDatabase } from "../../interface";
 import { ActionTokenRepository } from "../../repository";
 import * as jwt from "jsonwebtoken";
 import { RESET_PASSWORD_SUBJECT, RESET_PASSWORD_TOKEN_TYPE } from "../../constant";
+import { emailValidator } from "../../validator";
+import { ApiException } from "../../exception/api.exception";
 
 export const forgotPasswordService = async (emailFromReq: string, userFromDb: IUserDatabase) => {
+
+   // Validation
+   const validation = emailValidator.validate({ email: emailFromReq });
+   if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Generate link
    const resetPasswordToken = jwt.sign({ userId: userFromDb._id }, "secret forgot password token key", { expiresIn: "1d" });

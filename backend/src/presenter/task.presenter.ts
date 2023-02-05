@@ -1,7 +1,6 @@
-import { type ITaskDatabase } from "../interface";
-import { TaskResponseDto } from "../dto";
+import { type ITaskDatabase, type ITaskResponse } from "../interface";
 
-export const taskPresenter = (document: ITaskDatabase): TaskResponseDto => {
+export const taskPresenter = (document: ITaskDatabase): ITaskResponse => {
 
    return {
       id: document._id,
@@ -11,6 +10,6 @@ export const taskPresenter = (document: ITaskDatabase): TaskResponseDto => {
    };
 };
 
-export const allTaskPresenter = (documents: ITaskDatabase[]): TaskResponseDto[] => {
+export const allTaskPresenter = (documents: ITaskDatabase[]): ITaskResponse[] => {
    return documents.map(doc => taskPresenter(doc));
 };

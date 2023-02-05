@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { INoteUpdate } from "../interface/validator.interface";
+import { type IUpdateNote } from "../interface";
 
-export const updateNoteValidator = Joi.object<INoteUpdate>({
+export const updateNoteValidator = Joi.object<IUpdateNote>({
 
    title: Joi.string().optional().allow(null, "").messages({
       "string.base": "title: Value is must be a string",

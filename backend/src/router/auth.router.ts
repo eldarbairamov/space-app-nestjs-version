@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { authController } from "../controller";
-import { authMiddleware, commonMiddleware, isAccessExists, isRequestValid } from "../middleware";
+import { authMiddleware, commonMiddleware } from "../middleware";
 
 export const authRouter = Router();
 
 // Registration
 authRouter.post(
    "/registration",
-   isRequestValid("registration"),
+   commonMiddleware.isRequestEmpty,
    authMiddleware.isEmailUnique,
    authController.registration,
 );
@@ -15,7 +15,7 @@ authRouter.post(
 // Login
 authRouter.post(
    "/login",
-   isRequestValid("login"),
+   commonMiddleware.isRequestEmpty,
    authMiddleware.isUserExists,
    authController.login,
 );
@@ -38,13 +38,13 @@ authRouter.post(
 // Reset password
 authRouter.patch(
    "/password_reset",
-   isRequestValid("reset_password"),
+   commonMiddleware.isRequestEmpty,
    authController.resetPassword,
 );
 
 // Logout
 authRouter.get(
    "/logout",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    authController.logout,
 );

@@ -1,8 +1,12 @@
 import { ApiException } from "../../exception/api.exception";
-import { ActionTokenRepository } from "../../repository";
-import { UserRepository } from "../../repository";
+import { ActionTokenRepository, UserRepository } from "../../repository";
+import { activationValidator } from "../../validator";
 
 export const activationService = async (activationCode: string) => {
+
+   // Validation
+   const validation = activationValidator.validate({ activationCode });
+   if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Find and delete action token
    const actionTokenInfo = await ActionTokenRepository.findOneAndDelete({ token: activationCode });

@@ -1,9 +1,13 @@
 import * as jwt from "jsonwebtoken";
 import { ApiException } from "../../exception/api.exception";
-import { ActionTokenRepository } from "../../repository";
-import { UserRepository } from "../../repository";
+import { ActionTokenRepository, UserRepository } from "../../repository";
+import { changeEmailValidator } from "../../validator";
 
 export const changeEmailService = async (confirmationToken: string): Promise<void> => {
+
+   // Validation
+   const validation = changeEmailValidator.validate({confirmationToken});
+   if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Decoding token
    const {

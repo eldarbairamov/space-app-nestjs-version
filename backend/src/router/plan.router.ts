@@ -1,49 +1,49 @@
 import { Router } from "express";
 import { planController } from "../controller";
-import { isAccessExists, isObjectExists, isRequestValid } from "../middleware";
+import { authMiddleware, commonMiddleware} from "../middleware";
 
 export const planRouter = Router();
 
 // Get all plans
 planRouter.get(
    "/",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    planController.getPlans);
 
 // Add plan
 planRouter.get(
    "/add",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    planController.addPlan,
 );
 
 // Get count
 planRouter.get(
    "/count",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    planController.getPlansCount,
 );
 
 // Update plan
 planRouter.put(
    "/:planId",
-   isAccessExists,
-   isObjectExists("plan"),
-   isRequestValid("update_plan"),
+   authMiddleware.isAccessExists,
+   commonMiddleware.isRequestEmpty,
+   commonMiddleware.isObjectExists("plan"),
    planController.updatePlan,
 );
 
 // Delete plan
 planRouter.delete(
    "/:planId",
-   isAccessExists,
-   isObjectExists("plan"),
+   authMiddleware.isAccessExists,
+   commonMiddleware.isObjectExists("plan"),
    planController.deletePlan,
 );
 
 // Get plans by search
 planRouter.get(
    "/search",
-   isAccessExists,
+   authMiddleware.isAccessExists,
    planController.getPlansBySearch,
 );

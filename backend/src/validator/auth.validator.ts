@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { EMAIL_REGEXP } from "../constant";
-import { ILogin, IRegistration } from "../interface/validator.interface";
+import { type ILogin, type IRegistration } from "../interface";
 
 export const registrationValidator = Joi.object<IRegistration>({
 
@@ -42,6 +42,15 @@ export const loginValidator = Joi.object<ILogin>({
       "string.empty": "password: Field is required and cannot be empty",
       "any.required": "password: Field is required and cannot be empty",
       "string.base": "password: Value is must be a string",
+   }),
+
+});
+
+export const activationValidator = Joi.object<{ activationCode: string }>({
+
+   activationCode: Joi.string().required().messages({
+      "any.required": "activationCode: Field is required and cannot be empty",
+      "string.base": "activationCode: Value is must be a string",
    }),
 
 });

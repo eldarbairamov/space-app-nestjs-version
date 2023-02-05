@@ -1,9 +1,8 @@
 import { TaskRepository } from "../../repository";
 import { allTaskPresenter } from "../../presenter";
-import { TaskResponseDto } from "../../dto";
+import { type ITaskResponse } from "../../interface";
 
-
-export const getTasksService = async (userId: string, planId: string): Promise<Partial<TaskResponseDto>[]> => {
+export const getTasksService = async (userId: string, planId: string): Promise<ITaskResponse[]> => {
 
    // Find all tasks in DB
    const tasks = await TaskRepository.find({ ownerId: userId, planId });

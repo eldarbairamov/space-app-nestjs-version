@@ -1,9 +1,13 @@
-import { UpdateProfileDto } from "../../dto";
 import { UserRepository } from "../../repository";
-import { type IUserDatabase } from "../../interface";
 import { ApiException } from "../../exception/api.exception";
+import { updateProfileValidator } from "../../validator";
+import { type IUpdateProfile, type IUserDatabase } from "../../interface";
 
-export const updateProfileService = async (userId: string, body: UpdateProfileDto): Promise<UpdateProfileDto> => {
+export const updateProfileService = async (userId: string, body: IUpdateProfile): Promise<IUpdateProfile> => {
+
+   // Validation
+   const validation = updateProfileValidator.validate(body);
+   if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Check if there is nothing to change
    const userDto = body;

@@ -1,9 +1,8 @@
 import { UserRepository } from "../../repository";
-import { type IUserDatabase } from "../../interface";
-import { UserInfoResponseDto } from "../../dto";
+import { type IUserDatabase, type IUserInfoResponse } from "../../interface";
 import { HydratedDocument } from "mongoose";
 
-export const getUserInfoService = async (userId: string): Promise<UserInfoResponseDto> => {
+export const getUserInfoService = async (userId: string): Promise<IUserInfoResponse> => {
 
    // Find user in DB
    const user = await UserRepository.findById(userId) as HydratedDocument<IUserDatabase>;

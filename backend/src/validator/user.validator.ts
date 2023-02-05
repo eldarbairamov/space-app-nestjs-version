@@ -1,6 +1,6 @@
 import { EMAIL_REGEXP, ONLY_LETTERS_REGEXP } from "../constant";
 import Joi from "joi";
-import { IChangePassword, IUpdateProfile } from "../interface/validator.interface";
+import { type IChangePassword, type IResetPassword, type IUpdateProfile } from "../interface";
 
 export const updateProfileValidator = Joi.object<IUpdateProfile>({
 
@@ -32,7 +32,7 @@ export const emailValidator = Joi.object<{ email: string }>({
 
 export const changePasswordValidator = Joi.object<IChangePassword>({
 
-   password: Joi.string().min(6).max(20).required().trim().messages({
+   newPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.base": "password: Value is must be a string",
       "string.max": "password: Value must be less than 20",
       "string.min": "password: Value must be greater than 6",
@@ -40,15 +40,7 @@ export const changePasswordValidator = Joi.object<IChangePassword>({
       "any.required": "password: Field is required and cannot be empty",
    }),
 
-   current_password: Joi.string().min(6).max(20).required().trim().messages({
-      "string.base": "password: Value is must be a string",
-      "string.max": "password: Value must be less than 20",
-      "string.min": "password: Value must be greater than 6",
-      "string.empty": "password: Field is required and cannot be empty",
-      "any.required": "password: Field is required and cannot be empty",
-   }),
-
-   repeat_password: Joi.string().min(6).max(20).required().trim().messages({
+   currentPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.base": "password: Value is must be a string",
       "string.max": "password: Value must be less than 20",
       "string.min": "password: Value must be greater than 6",
@@ -58,7 +50,12 @@ export const changePasswordValidator = Joi.object<IChangePassword>({
 
 });
 
-export const resetPasswordValidator = Joi.object<{ password: string }>({
+export const resetPasswordValidator = Joi.object<IResetPassword>({
+
+   resetPasswordToken: Joi.string().required().trim().messages({
+      "string.empty": "fileName: Field is required and cannot be empty",
+      "any.required": "fileName: Field is required and cannot be empty",
+   }),
 
    password: Joi.string().min(6).max(20).required().trim().messages({
       "string.base": "password: Value is must be a string",
@@ -73,6 +70,15 @@ export const resetPasswordValidator = Joi.object<{ password: string }>({
 export const fileNameValidator = Joi.object<{ fileName: string }>({
 
    fileName: Joi.string().required().trim().messages({
+      "string.empty": "fileName: Field is required and cannot be empty",
+      "any.required": "fileName: Field is required and cannot be empty",
+   }),
+
+});
+
+export const changeEmailValidator = Joi.object<{ confirmationToken: string }>({
+
+   confirmationToken: Joi.string().required().trim().messages({
       "string.empty": "fileName: Field is required and cannot be empty",
       "any.required": "fileName: Field is required and cannot be empty",
    }),

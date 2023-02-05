@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IAddTask } from "../interface/validator.interface";
+import { type IAddTask } from "../interface";
 
 export const updateTaskValidator = Joi.object<{ isCompleted: boolean }>({
 

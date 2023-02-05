@@ -1,7 +1,6 @@
-import { type IPlanDatabase} from "../interface";
-import { PlanResponseDto } from "../dto";
+import { type IPlanDatabase, type IPlanResponse } from "../interface";
 
-export const planPresenter = (document: IPlanDatabase): PlanResponseDto => {
+export const planPresenter = (document: IPlanDatabase): IPlanResponse => {
    const date = new Date(document.updatedAt).getTime();
 
    return {
@@ -11,6 +10,6 @@ export const planPresenter = (document: IPlanDatabase): PlanResponseDto => {
    };
 };
 
-export const allPlansPresenter = (documents: IPlanDatabase[]): PlanResponseDto[] => {
+export const allPlansPresenter = (documents: IPlanDatabase[]): IPlanResponse[] => {
    return documents.map(doc => planPresenter(doc));
 };

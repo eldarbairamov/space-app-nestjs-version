@@ -1,11 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response, type Request } from "express";
 import {
-   type RequestWithBody,
-   type RequestWithBodyAndVar,
-   type RequestWithCustomVar,
-} from "../interface";
-import {
    activationService,
    forgotPasswordService,
    loginService,
@@ -13,7 +8,13 @@ import {
    resetPasswordService,
 } from "../service";
 import { OAuthRepository } from "../repository";
-import { OAuthResponseDto } from "../dto";
+import {
+   type IOAuthResponse,
+   type IResetPassword,
+   type RequestWithBody,
+   type RequestWithBodyAndVar,
+   type RequestWithCustomVar,
+} from "../interface";
 
 export const authController = {
 
@@ -22,7 +23,7 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<OAuthResponseDto>) => {
+   login: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IOAuthResponse>) => {
       const accessTokenPairDto = await loginService(req.body, req.user!);
       res.json(accessTokenPairDto);
    }),
@@ -37,8 +38,8 @@ export const authController = {
       res.json({ message: "Успішно" });
    }),
 
-   resetPassword: expressAsyncHandler(async (req: RequestWithBody<{ resetPasswordToken: string, password: string }>, res: Response<{ message: string }>) => {
-      await resetPasswordService(req.body.resetPasswordToken, req.body.password);
+   resetPassword: expressAsyncHandler(async (req: RequestWithBody<IResetPassword>, res: Response<{ message: string }>) => {
+      await resetPasswordService(req.body);
       res.json({ message: "Успішно" });
    }),
 

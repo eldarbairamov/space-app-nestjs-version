@@ -1,5 +1,9 @@
+export * from './auth.interface'
+export * from './note.interface'
+export * from './plan.interface'
+export * from './task.interface'
+export * from './user.interface'
 export * from "./express.interface";
 export * from "./database.interface";
-export * from "./o-auth.interface";
+export * from "./token-pair.interface";
 export * from "./file.interface";
-

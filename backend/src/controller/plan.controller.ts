@@ -1,28 +1,31 @@
 import expressAsyncHandler from "express-async-handler";
-import {
-   type RequestWithBodyVarParam,
-   type RequestWithCustomVar, type RequestWithCustomVarAndParam,
-   type RequestWithCustomVarAndQuery,
-} from "../interface";
 import { type Response } from "express";
 import { addPlanService, getPlansService, getPlansBySearchService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
-import { PlanResponseDto } from "../dto";
+import { updatePlanService } from "../service/plan-service/update-plan.service";
+import {
+   type IPlanResponse,
+   type IUpdatePlan,
+   type RequestWithBodyVarParam,
+   type RequestWithCustomVar,
+   type RequestWithCustomVarAndParam,
+   type RequestWithCustomVarAndQuery,
+} from "../interface";
 
 export const planController = {
 
-   addPlan: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<PlanResponseDto>) => {
+   addPlan: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IPlanResponse>) => {
       const planDto = await addPlanService(req.userId!);
       res.json(planDto);
    }),
 
-   getPlans: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<PlanResponseDto[]>) => {
+   getPlans: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IPlanResponse[]>) => {
       const plansDto = await getPlansService(req.userId!);
       res.json(plansDto);
    }),
 
-   updatePlan: expressAsyncHandler(async (req: RequestWithBodyVarParam<{ title: string }, { planId: string }>, res: Response<{ message: string }>) => {
-      await PlanRepository.findByIdAndUpdate(req.params.planId, { title: req.body.title });
+   updatePlan: expressAsyncHandler(async (req: RequestWithBodyVarParam<IUpdatePlan, { planId: string }>, res: Response<{ message: string }>) => {
+      await updatePlanService(req.params.planId, req.body);
       res.json({ message: "Успішно" });
    }),
 
@@ -37,7 +40,7 @@ export const planController = {
       res.json(count);
    }),
 
-   getPlansBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<PlanResponseDto[]>) => {
+   getPlansBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<IPlanResponse[]>) => {
       const plansBySearchDto = await getPlansBySearchService(req.query.searchKey, req.userId!);
       res.json(plansBySearchDto);
    }),

@@ -1,22 +1,26 @@
 import expressAsyncHandler from "express-async-handler";
 import { type Response } from "express";
 import { addNoteService, getNotesService } from "../service";
-import {
-   type RequestWithBodyVarParam,
-   type RequestWithCustomVar, type RequestWithCustomVarAndParam, RequestWithCustomVarAndQuery,
-} from "../interface";
 import { NoteRepository, UserRepository } from "../repository";
 import { getNotesBySearchService } from "../service";
-import { NoteResponseDto, NoteUpdateDto } from "../dto";
+import { updateNoteService } from "../service/note-service/update-note.service";
+import {
+   type INoteResponse,
+   type IUpdateNote,
+   type RequestWithBodyVarParam,
+   type RequestWithCustomVar,
+   type RequestWithCustomVarAndParam,
+   type RequestWithCustomVarAndQuery,
+} from "../interface";
 
 export const notesController = {
 
-   addNote: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<NoteResponseDto>) => {
+   addNote: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<INoteResponse>) => {
       const initialNoteDto = await addNoteService(req.userId!);
       res.json(initialNoteDto);
    }),
 
-   getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<NoteResponseDto[]>) => {
+   getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<INoteResponse[]>) => {
       const notesDto = await getNotesService(req.userId!);
       res.json(notesDto);
    }),
@@ -26,8 +30,8 @@ export const notesController = {
       res.json(count);
    }),
 
-   updateNote: expressAsyncHandler(async (req: RequestWithBodyVarParam<NoteUpdateDto, { noteId: string }>, res: Response<{ message: string }>) => {
-      await NoteRepository.findByIdAndUpdate(req.params.noteId, req.body);
+   updateNote: expressAsyncHandler(async (req: RequestWithBodyVarParam<IUpdateNote, { noteId: string }>, res: Response<{ message: string }>) => {
+      await updateNoteService(req.params.noteId, req.body);
       res.json({ message: "Успішно" });
    }),
 
@@ -37,7 +41,7 @@ export const notesController = {
       res.json({ message: "Успішно" });
    })),
 
-   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<NoteResponseDto[]>) => {
+   getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<INoteResponse[]>) => {
       const notesBySearchDto = await getNotesBySearchService(req.query.searchKey, req.userId!);
       res.json(notesBySearchDto);
    }),
