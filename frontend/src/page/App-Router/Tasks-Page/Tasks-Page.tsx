@@ -9,7 +9,7 @@ import { type IPlan } from "../../../interface/plan.interface";
 import { type ITask } from "../../../interface/task.interface";
 
 import style from "./Tasks-Page.module.scss";
-import { AddTaskDto } from "../../../dto/add-task.dto";
+import { AddTaskDto } from "../../../dto";
 
 export interface IInputFields {
    planTitle: string,

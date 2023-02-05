@@ -8,19 +8,19 @@ import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { userService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
 import { catchErrors } from "../../../../helper";
-import { type IUpdatePasswordForm } from "../../../../interface/form.interface";
+import { type IChangePasswordForm } from "../../../../interface/form.interface";
 
 import style from "./Password-Update-Form.module.scss";
 
 export const PasswordUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid } } = useForm<IUpdatePasswordForm>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<IChangePasswordForm>({
       resolver: joiResolver(changePasswordValidator),
       mode: "onTouched",
    });
 
    const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<IUpdatePasswordForm> = async (data): Promise<void> => {
+   const onSubmit: SubmitHandler<IChangePasswordForm> = async (data): Promise<void> => {
       const newPassword = data.password;
       const currentPassword = data.current_password;
       const repeatPassword = data.repeat_password;

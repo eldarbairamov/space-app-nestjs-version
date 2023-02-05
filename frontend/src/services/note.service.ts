@@ -1,7 +1,6 @@
 import { axiosInstance, type AxiosRes } from "./axios.service";
 import { notesRequests } from "../config/config";
-import { GetNoteDto } from "../dto";
-import { UpdateNoteDto } from "../dto";
+import { GetNoteDto, UpdateNoteDto } from "../dto/note.dto";
 
 export const noteService = {
 

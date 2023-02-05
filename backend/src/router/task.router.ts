@@ -1,40 +1,25 @@
 import { Router } from "express";
-import { authMiddleware, commonMiddleware } from "../middleware";
 import { taskController } from "../controller";
-import { taskMiddleware } from "../middleware";
+import { isAccessExists, isObjectExists, isRequestValid } from "../middleware";
 
 export const taskRouter = Router();
 
 // Get all tacks
 taskRouter.post(
-   "/",
-   authMiddleware.isAccessTokenValid,
-   taskController.getAllTasks,
+   "/", isAccessExists, taskController.getAllTasks,
 );
 
 // Add task
 taskRouter.post(
-   "/add",
-   authMiddleware.isAccessTokenValid,
-   commonMiddleware.isRequestEmpty,
-   taskController.addTask,
+   "/add", isAccessExists, isRequestValid("add_task"), taskController.addTask,
 );
 
 // Update task status
 taskRouter.patch(
-   "/:taskId",
-   authMiddleware.isAccessTokenValid,
-   taskMiddleware.isIdValid,
-   taskMiddleware.isTaskExists,
-   commonMiddleware.isRequestEmpty,
-   taskController.updateTaskStatus,
+   "/:taskId", isAccessExists, isObjectExists, isRequestValid("update_task_status"), taskController.updateTaskStatus,
 );
 
 // Send Plan ID and delete task
 taskRouter.post(
-   "/:taskId",
-   authMiddleware.isAccessTokenValid,
-   taskMiddleware.isIdValid,
-   taskMiddleware.isTaskExists,
-   taskController.deleteTask
+   "/:taskId", isAccessExists, isObjectExists("task"), taskController.deleteTask,
 );

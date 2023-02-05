@@ -9,9 +9,9 @@ import { userService } from "../../../../services";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { catchErrors } from "../../../../helper";
 import { userActions } from "../../../../redux/slice";
+import { type IUpdateProfileForm } from "../../../../interface/form.interface";
 
 import style from "./Profile-Update-Form.module.scss";
-import { type IUpdateProfileForm } from "../../../../interface/form.interface";
 
 export const ProfileUpdateForm: FC = () => {
    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateProfileForm>({

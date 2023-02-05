@@ -20,7 +20,7 @@ export * from "./user-service/change-email.service";
 export * from "./user-service/get-user-info.service";
 export * from "./user-service/change-password.service";
 export * from "./user-service/update-email.service";
-export * from "./user-service/update-user.service";
+export * from "./user-service/update-profile.service";
 export * from "./user-service/upload-avatar.service";
 export * from "./user-service/delete-avatar.service";
 

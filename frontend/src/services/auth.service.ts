@@ -2,8 +2,7 @@ import { axiosInstance } from "./axios.service";
 import { storageService } from "./storage.service";
 import { type AxiosResponse } from "axios";
 import { authRequests } from "../config/config";
-import { OAuthDto } from "../dto";
-import { RegistrationDto, LoginDto } from "../dto";
+import { RegistrationDto, LoginDto, OAuthDto } from "../dto";
 
 export const authService = {
 

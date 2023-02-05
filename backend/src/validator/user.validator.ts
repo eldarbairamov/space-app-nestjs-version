@@ -1,33 +1,80 @@
 import { EMAIL_REGEXP, ONLY_LETTERS_REGEXP } from "../constant";
 import Joi from "joi";
-import { type IUserSchema } from "../interface";
+import { IChangePassword, IUpdateProfile } from "../interface/validator.interface";
 
-export const updateProfileValidator = Joi.object<Partial<IUserSchema>>({
+export const updateProfileValidator = Joi.object<IUpdateProfile>({
 
    username: Joi.string().trim().messages({
-      "string.base": "Ім'я користувача: Недопустимий формат.",
+      "string.base": "username: Value is must be a string",
    }),
 
    name: Joi.string().pattern(ONLY_LETTERS_REGEXP).trim().optional().allow(null, "").messages({
-      "string.pattern.base": "Ім'я: Недопустимий формат. Тільки букви.",
+      "string.base": "name: Value is must be a string",
+      "string.pattern.base": "name: Value must contain only letters",
    }),
 
    surname: Joi.string().pattern(ONLY_LETTERS_REGEXP).trim().optional().allow(null, "").messages({
-      "string.pattern.base": "Фамілія: Недопустимий формат. Тільки букви.",
+      "string.base": "surname: Value is must be a string",
+      "string.pattern.base": "surname: Value must contain only letters",
    }),
-
-   avatar: Joi.string().optional().allow(null, '').messages({
-      "string.base": "Аватар: Недопустимий формат. Тільки букви.",
-   })
 
 });
 
 export const emailValidator = Joi.object<{ email: string }>({
 
    email: Joi.string().pattern(EMAIL_REGEXP).required().trim().messages({
-      "string.pattern.base": "Електронна пошта: Недопустимий формат.",
-      "string.empty": "Електронна пошта: Поле неповинно залишитись пустим.",
-      "any.required": "Електронна пошта: Поле обов'язкове для заповнення.",
+      "string.pattern.base": "email: Value must be an email",
+      "string.empty": "email: Field is required and cannot be empty",
+      "any.required": "email: Field is required and cannot be empty",
+   }),
+
+});
+
+export const changePasswordValidator = Joi.object<IChangePassword>({
+
+   password: Joi.string().min(6).max(20).required().trim().messages({
+      "string.base": "password: Value is must be a string",
+      "string.max": "password: Value must be less than 20",
+      "string.min": "password: Value must be greater than 6",
+      "string.empty": "password: Field is required and cannot be empty",
+      "any.required": "password: Field is required and cannot be empty",
+   }),
+
+   current_password: Joi.string().min(6).max(20).required().trim().messages({
+      "string.base": "password: Value is must be a string",
+      "string.max": "password: Value must be less than 20",
+      "string.min": "password: Value must be greater than 6",
+      "string.empty": "password: Field is required and cannot be empty",
+      "any.required": "password: Field is required and cannot be empty",
+   }),
+
+   repeat_password: Joi.string().min(6).max(20).required().trim().messages({
+      "string.base": "password: Value is must be a string",
+      "string.max": "password: Value must be less than 20",
+      "string.min": "password: Value must be greater than 6",
+      "string.empty": "password: Field is required and cannot be empty",
+      "any.required": "password: Field is required and cannot be empty",
+   }),
+
+});
+
+export const resetPasswordValidator = Joi.object<{ password: string }>({
+
+   password: Joi.string().min(6).max(20).required().trim().messages({
+      "string.base": "password: Value is must be a string",
+      "string.max": "password: Value must be less than 20",
+      "string.min": "password: Value must be greater than 6",
+      "string.empty": "password: Field is required and cannot be empty",
+      "any.required": "password: Field is required and cannot be empty",
+   }),
+
+});
+
+export const fileNameValidator = Joi.object<{ fileName: string }>({
+
+   fileName: Joi.string().required().trim().messages({
+      "string.empty": "fileName: Field is required and cannot be empty",
+      "any.required": "fileName: Field is required and cannot be empty",
    }),
 
 });

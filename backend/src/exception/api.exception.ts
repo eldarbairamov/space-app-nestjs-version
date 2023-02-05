@@ -6,19 +6,19 @@ export class ApiException extends Error {
 
    static Database(e: unknown) {
       console.log(e);
-      return new ApiException("Помилка при роботі з базою даних.", 500);
+      return new ApiException("Database: Error", 500);
    }
 
    static BadRequest() {
-      return new ApiException("Некоректний запит.", 400);
+      return new ApiException("Bad request", 400);
    }
 
    static NotFound() {
-      return new ApiException("Не знайдено.", 404);
+      return new ApiException("Object is not found", 404);
    }
 
    static ObjectID() {
-      return new ApiException("Невалідний ID.", 400);
+      return new ApiException("Id is not valid", 400);
    }
 
 }

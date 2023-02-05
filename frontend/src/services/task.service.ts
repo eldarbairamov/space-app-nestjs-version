@@ -1,8 +1,7 @@
 import { axiosInstance } from "./axios.service";
 import { type AxiosResponse } from "axios";
 import { tasksRequests } from "../config/config";
-import { GetTaskDto } from "../dto";
-import { AddTaskDto } from "../dto/add-task.dto";
+import { AddTaskDto, GetTaskDto } from "../dto";
 
 export const taskService = {
 

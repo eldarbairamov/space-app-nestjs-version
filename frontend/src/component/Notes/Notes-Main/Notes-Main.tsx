@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from "../../../hook";
 import { notesActions } from "../../../redux/slice";
 import { noteService } from "../../../services";
 import { catchErrors } from "../../../helper";
-import { UpdateNoteDto } from "../../../dto";
 import { type INote } from "../../../interface/note.interface";
+import { UpdateNoteDto } from "../../../dto/note.dto";
 
 import style from "./Notes-Main.module.scss";
 

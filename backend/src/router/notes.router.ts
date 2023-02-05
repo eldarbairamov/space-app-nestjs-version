@@ -1,52 +1,50 @@
 import { Router } from "express";
 import { notesController } from "../controller";
-import { authMiddleware, commonMiddleware, noteMiddleware } from "../middleware";
+import { isAccessExists, isObjectExists, isRequestValid } from "../middleware";
 
 export const notesRouter = Router();
 
 // Add note
 notesRouter.get(
    "/add",
-   authMiddleware.isAccessTokenValid,
+   isAccessExists,
    notesController.addNote,
 );
 
 // Get all notes
 notesRouter.get(
    "/",
-   authMiddleware.isAccessTokenValid,
+   isAccessExists,
    notesController.getNotes,
 );
 
 // Get count
 notesRouter.get(
    "/count",
-   authMiddleware.isAccessTokenValid,
+   isAccessExists,
    notesController.getNotesCount,
 );
 
-// Save note
+// Update note
 notesRouter.put(
    "/:noteId",
-   authMiddleware.isAccessTokenValid,
-   noteMiddleware.isIdValid,
-   noteMiddleware.isNoteExists,
-   commonMiddleware.isRequestValid('note'),
+   isAccessExists,
+   isObjectExists("note"),
+   isRequestValid("update_note"),
    notesController.updateNote,
 );
 
 // Delete note
 notesRouter.delete(
    "/:noteId",
-   authMiddleware.isAccessTokenValid,
-   noteMiddleware.isIdValid,
-   noteMiddleware.isNoteExists,
+   isAccessExists,
+   isObjectExists("note"),
    notesController.deleteNote,
 );
 
 // Get notes by search
 notesRouter.get(
    "/search",
-   authMiddleware.isAccessTokenValid,
+   isAccessExists,
    notesController.getNotesBySearch,
 );

@@ -1,4 +1,4 @@
-export interface IUpdatePasswordForm {
+export interface IChangePasswordForm {
    current_password: string;
    password: string;
    repeat_password: string;

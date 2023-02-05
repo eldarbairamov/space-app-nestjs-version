@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IAuthInitialState {
-   userId: string,
+interface IUserInitialState {
    username: string,
    name: string,
    surname: string,
    avatar: string,
 }
 
-const initialState: IAuthInitialState = {
-   userId: "",
+const initialState: IUserInitialState = {
    username: "",
    name: "",
    surname: "",
@@ -27,7 +25,6 @@ const userSlice = createSlice({
          state.avatar = "";
       },
       setInfo: (state, { payload }) => {
-         state.userId = payload.userId;
          if (payload.username) state.username = payload.username;
          state.name = payload.name ? payload.name : "";
          state.surname = payload.surname ? payload.surname : "";

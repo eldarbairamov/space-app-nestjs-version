@@ -4,10 +4,14 @@ export class ChangePasswordDto {
 }
 
 export class UserInfoResponseDto {
-   readonly userId: string;
    readonly name: string;
    readonly surname: string;
    readonly username: string;
-   readonly email: string;
    readonly avatar: string;
+}
+
+export class UpdateProfileDto {
+   readonly name: string;
+   readonly surname: string;
+   readonly username: string;
 }

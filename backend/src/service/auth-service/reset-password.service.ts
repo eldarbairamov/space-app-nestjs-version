@@ -7,7 +7,7 @@ export const resetPasswordService = async (token: string, password: string) => {
 
    // Delete action token
    const actionTokenInfo = await ActionTokenRepository.findOneAndDelete({ token });
-   if (!actionTokenInfo) throw new ApiException("Токен невалідний.", 401);
+   if (!actionTokenInfo) throw new ApiException("Токен невалідний", 401);
 
    // Define token owner ID
    const ownerId = actionTokenInfo.ownerId;

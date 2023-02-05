@@ -1,8 +1,7 @@
 import { axiosInstance } from "./axios.service";
 import { type AxiosResponse } from "axios";
 import { userRequests } from "../config/config";
-import { GetUserInfoDto } from "../dto";
-import { UpdateProfileDto } from "../dto";
+import { GetUserInfoDto, UpdateProfileDto } from "../dto";
 
 export const userService = {
 

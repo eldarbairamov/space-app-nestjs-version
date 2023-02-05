@@ -1,7 +1,7 @@
 import React, { type FC, useEffect } from "react";
 
 import toast, { Toaster } from "react-hot-toast";
-import { useMatchMedia } from "../../../hook/use-match-media.hook";
+import { useMatchMedia } from "../../../hook";
 import { ActivationForm, WelcomeLogo } from "../../../component";
 
 import style from "./Activation-Page.module.scss";

@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { emailRegex } from "../enum/regexp.enum";
-import { type ILoginForm, type IRegistrationForm, type IResetPasswordForm, type IUpdatePasswordForm } from "../interface/form.interface";
+import { type ILoginForm, type IRegistrationForm, type IResetPasswordForm, type IChangePasswordForm } from "../interface/form.interface";
 
 export const registrationValidator = Joi.object<IRegistrationForm>({
 
@@ -71,7 +71,7 @@ export const resetPasswordValidator = Joi.object<IResetPasswordForm>({
 
 });
 
-export const changePasswordValidator = Joi.object<IUpdatePasswordForm>({
+export const changePasswordValidator = Joi.object<IChangePasswordForm>({
 
    password: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Не більше 20-и символів.",
