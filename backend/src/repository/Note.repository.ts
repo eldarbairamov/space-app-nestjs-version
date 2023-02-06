@@ -1,11 +1,10 @@
-import { type FilterQuery, type UpdateQuery } from "mongoose";
-import { type INoteDatabase, type INoteResponse, type INoteSchema } from "../interface";
+import { FilterQuery, UpdateQuery } from "mongoose";
 import { ApiException } from "../exception/api.exception";
-import { NoteModel } from "../model";
+import { INote, NoteDocument, NoteModel } from "../model";
 
 export const NoteRepository = {
 
-   create: async (body: Partial<INoteSchema>): Promise<INoteDatabase> => {
+   create: async (body: Partial<INote>): Promise<NoteDocument> => {
       try {
          return NoteModel.create(body);
       } catch (e) {
@@ -13,7 +12,7 @@ export const NoteRepository = {
       }
    },
 
-   find: async (filter: FilterQuery<INoteSchema>): Promise<INoteDatabase[]> => {
+   find: async (filter: FilterQuery<INote>): Promise<NoteDocument[]> => {
       try {
          return NoteModel.find(filter).sort({ updatedAt: "desc" });
       } catch (e) {
@@ -21,15 +20,15 @@ export const NoteRepository = {
       }
    },
 
-   findById: async (id: string): Promise<INoteDatabase | null> => {
+   findById: async (noteId: NoteDocument["id"]): Promise<NoteDocument | null> => {
       try {
-         return NoteModel.findById(id);
+         return NoteModel.findById(noteId);
       } catch (e) {
          throw ApiException.Database(e);
       }
    },
 
-   findByIdAndUpdate: async (noteId: string, body: UpdateQuery<Partial<INoteResponse>>): Promise<INoteDatabase | null> => {
+   findByIdAndUpdate: async (noteId: NoteDocument["id"], body: UpdateQuery<INote>): Promise<NoteDocument | null> => {
       try {
          return NoteModel.findByIdAndUpdate(noteId, body, { new: true });
       } catch (e) {
@@ -37,7 +36,7 @@ export const NoteRepository = {
       }
    },
 
-   findByIdAndDelete: async (noteId: string): Promise<INoteDatabase | null> => {
+   findByIdAndDelete: async (noteId: NoteDocument["id"]): Promise<NoteDocument | null> => {
       try {
          return NoteModel.findByIdAndDelete(noteId);
       } catch (e) {
@@ -45,7 +44,7 @@ export const NoteRepository = {
       }
    },
 
-   count: async (noteId: string): Promise<number> => {
+   count: async (noteId: NoteDocument["id"]): Promise<number> => {
       try {
          return NoteModel.count({ ownerId: noteId });
       } catch (e) {

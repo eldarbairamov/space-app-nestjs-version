@@ -1,16 +1,14 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, useRouteError } from "react-router-dom";
 import { MainLayout } from "../layout";
-import {
-   DashboardPage,
-   MomentsPage,
-   NotesPage,
-   PlansPage,
-   ProfileSettingsPage,
-   EmailConfirmationPage,
-   ChangePassMessagePage,
-} from "../page";
+import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, EmailConfirmationPage, ChangePassMessagePage } from "../page";
 import { EmailUpdateForm, PasswordUpdateForm, ProfileUpdateForm } from "../component";
-import { TasksPage } from "../page/App-Router/Tasks-Page/Tasks-Page";
+
+function ErrorBoundary() {
+   const error = useRouteError();
+   console.error(error);
+
+   return <Navigate to={ "/" }/>;
+}
 
 export const AppRouter = createBrowserRouter([
    {
@@ -73,4 +71,5 @@ export const AppRouter = createBrowserRouter([
          },
       ],
    },
+   { errorElement: <ErrorBoundary/> },
 ]);

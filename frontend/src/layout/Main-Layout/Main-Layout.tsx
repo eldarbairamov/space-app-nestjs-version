@@ -1,4 +1,4 @@
-import React, { type FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../../component";

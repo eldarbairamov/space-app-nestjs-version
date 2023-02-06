@@ -1,12 +1,14 @@
+import { PlanDocument, TaskDocument } from "../model";
+
 export interface ITaskResponse {
-   readonly id: string;
-   readonly planId: string;
+   readonly id: TaskDocument["id"];
    readonly title: string;
    readonly isCompleted: boolean;
+   readonly planId: PlanDocument["id"];
 }
 
 export interface IAddTask {
-   readonly planId: string;
+   readonly planId: PlanDocument["id"];
    readonly title: string;
 }
 

@@ -1,22 +1,22 @@
-import { axiosInstance, type AxiosRes } from "./axios.service";
+import { axiosInstance, AxiosRes } from "./axios.service";
 import { notesRequests } from "../config/config";
-import { GetNoteDto, UpdateNoteDto } from "../dto/note.dto";
+import { INote, IUpdateNote } from "../interface";
 
 export const noteService = {
 
    addNote: async () => {
-      return axiosInstance.get<GetNoteDto>(notesRequests.addNote);
+      return axiosInstance.get<INote>(notesRequests.addNote);
    },
 
    getNotes: async () => {
-      return axiosInstance.get<GetNoteDto[]>(notesRequests.getNotes);
+      return axiosInstance.get<INote[]>(notesRequests.getNotes);
    },
 
    getNotesCount: async (): AxiosRes<number> => {
       return axiosInstance.get<number>(notesRequests.getNotesCount);
    },
 
-   saveNote: async (dto: UpdateNoteDto, noteId: string): AxiosRes<void> => {
+   saveNote: async (dto: IUpdateNote, noteId: string): AxiosRes<void> => {
       return axiosInstance.put<void>(notesRequests.saveNote + noteId, dto);
    },
 
@@ -25,7 +25,7 @@ export const noteService = {
    },
 
    getNotesBySearch: async (searchKey: string) => {
-      return axiosInstance.get<GetNoteDto[]>(notesRequests.getNotesBySearch, {
+      return axiosInstance.get<INote[]>(notesRequests.getNotesBySearch, {
          params: { searchKey },
       });
    },

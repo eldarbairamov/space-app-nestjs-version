@@ -1,11 +1,12 @@
 import { UserRepository } from "../../repository";
 import path from "node:path";
 import { unlink } from "fs/promises";
-import { type IDeleteAvatar } from "../../interface";
+import { IDeleteAvatar } from "../../interface";
 import { fileNameValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
+import { UserDocument } from "../../model";
 
-export const deleteAvatarService = async (userId: string, body: IDeleteAvatar): Promise<void> => {
+export const deleteAvatarService = async (userId: UserDocument["id"], body: IDeleteAvatar): Promise<void> => {
 
    // Validation
    const validation = fileNameValidator.validate(body);

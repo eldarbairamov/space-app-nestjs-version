@@ -4,8 +4,9 @@ import * as jwt from "jsonwebtoken";
 import { EMAIL_CONFIRMATION_TOKEN_TYPE } from "../../constant";
 import { emailValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
+import { UserDocument } from "../../model";
 
-export const updateEmailService = async (userId: string, email: string): Promise<void> => {
+export const updateEmailService = async (userId: UserDocument["id"], email: string): Promise<void> => {
 
    // Validation
    const validation = emailValidator.validate({ email });

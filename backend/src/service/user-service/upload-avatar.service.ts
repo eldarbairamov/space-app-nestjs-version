@@ -2,8 +2,9 @@ import fileUpload from "express-fileupload";
 import path from "node:path";
 import { UserRepository } from "../../repository";
 import { ApiException } from "../../exception/api.exception";
+import { UserDocument } from "../../model";
 
-export const uploadAvatarService = async (files: fileUpload.FileArray | null | undefined, userId: string): Promise<string> => {
+export const uploadAvatarService = async (files: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
    try {
       // Define avatar variable
       const avatar = files!.avatar as fileUpload.UploadedFile;
@@ -23,6 +24,6 @@ export const uploadAvatarService = async (files: fileUpload.FileArray | null | u
       return fileName;
 
    } catch (e) {
-      throw new ApiException("Помилка при завантаженні файла", 500);
+      throw new ApiException("Upload image: Error", 500);
    }
 };

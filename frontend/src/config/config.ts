@@ -31,6 +31,15 @@ export const plansRequests = {
    getPlansBySearch: "/plans/search",
 };
 
+export const momentsRequests = {
+   addPlan: "/moments/add",
+   deletePlan: "/moments/",
+   updatePlan: "/moments/",
+   getAllPlans: "/moments",
+   getPlansCount: "/moments/count",
+   getPlansByTags: "/moments/filter",
+};
+
 export const authRequests = {
    registration: "/auth/registration",
    login: "/auth/login",

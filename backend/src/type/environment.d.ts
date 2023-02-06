@@ -1,6 +1,6 @@
-import { type IUserDatabase } from "../interface";
 import { Secret } from "jsonwebtoken";
 import fileUpload from "express-fileupload";
+import { UserDocument } from "../model";
 
 export {};
 
@@ -24,8 +24,8 @@ declare global {
       interface Request {
          user?: IUserDatabase;
          token?: string;
-         userId?: string;
-         files?: fileUpload.FileArray | null | undefined
+         userId?: UserDocument["id"];
+         files?: fileUpload.FileArray | null | undefined;
       }
    }
 }

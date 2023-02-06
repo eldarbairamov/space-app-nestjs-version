@@ -1,5 +1,5 @@
 export interface IPlan {
-   id: string;
-   title: string;
-   lastModified: number;
+   readonly id: string;
+   readonly title: string;
+   readonly lastModified: number;
 }

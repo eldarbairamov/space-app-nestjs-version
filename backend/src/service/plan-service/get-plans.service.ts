@@ -1,8 +1,9 @@
 import { PlanRepository } from "../../repository";
 import { allPlansPresenter } from "../../presenter";
-import { type IPlanResponse } from "../../interface";
+import { IPlanResponse } from "../../interface";
+import { UserDocument } from "../../model";
 
-export const getPlansService = async (userId: string): Promise<IPlanResponse[]> => {
+export const getPlansService = async (userId: UserDocument["id"]): Promise<IPlanResponse[]> => {
 
    // Find all plans in DB
    const plans = await PlanRepository.find({ ownerId: userId });

@@ -1,4 +1,4 @@
-import React, { type ChangeEvent, type FC, type FormEvent, useState } from "react";
+import React, { ChangeEvent, FC, type FormEvent, useState } from "react";
 
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ export const ActivationForm: FC = () => {
          await authService.accountActivation(value);
 
          toast.dismiss(loading);
-         toast.success('Ваш аккаунт активовано.');
+         toast.success("Ваш аккаунт активовано");
 
          setTimeout(() => {
             setValue("");
@@ -31,7 +31,7 @@ export const ActivationForm: FC = () => {
          }, 1500);
 
       } catch (e) {
-         catchErrors(e)
+         catchErrors(e);
       }
    };
 

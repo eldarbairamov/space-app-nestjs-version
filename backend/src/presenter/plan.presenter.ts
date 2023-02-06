@@ -1,15 +1,17 @@
-import { type IPlanDatabase, type IPlanResponse } from "../interface";
+import { IPlanResponse } from "../interface";
+import { PlanDocument } from "../model";
 
-export const planPresenter = (document: IPlanDatabase): IPlanResponse => {
-   const date = new Date(document.updatedAt).getTime();
+export const planPresenter = (document: PlanDocument): IPlanResponse => {
+
+   const date = new Date(document.updatedAt as string).getTime();
 
    return {
-      id: document._id,
+      id: document.id,
       title: document.title,
       lastModified: date,
    };
 };
 
-export const allPlansPresenter = (documents: IPlanDatabase[]): IPlanResponse[] => {
+export const allPlansPresenter = (documents: PlanDocument[]): IPlanResponse[] => {
    return documents.map(doc => planPresenter(doc));
 };

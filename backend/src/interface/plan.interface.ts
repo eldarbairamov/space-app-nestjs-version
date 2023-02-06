@@ -1,5 +1,7 @@
+import { PlanDocument } from "../model";
+
 export interface IPlanResponse {
-   readonly id: string;
+   readonly id: PlanDocument["id"];
    readonly title: string;
    readonly lastModified: number;
 }

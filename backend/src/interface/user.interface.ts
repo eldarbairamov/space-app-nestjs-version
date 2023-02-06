@@ -17,13 +17,9 @@ export interface IUpdateProfile {
 }
 
 export interface IDeleteAvatar {
-   readonly fileName: string
+   readonly fileName: string;
 }
 
 export interface IChangeEmail {
    readonly confirmationToken: string;
-}
-
-export interface IChangeEmailRequest {
-   readonly email: string;
 }

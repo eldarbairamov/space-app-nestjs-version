@@ -1,11 +1,18 @@
-import { model, Schema, type SchemaDefinitionProperty, Types } from "mongoose";
-import { type IOAuthDatabase, type IOAuthSchema } from "../interface";
+import { HydratedDocument, model, ObjectId, Schema, SchemaDefinitionProperty, SchemaTimestampsConfig, Types } from "mongoose";
 
-const OAuthSchema = new Schema<IOAuthSchema>({
-   accessToken: { type: String },
-   refreshToken: { type: String },
-   ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<string | undefined>,
+export interface IOAuth {
+   ownerId: ObjectId,
+   accessToken: string,
+   refreshToken: string,
+}
 
-}, { timestamps: true, versionKey: false });
+export type OAuthDocument = HydratedDocument<IOAuth> & SchemaTimestampsConfig
 
-export const OAuthModel = model<IOAuthDatabase>("OAuth", OAuthSchema);
+const OAuthSchema = new Schema<IOAuth>({
+      accessToken: { type: String },
+      refreshToken: { type: String },
+      ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
+   },
+   { timestamps: true, versionKey: false });
+
+export const OAuthModel = model<OAuthDocument>("OAuth", OAuthSchema);

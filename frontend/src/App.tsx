@@ -1,11 +1,11 @@
-import React, { type FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
 import { RouterProvider } from "react-router-dom";
 import { AppRouter, WelcomeRouter } from "./router";
 import { storageService } from "./services";
 
 export const App: FC = () => {
-   const isLogin = storageService.getAccessToken()
+   const isLogin = storageService.getAccessToken();
 
    useEffect(() => {
       if (isLogin) import ("./style/app.scss");

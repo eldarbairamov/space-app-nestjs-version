@@ -1,4 +1,4 @@
-import React, { type FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
 import { NotesMain, NotesSidebar } from "../../../component";
 import { useAppDispatch, useAppSelector } from "../../../hook";

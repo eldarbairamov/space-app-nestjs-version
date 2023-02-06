@@ -1,9 +1,10 @@
 import { UserRepository } from "../../repository";
 import { ApiException } from "../../exception/api.exception";
 import { updateProfileValidator } from "../../validator";
-import { type IUpdateProfile, type IUserDatabase } from "../../interface";
+import { IUpdateProfile } from "../../interface";
+import { UserDocument } from "../../model";
 
-export const updateProfileService = async (userId: string, body: IUpdateProfile): Promise<IUpdateProfile> => {
+export const updateProfileService = async (userId: UserDocument["id"], body: IUpdateProfile): Promise<IUpdateProfile> => {
 
    // Validation
    const validation = updateProfileValidator.validate(body);
@@ -22,7 +23,7 @@ export const updateProfileService = async (userId: string, body: IUpdateProfile)
    if (JSON.stringify(userDto) === JSON.stringify(objToCompare)) throw new ApiException("There is nothing to change", 400);
 
    // Update user
-   const updatedUser = await UserRepository.findByIdAndUpdate(userId, body) as IUserDatabase;
+   const updatedUser = await UserRepository.findByIdAndUpdate(userId, body) as UserDocument;
 
    return {
       username: updatedUser.username,

@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -26,7 +26,7 @@ export const ForgotPasswordForm: FC = () => {
          await authService.forgotPassword(email);
 
          toast.dismiss(loading);
-         toast.success("Лист із посиланням вже летить на вказану електронну пошту.");
+         toast.success("Лист із посиланням вже летить на вказану електронну пошту");
 
          setTimeout(() => {
             setValue("email", "");

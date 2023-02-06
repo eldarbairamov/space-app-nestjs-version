@@ -1,4 +1,4 @@
-import React, { type FC, useState } from "react";
+import React, { FC, useState } from "react";
 
 import { NotesItem } from "../Notes-Item/Notes-Item";
 import { v4 as uuid } from "uuid";

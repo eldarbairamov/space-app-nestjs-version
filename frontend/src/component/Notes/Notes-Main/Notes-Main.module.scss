@@ -5,10 +5,9 @@
 
 .Main {
    @extend %flex;
-   justify-content: center;
    flex-direction: column;
 
-   height: 95%;
+   height: 100%;
    width: 100%;
 
    .header {
@@ -17,14 +16,14 @@
 
       border-bottom: 2px #d7d7d7 solid;
       width: 100%;
-      height: 8%;
+      height: 10.5%;
       position: relative;
 
       input {
          text-align: center;
          border: none;
          font-weight: 500;
-         font-size: 18px;
+         font-size: 20px;
          outline: none;
          width: 500px;
       }
@@ -36,7 +35,7 @@
       justify-content: center;
 
       width: 98%;
-      height: 91%;
+      height: 84%;
 
       textarea {
          width: 95%;

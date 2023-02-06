@@ -1,6 +1,6 @@
-import React, { type FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
@@ -9,7 +9,7 @@ import { userService } from "../../../../services";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { catchErrors } from "../../../../helper";
 import { userActions } from "../../../../redux/slice";
-import { type IUpdateProfileForm } from "../../../../interface/form.interface";
+import { IUpdateProfileForm } from "../../../../interface";
 
 import style from "./Profile-Update-Form.module.scss";
 
@@ -37,7 +37,7 @@ export const ProfileUpdateForm: FC = () => {
          dispatch(userActions.setInfo(result.data));
 
          toast.dismiss(loading);
-         toast.success("Ви успішно оновили профіль.");
+         toast.success("Ви успішно оновили профіль");
 
       } catch (e) {
          catchErrors(e);

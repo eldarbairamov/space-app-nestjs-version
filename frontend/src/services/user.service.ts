@@ -1,28 +1,27 @@
-import { axiosInstance } from "./axios.service";
-import { type AxiosResponse } from "axios";
+import { axiosInstance, AxiosRes } from "./axios.service";
 import { userRequests } from "../config/config";
-import { GetUserInfoDto, UpdateProfileDto } from "../dto";
+import { IGetUserInfo, IUpdateProfile } from "../interface";
 
 export const userService = {
 
-   profileUpdate: async (dto: UpdateProfileDto): Promise<AxiosResponse> => {
-      return axiosInstance.patch<GetUserInfoDto>(userRequests.profileUpdate, dto);
+   profileUpdate: async (update: IUpdateProfile) => {
+      return axiosInstance.patch<IGetUserInfo>(userRequests.profileUpdate, update);
    },
 
-   changeEmailRequest: async (email: { email: string }): Promise<AxiosResponse> => {
-      return axiosInstance.post<{ message: string }>(userRequests.changeEmail, email);
+   changeEmailRequest: async (email: { email: string }): AxiosRes<void> => {
+      return axiosInstance.post(userRequests.changeEmail, email);
    },
 
-   changeEmail: async (confirmationToken: string): Promise<AxiosResponse> => {
+   changeEmail: async (confirmationToken: string): AxiosRes<void> => {
       return axiosInstance.patch(userRequests.changeEmailAccept, { confirmationToken });
    },
 
-   changePassword: async (newPassword: string, currentPassword: string): Promise<AxiosResponse> => {
-      return axiosInstance.patch<{ message: string }>(userRequests.changePassword, { newPassword, currentPassword });
+   changePassword: async (newPassword: string, currentPassword: string): AxiosRes<void> => {
+      return axiosInstance.patch(userRequests.changePassword, { newPassword, currentPassword });
    },
 
-   getUser: async (): Promise<GetUserInfoDto> => {
-      const { data } = await axiosInstance.get<GetUserInfoDto>(userRequests.getUser);
+   getUser: async (): Promise<IGetUserInfo> => {
+      const { data } = await axiosInstance.get<IGetUserInfo>(userRequests.getUser);
       return data;
    },
 

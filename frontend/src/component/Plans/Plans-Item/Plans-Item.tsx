@@ -1,8 +1,8 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { dateFormat } from "../../../helper";
 import { DeleteOutlined } from "@ant-design/icons";
-import { type IPlan } from "../../../interface/plan.interface";
+import { IPlan } from "../../../interface";
 
 import style from "./Plans-Item.module.scss";
 import brain from "../../../asset/brain.png";
@@ -23,8 +23,7 @@ export const PlansItem: FC<IPlansItem> = ({ plan, deletePlan }) => {
 
    return (
       <div className={ style.PlansItem }
-           onClick={ () => choosePlan(plan) }
-      >
+           onClick={ () => choosePlan(plan) }>
 
          <p className={ style.plan_name }> { titleCondition ? plan.title.substring(0, 16) + "..." : plan.title }  </p>
 

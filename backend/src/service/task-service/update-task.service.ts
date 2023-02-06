@@ -1,9 +1,10 @@
 import { updateTaskValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
-import { type IUpdateTask } from "../../interface";
+import { IUpdateTask } from "../../interface";
 import { TaskRepository } from "../../repository";
+import { TaskDocument } from "../../model";
 
-export const updateTaskService = async (taskId: string, body: IUpdateTask) => {
+export const updateTaskService = async (taskId: TaskDocument["id"], body: IUpdateTask) => {
 
    // Validation
    const validation = updateTaskValidator.validate(body);

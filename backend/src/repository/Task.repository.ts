@@ -1,11 +1,10 @@
-import { type ITaskDatabase, type ITaskSchema } from "../interface";
-import { TaskModel } from "../model";
+import { ITask, TaskDocument, TaskModel } from "../model";
 import { ApiException } from "../exception/api.exception";
-import { type FilterQuery, type UpdateQuery } from "mongoose";
+import { FilterQuery, UpdateQuery } from "mongoose";
 
 export const TaskRepository = {
 
-   create: async (body: Partial<ITaskSchema>): Promise<ITaskDatabase> => {
+   create: async (body: Partial<ITask>): Promise<TaskDocument> => {
       try {
          return TaskModel.create(body);
       } catch (e) {
@@ -13,7 +12,7 @@ export const TaskRepository = {
       }
    },
 
-   findByIdAndDelete: async (taskId: string): Promise<ITaskDatabase | null> => {
+   findByIdAndDelete: async (taskId: TaskDocument["id"]): Promise<TaskDocument | null> => {
       try {
          return TaskModel.findByIdAndDelete(taskId);
       } catch (e) {
@@ -22,7 +21,7 @@ export const TaskRepository = {
 
    },
 
-   findByIdAndUpdate: async (taskId: string, update: UpdateQuery<ITaskSchema>): Promise<ITaskDatabase | null> => {
+   findByIdAndUpdate: async (taskId: TaskDocument["id"], update: UpdateQuery<ITask>): Promise<TaskDocument | null> => {
       try {
          return TaskModel.findByIdAndUpdate(taskId, update, { new: true });
       } catch (e) {
@@ -31,7 +30,7 @@ export const TaskRepository = {
 
    },
 
-   find: async (filter: FilterQuery<ITaskSchema>): Promise<ITaskDatabase[]> => {
+   find: async (filter: FilterQuery<ITask>): Promise<TaskDocument[]> => {
       try {
          return TaskModel.find(filter);
       } catch (e) {
@@ -40,7 +39,7 @@ export const TaskRepository = {
 
    },
 
-   findById: async (taskId: string): Promise<ITaskDatabase | null> => {
+   findById: async (taskId: TaskDocument["id"]): Promise<TaskDocument | null> => {
       try {
          return TaskModel.findById(taskId);
       } catch (e) {

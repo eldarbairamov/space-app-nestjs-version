@@ -5,7 +5,7 @@ import express, { type Application } from "express";
 import { errorMiddleware } from "./middleware";
 import { config } from "./config";
 import { apiRouter } from "./router/api.router";
-import fileUpload from 'express-fileupload'
+import fileUpload from "express-fileupload";
 
 const app: Application = express();
 mongoose.set("strictQuery", false);
@@ -15,10 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(fileUpload());
-app.use(express.static('src/upload'));
+app.use(express.static("src/upload"));
 
 // Routing
-app.use('/api', apiRouter)
+app.use("/api", apiRouter);
 
 // Error middleware
 app.use(errorMiddleware);

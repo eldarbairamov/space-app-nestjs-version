@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { joiResolver } from "@hookform/resolvers/joi";
 import toast from "react-hot-toast";
@@ -8,7 +8,7 @@ import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { registrationValidator } from "../../../../validator/auth.validator";
 import { catchErrors } from "../../../../helper";
-import { type IRegistrationForm } from "../../../../interface/form.interface";
+import { IRegistrationForm } from "../../../../interface";
 
 import style from "./Registration-Form.module.scss";
 
@@ -27,7 +27,7 @@ export const RegistrationForm: FC = () => {
 
             toast.dismiss(loading);
             toast.success(
-               `Ви успішно зареєструвались. Посилання на активацію аккаунту вже летить на вказану електронну пошту.`,
+               `Ви успішно зареєструвались. Посилання на активацію аккаунту вже летить на вказану електронну пошту`,
                { duration: 5000 },
             );
 

@@ -1,10 +1,10 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
 import { RegistrationForm, WelcomeLogo } from "../../../component";
 import { useMatchMedia } from "../../../hook";
+import { Toaster } from "react-hot-toast";
 
 import style from "./Registration-Page.module.scss";
-import { Toaster } from "react-hot-toast";
 
 export const RegistrationPage: FC = () => {
    const { isDesktop, isTablet } = useMatchMedia();

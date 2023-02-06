@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
 import style from "./Welcome-Logo.module.scss";
 

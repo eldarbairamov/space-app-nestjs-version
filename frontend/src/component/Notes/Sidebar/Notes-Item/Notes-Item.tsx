@@ -1,11 +1,11 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { notesActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
 import { catchErrors, dateFormat } from "../../../../helper";
 import { noteService } from "../../../../services";
-import { type INote } from "../../../../interface/note.interface";
+import { INote } from "../../../../interface";
 
 import style from "./Notes-Item.module.scss";
 

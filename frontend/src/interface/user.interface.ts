@@ -1,4 +1,4 @@
-export class GetUserInfoDto {
+export interface IGetUserInfo {
    readonly name: string;
    readonly surname: string;
    readonly username: string;
@@ -6,7 +6,7 @@ export class GetUserInfoDto {
    readonly avatar: string;
 }
 
-export class UpdateProfileDto {
+export interface IUpdateProfile {
    readonly username: string;
    readonly name?: string;
    readonly surname?: string;

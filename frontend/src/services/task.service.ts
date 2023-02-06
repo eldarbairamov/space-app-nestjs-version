@@ -1,24 +1,23 @@
-import { axiosInstance } from "./axios.service";
-import { type AxiosResponse } from "axios";
+import { axiosInstance, AxiosRes } from "./axios.service";
 import { tasksRequests } from "../config/config";
-import { AddTaskDto, GetTaskDto } from "../dto";
+import { IAddTask, ITask } from "../interface";
 
 export const taskService = {
 
-   addTask: async (dto: AddTaskDto) => {
-      return axiosInstance.post<GetTaskDto>(tasksRequests.addTask, dto);
+   addTask: async (dto: IAddTask) => {
+      return axiosInstance.post<ITask>(tasksRequests.addTask, dto);
    },
 
-   updateTask: async (taskId: string, status: boolean): Promise<AxiosResponse> => {
+   updateTask: async (taskId: string, status: boolean): AxiosRes<void> => {
       return axiosInstance.patch(tasksRequests.updateTask + taskId, { isCompleted: status });
    },
 
-   deleteTask: async (taskId: string, planId: string): Promise<AxiosResponse> => {
+   deleteTask: async (taskId: string, planId: string): AxiosRes<void> => {
       return axiosInstance.post(tasksRequests.deleteTask + taskId, { planId });
    },
 
    getAllTasks: async (planId: string) => {
-      return axiosInstance.post<GetTaskDto[]>(tasksRequests.getAllTasks, { planId });
+      return axiosInstance.post<ITask[]>(tasksRequests.getAllTasks, { planId });
    },
 
 };

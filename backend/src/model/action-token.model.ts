@@ -1,11 +1,18 @@
-import { model, Schema, type SchemaDefinitionProperty, Types } from "mongoose";
-import { type IActionTokenDatabase, type IActionTokenSchema } from "../interface";
+import { HydratedDocument, model, ObjectId, Schema, SchemaDefinitionProperty, SchemaTimestampsConfig, Types } from "mongoose";
 
-const actionTokenSchema = new Schema<IActionTokenSchema>({
-   token: { type: String },
-   tokenType: { type: String },
-   ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<string | undefined>,
+export interface IActionToken {
+   token: string,
+   tokenType: string,
+   ownerId: ObjectId,
+}
 
-}, { timestamps: true, versionKey: false });
+export type ActionTokenDocument = HydratedDocument<IActionToken> & SchemaTimestampsConfig
 
-export const ActionTokenModel = model<IActionTokenDatabase>("ActionToken", actionTokenSchema);
+const actionTokenSchema = new Schema<IActionToken>({
+      token: { type: String },
+      tokenType: { type: String },
+      ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
+   },
+   { timestamps: true, versionKey: false });
+
+export const ActionTokenModel = model<ActionTokenDocument>("ActionToken", actionTokenSchema);

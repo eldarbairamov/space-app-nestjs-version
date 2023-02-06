@@ -23,7 +23,7 @@ taskRouter.post(
 taskRouter.patch(
    "/:taskId",
    authMiddleware.isAccessExists,
-   commonMiddleware.isObjectExists('task'),
+   commonMiddleware.isObjectExists("task"),
    taskController.updateTaskStatus,
 );
 
@@ -31,6 +31,6 @@ taskRouter.patch(
 taskRouter.post(
    "/:taskId",
    authMiddleware.isAccessExists,
-   commonMiddleware.isObjectExists('task'),
+   commonMiddleware.isObjectExists("task"),
    taskController.deleteTask,
 );

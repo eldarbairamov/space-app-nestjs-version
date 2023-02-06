@@ -2,7 +2,7 @@ import { ApiException } from "../../exception/api.exception";
 import { ActionTokenRepository, UserRepository } from "../../repository";
 import { passHasher } from "../../helper";
 import { resetPasswordValidator } from "../../validator";
-import { type IResetPassword } from "../../interface";
+import { IResetPassword } from "../../interface";
 
 export const resetPasswordService = async (body: IResetPassword) => {
 
@@ -12,7 +12,7 @@ export const resetPasswordService = async (body: IResetPassword) => {
 
    // Delete action token
    const actionTokenInfo = await ActionTokenRepository.findOneAndDelete({ token: body.resetPasswordToken });
-   if (!actionTokenInfo) throw new ApiException("Токен невалідний", 401);
+   if (!actionTokenInfo) throw new ApiException("Invalid token", 401);
 
    // Define token owner ID
    const ownerId = actionTokenInfo.ownerId;

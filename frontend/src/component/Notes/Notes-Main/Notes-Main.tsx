@@ -1,11 +1,10 @@
-import React, { type ChangeEvent, type FC, useEffect } from "react";
+import React, { ChangeEvent, FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { notesActions } from "../../../redux/slice";
 import { noteService } from "../../../services";
 import { catchErrors } from "../../../helper";
-import { type INote } from "../../../interface/note.interface";
-import { UpdateNoteDto } from "../../../dto/note.dto";
+import { INote, IUpdateNote } from "../../../interface";
 
 import style from "./Notes-Main.module.scss";
 
@@ -33,7 +32,7 @@ export const NotesMain: FC = () => {
          const noteToSave = {
             title: activeNote?.title,
             body: activeNote?.body,
-         } as UpdateNoteDto;
+         } as IUpdateNote;
 
          await noteService.saveNote(noteToSave, activeNote?.id!);
 

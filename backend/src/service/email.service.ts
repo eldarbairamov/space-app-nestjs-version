@@ -25,6 +25,6 @@ export const emailSender = async (to: string, subject: string, message: string =
             `,
       })
       .catch(() => {
-         throw new ApiException("Помилка при надсиланні листа", 500);
+         throw new ApiException("Nodemailer: Error", 500);
       });
 };

@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse, type AxiosError, type AxiosRequestConfig } from "axios";
+import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
 import { config } from "../config/config";
 import { storageService } from "./storage.service";
 import { AppRouter } from "../router";
@@ -26,14 +26,14 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
    (e) => {
       const axiosError = e as AxiosApiError;
 
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Токен невалідний.") {
+      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Invalid token") {
          storageService.deleteAccessToken();
          AppRouter.navigate("/", { state: { status: "need to login" } });
          AppRouter.navigate(0);
       }
 
       if (axiosError.message === "Network Error") {
-         throw new Error("Непередбачена помилка.");
+         throw new Error("Непередбачена помилка...");
       }
 
       return Promise.reject(e);

@@ -1,15 +1,13 @@
-import React, { type FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { useLocation } from "react-router";
 import { catchErrors, dateFormat } from "../../../helper";
 import { planService, taskService } from "../../../services";
-import { TasksItem } from "../../../component/Plans/Tasks/Tasks-Item/Tasks-Item";
+import { TasksItem } from "../../../component";
 import { Toaster } from "react-hot-toast";
-import { type IPlan } from "../../../interface/plan.interface";
-import { type ITask } from "../../../interface/task.interface";
+import { IPlan, ITask } from "../../../interface";
 
 import style from "./Tasks-Page.module.scss";
-import { AddTaskDto } from "../../../dto";
 
 export interface IInputFields {
    planTitle: string,
@@ -28,7 +26,7 @@ export const TasksPage: FC = () => {
          try {
             setInputFields({ ...inputFields, taskTitle: "" });
 
-            const addTaskDto = { planId: plan.id, title: inputFields.taskTitle } as AddTaskDto;
+            const addTaskDto = { planId: plan.id, title: inputFields.taskTitle };
 
             const { data } = await taskService.addTask(addTaskDto);
 

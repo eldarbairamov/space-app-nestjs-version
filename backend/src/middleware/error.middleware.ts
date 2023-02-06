@@ -1,5 +1,5 @@
-import { type NextFunction, type Request, type Response } from "express";
-import { type ApiException } from "../exception/api.exception";
+import { NextFunction, Request, Response } from "express";
+import { ApiException } from "../exception/api.exception";
 
 export const errorMiddleware = (err: ApiException, req: Request, res: Response, next: NextFunction) => {
    res

@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
 import { PlansStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
 import { Toaster } from "react-hot-toast";

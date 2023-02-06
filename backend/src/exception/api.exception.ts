@@ -17,7 +17,7 @@ export class ApiException extends Error {
       return new ApiException("Object is not found", 404);
    }
 
-   static ObjectID() {
+   static InvalidObjectId() {
       return new ApiException("Id is not valid", 400);
    }
 

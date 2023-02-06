@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -8,7 +8,7 @@ import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { catchErrors } from "../../../../helper";
-import { type IResetPasswordForm } from "../../../../interface/form.interface";
+import { IResetPasswordForm } from "../../../../interface";
 
 import style from "./Reset-Password-Form.module.scss";
 
@@ -34,7 +34,7 @@ export const ResetPasswordForm: FC = () => {
             await authService.resetPassword(password, resetPasswordToken!);
 
             toast.dismiss(loading);
-            toast.success("Вітаємо! У вас новий пароль.");
+            toast.success("Вітаємо! У вас новий пароль");
 
             setTimeout(() => {
                setValue("password", "");
@@ -43,7 +43,7 @@ export const ResetPasswordForm: FC = () => {
             }, 1500);
 
          } else {
-            toast.error("Паролі не співпадають.");
+            toast.error("Паролі не співпадають");
          }
 
       } catch (e) {

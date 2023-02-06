@@ -1,12 +1,12 @@
 import { emailSender } from "../email.service";
-import { type IUserDatabase } from "../../interface";
 import { ActionTokenRepository } from "../../repository";
 import * as jwt from "jsonwebtoken";
 import { RESET_PASSWORD_SUBJECT, RESET_PASSWORD_TOKEN_TYPE } from "../../constant";
 import { emailValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
+import { UserDocument } from "../../model";
 
-export const forgotPasswordService = async (emailFromReq: string, userFromDb: IUserDatabase) => {
+export const forgotPasswordService = async (emailFromReq: string, userFromDb: UserDocument) => {
 
    // Validation
    const validation = emailValidator.validate({ email: emailFromReq });
@@ -20,7 +20,7 @@ export const forgotPasswordService = async (emailFromReq: string, userFromDb: IU
    await ActionTokenRepository.create({
       token: resetPasswordToken,
       tokenType: RESET_PASSWORD_TOKEN_TYPE,
-      ownerId: userFromDb._id,
+      ownerId: userFromDb.id,
    });
 
    // Send email

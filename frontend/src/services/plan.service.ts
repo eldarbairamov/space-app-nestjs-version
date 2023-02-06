@@ -1,24 +1,23 @@
-import { type AxiosResponse } from "axios";
-import { axiosInstance } from "./axios.service";
+import { axiosInstance, AxiosRes } from "./axios.service";
 import { plansRequests } from "../config/config";
-import { GetPlanDto } from "../dto";
+import { IPlan } from "../interface";
 
 export const planService = {
 
    addPlan: async () => {
-      return axiosInstance.get<GetPlanDto>(plansRequests.addPlan);
+      return axiosInstance.get<IPlan>(plansRequests.addPlan);
    },
 
-   deletePlan: async (planId: string): Promise<AxiosResponse> => {
+   deletePlan: async (planId: string): AxiosRes<void> => {
       return axiosInstance.delete(plansRequests.deletePlan + planId);
    },
 
-   updatePlan: async (planId: string, title: string): Promise<AxiosResponse> => {
+   updatePlan: async (planId: string, title: string): AxiosRes<void> => {
       return axiosInstance.put(plansRequests.updatePlan + planId, { title });
    },
 
    getAllPlans: async () => {
-      return axiosInstance.get<GetPlanDto[]>(plansRequests.getAllPlans);
+      return axiosInstance.get<IPlan[]>(plansRequests.getAllPlans);
    },
 
    getPlansCount: async () => {
@@ -26,7 +25,7 @@ export const planService = {
    },
 
    getPlansBySearch: async (searchKey: string) => {
-      return axiosInstance.get<GetPlanDto[]>(plansRequests.getPlansBySearch, {
+      return axiosInstance.get<IPlan[]>(plansRequests.getPlansBySearch, {
          params: { searchKey },
       });
    },

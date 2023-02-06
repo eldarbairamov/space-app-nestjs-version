@@ -1,4 +1,4 @@
-import React, { type FC, useRef } from "react";
+import React, { FC, useRef } from "react";
 
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hook";

@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppLogo } from "../Logo/App-Logo/App-Logo";

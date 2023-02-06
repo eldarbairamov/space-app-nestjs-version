@@ -1,9 +1,9 @@
-import React, { type FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { PlansItem } from "../../../component/Plans/Plans-Item/Plans-Item";
+import { PlansItem } from "../../../component";
 import { planService } from "../../../services";
 import { catchErrors } from "../../../helper";
-import { type IPlan } from "../../../interface/plan.interface";
+import { IPlan } from "../../../interface";
 
 import style from "./Plans-Page.module.scss";
 
@@ -39,24 +39,21 @@ export const PlansPage: FC = () => {
    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
 
    useEffect(() => {
-      try {
-         if (searchKey === "") {
-            planService
-               .getAllPlans()
-               .then(res => {
-                  setPlans(res.data);
-               });
-         }
-
-         if (searchKey !== "") {
-            planService
-               .getPlansBySearch(searchKey)
-               .then(res => setPlans(res.data));
-         }
-      } catch (e) {
-         catchErrors(e);
+      if (searchKey === "") {
+         planService
+            .getAllPlans()
+            .then(res => {
+               setPlans(res.data);
+            })
+            .catch(e => catchErrors(e));
       }
 
+      if (searchKey !== "") {
+         planService
+            .getPlansBySearch(searchKey)
+            .then(res => setPlans(res.data))
+            .catch(e => catchErrors(e));
+      }
    }, [ searchKey ]);
 
    return (
@@ -86,7 +83,7 @@ export const PlansPage: FC = () => {
             } }
          />
 
-         <div className={ style.top }>
+         <div className={ style.header }>
             <button className={ style.add_plan }> +</button>
             <button className={ style.add_plan } onClick={ addPlan }> Додати план</button>
 
@@ -99,7 +96,7 @@ export const PlansPage: FC = () => {
             </div>
          </div>
 
-         <div className={ style.bottom }>
+         <div className={ style.main }>
 
             <div className={ style.plan_list }>
                { plans && plans.map(item => <PlansItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }

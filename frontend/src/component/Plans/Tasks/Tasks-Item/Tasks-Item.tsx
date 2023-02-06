@@ -1,9 +1,9 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
 import { catchErrors } from "../../../../helper";
 import { taskService } from "../../../../services";
 import { DeleteOutlined } from "@ant-design/icons";
-import { type ITask } from "../../../../interface/task.interface";
+import { ITask } from "../../../../interface";
 
 import style from "./Tasks-Item.module.scss";
 import complete from "../../../../asset/complete.svg";
@@ -15,7 +15,7 @@ interface ITasksItem {
    setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
 
-export const TasksItem: FC<ITasksItem> = ({ task, tasks, setTasks}) => {
+export const TasksItem: FC<ITasksItem> = ({ task, tasks, setTasks }) => {
 
    const setTaskStatus = async (taskId: string): Promise<void> => {
       const tasksArrCopy = [ ...tasks ];

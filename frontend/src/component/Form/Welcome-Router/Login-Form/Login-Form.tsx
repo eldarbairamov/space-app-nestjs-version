@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { authService } from "../../../../services";
 import { loginValidator } from "../../../../validator/auth.validator";
 import { catchErrors } from "../../../../helper";
-import { type ILoginForm } from "../../../../interface/form.interface";
+import { ILoginForm } from "../../../../interface";
 
 import style from "./Login-Form.module.scss";
 
@@ -27,7 +27,7 @@ export const LoginForm: FC = () => {
          const username = await authService.login(data);
 
          toast.dismiss(loading);
-         toast.success(`Привіт, ${ username }!`);
+         toast.success(`Привіт, ${ username }`);
 
          setTimeout(() => {
             setValue("email", "");
@@ -36,13 +36,7 @@ export const LoginForm: FC = () => {
          }, 1500);
 
       } catch (e) {
-         const { response } = catchErrors(e);
-
-         if (response === "Активуйте аккаунт.") {
-            setTimeout(() => {
-               navigate("/activation");
-            }, 2000);
-         }
+         catchErrors(e);
       }
    };
 
@@ -68,6 +62,7 @@ export const LoginForm: FC = () => {
          {/* Footer */ }
          <div className={ style.footer }>
             <p onClick={ () => navigate("/password_forgot") }> Забув пароль? </p>
+            <p onClick={ () => navigate("/registration") }> Створити аккаунт </p>
          </div>
 
       </form>

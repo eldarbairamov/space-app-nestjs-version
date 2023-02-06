@@ -1,4 +1,4 @@
-import React, { type FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -48,7 +48,7 @@ export const EmailConfirmationMessage: FC = () => {
             &&
             <div className={ style.EmailConfirmationMessage }>
                <div className={ style.message }>
-                  <p> Ви успішно оновили адресу електронної пошти. </p>
+                  <p> Ви успішно оновили адресу електронної пошти </p>
                </div>
                <img src={ applause } alt="applause"/>
             </div>
@@ -58,7 +58,7 @@ export const EmailConfirmationMessage: FC = () => {
             &&
             <div className={ style.EmailConfirmationMessage }>
                <div className={ style.message }>
-                  <p> Вибачте, посилання більше не актуальне. </p>
+                  <p> Вибачте, посилання більше не актуальне </p>
                </div>
                <img src={ sad } alt="applause"/>
             </div>

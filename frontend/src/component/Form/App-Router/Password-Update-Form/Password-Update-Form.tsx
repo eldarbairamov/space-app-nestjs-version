@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
 import { changePasswordValidator } from "../../../../validator/auth.validator";
@@ -8,7 +8,7 @@ import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { userService } from "../../../../services";
 import { useNavigate } from "react-router-dom";
 import { catchErrors } from "../../../../helper";
-import { type IChangePasswordForm } from "../../../../interface/form.interface";
+import { IChangePasswordForm } from "../../../../interface";
 
 import style from "./Password-Update-Form.module.scss";
 
@@ -36,7 +36,7 @@ export const PasswordUpdateForm: FC = () => {
             navigate("/change_password/message");
 
          } else {
-            toast.error("Паролі не співпадають.");
+            toast.error("Паролі не співпадають");
          }
 
       } catch (e) {

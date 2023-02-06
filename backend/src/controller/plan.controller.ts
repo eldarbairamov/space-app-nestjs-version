@@ -1,16 +1,9 @@
 import expressAsyncHandler from "express-async-handler";
-import { type Response } from "express";
+import { Response } from "express";
 import { addPlanService, getPlansService, getPlansBySearchService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
 import { updatePlanService } from "../service/plan-service/update-plan.service";
-import {
-   type IPlanResponse,
-   type IUpdatePlan,
-   type RequestWithBodyVarParam,
-   type RequestWithCustomVar,
-   type RequestWithCustomVarAndParam,
-   type RequestWithCustomVarAndQuery,
-} from "../interface";
+import { IPlanResponse, IUpdatePlan, RequestWithBodyVarParam, RequestWithCustomVar, RequestWithCustomVarAndParam, RequestWithCustomVarAndQuery } from "../interface";
 
 export const planController = {
 
@@ -26,13 +19,13 @@ export const planController = {
 
    updatePlan: expressAsyncHandler(async (req: RequestWithBodyVarParam<IUpdatePlan, { planId: string }>, res: Response<{ message: string }>) => {
       await updatePlanService(req.params.planId, req.body);
-      res.json({ message: "Успішно" });
+      res.json({ message: "Success" });
    }),
 
    deletePlan: expressAsyncHandler(async (req: RequestWithCustomVarAndParam<{ planId: string }>, res: Response<{ message: string }>) => {
       await PlanRepository.findByIdAndDelete(req.params.planId);
       await UserRepository.findByIdAndUpdate(req.userId!, { $pull: { plansIds: req.params.planId } });
-      res.json({ message: "Успішно" });
+      res.json({ message: "Success" });
    }),
 
    getPlansCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {

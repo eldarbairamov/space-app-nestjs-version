@@ -8,7 +8,6 @@ export const notesRouter = Router();
 notesRouter.get(
    "/add",
    authMiddleware.isAccessExists,
-   commonMiddleware.isRequestEmpty,
    notesController.addNote,
 );
 

@@ -5,10 +5,143 @@
 
 .MemoriesPage {
    width: 80vw;
+   height: calc(100vh - 170px);
    background: white;
    border-radius: 15px;
-   height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+
+   .header {
+      @extend %flex;
+      justify-content: center;
+      gap: 10px;
+
+      height: 10%;
+      width: 100%;
+      position: relative;
+      border-bottom: 2px #d7d7d7 solid;
+
+      .save_moment {
+         @extend %flex;
+         justify-content: center;
+         gap: 10px;
+
+         padding: 15px;
+
+         img {
+            height: 25px;
+         }
+
+         button {
+            font-weight: 500;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+               color: #7274d7;
+            }
+         }
+      }
+   }
+
+   .main {
+      overflow-y: scroll;
+      height: 90%;
+      width: 100%;
+
+      .moments_list {
+         display: flex;
+         flex-wrap: wrap;
+         align-content: flex-start;
+         gap: 30px;
+
+         width: 95%;
+         margin: 0 auto;
+         padding: 30px 10px 30px 10px;
+      }
+
+      .moments_item {
+         position: relative;
+         border-radius: 20px;
+         overflow: hidden;
+         transition: .5s;
+
+         &:hover {
+            filter: brightness(90%);
+            -webkit-filter: brightness(90%);
+         }
+
+         .photo_wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(244, 244, 244);
+            width: 410px;
+            height: 250px;
+            position: relative;
+
+            .photo_background {
+               position: absolute;
+               width: 800px;
+               filter: blur(8px) contrast(90%);
+               -webkit-filter: blur(100%) contrast(90%);
+            }
+
+            .photo {
+               width: 250px;
+               position: absolute;
+               cursor: pointer;
+               filter: contrast(90%);
+               -webkit-filter: contrast(90%);
+               border-radius: 20px;
+            }
+         }
+
+         .title {
+            position: absolute;
+            top: 15px;
+            color: white;
+            left: 30px;
+            background: #24292e;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 15px;
+         }
+
+         .date {
+            position: absolute;
+            bottom: 15px;
+            color: white;
+            left: 30px;
+            background: #24292e;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 13px;
+         }
+
+         .tags_wrapper {
+            @extend %flex;
+            justify-content: center;
+            gap: 10px;
+
+            width: 100%;
+            position: absolute;
+            bottom: 15px;
+            left: 110px;
+
+            .tag {
+               color: white;
+               background: #7274d7;
+               padding: 5px 10px;
+               border-radius: 5px;
+               font-size: 13px;
+            }
+         }
+
+
+      }
+   }
 }
 
 @media screen and (max-height: 800px) {

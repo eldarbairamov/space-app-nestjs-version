@@ -7,6 +7,9 @@ export * from "./Notes/Notes-Main/Notes-Main";
 export * from "./Notes/Sidebar/Notes-Sidebar/Notes-Sidebar";
 export * from "./Notes/Sidebar/Notes-Item/Notes-Item";
 
+export * from './Plans/Plans-Item/Plans-Item'
+export * from './Plans/Tasks/Tasks-Item/Tasks-Item'
+
 export * from "./Form/Welcome-Router/Registration-Form/Registration-Form";
 export * from "./Form/Welcome-Router/Login-Form/Login-Form";
 export * from "./Form/Welcome-Router/Activation-Form/ActivationForm";
@@ -25,5 +28,5 @@ export * from "./Dashboard/Profile-Preview/Profile-Preview";
 export * from "./UI/Form-Control/Form-Control";
 export * from "./UI/Validation-Error-Toaster/Validation-Error-Toaster";
 
-export * from "./Messages/Change-Password-Message/Change-Password-Message";
-export * from "./Messages/Email-Confirmation-Message/Email-Confirmation-Message";
+export * from "./Message/Change-Password-Message/Change-Password-Message";
+export * from "./Message/Email-Confirmation-Message/Email-Confirmation-Message";

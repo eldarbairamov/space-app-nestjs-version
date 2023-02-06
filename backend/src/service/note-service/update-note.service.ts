@@ -1,9 +1,10 @@
 import { updateNoteValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
 import { NoteRepository } from "../../repository";
-import { type IUpdateNote } from "../../interface";
+import { IUpdateNote } from "../../interface";
+import { NoteDocument } from "../../model";
 
-export const updateNoteService = async (noteId: string, body: IUpdateNote) => {
+export const updateNoteService = async (noteId: NoteDocument["id"], body: IUpdateNote) => {
 
    // Validation
    const validation = updateNoteValidator.validate(body);
@@ -12,4 +13,4 @@ export const updateNoteService = async (noteId: string, body: IUpdateNote) => {
    // Update note
    await NoteRepository.findByIdAndUpdate(noteId, body);
 
-}
+};

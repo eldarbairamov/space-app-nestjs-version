@@ -1,11 +1,10 @@
-import { type FilterQuery } from "mongoose";
-import { type IActionTokenDatabase, type IActionTokenSchema } from "../interface";
-import { ActionTokenModel } from "../model";
+import { FilterQuery } from "mongoose";
+import { ActionTokenDocument, ActionTokenModel, IActionToken } from "../model";
 import { ApiException } from "../exception/api.exception";
 
 export const ActionTokenRepository = {
 
-   create: async (body: IActionTokenSchema): Promise<IActionTokenDatabase> => {
+   create: async (body: IActionToken): Promise<ActionTokenDocument> => {
       try {
          return ActionTokenModel.create(body);
       } catch (e) {
@@ -13,7 +12,7 @@ export const ActionTokenRepository = {
       }
    },
 
-   findOneAndDelete: async (filter: FilterQuery<IActionTokenSchema>): Promise<IActionTokenDatabase | null> => {
+   findOneAndDelete: async (filter: FilterQuery<IActionToken>): Promise<ActionTokenDocument | null> => {
       try {
          return ActionTokenModel.findOneAndDelete(filter);
       } catch (e) {

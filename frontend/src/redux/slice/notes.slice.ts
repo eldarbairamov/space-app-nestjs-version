@@ -1,5 +1,5 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { type INote } from "../../interface/note.interface";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { INote } from "../../interface";
 
 interface INotesInitialState {
    activeNoteId: string | null,

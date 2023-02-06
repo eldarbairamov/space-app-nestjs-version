@@ -1,12 +1,20 @@
-import { model, Schema, type SchemaDefinitionProperty, Types } from "mongoose";
-import { type ITaskDatabase, type ITaskSchema } from "../interface";
+import { HydratedDocument, model, ObjectId, Schema, SchemaDefinitionProperty, SchemaTimestampsConfig, Types } from "mongoose";
 
-const TaskSchema = new Schema<ITaskSchema>({
-   title: { type: String },
-   isCompleted: { type: Boolean, default: false },
-   planId: { type: Types.ObjectId, ref: "Plan" } as SchemaDefinitionProperty<string | undefined>,
-   ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<string | undefined>,
-},
+export interface ITask {
+   title: string,
+   isCompleted: boolean
+   ownerId: ObjectId,
+   planId: ObjectId,
+}
+
+export type TaskDocument = HydratedDocument<ITask> & SchemaTimestampsConfig
+
+const TaskSchema = new Schema<ITask>({
+      title: { type: String },
+      isCompleted: { type: Boolean, default: false },
+      planId: { type: Types.ObjectId, ref: "Plan" } as SchemaDefinitionProperty<ObjectId>,
+      ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
+   },
    { versionKey: false, timestamps: true });
 
-export const TaskModel = model<ITaskDatabase>("Task", TaskSchema);
+export const TaskModel = model<TaskDocument>("Task", TaskSchema);

@@ -1,10 +1,18 @@
-import { model, Schema, type SchemaDefinitionProperty, Types } from "mongoose";
-import { type IPlanDatabase, type IPlanSchema } from "../interface";
+import { HydratedDocument, model, ObjectId, Schema, SchemaDefinitionProperty, SchemaTimestampsConfig, Types } from "mongoose";
 
-const PlanSchema = new Schema<IPlanSchema>({
-   title: { type: String, default: "Новий план" },
-   tasksIds: [ { type: Types.ObjectId, ref: "Task" } ],
-   ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<string | undefined>,
-}, { timestamps: true, versionKey: false });
+export interface IPlan {
+   title: string,
+   ownerId: ObjectId,
+   tasksIds: Types.Array<ObjectId>
+}
 
-export const PlanModel = model<IPlanDatabase>("Plan", PlanSchema);
+export type PlanDocument = HydratedDocument<IPlan> & SchemaTimestampsConfig
+
+const PlanSchema = new Schema<IPlan>({
+      title: { type: String, default: "Новий план" },
+      tasksIds: [ { type: Types.ObjectId, ref: "Task" } ],
+      ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
+   },
+   { timestamps: true, versionKey: false });
+
+export const PlanModel = model<PlanDocument>("Plan", PlanSchema);

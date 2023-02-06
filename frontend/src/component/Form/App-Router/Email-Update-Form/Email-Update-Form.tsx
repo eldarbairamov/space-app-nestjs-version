@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React, { FC } from "react";
 
-import { type SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
@@ -26,7 +26,7 @@ export const EmailUpdateForm: FC = () => {
          await userService.changeEmailRequest({ email: data.email! });
 
          toast.dismiss(loading);
-         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту.", { duration: 6000 });
+         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 6000 });
 
          setTimeout(() => {
             setValue("email", "");

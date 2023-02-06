@@ -1,4 +1,4 @@
-import React, { type FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 
 import { ResetPasswordForm, WelcomeLogo } from "../../../component";
 import toast, { Toaster } from "react-hot-toast";

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { planController } from "../controller";
-import { authMiddleware, commonMiddleware} from "../middleware";
+import { authMiddleware, commonMiddleware } from "../middleware";
 
 export const planRouter = Router();
 
@@ -24,6 +24,13 @@ planRouter.get(
    planController.getPlansCount,
 );
 
+// Get plans by search
+planRouter.get(
+   "/search",
+   authMiddleware.isAccessExists,
+   planController.getPlansBySearch,
+);
+
 // Update plan
 planRouter.put(
    "/:planId",
@@ -39,11 +46,4 @@ planRouter.delete(
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("plan"),
    planController.deletePlan,
-);
-
-// Get plans by search
-planRouter.get(
-   "/search",
-   authMiddleware.isAccessExists,
-   planController.getPlansBySearch,
 );

@@ -1,11 +1,10 @@
-import { UserModel } from "../model";
-import { type FilterQuery, type UpdateQuery } from "mongoose";
-import { type IUserDatabase, type IUserSchema } from "../interface";
+import { IUser, UserDocument, UserModel } from "../model";
+import { FilterQuery, UpdateQuery } from "mongoose";
 import { ApiException } from "../exception/api.exception";
 
 export const UserRepository = {
 
-   create: async (body: Partial<IUserSchema>): Promise<IUserDatabase> => {
+   create: async (body: Partial<IUser>): Promise<UserDocument> => {
       try {
          return UserModel.create(body);
       } catch (e) {
@@ -13,7 +12,7 @@ export const UserRepository = {
       }
    },
 
-   findOne: async (filter: FilterQuery<IUserDatabase>): Promise<IUserDatabase | null> => {
+   findOne: async (filter: FilterQuery<IUser>): Promise<UserDocument | null> => {
       try {
          return UserModel.findOne(filter);
       } catch (e) {
@@ -21,15 +20,15 @@ export const UserRepository = {
       }
    },
 
-   findById: async (id: string): Promise<IUserDatabase | null> => {
+   findById: async (userId: UserDocument["id"]): Promise<UserDocument | null> => {
       try {
-         return UserModel.findById(id);
+         return UserModel.findById(userId);
       } catch (e) {
          throw ApiException.Database(e);
       }
    },
 
-   findByIdAndUpdate: async (userId: string, update: UpdateQuery<IUserSchema>): Promise<IUserDatabase | null> => {
+   findByIdAndUpdate: async (userId: UserDocument["id"], update: UpdateQuery<IUser>): Promise<UserDocument | null> => {
       try {
          return UserModel.findByIdAndUpdate(userId, update, { new: true });
       } catch (e) {

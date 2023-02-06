@@ -3,7 +3,7 @@ import { emailSender } from "../email.service";
 import { UserRepository, ActionTokenRepository } from "../../repository";
 import { passHasher } from "../../helper";
 import { ACCOUNT_ACTIVATION_SUBJECT, ACTIVATION_TOKEN_TYPE } from "../../constant";
-import { type IRegistration } from "../../interface";
+import { IRegistration } from "../../interface";
 import { registrationValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
 
@@ -26,7 +26,7 @@ export const registrationService = async (body: IRegistration) => {
    await ActionTokenRepository.create({
       token: activationToken,
       tokenType: ACTIVATION_TOKEN_TYPE,
-      ownerId: candidate._id,
+      ownerId: candidate.id,
    });
 
    // Send activation email

@@ -32,11 +32,25 @@
 }
 
 .footer {
+   display: flex;
+   align-items: center;
+
+   gap: 20px;
    cursor: pointer;
 
-   p:hover {
-      color: #DF8453;
+   p {
+      font-size: 15px;
+
+      &:hover {
+         color: #DF8453;
+      }
    }
+
+   p:nth-child(2) {
+      color: #d78052;
+   }
+
+
 }
 
 @media screen and (max-width: 500px) {

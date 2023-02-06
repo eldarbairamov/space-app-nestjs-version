@@ -7,14 +7,15 @@
    @extend %flex;
    justify-content: center;
    flex-direction: column;
-   border-radius: 20px;
    gap: 28px;
 
+   border-radius: 20px;
    background: rgb(244, 244, 244);
    height: 230px;
    width: calc(100% / 4 - 22.5px);
    position: relative;
    cursor: pointer;
+   transition: .3s;
 
    &:hover {
       background: #f2f9ff;

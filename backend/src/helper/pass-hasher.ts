@@ -5,6 +5,6 @@ export const passHasher = async (dry: string): Promise<string> => {
    try {
       return await bcrypt.hash(dry, 8);
    } catch (e) {
-      throw new ApiException("Помилка при хешуванні пароля", 500);
+      throw new ApiException("Bcrypt: Hash error", 500);
    }
 };

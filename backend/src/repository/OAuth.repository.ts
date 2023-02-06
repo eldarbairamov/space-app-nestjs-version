@@ -1,12 +1,11 @@
-import { type FilterQuery } from "mongoose";
-import { type IOAuthDatabase, type IOAuthSchema } from "../interface";
-import { OAuthModel } from "../model";
+import { FilterQuery } from "mongoose";
+import { IOAuth, OAuthDocument, OAuthModel } from "../model";
 import { ApiException } from "../exception/api.exception";
-import { type DeleteResult } from "mongodb";
+import { DeleteResult } from "mongodb";
 
 export const OAuthRepository = {
 
-   create: async (body: IOAuthSchema): Promise<IOAuthDatabase> => {
+   create: async (body: IOAuth): Promise<OAuthDocument> => {
       try {
          return OAuthModel.create(body);
       } catch (e) {
@@ -14,7 +13,7 @@ export const OAuthRepository = {
       }
    },
 
-   deleteOne: async (filter: FilterQuery<IOAuthSchema>): Promise<DeleteResult> => {
+   deleteOne: async (filter: FilterQuery<IOAuth>): Promise<DeleteResult> => {
       try {
          return OAuthModel.deleteOne(filter);
       } catch (e) {
@@ -22,7 +21,7 @@ export const OAuthRepository = {
       }
    },
 
-   findOne: async (filter: FilterQuery<IOAuthSchema>): Promise<IOAuthDatabase | null> => {
+   findOne: async (filter: FilterQuery<IOAuth>): Promise<OAuthDocument | null> => {
       try {
          return OAuthModel.findOne(filter);
       } catch (e) {

@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { motion } from "framer-motion";
 import { horizontalShakingVariant } from "../../../animation/horizontal-shaking.variant";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
-import { type UseFormRegister } from "react-hook-form/dist/types/form";
+import { UseFormRegister } from "react-hook-form/dist/types/form";
 import { ValidationErrorToaster } from "../Validation-Error-Toaster/Validation-Error-Toaster";
 
 import style from "./Form-Control.module.scss";
