@@ -9,8 +9,8 @@ export interface IOAuth {
 export type OAuthDocument = HydratedDocument<IOAuth> & SchemaTimestampsConfig
 
 const OAuthSchema = new Schema<IOAuth>({
-      accessToken: { type: String },
-      refreshToken: { type: String },
+      accessToken: String,
+      refreshToken: String,
       ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
    },
    { timestamps: true, versionKey: false });

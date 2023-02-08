@@ -9,23 +9,20 @@ authRouter.post(
    "/registration",
    commonMiddleware.isRequestEmpty,
    authMiddleware.isEmailUnique,
-   authController.registration,
-);
+   authController.registration);
 
 // Login
 authRouter.post(
    "/login",
    commonMiddleware.isRequestEmpty,
    authMiddleware.isUserExists,
-   authController.login,
-);
+   authController.login);
 
 // Account activation
 authRouter.post(
    "/activation",
    commonMiddleware.isRequestEmpty,
-   authController.activation,
-);
+   authController.activation);
 
 // Forgot password
 authRouter.post(
@@ -39,12 +36,10 @@ authRouter.post(
 authRouter.patch(
    "/password_reset",
    commonMiddleware.isRequestEmpty,
-   authController.resetPassword,
-);
+   authController.resetPassword);
 
 // Logout
 authRouter.get(
    "/logout",
    authMiddleware.isAccessExists,
-   authController.logout,
-);
+   authController.logout);

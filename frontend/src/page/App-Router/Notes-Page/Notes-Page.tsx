@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 
 import { NotesMain, NotesSidebar } from "../../../component";
 import { useAppDispatch, useAppSelector } from "../../../hook";
-import { notesActions } from "../../../redux/slice";
+import { noteActions } from "../../../redux/slice";
 import { Toaster } from "react-hot-toast";
 import { noteService } from "../../../services";
 import { catchErrors } from "../../../helper";
@@ -18,7 +18,7 @@ export const NotesPage: FC = () => {
       if (searchKey === "") {
          noteService
             .getNotes()
-            .then(res => dispatch(notesActions.getNotes(res.data)))
+            .then(res => dispatch(noteActions.getNotes(res.data)))
             .catch(e => catchErrors(e));
       }
 

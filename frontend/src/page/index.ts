@@ -6,6 +6,7 @@ export * from "./App-Router/Change-Pass-Message-Page/Change-Pass-Message-Page";
 export * from "./App-Router/Email-Confirmation-Page/Email-Confirmation-Page";
 export * from "./App-Router/Profile-Settings-Page/Profile-Settings-Page";
 export * from "./App-Router/Tasks-Page/Tasks-Page";
+export * from "./App-Router/Moment-Item-Page/Moment-Item-Page";
 
 export * from "./Welcome-Router/Logo-Page/Logo-Page";
 export * from "./Welcome-Router/Registration-Page/Registration-Page";

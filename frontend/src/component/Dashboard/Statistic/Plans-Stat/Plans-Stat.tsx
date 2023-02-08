@@ -10,10 +10,11 @@ export const PlansStat: FC = () => {
    const [ count, setCount ] = useState<number>();
 
    useEffect(() => {
-      planService
-         .getPlansCount()
+
+      planService.getPlansCount()
          .then(res => setCount(res.data))
          .catch(e => catchErrors(e));
+
    }, []);
 
    return (

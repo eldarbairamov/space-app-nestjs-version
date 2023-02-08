@@ -1,5 +1,5 @@
 export interface IImage {
-   size: number,
-   mimetype: string
-   name: string
+   readonly size: number,
+   readonly mimetype: string
+   readonly name: string
 }

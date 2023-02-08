@@ -2,19 +2,19 @@ import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
 import { addPlanService, getPlansService, getPlansBySearchService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
-import { updatePlanService } from "../service/plan-service/update-plan.service";
+import { updatePlanService } from "../service/plan/update-plan.service";
 import { IPlanResponse, IUpdatePlan, RequestWithBodyVarParam, RequestWithCustomVar, RequestWithCustomVarAndParam, RequestWithCustomVarAndQuery } from "../interface";
 
 export const planController = {
 
    addPlan: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IPlanResponse>) => {
-      const planDto = await addPlanService(req.userId!);
-      res.json(planDto);
+      const plan = await addPlanService(req.userId!);
+      res.json(plan);
    }),
 
    getPlans: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IPlanResponse[]>) => {
-      const plansDto = await getPlansService(req.userId!);
-      res.json(plansDto);
+      const plan = await getPlansService(req.userId!);
+      res.json(plan);
    }),
 
    updatePlan: expressAsyncHandler(async (req: RequestWithBodyVarParam<IUpdatePlan, { planId: string }>, res: Response<{ message: string }>) => {
@@ -34,8 +34,8 @@ export const planController = {
    }),
 
    getPlansBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<IPlanResponse[]>) => {
-      const plansBySearchDto = await getPlansBySearchService(req.query.searchKey, req.userId!);
-      res.json(plansBySearchDto);
+      const plansBySearch = await getPlansBySearchService(req.query.searchKey, req.userId!);
+      res.json(plansBySearch);
    }),
 
 };

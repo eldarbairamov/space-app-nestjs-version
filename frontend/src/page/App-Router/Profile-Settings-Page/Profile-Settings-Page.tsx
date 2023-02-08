@@ -14,13 +14,13 @@ import user from "../../../asset/user.png";
 export const ProfileSettingsPage: FC = () => {
    const { username, name, surname, avatar } = useAppSelector(state => state.userReducer);
 
-   const filePicker = useRef(null);
+   const filePicker = useRef<HTMLInputElement>(null);
 
    const navigate = useNavigate();
 
    const dispatch = useAppDispatch();
 
-   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+   const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
       try {
          const image = (event.target.files as FileList)[0];
 
@@ -37,16 +37,13 @@ export const ProfileSettingsPage: FC = () => {
    };
 
    const handlePick = () => {
-      // @ts-ignore
-      filePicker.current.click();
+      filePicker.current!.click();
    };
 
    const deleteAvatar = async () => {
       try {
          await userService.deleteAvatar(avatar);
-
          dispatch(userActions.unsetAvatar());
-
       } catch (e) {
          catchErrors(e);
       }
@@ -91,7 +88,7 @@ export const ProfileSettingsPage: FC = () => {
                   <p onClick={ handlePick }> Змінити </p>
                   { !!avatar && <p> | </p> }
                   { !!avatar && <p onClick={ deleteAvatar }> Видалити </p> }
-                  <input ref={ filePicker } type="file" onChange={ handleChange }/>
+                  <input ref={ filePicker } type={ "file" } onChange={ uploadPhoto }/>
                </div>
             </div>
 

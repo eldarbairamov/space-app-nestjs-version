@@ -2,9 +2,9 @@ import expressAsyncHandler from "express-async-handler";
 import { NextFunction, Request, Response } from "express";
 import { ApiException } from "../exception/api.exception";
 import { Types } from "mongoose";
-import { NoteRepository, PlanRepository, TaskRepository } from "../repository";
+import { MomentRepository, NoteRepository, PlanRepository, TaskRepository } from "../repository";
 
-export type objectType = "task" | "note" | "plan"
+export type objectType = "task" | "note" | "plan" | "moment"
 
 export const commonMiddleware = {
 
@@ -48,6 +48,18 @@ export const commonMiddleware = {
          if (!Types.ObjectId.isValid(noteId)) throw ApiException.InvalidObjectId();
 
          const isNoteExist = await NoteRepository.findById(noteId);
+         if (!isNoteExist) throw ApiException.ObjectIsNotFound();
+
+         next();
+      }
+
+      if (object === "moment") {
+         const momentId = req.params.momentId;
+
+         if (!momentId) throw ApiException.BadRequest();
+         if (!Types.ObjectId.isValid(momentId)) throw ApiException.InvalidObjectId();
+
+         const isNoteExist = await MomentRepository.findById(momentId);
          if (!isNoteExist) throw ApiException.ObjectIsNotFound();
 
          next();

@@ -5,12 +5,12 @@ import { ILogin, IOAuth, IRegistration } from "../interface";
 
 export const authService = {
 
-   registration: async (dto: IRegistration): AxiosRes<void> => {
-      return axiosInstance.post(authRequests.registration, dto);
+   registration: async (body: IRegistration): AxiosRes<void> => {
+      return axiosInstance.post(authRequests.registration, body);
    },
 
-   login: async (dto: ILogin): Promise<string> => {
-      const result = await axiosInstance.post<IOAuth>(authRequests.login, dto);
+   login: async (body: ILogin): Promise<string> => {
+      const result = await axiosInstance.post<IOAuth>(authRequests.login, body);
 
       storageService.setAccessToken(result.data.accessToken);
       storageService.setRefreshToken(result.data.refreshToken);

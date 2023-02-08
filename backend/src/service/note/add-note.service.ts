@@ -5,14 +5,8 @@ import { UserDocument } from "../../model";
 
 export const addNoteService = async (userId: UserDocument["id"]): Promise<INoteResponse> => {
 
-   // Create note initial state
-   const initialNote = {
-      body: "",
-      ownerId: userId,
-   };
-
-   // Save note initial state to DB
-   const note = await NoteRepository.create(initialNote);
+   // Save note to DB
+   const note = await NoteRepository.create({ ownerId: userId });
 
    // Update user
    await UserRepository.findByIdAndUpdate(userId, { $push: { notesIds: note.id } });

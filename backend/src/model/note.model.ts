@@ -10,7 +10,7 @@ export type NoteDocument = HydratedDocument<INote> & SchemaTimestampsConfig
 
 const NoteSchema = new Schema<INote>({
       title: { type: String, default: "Нова замітка" },
-      body: { type: String },
+      body: { type: String, default: "" },
       ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
    },
    { timestamps: true, versionKey: false });

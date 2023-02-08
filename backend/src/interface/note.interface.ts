@@ -1,10 +1,10 @@
 import { NoteDocument } from "../model";
 
 export interface INoteResponse {
-   id: NoteDocument["id"];
-   title: string;
-   body: string;
-   lastModified: number;
+   readonly id: NoteDocument["id"];
+   readonly title: string;
+   readonly body: string;
+   readonly lastModified: number;
 }
 
 export interface IUpdateNote {

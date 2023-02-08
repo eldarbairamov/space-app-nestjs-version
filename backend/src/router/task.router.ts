@@ -8,29 +8,25 @@ export const taskRouter = Router();
 taskRouter.post(
    "/",
    authMiddleware.isAccessExists,
-   taskController.getAllTasks,
-);
+   taskController.getAllTasks);
 
 // Add task
 taskRouter.post(
    "/add",
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
-   taskController.addTask,
-);
+   taskController.addTask);
 
 // Update task status
 taskRouter.patch(
    "/:taskId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("task"),
-   taskController.updateTaskStatus,
-);
+   taskController.updateTaskStatus);
 
 // Send Plan ID and delete task
 taskRouter.post(
    "/:taskId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("task"),
-   taskController.deleteTask,
-);
+   taskController.deleteTask);

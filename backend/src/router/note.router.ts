@@ -8,22 +8,19 @@ export const notesRouter = Router();
 notesRouter.get(
    "/add",
    authMiddleware.isAccessExists,
-   notesController.addNote,
-);
+   notesController.addNote);
 
 // Get all notes
 notesRouter.get(
    "/",
    authMiddleware.isAccessExists,
-   notesController.getNotes,
-);
+   notesController.getNotes);
 
 // Get count
 notesRouter.get(
    "/count",
    authMiddleware.isAccessExists,
-   notesController.getNotesCount,
-);
+   notesController.getNotesCount);
 
 // Update note
 notesRouter.put(
@@ -31,20 +28,17 @@ notesRouter.put(
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
    commonMiddleware.isObjectExists("note"),
-   notesController.updateNote,
-);
+   notesController.updateNote);
 
 // Delete note
 notesRouter.delete(
    "/:noteId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("note"),
-   notesController.deleteNote,
-);
+   notesController.deleteNote);
 
 // Get notes by search
 notesRouter.get(
    "/search",
    authMiddleware.isAccessExists,
-   notesController.getNotesBySearch,
-);
+   notesController.getNotesBySearch);

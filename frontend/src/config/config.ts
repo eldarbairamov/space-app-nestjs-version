@@ -32,12 +32,15 @@ export const plansRequests = {
 };
 
 export const momentsRequests = {
-   addPlan: "/moments/add",
-   deletePlan: "/moments/",
-   updatePlan: "/moments/",
-   getAllPlans: "/moments",
-   getPlansCount: "/moments/count",
-   getPlansByTags: "/moments/filter",
+   addMoment: "/moments/add",
+   deleteMoment: "/moments/",
+   updateMoment: "/moments/",
+   getAllMoments: "/moments",
+   getOneMoment: "/moments/",
+   uploadPhoto: "/moments/",
+   deletePhoto: "/moments/",
+   getMomentsCount: "/moments/count",
+   getMomentsByTags: "/moments/filter",
 };
 
 export const authRequests = {

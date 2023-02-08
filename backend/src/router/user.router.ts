@@ -8,16 +8,14 @@ export const userRouter = Router();
 userRouter.get(
    "/get_user",
    authMiddleware.isAccessExists,
-   userController.getUser,
-);
+   userController.getUser);
 
 // Update user profile
 userRouter.patch(
    "/profile_update",
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
-   userController.updateProfile,
-);
+   userController.updateProfile);
 
 // Change email: request
 userRouter.post(
@@ -25,36 +23,31 @@ userRouter.post(
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
    authMiddleware.isEmailUnique,
-   userController.changeEmailRequest,
-);
+   userController.changeEmailRequest);
 
 // Change email: accept
 userRouter.patch(
    "/email_new",
    commonMiddleware.isRequestEmpty,
-   userController.changeEmail,
-);
+   userController.changeEmail);
 
 // Change password: request
 userRouter.patch(
    "/password_new",
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
-   userController.changePassword,
-);
+   userController.changePassword);
 
 // Upload avatar
 userRouter.patch(
    "/avatar_upload",
    authMiddleware.isAccessExists,
    fileMiddleware.imageChecker,
-   userController.uploadAvatar,
-);
+   userController.uploadAvatar);
 
 // Send image name and delete avatar
 userRouter.patch(
    "/avatar_delete",
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
-   userController.deleteAvatar,
-);
+   userController.deleteAvatar);

@@ -14,22 +14,19 @@ planRouter.get(
 planRouter.get(
    "/add",
    authMiddleware.isAccessExists,
-   planController.addPlan,
-);
+   planController.addPlan);
 
 // Get count
 planRouter.get(
    "/count",
    authMiddleware.isAccessExists,
-   planController.getPlansCount,
-);
+   planController.getPlansCount);
 
 // Get plans by search
 planRouter.get(
    "/search",
    authMiddleware.isAccessExists,
-   planController.getPlansBySearch,
-);
+   planController.getPlansBySearch);
 
 // Update plan
 planRouter.put(
@@ -37,13 +34,11 @@ planRouter.put(
    authMiddleware.isAccessExists,
    commonMiddleware.isRequestEmpty,
    commonMiddleware.isObjectExists("plan"),
-   planController.updatePlan,
-);
+   planController.updatePlan);
 
 // Delete plan
 planRouter.delete(
    "/:planId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("plan"),
-   planController.deletePlan,
-);
+   planController.deletePlan);

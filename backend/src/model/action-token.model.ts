@@ -9,8 +9,8 @@ export interface IActionToken {
 export type ActionTokenDocument = HydratedDocument<IActionToken> & SchemaTimestampsConfig
 
 const actionTokenSchema = new Schema<IActionToken>({
-      token: { type: String },
-      tokenType: { type: String },
+      token: String,
+      tokenType: String,
       ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,
    },
    { timestamps: true, versionKey: false });

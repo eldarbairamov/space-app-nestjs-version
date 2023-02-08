@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
+
 import { Toaster } from "react-hot-toast";
-import { PlansItem } from "../../../component";
+import { PlanItem } from "../../../component";
 import { planService } from "../../../services";
 import { catchErrors } from "../../../helper";
 import { IPlan } from "../../../interface";
@@ -99,7 +100,7 @@ export const PlansPage: FC = () => {
          <div className={ style.main }>
 
             <div className={ style.plan_list }>
-               { plans && plans.map(item => <PlansItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }
+               { plans && plans.map(item => <PlanItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }
             </div>
 
          </div>

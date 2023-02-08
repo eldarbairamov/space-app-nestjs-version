@@ -1,4 +1,4 @@
 export interface IAccessTokenPair {
-   accessToken: string,
-   refreshToken: string
+   readonly accessToken: string,
+   readonly refreshToken: string
 }

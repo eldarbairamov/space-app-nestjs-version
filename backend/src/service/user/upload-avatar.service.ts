@@ -4,10 +4,10 @@ import { UserRepository } from "../../repository";
 import { ApiException } from "../../exception/api.exception";
 import { UserDocument } from "../../model";
 
-export const uploadAvatarService = async (files: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
+export const uploadAvatarService = async (image: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
    try {
       // Define avatar variable
-      const avatar = files!.avatar as fileUpload.UploadedFile;
+      const avatar = image!.avatar as fileUpload.UploadedFile;
 
       // Generate extension, filename and path for static files
       const ext = path.extname(avatar.name);

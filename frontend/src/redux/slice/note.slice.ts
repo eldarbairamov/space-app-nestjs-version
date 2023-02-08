@@ -1,25 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { INote } from "../../interface";
 
-interface INotesInitialState {
+interface INoteInitialState {
    activeNoteId: string | null,
    notes: INote[],
    activeNote: INote | null,
    lastNote: INote | null,
-   count: number,
    searchKey: string
 }
 
-const initialState: INotesInitialState = {
+const initialState: INoteInitialState = {
    activeNoteId: null,
    notes: [],
    activeNote: null,
    lastNote: null,
-   count: 0,
    searchKey: "",
 };
 
-const notesSlice = createSlice({
+const noteSlice = createSlice({
    name: "notes",
    initialState,
    reducers: {
@@ -72,5 +70,5 @@ const notesSlice = createSlice({
 
 });
 
-export const notesReducer = notesSlice.reducer;
-export const notesActions = notesSlice.actions;
+export const noteReducer = noteSlice.reducer;
+export const noteActions = noteSlice.actions;

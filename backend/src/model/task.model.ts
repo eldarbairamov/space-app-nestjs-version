@@ -10,7 +10,7 @@ export interface ITask {
 export type TaskDocument = HydratedDocument<ITask> & SchemaTimestampsConfig
 
 const TaskSchema = new Schema<ITask>({
-      title: { type: String },
+      title: String,
       isCompleted: { type: Boolean, default: false },
       planId: { type: Types.ObjectId, ref: "Plan" } as SchemaDefinitionProperty<ObjectId>,
       ownerId: { type: Types.ObjectId, ref: "User" } as SchemaDefinitionProperty<ObjectId>,

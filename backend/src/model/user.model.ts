@@ -8,9 +8,9 @@ export interface IUser {
    password: string,
    isActivated: boolean,
    avatar: string,
-   notesIds: Types.Array<ObjectId>,
-   plansIds: Types.Array<ObjectId>,
-   momentsIds: Types.Array<ObjectId>,
+   notesIds: ObjectId[],
+   plansIds: ObjectId[],
+   momentsIds: ObjectId[],
 }
 
 export type UserDocument = HydratedDocument<IUser> & SchemaTimestampsConfig

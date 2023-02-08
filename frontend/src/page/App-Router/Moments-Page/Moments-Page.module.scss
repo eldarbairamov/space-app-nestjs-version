@@ -15,7 +15,7 @@
       justify-content: center;
       gap: 10px;
 
-      height: 10%;
+      height: 8%;
       width: 100%;
       position: relative;
       border-bottom: 2px #d7d7d7 solid;
@@ -47,7 +47,7 @@
 
    .main {
       overflow-y: scroll;
-      height: 90%;
+      height: 92%;
       width: 100%;
 
       .moments_list {
@@ -61,86 +61,6 @@
          padding: 30px 10px 30px 10px;
       }
 
-      .moments_item {
-         position: relative;
-         border-radius: 20px;
-         overflow: hidden;
-         transition: .5s;
-
-         &:hover {
-            filter: brightness(90%);
-            -webkit-filter: brightness(90%);
-         }
-
-         .photo_wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgb(244, 244, 244);
-            width: 410px;
-            height: 250px;
-            position: relative;
-
-            .photo_background {
-               position: absolute;
-               width: 800px;
-               filter: blur(8px) contrast(90%);
-               -webkit-filter: blur(100%) contrast(90%);
-            }
-
-            .photo {
-               width: 250px;
-               position: absolute;
-               cursor: pointer;
-               filter: contrast(90%);
-               -webkit-filter: contrast(90%);
-               border-radius: 20px;
-            }
-         }
-
-         .title {
-            position: absolute;
-            top: 15px;
-            color: white;
-            left: 30px;
-            background: #24292e;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 15px;
-         }
-
-         .date {
-            position: absolute;
-            bottom: 15px;
-            color: white;
-            left: 30px;
-            background: #24292e;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 13px;
-         }
-
-         .tags_wrapper {
-            @extend %flex;
-            justify-content: center;
-            gap: 10px;
-
-            width: 100%;
-            position: absolute;
-            bottom: 15px;
-            left: 110px;
-
-            .tag {
-               color: white;
-               background: #7274d7;
-               padding: 5px 10px;
-               border-radius: 5px;
-               font-size: 13px;
-            }
-         }
-
-
-      }
    }
 }
 

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../hook";
-import { notesActions } from "../../../redux/slice";
+import { noteActions } from "../../../redux/slice";
 import { noteService } from "../../../services";
 import { catchErrors } from "../../../helper";
 import { INote, IUpdateNote } from "../../../interface";
@@ -14,17 +14,17 @@ export const NotesMain: FC = () => {
    const { activeNote, notes } = useAppSelector(state => state.notesReducer);
 
    useEffect(() => {
-      dispatch(notesActions.showDefaultNote(notes[0]));
+      dispatch(noteActions.showDefaultNote(notes[0]));
    }, []);
 
-   const handleFields = (field: string, value: string) => {
+   const handleInputs = (field: string, value: string) => {
       const updatedNote = {
          ...activeNote,
          [field]: value,
          lastModified: Date.now(),
       } as INote;
 
-      dispatch(notesActions.updateNote(updatedNote));
+      dispatch(noteActions.updateNote(updatedNote));
    };
 
    const updateNote = async () => {
@@ -50,8 +50,7 @@ export const NotesMain: FC = () => {
             <input type={ "text" }
                    id={ "title" }
                    value={ activeNote.title }
-                   autoFocus
-                   onChange={ (e: ChangeEvent<HTMLInputElement>) => handleFields("title", e.target.value) }
+                   onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
                    onBlur={ updateNote }
             />
          </div>
@@ -60,7 +59,7 @@ export const NotesMain: FC = () => {
             <textarea id={ "body" }
                       value={ activeNote.body }
                       placeholder={ "Розкажи мені щось цікаве..." }
-                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleFields("body", e.target.value) }
+                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
                       onBlur={ updateNote }
             />
          </div>

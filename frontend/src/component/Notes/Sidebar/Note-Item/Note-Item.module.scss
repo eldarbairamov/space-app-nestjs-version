@@ -1,4 +1,4 @@
-.NotesItem {
+.NoteItem {
    display: flex;
    justify-content: space-between;
    flex-direction: column;
@@ -13,7 +13,7 @@
    position: relative;
    overflow: hidden;
 
-   .title {
+   .note_title {
       font-weight: 500;
       font-size: 16px;
       text-align: left;
@@ -28,13 +28,13 @@
       cursor: pointer;
    }
 
-   .body {
+   .note_body {
       font-size: 14px;
       text-align: left;
       color: #7d7d7d;
    }
 
-   .date {
+   .note_date {
       font-size: 13px;
       color: #d78052;
       font-weight: 500;

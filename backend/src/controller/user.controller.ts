@@ -7,8 +7,8 @@ import { IChangeEmail, IChangePassword, IDeleteAvatar, IUpdateProfile, IUserInfo
 export const userController = {
 
    updateProfile: expressAsyncHandler(async (req: RequestWithBodyAndVar<IUpdateProfile>, res: Response<IUpdateProfile>) => {
-      const updatedUserDto = await updateProfileService(req.userId!, req.body);
-      res.json(updatedUserDto);
+      const updatedUser = await updateProfileService(req.userId!, req.body);
+      res.json(updatedUser);
    }),
 
    changePassword: expressAsyncHandler(async (req: RequestWithBodyAndVar<IChangePassword>, res: Response<{ message: string }>) => {
@@ -27,8 +27,8 @@ export const userController = {
    }),
 
    getUser: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IUserInfoResponse>) => {
-      const userInfoDto = await getUserInfoService(req.userId!);
-      res.json(userInfoDto);
+      const userInfo = await getUserInfoService(req.userId!);
+      res.json(userInfo);
    }),
 
    uploadAvatar: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<{ image: string }>) => {

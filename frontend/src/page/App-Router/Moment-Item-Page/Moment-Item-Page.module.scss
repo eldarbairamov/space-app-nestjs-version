@@ -1,0 +1,166 @@
+%flex {
+   display: flex;
+   align-items: center;
+}
+
+.MomentItemPage {
+   @extend %flex;
+   flex-direction: column;
+   justify-content: center;
+
+   width: 60vw;
+   height: calc(100vh - 170px);
+   background: white;
+   border-radius: 15px;
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+
+   position: relative;
+
+   input {
+      padding: 6px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      text-align: center;
+   }
+
+   .moment_item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: .5s;
+
+      .save_moment, .delete_moment {
+         position: absolute;
+         z-index: 1;
+         color: white;
+         padding: 5px 10px;
+         border-radius: 5px;
+         font-size: 15px;
+         cursor: pointer;
+      }
+
+      .save_moment {
+         background: #24292e;
+         right: 20px;
+         top: 52px;
+      }
+
+      .delete_moment {
+         background: indianred;
+         right: 20px;
+         top: 15px;
+      }
+
+      .photo_wrapper {
+         @extend %flex;
+         justify-content: center;
+         background: rgb(244, 244, 244);
+         width: 53vw;
+         height: 70vh;
+         position: relative;
+
+         .upload_photo_input {
+            display: none;
+         }
+
+         .photo_background {
+            position: absolute;
+            width: 1500px;
+            filter: blur(10px) contrast(80%);
+            -webkit-filter: blur(10px) contrast(80%);
+         }
+
+         .photo {
+            width: 440px;
+            position: absolute;
+            filter: contrast(90%);
+            -webkit-filter: contrast(90%);
+            border-radius: 20px;
+            cursor: pointer;
+         }
+
+         .no_image {
+            position: absolute;
+            width: 100px;
+            cursor: pointer;
+         }
+      }
+
+      .title {
+         position: absolute;
+         top: 15px;
+         left: 20px;
+         z-index: 1;
+         color: white;
+         background: #24292e;
+         padding: 5px 10px;
+         border-radius: 5px;
+         cursor: pointer;
+      }
+
+      .title_input {
+         z-index: 1;
+         position: absolute;
+         top: 50px;
+         left: 22px;
+         width: 150px;
+      }
+
+      .date_and_location_wrapper {
+         display: flex;
+         gap: 10px;
+
+         position: absolute;
+         bottom: 15px;
+         right: 20px;
+
+         .date_input {
+            position: absolute;
+            bottom: 40px;
+            right: 3px;
+         }
+
+         .location_input {
+            position: absolute;
+            bottom: 40px;
+            right: 102px;
+            width: 100px;
+         }
+
+         .date, .location {
+            color: white;
+            background: #24292e;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+         }
+      }
+
+      .tags_wrapper {
+         @extend %flex;
+         gap: 10px;
+
+         position: absolute;
+         bottom: 15px;
+         left: 20px;
+
+         .tag_input {
+            position: absolute;
+            bottom: 40px;
+            width: 100px;
+         }
+
+         .add_tag, .tag {
+            color: white;
+            background: #7274d7;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+         }
+      }
+   }
+
+}

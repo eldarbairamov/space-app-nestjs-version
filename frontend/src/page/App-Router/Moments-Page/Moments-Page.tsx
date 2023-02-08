@@ -1,39 +1,41 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+
+import { momentService } from "../../../services";
+import { catchErrors } from "../../../helper";
+import { MomentItem } from "../../../component/Moments/Moment-Item/Moment-Item";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { momentActions } from "../../../redux/slice";
 
 import style from "./Moments-Page.module.scss";
 import add from "../../../asset/note.png";
-import photo from "../../../asset/photo.jpg";
 
 export const MomentsPage: FC = () => {
+   const { moments } = useAppSelector(state => state.momentReducer);
+   const dispatch = useAppDispatch();
+
+   useEffect(() => {
+      momentService.getMoments()
+         .then(res => dispatch(momentActions.setMoments(res.data)))
+         .catch(e => catchErrors(e));
+   }, []);
+
+   const addMoment = async () => {
+      const { data } = await momentService.addMoment();
+      dispatch(momentActions.addMoment(data));
+   };
 
    return (
       <div className={ style.MemoriesPage }>
          <div className={ style.header }>
             <div className={ style.save_moment }>
                <img src={ add } alt={ "add" }/>
-               <button> Зберегти момент</button>
+               <button onClick={ addMoment }> Зберегти момент</button>
             </div>
          </div>
 
          <div className={ style.main }>
             <div className={ style.moments_list }>
-
-               <div className={ style.moments_item }>
-                  <div className={ style.photo_wrapper }>
-                     <img className={ style.photo_background } src={ photo } alt="background"/>
-                     <img className={ style.photo } src={ photo } alt="photo"/>
-                  </div>
-
-                  <p className={ style.title }> Лифтолук </p>
-                  <p className={ style.date }> 12.06.2022</p>
-
-                  <div className={ style.tags_wrapper }>
-                     <p className={ style.tag }>family</p>
-                     <p className={ style.tag }>traveling</p>
-                  </div>
-               </div>
-
-
+               { moments && moments.map(moment => <MomentItem key={ moment.id } moment={ moment }/>) }
             </div>
          </div>
 

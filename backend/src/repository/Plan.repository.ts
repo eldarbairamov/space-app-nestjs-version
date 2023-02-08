@@ -1,6 +1,6 @@
-import { type IPlan, type PlanDocument, PlanModel, UserDocument } from "../model";
+import { IPlan, PlanDocument, PlanModel, UserDocument } from "../model";
 import { ApiException } from "../exception/api.exception";
-import { type FilterQuery, type UpdateQuery } from "mongoose";
+import { FilterQuery, UpdateQuery } from "mongoose";
 
 export const PlanRepository = {
 

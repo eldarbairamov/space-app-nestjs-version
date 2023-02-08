@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate, useRouteError } from "react-router-dom";
 import { MainLayout } from "../layout";
-import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, EmailConfirmationPage, ChangePassMessagePage } from "../page";
+import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, EmailConfirmationPage, ChangePassMessagePage, MomentItemPage } from "../page";
 import { EmailUpdateForm, PasswordUpdateForm, ProfileUpdateForm } from "../component";
 
 function ErrorBoundary() {
@@ -66,9 +66,14 @@ export const AppRouter = createBrowserRouter([
             element: <TasksPage/>,
          },
          {
+            path: "moments/:momentId",
+            element: <MomentItemPage/>,
+         },
+         {
             path: "*",
             element: <Navigate to={ "/" }/>,
          },
+         { errorElement: <ErrorBoundary/> },
       ],
    },
    { errorElement: <ErrorBoundary/> },

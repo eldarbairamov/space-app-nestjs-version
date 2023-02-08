@@ -8,11 +8,11 @@ export const planService = {
       return axiosInstance.get<IPlan>(plansRequests.addPlan);
    },
 
-   deletePlan: async (planId: string): AxiosRes<void> => {
+   deletePlan: async (planId: IPlan["id"]): AxiosRes<void> => {
       return axiosInstance.delete(plansRequests.deletePlan + planId);
    },
 
-   updatePlan: async (planId: string, title: string): AxiosRes<void> => {
+   updatePlan: async (planId: IPlan["id"], title: string): AxiosRes<void> => {
       return axiosInstance.put(plansRequests.updatePlan + planId, { title });
    },
 

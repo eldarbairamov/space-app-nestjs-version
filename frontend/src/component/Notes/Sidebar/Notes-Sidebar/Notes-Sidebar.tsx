@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 
-import { NotesItem } from "../Notes-Item/Notes-Item";
+import { NoteItem } from "../Note-Item/Note-Item";
 import { v4 as uuid } from "uuid";
-import { notesActions } from "../../../../redux/slice";
+import { noteActions } from "../../../../redux/slice";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { noteService } from "../../../../services";
 import { catchErrors } from "../../../../helper";
@@ -21,11 +21,11 @@ export const NotesSidebar: FC = () => {
       try {
          setValue(e.target.value);
 
-         dispatch(notesActions.setSearchKey(e.target.value));
+         dispatch(noteActions.setSearchKey(e.target.value));
 
          const { data } = await noteService.getNotesBySearch(e.target.value);
 
-         dispatch(notesActions.getNotesBySearch(data));
+         dispatch(noteActions.getNotesBySearch(data));
 
       } catch (e) {
          catchErrors(e);
@@ -35,7 +35,7 @@ export const NotesSidebar: FC = () => {
    const addNote = () => {
       noteService
          .addNote()
-         .then(res => dispatch(notesActions.addNote(res.data)))
+         .then(res => dispatch(noteActions.addNote(res.data)))
          .catch(e => catchErrors(e));
    };
 
@@ -47,7 +47,7 @@ export const NotesSidebar: FC = () => {
 
          <div className={ style.scroll_section }>
             <div className={ style.note_list }>
-               { notes && notes.map(item => <NotesItem key={ uuid() } note={ item }/>) }
+               { notes && notes.map(item => <NoteItem key={ uuid() } note={ item }/>) }
             </div>
          </div>
 

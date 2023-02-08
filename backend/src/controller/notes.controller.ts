@@ -4,18 +4,18 @@ import { addNoteService, getNotesService } from "../service";
 import { NoteRepository, UserRepository } from "../repository";
 import { getNotesBySearchService } from "../service";
 import { INoteResponse, IUpdateNote, RequestWithBodyVarParam, RequestWithCustomVar, RequestWithCustomVarAndParam, RequestWithCustomVarAndQuery } from "../interface";
-import { updateNoteService } from "../service/note-service/update-note.service";
+import { updateNoteService } from "../service/note/update-note.service";
 
 export const notesController = {
 
    addNote: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<INoteResponse>) => {
-      const initialNoteDto = await addNoteService(req.userId!);
-      res.json(initialNoteDto);
+      const note = await addNoteService(req.userId!);
+      res.json(note);
    }),
 
    getNotes: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<INoteResponse[]>) => {
-      const notesDto = await getNotesService(req.userId!);
-      res.json(notesDto);
+      const note = await getNotesService(req.userId!);
+      res.json(note);
    }),
 
    getNotesCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {
@@ -35,8 +35,8 @@ export const notesController = {
    })),
 
    getNotesBySearch: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ searchKey: string }>, res: Response<INoteResponse[]>) => {
-      const notesBySearchDto = await getNotesBySearchService(req.query.searchKey, req.userId!);
-      res.json(notesBySearchDto);
+      const notesBySearch = await getNotesBySearchService(req.query.searchKey, req.userId!);
+      res.json(notesBySearch);
    }),
 
 };

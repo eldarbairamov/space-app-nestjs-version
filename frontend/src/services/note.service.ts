@@ -16,11 +16,11 @@ export const noteService = {
       return axiosInstance.get<number>(notesRequests.getNotesCount);
    },
 
-   saveNote: async (dto: IUpdateNote, noteId: string): AxiosRes<void> => {
-      return axiosInstance.put<void>(notesRequests.saveNote + noteId, dto);
+   saveNote: async (body: IUpdateNote, noteId: INote["id"]): AxiosRes<void> => {
+      return axiosInstance.put<void>(notesRequests.saveNote + noteId, body);
    },
 
-   deleteNote: async (noteId: string): AxiosRes<void> => {
+   deleteNote: async (noteId: INote["id"]): AxiosRes<void> => {
       return axiosInstance.delete<void>(notesRequests.deleteNote + noteId);
    },
 

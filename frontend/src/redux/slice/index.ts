@@ -1,2 +1,3 @@
 export * from "./user.slice";
-export * from "./notes.slice";
+export * from "./note.slice";
+export * from "./moment.slice";

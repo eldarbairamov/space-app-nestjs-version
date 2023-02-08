@@ -91,7 +91,6 @@ export const TasksPage: FC = () => {
                    value={ inputFields.planTitle }
                    onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onChangeFields("planTitle", e.target.value) }
                    onBlur={ (changePlansTitle) }
-                   autoFocus
             />
             <p className={ style.plan_date }> { formatDate } </p>
          </div>

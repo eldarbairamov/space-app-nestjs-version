@@ -4,15 +4,15 @@ import { dateFormat } from "../../../helper";
 import { DeleteOutlined } from "@ant-design/icons";
 import { IPlan } from "../../../interface";
 
-import style from "./Plans-Item.module.scss";
+import style from "./Plan-Item.module.scss";
 import brain from "../../../asset/brain.png";
 
-interface IPlansItem {
+interface IPlanItem {
    plan: IPlan;
    deletePlan: (e: React.MouseEvent<HTMLParagraphElement>, targetId: string) => void;
 }
 
-export const PlansItem: FC<IPlansItem> = ({ plan, deletePlan }) => {
+export const PlanItem: FC<IPlanItem> = ({ plan, deletePlan }) => {
    const titleCondition = plan && plan.title.split("").length > 16;
 
    const formatDate = dateFormat(plan.lastModified);
@@ -22,7 +22,7 @@ export const PlansItem: FC<IPlansItem> = ({ plan, deletePlan }) => {
    const choosePlan = (plan: IPlan) => navigate(`/plans/${ plan.id }`, { state: { plan } });
 
    return (
-      <div className={ style.PlansItem }
+      <div className={ style.PlanItem }
            onClick={ () => choosePlan(plan) }>
 
          <p className={ style.plan_name }> { titleCondition ? plan.title.substring(0, 16) + "..." : plan.title }  </p>

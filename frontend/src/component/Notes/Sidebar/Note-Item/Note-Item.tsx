@@ -1,19 +1,19 @@
 import React, { FC } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../../hook";
-import { notesActions } from "../../../../redux/slice";
+import { noteActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
 import { catchErrors, dateFormat } from "../../../../helper";
 import { noteService } from "../../../../services";
 import { INote } from "../../../../interface";
 
-import style from "./Notes-Item.module.scss";
+import style from "./Note-Item.module.scss";
 
-interface INotesItem {
+interface INoteItem {
    note: INote;
 }
 
-export const NotesItem: FC<INotesItem> = ({ note }) => {
+export const NoteItem: FC<INoteItem> = ({ note }) => {
    const bodyCondition = note.body && note.body.split("").length > 35;
    const titleCondition = note.title && note.title.split("").length > 30;
 
@@ -27,7 +27,7 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
 
          await noteService.deleteNote(noteId);
 
-         dispatch(notesActions.deleteNote(noteId));
+         dispatch(noteActions.deleteNote(noteId));
 
       } catch (e) {
          catchErrors(e);
@@ -37,20 +37,20 @@ export const NotesItem: FC<INotesItem> = ({ note }) => {
    const formatDate = dateFormat(note.lastModified);
 
    return (
-      <div className={ style.NotesItem }
-           onClick={ () => dispatch(notesActions.setActiveNoteId(note.id)) }
+      <div className={ style.NoteItem }
+           onClick={ () => dispatch(noteActions.setActiveNoteId(note.id)) }
            data-active={ note.id === activeNote?.id }
       >
 
-         <p className={ style.title }> { titleCondition ? note.title.substring(0, 30) + "..." : note.title } </p>
+         <p className={ style.note_title }> { titleCondition ? note.title.substring(0, 30) + "..." : note.title } </p>
 
          <p className={ style.delete }
             onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deleteNote(note.id, e) }><DeleteOutlined
             style={ { fontSize: "17px" } }/></p>
 
-         <p className={ style.body }> { bodyCondition ? note.body.substring(0, 35) + "..." : note.body } </p>
+         <p className={ style.note_body }> { bodyCondition ? note.body.substring(0, 35) + "..." : note.body } </p>
 
-         <p className={ style.date }> { formatDate } </p>
+         <p className={ style.note_date }> { formatDate } </p>
 
       </div>
    );

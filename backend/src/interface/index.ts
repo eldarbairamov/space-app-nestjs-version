@@ -4,6 +4,6 @@ export * from "./plan.interface";
 export * from "./task.interface";
 export * from "./user.interface";
 export * from "./express.interface";
-export * from "./database.interface";
+export * from "./moment.interface";
 export * from "./token-pair.interface";
 export * from "./file.interface";

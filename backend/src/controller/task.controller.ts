@@ -6,8 +6,8 @@ import { IAddTask, ITaskResponse, IUpdateTask, RequestWithBodyAndParam, RequestW
 export const taskController = {
 
    addTask: expressAsyncHandler(async (req: RequestWithBodyAndVar<IAddTask>, res: Response<ITaskResponse>) => {
-      const taskDto = await addTaskService(req.userId!, req.body);
-      res.json(taskDto);
+      const task = await addTaskService(req.userId!, req.body);
+      res.json(task);
    }),
 
    deleteTask: expressAsyncHandler(async (req: RequestWithBodyAndParam<{ planId: string }, { taskId: string }>, res: Response<{ message: string }>) => {
@@ -21,8 +21,8 @@ export const taskController = {
    }),
 
    getAllTasks: expressAsyncHandler(async (req: RequestWithBodyAndVar<{ planId: string }>, res: Response<Partial<ITaskResponse>[]>) => {
-      const tasksDto = await getTasksService(req.userId!, req.body.planId);
-      res.json(tasksDto);
+      const tasks = await getTasksService(req.userId!, req.body.planId);
+      res.json(tasks);
    }),
 
 };
