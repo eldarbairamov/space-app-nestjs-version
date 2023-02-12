@@ -20,6 +20,7 @@ export const ProfileUpdateForm: FC = () => {
    });
 
    const { username, name, surname } = useAppSelector(state => state.userReducer);
+
    const dispatch = useAppDispatch();
 
    useEffect(() => {

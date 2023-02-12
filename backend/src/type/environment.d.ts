@@ -22,7 +22,7 @@ declare global {
 declare global {
    namespace Express {
       interface Request {
-         user?: IUserDatabase;
+         user?: UserDocument;
          token?: string;
          userId?: UserDocument["id"];
          files?: fileUpload.FileArray | null | undefined;

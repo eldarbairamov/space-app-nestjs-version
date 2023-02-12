@@ -23,10 +23,6 @@ export const NotesSidebar: FC = () => {
 
          dispatch(noteActions.setSearchKey(e.target.value));
 
-         const { data } = await noteService.getNotesBySearch(e.target.value);
-
-         dispatch(noteActions.getNotesBySearch(data));
-
       } catch (e) {
          catchErrors(e);
       }

@@ -1,19 +1,14 @@
-import { createBrowserRouter, Navigate, useRouteError } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "../layout";
 import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, EmailConfirmationPage, ChangePassMessagePage, MomentItemPage } from "../page";
 import { EmailUpdateForm, PasswordUpdateForm, ProfileUpdateForm } from "../component";
-
-function ErrorBoundary() {
-   const error = useRouteError();
-   console.error(error);
-
-   return <Navigate to={ "/" }/>;
-}
+import { ErrorMessage } from "../component/Message/Error-Message/Error-Message";
 
 export const AppRouter = createBrowserRouter([
    {
       path: "/",
       element: <MainLayout/>,
+      errorElement: <ErrorMessage/>,
       children: [
          {
             index: true,
@@ -73,8 +68,6 @@ export const AppRouter = createBrowserRouter([
             path: "*",
             element: <Navigate to={ "/" }/>,
          },
-         { errorElement: <ErrorBoundary/> },
       ],
    },
-   { errorElement: <ErrorBoundary/> },
 ]);

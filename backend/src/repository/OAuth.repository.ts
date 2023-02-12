@@ -9,7 +9,7 @@ export const OAuthRepository = {
       try {
          return OAuthModel.create(body);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 
@@ -17,15 +17,15 @@ export const OAuthRepository = {
       try {
          return OAuthModel.deleteOne(filter);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 
    findOne: async (filter: FilterQuery<IOAuth>): Promise<OAuthDocument | null> => {
       try {
-         return OAuthModel.findOne(filter);
+         return OAuthModel.findOne(filter).lean();
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 

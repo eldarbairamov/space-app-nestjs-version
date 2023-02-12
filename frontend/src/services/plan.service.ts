@@ -1,6 +1,6 @@
 import { axiosInstance, AxiosRes } from "./axios.service";
 import { plansRequests } from "../config/config";
-import { IPlan } from "../interface";
+import { IPlan, IPlans } from "../interface";
 
 export const planService = {
 
@@ -16,18 +16,12 @@ export const planService = {
       return axiosInstance.put(plansRequests.updatePlan + planId, { title });
    },
 
-   getAllPlans: async () => {
-      return axiosInstance.get<IPlan[]>(plansRequests.getAllPlans);
+   getPlans: async (searchKey: string) => {
+      return axiosInstance.get<IPlans>(plansRequests.getAllPlans, { params: { searchKey: searchKey || null } });
    },
 
    getPlansCount: async () => {
       return axiosInstance.get<number>(plansRequests.getPlansCount);
-   },
-
-   getPlansBySearch: async (searchKey: string) => {
-      return axiosInstance.get<IPlan[]>(plansRequests.getPlansBySearch, {
-         params: { searchKey },
-      });
    },
 
 };

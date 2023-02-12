@@ -2,11 +2,11 @@ import React, { FC, useRef } from "react";
 
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hook";
-import { Toaster } from "react-hot-toast";
 import { userActions } from "../../../redux/slice";
 import { config } from "../../../config/config";
 import { userService } from "../../../services";
 import { catchErrors } from "../../../helper";
+import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import style from "./Profile-Settings-Page.module.scss";
 import user from "../../../asset/user.png";
@@ -53,28 +53,7 @@ export const ProfileSettingsPage: FC = () => {
       <div className={ style.ProfileSettingsPage }>
 
          {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
+         <ToasterWithOptions/>
 
          {/* Left side */ }
          <div className={ style.left_side }>

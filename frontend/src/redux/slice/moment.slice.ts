@@ -5,12 +5,14 @@ interface IMomentInitialState {
    moments: IMoment[];
    count: number,
    activeMoment: IMoment | null
+   searchKey: string
 }
 
 const initialState: IMomentInitialState = {
    moments: [],
    count: 0,
    activeMoment: null,
+   searchKey: "",
 };
 
 const momentSlice = createSlice({
@@ -24,8 +26,8 @@ const momentSlice = createSlice({
       },
 
       addMoment: (state, { payload }: PayloadAction<IMoment>) => {
-         state.moments.push(payload);
-         state.moments = state.moments.sort((a, b) => b.createdAt - a.createdAt);
+         // state.moments.push(payload);
+         // state.moments = state.moments.sort((a, b) => b.createdAt - a.createdAt);
       },
 
       deleteMoment: (state, { payload }: PayloadAction<{ momentId: string }>) => {
@@ -34,6 +36,10 @@ const momentSlice = createSlice({
 
       setActiveMoment: (state, { payload }: PayloadAction<IMoment | null>) => {
          state.activeMoment = payload;
+      },
+
+      setSearchKey: (state, { payload }: PayloadAction<string>) => {
+         state.searchKey = payload;
       },
 
       setDate: (state, { payload }: PayloadAction<number>) => {

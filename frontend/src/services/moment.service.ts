@@ -1,6 +1,6 @@
 import { axiosInstance, AxiosRes } from "./axios.service";
 import { momentsRequests } from "../config/config";
-import { IMoment } from "../interface";
+import { IMoment, IMoments } from "../interface";
 
 export const momentService = {
 
@@ -8,8 +8,8 @@ export const momentService = {
       return axiosInstance.get<IMoment>(momentsRequests.addMoment);
    },
 
-   getMoments: async () => {
-      return axiosInstance.get<IMoment[]>(momentsRequests.getAllMoments);
+   getMoments: async (searchKey: string) => {
+      return axiosInstance.get<IMoments>(momentsRequests.getAllMoments, { params: { searchKey: searchKey || null } });
    },
 
    getOneMoment: async (momentId: IMoment["id"]) => {
@@ -27,6 +27,10 @@ export const momentService = {
    updatePhoto: async (momentId: IMoment["id"], formData: FormData) => {
       const { data } = await axiosInstance.patch<{ image: string }>(momentsRequests.uploadPhoto + momentId + "/photo_upload", formData);
       return data.image;
+   },
+
+   getMomentsCount: async (): AxiosRes<number> => {
+      return axiosInstance.get(momentsRequests.getMomentsCount);
    },
 
 };

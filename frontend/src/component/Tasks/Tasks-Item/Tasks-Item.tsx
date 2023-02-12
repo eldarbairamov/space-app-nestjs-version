@@ -1,13 +1,14 @@
 import React, { FC } from "react";
 
-import { catchErrors } from "../../../../helper";
-import { taskService } from "../../../../services";
 import { DeleteOutlined } from "@ant-design/icons";
-import { ITask } from "../../../../interface";
+import { ITask } from "../../../interface";
+import { catchErrors } from "../../../helper";
+import { taskService } from "../../../services";
 
 import style from "./Tasks-Item.module.scss";
-import complete from "../../../../asset/complete.svg";
-import incomplete from "../../../../asset/incomplete.svg";
+import complete from "../../../asset/complete.svg";
+import incomplete from "../../../asset/incomplete.svg";
+
 
 interface ITasksItem {
    task: ITask;

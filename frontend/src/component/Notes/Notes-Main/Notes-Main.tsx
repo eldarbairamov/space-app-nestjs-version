@@ -14,7 +14,7 @@ export const NotesMain: FC = () => {
    const { activeNote, notes } = useAppSelector(state => state.notesReducer);
 
    useEffect(() => {
-      dispatch(noteActions.showDefaultNote(notes[0]));
+      dispatch(noteActions.setDefaultNote(notes[0]));
    }, []);
 
    const handleInputs = (field: string, value: string) => {

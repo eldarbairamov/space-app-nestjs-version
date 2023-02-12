@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { IMoment } from "../../../interface";
@@ -9,35 +9,40 @@ import { catchErrors } from "../../../helper";
 import * as dateHelper from "moment";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { momentActions } from "../../../redux/slice";
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 import no_photo from "../../../asset/no-photo.png";
 import style from "./Moment-Item-Page.module.scss";
 
 export const MomentItemPage: FC = () => {
+   const dispatch = useAppDispatch();
    const { momentId } = useParams<{ momentId: string }>();
+   const [ prevState, setPrevState ] = useState<IMoment>();
+
+   useQuery({
+      queryKey: [ "moment list", momentId ],
+      queryFn: () => momentService.getOneMoment(momentId!),
+      onSuccess: ({ data }) => {
+         dispatch(momentActions.setActiveMoment(data));
+         setPrevState(data);
+      },
+      onError: (err) => catchErrors(err),
+      enabled: !!momentId,
+   });
 
    const { activeMoment } = useAppSelector(state => state.momentReducer);
 
    const date = dateHelper(activeMoment?.date).format("YYYY-MM-DD");
-
    const navigate = useNavigate();
-
    const filePicker = useRef<HTMLInputElement>(null);
+   const handlePick = () => filePicker.current!.click();
 
-   const dispatch = useAppDispatch();
-
+   const [ tagValue, setTagValue ] = useState<string>("");
    const [ isTagInputVisible, setIsTagInputVisible ] = useState<boolean>(false);
    const [ isTitleInputVisible, setIsTitleInputVisible ] = useState<boolean>(false);
    const [ isLocationInputVisible, setIsLocationInputVisible ] = useState<boolean>(false);
    const [ isDateInputVisible, setIsDateInputVisible ] = useState<boolean>(false);
-
-   const [ tagValue, setTagValue ] = useState<string>("");
-
-   useEffect(() => {
-      momentService.getOneMoment(momentId!)
-         .then(res => dispatch(momentActions.setActiveMoment(res.data)))
-         .catch(e => catchErrors(e));
-   }, []);
 
    const handleInputs = (field: string, value: string) => {
       const updatedMoment = {
@@ -48,14 +53,13 @@ export const MomentItemPage: FC = () => {
       dispatch(momentActions.setActiveMoment(updatedMoment));
    };
 
+
    const addTag = async (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key !== "Enter") return;
       if (!tagValue.trim()) return;
-
       dispatch(momentActions.addTag({ tagValue }));
-
       setTagValue("");
-      closeAllInputs();
+      await closeInputsAndSave();
    };
 
    const deleteMoment = async () => {
@@ -68,11 +72,7 @@ export const MomentItemPage: FC = () => {
       }
    };
 
-   const handlePick = () => {
-      filePicker.current!.click();
-   };
-
-   const setData = (e: React.ChangeEvent<HTMLInputElement>) => {
+   const setDate = (e: React.ChangeEvent<HTMLInputElement>) => {
       const date = new Date(e.target.value).getTime();
       dispatch(momentActions.setDate(date));
    };
@@ -80,14 +80,10 @@ export const MomentItemPage: FC = () => {
    const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
       try {
          const image = (event.target.files as FileList)[0];
-
          const formData = new FormData();
          formData.append("photo", image);
-
          const imageName = await momentService.updatePhoto(momentId!, formData);
-
          dispatch(momentActions.setPhoto({ photo: imageName }));
-
       } catch (e) {
          catchErrors(e);
       }
@@ -98,9 +94,9 @@ export const MomentItemPage: FC = () => {
          const clone = Object.assign({}, activeMoment) as Partial<IMoment>;
          delete clone.id;
          delete clone.createdAt;
-
          await momentService.updateMoment(momentId!, clone);
-
+         setPrevState(activeMoment as IMoment);
+         toast.success('Збережено')
       } catch (e) {
          catchErrors(e);
       }
@@ -109,15 +105,15 @@ export const MomentItemPage: FC = () => {
    const deleteTag = (tagValue: string) => dispatch(momentActions.deleteTag({ tagValue }));
 
    const showInput = (value: boolean, dispatch: React.Dispatch<React.SetStateAction<boolean>>) => {
-      closeAllInputs();
+      closeInputsAndSave();
       dispatch(!value);
    };
 
-   const handleOnKeyDown = () => {
-      closeAllInputs();
+   const handleOnKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Enter") closeInputsAndSave();
    };
 
-   const closeAllInputs = () => {
+   const closeInputsAndSave = () => {
       setIsDateInputVisible(false);
       setIsLocationInputVisible(false);
       setIsTitleInputVisible(false);
@@ -127,108 +123,121 @@ export const MomentItemPage: FC = () => {
    return (
       <div className={ style.MomentItemPage }>
 
-         {
-            activeMoment &&
+         { activeMoment &&
             <div className={ style.moment_item }>
-               <p className={ style.save_moment } onClick={ updateMoment }> Зберегти </p>
+               { (prevState !== activeMoment) &&
+                  <p className={ style.save_moment } onClick={ updateMoment }> Зберегти </p>
+               }
                <p className={ style.delete_moment } onClick={ deleteMoment }> Видалити </p>
 
-               {
-                  activeMoment.title &&
+               {/* Title */ }
+               { activeMoment.title &&
                   <p onClick={ () => showInput(isTitleInputVisible, setIsTitleInputVisible) }
                      className={ style.title }>
                      { activeMoment.title }
                   </p>
                }
 
-               {
-                  isTitleInputVisible &&
+               {/* Title input */ }
+               { isTitleInputVisible &&
                   <input className={ style.title_input }
                          type="text"
+                         autoFocus
                          value={ activeMoment.title }
+                         onKeyDown={ handleOnKeyDown }
                          onChange={ event => handleInputs("title", event.target.value) }/>
                }
 
+               {/* Photo wrapper */ }
                <div className={ style.photo_wrapper }>
                   <input className={ style.upload_photo_input }
                          type={ "file" }
                          ref={ filePicker }
                          onChange={ uploadPhoto }/>
 
-                  {
-                     activeMoment.photo ?
-                        <>
-                           <img className={ style.photo_background }
-                                src={ config.SERVER_URL + activeMoment.photo }
-                                alt="background"
-                                onClick={ closeAllInputs }/>
+                  {/* Photo */ }
+                  { activeMoment.photo
+                     ?
+                     <>
+                        <img className={ style.photo_background }
+                             src={ config.SERVER_URL + activeMoment.photo }
+                             alt="background"
+                             onClick={ closeInputsAndSave }/>
 
-                           <img onClick={ handlePick }
-                                className={ style.photo }
-                                src={ config.SERVER_URL + activeMoment.photo }
-                                alt="photo"/>
-                        </>
-                        :
                         <img onClick={ handlePick }
-                             className={ style.no_image }
-                             src={ no_photo }
-                             alt="no_image"/>
+                             className={ style.photo }
+                             src={ config.SERVER_URL + activeMoment.photo }
+                             alt="photo"/>
+                     </>
+                     :
+                     <img onClick={ handlePick }
+                          className={ style.no_image }
+                          src={ no_photo }
+                          alt="no_image"/>
                   }
 
                </div>
 
+               {/* Date and location wrapper */ }
                <div className={ style.date_and_location_wrapper }>
 
-                  {
-                     activeMoment.location &&
+                  {/* Location */ }
+                  { activeMoment.location &&
                      <p onClick={ () => showInput(isLocationInputVisible, setIsLocationInputVisible) }
-                        className={ style.location }> { activeMoment.location } </p> }
-                  {
-                     isLocationInputVisible &&
+                        className={ style.location }> { activeMoment.location } </p>
+                  }
+
+                  {/* Location input */ }
+                  { isLocationInputVisible &&
                      <input className={ style.location_input }
                             type="text"
+                            autoFocus
                             value={ activeMoment.location }
                             onChange={ event => handleInputs("location", event.target.value) }
                             onKeyDown={ handleOnKeyDown }
                      />
                   }
 
-                  {
-                     activeMoment.date &&
+                  {/* Date */ }
+                  { activeMoment.date &&
                      <p onClick={ () => showInput(isDateInputVisible, setIsDateInputVisible) }
                         className={ style.date }> { dateHelper(activeMoment.date).format("DD-MM-YYYY") } </p>
                   }
-                  {
-                     isDateInputVisible &&
+
+                  {/* Date input */ }
+                  { isDateInputVisible &&
                      <input className={ style.date_input }
                             type="date"
+                            autoFocus
                             defaultValue={ date }
-                            onChange={ event => setData(event) }
+                            onChange={ setDate }
                             onKeyDown={ handleOnKeyDown }
                      />
                   }
                </div>
 
+               {/* Tags wrapper */ }
                <div className={ style.tags_wrapper }>
-                  {
-                     activeMoment.tags.length < 2 &&
+                  { activeMoment.tags.length < 2 &&
                      <p onClick={ () => showInput(isTagInputVisible, setIsTagInputVisible) }
                         className={ style.add_tag }> + </p>
                   }
-                  {
-                     isTagInputVisible &&
+
+                  {/* Tags */ }
+                  { activeMoment.tags.map(tag => (
+                     <p onClick={ () => deleteTag(tag) } className={ style.tag } key={ v4() }> { tag } </p>
+                  )) }
+
+                  {/* Tag input */ }
+                  { isTagInputVisible &&
                      <input className={ style.tag_input }
                             type="text"
+                            autoFocus
                             value={ tagValue }
                             onChange={ event => setTagValue(event.target.value) }
                             onKeyDown={ event => addTag(event) }
                      />
                   }
-
-                  {
-                     activeMoment.tags.map(tag => (
-                        <p onClick={ () => deleteTag(tag) } className={ style.tag } key={ v4() }> { tag } </p>
-                     )) }
 
                </div>
 

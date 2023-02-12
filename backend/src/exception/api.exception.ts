@@ -4,7 +4,7 @@ export class ApiException extends Error {
       this.status = status;
    }
 
-   static Database(e: unknown) {
+   static DatabaseError(e: unknown) {
       console.log(e);
       return new ApiException("Database: Error", 500);
    }

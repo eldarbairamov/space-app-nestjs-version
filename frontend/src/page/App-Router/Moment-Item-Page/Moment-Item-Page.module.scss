@@ -25,6 +25,8 @@
    }
 
    .moment_item {
+      width: 90%;
+      height: 90%;
       position: relative;
       border-radius: 20px;
       overflow: hidden;
@@ -56,8 +58,8 @@
          @extend %flex;
          justify-content: center;
          background: rgb(244, 244, 244);
-         width: 53vw;
-         height: 70vh;
+         height: 100%;
+         width: 100%;
          position: relative;
 
          .upload_photo_input {
@@ -66,14 +68,13 @@
 
          .photo_background {
             position: absolute;
-            width: 1500px;
+            width: 1800px;
             filter: blur(10px) contrast(80%);
             -webkit-filter: blur(10px) contrast(80%);
          }
 
          .photo {
-            width: 440px;
-            position: absolute;
+            width: 450px;
             filter: contrast(90%);
             -webkit-filter: contrast(90%);
             border-radius: 20px;
@@ -163,4 +164,10 @@
       }
    }
 
+}
+
+@media screen and (max-height: 800px) {
+   .MomentItemPage {
+      height: 800px;
+   }
 }

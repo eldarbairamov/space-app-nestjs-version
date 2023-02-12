@@ -4,12 +4,12 @@ import { useLocation } from "react-router";
 import { catchErrors, dateFormat } from "../../../helper";
 import { planService, taskService } from "../../../services";
 import { TasksItem } from "../../../component";
-import { Toaster } from "react-hot-toast";
 import { IPlan, ITask } from "../../../interface";
+import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import style from "./Tasks-Page.module.scss";
 
-export interface IInputFields {
+interface IInputFields {
    planTitle: string,
    taskTitle: string
 }
@@ -42,7 +42,7 @@ export const TasksPage: FC = () => {
       setInputFields({ ...inputFields, [field]: value });
    };
 
-   const changePlansTitle = async (): Promise<void> => {
+   const savePlanTitle = async (): Promise<void> => {
       try {
          await planService.updatePlan(plan.id, inputFields.planTitle);
 
@@ -61,28 +61,7 @@ export const TasksPage: FC = () => {
       <div className={ style.TasksPage }>
 
          {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
+         <ToasterWithOptions/>
 
          <div className={ style.top }>
             <input type={ "text" }
@@ -90,7 +69,7 @@ export const TasksPage: FC = () => {
                    id={ "planTitle" }
                    value={ inputFields.planTitle }
                    onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onChangeFields("planTitle", e.target.value) }
-                   onBlur={ (changePlansTitle) }
+                   onBlur={ (savePlanTitle) }
             />
             <p className={ style.plan_date }> { formatDate } </p>
          </div>

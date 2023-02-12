@@ -11,7 +11,3 @@ export interface IAddTask {
    readonly planId: PlanDocument["id"];
    readonly title: string;
 }
-
-export interface IUpdateTask {
-   readonly isCompleted: string;
-}

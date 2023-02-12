@@ -4,45 +4,44 @@
 }
 
 .MomentItem {
+   @extend %flex;
+   justify-content: center;
+
+   width: calc(100% / 3 - 20px);
+   height: 350px;
+
    position: relative;
    border-radius: 20px;
    overflow: hidden;
-   transition: .5s;
+   transition: .3s;
    cursor: pointer;
+   background: rgb(244, 244, 244);
 
    &:hover {
       filter: brightness(90%);
       -webkit-filter: brightness(90%);
    }
 
-   .photo_wrapper {
-      @extend %flex;
-      justify-content: center;
-      background: rgb(244, 244, 244);
-      width: 397.34px;
-      height: 350px;
-      position: relative;
-
-      .photo_background {
-         position: absolute;
-         width: 800px;
-         filter: blur(10px) contrast(80%);
-         -webkit-filter: blur(10px) contrast(80%);
-      }
-
-      .photo {
-         width: 230px;
-         position: absolute;
-         filter: contrast(90%);
-         -webkit-filter: contrast(90%);
-         border-radius: 20px;
-      }
-
-      .no_image {
-         position: absolute;
-         width: 100px;
-      }
+   .photo_background {
+      position: absolute;
+      width: 800px;
+      filter: blur(10px) contrast(80%);
+      -webkit-filter: blur(10px) contrast(80%);
    }
+
+   .photo {
+      width: 230px;
+      position: absolute;
+      filter: contrast(90%);
+      -webkit-filter: contrast(90%);
+      border-radius: 20px;
+   }
+
+   .no_image {
+      position: absolute;
+      width: 100px;
+   }
+
 
    .title {
       position: absolute;
@@ -91,3 +90,19 @@
       }
    }
 }
+
+
+@media screen and (max-width: 1600px) {
+   .MomentItem {
+      width: calc(100% / 2 - 15px);
+
+   }
+}
+
+@media screen and (max-width: 900px) {
+   .MomentItem {
+      width: 100%;
+   }
+}
+
+

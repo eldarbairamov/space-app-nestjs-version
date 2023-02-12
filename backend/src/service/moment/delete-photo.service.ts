@@ -2,11 +2,10 @@ import { MomentDocument } from "../../model";
 import { MomentRepository } from "../../repository";
 import { fileNameValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
-import { IDeletePhoto } from "../../interface";
 import path from "node:path";
 import { unlink } from "fs/promises";
 
-export const deletePhotoService = async (body: IDeletePhoto, momentId: MomentDocument["id"]): Promise<void> => {
+export const deletePhotoService = async (body: { fileName: string }, momentId: MomentDocument["id"]): Promise<void> => {
 
    // Validation
    const validation = fileNameValidator.validate(body);

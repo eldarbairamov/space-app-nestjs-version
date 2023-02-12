@@ -5,7 +5,7 @@ export const errorMiddleware = (err: ApiException, req: Request, res: Response, 
    res
       .status(err.status || 500)
       .json({
-         message: err.message || "Сталась невідома помилка",
+         message: err.message || "Unknown error",
          status: err.status || 500,
       });
 };

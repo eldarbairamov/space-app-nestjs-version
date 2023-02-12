@@ -1,57 +1,52 @@
 import expressAsyncHandler from "express-async-handler";
-import { RequestWithBodyAndParam, RequestWithBodyVarParam, RequestWithCustomVar, RequestWithCustomVarAndParam, RequestWithCustomVarAndQuery, RequestWithParam } from "../interface";
+import { IRequest, IQuery, IMomentsResponse } from "../interface";
 import { Response } from "express";
 import { MomentRepository, UserRepository } from "../repository";
 import { IMomentResponse, IUpdateMoment } from "../interface";
-import { addMomentService, deletePhotoService, getMomentsByTagsService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
+import { addMomentService, deletePhotoService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
 import { getOneMomentService } from "../service/moment/get-one-moment.service";
 
 export const momentController = {
 
-   addMoment: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IMomentResponse>) => {
+   addMoment: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<IMomentResponse>) => {
       const moment = await addMomentService(req.userId);
       res.json(moment);
    }),
 
-   getMoments: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<IMomentResponse[]>) => {
-      const moments = await getMomentsService(req.userId);
+   getMoments: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<IMomentsResponse>) => {
+      const moments = await getMomentsService(req.userId, req.query);
       res.json(moments);
    }),
 
-   getOneMoment: expressAsyncHandler(async (req: RequestWithParam<{ momentId: string }>, res: Response<IMomentResponse>) => {
+   getOneMoment: expressAsyncHandler(async (req: IRequest<any, { momentId: string }, any>, res: Response<IMomentResponse>) => {
       const moment = await getOneMomentService(req.params.momentId);
       res.json(moment);
    }),
 
-   updateMoment: expressAsyncHandler(async (req: RequestWithBodyVarParam<IUpdateMoment, { momentId: string }>, res: Response<{ message: string }>) => {
+   updateMoment: expressAsyncHandler(async (req: IRequest<IUpdateMoment, { momentId: string }, any>, res: Response<{ message: string }>) => {
       await updateMomentService(req.params.momentId, req.body);
       res.json({ message: "Success" });
    }),
 
-   deleteMoment: expressAsyncHandler(async (req: RequestWithCustomVarAndParam<{ momentId: string }>, res: Response<{ message: string }>) => {
+   deleteMoment: expressAsyncHandler(async (req: IRequest<any, { momentId: string }, any>, res: Response<{ message: string }>) => {
       await MomentRepository.findByIdAndDelete(req.params.momentId);
       await UserRepository.findByIdAndUpdate(req.userId, { $pull: { momentsIds: req.params.momentId } });
       res.json({ message: "Success" });
    }),
 
-   uploadPhoto: expressAsyncHandler(async (req: RequestWithCustomVarAndParam<{ momentId: string }>, res: Response<{ image: string }>) => {
+   uploadPhoto: expressAsyncHandler(async (req: IRequest<any, { momentId: string }, any>, res: Response<{ image: string }>) => {
       const imageName = await uploadPhotoService(req.files, req.params.momentId);
       res.json({ image: imageName });
    }),
 
-   deletePhoto: expressAsyncHandler(async (req: RequestWithBodyAndParam<{ fileName: string }, { momentId: string }>, res: Response<{ message: string }>) => {
+   deletePhoto: expressAsyncHandler(async (req: IRequest<{ fileName: string }, { momentId: string }, any>, res: Response<{ message: string }>) => {
       await deletePhotoService(req.body, req.params.momentId);
       res.json({ message: "Success" });
    }),
 
-   getMomentsCount: expressAsyncHandler(async (req: RequestWithCustomVar, res: Response<number>) => {
+   getMomentsCount: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<number>) => {
       const count = await MomentRepository.count(req.userId);
       res.json(count);
-   }),
-
-   getMomentsByTags: expressAsyncHandler(async (req: RequestWithCustomVarAndQuery<{ tags: string }>, res: Response<IMomentResponse[]>) => {
-      const momentsByTags = await getMomentsByTagsService(req.userId, req.query.tags);
-      res.json(momentsByTags);
    }),
 
 };

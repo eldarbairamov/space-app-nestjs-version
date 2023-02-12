@@ -4,6 +4,10 @@
 }
 
 .MemoriesPage {
+   @extend %flex;
+   justify-content: center;
+   flex-direction: column;
+
    width: 80vw;
    height: calc(100vh - 170px);
    background: white;
@@ -15,10 +19,15 @@
       justify-content: center;
       gap: 10px;
 
-      height: 8%;
+      height: 60px;
       width: 100%;
       position: relative;
       border-bottom: 2px #d7d7d7 solid;
+
+      .select_wrapper {
+         position: absolute;
+         right: 50px;
+      }
 
       .save_moment {
          @extend %flex;
@@ -47,7 +56,7 @@
 
    .main {
       overflow-y: scroll;
-      height: 92%;
+      height: calc(100% - 70px);
       width: 100%;
 
       .moments_list {

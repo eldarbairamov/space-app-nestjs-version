@@ -8,7 +8,7 @@ export const UserRepository = {
       try {
          return UserModel.create(body);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 
@@ -16,7 +16,7 @@ export const UserRepository = {
       try {
          return UserModel.findOne(filter);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 
@@ -24,7 +24,7 @@ export const UserRepository = {
       try {
          return UserModel.findById(userId);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 
@@ -32,7 +32,7 @@ export const UserRepository = {
       try {
          return UserModel.findByIdAndUpdate(userId, update, { new: true });
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 

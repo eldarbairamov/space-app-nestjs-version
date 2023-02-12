@@ -1,6 +1,7 @@
 import { axiosInstance, AxiosRes } from "./axios.service";
 import { notesRequests } from "../config/config";
-import { INote, IUpdateNote } from "../interface";
+import { INote, INotes, IUpdateNote } from "../interface";
+import { IQuery } from "../interface/common.interface";
 
 export const noteService = {
 
@@ -8,8 +9,9 @@ export const noteService = {
       return axiosInstance.get<INote>(notesRequests.addNote);
    },
 
-   getNotes: async () => {
-      return axiosInstance.get<INote[]>(notesRequests.getNotes);
+   getNotes: async (query: IQuery) => {
+      const { limit = 20, page = 1, searchKey = null } = query;
+      return axiosInstance.get<INotes>(notesRequests.getNotes, { params: { limit, page, searchKey } });
    },
 
    getNotesCount: async (): AxiosRes<number> => {
@@ -22,12 +24,6 @@ export const noteService = {
 
    deleteNote: async (noteId: INote["id"]): AxiosRes<void> => {
       return axiosInstance.delete<void>(notesRequests.deleteNote + noteId);
-   },
-
-   getNotesBySearch: async (searchKey: string) => {
-      return axiosInstance.get<INote[]>(notesRequests.getNotesBySearch, {
-         params: { searchKey },
-      });
    },
 
 };

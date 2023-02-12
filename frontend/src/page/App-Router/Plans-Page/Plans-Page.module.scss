@@ -19,7 +19,7 @@
       justify-content: center;
       gap: 10px;
 
-      height: 8%;
+      height: 60px;
       width: 100%;
       position: relative;
       border-bottom: 2px #d7d7d7 solid;
@@ -33,6 +33,12 @@
             background: none;
             text-align: center;
             border: none;
+            cursor: pointer;
+            font-size: 16px;
+
+            &::placeholder {
+               color: #c0c0c0;
+            }
          }
       }
 
@@ -51,7 +57,7 @@
 
    .main {
       overflow-y: scroll;
-      height: 92%;
+      height: calc(100% - 60px);
       width: 100%;
 
       .plan_list {

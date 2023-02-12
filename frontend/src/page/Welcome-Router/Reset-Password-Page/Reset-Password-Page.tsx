@@ -1,8 +1,9 @@
 import React, { FC, useEffect } from "react";
 
 import { ResetPasswordForm, WelcomeLogo } from "../../../component";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useMatchMedia } from "../../../hook";
+import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import style from "./Reset-Password-Page.module.scss";
 
@@ -18,28 +19,7 @@ export const ResetPasswordPage: FC = () => {
 
 
          {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
+         <ToasterWithOptions/>
 
          { isDesktop && <WelcomeLogo/> }
          { isTablet && <WelcomeLogo/> }

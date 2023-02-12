@@ -22,12 +22,6 @@ planRouter.get(
    authMiddleware.isAccessExists,
    planController.getPlansCount);
 
-// Get plans by search
-planRouter.get(
-   "/search",
-   authMiddleware.isAccessExists,
-   planController.getPlansBySearch);
-
 // Update plan
 planRouter.put(
    "/:planId",

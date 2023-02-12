@@ -35,14 +35,14 @@ const noteSlice = createSlice({
          state.notes = state.notes.sort((a, b) => b.lastModified - a.lastModified);
       },
 
-      showDefaultNote: (state, { payload }: PayloadAction<INote>) => {
+      setDefaultNote: (state, { payload }: PayloadAction<INote>) => {
          state.activeNote = payload;
       },
       setSearchKey: (state, { payload }: PayloadAction<string>) => {
          state.searchKey = payload;
       },
 
-      getNotes: (state, { payload }: PayloadAction<INote[]>) => {
+      setNotes: (state, { payload }: PayloadAction<INote[]>) => {
          state.notes = payload;
          state.activeNote = payload[0];
       },

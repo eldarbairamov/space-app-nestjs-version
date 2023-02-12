@@ -15,11 +15,3 @@ export interface IUpdateProfile {
    readonly surname: string;
    readonly username: string;
 }
-
-export interface IDeleteAvatar {
-   readonly fileName: string;
-}
-
-export interface IChangeEmail {
-   readonly confirmationToken: string;
-}

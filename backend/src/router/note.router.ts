@@ -36,9 +36,3 @@ notesRouter.delete(
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("note"),
    notesController.deleteNote);
-
-// Get notes by search
-notesRouter.get(
-   "/search",
-   authMiddleware.isAccessExists,
-   notesController.getNotesBySearch);

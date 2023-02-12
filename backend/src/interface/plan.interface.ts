@@ -6,6 +6,8 @@ export interface IPlanResponse {
    readonly lastModified: number;
 }
 
-export interface IUpdatePlan {
-   readonly title: string;
+export interface IPlansResponse {
+   data: IPlanResponse[];
+   readonly count: number;
+   readonly page: number;
 }

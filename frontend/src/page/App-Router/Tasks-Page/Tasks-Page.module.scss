@@ -19,7 +19,7 @@
       justify-content: center;
 
       position: relative;
-      height: 10%;
+      height: 60px;
       width: 100%;
       border-bottom: 2px #d7d7d7 solid;
 
@@ -46,7 +46,7 @@
       @extend %flex;
       justify-content: center;
 
-      height: 15%;
+      height: 100px;
       width: 100%;
 
       .add_task {
@@ -72,7 +72,7 @@
    }
 
    .bottom {
-      height: 75%;
+      height: calc(100% - 160px);
       width: 100%;
       overflow-y: scroll;
       padding-bottom: 30px;

@@ -7,3 +7,10 @@ export interface IMoment {
    readonly tags: string[];
    createdAt: number;
 }
+
+export interface IMoments {
+   data: IMoment[];
+   readonly count: number;
+   readonly page: number;
+   readonly tagsForFilter: (string | undefined)[];
+}

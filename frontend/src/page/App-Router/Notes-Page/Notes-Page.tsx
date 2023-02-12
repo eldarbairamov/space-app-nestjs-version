@@ -1,55 +1,32 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 
 import { NotesMain, NotesSidebar } from "../../../component";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { noteActions } from "../../../redux/slice";
-import { Toaster } from "react-hot-toast";
 import { noteService } from "../../../services";
-import { catchErrors } from "../../../helper";
+import {  useQuery } from "@tanstack/react-query";
+import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import style from "./Notes-Page.module.scss";
 
 export const NotesPage: FC = () => {
+   const dispatch = useAppDispatch();
    const { searchKey } = useAppSelector(state => state.notesReducer);
 
-   const dispatch = useAppDispatch();
+   useQuery({
+      queryKey: [ "note list", searchKey ],
+      queryFn: () => noteService.getNotes({ searchKey }),
+      onSuccess: (data) => {
+         dispatch(noteActions.setNotes(data.data.data));
+      },
 
-   useEffect(() => {
-      if (searchKey === "") {
-         noteService
-            .getNotes()
-            .then(res => dispatch(noteActions.getNotes(res.data)))
-            .catch(e => catchErrors(e));
-      }
-
-   }, [ searchKey ]);
+   });
 
    return (
       <div className={ style.NotesPage }>
 
          {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
+         <ToasterWithOptions/>
 
          <div className={ style.left_side }>
             <NotesSidebar/>

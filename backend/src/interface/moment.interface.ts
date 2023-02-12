@@ -8,14 +8,17 @@ export interface IMomentResponse {
    readonly createdAt: number;
 }
 
+export interface IMomentsResponse {
+   data: IMomentResponse[];
+   readonly count: number;
+   readonly page: number;
+   readonly tagsForFilter: (string | undefined)[];
+}
+
 export interface IUpdateMoment {
    readonly title: string,
    readonly photo: string,
    readonly location: string,
    readonly date: Date
    readonly tags: string[]
-}
-
-export interface IDeletePhoto {
-   readonly fileName: string;
 }

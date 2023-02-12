@@ -1,24 +1,29 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 
-import { Toaster } from "react-hot-toast";
 import { PlanItem } from "../../../component";
 import { planService } from "../../../services";
 import { catchErrors } from "../../../helper";
 import { IPlan } from "../../../interface";
+import { useQuery } from "@tanstack/react-query";
+import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import style from "./Plans-Page.module.scss";
 
 export const PlansPage: FC = () => {
    const [ plans, setPlans ] = useState<IPlan[]>([]);
-
    const [ searchKey, setSearchKey ] = useState<string>("");
+
+   useQuery({
+      queryKey: [ "plan list", searchKey ],
+      queryFn: () => planService.getPlans(searchKey),
+      onSuccess: ({ data }) => setPlans(data.data),
+      onError: (err) => catchErrors(err),
+   });
 
    const addPlan = async () => {
       try {
          const { data } = await planService.addPlan();
-         setPlans([ ...plans, data ]
-            .sort((a, b) => b.lastModified - a.lastModified));
-
+         setPlans([ ...plans, data ].sort((a, b) => b.lastModified - a.lastModified));
       } catch (e) {
          catchErrors(e);
       }
@@ -29,9 +34,7 @@ export const PlansPage: FC = () => {
          e.stopPropagation();
          const updatedArr = plans.filter(item => item.id !== targetId);
          await planService.deletePlan(targetId);
-
          setPlans(updatedArr);
-
       } catch (e) {
          catchErrors(e);
       }
@@ -39,55 +42,20 @@ export const PlansPage: FC = () => {
 
    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
 
-   useEffect(() => {
-      if (searchKey === "") {
-         planService
-            .getAllPlans()
-            .then(res => {
-               setPlans(res.data);
-            })
-            .catch(e => catchErrors(e));
-      }
-
-      if (searchKey !== "") {
-         planService
-            .getPlansBySearch(searchKey)
-            .then(res => setPlans(res.data))
-            .catch(e => catchErrors(e));
-      }
-   }, [ searchKey ]);
-
    return (
       <div className={ style.PlansPage }>
 
          {/* Toaster */ }
-         <Toaster
-            toastOptions={ {
-               error: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#df8281",
-                     secondary: "white",
-                  },
-               },
-               success: {
-                  style: {
-                     textAlign: "center",
-                  },
-                  iconTheme: {
-                     primary: "#84df81",
-                     secondary: "white",
-                  },
-               },
-            } }
-         />
+         <ToasterWithOptions/>
 
+         {/* Header */ }
          <div className={ style.header }>
+
+            {/* Add plan */ }
             <button className={ style.add_plan }> +</button>
             <button className={ style.add_plan } onClick={ addPlan }> Додати план</button>
 
+            {/* Search bar */ }
             <div className={ style.search_bar }>
                <input type="text"
                       value={ searchKey }
@@ -97,8 +65,8 @@ export const PlansPage: FC = () => {
             </div>
          </div>
 
+         {/* Main */ }
          <div className={ style.main }>
-
             <div className={ style.plan_list }>
                { plans && plans.map(item => <PlanItem key={ item.id } plan={ item } deletePlan={ deletePlan }/>) }
             </div>

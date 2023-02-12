@@ -16,7 +16,7 @@ export const EmailUpdateForm: FC = () => {
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
    });
-
+   
    const navigate = useNavigate();
 
    const onSubmit: SubmitHandler<{ email: string }> = async (data): Promise<void> => {
@@ -26,12 +26,12 @@ export const EmailUpdateForm: FC = () => {
          await userService.changeEmailRequest({ email: data.email! });
 
          toast.dismiss(loading);
-         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 6000 });
+         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 5000 });
 
          setTimeout(() => {
             setValue("email", "");
             navigate("/");
-         }, 6000);
+         }, 5000);
 
       } catch (e) {
          catchErrors(e);

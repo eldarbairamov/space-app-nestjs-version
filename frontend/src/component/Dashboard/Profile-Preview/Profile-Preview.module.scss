@@ -9,8 +9,8 @@
    width: 100%;
 
    .avatar {
-      width: 200px;
-      height: 200px;
+      width: 13vw;
+      height: 13vw;
       border-radius: 50%;
 
       display: flex;
@@ -19,12 +19,12 @@
       overflow: hidden;
 
       img {
-         width: 300px;
+         width: 15vw;
       }
    }
 
    .no_avatar {
-      width: 200px;
+      width: 13vw;
    }
 
    .username {
@@ -54,4 +54,39 @@
       }
    }
 
+}
+
+
+@media screen and (max-height: 800px) {
+   .ProfilePreview {
+      .avatar {
+         width: 250px;
+         height: 250px;
+
+         img {
+            width: 300px;
+         }
+      }
+
+      .no_avatar {
+         width: 250px;
+      }
+   }
+}
+
+@media screen and (max-width: 1700px) {
+   .ProfilePreview {
+      .avatar {
+         width: 250px;
+         height: 250px;
+
+         img {
+            width: 300px;
+         }
+      }
+
+      .no_avatar {
+         width: 250px;
+      }
+   }
 }

@@ -8,7 +8,7 @@ export const TaskRepository = {
       try {
          return TaskModel.create(body);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 
@@ -16,7 +16,7 @@ export const TaskRepository = {
       try {
          return TaskModel.findByIdAndDelete(taskId);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
 
    },
@@ -25,7 +25,7 @@ export const TaskRepository = {
       try {
          return TaskModel.findByIdAndUpdate(taskId, update, { new: true });
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
 
    },
@@ -34,7 +34,7 @@ export const TaskRepository = {
       try {
          return TaskModel.find(filter);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
 
    },
@@ -43,7 +43,7 @@ export const TaskRepository = {
       try {
          return TaskModel.findById(taskId);
       } catch (e) {
-         throw ApiException.Database(e);
+         throw ApiException.DatabaseError(e);
       }
    },
 

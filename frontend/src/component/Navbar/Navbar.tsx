@@ -5,6 +5,7 @@ import { AppLogo } from "../Logo/App-Logo/App-Logo";
 import { LogoutOutlined } from "@ant-design/icons";
 import { authService } from "../../services";
 import toast, { Toaster } from "react-hot-toast";
+import { catchErrors } from "../../helper";
 
 import style from "./Navbar.module.scss";
 
@@ -12,17 +13,15 @@ export const Navbar: FC = () => {
    const navigate = useNavigate();
 
    const logOut = async () => {
-      const loading = toast.loading("Зачекайте...");
-
       try {
+         toast.loading("Зачекайте...");
          await authService.logout();
-
          navigate(0);
-
-         toast.dismiss(loading);
+         toast.dismiss();
 
       } catch (e) {
-         toast.dismiss(loading);
+         catchErrors(e);
+         toast.dismiss();
       }
    };
 
