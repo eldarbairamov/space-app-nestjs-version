@@ -4,46 +4,46 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IMoment } from "../../../interface";
 import { config } from "../../../config/config";
 import { v4 } from "uuid";
-import { momentService } from "../../../services";
+import { momentService } from "../../../service";
 import { catchErrors } from "../../../helper";
-import * as dateHelper from "moment";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { momentActions } from "../../../redux/slice";
-import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import * as dateHelper from "moment";
+import { message } from "antd";
+import getMomentService from "../../../service/moment/get-moment.service";
+import uploadMomentImageService from "../../../service/moment/upload-moment-image.service";
+import updateMomentService from "../../../service/moment/update-moment.service";
 
 import no_photo from "../../../asset/no-photo.png";
 import style from "./Moment-Item-Page.module.scss";
 
-export const MomentItemPage: FC = () => {
-   const dispatch = useAppDispatch();
-   const { momentId } = useParams<{ momentId: string }>();
-   const [ prevState, setPrevState ] = useState<IMoment>();
 
-   useQuery({
-      queryKey: [ "moment list", momentId ],
-      queryFn: () => momentService.getOneMoment(momentId!),
-      onSuccess: ({ data }) => {
-         dispatch(momentActions.setActiveMoment(data));
-         setPrevState(data);
-      },
-      onError: (err) => catchErrors(err),
-      enabled: !!momentId,
-   });
+export const MomentItemPage: FC = () => {
+   const { momentId } = useParams<{ momentId: IMoment["id"] }>();
+
+   const navigate = useNavigate();
+
+   const dispatch = useAppDispatch();
+
+   const [ messageApi, contextHolder ] = message.useMessage();
 
    const { activeMoment } = useAppSelector(state => state.momentReducer);
 
    const date = dateHelper(activeMoment?.date).format("YYYY-MM-DD");
-   const navigate = useNavigate();
-   const filePicker = useRef<HTMLInputElement>(null);
-   const handlePick = () => filePicker.current!.click();
 
+   // Async hooks
+   const { prevState, setPrevState } = getMomentService(momentId!, messageApi);
+   const { uploadPhotoFn } = uploadMomentImageService(messageApi);
+   const { updateMomentFn } = updateMomentService(setPrevState, messageApi);
+
+   // Define useStates
    const [ tagValue, setTagValue ] = useState<string>("");
    const [ isTagInputVisible, setIsTagInputVisible ] = useState<boolean>(false);
    const [ isTitleInputVisible, setIsTitleInputVisible ] = useState<boolean>(false);
    const [ isLocationInputVisible, setIsLocationInputVisible ] = useState<boolean>(false);
    const [ isDateInputVisible, setIsDateInputVisible ] = useState<boolean>(false);
 
+   // Inputs handler
    const handleInputs = (field: string, value: string) => {
       const updatedMoment = {
          ...activeMoment,
@@ -53,7 +53,7 @@ export const MomentItemPage: FC = () => {
       dispatch(momentActions.setActiveMoment(updatedMoment));
    };
 
-
+   // Add tag
    const addTag = async (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key !== "Enter") return;
       if (!tagValue.trim()) return;
@@ -62,6 +62,7 @@ export const MomentItemPage: FC = () => {
       await closeInputsAndSave();
    };
 
+   // Delete moment
    const deleteMoment = async () => {
       try {
          await momentService.deleteMoment(momentId!);
@@ -72,47 +73,35 @@ export const MomentItemPage: FC = () => {
       }
    };
 
+   // Set moment date
    const setDate = (e: React.ChangeEvent<HTMLInputElement>) => {
       const date = new Date(e.target.value).getTime();
       dispatch(momentActions.setDate(date));
    };
 
-   const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-      try {
-         const image = (event.target.files as FileList)[0];
-         const formData = new FormData();
-         formData.append("photo", image);
-         const imageName = await momentService.updatePhoto(momentId!, formData);
-         dispatch(momentActions.setPhoto({ photo: imageName }));
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   // Upload photo
+   const filePicker = useRef<HTMLInputElement>(null);
+   const handlePick = () => filePicker.current!.click();
+   const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => uploadPhotoFn(event, momentId!);
 
-   const updateMoment = async () => {
-      try {
-         const clone = Object.assign({}, activeMoment) as Partial<IMoment>;
-         delete clone.id;
-         delete clone.createdAt;
-         await momentService.updateMoment(momentId!, clone);
-         setPrevState(activeMoment as IMoment);
-         toast.success('Збережено')
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   // Update photo
+   const updateMoment = async () => updateMomentFn(activeMoment!);
 
+   // Delete tag
    const deleteTag = (tagValue: string) => dispatch(momentActions.deleteTag({ tagValue }));
 
+   // Show input
    const showInput = (value: boolean, dispatch: React.Dispatch<React.SetStateAction<boolean>>) => {
       closeInputsAndSave();
       dispatch(!value);
    };
 
-   const handleOnKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+   // On key down function
+   const keyDownHandler = async (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === "Enter") closeInputsAndSave();
    };
 
+   // Close all inputs and save the moment state
    const closeInputsAndSave = () => {
       setIsDateInputVisible(false);
       setIsLocationInputVisible(false);
@@ -122,6 +111,7 @@ export const MomentItemPage: FC = () => {
 
    return (
       <div className={ style.MomentItemPage }>
+         {contextHolder}
 
          { activeMoment &&
             <div className={ style.moment_item }>
@@ -144,7 +134,7 @@ export const MomentItemPage: FC = () => {
                          type="text"
                          autoFocus
                          value={ activeMoment.title }
-                         onKeyDown={ handleOnKeyDown }
+                         onKeyDown={ keyDownHandler }
                          onChange={ event => handleInputs("title", event.target.value) }/>
                }
 
@@ -175,7 +165,6 @@ export const MomentItemPage: FC = () => {
                           src={ no_photo }
                           alt="no_image"/>
                   }
-
                </div>
 
                {/* Date and location wrapper */ }
@@ -194,7 +183,7 @@ export const MomentItemPage: FC = () => {
                             autoFocus
                             value={ activeMoment.location }
                             onChange={ event => handleInputs("location", event.target.value) }
-                            onKeyDown={ handleOnKeyDown }
+                            onKeyDown={ keyDownHandler }
                      />
                   }
 
@@ -211,7 +200,7 @@ export const MomentItemPage: FC = () => {
                             autoFocus
                             defaultValue={ date }
                             onChange={ setDate }
-                            onKeyDown={ handleOnKeyDown }
+                            onKeyDown={ keyDownHandler }
                      />
                   }
                </div>

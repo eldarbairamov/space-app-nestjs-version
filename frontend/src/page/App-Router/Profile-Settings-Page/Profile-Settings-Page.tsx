@@ -1,59 +1,31 @@
 import React, { FC, useRef } from "react";
 
-import { Outlet, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { userActions } from "../../../redux/slice";
+import { Outlet } from "react-router-dom";
+import { useAppSelector } from "../../../hook";
 import { config } from "../../../config/config";
-import { userService } from "../../../services";
-import { catchErrors } from "../../../helper";
-import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
+import { AppRouter } from "../../../router";
+import { message } from "antd";
+import uploadPhotoService from "../../../service/user/upload-photo.service";
+import deletePhotoService from "../../../service/user/delete-photo.service";
 
 import style from "./Profile-Settings-Page.module.scss";
 import user from "../../../asset/user.png";
 
 export const ProfileSettingsPage: FC = () => {
    const { username, name, surname, avatar } = useAppSelector(state => state.userReducer);
+   const [ messageApi, contextHolder ] = message.useMessage();
 
    const filePicker = useRef<HTMLInputElement>(null);
+   const handlePick = () => filePicker.current!.click();
 
-   const navigate = useNavigate();
+   const { uploadPhotoFn } = uploadPhotoService(messageApi);
+   const { deletePhotoFn } = deletePhotoService(messageApi);
 
-   const dispatch = useAppDispatch();
-
-   const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => {
-      try {
-         const image = (event.target.files as FileList)[0];
-
-         const formData = new FormData();
-         formData.append("avatar", image);
-
-         const imageName = await userService.uploadAvatar(formData);
-
-         dispatch(userActions.setAvatar(imageName));
-
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
-
-   const handlePick = () => {
-      filePicker.current!.click();
-   };
-
-   const deleteAvatar = async () => {
-      try {
-         await userService.deleteAvatar(avatar);
-         dispatch(userActions.unsetAvatar());
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => uploadPhotoFn((event.target.files as FileList)[0]);
 
    return (
       <div className={ style.ProfileSettingsPage }>
-
-         {/* Toaster */ }
-         <ToasterWithOptions/>
+         { contextHolder }
 
          {/* Left side */ }
          <div className={ style.left_side }>
@@ -66,7 +38,7 @@ export const ProfileSettingsPage: FC = () => {
                <div className={ style.edit_avatar }>
                   <p onClick={ handlePick }> Змінити </p>
                   { !!avatar && <p> | </p> }
-                  { !!avatar && <p onClick={ deleteAvatar }> Видалити </p> }
+                  { !!avatar && <p onClick={ () => deletePhotoFn(avatar) }> Видалити </p> }
                   <input ref={ filePicker } type={ "file" } onChange={ uploadPhoto }/>
                </div>
             </div>
@@ -83,8 +55,8 @@ export const ProfileSettingsPage: FC = () => {
             </div>
 
             <div className={ style.auth_settings }>
-               <p onClick={ () => navigate("/settings/password") }> Змінити пароль </p>
-               <p onClick={ () => navigate("/settings/email") }> Змінити електронну пошту </p>
+               <p onClick={ () => AppRouter.navigate("/settings/password") }> Змінити пароль </p>
+               <p onClick={ () => AppRouter.navigate("/settings/email") }> Змінити електронну пошту </p>
             </div>
 
          </div>

@@ -1,7 +1,6 @@
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { ApiException } from "../exception/api.exception";
 import { INote, NoteDocument, NoteModel, UserDocument } from "../model";
-import { IQuery } from "../interface";
 
 export const NoteRepository = {
 
@@ -13,12 +12,10 @@ export const NoteRepository = {
       }
    },
 
-   find: async (filter: FilterQuery<INote>, query: IQuery): Promise<NoteDocument[]> => {
+   find: async (filter: FilterQuery<INote>, searchKey: string): Promise<NoteDocument[]> => {
       try {
-         const { limit = 20, page = 1, searchKey } = query;
          const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
-
-         return NoteModel.find(filterObj).limit(+limit).skip((+page - 1) * +limit).sort({ updatedAt: "desc" });
+         return NoteModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }
@@ -48,10 +45,9 @@ export const NoteRepository = {
       }
    },
 
-   count: async (userId: UserDocument["id"], searchKey = ''): Promise<number> => {
+   count: async (userId: UserDocument["id"]): Promise<number> => {
       try {
-         const filterObj = searchKey ? { ownerId: userId, title: { $regex: searchKey, $options: "i" } } : { ownerId: userId};
-         return NoteModel.count(filterObj);
+         return NoteModel.count({ ownerId: userId});
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }

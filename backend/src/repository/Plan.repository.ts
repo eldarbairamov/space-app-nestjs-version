@@ -1,7 +1,6 @@
 import { IPlan, PlanDocument, PlanModel, UserDocument } from "../model";
 import { ApiException } from "../exception/api.exception";
 import { FilterQuery, UpdateQuery } from "mongoose";
-import { IQuery } from "../interface";
 
 export const PlanRepository = {
 
@@ -13,12 +12,10 @@ export const PlanRepository = {
       }
    },
 
-   find: async (filter: FilterQuery<IPlan>, query: IQuery): Promise<PlanDocument[]> => {
+   find: async (filter: FilterQuery<IPlan>, searchKey: string): Promise<PlanDocument[]> => {
       try {
-         const { limit = 20, page = 1, searchKey } = query;
          const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
-
-         return PlanModel.find(filterObj).limit(+limit).skip((+page - 1) * +limit).sort({ updatedAt: "desc" });
+         return PlanModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }

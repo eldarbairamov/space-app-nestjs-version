@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 
 import { RouterProvider } from "react-router-dom";
 import { AppRouter, WelcomeRouter } from "./router";
-import { storageService } from "./services";
+import { storageService } from "./service";
 
 export const App: FC = () => {
    const isLogin = storageService.getAccessToken();

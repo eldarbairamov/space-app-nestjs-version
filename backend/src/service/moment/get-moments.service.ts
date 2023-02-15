@@ -1,15 +1,12 @@
 import { UserDocument } from "../../model";
 import { MomentRepository } from "../../repository";
 import { allMomentsPresenter } from "../../presenter/moment.presenter";
-import { IMomentsResponse, IQuery } from "../../interface";
+import { IMomentsResponse } from "../../interface";
 
-export const getMomentsService = async (userId: UserDocument["id"], query: IQuery): Promise<IMomentsResponse> => {
+export const getMomentsService = async (userId: UserDocument["id"], searchKey: string): Promise<IMomentsResponse> => {
 
-   // Find all moments in DB and count
-   const [ moments, count ] = await Promise.all([
-      MomentRepository.findWithQuery({ ownerId: userId }, query),
-      MomentRepository.count(userId),
-   ]);
+   // Find all moments in DB
+   const moments = await MomentRepository.find({ ownerId: userId }, searchKey);
 
    // Defined unique tags
    const allMoments = await MomentRepository.findByUserId(userId);
@@ -20,6 +17,6 @@ export const getMomentsService = async (userId: UserDocument["id"], query: IQuer
 
    // Return presented data to client
    const presentedMoments = allMomentsPresenter(moments);
-   return { data: presentedMoments, count, page: +query.page ? +query.page : 1, tagsForFilter: !!query && uniqueTags };
+   return { data: presentedMoments, tagsForFilter: uniqueTags };
 
 };

@@ -16,12 +16,6 @@ planRouter.get(
    authMiddleware.isAccessExists,
    planController.addPlan);
 
-// Get count
-planRouter.get(
-   "/count",
-   authMiddleware.isAccessExists,
-   planController.getPlansCount);
-
 // Update plan
 planRouter.put(
    "/:planId",

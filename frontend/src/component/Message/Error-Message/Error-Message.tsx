@@ -14,7 +14,7 @@ export const ErrorMessage:FC = () => {
             <Result
                status="500"
                title="Ой.."
-               subTitle="Неочікувана помилка"
+               subTitle="Неочікувана помилка.."
             />
          </div>
       </div>

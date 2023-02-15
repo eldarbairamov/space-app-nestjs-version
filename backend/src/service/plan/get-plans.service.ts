@@ -1,18 +1,14 @@
 import { PlanRepository } from "../../repository";
 import { allPlansPresenter } from "../../presenter";
-import { IPlansResponse, IQuery } from "../../interface";
+import { IPlanResponse } from "../../interface";
 import { UserDocument } from "../../model";
 
-export const getPlansService = async (userId: UserDocument["id"], query: IQuery): Promise<IPlansResponse> => {
+export const getPlansService = async (userId: UserDocument["id"], searchKey: string): Promise<IPlanResponse[]> => {
 
-   // Find all plans in DB and count
-   const [ plans, count ] = await Promise.all([
-      PlanRepository.find({ ownerId: userId }, query),
-      PlanRepository.count(userId),
-   ]);
+   // Find all plans in DB
+   const plans = await PlanRepository.find({ ownerId: userId }, searchKey);
 
    // Return presented data to client
-   const presentedPlans = allPlansPresenter(plans);
-   return { data: presentedPlans, count, page: +query.page ? +query.page : 1 };
+   return allPlansPresenter(plans);
 
 };

@@ -14,7 +14,7 @@ export * from "./Form/Welcome-Router/Registration-Form/Registration-Form";
 export * from "./Form/Welcome-Router/Login-Form/Login-Form";
 export * from "./Form/Welcome-Router/Activation-Form/ActivationForm";
 export * from "./Form/Welcome-Router/Reset-Password-Form/Reset-Password-Form";
-export * from "./Form/Welcome-Router/Forgot-Password-Form/ForgotPasswordForm";
+export * from "./Form/Welcome-Router/Forgot-Password-Form/Forgot-Password-Form";
 
 export * from "./Form/App-Router/Email-Update-Form/Email-Update-Form";
 export * from "./Form/App-Router/Profile-Update-Form/Profile-Update-Form";
@@ -28,5 +28,4 @@ export * from "./Dashboard/Profile-Preview/Profile-Preview";
 export * from "./UI/Form-Control/Form-Control";
 export * from "./UI/Validation-Error-Toaster/Validation-Error-Toaster";
 
-export * from "./Message/Change-Password-Message/Change-Password-Message";
 export * from "./Message/Email-Confirmation-Message/Email-Confirmation-Message";

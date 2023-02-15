@@ -26,8 +26,8 @@ const momentSlice = createSlice({
       },
 
       addMoment: (state, { payload }: PayloadAction<IMoment>) => {
-         // state.moments.push(payload);
-         // state.moments = state.moments.sort((a, b) => b.createdAt - a.createdAt);
+         state.moments.push(payload);
+         state.moments = state.moments.sort((a, b) => b.createdAt - a.createdAt);
       },
 
       deleteMoment: (state, { payload }: PayloadAction<{ momentId: string }>) => {

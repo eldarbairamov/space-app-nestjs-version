@@ -1,42 +1,28 @@
-import React, { ChangeEvent, FC, type FormEvent, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { authService } from "../../../../services";
-import { catchErrors } from "../../../../helper";
+import { message } from "antd";
+import { WelcomeRouter } from "../../../../router";
+import activationService from "../../../../service/auth/activation.service";
 
 import style from "./ActivationForm.module.scss";
 
 export const ActivationForm: FC = () => {
    const [ value, setValue ] = useState<string>("");
 
-   const navigate = useNavigate();
-
    const handleChange = (value: string) => setValue(value);
 
-   const handleSubmit = async (e: FormEvent<HTMLButtonElement>): Promise<void> => {
-      try {
-         e.preventDefault();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-         const loading = toast.loading("Зачекайте...");
+   const { activationFn } = activationService(messageApi, () => WelcomeRouter.navigate("/login", { replace: true }));
 
-         await authService.accountActivation(value);
-
-         toast.dismiss(loading);
-         toast.success("Ваш аккаунт активовано");
-
-         setTimeout(() => {
-            setValue("");
-            navigate("/login");
-         }, 1500);
-
-      } catch (e) {
-         catchErrors(e);
-      }
+   const handleSubmit = async (e: FormEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      await activationFn(value);
    };
 
    return (
       <div className={ style.ActivationForm }>
+         { contextHolder }
 
          {/* Message */ }
          <p className={ style.message }>

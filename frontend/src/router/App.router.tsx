@@ -1,8 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "../layout";
-import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, EmailConfirmationPage, ChangePassMessagePage, MomentItemPage } from "../page";
+import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, EmailConfirmationPage, UpdatePasswordMessagePage, MomentItemPage } from "../page";
 import { EmailUpdateForm, PasswordUpdateForm, ProfileUpdateForm } from "../component";
 import { ErrorMessage } from "../component/Message/Error-Message/Error-Message";
+import { UpdateEmailMessagePage } from "../page/App-Router/Update-Email-Message-Page/Update-Email-Message";
 
 export const AppRouter = createBrowserRouter([
    {
@@ -37,12 +38,16 @@ export const AppRouter = createBrowserRouter([
             ],
          },
          {
+            path: 'email_update/message',
+            element: <UpdateEmailMessagePage/>
+         },
+         {
             path: "email_confirmation/:token",
             element: <EmailConfirmationPage/>,
          },
          {
-            path: "change_password/message",
-            element: <ChangePassMessagePage/>,
+            path: "password_update/message",
+            element: <UpdatePasswordMessagePage/>,
          },
          {
             path: "notes",

@@ -1,26 +1,17 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import { Divider } from "antd";
-import { catchErrors } from "../../../../helper";
-import { planService } from "../../../../services";
-import { useQuery } from "@tanstack/react-query";
+import { useAppSelector } from "../../../../hook";
 
 import style from "./Plans-Stat.module.scss";
 
 export const PlansStat: FC = () => {
-   const [ count, setCount ] = useState<number>();
-
-   useQuery({
-      queryKey: [ "plans count" ],
-      queryFn: () => planService.getPlansCount(),
-      onSuccess: ({ data }) => setCount(data),
-      onError: (err) => catchErrors(err),
-   });
+   const {plansCount} = useAppSelector(state => state.userReducer)
 
    return (
       <div className={ style.PlansStat }>
          <Divider> <span>Плани</span> </Divider>
-         <p> { count } </p>
+         <p> { plansCount } </p>
       </div>
    );
 };

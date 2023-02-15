@@ -1,23 +1,44 @@
 .EmailConfirmationMessage {
    display: flex;
-   flex-direction: column;
    align-items: center;
    justify-content: center;
-   gap: 40px;
 
-   padding: 50px;
+   width: 100vw;
+   height: 100vh;
 
-   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-   background: white;
-   border-radius: 15px;
+   .result {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      padding: 50px;
+      border-radius: 15px;
+      width: 600px;
 
-   .message {
-      text-align: center;
-      font-size: 19px;
-      font-weight: 500;
+      div:nth-child(2) {
+         font-size: 20px;
+      }
+
+      svg {
+         color: #90be8e;
+      }
+
    }
 
-   img {
-      height: 100px;
+   button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      background: #24292e;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+
+      &:hover {
+         background: #3D8DAE;
+      }
+
    }
 }

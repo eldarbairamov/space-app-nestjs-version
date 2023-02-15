@@ -2,7 +2,7 @@ import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
 import { addNoteService, getNotesService } from "../service";
 import { NoteRepository, UserRepository } from "../repository";
-import { IRequest, INoteResponse, INotesResponse, IUpdateNote, IQuery } from "../interface";
+import { IRequest, INoteResponse, IUpdateNote } from "../interface";
 import { updateNoteService } from "../service/note/update-note.service";
 
 export const notesController = {
@@ -12,14 +12,9 @@ export const notesController = {
       res.json(note);
    }),
 
-   getNotes: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<INotesResponse>) => {
-      const notes = await getNotesService(req.userId, req.query);
+   getNotes: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<INoteResponse[]>) => {
+      const notes = await getNotesService(req.userId, req.query.searchKey);
       res.json(notes);
-   }),
-
-   getNotesCount: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<number>) => {
-      const count = await NoteRepository.count(req.userId);
-      res.json(count);
    }),
 
    updateNote: expressAsyncHandler(async (req: IRequest<IUpdateNote, { noteId: string }, any>, res: Response<{ message: string }>) => {

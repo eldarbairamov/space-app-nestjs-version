@@ -2,10 +2,9 @@ import React, { FC, useEffect, useState } from "react";
 
 import { useLocation } from "react-router";
 import { catchErrors, dateFormat } from "../../../helper";
-import { planService, taskService } from "../../../services";
+import { planService, taskService } from "../../../service";
 import { TasksItem } from "../../../component";
 import { IPlan, ITask } from "../../../interface";
-import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import style from "./Tasks-Page.module.scss";
 
@@ -59,9 +58,6 @@ export const TasksPage: FC = () => {
 
    return (
       <div className={ style.TasksPage }>
-
-         {/* Toaster */ }
-         <ToasterWithOptions/>
 
          <div className={ style.top }>
             <input type={ "text" }

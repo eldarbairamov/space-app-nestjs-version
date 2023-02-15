@@ -2,14 +2,18 @@ import React, { ChangeEvent, FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { noteActions } from "../../../redux/slice";
-import { noteService } from "../../../services";
-import { catchErrors } from "../../../helper";
-import { INote, IUpdateNote } from "../../../interface";
+import { INote } from "../../../interface";
+import updateNoteService from "../../../service/note/update-note.service";
+import { message } from "antd";
 
 import style from "./Notes-Main.module.scss";
 
 export const NotesMain: FC = () => {
+   const [ messageApi, contextHolder ] = message.useMessage();
+
    const dispatch = useAppDispatch();
+
+   const { updateNoteFn } = updateNoteService(messageApi);
 
    const { activeNote, notes } = useAppSelector(state => state.notesReducer);
 
@@ -27,24 +31,13 @@ export const NotesMain: FC = () => {
       dispatch(noteActions.updateNote(updatedNote));
    };
 
-   const updateNote = async () => {
-      try {
-         const noteToSave = {
-            title: activeNote?.title,
-            body: activeNote?.body,
-         } as IUpdateNote;
-
-         await noteService.saveNote(noteToSave, activeNote?.id!);
-
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   const updateNote = async () => updateNoteFn(activeNote!);
 
    if (!activeNote) return <div className={ style.no_any_notes }> Заміток немає </div>;
 
    return (
       <div className={ style.Main }>
+         { contextHolder }
 
          <div className={ style.header }>
             <input type={ "text" }

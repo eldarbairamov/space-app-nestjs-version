@@ -3,9 +3,10 @@ import React, { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../hook";
 import { noteActions } from "../../../../redux/slice";
 import { DeleteOutlined } from "@ant-design/icons";
-import { catchErrors, dateFormat } from "../../../../helper";
-import { noteService } from "../../../../services";
+import { dateFormat } from "../../../../helper";
 import { INote } from "../../../../interface";
+import deleteNoteService from "../../../../service/note/delete-note.service";
+import { message } from "antd";
 
 import style from "./Note-Item.module.scss";
 
@@ -17,21 +18,17 @@ export const NoteItem: FC<INoteItem> = ({ note }) => {
    const bodyCondition = note.body && note.body.split("").length > 35;
    const titleCondition = note.title && note.title.split("").length > 30;
 
+   const [ messageApi, contextHolder ] = message.useMessage();
+
    const dispatch = useAppDispatch();
+
+   const { deleteNoteFn } = deleteNoteService(messageApi);
 
    const { activeNote } = useAppSelector(state => state.notesReducer);
 
-   const deleteNote = async (noteId: string, e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
-      try {
-         e.stopPropagation();
-
-         await noteService.deleteNote(noteId);
-
-         dispatch(noteActions.deleteNote(noteId));
-
-      } catch (e) {
-         catchErrors(e);
-      }
+   const deleteNote = async (noteId: INote["id"], e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
+      e.stopPropagation();
+      await deleteNoteFn(noteId);
    };
 
    const formatDate = dateFormat(note.lastModified);
@@ -41,6 +38,7 @@ export const NoteItem: FC<INoteItem> = ({ note }) => {
            onClick={ () => dispatch(noteActions.setActiveNoteId(note.id)) }
            data-active={ note.id === activeNote?.id }
       >
+         { contextHolder }
 
          <p className={ style.note_title }> { titleCondition ? note.title.substring(0, 30) + "..." : note.title } </p>
 

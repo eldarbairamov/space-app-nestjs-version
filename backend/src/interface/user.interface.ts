@@ -8,6 +8,9 @@ export interface IUserInfoResponse {
    readonly surname: string;
    readonly username: string;
    readonly avatar: string;
+   readonly notesCount: number;
+   readonly plansCount: number;
+   readonly momentsCount: number;
 }
 
 export interface IUpdateProfile {

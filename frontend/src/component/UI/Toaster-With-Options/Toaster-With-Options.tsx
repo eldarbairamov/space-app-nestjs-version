@@ -20,7 +20,7 @@ export const ToasterWithOptions: FC = () => {
                      textAlign: "center",
                   },
                   iconTheme: {
-                     primary: "#84df81",
+                     primary: "#90be8e",
                      secondary: "white",
                   },
                },

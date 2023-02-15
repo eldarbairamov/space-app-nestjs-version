@@ -1,11 +1,17 @@
-import { UserRepository } from "../../repository";
+import { MomentRepository, NoteRepository, PlanRepository, UserRepository } from "../../repository";
 import { IUserInfoResponse } from "../../interface";
 import { UserDocument } from "../../model";
 
 export const getUserInfoService = async (userId: UserDocument["id"]): Promise<IUserInfoResponse> => {
 
-   // Find user in DB
+   // Find user in DB and count holding
    const user = await UserRepository.findById(userId) as UserDocument;
+
+   const [ notesCount, plansCount, momentsCount ] = await Promise.all([
+      NoteRepository.count(userId),
+      PlanRepository.count(userId),
+      MomentRepository.count(userId),
+   ]);
 
    // Return info dto
    return {
@@ -13,6 +19,9 @@ export const getUserInfoService = async (userId: UserDocument["id"]): Promise<IU
       surname: user.surname,
       username: user.username,
       avatar: user.avatar,
+      notesCount,
+      plansCount,
+      momentsCount,
    };
 
 };

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
 import { IMoment } from "../../../interface";
-import { useNavigate } from "react-router-dom";
 import { v4 } from "uuid";
 import { config } from "../../../config/config";
+import { AppRouter } from "../../../router";
 
 import style from "./Moment-Item.module.scss";
 import no_photo from "../../../asset/no-photo.png";
@@ -13,13 +13,9 @@ interface IMomentItem {
 }
 
 export const MomentItem: FC<IMomentItem> = ({ moment }) => {
-   const navigate = useNavigate();
-
-   const openTheMoment = () => navigate(`/moments/${ moment.id }`);
-
 
    return (
-      <div className={ style.MomentItem } onClick={ openTheMoment }>
+      <div className={ style.MomentItem } onClick={ () => AppRouter.navigate(`/moments/${ moment.id }`) }>
          {/* Title */ }
          <p className={ style.title }> { moment.title } </p>
 

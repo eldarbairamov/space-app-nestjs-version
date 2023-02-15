@@ -1,26 +1,17 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import { Divider } from "antd";
+import { useAppSelector } from "../../../../hook";
 
 import style from "./Moments-Stat.module.scss";
-import { useQuery } from "@tanstack/react-query";
-import { momentService } from "../../../../services";
-import { catchErrors } from "../../../../helper";
 
 export const MomentsStat: FC = () => {
-   const [ count, setCount ] = useState<number>();
-
-   useQuery({
-      queryKey: [ "moments count" ],
-      queryFn: () => momentService.getMomentsCount(),
-      onSuccess: ({ data }) => setCount(data),
-      onError: (err) => catchErrors(err),
-   });
+   const {momentsCount} = useAppSelector(state => state.userReducer)
 
    return (
       <div className={ style.MomentsStat }>
          <Divider> <span>Моменти</span> </Divider>
-         <p> { count } </p>
+         <p> { momentsCount } </p>
       </div>
    );
 };

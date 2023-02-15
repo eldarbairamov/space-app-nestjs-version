@@ -2,7 +2,7 @@ export * from "./App-Router/Dashboard-Page/Dashboard-Page";
 export * from "./App-Router/Notes-Page/Notes-Page";
 export * from "./App-Router/Moments-Page/Moments-Page";
 export * from "./App-Router/Plans-Page/Plans-Page";
-export * from "./App-Router/Change-Pass-Message-Page/Change-Pass-Message-Page";
+export * from "./App-Router/Update-Password-Message-Page/Update-Password-Message-Page";
 export * from "./App-Router/Email-Confirmation-Page/Email-Confirmation-Page";
 export * from "./App-Router/Profile-Settings-Page/Profile-Settings-Page";
 export * from "./App-Router/Tasks-Page/Tasks-Page";

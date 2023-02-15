@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
 import { ITask } from "../../../interface";
 import { catchErrors } from "../../../helper";
-import { taskService } from "../../../services";
+import { taskService } from "../../../service";
 
 import style from "./Tasks-Item.module.scss";
 import complete from "../../../asset/complete.svg";

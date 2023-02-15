@@ -28,7 +28,7 @@ export const PlanItem: FC<IPlanItem> = ({ plan, deletePlan }) => {
          <p className={ style.plan_name }> { titleCondition ? plan.title.substring(0, 16) + "..." : plan.title }  </p>
 
          <p className={ style.delete }
-            onClick={ (e: React.MouseEvent<HTMLParagraphElement>) => deletePlan(e, plan.id) }><DeleteOutlined
+            onClick={ event => deletePlan(event, plan.id) }><DeleteOutlined
             style={ { fontSize: "20px" } }/></p>
 
          <img src={ brain } alt="folder"/>

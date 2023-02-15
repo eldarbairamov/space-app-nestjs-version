@@ -6,7 +6,6 @@
    letter-spacing: -0.8px;
    scrollbar-width: thin;
    scrollbar-color: #d0d0d0 transparent;
-   color: #4e4e51;
 
    &::-webkit-scrollbar {
       width: 5px;
@@ -40,6 +39,7 @@
 
 body {
    cursor: default;
+   color: #4e4e51;
 }
 
 @media screen and (max-width: 550px) {

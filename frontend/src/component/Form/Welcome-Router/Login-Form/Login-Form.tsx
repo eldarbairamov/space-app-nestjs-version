@@ -2,46 +2,30 @@ import React, { FC } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService } from "../../../../services";
 import { loginValidator } from "../../../../validator/auth.validator";
-import { catchErrors } from "../../../../helper";
 import { ILoginForm } from "../../../../interface";
+import { message } from "antd";
+import { WelcomeRouter } from "../../../../router";
+import loginService from "../../../../service/auth/login.service";
 
 import style from "./Login-Form.module.scss";
 
 export const LoginForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<ILoginForm>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<ILoginForm>({
       resolver: joiResolver(loginValidator),
       mode: "onTouched",
    });
 
-   const navigate = useNavigate();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   const onSubmit: SubmitHandler<ILoginForm> = async (data): Promise<void> => {
-      try {
-         const loading = toast.loading("Зачекайте...");
+   const { loginFn } = loginService(messageApi, () => WelcomeRouter.navigate(0));
 
-         const username = await authService.login(data);
-
-         toast.dismiss(loading);
-         toast.success(`Привіт, ${ username }`);
-
-         setTimeout(() => {
-            setValue("email", "");
-            setValue("password", "");
-            navigate(0);
-         }, 1500);
-
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   const onSubmit: SubmitHandler<ILoginForm> = async (data) => loginFn(data);
 
    return (
       <form className={ style.LoginForm } onSubmit={ handleSubmit(onSubmit) }>
+         { contextHolder }
 
          {/* Form controls */ }
          <FormControl labelName={ "Електронна пошта" }
@@ -61,8 +45,8 @@ export const LoginForm: FC = () => {
 
          {/* Footer */ }
          <div className={ style.footer }>
-            <p onClick={ () => navigate("/password_forgot") }> Забув пароль? </p>
-            <p onClick={ () => navigate("/registration") }> Створити аккаунт </p>
+            <p onClick={ () => WelcomeRouter.navigate("/password_forgot") }> Забув пароль? </p>
+            <p onClick={ () => WelcomeRouter.navigate("/registration") }> Створити аккаунт </p>
          </div>
 
       </form>

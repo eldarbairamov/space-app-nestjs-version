@@ -11,7 +11,8 @@ export const LogoPage: FC = () => {
    const location = useLocation();
 
    useEffect(() => {
-      if (location.state && location.state.status === "need to login") navigate("/login", { replace: true });
+      if (location.state && location.state.status === "unauthorized") navigate("/unauthorized", { replace: true });
+      if (location.state && location.state.status === "change password") navigate("/login", { replace: true });
    }, []);
 
    const enterToApp = () => {

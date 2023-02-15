@@ -2,13 +2,12 @@ import React, { FC } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast from "react-hot-toast";
 import { changePasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { userService } from "../../../../services";
-import { useNavigate } from "react-router-dom";
-import { catchErrors } from "../../../../helper";
 import { IChangePasswordForm } from "../../../../interface";
+import { message } from "antd";
+import { AppRouter } from "../../../../router";
+import passwordUpdateService from "../../../../service/user/password-update.service";
 
 import style from "./Password-Update-Form.module.scss";
 
@@ -18,34 +17,25 @@ export const PasswordUpdateForm: FC = () => {
       mode: "onTouched",
    });
 
-   const navigate = useNavigate();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   const onSubmit: SubmitHandler<IChangePasswordForm> = async (data): Promise<void> => {
+   const { updatePasswordFn } = passwordUpdateService(messageApi, () => AppRouter.navigate("/password_update/message"));
+
+   const onSubmit: SubmitHandler<IChangePasswordForm> = async (data) => {
       const newPassword = data.password;
       const currentPassword = data.current_password;
       const repeatPassword = data.repeat_password;
 
-      try {
-         if (newPassword === repeatPassword) {
-            const loading = toast.loading("Зачекайте...");
-
-            await userService.changePassword(newPassword, currentPassword);
-
-            toast.dismiss(loading);
-
-            navigate("/change_password/message");
-
-         } else {
-            toast.error("Паролі не співпадають");
-         }
-
-      } catch (e) {
-         catchErrors(e);
+      if (newPassword === repeatPassword) {
+         await updatePasswordFn(newPassword, currentPassword);
+      } else {
+         messageApi.error("Паролі не співпадають");
       }
    };
 
    return (
       <form className={ style.PasswordUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
+         { contextHolder }
 
          {/* Form controls */ }
          <FormControl labelName={ "Введіть ваш поточний пароль" }

@@ -10,8 +10,6 @@ export interface IMomentResponse {
 
 export interface IMomentsResponse {
    data: IMomentResponse[];
-   readonly count: number;
-   readonly page: number;
    readonly tagsForFilter: (string | undefined)[];
 }
 

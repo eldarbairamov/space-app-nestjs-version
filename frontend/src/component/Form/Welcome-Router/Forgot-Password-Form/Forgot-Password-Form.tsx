@@ -2,44 +2,29 @@ import React, { FC } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService } from "../../../../services";
 import { emailValidator } from "../../../../validator/auth.validator";
-import { catchErrors } from "../../../../helper";
+import { message } from "antd";
+import { WelcomeRouter } from "../../../../router";
+import forgotPasswordService from "../../../../service/auth/forgot-password.service";
 
-import style from "./ForgotPasswordForm.module.scss";
+import style from "./Forgot-Password-Form.module.scss";
 
 export const ForgotPasswordForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<{ email: string }>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ email: string }>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
    });
 
-   const navigate = useNavigate();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   const onSubmit: SubmitHandler<{ email: string }> = async ({ email }): Promise<void> => {
-      try {
-         const loading = toast.loading("Зачекайте...");
+   const { forgotPasswordFn } = forgotPasswordService(messageApi, () => WelcomeRouter.navigate("/forgot_password_message", { replace: true }));
 
-         await authService.forgotPassword(email);
-
-         toast.dismiss(loading);
-         toast.success("Лист із посиланням вже летить на вказану електронну пошту");
-
-         setTimeout(() => {
-            setValue("email", "");
-            navigate("/");
-         }, 1500);
-
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => forgotPasswordFn(email);
 
    return (
       <form className={ style.ForgotPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
+         { contextHolder }
 
          {/* Message  */ }
          <p className={ style.message }>

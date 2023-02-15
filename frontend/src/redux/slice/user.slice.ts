@@ -1,10 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IUserInitialState {
    username: string,
    name: string,
    surname: string,
    avatar: string,
+   notesCount: number,
+   momentsCount: number,
+   plansCount: number
 }
 
 const initialState: IUserInitialState = {
@@ -12,6 +15,9 @@ const initialState: IUserInitialState = {
    name: "",
    surname: "",
    avatar: "",
+   momentsCount: 0,
+   notesCount: 0,
+   plansCount: 0,
 };
 
 const userSlice = createSlice({
@@ -24,11 +30,14 @@ const userSlice = createSlice({
       unsetAvatar: (state) => {
          state.avatar = "";
       },
-      setInfo: (state, { payload }) => {
+      setInfo: (state, { payload }: PayloadAction<IUserInitialState>) => {
          if (payload.username) state.username = payload.username;
+         if (payload.avatar) state.avatar = payload.avatar;
          state.name = payload.name ? payload.name : "";
          state.surname = payload.surname ? payload.surname : "";
-         if (payload.avatar) state.avatar = payload.avatar;
+         state.momentsCount = payload.momentsCount;
+         state.plansCount = payload.plansCount;
+         state.notesCount = payload.notesCount;
       },
    },
 });

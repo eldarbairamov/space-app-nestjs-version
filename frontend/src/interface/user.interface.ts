@@ -11,3 +11,6 @@ export interface IUpdateProfile {
    readonly name?: string;
    readonly surname?: string;
 }
+
+export interface IUser extends IGetUserInfo {
+}

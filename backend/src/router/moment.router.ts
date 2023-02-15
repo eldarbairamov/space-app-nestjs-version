@@ -16,12 +16,6 @@ momentRouter.get(
    authMiddleware.isAccessExists,
    momentController.addMoment);
 
-// Get count
-momentRouter.get(
-   "/count",
-   authMiddleware.isAccessExists,
-   momentController.getMomentsCount);
-
 // Get one moment
 momentRouter.get(
    "/:momentId",
@@ -43,13 +37,6 @@ momentRouter.patch(
    authMiddleware.isAccessExists,
    fileMiddleware.imageChecker,
    momentController.uploadPhoto);
-
-// Delete photo
-momentRouter.post(
-   "/:momentId/photo_delete",
-   authMiddleware.isAccessExists,
-   commonMiddleware.isRequestEmpty,
-   momentController.deletePhoto);
 
 // Delete moment
 momentRouter.delete(

@@ -2,18 +2,18 @@ import React, { FC } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useSearchParams } from "react-router-dom";
 import { resetPasswordValidator } from "../../../../validator/auth.validator";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
-import { authService } from "../../../../services";
-import { catchErrors } from "../../../../helper";
 import { IResetPasswordForm } from "../../../../interface";
+import { message } from "antd";
+import { WelcomeRouter } from "../../../../router";
+import resetPasswordService from "../../../../service/auth/reset-password.service";
 
 import style from "./Reset-Password-Form.module.scss";
 
 export const ResetPasswordForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<IResetPasswordForm>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<IResetPasswordForm>({
       resolver: joiResolver(resetPasswordValidator),
       mode: "onTouched",
    });
@@ -21,38 +21,24 @@ export const ResetPasswordForm: FC = () => {
    const [ searchParams ] = useSearchParams();
    const resetPasswordToken = searchParams.get("token");
 
-   const navigate = useNavigate();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   const onSubmit: SubmitHandler<IResetPasswordForm> = async (data): Promise<void> => {
+   const { resetPasswordFn } = resetPasswordService(messageApi, () => WelcomeRouter.navigate("/login", { replace: true }));
+
+   const onSubmit: SubmitHandler<IResetPasswordForm> = async (data) => {
       const password = data.password;
       const repeatPassword = data.repeat_password;
 
-      try {
-         if ((password && resetPasswordToken) && (password === repeatPassword)) {
-            const loading = toast.loading("Зачекайте...");
-
-            await authService.resetPassword(password, resetPasswordToken!);
-
-            toast.dismiss(loading);
-            toast.success("Вітаємо! У вас новий пароль");
-
-            setTimeout(() => {
-               setValue("password", "");
-               setValue("repeat_password", "");
-               navigate("/login");
-            }, 1500);
-
-         } else {
-            toast.error("Паролі не співпадають");
-         }
-
-      } catch (e) {
-         catchErrors(e);
+      if ((password && resetPasswordToken) && (password === repeatPassword)) {
+         await resetPasswordFn(password, resetPasswordToken!);
+      } else {
+         messageApi.error("Паролі не співпадають");
       }
    };
 
    return (
       <form className={ style.ResetPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
+         { contextHolder }
 
          {/* Form controls */ }
          <FormControl labelName={ "Введіть ваш новий пароль" }

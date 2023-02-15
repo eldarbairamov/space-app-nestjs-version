@@ -29,12 +29,12 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
 
       if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Invalid token") {
          storageService.deleteAccessToken();
-         AppRouter.navigate("/", { state: { status: "need to login" } });
+         AppRouter.navigate("/", { state: { status: "unauthorized" } });
          AppRouter.navigate(0);
       }
 
       if (axiosError.message === "Network Error") {
-         throw new Error("Непередбачена помилка...");
+         throw new Error("Непередбачена помилка..");
       }
 
       return Promise.reject(e);

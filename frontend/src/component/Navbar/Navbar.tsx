@@ -1,33 +1,22 @@
 import React, { FC } from "react";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { message } from "antd";
 import { AppLogo } from "../Logo/App-Logo/App-Logo";
 import { LogoutOutlined } from "@ant-design/icons";
-import { authService } from "../../services";
-import toast, { Toaster } from "react-hot-toast";
-import { catchErrors } from "../../helper";
+import { AppRouter } from "../../router";
+import logoutService from "../../service/auth/logout.service";
 
 import style from "./Navbar.module.scss";
 
 export const Navbar: FC = () => {
-   const navigate = useNavigate();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   const logOut = async () => {
-      try {
-         toast.loading("Зачекайте...");
-         await authService.logout();
-         navigate(0);
-         toast.dismiss();
-
-      } catch (e) {
-         catchErrors(e);
-         toast.dismiss();
-      }
-   };
+   const { logoutFn } = logoutService(messageApi, () => AppRouter.navigate(0));
 
    return (
       <div className={ style.Navbar }>
-         <Toaster/>
+         { contextHolder }
 
          {/* LogoPage */ }
          <div className={ style.logo }>
@@ -52,7 +41,7 @@ export const Navbar: FC = () => {
 
          {/* Profile bar  */ }
          <div className={ style.logout }>
-            <LogoutOutlined onClick={ logOut } style={ { fontSize: "23px" } }/>
+            <LogoutOutlined onClick={ async () => logoutFn() } style={ { fontSize: "23px" } }/>
          </div>
 
       </div>

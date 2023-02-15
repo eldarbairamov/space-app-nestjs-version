@@ -2,44 +2,29 @@ import React, { FC } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import toast from "react-hot-toast";
 import { FormControl } from "../../../UI/Form-Control/Form-Control";
 import { emailValidator } from "../../../../validator/auth.validator";
-import { useNavigate } from "react-router-dom";
-import { userService } from "../../../../services";
-import { catchErrors } from "../../../../helper";
+import { message } from "antd";
+import { AppRouter } from "../../../../router";
+import emailUpdateService from "../../../../service/user/email-update.service";
 
 import style from "./Email-Update-Form.module.scss";
 
 export const EmailUpdateForm: FC = () => {
-   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<{ email: string }>({
+   const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ email: string }>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
    });
-   
-   const navigate = useNavigate();
 
-   const onSubmit: SubmitHandler<{ email: string }> = async (data): Promise<void> => {
-      try {
-         const loading = toast.loading("Зачекайте...");
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-         await userService.changeEmailRequest({ email: data.email! });
+   const { updateEmailFn } = emailUpdateService(messageApi, () => AppRouter.navigate("/email_update/message"));
 
-         toast.dismiss(loading);
-         toast.success("Лист із посиланням на підтведження вже летить на вказану електронну пошту", { duration: 5000 });
-
-         setTimeout(() => {
-            setValue("email", "");
-            navigate("/");
-         }, 5000);
-
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => updateEmailFn(email);
 
    return (
       <form className={ style.EmailUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
+         { contextHolder }
 
          {/* Form controls */ }
          <FormControl labelName={ "Введіть нову адресу електронної пошти" }

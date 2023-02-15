@@ -1,9 +1,9 @@
 import expressAsyncHandler from "express-async-handler";
-import { IRequest, IQuery, IMomentsResponse } from "../interface";
+import { IRequest, IMomentsResponse } from "../interface";
 import { Response } from "express";
 import { MomentRepository, UserRepository } from "../repository";
 import { IMomentResponse, IUpdateMoment } from "../interface";
-import { addMomentService, deletePhotoService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
+import { addMomentService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
 import { getOneMomentService } from "../service/moment/get-one-moment.service";
 
 export const momentController = {
@@ -13,8 +13,8 @@ export const momentController = {
       res.json(moment);
    }),
 
-   getMoments: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<IMomentsResponse>) => {
-      const moments = await getMomentsService(req.userId, req.query);
+   getMoments: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IMomentsResponse>) => {
+      const moments = await getMomentsService(req.userId, req.query.searchKey);
       res.json(moments);
    }),
 
@@ -37,16 +37,6 @@ export const momentController = {
    uploadPhoto: expressAsyncHandler(async (req: IRequest<any, { momentId: string }, any>, res: Response<{ image: string }>) => {
       const imageName = await uploadPhotoService(req.files, req.params.momentId);
       res.json({ image: imageName });
-   }),
-
-   deletePhoto: expressAsyncHandler(async (req: IRequest<{ fileName: string }, { momentId: string }, any>, res: Response<{ message: string }>) => {
-      await deletePhotoService(req.body, req.params.momentId);
-      res.json({ message: "Success" });
-   }),
-
-   getMomentsCount: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<number>) => {
-      const count = await MomentRepository.count(req.userId);
-      res.json(count);
    }),
 
 };

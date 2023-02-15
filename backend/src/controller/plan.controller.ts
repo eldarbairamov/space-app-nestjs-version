@@ -3,7 +3,7 @@ import { Response } from "express";
 import { addPlanService, getPlansService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
 import { updatePlanService } from "../service/plan/update-plan.service";
-import { IPlanResponse, IRequest, IQuery, IPlansResponse } from "../interface";
+import { IPlanResponse, IRequest } from "../interface";
 
 export const planController = {
 
@@ -12,8 +12,8 @@ export const planController = {
       res.json(plan);
    }),
 
-   getPlans: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<IPlansResponse>) => {
-      const plans = await getPlansService(req.userId, req.query);
+   getPlans: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IPlanResponse[]>) => {
+      const plans = await getPlansService(req.userId, req.query.searchKey);
       res.json(plans);
    }),
 
@@ -26,11 +26,6 @@ export const planController = {
       await PlanRepository.findByIdAndDelete(req.params.planId);
       await UserRepository.findByIdAndUpdate(req.userId, { $pull: { plansIds: req.params.planId } });
       res.json({ message: "Success" });
-   }),
-
-   getPlansCount: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<number>) => {
-      const count = await PlanRepository.count(req.userId);
-      res.json(count);
    }),
 
 };

@@ -1,7 +1,6 @@
 import { IMoment, MomentDocument, MomentModel, UserDocument } from "../model";
 import { ApiException } from "../exception/api.exception";
 import { FilterQuery, UpdateQuery } from "mongoose";
-import { IQuery } from "../interface";
 
 export const MomentRepository = {
 
@@ -13,12 +12,10 @@ export const MomentRepository = {
       }
    },
 
-   findWithQuery: async (filter: FilterQuery<IMoment>, query: IQuery): Promise<MomentDocument[]> => {
+   find: async (filter: FilterQuery<IMoment>, searchKey: string): Promise<MomentDocument[]> => {
       try {
-         const { limit = 20, page = 1, searchKey } = query;
          const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
-
-         return MomentModel.find(filterObj).limit(+limit).skip((+page - 1) * +limit).sort({ createdAt: "desc" });
+         return MomentModel.find(filterObj).sort({ createdAt: "desc" });
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }

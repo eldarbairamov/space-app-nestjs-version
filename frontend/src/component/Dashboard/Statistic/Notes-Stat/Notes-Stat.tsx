@@ -1,26 +1,17 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import { Divider } from "antd";
-import { noteService } from "../../../../services";
-import { catchErrors } from "../../../../helper";
+import { useAppSelector } from "../../../../hook";
 
 import style from "./Notes-Stat.module.scss";
-import { useQuery } from "@tanstack/react-query";
 
 export const NotesStat: FC = () => {
-   const [ count, setCount ] = useState<number>();
-
-   useQuery({
-      queryKey: [ "notes count" ],
-      queryFn: () => noteService.getNotesCount(),
-      onSuccess: ({ data }) => setCount(data),
-      onError: (err) => catchErrors(err),
-   });
+   const {notesCount} = useAppSelector(state => state.userReducer)
 
    return (
       <div className={ style.NotesStat }>
          <Divider> <span>Замітки</span> </Divider>
-         <p> { count } </p>
+         <p> { notesCount } </p>
       </div>
    );
 };

@@ -16,12 +16,6 @@ notesRouter.get(
    authMiddleware.isAccessExists,
    notesController.getNotes);
 
-// Get count
-notesRouter.get(
-   "/count",
-   authMiddleware.isAccessExists,
-   notesController.getNotesCount);
-
 // Update note
 notesRouter.put(
    "/:noteId",

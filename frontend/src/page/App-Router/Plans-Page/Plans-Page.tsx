@@ -1,58 +1,39 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import { PlanItem } from "../../../component";
-import { planService } from "../../../services";
-import { catchErrors } from "../../../helper";
-import { IPlan } from "../../../interface";
-import { useQuery } from "@tanstack/react-query";
-import { ToasterWithOptions } from "../../../component/UI/Toaster-With-Options/Toaster-With-Options";
+import { message } from "antd";
+import getPlansService from "../../../service/plan/get-plans.service";
+import addPlanService from "../../../service/plan/add-plan.service";
+import deletePlanService from "../../../service/plan/delete-plan.service";
 
 import style from "./Plans-Page.module.scss";
+import add from "../../../asset/note.png";
 
 export const PlansPage: FC = () => {
-   const [ plans, setPlans ] = useState<IPlan[]>([]);
-   const [ searchKey, setSearchKey ] = useState<string>("");
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   useQuery({
-      queryKey: [ "plan list", searchKey ],
-      queryFn: () => planService.getPlans(searchKey),
-      onSuccess: ({ data }) => setPlans(data.data),
-      onError: (err) => catchErrors(err),
-   });
+   const { plans, setPlans, setSearchKey, searchKey } = getPlansService(messageApi);
+   const { addPlanFn } = addPlanService(setPlans, messageApi);
+   const { deletePlanFn } = deletePlanService(plans, setPlans, messageApi);
 
-   const addPlan = async () => {
-      try {
-         const { data } = await planService.addPlan();
-         setPlans([ ...plans, data ].sort((a, b) => b.lastModified - a.lastModified));
-      } catch (e) {
-         catchErrors(e);
-      }
-   };
+   const addPlan = async () => addPlanFn();
 
-   const deletePlan = async (e: React.MouseEvent<HTMLParagraphElement>, targetId: string): Promise<void> => {
-      try {
-         e.stopPropagation();
-         const updatedArr = plans.filter(item => item.id !== targetId);
-         await planService.deletePlan(targetId);
-         setPlans(updatedArr);
-      } catch (e) {
-         catchErrors(e);
-      }
+   const deletePlan = async (e: React.MouseEvent<HTMLParagraphElement>, targetId: string) => {
+      e.stopPropagation();
+      await deletePlanFn(targetId);
    };
 
    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
 
    return (
       <div className={ style.PlansPage }>
-
-         {/* Toaster */ }
-         <ToasterWithOptions/>
+         { contextHolder }
 
          {/* Header */ }
          <div className={ style.header }>
 
             {/* Add plan */ }
-            <button className={ style.add_plan }> +</button>
+            <img src={ add } alt={ "add" }/>
             <button className={ style.add_plan } onClick={ addPlan }> Додати план</button>
 
             {/* Search bar */ }

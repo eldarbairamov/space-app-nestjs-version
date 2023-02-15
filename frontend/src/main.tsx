@@ -4,26 +4,21 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import { Provider } from "react-redux";
 import { store } from "./redux";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ConfigProvider, ThemeConfig } from "antd";
+import { ToasterWithOptions } from "./component/UI/Toaster-With-Options/Toaster-With-Options";
 
 import "./style/normalize.scss";
 import "./style/baseline.scss";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const queryClient = new QueryClient({
-   defaultOptions: {
-      queries: {
-         networkMode: "offlineFirst",
-         refetchOnWindowFocus: false
-      },
-   },
-});
+const theme: ThemeConfig = {
+   token: { colorPrimaryBg: "#e9e9ff", fontSize: 16, colorError: '#df8281', colorSuccess: '#90be8e' },
+};
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
    <Provider store={ store }>
-      <QueryClientProvider client={ queryClient }>
+      <ConfigProvider theme={ theme }>
          <App/>
-         <ReactQueryDevtools/>
-      </QueryClientProvider>
+         <ToasterWithOptions/>
+      </ConfigProvider>
    </Provider>,
 );
