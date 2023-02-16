@@ -4,7 +4,7 @@ import { userRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 import { wait } from "../../helper/wait.helper";
 
-export default function passwordUpdateService(messageApi: MessageInstance, next: () => any) {
+export function passwordUpdateService(messageApi: MessageInstance, next: () => any) {
 
    const updatePasswordFn = async (newPassword: string, currentPassword: string) => {
       try {

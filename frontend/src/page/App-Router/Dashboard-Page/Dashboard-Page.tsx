@@ -1,24 +1,30 @@
 import React, { FC } from "react";
 
-import { PlansStat, MomentsStat, NotesStat, ProfilePreview } from "../../../component";
+import { DashboardAvatar, DashboardEditProfile, DashboardGreeting, MomentCount, NoteCount, PlanCount } from "../../../component";
+import { message } from "antd";
+import { getUserService } from "../../../service";
 
 import style from "./Dashboard-Page.module.scss";
 
 export const DashboardPage: FC = () => {
+   const [ messageApi, contextHolder ] = message.useMessage();
+
+   const { userInfo } = getUserService(messageApi);
 
    return (
       <div className={ style.DashboardPage }>
+         { contextHolder }
 
-         {/* Top */ }
          <div className={ style.top }>
-            <ProfilePreview/>
+            <DashboardAvatar userInfo={ userInfo }/>
+            <DashboardGreeting userInfo={ userInfo }/>
+            <DashboardEditProfile/>
          </div>
 
-         {/* Bottom */ }
          <div className={ style.bottom }>
-            <NotesStat/>
-            <PlansStat/>
-            <MomentsStat/>
+            <NoteCount notesCount={ userInfo.notesCount }/>
+            <PlanCount plansCount={ userInfo.plansCount }/>
+            <MomentCount momentsCount={ userInfo.momentsCount }/>
          </div>
 
       </div>

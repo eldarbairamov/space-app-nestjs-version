@@ -4,7 +4,7 @@ import { errorCatherFn } from "../../helper/catch-error.helper";
 import { axiosInstance } from "../axios.service";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function updateNoteService(messageApi: MessageInstance) {
+export function updateNoteService(messageApi: MessageInstance) {
 
    const updateNoteFn = async (activeNote: INote) => {
       try {

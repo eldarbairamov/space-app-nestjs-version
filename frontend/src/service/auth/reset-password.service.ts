@@ -4,7 +4,7 @@ import { axiosInstance } from "../axios.service";
 import { authRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function resetPasswordService(messageApi: MessageInstance, next: () => any) {
+export function resetPasswordService(messageApi: MessageInstance, next: () => any) {
 
    const resetPasswordFn = async (password: string, token: string) => {
       try {

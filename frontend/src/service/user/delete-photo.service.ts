@@ -6,7 +6,7 @@ import { axiosInstance } from "../axios.service";
 import { userRequests } from "../../config/config";
 import { userActions } from "../../redux/slice";
 
-export default function deletePhotoService(messageApi: MessageInstance) {
+export function deletePhotoService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();
 
    const deletePhotoFn = async (avatar: IUser["avatar"]) => {

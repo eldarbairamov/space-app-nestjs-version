@@ -6,7 +6,6 @@ import { AppRouter } from "../router";
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 export type AxiosRes<T> = Promise<AxiosResponse<T>>
 
-
 export const axiosInstance = axios.create({ baseURL: config.API_URL});
 
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -27,7 +26,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
    (e) => {
       const axiosError = e as AxiosApiError;
 
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Invalid token") {
+      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Unauthorized") {
          storageService.deleteAccessToken();
          AppRouter.navigate("/", { state: { status: "unauthorized" } });
          AppRouter.navigate(0);

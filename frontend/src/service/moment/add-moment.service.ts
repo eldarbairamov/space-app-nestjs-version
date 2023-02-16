@@ -6,7 +6,7 @@ import { momentActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 import { useAppDispatch } from "../../hook";
 
-export default function addMomentService(messageApi: MessageInstance) {
+export function addMomentService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();
 
    const addMomentFn = async () => {

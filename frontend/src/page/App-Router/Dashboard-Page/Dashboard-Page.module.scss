@@ -16,6 +16,12 @@
 }
 
 .top {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   gap: 20px;
+
    height: 65%;
    width: 100%;
 }

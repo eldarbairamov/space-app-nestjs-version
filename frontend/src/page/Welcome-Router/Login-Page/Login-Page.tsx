@@ -1,26 +1,26 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 
 import { LoginForm, WelcomeLogo } from "../../../component";
-import toast from "react-hot-toast";
 import { useMatchMedia } from "../../../hook";
+import { message } from "antd";
+import { WelcomeRouter } from "../../../router";
+import { loginService } from "../../../service";
 
 import style from "./Login-Page.module.scss";
 
 export const LoginPage: FC = () => {
    const { isDesktop, isTablet } = useMatchMedia();
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-   useEffect(() => {
-      toast.dismiss();
-   }, []);
-
+   const { loginFn } = loginService(messageApi, () => WelcomeRouter.navigate(0));
 
    return (
       <div className={ style.LoginPage }>
+         { contextHolder }
 
-         { isDesktop && <WelcomeLogo/> }
-         { isTablet && <WelcomeLogo/> }
+         { (isDesktop || isTablet) && <WelcomeLogo/> }
 
-         <LoginForm/>
+         <LoginForm loginFn={ loginFn }/>
 
       </div>
    );

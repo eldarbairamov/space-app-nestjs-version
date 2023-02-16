@@ -6,7 +6,7 @@ import { storageService } from "../storage.service";
 import { authRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function loginService(messageApi: MessageInstance, next: () => any) {
+export function loginService(messageApi: MessageInstance, next: () => any) {
 
    const loginFn = async (body: ILoginForm) => {
       try {

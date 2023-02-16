@@ -5,7 +5,7 @@ import { IPlan } from "../../interface";
 import { plansRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function addPlanService(setPlans: TypedSetState<IPlan[]>, messageApi: MessageInstance) {
+export function addPlanService(setPlans: TypedSetState<IPlan[]>, messageApi: MessageInstance) {
 
    const addPlanFn = async () => {
       try {

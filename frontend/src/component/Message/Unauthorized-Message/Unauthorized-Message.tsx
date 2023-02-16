@@ -7,9 +7,7 @@ import { v4 } from "uuid";
 import style from "./Unauthorized-Message.module.scss";
 
 export const UnauthorizedMessage: FC = () => {
-
    return (
-      <div>
          <div className={ style.UnauthorizedMessage }>
             <Result
                status="403"
@@ -18,6 +16,5 @@ export const UnauthorizedMessage: FC = () => {
                extra={ <button key={ v4() } onClick={ () => WelcomeRouter.navigate("/login") }>Увійти</button> }
             />
          </div>
-      </div>
    );
 };

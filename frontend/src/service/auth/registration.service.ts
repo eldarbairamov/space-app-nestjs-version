@@ -4,7 +4,7 @@ import { IRegistration } from "../../interface";
 import { authRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function registrationService(messageApi: MessageInstance, next: () => any) {
+export function registrationService(messageApi: MessageInstance, next: () => any) {
 
    const registrationFn = async (body: IRegistration) => {
       try {

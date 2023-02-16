@@ -1,0 +1,59 @@
+.DashboardAvatar {
+
+   img {
+      width: 15vw;
+   }
+
+   .avatar {
+      width: 13vw;
+      height: 13vw;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+   }
+
+   .no_avatar {
+      width: 13vw;
+   }
+
+}
+
+@media screen and (max-height: 800px) {
+   .DashboardAvatar {
+
+      img {
+         width: 300px;
+      }
+
+      .avatar {
+         width: 250px;
+         height: 250px;
+      }
+
+      .no_avatar {
+         width: 250px;
+      }
+
+   }
+}
+
+@media screen and (max-width: 1700px) {
+   .DashboardAvatar {
+
+      img {
+         width: 300px;
+      }
+
+      .avatar {
+         width: 250px;
+         height: 250px;
+      }
+
+      .no_avatar {
+         width: 250px;
+      }
+
+   }
+}

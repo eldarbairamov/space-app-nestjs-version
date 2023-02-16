@@ -6,6 +6,7 @@ interface IMomentInitialState {
    count: number,
    activeMoment: IMoment | null
    searchKey: string
+   tags: (string | undefined)[]
 }
 
 const initialState: IMomentInitialState = {
@@ -13,6 +14,7 @@ const initialState: IMomentInitialState = {
    count: 0,
    activeMoment: null,
    searchKey: "",
+   tags: [],
 };
 
 const momentSlice = createSlice({
@@ -28,6 +30,7 @@ const momentSlice = createSlice({
       addMoment: (state, { payload }: PayloadAction<IMoment>) => {
          state.moments.push(payload);
          state.moments = state.moments.sort((a, b) => b.createdAt - a.createdAt);
+         state.tags = [ ...state.tags, ...payload.tags ];
       },
 
       deleteMoment: (state, { payload }: PayloadAction<{ momentId: string }>) => {
@@ -52,6 +55,10 @@ const momentSlice = createSlice({
 
       addTag: (state, { payload }: PayloadAction<{ tagValue: string }>) => {
          state.activeMoment!.tags.push(payload.tagValue);
+      },
+
+      setTags: (state, { payload }: PayloadAction<(string | undefined)[]>) => {
+         state.tags = payload;
       },
 
       setPhoto: (state, { payload }: PayloadAction<{ photo: string }>) => {

@@ -1,0 +1,19 @@
+.NoteCount {
+   display: flex;
+   align-items: center;
+   justify-content: space-evenly;
+   flex-direction: column;
+   font-size: 30px;
+   font-weight: bold;
+   height: 50%;
+   width: 20%;
+
+   span {
+      font-size: 20px;
+      color: #DF8453;
+   }
+
+   p {
+      color: #DF8453;
+   }
+}

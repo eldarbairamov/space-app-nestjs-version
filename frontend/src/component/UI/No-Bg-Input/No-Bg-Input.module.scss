@@ -1,0 +1,11 @@
+.NoBgInput {
+   text-align: center;
+   outline: none;
+   border: none;
+   cursor: pointer;
+   background: none;
+
+   &::placeholder {
+      color: #c0c0c0;
+   }
+}

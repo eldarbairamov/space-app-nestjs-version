@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { errorCatherFn } from "../../helper/catch-error.helper";
 import { axiosInstance } from "../axios.service";
@@ -8,15 +8,14 @@ import { momentsRequests } from "../../config/config";
 import { momentActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function getMomentsService(searchKey: string, messageApi: MessageInstance) {
-   const [ tags, setTags ] = useState<(string | undefined)[]>([]);
+export function getMomentsService(searchKey: string, messageApi: MessageInstance) {
    const dispatch = useDispatch();
 
    const getMomentsFn = async () => {
       try {
          const { data } = await axiosInstance.get<IMoments>(momentsRequests.getAllMoments, { params: { searchKey: searchKey || null } });
          dispatch(momentActions.setMoments(data.data));
-         setTags(data.tagsForFilter);
+         dispatch(momentActions.setTags(data.tagsForFilter))
 
       } catch (e) {
          messageApi.error(errorCatherFn(e));
@@ -27,6 +26,4 @@ export default function getMomentsService(searchKey: string, messageApi: Message
       getMomentsFn();
    }, [ searchKey ]);
 
-
-   return { tags };
 }

@@ -3,7 +3,7 @@ import { axiosInstance } from "../axios.service";
 import { authRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function forgotPasswordService(messageApi: MessageInstance, next: () => any) {
+export function forgotPasswordService(messageApi: MessageInstance, next: () => any) {
 
    const forgotPasswordFn = async (email: string) => {
       try {

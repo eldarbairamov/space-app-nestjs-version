@@ -8,7 +8,7 @@ import { momentsRequests } from "../../config/config";
 import { momentActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function getMomentService(momentId: IMoment["id"], messageApi: MessageInstance) {
+export function getMomentService(momentId: IMoment["id"], messageApi: MessageInstance) {
    const [ prevState, setPrevState ] = useState<IMoment>();
 
    const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { userRequests } from "../../config/config";
 import { userActions } from "../../redux/slice";
 import { useAppDispatch } from "../../hook";
 
-export default function uploadPhotoService(messageApi: MessageInstance) {
+export function uploadPhotoService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();
 
    const uploadPhotoFn = async (image: File) => {

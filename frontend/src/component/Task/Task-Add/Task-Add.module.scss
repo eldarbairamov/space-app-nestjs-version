@@ -1,0 +1,22 @@
+.TaskAdd {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+
+   height: 60px;
+   width: 280px;
+
+   p {
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+   }
+
+   input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #4e4e51;
+   }
+}

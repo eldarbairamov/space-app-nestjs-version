@@ -1,25 +1,33 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 
 import { ResetPasswordForm, WelcomeLogo } from "../../../component";
-import toast from "react-hot-toast";
 import { useMatchMedia } from "../../../hook";
+import { useSearchParams } from "react-router-dom";
+import { message } from "antd";
+import { WelcomeRouter } from "../../../router";
+import { resetPasswordService } from "../../../service";
 
 import style from "./Reset-Password-Page.module.scss";
 
 export const ResetPasswordPage: FC = () => {
    const { isDesktop, isTablet } = useMatchMedia();
 
-   useEffect(() => {
-      toast.dismiss();
-   }, []);
+   const [ searchParams ] = useSearchParams();
+   const resetPasswordToken = searchParams.get("token");
+
+   const [ messageApi, contextHolder ] = message.useMessage();
+
+   const { resetPasswordFn } = resetPasswordService(messageApi, () => WelcomeRouter.navigate("/login", { replace: true }));
 
    return (
       <div className={ style.ResetPasswordPage }>
+         { contextHolder }
 
-         { isDesktop && <WelcomeLogo/> }
-         { isTablet && <WelcomeLogo/> }
+         { (isDesktop || isTablet) && <WelcomeLogo/> }
 
-         <ResetPasswordForm/>
+         <ResetPasswordForm resetPasswordFn={ resetPasswordFn }
+                            messageApi={ messageApi }
+                            resetPasswordToken={ resetPasswordToken! }/>
 
       </div>
    );

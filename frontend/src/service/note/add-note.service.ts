@@ -6,7 +6,7 @@ import { axiosInstance } from "../axios.service";
 import { noteActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function addNoteService(messageApi: MessageInstance) {
+export function addNoteService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();
 
    const addNoteFn = async () => {

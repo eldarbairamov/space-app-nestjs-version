@@ -5,7 +5,7 @@ import { axiosInstance } from "../axios.service";
 import { momentsRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>, messageApi: MessageInstance) {
+export function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>, messageApi: MessageInstance) {
 
    const updateMomentFn = async (activeMoment: IMoment) => {
       try {

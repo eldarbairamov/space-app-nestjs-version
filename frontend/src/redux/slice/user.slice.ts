@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IUser } from "../../interface";
 
 interface IUserInitialState {
    username: string,
@@ -30,7 +31,7 @@ const userSlice = createSlice({
       unsetAvatar: (state) => {
          state.avatar = "";
       },
-      setInfo: (state, { payload }: PayloadAction<IUserInitialState>) => {
+      setInfo: (state, { payload }: PayloadAction<IUser>) => {
          if (payload.username) state.username = payload.username;
          if (payload.avatar) state.avatar = payload.avatar;
          state.name = payload.name ? payload.name : "";

@@ -26,10 +26,10 @@ export const authMiddleware = {
 
    isAccessExists: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response, next: NextFunction) => {
       const token = req.headers.authorization?.split(" ")[1];
-      if (!token) throw new ApiException("Invalid token", 401);
+      if (!token) throw new ApiException("Unauthorized", 401);
 
       const isAccessTokenExists = await OAuthRepository.findOne({ accessToken: token });
-      if (!isAccessTokenExists) throw new ApiException("Invalid token", 401);
+      if (!isAccessTokenExists) throw new ApiException("Unauthorized", 401);
 
       req.userId = jwtVerifyService(token, ACCESS_TOKEN_TYPE);
       req.token = token;

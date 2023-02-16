@@ -6,7 +6,7 @@ import { errorCatherFn } from "../../helper/catch-error.helper";
 import { axiosInstance } from "../axios.service";
 import { plansRequests } from "../../config/config";
 
-export default function getPlansService(messageApi: MessageInstance) {
+export function getPlansService(messageApi: MessageInstance) {
    const [ plans, setPlans ] = useState<IPlan[]>([]);
    const [ searchKey, setSearchKey ] = useState<string>("");
 

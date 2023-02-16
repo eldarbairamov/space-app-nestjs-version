@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { horizontalShakingVariant } from "../../../animation/horizontal-shaking.variant";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { UseFormRegister } from "react-hook-form/dist/types/form";
-import { ValidationErrorToaster } from "../Validation-Error-Toaster/Validation-Error-Toaster";
+import { ValidationToaster } from "../Validation-Toaster/Validation-Toaster";
+import { message } from "antd";
 
 import style from "./Form-Control.module.scss";
 
@@ -20,6 +21,8 @@ export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, lab
    const [ validationError, setValidationError ] = useState<{ message: string }>({ message: "" });
    const [ isPasswordHidden, setIsPasswordHidden ] = useState<boolean>(isPassword);
 
+   const [ messageApi, contextHolder ] = message.useMessage();
+
    const errorMessageWriter = (message: string) => {
       const errorMessage = { message };
       setValidationError({ ...errorMessage });
@@ -32,7 +35,8 @@ export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, lab
 
    return (
       <>
-         <ValidationErrorToaster error={ validationError }/>
+         <ValidationToaster error={ validationError } messageApi={ messageApi }/>
+         { contextHolder }
 
          {/* FormControl wrapper */ }
          <div className={ style.FormControl }>

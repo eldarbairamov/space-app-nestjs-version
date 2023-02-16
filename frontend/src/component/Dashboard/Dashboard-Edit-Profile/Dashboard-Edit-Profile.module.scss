@@ -1,0 +1,15 @@
+.DashboardEditProfile {
+   display: flex;
+   gap: 5px;
+
+   font-size: 15px;
+   cursor: pointer;
+
+   p {
+      color: #7d7d7d;
+
+      &:hover {
+         color: #4e4e51;
+      }
+   }
+}

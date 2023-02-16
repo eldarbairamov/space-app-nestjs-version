@@ -1,0 +1,20 @@
+.NoBgButton {
+   font-weight: 500;
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   transition: .3s;
+   color: #4e4e51;
+}
+
+.NoBgButton[data-hover='moment'] {
+   &:hover {
+      color: #7274d7;
+   }
+}
+
+.NoBgButton[data-hover='plan'] {
+   &:hover {
+      color: #3D8DAE;
+   }
+}

@@ -8,7 +8,7 @@ import { momentsRequests } from "../../config/config";
 import { momentActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function uploadMomentImageService(messageApi: MessageInstance) {
+export function uploadMomentImageService(messageApi: MessageInstance) {
    const dispatch = useDispatch();
 
    const uploadPhotoFn = async (event: React.ChangeEvent<HTMLInputElement>, momentId: IMoment["id"]) => {

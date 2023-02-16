@@ -6,7 +6,7 @@ import { axiosInstance } from "../axios.service";
 import { noteActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function deleteNoteService(messageApi: MessageInstance) {
+export function deleteNoteService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();
 
    const deleteNoteFn = async (noteId: INote["id"]) => {

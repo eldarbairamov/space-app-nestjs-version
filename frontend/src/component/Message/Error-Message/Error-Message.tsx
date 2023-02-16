@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 
-import style from './Error-Message.module.scss'
 import { Result } from "antd";
 import { useRouteError } from "react-router-dom";
 
+import style from './Error-Message.module.scss'
+
 export const ErrorMessage:FC = () => {
-   const error = useRouteError();
-   console.error(error);
+   const error = useRouteError() as Error;
 
    return (
       <div>
@@ -14,7 +14,7 @@ export const ErrorMessage:FC = () => {
             <Result
                status="500"
                title="Ой.."
-               subTitle="Неочікувана помилка.."
+               subTitle={ `Несподівана помилка: ${error.message}` }
             />
          </div>
       </div>

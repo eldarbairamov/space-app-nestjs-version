@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { INote } from "../../interface";
 
 interface INoteInitialState {
-   activeNoteId: string | null,
+   activeNoteId: string,
    notes: INote[],
-   activeNote: INote | null,
-   lastNote: INote | null,
+   activeNote: INote,
+   lastNote: INote,
    searchKey: string
 }
 
 const initialState: INoteInitialState = {
-   activeNoteId: null,
-   notes: [],
-   activeNote: null,
-   lastNote: null,
+   activeNoteId: "",
+   notes: [] as INote[],
+   activeNote: {} as INote,
+   lastNote: {} as INote,
    searchKey: "",
 };
 
@@ -59,7 +59,7 @@ const noteSlice = createSlice({
          const targetNoteIndex = state.notes.findIndex(item => item.id === targetId);
 
          state.notes = state.notes.filter(item => item.id !== targetId);
-         state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : null;
+         state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : '';
          state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
       },
 

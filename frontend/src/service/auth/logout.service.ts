@@ -4,7 +4,7 @@ import { storageService } from "../storage.service";
 import { authRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function logoutService(messageApi: MessageInstance, next: () => any) {
+export function logoutService(messageApi: MessageInstance, next: () => any) {
 
    const logoutFn = async () => {
       try {

@@ -4,7 +4,7 @@ import { axiosInstance } from "../axios.service";
 import { authRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function activationService(messageApi: MessageInstance, next: () => any) {
+export function activationService(messageApi: MessageInstance, next: () => any) {
 
    const activationFn = async (body: string) => {
       try {

@@ -1,16 +1,12 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { ActivationPage, ForgotPasswordPage, LoginPage, RegistrationPage, ResetPasswordPage, LogoPage } from "../page";
-import { EmailConfirmationPage } from "../page/Welcome-Router/Email-Confirmation-Page (signed-out)/Email-Confirmation-Page";
-import { ErrorMessage } from "../component/Message/Error-Message/Error-Message";
-import { RegistrationSuccessMessage } from "../component/Message/Registration-Success-Message/Registration-Success-Message";
-import { ForgotPasswordMessage } from "../component/Message/Forgot-Password-Message/Forgot-Password-Message";
-import { UnauthorizedMessage } from "../component/Message/Unauthorized-Message/Unauthorized-Message";
+import { ErrorMessage, ForgotPasswordMessage, RegistrationSuccessMessage, UnauthorizedMessage } from "../component";
+import { EmailConfirmationMessage } from "../component/Message/Email-Confirmation-Message (non-auth)/Email-Confirmation-Message";
 
 export const WelcomeRouter = createBrowserRouter([
    {
       path: "*",
       errorElement: <ErrorMessage/>,
-      element: <Navigate to={ "/" }/>,
    },
    {
       path: "/",
@@ -50,6 +46,6 @@ export const WelcomeRouter = createBrowserRouter([
    },
    {
       path: "email_confirmation/:token",
-      element: <EmailConfirmationPage/>,
+      element: <EmailConfirmationMessage/>,
    },
 ]);

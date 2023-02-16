@@ -1,18 +1,18 @@
 import { userActions } from "../../redux/slice";
 import { useAppDispatch } from "../../hook";
-import { IGetUserInfo, IUpdateProfile } from "../../interface";
+import { IUpdateProfile, IUser } from "../../interface";
 import { errorCatherFn } from "../../helper/catch-error.helper";
 import { axiosInstance } from "../axios.service";
 import { userRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 
-export default function updateProfileService(messageApi: MessageInstance) {
+export function updateProfileService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();
 
    const updateEmailFn = async (body: IUpdateProfile) => {
       try {
          messageApi.loading("Лоудінг..");
-         const { data } = await axiosInstance.patch<IGetUserInfo>(userRequests.profileUpdate, body);
+         const { data } = await axiosInstance.patch<IUser>(userRequests.profileUpdate, body);
          dispatch(userActions.setInfo(data));
          messageApi.destroy();
          messageApi.success("Ви успішно оновили профіль");
