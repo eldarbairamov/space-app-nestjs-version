@@ -1,23 +1,19 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { Result } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
-import { v4 } from "uuid";
-import { AppRouter } from "../../../router";
 
 import style from "./Forgot-Password-Message.module.scss";
 
-export const ForgotPasswordMessage: FC = () => {
+export function ForgotPasswordMessage () {
    return (
       <div className={ style.ForgotPasswordMessage }>
          <Result
-            className={ style.result }
+            className={ style.message }
             icon={ <SmileOutlined/> }
-            title="Лист із посиланням вже летить на вказану електронну пошту"
-            extra={
-               <button key={v4()} onClick={ () => AppRouter.navigate("/login", { replace: true }) }> Перейти до логінації </button>
-            }
+            title="Ура!"
+            subTitle="Лист із подальшою інструкцією вже летить на вказану електронну пошту"
          />
       </div>
    );
-};
+}

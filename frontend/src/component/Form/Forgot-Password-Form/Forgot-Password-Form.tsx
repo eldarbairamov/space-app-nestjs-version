@@ -1,17 +1,18 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { emailValidator } from "../../../validator/auth.validator";
 import { FormControl } from "../../UI/Form-Control/Form-Control";
+import { Button } from "../../../component";
 
 import style from "./Forgot-Password-Form.module.scss";
 
 interface IForgotPasswordFormProps {
-   forgotPasswordFn: (email: string) => Promise<void>
+   forgotPasswordFn: (email: string) => Promise<void>;
 }
 
-export const ForgotPasswordForm: FC<IForgotPasswordFormProps> = ({forgotPasswordFn}) => {
+export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProps) {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ email: string }>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
@@ -31,14 +32,15 @@ export const ForgotPasswordForm: FC<IForgotPasswordFormProps> = ({forgotPassword
          <FormControl
             labelName={ "" }
             fieldName={ "email" }
+            style={ { textAlign: "center" } }
             register={ register }
             errorMessage={ errors.email?.message }
             isPassword={ false }
          />
 
          {/* Submit button */ }
-         <button disabled={ !isValid }> Надіслати</button>
+         <Button disabled={ !isValid } text={ "Надіслати" } style={ { width: "100%" } }/>
 
       </form>
    );
-};
+}

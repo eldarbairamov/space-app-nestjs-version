@@ -1,4 +1,4 @@
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { MessageInstance } from "antd/es/message/interface";
 import { axiosInstance } from "../axios.service";
 import { userRequests } from "../../config/config";

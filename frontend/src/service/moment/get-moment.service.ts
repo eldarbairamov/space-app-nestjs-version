@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { IMoment } from "../../interface";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { useDispatch } from "react-redux";
 import { momentsRequests } from "../../config/config";

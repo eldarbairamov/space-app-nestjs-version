@@ -2,7 +2,7 @@ import { MessageInstance } from "antd/es/message/interface";
 import { axiosInstance } from "../axios.service";
 import { ITask } from "../../interface";
 import { tasksRequests } from "../../config/config";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 
 export function addTaskService(messageApi: MessageInstance) {
 

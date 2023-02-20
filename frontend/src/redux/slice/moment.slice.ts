@@ -18,7 +18,7 @@ const initialState: IMomentInitialState = {
 };
 
 const momentSlice = createSlice({
-   name: "moments",
+   name: "moment",
    initialState,
    reducers: {
 

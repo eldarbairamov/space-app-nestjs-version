@@ -1,7 +1,7 @@
 import { IPlan } from "../../interface";
 import { axiosInstance } from "../axios.service";
 import { plansRequests } from "../../config/config";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { MessageInstance } from "antd/es/message/interface";
 
 export function updatePlanService(messageApi: MessageInstance) {

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { ForgotPasswordForm, WelcomeLogo } from "../../../component";
 import { useMatchMedia } from "../../../hook";
@@ -8,7 +8,7 @@ import { forgotPasswordService } from "../../../service";
 
 import style from "./Forgot-Password-Page.module.scss";
 
-export const ForgotPasswordPage: FC = () => {
+export function ForgotPasswordPage () {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -19,10 +19,12 @@ export const ForgotPasswordPage: FC = () => {
       <div className={ style.ForgotPasswordPage }>
          { contextHolder }
 
-         { (isDesktop || isTablet) && <WelcomeLogo/> }
+         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/}
+
+         <WelcomeLogo/>
 
          <ForgotPasswordForm forgotPasswordFn={ forgotPasswordFn }/>
 
       </div>
    );
-};
+}

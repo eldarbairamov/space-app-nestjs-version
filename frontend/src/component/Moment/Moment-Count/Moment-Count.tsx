@@ -1,14 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { Divider } from "antd";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Moment-Count.module.scss";
 
-interface IMomentCountProps {
-   momentsCount: number;
-}
-
-export const MomentCount: FC<IMomentCountProps> = ({ momentsCount }) => {
+export function MomentCount () {
+   const { momentsCount } = useAppSelector(state => state.userReducer);
 
    return (
       <div className={ style.MomentCount }>
@@ -16,4 +14,4 @@ export const MomentCount: FC<IMomentCountProps> = ({ momentsCount }) => {
          <p> { momentsCount } </p>
       </div>
    );
-};
+}

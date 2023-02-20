@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { IPlan, ITask } from "../../interface";
 import { axiosInstance } from "../axios.service";
 import { tasksRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
+import { useAppDispatch } from "../../hook";
+import { taskAction } from "../../redux/slice/task.slice";
 
 export function getTasksService(messageApi: MessageInstance, planId: IPlan["id"]) {
-   const [ tasks, setTasks ] = useState<ITask[]>([]);
+   const dispatch = useAppDispatch();
 
    const getTasksFn = async () => {
       try {
          const { data } = await axiosInstance.post<ITask[]>(tasksRequests.getAllTasks, { planId });
-         setTasks(data);
+         dispatch(taskAction.setTasks(data));
+
       } catch (e) {
          messageApi.error(errorCatherFn(e));
       }
@@ -22,6 +25,5 @@ export function getTasksService(messageApi: MessageInstance, planId: IPlan["id"]
       getTasksFn();
    }, []);
 
-   return { setTasks, tasks };
 
 }

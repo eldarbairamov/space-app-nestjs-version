@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
@@ -7,19 +7,24 @@ import { AppRouter } from "../../../router";
 import { IChangePasswordForm } from "../../../interface";
 import { changePasswordValidator } from "../../../validator/auth.validator";
 import { message } from "antd";
-import { passwordUpdateService } from "../../../service";
+import { getUserService, passwordUpdateService } from "../../../service";
+import { Button } from "../../../component";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Password-Update-Form.module.scss";
 
-export const PasswordUpdateForm: FC = () => {
+export function PasswordUpdateForm () {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IChangePasswordForm>({
       resolver: joiResolver(changePasswordValidator),
       mode: "onTouched",
    });
 
+   const { username, name, surname } = useAppSelector(state => state.userReducer);
+
    const [ messageApi, contextHolder ] = message.useMessage();
 
-   const { updatePasswordFn } = passwordUpdateService(messageApi, () => AppRouter.navigate("/password_update/message"));
+   const { getUserFn } = getUserService(messageApi);
+   const { updatePasswordFn } = passwordUpdateService(messageApi, () => AppRouter.navigate("/password_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<IChangePasswordForm> = async (data) => {
       const newPassword = data.password;
@@ -32,6 +37,11 @@ export const PasswordUpdateForm: FC = () => {
          messageApi.error("Паролі не співпадають");
       }
    };
+
+   useEffect(() => {
+      if (!(username && name && username)) getUserFn();
+
+   }, [ username, name, surname ]);
 
    return (
       <form className={ style.PasswordUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
@@ -60,8 +70,8 @@ export const PasswordUpdateForm: FC = () => {
          />
 
          {/* Submit button */ }
-         <button disabled={ !isValid }> Зберегти</button>
+         <Button disabled={ !isValid } text={ "Зберегти" } style={ { width: "100%" } }/>
 
       </form>
    );
-};
+}

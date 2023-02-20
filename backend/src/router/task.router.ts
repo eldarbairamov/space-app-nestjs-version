@@ -24,8 +24,8 @@ taskRouter.patch(
    commonMiddleware.isObjectExists("task"),
    taskController.updateTaskStatus);
 
-// Send Plan ID and delete task
-taskRouter.post(
+// Delete task
+taskRouter.delete(
    "/:taskId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("task"),

@@ -10,7 +10,7 @@ import { updateNoteService } from "../../../service";
 import style from "./Note-Edit.module.scss";
 
 export const NoteEdit: FC = () => {
-   const { activeNote, notes } = useAppSelector(state => state.notesReducer);
+   const { activeNote, notes } = useAppSelector(state => state.noteReducer);
 
    const [ messageApi, contextHolder ] = message.useMessage();
 

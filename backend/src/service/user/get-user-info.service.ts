@@ -13,7 +13,7 @@ export const getUserInfoService = async (userId: UserDocument["id"]): Promise<IU
       MomentRepository.count(userId),
    ]);
 
-   // Return info dto
+   // Return presented date to client
    return {
       name: user.name,
       surname: user.surname,

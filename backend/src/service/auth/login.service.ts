@@ -20,7 +20,7 @@ export const loginService = async (body: ILogin, userFromDb: UserDocument): Prom
    if (!isPasswordSame) throw new ApiException("Wrong email or password", 400);
 
    // Generate access token pair
-   const accessTokenPair = accessTokenPairGenerator(userFromDb._id);
+   const accessTokenPair = accessTokenPairGenerator(userFromDb.id);
 
    // Save tokens to DB
    await OAuthRepository.create({

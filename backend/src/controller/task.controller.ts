@@ -10,8 +10,8 @@ export const taskController = {
       res.json(task);
    }),
 
-   deleteTask: expressAsyncHandler(async (req: IRequest<{ planId: string }, { taskId: string }, any>, res: Response<{ message: string }>) => {
-      await deleteTaskService(req.params.taskId, req.body.planId);
+   deleteTask: expressAsyncHandler(async (req: IRequest<any, { taskId: string }, any>, res: Response<{ message: string }>) => {
+      await deleteTaskService(req.params.taskId);
       res.json({ message: "Success" });
    }),
 

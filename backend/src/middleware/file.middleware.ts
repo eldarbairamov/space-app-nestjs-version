@@ -12,7 +12,7 @@ export const fileMiddleware = {
       for (const image of images) {
          const { size, mimetype } = image as IImage;
 
-         if (size > IMAGE_MAX_SIZE) throw new ApiException("File size must be less than 3 mb", 400);
+         if (size > IMAGE_MAX_SIZE) throw new ApiException("File size must be less than 3 mb", 413);
          if (!IMAGE_MIMETYPES.includes(mimetype)) throw new ApiException("Invalid file type", 400);
       }
 

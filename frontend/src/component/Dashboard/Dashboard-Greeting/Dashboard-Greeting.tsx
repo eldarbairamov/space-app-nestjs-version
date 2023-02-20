@@ -1,17 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
 
-import { IUser } from "../../../interface";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Dashboard-Greeting.module.scss";
 
-interface IDashboardGreetingProps {
-   userInfo: IUser;
-}
+export function DashboardGreeting() {
+   const { username } = useAppSelector(state => state.userReducer);
 
-export const DashboardGreeting: FC<IDashboardGreetingProps> = ({ userInfo }) => {
    return (
       <div className={ style.DashboardGreeting }>
-         <span> Привіт, </span> { userInfo.username ? userInfo.username : "завантажую..." }
+         <span> Привіт, </span> { username ? username : "завантажую..." }
       </div>
    );
-};
+}

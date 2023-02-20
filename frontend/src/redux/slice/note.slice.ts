@@ -18,9 +18,10 @@ const initialState: INoteInitialState = {
 };
 
 const noteSlice = createSlice({
-   name: "notes",
+   name: "note",
    initialState,
    reducers: {
+
       setActiveNoteId: (state, { payload }: PayloadAction<string>) => {
          state.activeNoteId = payload;
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
@@ -38,6 +39,7 @@ const noteSlice = createSlice({
       setDefaultNote: (state, { payload }: PayloadAction<INote>) => {
          state.activeNote = payload;
       },
+
       setSearchKey: (state, { payload }: PayloadAction<string>) => {
          state.searchKey = payload;
       },
@@ -63,9 +65,6 @@ const noteSlice = createSlice({
          state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
       },
 
-      getNotesBySearch: (state, { payload }: PayloadAction<INote[]>) => {
-         state.notes = payload;
-      },
    },
 
 });

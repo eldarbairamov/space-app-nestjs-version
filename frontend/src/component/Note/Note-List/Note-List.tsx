@@ -11,7 +11,7 @@ import style from "./Note-List.module.scss";
 
 export const NoteList: FC = () => {
    const [ messageApi, contextHolder ] = message.useMessage();
-   const { notes } = useAppSelector(state => state.notesReducer);
+   const { notes } = useAppSelector(state => state.noteReducer);
    getNotesService(messageApi);
 
    return (

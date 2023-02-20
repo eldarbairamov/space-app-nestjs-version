@@ -1,33 +1,34 @@
-import React, { FC } from "react";
+import React, { useState } from "react";
 
-import { IInputFields } from "../../../page";
-import { TypedSetState } from "../../../interface/common.interface";
 import { IPlan, ITask } from "../../../interface";
 import { message } from "antd";
 import { addTaskService } from "../../../service";
+import { NoBgInput } from "../../UI/No-Bg-Input/No-Bg-Input";
+import { TypedOnChange } from "../../../interface/common.interface";
+import { useAppDispatch } from "../../../hook";
+import { taskAction } from "../../../redux/slice/task.slice";
 
 import style from "./Task-Add.module.scss";
 
 interface ITaskAddProps {
-   inputFields: IInputFields;
-   setInputFields: TypedSetState<IInputFields>;
    plan: IPlan;
-   setTasks: TypedSetState<ITask[]>;
-   tasks: ITask[];
-   onChangeFields(field: string, value: string): void;
 }
 
-export const TaskAdd: FC<ITaskAddProps> = ({ setInputFields, onChangeFields, inputFields, plan, setTasks, tasks }) => {
+export function TaskAdd({ plan }: ITaskAddProps) {
    const [ messageApi, contextHolder ] = message.useMessage();
+
+   const dispatch = useAppDispatch();
+
+   const [ taskTitle, setTaskTitle ] = useState<string>("");
 
    const { addTaskFn } = addTaskService(messageApi);
 
    const addTask = async () => {
-      if (inputFields.taskTitle !== "") {
-         setInputFields({ ...inputFields, taskTitle: "" });
-         const newTask = { planId: plan.id, title: inputFields.taskTitle };
+      if (taskTitle !== "") {
+         setTaskTitle("");
+         const newTask = { planId: plan.id, title: taskTitle };
          const data = await addTaskFn(newTask) as ITask;
-         setTasks([ ...tasks, data ]);
+         dispatch(taskAction.addTask(data));
       }
    };
 
@@ -36,12 +37,14 @@ export const TaskAdd: FC<ITaskAddProps> = ({ setInputFields, onChangeFields, inp
          { contextHolder }
 
          <p onClick={ addTask }> + </p>
-         <input type={ "text" }
-                id={ "taskTitle" }
-                value={ inputFields.taskTitle }
-                onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onChangeFields("taskTitle", e.target.value) }
-                placeholder={ "Додати задачу" }
+         <NoBgInput type={ "text" }
+                    id={ "taskTitle" }
+                    style={ { textAlign: "left" } }
+                    value={ taskTitle }
+                    onChange={ (event: TypedOnChange) => setTaskTitle(event.target.value) }
+                    placeholder={ "Додати задачу" }
          />
+
       </div>
    );
-};
+}

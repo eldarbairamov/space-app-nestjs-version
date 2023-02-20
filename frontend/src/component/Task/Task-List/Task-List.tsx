@@ -1,22 +1,18 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { TaskItem } from "../Task-Item/Task-Item";
-import { ITask } from "../../../interface";
-import { TypedSetState } from "../../../interface/common.interface";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Task-List.module.scss";
 
-interface ITaskListProps {
-   tasks: ITask[];
-   setTasks: TypedSetState<ITask[]>;
-}
+export function TaskList() {
+   const { tasks } = useAppSelector(state => state.taskReducer);
 
-export const TaskList: FC<ITaskListProps> = ({ tasks, setTasks }) => {
    return (
       <div className={ style.TaskList }>
          { tasks && tasks.map(task => (
-            <TaskItem key={ task.id } task={ task } setTasks={ setTasks } tasks={ tasks }/>
+            <TaskItem key={ task.id } task={ task }/>
          )) }
       </div>
    );
-};
+}

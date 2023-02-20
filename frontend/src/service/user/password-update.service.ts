@@ -1,8 +1,8 @@
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { userRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
-import { wait } from "../../helper/wait.helper";
+import { pleaseWait } from "../../helper/please-wait";
 
 export function passwordUpdateService(messageApi: MessageInstance, next: () => any) {
 
@@ -11,7 +11,7 @@ export function passwordUpdateService(messageApi: MessageInstance, next: () => a
          messageApi.loading("Лоудінг..");
          await axiosInstance.patch(userRequests.changePassword, { newPassword, currentPassword });
          messageApi.destroy();
-         await wait(1000)
+         await pleaseWait(1000)
          next();
 
       } catch (e) {

@@ -4,8 +4,3 @@ export interface ITask {
    readonly title: string;
    isCompleted: boolean;
 }
-
-export interface IAddTask {
-   readonly planId: string;
-   readonly title: string;
-}

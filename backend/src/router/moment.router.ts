@@ -20,6 +20,7 @@ momentRouter.get(
 momentRouter.get(
    "/:momentId",
    authMiddleware.isAccessExists,
+   commonMiddleware.isObjectExists("moment"),
    momentController.getOneMoment,
 );
 
@@ -35,6 +36,7 @@ momentRouter.patch(
 momentRouter.patch(
    "/:momentId/photo_upload",
    authMiddleware.isAccessExists,
+   commonMiddleware.isObjectExists("moment"),
    fileMiddleware.imageChecker,
    momentController.uploadPhoto);
 

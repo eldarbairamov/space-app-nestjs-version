@@ -2,7 +2,8 @@ import { OAuthRepository } from "../repository";
 import expressAsyncHandler from "express-async-handler";
 import { type Response, type Request } from "express";
 import { activationService, forgotPasswordService, loginService, registrationService, resetPasswordService } from "../service";
-import { ILogin, IOAuthResponse, IResetPassword, IRequest } from "../interface";
+import { ILogin, IOAuthResponse, IResetPassword, IRequest, IAccessTokenPair } from "../interface";
+import { refreshService } from "../service/auth/refresh.service";
 
 export const authController = {
 
@@ -12,8 +13,13 @@ export const authController = {
    }),
 
    login: expressAsyncHandler(async (req: IRequest<ILogin, any, any>, res: Response<IOAuthResponse>) => {
-      const accessTokenPairDto = await loginService(req.body, req.user!);
-      res.json(accessTokenPairDto);
+      const accessTokenPair = await loginService(req.body, req.user!);
+      res.json(accessTokenPair);
+   }),
+
+   refresh: expressAsyncHandler(async (req: IRequest<{ refreshToken: string }, any, any>, res: Response<IAccessTokenPair>) => {
+      const accessTokenPair = await refreshService(req.body.refreshToken);
+      res.json(accessTokenPair);
    }),
 
    activation: expressAsyncHandler(async (req: IRequest<{ activationCode: string }, any, any>, res: Response<{ message: string }>) => {

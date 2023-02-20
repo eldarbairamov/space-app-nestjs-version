@@ -24,7 +24,7 @@ export const NoteItem: FC<INoteItem> = ({ note }) => {
 
    const { deleteNoteFn } = deleteNoteService(messageApi);
 
-   const { activeNote } = useAppSelector(state => state.notesReducer);
+   const { activeNote } = useAppSelector(state => state.noteReducer);
 
    const deleteNote = async (noteId: INote["id"], e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
       e.stopPropagation();

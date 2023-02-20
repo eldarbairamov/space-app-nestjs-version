@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { useMatchMedia } from "../../../hook";
 import { ActivationForm, WelcomeLogo } from "../../../component";
@@ -8,7 +8,7 @@ import { activationService } from "../../../service";
 
 import style from "./Activation-Page.module.scss";
 
-export const ActivationPage: FC = () => {
+export function ActivationPage () {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -25,4 +25,4 @@ export const ActivationPage: FC = () => {
 
       </div>
    );
-};
+}

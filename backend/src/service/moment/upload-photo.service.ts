@@ -3,6 +3,8 @@ import { MomentDocument } from "../../model";
 import path from "node:path";
 import { MomentRepository } from "../../repository";
 import { ApiException } from "../../exception/api.exception";
+import { unlink } from "fs/promises";
+import fs from "fs";
 
 export const uploadPhotoService = async (image: fileUpload.FileArray | null | undefined, momentId: MomentDocument["id"]) => {
    try {
@@ -17,8 +19,22 @@ export const uploadPhotoService = async (image: fileUpload.FileArray | null | un
       // Upload image to "static" folder
       await photo.mv(uploadPath);
 
-      // Save avatar to DB
-      await MomentRepository.findByIdAndUpdate(momentId, { photo: fileName });
+      // Find moment in DB
+      const moment = await MomentRepository.findById(momentId) as MomentDocument;
+
+      // Delete image from hard drive if exists
+      const imagePath = path.join(process.cwd(), "src", "upload", moment.photo);
+      fs.access(imagePath, async (err) => {
+         if (!err) {
+            await unlink(imagePath).catch(() => {
+               throw new ApiException("No such image or directory", 500);
+            });
+         }
+      });
+
+      // Save photo do DB
+      moment.photo = fileName;
+      await moment.save();
 
       // Return filename to client
       return fileName;

@@ -13,15 +13,15 @@ export const MomentRepository = {
    },
 
    find: async (filter: FilterQuery<IMoment>, searchKey: string): Promise<MomentDocument[]> => {
+      const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
       try {
-         const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
          return MomentModel.find(filterObj).sort({ createdAt: "desc" });
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }
    },
 
-   findByUserId: async (userId: UserDocument["id"]): Promise<MomentDocument[] | null> => {
+   findAllByUserId: async (userId: UserDocument["id"]): Promise<MomentDocument[] | null> => {
       try {
          return MomentModel.find({ ownerId: userId });
       } catch (e) {

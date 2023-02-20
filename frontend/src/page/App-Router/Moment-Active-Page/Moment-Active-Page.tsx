@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import { IMoment } from "../../../interface";
@@ -14,7 +14,7 @@ import { deleteMomentService, getMomentService, updateMomentService, uploadMomen
 import no_photo from "../../../asset/no-photo.png";
 import style from "./Moment-Active-Page.module.scss";
 
-export const MomentItemPage: FC = () => {
+export function MomentItemPage() {
    const { momentId } = useParams<{ momentId: IMoment["id"] }>();
 
    const dispatch = useAppDispatch();
@@ -128,8 +128,7 @@ export const MomentItemPage: FC = () => {
                          onChange={ uploadPhoto }/>
 
                   {/* Photo */ }
-                  { activeMoment.photo
-                     ?
+                  { activeMoment.photo ?
                      <>
                         <img className={ style.photo_background }
                              src={ config.SERVER_URL + activeMoment.photo }
@@ -140,8 +139,7 @@ export const MomentItemPage: FC = () => {
                              className={ style.photo }
                              src={ config.SERVER_URL + activeMoment.photo }
                              alt="photo"/>
-                     </>
-                     :
+                     </> :
                      <img onClick={ handlePick }
                           className={ style.no_image }
                           src={ no_photo }
@@ -216,4 +214,4 @@ export const MomentItemPage: FC = () => {
          }
       </div>
    );
-};
+}

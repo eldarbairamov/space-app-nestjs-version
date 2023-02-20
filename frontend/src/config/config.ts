@@ -46,6 +46,7 @@ export const momentsRequests = {
 export const authRequests = {
    registration: "/auth/registration",
    login: "/auth/login",
+   refresh: "/auth/refresh",
    forgotPassword: "auth/password_forgot",
    accountActivation: "/auth/activation",
    resetPassword: "/auth/password_reset",

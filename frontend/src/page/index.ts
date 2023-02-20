@@ -1,6 +1,6 @@
 export * from "./App-Router/Dashboard-Page/Dashboard-Page";
 export * from "./App-Router/Notes-Page/Notes-Page";
-export * from "./App-Router/Moments-Page/Moment-Page";
+export * from "./App-Router/Moment-Page/Moment-Page";
 export * from "./App-Router/Plans-Page/Plans-Page";
 export * from "./App-Router/Profile-Settings-Page/Profile-Settings-Page";
 export * from "./App-Router/Tasks-Page/Tasks-Page";

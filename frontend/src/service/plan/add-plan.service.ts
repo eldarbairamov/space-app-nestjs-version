@@ -1,16 +1,19 @@
-import { TypedSetState } from "../../interface/common.interface";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { IPlan } from "../../interface";
 import { plansRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
+import { useAppDispatch } from "../../hook";
+import { planAction } from "../../redux/slice/plan.slice";
 
-export function addPlanService(setPlans: TypedSetState<IPlan[]>, messageApi: MessageInstance) {
+export function addPlanService(messageApi: MessageInstance) {
+   const dispatch = useAppDispatch()
 
    const addPlanFn = async () => {
       try {
          const { data } = await axiosInstance.get<IPlan>(plansRequests.addPlan);
-         setPlans((prevState) => [ ...prevState, data ].sort((a, b) => b.lastModified - a.lastModified));
+         dispatch(planAction.addPlan(data))
+
       } catch (e) {
          messageApi.error(errorCatherFn(e));
       }

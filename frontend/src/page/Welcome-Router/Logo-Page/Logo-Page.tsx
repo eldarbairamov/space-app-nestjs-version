@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { WelcomeLogo } from "../../../component";
 import { useLocation } from "react-router";
@@ -6,7 +6,7 @@ import { WelcomeRouter } from "../../../router";
 
 import style from "./Logo-Page.module.scss";
 
-export const LogoPage: FC = () => {
+export function LogoPage() {
    const location = useLocation();
 
    useEffect(() => {
@@ -16,9 +16,7 @@ export const LogoPage: FC = () => {
 
    return (
       <div className={ style.WelcomePage }>
-
-            <WelcomeLogo/>
-
+         <WelcomeLogo/>
       </div>
    );
-};
+}

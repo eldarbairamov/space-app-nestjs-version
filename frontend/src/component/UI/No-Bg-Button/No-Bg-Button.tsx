@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import style from "./No-Bg-Button.module.scss";
 
@@ -8,10 +8,10 @@ interface IInvisibleButtonProps {
    onClick: () => Promise<void>;
 }
 
-export const NoBgButton: FC<IInvisibleButtonProps> = ({ text, hoverSubject, ...props }) => {
+export function NoBgButton({ text, hoverSubject, ...props }: IInvisibleButtonProps) {
    return (
       <button className={ style.NoBgButton } data-hover={ hoverSubject } { ...props } >
          { text }
       </button>
    );
-};
+}

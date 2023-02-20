@@ -1,14 +1,14 @@
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { MessageInstance } from "antd/es/message/interface";
 import { axiosInstance } from "../axios.service";
 import { tasksRequests } from "../../config/config";
-import { IPlan, ITask } from "../../interface";
+import { ITask } from "../../interface";
 
 export function deleteTaskService(messageApi: MessageInstance) {
 
-   const deleteTaskFn = async (taskId: ITask["id"], planId: IPlan["id"]) => {
+   const deleteTaskFn = async (taskId: ITask["id"]) => {
       try {
-         await axiosInstance.post(tasksRequests.deleteTask + taskId, { planId });
+         await axiosInstance.delete(tasksRequests.deleteTask + taskId);
 
       } catch (e) {
          messageApi.error(errorCatherFn(e));

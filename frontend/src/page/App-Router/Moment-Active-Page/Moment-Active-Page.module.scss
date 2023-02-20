@@ -44,14 +44,14 @@
 
       .save_moment {
          background: #24292e;
-         right: 20px;
-         top: 52px;
+         right: 25px;
+         top: 62px;
       }
 
       .delete_moment {
          background: indianred;
-         right: 20px;
-         top: 15px;
+         right: 25px;
+         top: 25px;
       }
 
       .photo_wrapper {
@@ -90,8 +90,8 @@
 
       .title {
          position: absolute;
-         top: 15px;
-         left: 20px;
+         top: 25px;
+         left: 25px;
          z-index: 1;
          color: white;
          background: #24292e;
@@ -103,8 +103,8 @@
       .title_input {
          z-index: 1;
          position: absolute;
-         top: 50px;
-         left: 22px;
+         top: 60px;
+         left: 26px;
          width: 150px;
       }
 
@@ -113,8 +113,8 @@
          gap: 10px;
 
          position: absolute;
-         bottom: 15px;
-         right: 20px;
+         bottom: 25px;
+         right: 25px;
 
          .date_input {
             position: absolute;
@@ -143,8 +143,8 @@
          gap: 10px;
 
          position: absolute;
-         bottom: 15px;
-         left: 20px;
+         bottom: 25px;
+         left: 25px;
 
          .tag_input {
             position: absolute;

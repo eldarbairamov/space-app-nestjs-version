@@ -1,12 +1,18 @@
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../enum/storage.enum";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constant/storage.constant";
 
 export const storageService = {
+
    getAccessToken: () => localStorage.getItem(ACCESS_TOKEN),
    getRefreshToken: () => localStorage.getItem(REFRESH_TOKEN),
 
-   setAccessToken: (token: string) => localStorage.setItem(ACCESS_TOKEN, token),
-   setRefreshToken: (token: string) => localStorage.setItem(REFRESH_TOKEN, token),
+   setTokens: (accessToken: string, refreshToken: string) => {
+      localStorage.setItem(ACCESS_TOKEN, accessToken);
+      localStorage.setItem(REFRESH_TOKEN, refreshToken);
+   },
 
-   deleteAccessToken: () => localStorage.removeItem(ACCESS_TOKEN),
-   deleteRefreshToken: () => localStorage.removeItem(REFRESH_TOKEN),
+   deleteTokens: () => {
+      localStorage.removeItem(ACCESS_TOKEN);
+      localStorage.removeItem(REFRESH_TOKEN);
+   },
+
 };

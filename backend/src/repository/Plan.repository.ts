@@ -13,8 +13,8 @@ export const PlanRepository = {
    },
 
    find: async (filter: FilterQuery<IPlan>, searchKey: string): Promise<PlanDocument[]> => {
+      const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
          return PlanModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
          throw ApiException.DatabaseError(e);
@@ -32,6 +32,14 @@ export const PlanRepository = {
    findByIdAndUpdate: async (planId: PlanDocument["id"], update: UpdateQuery<IPlan>): Promise<PlanDocument | null> => {
       try {
          return PlanModel.findByIdAndUpdate(planId, update, { new: true });
+      } catch (e) {
+         throw ApiException.DatabaseError(e);
+      }
+   },
+
+   findOneAndUpdate: async (filter: FilterQuery<IPlan>, update: UpdateQuery<IPlan>): Promise<PlanDocument | null> => {
+      try {
+         return PlanModel.findOneAndUpdate(filter, update, { new: true });
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }

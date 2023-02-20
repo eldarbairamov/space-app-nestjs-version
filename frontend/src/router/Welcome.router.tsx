@@ -5,47 +5,53 @@ import { EmailConfirmationMessage } from "../component/Message/Email-Confirmatio
 
 export const WelcomeRouter = createBrowserRouter([
    {
-      path: "*",
+      path: "/",
+      element: <LogoPage/>,
       errorElement: <ErrorMessage/>,
    },
    {
-      path: "/",
-      element: <LogoPage/>,
-   },
-   {
-      path: '/unauthorized',
-      element: <UnauthorizedMessage/>
+      path: "/unauthorized",
+      element: <UnauthorizedMessage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "/registration",
       element: <RegistrationPage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "/registration_success",
       element: <RegistrationSuccessMessage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
-      path: '/forgot_password_message',
-      element: <ForgotPasswordMessage/>
+      path: "/forgot_password_message",
+      element: <ForgotPasswordMessage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "/login",
       element: <LoginPage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "/password_forgot",
       element: <ForgotPasswordPage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "/password_reset/:token",
       element: <ResetPasswordPage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "/activation",
       element: <ActivationPage/>,
+      errorElement: <ErrorMessage/>,
    },
    {
       path: "email_confirmation/:token",
       element: <EmailConfirmationMessage/>,
+      errorElement: <ErrorMessage/>,
    },
 ]);

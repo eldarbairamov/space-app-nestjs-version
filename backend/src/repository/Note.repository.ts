@@ -13,8 +13,8 @@ export const NoteRepository = {
    },
 
    find: async (filter: FilterQuery<INote>, searchKey: string): Promise<NoteDocument[]> => {
+      const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
          return NoteModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
          throw ApiException.DatabaseError(e);
@@ -47,7 +47,7 @@ export const NoteRepository = {
 
    count: async (userId: UserDocument["id"]): Promise<number> => {
       try {
-         return NoteModel.count({ ownerId: userId});
+         return NoteModel.count({ ownerId: userId });
       } catch (e) {
          throw ApiException.DatabaseError(e);
       }

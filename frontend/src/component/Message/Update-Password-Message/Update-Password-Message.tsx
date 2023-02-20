@@ -1,13 +1,14 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { message, Result } from "antd";
 import { v4 } from "uuid";
 import { AppRouter } from "../../../router";
 import { logoutService } from "../../../service";
+import { Button } from "../../../component";
 
 import style from "./Update-Password-Message.module.scss";
 
-export const UpdatePasswordMessage: FC = () => {
+export function UpdatePasswordMessage() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { logoutFn } = logoutService(messageApi, () => {
@@ -16,16 +17,18 @@ export const UpdatePasswordMessage: FC = () => {
    });
 
    return (
-      <div className={ style.UpdatePasswordMessagePage }>
+      <div className={ style.UpdatePasswordMessage }>
          { contextHolder }
 
          <Result
             className={ style.message }
             status="success"
-            title="Ви успішно оновили свій пароль."
-            subTitle="Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані."
-            extra={ [ <button onClick={ logoutFn } key={ v4() }>Перейти </button> ] }
+            title="Ви успішно оновили свій пароль"
+            subTitle="Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані"
+            extra={
+               <Button onClick={ logoutFn } text={ "Увійти" } key={ v4() }/>
+            }
          />
       </div>
    );
-};
+}

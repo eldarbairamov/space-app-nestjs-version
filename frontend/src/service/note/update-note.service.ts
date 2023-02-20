@@ -1,6 +1,6 @@
 import { notesRequests } from "../../config/config";
 import { INote } from "../../interface";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { MessageInstance } from "antd/es/message/interface";
 
@@ -13,6 +13,7 @@ export function updateNoteService(messageApi: MessageInstance) {
             body: activeNote.body,
          };
          await axiosInstance.put<void>(notesRequests.saveNote + activeNote.id, noteToSave);
+
       } catch (e) {
          messageApi.error(errorCatherFn(e));
       }

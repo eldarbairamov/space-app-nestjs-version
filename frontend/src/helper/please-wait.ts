@@ -1,4 +1,4 @@
-export const wait = (ms: number) => {
+export const pleaseWait = (ms: number) => {
    return new Promise((resolve, reject) => {
       setTimeout(resolve, ms);
    });

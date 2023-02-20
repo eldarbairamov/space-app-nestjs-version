@@ -1,5 +1,5 @@
-import { wait } from "../../helper/wait.helper";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { pleaseWait } from "../../helper/please-wait";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { ILoginForm, IOAuth } from "../../interface";
 import { storageService } from "../storage.service";
@@ -13,12 +13,11 @@ export function loginService(messageApi: MessageInstance, next: () => any) {
          messageApi.loading("Лоудінг..");
          const { data } = await axiosInstance.post<IOAuth>(authRequests.login, body);
 
-         storageService.setAccessToken(data.accessToken);
-         storageService.setRefreshToken(data.refreshToken);
+         storageService.setTokens(data.accessToken, data.refreshToken)
 
          messageApi.destroy();
          messageApi.success(`Привіт, ${ data.username }`);
-         await wait(2000);
+         await pleaseWait(2000);
 
          next();
 

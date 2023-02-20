@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
@@ -6,6 +6,7 @@ import { MessageInstance } from "antd/es/message/interface";
 import { resetPasswordValidator } from "../../../validator/auth.validator";
 import { FormControl } from "../../UI/Form-Control/Form-Control";
 import { IResetPasswordForm } from "../../../interface";
+import { Button } from "../../../component";
 
 import style from "./Reset-Password-Form.module.scss";
 
@@ -15,7 +16,7 @@ interface IResetPasswordFormProps {
    resetPasswordToken: string;
 }
 
-export const ResetPasswordForm: FC<IResetPasswordFormProps> = ({ resetPasswordFn, messageApi, resetPasswordToken }) => {
+export function ResetPasswordForm({ resetPasswordFn, messageApi, resetPasswordToken }: IResetPasswordFormProps) {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IResetPasswordForm>({
       resolver: joiResolver(resetPasswordValidator),
       mode: "onTouched",
@@ -51,8 +52,8 @@ export const ResetPasswordForm: FC<IResetPasswordFormProps> = ({ resetPasswordFn
          />
 
          {/* Submit button */ }
-         <button disabled={ !isValid }> Зберегти</button>
+         <Button disabled={ !isValid } style={ { width: "100%" } } text={ "Зберегти" }/>
 
       </form>
    );
-};
+}

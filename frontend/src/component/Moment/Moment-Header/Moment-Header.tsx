@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { Select } from "antd";
 import { NoBgButton } from "../../../component";
@@ -13,9 +13,9 @@ interface IMomentHeaderProps {
    setSearchKey: TypedSetState<string>;
 }
 
-export const MomentHeader: FC<IMomentHeaderProps> = ({ addMomentFn, setSearchKey}) => {
+export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) {
    const select = (value: string) => setSearchKey(value);
-   const {tags} = useAppSelector(state => state.momentReducer)
+   const { tags } = useAppSelector(state => state.momentReducer);
 
    return (
       <div className={ style.MomentHeader }>
@@ -29,18 +29,18 @@ export const MomentHeader: FC<IMomentHeaderProps> = ({ addMomentFn, setSearchKey
          {/* Select */ }
          <div className={ style.select_wrapper }>
             <Select style={ { width: 130 } }
-                    allowClear={true}
+                    allowClear={ true }
                     placeholder="Фільтр"
-                    notFoundContent={'Пусто'}
+                    notFoundContent={ "Пусто" }
                     bordered={ false }
                     onChange={ select }
                     options={ tags.map(tag => ({ value: tag, label: tag })) }
-                    filterOption={(input, option) =>
-                       (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    filterOption={ (input, option) =>
+                       (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
                     }
             />
          </div>
 
       </div>
    );
-};
+}

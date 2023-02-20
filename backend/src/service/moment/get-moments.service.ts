@@ -9,10 +9,8 @@ export const getMomentsService = async (userId: UserDocument["id"], searchKey: s
    const moments = await MomentRepository.find({ ownerId: userId }, searchKey);
 
    // Defined unique tags
-   const allMoments = await MomentRepository.findByUserId(userId);
-   const tags = allMoments?.map(moment => {
-      if (moment.tags.length) return moment.tags.map(tag => tag);
-   });
+   const allMoments = await MomentRepository.findAllByUserId(userId);
+   const tags = allMoments?.map(moment => moment.tags.map(tag => tag));
    const uniqueTags = Array.from(new Set(tags?.flat()));
 
    // Return presented data to client

@@ -5,10 +5,10 @@ import { useAppDispatch } from "../../../hook";
 import { noteActions } from "../../../redux/slice";
 import { NoteList } from "../Note-List/Note-List";
 import { NoBgInput } from "../../UI/No-Bg-Input/No-Bg-Input";
+import { addNoteService } from "../../../service";
 
 import style from "./Note-Sidebar.module.scss";
 import add from "../../../asset/note.png";
-import { addNoteService } from "../../../service";
 
 export const NoteSidebar: FC = () => {
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -44,7 +44,7 @@ export const NoteSidebar: FC = () => {
                        value={ value }
                        placeholder={ "Пошук" }
                        onChange={ handleInput }
-                       style={{fontSize: '15px'}}
+                       style={ { fontSize: "15px" } }
             />
          </div>
 

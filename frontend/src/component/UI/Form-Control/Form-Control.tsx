@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { CSSProperties, FC, useState } from "react";
 
 import { motion } from "framer-motion";
 import { horizontalShakingVariant } from "../../../animation/horizontal-shaking.variant";
@@ -15,9 +15,10 @@ interface IInput {
    errorMessage: string | undefined,
    isPassword: boolean
    register: UseFormRegister<any>,
+   style?: CSSProperties
 }
 
-export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, labelName, isPassword }) => {
+export function FormControl({ register, errorMessage, fieldName, labelName, isPassword, ...props }: IInput) {
    const [ validationError, setValidationError ] = useState<{ message: string }>({ message: "" });
    const [ isPasswordHidden, setIsPasswordHidden ] = useState<boolean>(isPassword);
 
@@ -45,7 +46,7 @@ export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, lab
                { isPassword && <p onClick={ showHiddenPassword }> { passwordValueCondition } </p> }
             </div>
             <div data-error={ !!errorMessage } className={ style.input_field }>
-               <input id={ labelName } type={ passwordCondition } { ...register(fieldName) }/>
+               <input id={ labelName } { ...props } type={ passwordCondition } { ...register(fieldName) }/>
 
                {/* Error icon */ }
                { errorMessage &&
@@ -65,4 +66,4 @@ export const FormControl: FC<IInput> = ({ register, errorMessage, fieldName, lab
 
       </>
    );
-};
+}

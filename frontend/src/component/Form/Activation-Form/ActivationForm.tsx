@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
+
+import { Input, Button } from "../../../component";
 
 import style from "./ActivationForm.module.scss";
 
@@ -6,7 +8,7 @@ interface ActivationFormProps {
    activationFn: (body: string) => Promise<void>;
 }
 
-export const ActivationForm: FC<ActivationFormProps> = ({ activationFn }) => {
+export function ActivationForm({ activationFn }: ActivationFormProps) {
    const [ value, setValue ] = useState<string>("");
 
    const handleChange = (value: string) => setValue(value);
@@ -23,17 +25,18 @@ export const ActivationForm: FC<ActivationFormProps> = ({ activationFn }) => {
          <p className={ style.message }> Будь ласка, введіть код активації </p>
 
          {/* Input */ }
-         <div className={ style.input_field }>
-            <input type="text"
-                   value={ value }
-                   onChange={ (e: ChangeEvent<HTMLInputElement>) => handleChange(e.target.value) }/>
-         </div>
+         <Input type="text"
+                value={ value }
+                onChange={ (e: ChangeEvent<HTMLInputElement>) => handleChange(e.target.value) }/>
+
 
          {/* Submit button */ }
-         <button disabled={ !value }
-                 onClick={ (e: FormEvent<HTMLButtonElement>) => handleSubmit(e) }> Надіслати
-         </button>
+         <Button disabled={ !value }
+                 text={ "Надіслати" }
+                 style={ { width: "100%" } }
+                 onClick={ (e: FormEvent<HTMLButtonElement>) => handleSubmit(e) }
+         />
 
       </div>
    );
-};
+}

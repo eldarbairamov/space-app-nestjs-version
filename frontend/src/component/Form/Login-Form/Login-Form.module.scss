@@ -9,26 +9,6 @@
    width: 400px;
    gap: 40px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-
-   button {
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      background: #24292e;
-      color: white;
-      width: 100%;
-      border-radius: 5px;
-
-      &:hover {
-         background: #3D8DAE;
-      }
-
-   }
-
-   button:disabled {
-      background: rgba(36, 41, 46, 0.24);
-      cursor: inherit;
-   }
 }
 
 .footer {
@@ -53,16 +33,16 @@
 
 }
 
-@media screen and (max-width: 500px) {
-   .LoginForm {
-      width: 320px;
-      padding: 40px;
-   }
-}
-
-@media screen and (max-width: 350px) {
-   .LoginForm {
-      width: 270px;
-      padding: 40px;
-   }
-}
+//@media screen and (max-width: 550px) {
+//   .LoginForm {
+//      width: 320px;
+//      padding: 40px;
+//   }
+//}
+//
+//@media screen and (max-width: 350px) {
+//   .LoginForm {
+//      width: 270px;
+//      padding: 40px;
+//   }
+//}

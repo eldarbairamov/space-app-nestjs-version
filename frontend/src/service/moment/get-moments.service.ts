@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { IMoments } from "../../interface";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,7 @@ export function getMomentsService(searchKey: string, messageApi: MessageInstance
       try {
          const { data } = await axiosInstance.get<IMoments>(momentsRequests.getAllMoments, { params: { searchKey: searchKey || null } });
          dispatch(momentActions.setMoments(data.data));
-         dispatch(momentActions.setTags(data.tagsForFilter))
+         dispatch(momentActions.setTags(data.tagsForFilter));
 
       } catch (e) {
          messageApi.error(errorCatherFn(e));

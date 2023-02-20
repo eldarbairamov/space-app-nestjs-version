@@ -25,12 +25,15 @@ const userSlice = createSlice({
    name: "user",
    initialState,
    reducers: {
+
       setAvatar: (state, { payload }) => {
          state.avatar = payload;
       },
+
       unsetAvatar: (state) => {
          state.avatar = "";
       },
+
       setInfo: (state, { payload }: PayloadAction<IUser>) => {
          if (payload.username) state.username = payload.username;
          if (payload.avatar) state.avatar = payload.avatar;
@@ -40,6 +43,7 @@ const userSlice = createSlice({
          state.plansCount = payload.plansCount;
          state.notesCount = payload.notesCount;
       },
+
    },
 });
 

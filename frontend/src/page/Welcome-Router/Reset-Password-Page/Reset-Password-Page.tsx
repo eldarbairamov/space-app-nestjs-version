@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { ResetPasswordForm, WelcomeLogo } from "../../../component";
 import { useMatchMedia } from "../../../hook";
@@ -9,7 +9,7 @@ import { resetPasswordService } from "../../../service";
 
 import style from "./Reset-Password-Page.module.scss";
 
-export const ResetPasswordPage: FC = () => {
+export function ResetPasswordPage () {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ searchParams ] = useSearchParams();
@@ -31,4 +31,4 @@ export const ResetPasswordPage: FC = () => {
 
       </div>
    );
-};
+}

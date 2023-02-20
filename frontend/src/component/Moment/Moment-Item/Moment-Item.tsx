@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { IMoment } from "../../../interface";
 import { v4 } from "uuid";
@@ -13,7 +13,7 @@ interface IMomentItem {
    moment: IMoment;
 }
 
-export const MomentItem: FC<IMomentItem> = ({ moment }) => {
+export function MomentItem({ moment }: IMomentItem) {
    return (
       <div className={ style.MomentItem } onClick={ () => AppRouter.navigate(`/moments/${ moment.id }`) }>
 
@@ -52,4 +52,4 @@ export const MomentItem: FC<IMomentItem> = ({ moment }) => {
 
       </div>
    );
-};
+}

@@ -1,14 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { Divider } from "antd";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Plan-Count.module.scss";
 
-interface IPlanCountProps {
-   plansCount: number;
-}
-
-export const PlanCount: FC<IPlanCountProps> = ({ plansCount }) => {
+export function PlanCount() {
+   const { plansCount } = useAppSelector(state => state.userReducer);
 
    return (
       <div className={ style.PlanCount }>
@@ -16,4 +14,4 @@ export const PlanCount: FC<IPlanCountProps> = ({ plansCount }) => {
          <p> { plansCount } </p>
       </div>
    );
-};
+}

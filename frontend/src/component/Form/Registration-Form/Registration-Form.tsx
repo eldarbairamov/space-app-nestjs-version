@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -6,6 +6,7 @@ import { IRegistration, IRegistrationForm } from "../../../interface";
 import { FormControl } from "../../UI/Form-Control/Form-Control";
 import { registrationValidator } from "../../../validator/auth.validator";
 import { WelcomeRouter } from "../../../router";
+import { Button } from "../../../component";
 
 import style from "./Registration-Form.module.scss";
 
@@ -13,7 +14,7 @@ interface IRegistrationFormProps {
    registrationFn: (body: IRegistration) => Promise<void>;
 }
 
-export const RegistrationForm: FC<IRegistrationFormProps> = ({ registrationFn }) => {
+export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IRegistrationForm>({
       resolver: joiResolver(registrationValidator),
       mode: "onTouched",
@@ -43,7 +44,7 @@ export const RegistrationForm: FC<IRegistrationFormProps> = ({ registrationFn })
                       isPassword={ true }/>
 
          {/* Submit button */ }
-         <button disabled={ !isValid }> Зареєструватись</button>
+         <Button disabled={ !isValid } text={ "Зареєструватись" } style={ { width: "100%" } }/>
 
          {/*  Footer */ }
          <div className={ style.footer }>
@@ -53,5 +54,5 @@ export const RegistrationForm: FC<IRegistrationFormProps> = ({ registrationFn })
 
       </form>
    );
-};
+}
 

@@ -1,14 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { message, Result } from "antd";
 import { v4 } from "uuid";
 import { AppRouter } from "../../../router";
 import { useSearchParams } from "react-router-dom";
 import { emailConfirmationService } from "../../../service";
+import { Button } from "../../UI/Button/Button";
 
 import style from "./Email-Confirmation-Message.module.scss";
 
-export const EmailConfirmationMessage: FC = () => {
+export function EmailConfirmationMessage() {
    const [ searchParams ] = useSearchParams();
    const confirmationToken = searchParams.get("token");
 
@@ -26,7 +27,11 @@ export const EmailConfirmationMessage: FC = () => {
                status="success"
                title="Ви успішно оновили адресу електронної пошти"
                subTitle="Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані"
-               extra={ [ <button key={ v4() } onClick={ () => AppRouter.navigate("/login", {replace: true}) }>Перейти</button> ] }
+               extra={
+                  <Button key={ v4() }
+                          text={ "Перейти" }
+                          onClick={ () => AppRouter.navigate("/login", { replace: true }) }/>
+               }
             />
          }
 
@@ -41,4 +46,4 @@ export const EmailConfirmationMessage: FC = () => {
 
       </div>
    );
-};
+}

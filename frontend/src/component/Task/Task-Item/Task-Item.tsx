@@ -1,42 +1,38 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { DeleteOutlined } from "@ant-design/icons";
 import { ITask } from "../../../interface";
 import { updateTaskService, deleteTaskService } from "../../../service";
 import { message } from "antd";
+import { useAppDispatch } from "../../../hook";
+import { taskAction } from "../../../redux/slice/task.slice";
+import { TypedOnClick } from "../../../interface/common.interface";
 
 import style from "./Task-Item.module.scss";
 import complete from "../../../asset/complete.svg";
 import incomplete from "../../../asset/incomplete.svg";
 
-interface ITaskItem {
+interface ITaskItemProps {
    task: ITask;
-   tasks: ITask[];
-   setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
 }
 
-export const TaskItem: FC<ITaskItem> = ({ task, tasks, setTasks }) => {
+export function TaskItem({ task }: ITaskItemProps) {
+   const dispatch = useAppDispatch();
+
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { updateTaskFn } = updateTaskService(messageApi);
    const { deleteTaskFn } = deleteTaskService(messageApi);
 
    const setTaskStatus = async (taskId: string): Promise<void> => {
-      const tasksArrCopy = [ ...tasks ];
-      const task = tasksArrCopy.find(item => item.id === taskId);
-
-      if (task) {
-         task.isCompleted = !task.isCompleted;
-         await updateTaskFn(taskId, task.isCompleted);
-         setTasks(tasksArrCopy);
-      }
+      await updateTaskFn(taskId, !task.isCompleted);
+      dispatch(taskAction.updateTask(taskId));
    };
 
-   const deleteTask = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
+   const deleteTask = async (e: TypedOnClick<HTMLDivElement>): Promise<void> => {
       e.stopPropagation();
-      const updatedArr = tasks.filter(item => item.id !== task.id);
-      await deleteTaskFn(task.id, task.planId);
-      setTasks(updatedArr);
+      await deleteTaskFn(task.id);
+      dispatch(taskAction.deleteTask(task.id));
    };
 
    return (
@@ -62,4 +58,4 @@ export const TaskItem: FC<ITaskItem> = ({ task, tasks, setTasks }) => {
 
       </div>
    );
-};
+}

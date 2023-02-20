@@ -1,21 +1,25 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { Result } from "antd";
-import {v4} from "uuid";
+import { v4 } from "uuid";
 import { AppRouter } from "../../../router";
+import { Button } from "../../../component";
 
 import style from "./Update-Email-Message.module.scss";
 
-export const UpdateEmailMessage: FC = () => {
+export function UpdateEmailMessage () {
 
    return (
-         <div className={ style.UpdateEmailMessage }>
-            <Result
-               className={ style.message }
-               status="success"
-               title="Лист із посиланням на підтведження вже летить на вказану електронну пошту"
-               extra={ [ <button key={v4()} onClick={() => AppRouter.navigate('/')}> Окей </button> ] }
-            />
-         </div>
+      <div className={ style.UpdateEmailMessage }>
+         <Result
+            className={ style.message }
+            status="success"
+            title="Ура!"
+            subTitle={ "Лист із подальшою інструкцією вже летить на вказану електронну пошту" }
+            extra={
+               <Button key={ v4() } text={ "Окей" } onClick={ () => AppRouter.navigate("/") }/>
+            }
+         />
+      </div>
    );
-};
+}

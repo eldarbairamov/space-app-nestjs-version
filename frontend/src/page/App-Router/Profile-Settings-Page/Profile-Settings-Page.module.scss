@@ -23,7 +23,7 @@
       flex-direction: column;
       position: relative;
 
-      min-width: 500px;
+      width: 500px;
       height: 600px;
 
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
@@ -106,7 +106,7 @@
          flex-direction: column;
          gap: 5px;
 
-         font-size: 16px;
+         font-size: 15px;
 
          p {
             color: #7d7d7d;
@@ -127,12 +127,6 @@
    }
 }
 
-@media screen and (max-height: 800px) {
-   .ProfileSettingsPage {
-      align-items: baseline;
-      height: 800px;
-   }
-}
 
 @media screen and (max-width: 1300px) {
    .ProfileSettingsPage {
@@ -141,5 +135,6 @@
 
       margin-top: 100px;
       margin-bottom: 50px;
+
    }
 }

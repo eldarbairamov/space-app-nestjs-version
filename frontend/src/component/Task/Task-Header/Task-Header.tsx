@@ -1,21 +1,21 @@
-import React, { FC } from "react";
+import React, { useState } from "react";
 
 import * as dateHelper from "moment/moment";
 import { IPlan } from "../../../interface";
-import { IInputFields } from "../../../page";
 import { updatePlanService } from "../../../service";
 import { message } from "antd";
+import { TypedOnChange } from "../../../interface/common.interface";
 
 import style from "./Task-Header.module.scss";
 
 interface ITaskHeaderProps {
-   plan: IPlan,
-   inputFields: IInputFields
-   onChangeFields(field: string, value: string): void
+   plan: IPlan;
 }
 
-export const TaskHeader: FC<ITaskHeaderProps> = ({ inputFields, plan, onChangeFields }) => {
+export function TaskHeader({ plan }: ITaskHeaderProps) {
    const [ messageApi, contextHolder ] = message.useMessage();
+
+   const [ planTitle, setPlanTitle ] = useState<string>(plan.title);
 
    const { updatePlanFn } = updatePlanService(messageApi);
 
@@ -26,11 +26,11 @@ export const TaskHeader: FC<ITaskHeaderProps> = ({ inputFields, plan, onChangeFi
          <input type={ "text" }
                 className={ style.plan_title }
                 id={ "planTitle" }
-                value={ inputFields.planTitle }
-                onChange={ (e: React.ChangeEvent<HTMLInputElement>) => onChangeFields("planTitle", e.target.value) }
-                onBlur={ () => updatePlanFn(plan.id, inputFields.planTitle) }
+                value={ planTitle }
+                onChange={ (event: TypedOnChange) => setPlanTitle(event.target.value) }
+                onBlur={ () => updatePlanFn(plan.id, planTitle) }
          />
          <p className={ style.plan_date }> { dateHelper(plan.lastModified).format("DD-MM-YYYY  , HH:mm") } </p>
       </div>
    );
-};
+}

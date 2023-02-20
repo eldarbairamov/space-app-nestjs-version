@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { RegistrationForm, WelcomeLogo } from "../../../component";
 import { useMatchMedia } from "../../../hook";
@@ -8,7 +8,7 @@ import { registrationService } from "../../../service";
 
 import style from "./Registration-Page.module.scss";
 
-export const RegistrationPage: FC = () => {
+export function RegistrationPage() {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -18,10 +18,12 @@ export const RegistrationPage: FC = () => {
       <div className={ style.RegistrationPage }>
          { contextHolder }
 
-         { (isDesktop || isTablet) && <WelcomeLogo/> }
+         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/ }
+
+         <WelcomeLogo/>
 
          <RegistrationForm registrationFn={ registrationFn }/>
 
       </div>
    );
-};
+}

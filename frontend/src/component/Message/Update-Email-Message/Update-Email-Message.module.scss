@@ -12,6 +12,7 @@
       padding: 50px;
       border-radius: 15px;
       width: 500px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
 
       div:nth-child(2) {
          font-size: 20px;
@@ -23,19 +24,4 @@
 
    }
 
-   button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      background: #24292e;
-      color: white;
-      border-radius: 5px;
-      font-size: 16px;
-
-      &:hover {
-         background: #3D8DAE;
-      }
-
-   }
 }

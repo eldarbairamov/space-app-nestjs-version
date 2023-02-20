@@ -1,7 +1,7 @@
 import { notesRequests } from "../../config/config";
 import { useAppDispatch } from "../../hook";
 import { INote } from "../../interface";
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { noteActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";

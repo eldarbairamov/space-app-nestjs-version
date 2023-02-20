@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { Result } from "antd";
 import { useRouteError } from "react-router-dom";
 
 import style from './Error-Message.module.scss'
 
-export const ErrorMessage:FC = () => {
+export function ErrorMessage () {
    const error = useRouteError() as Error;
 
    return (
@@ -19,4 +19,4 @@ export const ErrorMessage:FC = () => {
          </div>
       </div>
    );
-};
+}

@@ -1,4 +1,4 @@
-import React, { FC, useRef } from "react";
+import React, { useRef } from "react";
 
 import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../../../hook";
@@ -10,7 +10,7 @@ import { deletePhotoService, uploadPhotoService } from "../../../service";
 import style from "./Profile-Settings-Page.module.scss";
 import user from "../../../asset/user.png";
 
-export const ProfileSettingsPage: FC = () => {
+export function ProfileSettingsPage() {
    const { username, name, surname, avatar } = useAppSelector(state => state.userReducer);
    const [ messageApi, contextHolder ] = message.useMessage();
 
@@ -29,7 +29,7 @@ export const ProfileSettingsPage: FC = () => {
          {/* Left side */ }
          <div className={ style.left_side }>
 
-            {/* Avatar */}
+            {/* Avatar */ }
             <div className={ style.avatar_block }>
                <div>
                   { avatar &&
@@ -40,7 +40,7 @@ export const ProfileSettingsPage: FC = () => {
                   { !avatar && <img className={ style.no_avatar } src={ user } alt="no avatar"/> }
                </div>
 
-               {/* Edit avatar */}
+               {/* Edit avatar */ }
                <div className={ style.edit_avatar }>
                   <p onClick={ handlePick }> Змінити </p>
                   { !!avatar && <p> | </p> }
@@ -49,7 +49,7 @@ export const ProfileSettingsPage: FC = () => {
                </div>
             </div>
 
-            {/* Name section */}
+            {/* Name section */ }
             <div className={ style.name_section }>
                <p className={ style.username }> { username && username } </p>
                <p className={ style.fullname }>
@@ -59,7 +59,7 @@ export const ProfileSettingsPage: FC = () => {
                </p>
             </div>
 
-            {/* Auth settings */}
+            {/* Auth settings */ }
             <div className={ style.auth_settings }>
                <p onClick={ () => AppRouter.navigate("/settings/password") }> Змінити пароль </p>
                <p onClick={ () => AppRouter.navigate("/settings/email") }> Змінити електронну пошту </p>
@@ -74,4 +74,4 @@ export const ProfileSettingsPage: FC = () => {
 
       </div>
    );
-};
+}

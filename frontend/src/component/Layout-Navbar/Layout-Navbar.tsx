@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { NavLink } from "react-router-dom";
 import { message } from "antd";
@@ -9,7 +9,7 @@ import { logoutService } from "../../service";
 
 import style from "./Layout-Navbar.module.scss";
 
-export const LayoutNavbar: FC = () => {
+export function LayoutNavbar() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { logoutFn } = logoutService(messageApi, () => AppRouter.navigate(0));
@@ -46,4 +46,4 @@ export const LayoutNavbar: FC = () => {
 
       </div>
    );
-};
+}

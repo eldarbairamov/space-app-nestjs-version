@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { EditOutlined } from "@ant-design/icons";
 import { AppRouter } from "../../../router";
 
 import style from "./Dashboard-Edit-Profile.module.scss";
 
-export const DashboardEditProfile:FC = () => {
+export function DashboardEditProfile() {
    const editProfile = () => AppRouter.navigate("/settings");
 
    return (
@@ -14,4 +14,4 @@ export const DashboardEditProfile:FC = () => {
          <EditOutlined/>
       </div>
    );
-};
+}

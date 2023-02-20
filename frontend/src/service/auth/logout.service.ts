@@ -1,4 +1,4 @@
-import { errorCatherFn } from "../../helper/catch-error.helper";
+import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { storageService } from "../storage.service";
 import { authRequests } from "../../config/config";
@@ -11,8 +11,7 @@ export function logoutService(messageApi: MessageInstance, next: () => any) {
          messageApi.loading("Лоудінг..");
          await axiosInstance.get(authRequests.logout);
 
-         storageService.deleteAccessToken();
-         storageService.deleteRefreshToken();
+         storageService.deleteTokens();
 
          messageApi.destroy();
          next();

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { MessageInstance } from "antd/es/message/interface";
 
@@ -7,10 +7,10 @@ interface ErrorModalProps {
    messageApi: MessageInstance;
 }
 
-export const ValidationToaster: FC<ErrorModalProps> = ({ error, messageApi }) => {
+export function ValidationToaster({ error, messageApi }: ErrorModalProps) {
    useEffect(() => {
       error.message && messageApi.error(error.message);
    }, [ error ]);
 
    return (<></>);
-};
+}

@@ -1,22 +1,28 @@
-import React, { FC } from "react";
+import React from "react";
 
-import { TypedSetState } from "../../../interface/common.interface";
 import { NoBgInput, NoBgButton } from "../../../component";
+import { addPlanService } from "../../../service";
+import { message } from "antd";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { planAction } from "../../../redux/slice/plan.slice";
+import { TypedOnChange } from "../../../interface/common.interface";
 
 import add from "../../../asset/note.png";
 import style from "./Plan-Header.module.scss";
 
-interface IPlanHeaderProps {
-   searchKey: string;
-   addPlanFn: () => Promise<void>;
-   setSearchKey: TypedSetState<string>;
-}
+export function PlanHeader(){
+   const [ messageApi, contextHolder ] = message.useMessage();
 
-export const PlanHeader: FC<IPlanHeaderProps> = ({ addPlanFn, setSearchKey, searchKey }) => {
-   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => setSearchKey(e.target.value);
+   const { searchKey } = useAppSelector(state => state.planReducer);
+   const dispatch = useAppDispatch();
+
+   const { addPlanFn } = addPlanService(messageApi);
+
+   const handleInput = (event: TypedOnChange) => dispatch(planAction.setSearchKey(event.target.value));
 
    return (
       <div className={ style.PlanHeader }>
+         { contextHolder }
 
          {/* Add plan */ }
          <img src={ add } alt={ "add" }/>
@@ -31,6 +37,7 @@ export const PlanHeader: FC<IPlanHeaderProps> = ({ addPlanFn, setSearchKey, sear
                        placeholder={ "Пошук" }
             />
          </div>
+
       </div>
    );
-};
+}

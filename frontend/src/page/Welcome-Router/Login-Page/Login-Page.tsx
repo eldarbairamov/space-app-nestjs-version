@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 
 import { LoginForm, WelcomeLogo } from "../../../component";
 import { useMatchMedia } from "../../../hook";
@@ -8,8 +8,9 @@ import { loginService } from "../../../service";
 
 import style from "./Login-Page.module.scss";
 
-export const LoginPage: FC = () => {
+export function LoginPage() {
    const { isDesktop, isTablet } = useMatchMedia();
+
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { loginFn } = loginService(messageApi, () => WelcomeRouter.navigate(0));
@@ -18,10 +19,12 @@ export const LoginPage: FC = () => {
       <div className={ style.LoginPage }>
          { contextHolder }
 
-         { (isDesktop || isTablet) && <WelcomeLogo/> }
+         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/}
+
+         <WelcomeLogo/>
 
          <LoginForm loginFn={ loginFn }/>
 
       </div>
    );
-};
+}

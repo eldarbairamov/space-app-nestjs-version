@@ -1,12 +1,12 @@
 import { PlanRepository, TaskRepository } from "../../repository";
-import { PlanDocument, TaskDocument } from "../../model";
+import { TaskDocument } from "../../model";
 
-export const deleteTaskService = async (taskId: TaskDocument["id"], planId: PlanDocument["id"]) => {
+export const deleteTaskService = async (taskId: TaskDocument["id"]) => {
 
    // Delete task
    await TaskRepository.findByIdAndDelete(taskId);
 
-   // Pull task out of Plan document
-   await PlanRepository.findByIdAndUpdate(planId, { $pull: { tasksId: taskId } });
+   // Update plan
+   await PlanRepository.findOneAndUpdate({ tasksIds: taskId }, { $pull: { tasksIds: taskId } });
 
 };
