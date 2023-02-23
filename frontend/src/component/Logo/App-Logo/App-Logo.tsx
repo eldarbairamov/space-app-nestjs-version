@@ -2,7 +2,7 @@ import React from "react";
 
 import style from "./App-Logo.module.scss";
 
-export function AppLogo ()  {
+export function AppLogo() {
    return (
       <div className={ style.AppLogo }>
          <p className={ style.first }> [ </p>

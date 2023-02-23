@@ -7,13 +7,13 @@ import { AppRouter } from "../../../router";
 import { IChangePasswordForm } from "../../../interface";
 import { changePasswordValidator } from "../../../validator/auth.validator";
 import { message } from "antd";
-import { getUserService, passwordUpdateService } from "../../../service";
+import { getUserService, changePasswordService } from "../../../service";
 import { Button } from "../../../component";
 import { useAppSelector } from "../../../hook";
 
-import style from "./Password-Update-Form.module.scss";
+import style from "./Change-Password-Form.module.scss";
 
-export function PasswordUpdateForm () {
+export function ChangePasswordForm() {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IChangePasswordForm>({
       resolver: joiResolver(changePasswordValidator),
       mode: "onTouched",
@@ -24,7 +24,7 @@ export function PasswordUpdateForm () {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { getUserFn } = getUserService(messageApi);
-   const { updatePasswordFn } = passwordUpdateService(messageApi, () => AppRouter.navigate("/password_update/message", { replace: true }));
+   const { updatePasswordFn } = changePasswordService(messageApi, () => AppRouter.navigate("/password_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<IChangePasswordForm> = async (data) => {
       const newPassword = data.password;
@@ -44,7 +44,7 @@ export function PasswordUpdateForm () {
    }, [ username, name, surname ]);
 
    return (
-      <form className={ style.PasswordUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
+      <form className={ style.ChangePasswordForm } onSubmit={ handleSubmit(onSubmit) }>
          { contextHolder }
 
          {/* Form controls */ }

@@ -4,14 +4,14 @@ import { userRequests } from "../../config/config";
 import { MessageInstance } from "antd/es/message/interface";
 import { pleaseWait } from "../../helper/please-wait";
 
-export function passwordUpdateService(messageApi: MessageInstance, next: () => any) {
+export function changePasswordService(messageApi: MessageInstance, next: () => any) {
 
    const updatePasswordFn = async (newPassword: string, currentPassword: string) => {
       try {
          messageApi.loading("Лоудінг..");
          await axiosInstance.patch(userRequests.changePassword, { newPassword, currentPassword });
          messageApi.destroy();
-         await pleaseWait(1000)
+         await pleaseWait(1000);
          next();
 
       } catch (e) {

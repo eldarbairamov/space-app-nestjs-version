@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../hook";
 
 import style from "./Moment-Count.module.scss";
 
-export function MomentCount () {
+export function MomentCount() {
    const { momentsCount } = useAppSelector(state => state.userReducer);
 
    return (

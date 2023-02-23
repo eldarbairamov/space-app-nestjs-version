@@ -10,15 +10,15 @@ import { useAppDispatch, useAppSelector } from "../../hook";
 import { planAction } from "../../redux/slice/plan.slice";
 
 export function getPlansService(messageApi: MessageInstance) {
-   const {searchKey} = useAppSelector(state => state.planReducer)
-   const dispatch = useAppDispatch()
+   const { searchKey } = useAppSelector(state => state.planReducer);
+   const dispatch = useAppDispatch();
 
    const debounced = useDebounce(searchKey);
 
    const getPlansFn = async () => {
       try {
          const { data } = await axiosInstance.get<IPlan[]>(plansRequests.getAllPlans, { params: { searchKey: debounced || null } });
-         dispatch(planAction.setPlans(data))
+         dispatch(planAction.setPlans(data));
 
       } catch (e) {
          messageApi.error(errorCatherFn(e));

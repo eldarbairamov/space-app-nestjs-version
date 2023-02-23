@@ -3,7 +3,7 @@ import { errorCatherFn } from "../../helper/error-catcher";
 import { userRequests } from "../../config/config";
 import { axiosInstance } from "../axios.service";
 
-export function emailUpdateService(messageApi: MessageInstance, next: () => any) {
+export function changeEmailService(messageApi: MessageInstance, next: () => any) {
 
    const updateEmailFn = async (email: string) => {
       try {

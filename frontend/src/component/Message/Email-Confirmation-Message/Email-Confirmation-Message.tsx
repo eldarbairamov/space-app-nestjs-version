@@ -5,11 +5,11 @@ import { v4 } from "uuid";
 import { AppRouter } from "../../../router";
 import { useSearchParams } from "react-router-dom";
 import { emailConfirmationService } from "../../../service";
-
-import style from "./Email-Confirmation-Message.module.scss";
 import { Button } from "../../UI/Button/Button";
 
-export function EmailConfirmationMessage () {
+import style from "./Email-Confirmation-Message.module.scss";
+
+export function EmailConfirmationMessage() {
    const [ searchParams ] = useSearchParams();
    const confirmationToken = searchParams.get("token");
 

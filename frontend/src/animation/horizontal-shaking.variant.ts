@@ -1,4 +1,4 @@
-export const horizontalShakingVariant = {
+export const horizontalShaking = {
    hidden: {
       x: -5,
    },

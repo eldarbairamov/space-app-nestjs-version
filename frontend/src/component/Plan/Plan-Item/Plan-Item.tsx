@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
 import { IPlan } from "../../../interface";
-import * as dateHelper from "moment/moment";
+import dateHelper from "moment/moment";
 import { TypedOnClick } from "../../../interface/common.interface";
 import { deletePlanService } from "../../../service";
 import { message } from "antd";

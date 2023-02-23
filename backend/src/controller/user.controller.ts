@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
-import { changeEmailService, uploadAvatarService, updateProfileService, deleteAvatarService, changePasswordService, getUserInfoService, updateEmailService } from "../service";
+import { changeEmailService, uploadAvatarService, updateProfileService, deleteAvatarService, changePasswordService, getUserInfoService, changeEmailReqService } from "../service";
 import { IChangePassword, IUpdateProfile, IUserInfoResponse, IRequest } from "../interface";
 
 export const userController = {
@@ -16,7 +16,7 @@ export const userController = {
    }),
 
    changeEmailRequest: expressAsyncHandler(async (req: IRequest<{ email: string }, any, any>, res: Response<{ message: string }>) => {
-      await updateEmailService(req.userId, req.body.email);
+      await changeEmailReqService(req.userId, req.body.email);
       res.json({ message: "Success" });
    }),
 

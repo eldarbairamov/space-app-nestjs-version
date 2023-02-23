@@ -11,7 +11,7 @@ export function activationService(messageApi: MessageInstance, next: () => any) 
          messageApi.loading("Лоудінг..");
          await axiosInstance.post(authRequests.accountActivation, { activationCode: body });
          messageApi.destroy();
-         messageApi.success("Аккаунт активований");
+         messageApi.success("Ваш аккаунт активовано");
          await pleaseWait(2000);
          next();
 

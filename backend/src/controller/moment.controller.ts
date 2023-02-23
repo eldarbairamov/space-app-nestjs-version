@@ -1,10 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
-import { IRequest, IMomentsResponse } from "../interface";
+import { IRequest, IMomentsResponse, IUpdateMoment, IMomentResponse } from "../interface";
 import { Response } from "express";
-import { MomentRepository, UserRepository } from "../repository";
-import { IMomentResponse, IUpdateMoment } from "../interface";
 import { addMomentService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
-import { getOneMomentService } from "../service/moment/get-one-moment.service";
+import { deleteMomentService, getOneMomentService } from "../service";
 
 export const momentController = {
 
@@ -29,8 +27,7 @@ export const momentController = {
    }),
 
    deleteMoment: expressAsyncHandler(async (req: IRequest<any, { momentId: string }, any>, res: Response<{ message: string }>) => {
-      await MomentRepository.findByIdAndDelete(req.params.momentId);
-      await UserRepository.findByIdAndUpdate(req.userId, { $pull: { momentsIds: req.params.momentId } });
+      await deleteMomentService(req.userId, req.params.momentId);
       res.json({ message: "Success" });
    }),
 

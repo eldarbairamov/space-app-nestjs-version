@@ -1,7 +1,7 @@
-import React, { CSSProperties, FC, useState } from "react";
+import React, { CSSProperties, useState } from "react";
 
 import { motion } from "framer-motion";
-import { horizontalShakingVariant } from "../../../animation/horizontal-shaking.variant";
+import { horizontalShaking } from "../../../animation";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { UseFormRegister } from "react-hook-form/dist/types/form";
 import { ValidationToaster } from "../Validation-Toaster/Validation-Toaster";
@@ -51,7 +51,7 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
                {/* Error icon */ }
                { errorMessage &&
                   <motion.div
-                     variants={ horizontalShakingVariant }
+                     variants={ horizontalShaking }
                      initial={ "hidden" }
                      animate={ "visible" }
                   >

@@ -6,7 +6,7 @@ import { addMomentService, getMomentsService } from "../../../service";
 
 import style from "./Moment-Page.module.scss";
 
-export function MomentsPage () {
+export function MomentsPage() {
    const [ searchKey, setSearchKey ] = useState<string>("");
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -23,7 +23,7 @@ export function MomentsPage () {
          <MomentHeader addMomentFn={ addMomentFn } setSearchKey={ setSearchKey }/>
 
          {/* Moment list wrapper */ }
-         <div className={ style.moment_list_wrapper }> <MomentList /> </div>
+         <div className={ style.moment_list_wrapper }><MomentList/></div>
 
       </div>
 

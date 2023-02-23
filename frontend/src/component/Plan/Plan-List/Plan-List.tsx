@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import { PlanItem } from "../Plan-Item/Plan-Item";
-import {Empty } from "antd";
+import { Empty } from "antd";
 import { useAppSelector } from "../../../hook";
 
 import style from "./Plan-List.module.scss";

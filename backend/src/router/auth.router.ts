@@ -34,8 +34,8 @@ authRouter.post(
 
 // Refresh
 authRouter.post(
-   '/refresh',
-   authController.refresh)
+   "/refresh",
+   authController.refresh);
 
 // Reset password
 authRouter.patch(

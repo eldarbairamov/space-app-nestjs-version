@@ -10,7 +10,7 @@ import { TypedOnChange } from "../../../interface/common.interface";
 import add from "../../../asset/note.png";
 import style from "./Plan-Header.module.scss";
 
-export function PlanHeader(){
+export function PlanHeader() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { searchKey } = useAppSelector(state => state.planReducer);

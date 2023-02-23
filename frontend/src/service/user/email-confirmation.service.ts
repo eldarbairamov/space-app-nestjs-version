@@ -6,7 +6,7 @@ import { axiosInstance } from "../axios.service";
 
 export function emailConfirmationService(messageApi: MessageInstance, token: string) {
    const [ isSuccess, setIsSuccess ] = useState<boolean>(false);
-   const [errorMessage, setErrorMessage] = useState<string>('')
+   const [ errorMessage, setErrorMessage ] = useState<string>("");
 
    const confirmEmailFn = async () => {
       try {

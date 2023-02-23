@@ -15,11 +15,11 @@ interface IMomentHeaderProps {
 
 export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) {
    const select = (value: string) => setSearchKey(value);
+
    const { tags } = useAppSelector(state => state.momentReducer);
 
    return (
       <div className={ style.MomentHeader }>
-
          {/* Save moment */ }
          <div className={ style.save_moment }>
             <img src={ add } alt={ "add" }/>

@@ -49,7 +49,7 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
          {/*  Footer */ }
          <div className={ style.footer }>
             <p> Є аккаунт? </p>
-            <a onClick={ () => WelcomeRouter.navigate("/login") }> Увійти </a>
+            <p onClick={ () => WelcomeRouter.navigate("/login") }> Увійти </p>
          </div>
 
       </form>

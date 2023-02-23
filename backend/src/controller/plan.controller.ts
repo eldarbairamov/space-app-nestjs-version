@@ -1,8 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
-import { addPlanService, getPlansService } from "../service";
+import { addPlanService, getPlansService, updatePlanService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
-import { updatePlanService } from "../service/plan/update-plan.service";
 import { IPlanResponse, IRequest } from "../interface";
 
 export const planController = {

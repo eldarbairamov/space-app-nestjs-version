@@ -25,7 +25,7 @@ export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProp
 
          {/* Message  */ }
          <p className={ style.message }>
-            Введіть адресу електронної пошти вашого аккаунту і ми пришлемо вам посилання на скидання пароля.
+            Введіть адресу електронної пошти вашого аккаунту і ми пришлемо вам посилання на скидання пароля
          </p>
 
          {/* Form control */ }

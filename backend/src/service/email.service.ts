@@ -1,8 +1,13 @@
 import * as nodemailer from "nodemailer";
 import { config } from "../config";
 import { ApiException } from "../exception/api.exception";
+import hbs from "nodemailer-express-handlebars";
+import path from "node:path";
+import { emailTemplate } from "../email-template/email-template";
+import { EmailActionType } from "../interface/email-action.type";
 
-export const emailSender = async (to: string, subject: string, message: string = "") => {
+export const emailSender = async (to: string, emailAction: EmailActionType, context: any) => {
+   const template = emailTemplate[emailAction];
 
    const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -13,18 +18,28 @@ export const emailSender = async (to: string, subject: string, message: string =
       },
    });
 
+   transporter.use("compile", hbs({
+      viewEngine: {
+         defaultLayout: "main",
+         layoutsDir: path.join(process.cwd(), "src", "email-template", "layout"),
+         partialsDir: path.join(process.cwd(), "src", "email-template", "partial"),
+         extname: ".hbs",
+      },
+      extName: ".hbs",
+      viewPath: path.join(process.cwd(), "src", "email-template", "view"),
+   }));
+
+   const mail = {
+      to,
+      subject: template.subject,
+      template: template.templateName,
+      context,
+   };
+
    return transporter
-      .sendMail({
-         to,
-         subject,
-         html: `
-             <div> 
-               <h2> Вітаємо! </h2>
-               <p> ${ message } </p>
-            </div>
-            `,
-      })
-      .catch(() => {
+      .sendMail(mail)
+      .catch((e) => {
+         console.log(e);
          throw new ApiException("Nodemailer: Error", 500);
       });
 };

@@ -6,27 +6,24 @@ import { errorMiddleware } from "./middleware";
 import { config } from "./config";
 import { apiRouter } from "./router/api.router";
 import fileUpload from "express-fileupload";
+import { cronRunner } from "./cron";
 
 const app: Application = express();
 mongoose.set("strictQuery", false);
 
-// Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(fileUpload());
-app.use(express.static("src/upload"));
-
-// Routing
-app.use("/api", apiRouter);
-
-// Error middleware
-app.use(errorMiddleware);
+app.use(express.json())
+   .use(express.urlencoded({ extended: true }))
+   .use(cors())
+   .use(fileUpload())
+   .use(express.static("src/upload"))
+   .use("/api", apiRouter)
+   .use(errorMiddleware);
 
 // Start server:
 const start = async () => {
    await mongoose.connect(`${ config.MONGO_URI }`);
    app.listen(config.PORT);
+   cronRunner();
 };
 
 start()

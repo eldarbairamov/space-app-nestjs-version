@@ -3,18 +3,18 @@ import React from "react";
 import { Result } from "antd";
 import { useRouteError } from "react-router-dom";
 
-import style from './Error-Message.module.scss'
+import style from "./Error-Message.module.scss";
 
-export function ErrorMessage () {
+export function ErrorMessage() {
    const error = useRouteError() as Error;
 
    return (
       <div>
-         <div className={style.ErrorMessage}>
+         <div className={ style.ErrorMessage }>
             <Result
                status="500"
                title="Ой.."
-               subTitle={ `Несподівана помилка: ${error.message}` }
+               subTitle={ `Несподівана помилка: ${ error.message }` }
             />
          </div>
       </div>

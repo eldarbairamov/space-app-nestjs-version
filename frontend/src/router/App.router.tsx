@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "../layout";
 import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, MomentItemPage } from "../page";
-import { EmailConfirmationMessage, EmailUpdateForm, ErrorMessage, PasswordUpdateForm, ProfileUpdateForm, UpdateEmailMessage, UpdatePasswordMessage } from "../component";
+import { EmailConfirmationMessage, ErrorMessage, ChangePasswordForm, ProfileUpdateForm, UpdateEmailMessage, UpdatePasswordMessage, ChangeEmailForm } from "../component";
 
 export const AppRouter = createBrowserRouter([
    {
@@ -27,11 +27,11 @@ export const AppRouter = createBrowserRouter([
                },
                {
                   path: "email",
-                  element: <EmailUpdateForm/>,
+                  element: <ChangeEmailForm/>,
                },
                {
                   path: "password",
-                  element: <PasswordUpdateForm/>,
+                  element: <ChangePasswordForm/>,
                },
             ],
          },

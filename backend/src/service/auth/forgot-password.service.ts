@@ -1,7 +1,7 @@
 import { emailSender } from "../email.service";
 import { ActionTokenRepository } from "../../repository";
 import * as jwt from "jsonwebtoken";
-import { RESET_PASSWORD_SUBJECT, RESET_PASSWORD_TOKEN_TYPE } from "../../constant";
+import { FORGOT_PASSWORD, RESET_PASSWORD_TOKEN_TYPE } from "../../constant";
 import { emailValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
 import { UserDocument } from "../../model";
@@ -24,6 +24,6 @@ export const forgotPasswordService = async (emailFromReq: string, userFromDb: Us
    });
 
    // Send email
-   await emailSender(emailFromReq, RESET_PASSWORD_SUBJECT, resetPasswordLink);
+   await emailSender(emailFromReq, FORGOT_PASSWORD, { resetPasswordLink, username: userFromDb.username });
 
 };

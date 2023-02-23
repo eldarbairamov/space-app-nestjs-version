@@ -7,7 +7,7 @@ import { Button } from "../../../component";
 
 import style from "./Update-Email-Message.module.scss";
 
-export function UpdateEmailMessage () {
+export function UpdateEmailMessage() {
 
    return (
       <div className={ style.UpdateEmailMessage }>

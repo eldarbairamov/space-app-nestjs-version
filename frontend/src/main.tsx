@@ -14,9 +14,11 @@ const theme: ThemeConfig = {
       colorPrimaryBg: "#e9e9ff",
       fontSize: 15,
       colorError: "#df8281",
+      colorPrimary: '#7274d7',
       colorSuccess: "#90be8e",
       colorText: "#4e4e51",
-   },
+      colorInfo: "#7274d7"
+   }
 };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

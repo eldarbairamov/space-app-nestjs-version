@@ -8,7 +8,7 @@ import { activationService } from "../../../service";
 
 import style from "./Activation-Page.module.scss";
 
-export function ActivationPage () {
+export function ActivationPage() {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ messageApi, contextHolder ] = message.useMessage();

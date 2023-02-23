@@ -10,10 +10,7 @@ export const changeEmailService = async (confirmationToken: string): Promise<voi
    if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Decoding token
-   const {
-      userId,
-      email,
-   } = jwt.verify(confirmationToken, "secret confirmation token key") as { userId: string, email: string };
+   const { userId, email } = jwt.verify(confirmationToken, "secret confirmation token key") as { userId: string, email: string };
 
    if (!userId && !email) throw new ApiException("Invalid token", 401);
 

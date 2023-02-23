@@ -19,7 +19,7 @@ export function LoginPage() {
       <div className={ style.LoginPage }>
          { contextHolder }
 
-         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/}
+         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/ }
 
          <WelcomeLogo/>
 

@@ -13,7 +13,7 @@ export function loginService(messageApi: MessageInstance, next: () => any) {
          messageApi.loading("Лоудінг..");
          const { data } = await axiosInstance.post<IOAuth>(authRequests.login, body);
 
-         storageService.setTokens(data.accessToken, data.refreshToken)
+         storageService.setTokens(data.accessToken, data.refreshToken);
 
          messageApi.destroy();
          messageApi.success(`Привіт, ${ data.username }`);

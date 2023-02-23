@@ -25,7 +25,7 @@
       @extend %flex;
       justify-content: center;
 
-      width: 98%;
+      width: 100%;
       height: calc(100% - 60px);
 
       textarea {
@@ -37,7 +37,7 @@
       }
    }
 
-   .no_notes_wrapper{
+   .no_notes_wrapper {
       height: 100%;
    }
 

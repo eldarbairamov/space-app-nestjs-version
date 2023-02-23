@@ -1,6 +1,6 @@
 export const config = {
-   API_URL: import.meta.env.VITE_API_URL,
-   SERVER_URL: import.meta.env.VITE_SERVER_URL,
+   API_URL: "http://localhost:5400/api",
+   SERVER_URL: "http://localhost:5400/",
 };
 
 export const userRequests = {

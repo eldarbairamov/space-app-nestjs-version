@@ -9,7 +9,7 @@ import { resetPasswordService } from "../../../service";
 
 import style from "./Reset-Password-Page.module.scss";
 
-export function ResetPasswordPage () {
+export function ResetPasswordPage() {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ searchParams ] = useSearchParams();

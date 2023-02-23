@@ -3,6 +3,9 @@ import path from "node:path";
 import { UserRepository } from "../../repository";
 import { ApiException } from "../../exception/api.exception";
 import { UserDocument } from "../../model";
+import sharp from "sharp";
+import { exists } from "../../helper/exists";
+import { mkdir } from "fs/promises";
 
 export const uploadAvatarService = async (image: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
    try {
@@ -11,19 +14,22 @@ export const uploadAvatarService = async (image: fileUpload.FileArray | null | u
 
       // Generate extension, filename and path for static files
       const ext = path.extname(avatar.name);
-      const fileName = Date.now() + ext;
-      const uploadPath = path.join(process.cwd(), "src", "upload", fileName);
+      const imageName = Date.now() + ext;
+      const uploadPath = path.join(process.cwd(), "src", "upload");
+      const isFolderExists = await exists(uploadPath);
+      if (!isFolderExists) await mkdir(uploadPath);
 
-      // Upload image to "static" folder
-      await avatar.mv(uploadPath);
+      // Compress and upload image to "static" folder
+      await sharp(avatar.data).jpeg({ quality: 70 }).toFile(path.join(uploadPath, imageName));
 
       // Save avatar to DB
-      await UserRepository.findByIdAndUpdate(userId, { avatar: fileName });
+      await UserRepository.findByIdAndUpdate(userId, { avatar: imageName });
 
       // Return filename to client
-      return fileName;
+      return imageName;
 
    } catch (e) {
+      console.log(e);
       throw new ApiException("Upload image: Error", 500);
    }
 };

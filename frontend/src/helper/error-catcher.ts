@@ -18,8 +18,16 @@ export const errorCatherFn = (e: unknown) => {
          message = "Активуйте аккаунт";
          break;
 
+      case "Invalid file type":
+         message = "Невірний формат файлу";
+         break;
+
       case "Wrong email or password":
          message = "Невірний пароль або електронна пошта";
+         break;
+
+      case "File size must be less than 3 mb":
+         message = "Розмір файлу не має перевищувати 3МБ";
          break;
 
       case "Activation code is not valid":
@@ -34,8 +42,12 @@ export const errorCatherFn = (e: unknown) => {
          message = "Непередбачена помилка.. Перезавантажте сторінку";
          break;
 
+      case "Password is already in use":
+         message = "Пароль вже використовується. Спробуйте інший :)";
+         break;
+
       default:
-         message = "Непередбачена помилка..";
+         message = `${ axiosError.message }`;
          break;
    }
 

@@ -17,7 +17,7 @@ export function updateMomentService(setPrevState: TypedSetState<IMoment | undefi
          messageApi.success("Збережено");
 
       } catch (e) {
-         messageApi.destroy()
+         messageApi.destroy();
          messageApi.error(errorCatherFn(e));
       }
    };

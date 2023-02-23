@@ -10,7 +10,7 @@ export function registrationService(messageApi: MessageInstance, next: () => any
       try {
          messageApi.loading("Лоудінг..");
          await axiosInstance.post(authRequests.registration, body);
-         next()
+         next();
 
       } catch (e) {
          messageApi.destroy();

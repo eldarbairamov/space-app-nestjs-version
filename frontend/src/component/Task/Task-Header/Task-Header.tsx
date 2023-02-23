@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import * as dateHelper from "moment/moment";
+import dateHelper from "moment/moment";
 import { IPlan } from "../../../interface";
 import { updatePlanService } from "../../../service";
 import { message } from "antd";

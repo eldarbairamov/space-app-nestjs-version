@@ -22,7 +22,7 @@ export const NoteList: FC = () => {
          }
 
          { !notes.length &&
-            <div className={style.no_notes_wrapper}>
+            <div className={ style.no_notes_wrapper }>
                <Empty image={ Empty.PRESENTED_IMAGE_SIMPLE } description={ "" }/>
             </div>
          }

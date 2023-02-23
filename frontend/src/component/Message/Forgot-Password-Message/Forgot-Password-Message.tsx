@@ -5,7 +5,7 @@ import { SmileOutlined } from "@ant-design/icons";
 
 import style from "./Forgot-Password-Message.module.scss";
 
-export function ForgotPasswordMessage () {
+export function ForgotPasswordMessage() {
    return (
       <div className={ style.ForgotPasswordMessage }>
          <Result

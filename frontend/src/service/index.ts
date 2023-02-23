@@ -30,10 +30,10 @@ export * from "./plan/get-plans.service";
 export * from "./plan/add-plan.service";
 export * from "./plan/delete-plan.service";
 
-export * from './user/get-user.service'
-export * from './user/delete-photo.service'
-export * from './user/email-confirmation.service'
-export * from './user/email-update.service'
-export * from './user/password-update.service'
-export * from './user/update-profile.service'
-export * from './user/upload-photo.service'
+export * from "./user/get-user.service";
+export * from "./user/delete-photo.service";
+export * from "./user/email-confirmation.service";
+export * from "./user/change-email.service";
+export * from "./user/change-password.service";
+export * from "./user/update-profile.service";
+export * from "./user/upload-photo.service";

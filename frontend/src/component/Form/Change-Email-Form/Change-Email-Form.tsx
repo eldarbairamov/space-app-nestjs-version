@@ -6,13 +6,13 @@ import { FormControl } from "../../UI/Form-Control/Form-Control";
 import { AppRouter } from "../../../router";
 import { emailValidator } from "../../../validator/auth.validator";
 import { message } from "antd";
-import { emailUpdateService, getUserService } from "../../../service";
+import { changeEmailService, getUserService } from "../../../service";
 import { Button } from "../../../component";
 import { useAppSelector } from "../../../hook";
 
-import style from "./Email-Update-Form.module.scss";
+import style from "./Change-Email-Form.module.scss";
 
-export function EmailUpdateForm() {
+export function ChangeEmailForm() {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ email: string }>({
       resolver: joiResolver(emailValidator),
       mode: "onTouched",
@@ -23,7 +23,7 @@ export function EmailUpdateForm() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { getUserFn } = getUserService(messageApi);
-   const { updateEmailFn } = emailUpdateService(messageApi, () => AppRouter.navigate("/email_update/message", { replace: true }));
+   const { updateEmailFn } = changeEmailService(messageApi, () => AppRouter.navigate("/email_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => updateEmailFn(email);
 
@@ -33,7 +33,7 @@ export function EmailUpdateForm() {
    }, [ username, name, surname ]);
 
    return (
-      <form className={ style.EmailUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
+      <form className={ style.ChangeEmailForm } onSubmit={ handleSubmit(onSubmit) }>
          { contextHolder }
 
          {/* Form controls */ }

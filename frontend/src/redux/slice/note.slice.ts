@@ -61,7 +61,7 @@ const noteSlice = createSlice({
          const targetNoteIndex = state.notes.findIndex(item => item.id === targetId);
 
          state.notes = state.notes.filter(item => item.id !== targetId);
-         state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : '';
+         state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : "";
          state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
       },
 

@@ -34,7 +34,7 @@ const taskSlice = createSlice({
 
       updateTask: (state, { payload }: PayloadAction<string>) => {
          const task = state.tasks.find(item => item.id === payload) as ITask;
-         task.isCompleted = !task.isCompleted
+         task.isCompleted = !task.isCompleted;
       },
 
    },

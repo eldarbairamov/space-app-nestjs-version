@@ -12,7 +12,10 @@ import style from "./Layout-Navbar.module.scss";
 export function LayoutNavbar() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
-   const { logoutFn } = logoutService(messageApi, () => AppRouter.navigate(0));
+   const { logoutFn } = logoutService(messageApi, () => {
+      AppRouter.navigate("/");
+      AppRouter.navigate(0);
+   });
 
    return (
       <div className={ style.LayoutNavbar }>

@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { emailSender } from "../email.service";
 import { UserRepository, ActionTokenRepository } from "../../repository";
 import { passHasher } from "../../helper";
-import { ACCOUNT_ACTIVATION_SUBJECT, ACTIVATION_TOKEN_TYPE } from "../../constant";
+import { ACTIVATION_TOKEN_TYPE, REGISTRATION } from "../../constant";
 import { IRegistration } from "../../interface";
 import { registrationValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
@@ -30,6 +30,6 @@ export const registrationService = async (body: IRegistration) => {
    });
 
    // Send activation email
-   await emailSender(body.email!, ACCOUNT_ACTIVATION_SUBJECT, activationToken);
+   await emailSender(body.email!, REGISTRATION, { activationCode: activationToken, username: candidate.username });
 
 };

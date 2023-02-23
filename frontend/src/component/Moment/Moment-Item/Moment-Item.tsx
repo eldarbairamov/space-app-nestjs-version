@@ -4,7 +4,7 @@ import { IMoment } from "../../../interface";
 import { v4 } from "uuid";
 import { config } from "../../../config/config";
 import { AppRouter } from "../../../router";
-import * as dateHelper from "moment/moment";
+import dateHelper from "moment/moment";
 
 import style from "./Moment-Item.module.scss";
 import no_photo from "../../../asset/no-photo.png";

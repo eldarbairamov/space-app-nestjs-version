@@ -13,7 +13,7 @@ export const OAuthRepository = {
       }
    },
 
-   deleteOne: async (filter: FilterQuery<IOAuth>): Promise<DeleteResult> => {
+   deleteOne: async (filter: FilterQuery<OAuthDocument>): Promise<DeleteResult> => {
       try {
          return OAuthModel.deleteOne(filter);
       } catch (e) {
@@ -21,7 +21,15 @@ export const OAuthRepository = {
       }
    },
 
-   findOne: async (filter: FilterQuery<IOAuth>): Promise<OAuthDocument | null> => {
+   deleteMany: async (filter: FilterQuery<OAuthDocument>): Promise<DeleteResult> => {
+      try {
+         return OAuthModel.deleteMany(filter);
+      } catch (e) {
+         throw ApiException.DatabaseError(e);
+      }
+   },
+
+   findOne: async (filter: FilterQuery<OAuthDocument>): Promise<OAuthDocument | null> => {
       try {
          return OAuthModel.findOne(filter).lean();
       } catch (e) {

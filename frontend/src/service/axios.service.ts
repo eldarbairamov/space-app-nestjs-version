@@ -38,7 +38,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
 
          } catch (e) {
             storageService.deleteTokens();
-            AppRouter.navigate("/", { state: { status: "unauthorized" } });
+            AppRouter.navigate("/", { state: { status: "unauthorized" }, replace: true });
             AppRouter.navigate(0);
          }
 
@@ -46,7 +46,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
       }
 
       if (axiosError.message === "Network Error") {
-         throw new Error("Непередбачена помилка..");
+         throw new Error(`Непередбачена помилка: ${ axiosError.message }`);
       }
 
       return Promise.reject(e);

@@ -4,7 +4,7 @@ import { INote } from "../../../interface";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { DeleteOutlined } from "@ant-design/icons";
 import { noteActions } from "../../../redux/slice";
-import * as dateHelper from "moment";
+import dateHelper from "moment";
 import { message } from "antd";
 import { deleteNoteService } from "../../../service";
 

@@ -29,8 +29,6 @@ export const loginService = async (body: ILogin, userFromDb: UserDocument): Prom
    });
 
    // Return presented data to client
-   return {
-      username: userFromDb.username, ...accessTokenPair,
-   };
+   return { username: userFromDb.username, ...accessTokenPair };
 
 };

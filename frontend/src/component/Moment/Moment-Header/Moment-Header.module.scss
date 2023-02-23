@@ -13,6 +13,14 @@
    position: relative;
    border-bottom: 2px #d7d7d7 solid;
 
+   .how_it_works {
+      position: absolute;
+      cursor: pointer;
+      left: 50px;
+      font-size: 15px;
+      font-weight: 500;
+   }
+
    .select_wrapper {
       position: absolute;
       right: 50px;

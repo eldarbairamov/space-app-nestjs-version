@@ -7,7 +7,7 @@ import { Button } from "../../../component/";
 
 import style from "./Unauthorized-Message.module.scss";
 
-export function UnauthorizedMessage () {
+export function UnauthorizedMessage() {
    return (
       <div className={ style.UnauthorizedMessage }>
          <Result

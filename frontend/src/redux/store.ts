@@ -9,7 +9,7 @@ export const store = configureStore({
       noteReducer,
       momentReducer,
       planReducer,
-      taskReducer
+      taskReducer,
    },
 });
 

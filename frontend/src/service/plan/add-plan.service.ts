@@ -7,12 +7,12 @@ import { useAppDispatch } from "../../hook";
 import { planAction } from "../../redux/slice/plan.slice";
 
 export function addPlanService(messageApi: MessageInstance) {
-   const dispatch = useAppDispatch()
+   const dispatch = useAppDispatch();
 
    const addPlanFn = async () => {
       try {
          const { data } = await axiosInstance.get<IPlan>(plansRequests.addPlan);
-         dispatch(planAction.addPlan(data))
+         dispatch(planAction.addPlan(data));
 
       } catch (e) {
          messageApi.error(errorCatherFn(e));

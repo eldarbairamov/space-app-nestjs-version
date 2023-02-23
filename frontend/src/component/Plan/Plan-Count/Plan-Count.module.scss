@@ -17,3 +17,9 @@
       color: #3D8DAE;
    }
 }
+
+@media screen and (max-width: 750px) {
+   .PlanCount {
+      width: min-content;
+   }
+}

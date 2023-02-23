@@ -17,3 +17,9 @@
       color: #DF8453;
    }
 }
+
+@media screen and (max-width: 750px) {
+   .NoteCount {
+      width: min-content;
+   }
+}

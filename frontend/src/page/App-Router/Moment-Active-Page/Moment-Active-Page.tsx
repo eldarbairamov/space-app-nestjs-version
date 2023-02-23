@@ -6,15 +6,18 @@ import { config } from "../../../config/config";
 import { v4 } from "uuid";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { momentActions } from "../../../redux/slice";
-import * as dateHelper from "moment";
-import { message } from "antd";
+import dateHelper from "moment";
+import { FloatButton, message, Tooltip } from "antd";
 import { AppRouter } from "../../../router";
 import { deleteMomentService, getMomentService, updateMomentService, uploadMomentImageService } from "../../../service";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 import no_photo from "../../../asset/no-photo.png";
 import style from "./Moment-Active-Page.module.scss";
 
 export function MomentItemPage() {
+   const text = <span> Для збереження інформації при редагуванні полів - клацай enter :) </span>;
+
    const { momentId } = useParams<{ momentId: IMoment["id"] }>();
 
    const dispatch = useAppDispatch();
@@ -96,7 +99,7 @@ export function MomentItemPage() {
          { contextHolder }
 
          { activeMoment &&
-            <div className={ style.moment_item }>
+            <div className={ style.active_moment }>
                { (prevState !== activeMoment) &&
                   <p className={ style.save_moment } onClick={ updateMoment }> Зберегти </p>
                }
@@ -212,6 +215,10 @@ export function MomentItemPage() {
 
             </div>
          }
+
+         <Tooltip placement="topLeft" title={ text }>
+            <FloatButton icon={ <QuestionCircleOutlined/> } type="primary" style={ { right: 24 } }/>
+         </Tooltip>
       </div>
    );
 }

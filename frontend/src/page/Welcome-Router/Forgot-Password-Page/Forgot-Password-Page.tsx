@@ -8,7 +8,7 @@ import { forgotPasswordService } from "../../../service";
 
 import style from "./Forgot-Password-Page.module.scss";
 
-export function ForgotPasswordPage () {
+export function ForgotPasswordPage() {
    const { isDesktop, isTablet } = useMatchMedia();
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -19,7 +19,7 @@ export function ForgotPasswordPage () {
       <div className={ style.ForgotPasswordPage }>
          { contextHolder }
 
-         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/}
+         {/*{ (isDesktop || isTablet) && <WelcomeLogo/> }*/ }
 
          <WelcomeLogo/>
 

@@ -1,8 +1,12 @@
-.RegistrationForm {
+%flex {
    display: flex;
-   flex-direction: column;
    align-items: center;
    justify-content: center;
+}
+
+.RegistrationForm {
+   @extend %flex;
+   flex-direction: column;
    background: white;
    padding: 50px;
    border-radius: 15px;
@@ -12,15 +16,14 @@
 }
 
 .footer {
-   display: flex;
+   @extend %flex;
 
    p {
       margin-right: 3px;
    }
 
-   a {
-      text-decoration: none;
-      color: #DF8453;
+   p:nth-child(2) {
+      color: #d78052;
       cursor: pointer;
    }
 
