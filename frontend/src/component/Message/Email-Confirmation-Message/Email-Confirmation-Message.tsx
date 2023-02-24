@@ -29,7 +29,7 @@ export function EmailConfirmationMessage() {
                subTitle="Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані"
                extra={
                   <Button key={ v4() }
-                          text={ "Перейти" }
+                          text={ "Увійти" }
                           onClick={ () => AppRouter.navigate("/login", { replace: true }) }/>
                }
             />

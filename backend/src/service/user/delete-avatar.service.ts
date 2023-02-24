@@ -15,7 +15,7 @@ export const deleteAvatarService = async (userId: UserDocument["id"], body: { fi
    await UserRepository.findByIdAndUpdate(userId, { avatar: "" });
 
    // Delete image from hard drive
-   const imagePath = path.join(process.cwd(), "src", "upload", body.fileName);
+   const imagePath = path.join(__dirname, "..", "..", "upload", body.fileName);
    await unlink(imagePath).catch(() => {
       throw new ApiException("No such image or directory", 500);
    });

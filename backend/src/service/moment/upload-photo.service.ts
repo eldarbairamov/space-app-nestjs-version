@@ -16,7 +16,7 @@ export const uploadPhotoService = async (image: fileUpload.FileArray | null | un
       // Generate extension, filename and path for static files
       const ext = path.extname(photo.name);
       const imageName = Date.now() + ext;
-      const uploadPath = path.join(process.cwd(), "src", "upload");
+      const uploadPath = path.join(__dirname, "..", "..", "upload");
       const isFolderExists = await exists(uploadPath);
       if (!isFolderExists) await mkdir(uploadPath);
 
@@ -27,7 +27,7 @@ export const uploadPhotoService = async (image: fileUpload.FileArray | null | un
       const moment = await MomentRepository.findById(momentId) as MomentDocument;
 
       // Delete image from hard drive if exists
-      const imagePath = path.join(process.cwd(), "src", "upload", (moment.photo ? moment.photo : "nothing"));
+      const imagePath = path.join(__dirname, "..", "..", "upload", (moment.photo ? moment.photo : "nothing"));
       const isImageExists = await exists(imagePath);
 
       if (isImageExists) await unlinker(imagePath);

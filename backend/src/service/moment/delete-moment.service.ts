@@ -9,7 +9,7 @@ export const deleteMomentService = async (userId: UserDocument["id"], momentId: 
    const moment = await MomentRepository.findById(momentId) as MomentDocument;
 
    // Define image path, check if image exists and delete
-   const imagePath = path.join(process.cwd(), "src", "upload", (moment.photo ? moment.photo : "nothing"));
+   const imagePath = path.join(__dirname, "..", "..", "upload", (moment.photo ? moment.photo : "nothing"));
    const isImageExists = await exists(imagePath);
    if (isImageExists) await unlinker(imagePath);
 

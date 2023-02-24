@@ -43,7 +43,7 @@ export const errorCatherFn = (e: unknown) => {
          break;
 
       case "Password is already in use":
-         message = "Пароль вже використовується. Спробуйте інший :)";
+         message = "Цей пароль вже використовується. Спробуйте інший";
          break;
 
       default:

@@ -15,7 +15,7 @@ export const uploadAvatarService = async (image: fileUpload.FileArray | null | u
       // Generate extension, filename and path for static files
       const ext = path.extname(avatar.name);
       const imageName = Date.now() + ext;
-      const uploadPath = path.join(process.cwd(), "src", "upload");
+      const uploadPath = path.join(__dirname, "..", '..', "upload");
       const isFolderExists = await exists(uploadPath);
       if (!isFolderExists) await mkdir(uploadPath);
 

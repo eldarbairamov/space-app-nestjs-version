@@ -4,7 +4,7 @@ import { ApiException } from "../exception/api.exception";
 import hbs from "nodemailer-express-handlebars";
 import path from "node:path";
 import { emailTemplate } from "../email-template/email-template";
-import { EmailActionType } from "../interface/email-action.type";
+import { EmailActionType } from "../type/email-action.type";
 
 export const emailSender = async (to: string, emailAction: EmailActionType, context: any) => {
    const template = emailTemplate[emailAction];
@@ -21,12 +21,12 @@ export const emailSender = async (to: string, emailAction: EmailActionType, cont
    transporter.use("compile", hbs({
       viewEngine: {
          defaultLayout: "main",
-         layoutsDir: path.join(process.cwd(), "src", "email-template", "layout"),
-         partialsDir: path.join(process.cwd(), "src", "email-template", "partial"),
+         layoutsDir: path.join(__dirname, "..", "email-template", "layout"),
+         partialsDir: path.join(__dirname, "..", "email-template", "partial"),
          extname: ".hbs",
       },
       extName: ".hbs",
-      viewPath: path.join(process.cwd(), "src", "email-template", "view"),
+      viewPath: path.join(__dirname, "..", "email-template", "view"),
    }));
 
    const mail = {
