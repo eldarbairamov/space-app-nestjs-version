@@ -49,5 +49,5 @@ export * from "./Message/Unauthorized-Message/Unauthorized-Message";
 export * from "./Message/Forgot-Password-Message/Forgot-Password-Message";
 export * from "./Message/Registration-Success-Message/Registration-Success-Message";
 export * from "./Message/Email-Confirmation-Message/Email-Confirmation-Message";
-export * from "./Message/Update-Email-Message/Update-Email-Message";
-export * from "./Message/Update-Password-Message/Update-Password-Message";
+export * from "./Message/Change-Email-Message/Change-Email-Message";
+export * from "./Message/Change-Password-Message/Change-Password-Message";

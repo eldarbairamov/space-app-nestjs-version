@@ -7,6 +7,9 @@ import { config } from "./config";
 import { apiRouter } from "./router/api.router";
 import fileUpload from "express-fileupload";
 import { cronRunner } from "./cron";
+import swaggerUI from "swagger-ui-express";
+import { STATIC_PATH } from "./constant/static-path.constant";
+import swaggerJson from "./swagger.json";
 
 const app: Application = express();
 mongoose.set("strictQuery", false);
@@ -15,8 +18,9 @@ app.use(express.json())
    .use(express.urlencoded({ extended: true }))
    .use(cors())
    .use(fileUpload())
-   .use(express.static("src/upload"))
+   .use(express.static(STATIC_PATH))
    .use("/api", apiRouter)
+   .use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerJson))
    .use(errorMiddleware);
 
 // Start server:

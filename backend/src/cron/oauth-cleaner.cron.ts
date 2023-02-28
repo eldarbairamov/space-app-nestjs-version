@@ -14,6 +14,7 @@ export const oAuthCleanerCron = new CronJob("@weekly", async () => {
       console.log("Clean old tokens");
 
    } catch (e) {
-      console.error(e);
+      const error = e as Error
+      console.log(error.message);
    }
 });

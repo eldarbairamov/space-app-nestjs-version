@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UserDocument } from "../user/model/user.model";
 import { JwtService } from "@nestjs/jwt";
 import { v4 as uuid } from "uuid";
@@ -11,7 +11,6 @@ import { ActionTokenRepository, OAuthRepository } from "./repository";
 import { ILoginResponse } from "./interface/login-response.interface";
 import { FORGOT_PASSWORD, REGISTRATION } from "../common/constants/email-action.constant";
 import { ACTIVATION_TOKEN_TYPE, RESET_PASSWORD_TOKEN_TYPE } from "../common/constants/token-type.constant";
-
 
 @Injectable()
 export class AuthService {
@@ -51,11 +50,8 @@ export class AuthService {
    }
 
    async login(user: UserDocument): Promise<ILoginResponse> {
-      // Check is user activated
-      if (!user.isActivated) throw new ForbiddenException({ message: "Активуйте аккаунт" });
-
       // Generate access token pair
-      const tokenPair = this.tokenService.tokenPair(user.id);
+      const tokenPair = this.tokenService.generatePair({ userId: user.id });
 
       // Save tokens to DB
       await this.oAuthRepository.create({ ownerId: user.id, ...tokenPair });
@@ -79,7 +75,7 @@ export class AuthService {
    async activation(activationCode: string) {
       // Find and delete action token
       const actionTokenInfo = await this.actionTokenRepository.findOneAndDelete({ token: activationCode });
-      if (!actionTokenInfo) throw new UnauthorizedException({ message: "Невалідний код активації" });
+      if (!actionTokenInfo) throw new HttpException("Activation code is not valid", HttpStatus.UNAUTHORIZED);
 
       // Update user status
       await this.userRepository.findByIdAndUpdate(actionTokenInfo.ownerId, { isActivated: true });
@@ -88,7 +84,7 @@ export class AuthService {
    async forgotPassword(email: string) {
       // Find user
       const user = await this.userRepository.findOne({ email });
-      if (!user) throw new UnauthorizedException({ message: "Користувача не знайдено" });
+      if (!user) throw new HttpException("User is not found", HttpStatus.UNAUTHORIZED);
 
       // Generate link
       const resetPasswordToken = this.jwtService.sign({ userId: user.id }, {
@@ -112,7 +108,7 @@ export class AuthService {
       // Delete action token
       const actionTokenInfo = await this.actionTokenRepository.findOneAndDelete({ token: dto.resetPasswordToken });
 
-      if (!actionTokenInfo) throw new UnauthorizedException("Invalid token");
+      if (!actionTokenInfo) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
       // Define token owner ID
       const tokenOwnerId = actionTokenInfo.ownerId;
@@ -126,12 +122,12 @@ export class AuthService {
 
    async logout(token: string) {
       // Delete tokens from DB
-      await this.oAuthRepository.findOne({ accessToken: token });
+      await this.oAuthRepository.deleteOne({ accessToken: token });
    }
 
    async refresh(userId: UserDocument["id"], refreshToken: string) {
       // Generate new token pair
-      const accessTokenPair = this.tokenService.tokenPair(userId);
+      const accessTokenPair = this.tokenService.generatePair({ userId });
 
       // Delete old record and create new
       await Promise.all([

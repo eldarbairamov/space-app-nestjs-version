@@ -29,7 +29,7 @@ export function PlanItem({ plan }: IPlanItemProps) {
       await deletePlanFn(targetId);
    };
 
-   const choosePlan = (plan: IPlan) => navigate(`/plans/${ plan.id }`, { state: { plan } });
+   const choosePlan = (plan: IPlan) => navigate(`/plans/${ plan.id }`);
 
    return (
       <div className={ style.PlanItem }

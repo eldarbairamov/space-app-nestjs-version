@@ -16,6 +16,7 @@ import { NoteRepository } from "../note/repository/note.repository";
 import { Moment, MomentSchema } from "../moment/model/moment.model";
 import { Plan, PlanSchema } from "../plan/model/plan.model";
 import { Note, NoteSchema } from "../note/model/note.model";
+import { TokenService } from "../auth/token.service";
 
 @Module({
 
@@ -30,7 +31,7 @@ import { Note, NoteSchema } from "../note/model/note.model";
       MulterModule.register(fileStorage),
    ],
 
-   providers: [ UserService, UserRepository, ActionTokenRepository, EmailService, MomentRepository, PlanRepository, NoteRepository ],
+   providers: [ UserService, UserRepository, ActionTokenRepository, EmailService, MomentRepository, PlanRepository, NoteRepository, TokenService ],
    controllers: [ UserController ],
    exports: [ UserService ],
 

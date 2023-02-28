@@ -17,6 +17,6 @@ export interface IUpdateMoment {
    readonly title: string,
    readonly photo: string,
    readonly location: string,
-   readonly date: Date
+   readonly date: number
    readonly tags: string[]
 }

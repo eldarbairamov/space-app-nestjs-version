@@ -14,6 +14,8 @@ export class NoteRepository {
       try {
          return this.noteModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -22,6 +24,8 @@ export class NoteRepository {
       try {
          return this.noteModel.findById(noteId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -31,6 +35,8 @@ export class NoteRepository {
       try {
          return this.noteModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -39,6 +45,8 @@ export class NoteRepository {
       try {
          return this.noteModel.count(filter);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -47,6 +55,8 @@ export class NoteRepository {
       try {
          return this.noteModel.findByIdAndUpdate(noteId, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -55,6 +65,8 @@ export class NoteRepository {
       try {
          return this.noteModel.findByIdAndDelete(noteId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }

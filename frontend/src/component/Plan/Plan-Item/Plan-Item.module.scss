@@ -1,10 +1,6 @@
-%flex {
+.PlanItem {
    display: flex;
    align-items: center;
-}
-
-.PlanItem {
-   @extend %flex;
    justify-content: center;
    flex-direction: column;
    gap: 28px;

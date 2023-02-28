@@ -18,3 +18,9 @@
       color: #3D8DAE;
    }
 }
+
+.NoBgButton[data-hover='notes'] {
+   &:hover {
+      color: #DF8453;
+   }
+}

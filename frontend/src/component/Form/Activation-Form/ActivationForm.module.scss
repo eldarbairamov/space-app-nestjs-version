@@ -9,34 +9,15 @@
    width: 600px;
    gap: 40px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+
+   .message {
+      text-align: center;
+      font-size: 19px;
+   }
 }
 
-.message {
-   text-align: center;
-   font-size: 19px;
+@media screen and (max-width: 700px) {
+   .ActivationForm {
+      width: 450px;
+   }
 }
-
-//@media screen and (max-width: 630px) {
-//   .ActivationForm {
-//      width: 500px;
-//      padding: 40px;
-//   }
-//}
-//
-//@media screen and (max-width: 500px) {
-//   .ActivationForm {
-//      width: 320px;
-//      padding: 40px;
-//   }
-//}
-//
-//@media screen and (max-width: 350px) {
-//   .ActivationForm {
-//      width: 270px;
-//      padding: 40px;
-//
-//      .message {
-//         font-size: 18px;
-//      }
-//   }
-//}

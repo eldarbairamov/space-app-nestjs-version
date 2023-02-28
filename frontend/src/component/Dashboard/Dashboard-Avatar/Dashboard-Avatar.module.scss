@@ -1,12 +1,11 @@
 .DashboardAvatar {
-
    img {
-      width: 15vw;
+      width: 400px;
    }
 
    .avatar {
-      width: 13vw;
-      height: 13vw;
+      width: 350px;
+      height: 350px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -15,33 +14,13 @@
    }
 
    .no_avatar {
-      width: 13vw;
+      width: 350px;
    }
 
-}
-
-@media screen and (max-height: 800px) {
-   .DashboardAvatar {
-
-      img {
-         width: 300px;
-      }
-
-      .avatar {
-         width: 250px;
-         height: 250px;
-      }
-
-      .no_avatar {
-         width: 250px;
-      }
-
-   }
 }
 
 @media screen and (max-width: 1700px) {
    .DashboardAvatar {
-
       img {
          width: 300px;
       }
@@ -54,6 +33,24 @@
       .no_avatar {
          width: 250px;
       }
-
    }
 }
+
+@media screen and (max-height: 1000px) {
+   .DashboardAvatar {
+      img {
+         width: 300px;
+      }
+
+      .avatar {
+         width: 250px;
+         height: 250px;
+      }
+
+      .no_avatar {
+         width: 250px;
+      }
+   }
+}
+
+

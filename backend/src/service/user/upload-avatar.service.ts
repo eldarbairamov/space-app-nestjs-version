@@ -6,21 +6,29 @@ import { UserDocument } from "../../model";
 import sharp from "sharp";
 import { exists } from "../../helper/exists";
 import { mkdir } from "fs/promises";
+import { unlinker } from "../../helper/unlinker";
+import { STATIC_PATH } from "../../constant/static-path.constant";
 
 export const uploadAvatarService = async (image: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
    try {
+      // Delete prev image from hard drive if exists
+      const user = await UserRepository.findById(userId);
+      const imagePath = path.join(STATIC_PATH, (user?.avatar ? user.avatar : "nothing"));
+      const isImageExists = await exists(imagePath);
+
+      if (isImageExists) await unlinker(imagePath);
+
       // Define avatar variable
       const avatar = image!.avatar as fileUpload.UploadedFile;
 
       // Generate extension, filename and path for static files
       const ext = path.extname(avatar.name);
       const imageName = Date.now() + ext;
-      const uploadPath = path.join(__dirname, "..", '..', "upload");
-      const isFolderExists = await exists(uploadPath);
-      if (!isFolderExists) await mkdir(uploadPath);
+      const isFolderExists = await exists(STATIC_PATH);
+      if (!isFolderExists) await mkdir(STATIC_PATH);
 
       // Compress and upload image to "static" folder
-      await sharp(avatar.data).jpeg({ quality: 70 }).toFile(path.join(uploadPath, imageName));
+      await sharp(avatar.data).jpeg({ quality: 70 }).toFile(path.join(STATIC_PATH, imageName));
 
       // Save avatar to DB
       await UserRepository.findByIdAndUpdate(userId, { avatar: imageName });

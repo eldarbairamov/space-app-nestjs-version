@@ -11,12 +11,15 @@ import style from "./Note-List.module.scss";
 
 export const NoteList: FC = () => {
    const [ messageApi, contextHolder ] = message.useMessage();
+
    const { notes } = useAppSelector(state => state.noteReducer);
+
    getNotesService(messageApi);
 
    return (
       <div className={ style.NoteList }>
          { contextHolder }
+
          { notes &&
             notes.map(item => <NoteItem key={ uuid() } note={ item }/>)
          }

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { Request } from "express";
@@ -20,7 +20,7 @@ export class AccessStrategy extends PassportStrategy(Strategy, "access") {
    async validate(req: Request, decoded: any) {
       const accessToken = req.headers.authorization?.split(" ")[1];
       const isTokenActual = await this.oAuthRepository.findOne({ accessToken });
-      if (!isTokenActual) throw new UnauthorizedException("Unauthorized");
+      if (!isTokenActual) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
       const userId = decoded.userId;
       return { userId, token: accessToken };

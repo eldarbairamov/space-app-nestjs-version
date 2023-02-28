@@ -8,6 +8,8 @@ export const PlanRepository = {
       try {
          return PlanModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -17,6 +19,8 @@ export const PlanRepository = {
       try {
          return PlanModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -25,6 +29,8 @@ export const PlanRepository = {
       try {
          return PlanModel.findById(planId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -33,6 +39,8 @@ export const PlanRepository = {
       try {
          return PlanModel.findByIdAndUpdate(planId, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -41,6 +49,8 @@ export const PlanRepository = {
       try {
          return PlanModel.findOneAndUpdate(filter, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -49,6 +59,8 @@ export const PlanRepository = {
       try {
          return PlanModel.findByIdAndDelete(planId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -57,6 +69,8 @@ export const PlanRepository = {
       try {
          return PlanModel.count({ ownerId: userId });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },

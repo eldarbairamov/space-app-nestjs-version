@@ -11,6 +11,7 @@ import { getUserService, updateProfileService } from "../../../service";
 import { Button } from "../../../component";
 
 import style from "./Profile-Update-Form.module.scss";
+import { scrollToElement } from "../../../helper/scroll-to-element";
 
 export function ProfileUpdateForm() {
    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateProfileForm>({
@@ -31,6 +32,8 @@ export function ProfileUpdateForm() {
       setValue("username", username);
       setValue("name", name ? name : undefined);
       setValue("surname", surname ? surname : undefined);
+
+      scrollToElement()
 
    }, [ username, name, surname ]);
 

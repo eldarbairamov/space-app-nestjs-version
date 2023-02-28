@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Select } from "antd";
 import { NoBgButton } from "../../../component";
@@ -15,6 +15,7 @@ interface IMomentHeaderProps {
 
 export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) {
    const select = (value: string) => setSearchKey(value);
+   const [ isValueNull, setIsValueNull ] = useState<any>();
 
    const { tags } = useAppSelector(state => state.momentReducer);
 
@@ -23,7 +24,11 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
          {/* Save moment */ }
          <div className={ style.save_moment }>
             <img src={ add } alt={ "add" }/>
-            <NoBgButton text={ "Зберегти момент" } hoverSubject={ "moment" } onClick={ () => addMomentFn() }/>
+            <NoBgButton text={ "Зберегти момент" } hoverSubject={ "moment" } onClick={ async () => {
+               await addMomentFn();
+               select("");
+               setIsValueNull(null);
+            } }/>
          </div>
 
          {/* Select */ }
@@ -33,6 +38,7 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
                     placeholder="Фільтр"
                     notFoundContent={ "Пусто" }
                     bordered={ false }
+                    value={ isValueNull && null }
                     onChange={ select }
                     options={ tags.map(tag => ({ value: tag, label: tag })) }
                     filterOption={ (input, option) =>

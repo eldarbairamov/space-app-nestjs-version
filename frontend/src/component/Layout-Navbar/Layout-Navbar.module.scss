@@ -109,6 +109,10 @@
       cursor: pointer;
    }
 
+}
 
-
+@media screen and (max-width: 550px) {
+   .LayoutNavbar {
+      width: 450px;
+   }
 }

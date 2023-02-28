@@ -14,14 +14,18 @@ export class ActionTokenRepository {
       try {
          return await this.actionTokenModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
 
    async findByIdAndUpdate(id: string, update: UpdateQuery<ActionToken>): Promise<ActionTokenDocument> {
       try {
-         return await this.actionTokenModel.findByIdAndUpdate(id, update);
+         return await this.actionTokenModel.findByIdAndUpdate(id, update, {new: true});
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -30,6 +34,8 @@ export class ActionTokenRepository {
       try {
          return await this.actionTokenModel.findOneAndDelete(filter);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }

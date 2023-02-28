@@ -1,5 +1,5 @@
 .LoginPage {
-   min-height: 100vh;
+   height: 100vh;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -7,3 +7,8 @@
    gap: 100px;
 }
 
+@media screen and (max-height: 800px) {
+   .LoginPage {
+      height: 800px;
+   }
+}

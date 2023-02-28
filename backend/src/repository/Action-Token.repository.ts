@@ -8,6 +8,8 @@ export const ActionTokenRepository = {
       try {
          return ActionTokenModel.create(body);
       } catch (e) {
+         const error = e as Error;
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -16,6 +18,8 @@ export const ActionTokenRepository = {
       try {
          return ActionTokenModel.findOneAndDelete(filter);
       } catch (e) {
+         const error = e as Error;
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },

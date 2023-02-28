@@ -9,6 +9,7 @@ import { UpdateMomentDto } from "./dto";
 import * as path from "path";
 import { exists } from "../common/helper/exists";
 import { unlinker } from "../common/helper/unlinker";
+import { staticPath } from "../common/constants/static-path.constant";
 
 @Injectable()
 export class MomentService {
@@ -60,7 +61,7 @@ export class MomentService {
       const moment = await this.momentRepository.findById(momentId);
 
       // Define image path, check if image exists and delete
-      const imagePath = path.join(__dirname, "..", "upload", (moment.photo ? moment.photo : "nothing"));
+      const imagePath = path.join(staticPath, (moment.photo ? moment.photo : "nothing"));
       const isImageExists = await exists(imagePath);
       if (isImageExists) await unlinker(imagePath);
 
@@ -75,8 +76,8 @@ export class MomentService {
       // Find moment
       const moment = await this.momentRepository.findById(momentId);
 
-      // Delete image from hard drive if exists
-      const imagePath = path.join(__dirname, "..", "upload", (moment.photo ? moment.photo : "nothing"));
+      // Delete prev image from hard drive if exists
+      const imagePath = path.join(staticPath, (moment.photo ? moment.photo : "nothing"));
       const isImageExists = await exists(imagePath);
 
       if (isImageExists) await unlinker(imagePath);
@@ -84,7 +85,6 @@ export class MomentService {
       // Save photo do DB
       moment.photo = fileName;
       await moment.save();
-
    }
 
 }

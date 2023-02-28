@@ -6,6 +6,7 @@ import { config } from "../../../config/config";
 import { AppRouter } from "../../../router";
 import { message } from "antd";
 import { deletePhotoService, uploadPhotoService } from "../../../service";
+import { scrollToElement } from "../../../helper/scroll-to-element";
 
 import style from "./Profile-Settings-Page.module.scss";
 import user from "../../../asset/user.png";
@@ -42,7 +43,7 @@ export function ProfileSettingsPage() {
 
                {/* Edit avatar */ }
                <div className={ style.edit_avatar }>
-                  <p onClick={ handlePick }> Змінити </p>
+                  <p onClick={ handlePick }> Змінити фото </p>
                   { !!avatar && <p> | </p> }
                   { !!avatar && <p onClick={ () => deletePhotoFn(avatar) }> Видалити </p> }
                   <input ref={ filePicker } type={ "file" } onChange={ uploadPhoto }/>
@@ -61,14 +62,27 @@ export function ProfileSettingsPage() {
 
             {/* Auth settings */ }
             <div className={ style.auth_settings }>
-               <p onClick={ () => AppRouter.navigate("/settings/password") }> Змінити пароль </p>
-               <p onClick={ () => AppRouter.navigate("/settings/email") }> Змінити електронну пошту </p>
+
+               <p onClick={ () => {
+                  scrollToElement();
+                  AppRouter.navigate("/settings/password");
+               } }>
+                  Змінити пароль
+               </p>
+
+               <p onClick={ () => {
+                  scrollToElement();
+                  AppRouter.navigate("/settings/email");
+               } }>
+                  Змінити електронну пошту
+               </p>
+
             </div>
 
          </div>
 
          {/* Right side */ }
-         <div className={ style.right_side }>
+         <div id={ "right_side" } className={ style.right_side }>
             <Outlet/>
          </div>
 

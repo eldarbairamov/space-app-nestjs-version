@@ -171,3 +171,16 @@
       height: 800px;
    }
 }
+
+@media screen and (max-width: 550px) {
+   .MomentActivePage {
+      width: 450px;
+   }
+}
+
+@media screen and (max-width: 1000px) {
+   .MomentActivePage {
+      width: 85vw;
+   }
+}
+

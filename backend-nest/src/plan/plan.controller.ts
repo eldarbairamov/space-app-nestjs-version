@@ -16,7 +16,7 @@ export class PlanController {
    @UseGuards(AccessGuard)
    @Get("add")
    async addPlan(
-      @User('userId') userId: string): Promise<IPlanResponse> {
+      @User("userId") userId: string): Promise<IPlanResponse> {
 
       return this.planService.addPlan(userId);
    }
@@ -36,10 +36,20 @@ export class PlanController {
    @UseGuards(AccessGuard)
    @Get()
    async getPlans(
-      @Query('searchKey') searchKey: string,
-      @User('userId') userId: string): Promise<IPlanResponse[]> {
+      @Query("searchKey") searchKey: string,
+      @User("userId") userId: string): Promise<IPlanResponse[]> {
 
       return this.planService.getPlans(userId, searchKey);
+   }
+
+   // Get one plan
+   @UseGuards(AccessGuard)
+   @UseGuards(ObjectCheckingGuard)
+   @Get('get/:planId')
+   async getOnePlan(
+      @Param("planId") planId: string): Promise<IPlanResponse> {
+
+      return this.planService.getOnePlan(planId);
    }
 
    // Delete plan
@@ -47,7 +57,7 @@ export class PlanController {
    @UseGuards(ObjectCheckingGuard)
    @Delete(":planId")
    async deletePlan(
-      @User('userId') userId: string,
+      @User("userId") userId: string,
       @Param("planId") noteId: string): Promise<{ message: string }> {
 
       await this.planService.deletePlan(noteId, userId);

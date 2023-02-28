@@ -6,9 +6,9 @@ import { AppRouter } from "../../../router";
 import { logoutService } from "../../../service";
 import { Button } from "../../../component";
 
-import style from "./Update-Password-Message.module.scss";
+import style from "./Change-Password-Message.module.scss";
 
-export function UpdatePasswordMessage() {
+export function ChangePasswordMessage() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { logoutFn } = logoutService(messageApi, () => {
@@ -17,7 +17,7 @@ export function UpdatePasswordMessage() {
    });
 
    return (
-      <div className={ style.UpdatePasswordMessage }>
+      <div className={ style.ChangePasswordMessage }>
          { contextHolder }
 
          <Result
@@ -29,6 +29,7 @@ export function UpdatePasswordMessage() {
                <Button onClick={ logoutFn } text={ "Увійти" } key={ v4() }/>
             }
          />
+
       </div>
    );
 }

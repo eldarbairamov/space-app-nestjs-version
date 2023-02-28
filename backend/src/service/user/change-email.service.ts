@@ -2,6 +2,7 @@ import * as jwt from "jsonwebtoken";
 import { ApiException } from "../../exception/api.exception";
 import { ActionTokenRepository, UserRepository } from "../../repository";
 import { changeEmailValidator } from "../../validator";
+import { config } from "../../config";
 
 export const changeEmailService = async (confirmationToken: string): Promise<void> => {
 
@@ -10,13 +11,13 @@ export const changeEmailService = async (confirmationToken: string): Promise<voi
    if (validation.error) throw new ApiException(validation.error.message, 400);
 
    // Decoding token
-   const { userId, email } = jwt.verify(confirmationToken, "secret confirmation token key") as { userId: string, email: string };
+   const { userId, email } = jwt.verify(confirmationToken, config.SECRET_CHANGE_EMAIL_KEY) as { userId: string, email: string };
 
-   if (!userId && !email) throw new ApiException("Invalid token", 401);
+   if (!userId && !email) throw new ApiException("Token invalid or expired", 401);
 
    // Delete action token
    const actionToken = await ActionTokenRepository.findOneAndDelete({ token: confirmationToken });
-   if (!actionToken) throw new ApiException("Invalid token", 401);
+   if (!actionToken) throw new ApiException("Token invalid or expired", 401);
 
    // Update email
    await UserRepository.findByIdAndUpdate(userId, { email: email });

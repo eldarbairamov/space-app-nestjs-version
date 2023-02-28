@@ -14,6 +14,8 @@ export class MomentRepository {
       try {
          return this.momentModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -22,6 +24,8 @@ export class MomentRepository {
       try {
          return this.momentModel.findById(momentId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -30,6 +34,8 @@ export class MomentRepository {
       try {
          return this.momentModel.count(filter);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -39,6 +45,8 @@ export class MomentRepository {
       try {
          return this.momentModel.find(filterObj).sort({ createdAt: "desc" });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -47,6 +55,8 @@ export class MomentRepository {
       try {
          return this.momentModel.find({ ownerId: userId });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -55,6 +65,8 @@ export class MomentRepository {
       try {
          return this.momentModel.findByIdAndUpdate(momentId, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -63,6 +75,8 @@ export class MomentRepository {
       try {
          return this.momentModel.findByIdAndDelete(momentId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }

@@ -15,7 +15,6 @@ interface INoteItem {
 }
 
 export const NoteItem: FC<INoteItem> = ({ note }) => {
-   const bodyCondition = note.body && note.body.split("").length > 35;
    const titleCondition = note.title && note.title.split("").length > 30;
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -52,7 +51,7 @@ export const NoteItem: FC<INoteItem> = ({ note }) => {
 
          {/* Text preview */ }
          <p className={ style.note_body }>
-            { bodyCondition ? note.body.substring(0, 35) + "..." : note.body }
+            { note.body }
          </p>
 
          {/* Date */ }

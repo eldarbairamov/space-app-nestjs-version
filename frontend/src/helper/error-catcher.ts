@@ -47,7 +47,7 @@ export const errorCatherFn = (e: unknown) => {
          break;
 
       default:
-         message = `${ axiosError.message }`;
+         message = `Непередбачена помилка: ${ axiosError.message }`;
          break;
    }
 

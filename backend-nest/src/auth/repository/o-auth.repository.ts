@@ -14,6 +14,8 @@ export class OAuthRepository {
       try {
          return this.oAuthModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -22,6 +24,8 @@ export class OAuthRepository {
       try {
          return this.oAuthModel.deleteOne(filter);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
@@ -30,14 +34,18 @@ export class OAuthRepository {
       try {
          return await this.oAuthModel.findOne(filter);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }
 
    async findByIdAndUpdate(id: string, update: UpdateQuery<OAuth>): Promise<OAuthDocument> {
       try {
-         return this.oAuthModel.findByIdAndUpdate(id, update);
+         return this.oAuthModel.findByIdAndUpdate(id, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          databaseException(e);
       }
    }

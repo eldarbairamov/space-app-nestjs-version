@@ -1,36 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 
 import dateHelper from "moment/moment";
-import { IPlan } from "../../../interface";
 import { updatePlanService } from "../../../service";
 import { message } from "antd";
 import { TypedOnChange } from "../../../interface/common.interface";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { planAction } from "../../../redux/slice/plan.slice";
 
 import style from "./Task-Header.module.scss";
 
-interface ITaskHeaderProps {
-   plan: IPlan;
-}
-
-export function TaskHeader({ plan }: ITaskHeaderProps) {
+export function TaskHeader() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
-   const [ planTitle, setPlanTitle ] = useState<string>(plan.title);
+   const { activePlan } = useAppSelector(state => state.planReducer);
 
    const { updatePlanFn } = updatePlanService(messageApi);
+
+   const dispatch = useAppDispatch();
 
    return (
       <div className={ style.TaskHeader }>
          { contextHolder }
 
-         <input type={ "text" }
-                className={ style.plan_title }
-                id={ "planTitle" }
-                value={ planTitle }
-                onChange={ (event: TypedOnChange) => setPlanTitle(event.target.value) }
-                onBlur={ () => updatePlanFn(plan.id, planTitle) }
-         />
-         <p className={ style.plan_date }> { dateHelper(plan.lastModified).format("DD-MM-YYYY  , HH:mm") } </p>
+         { activePlan &&
+            <>
+               <input type={ "text" }
+                      className={ style.plan_title }
+                      id={ "planTitle" }
+                      value={ activePlan.title ? activePlan.title : "" }
+                      onChange={ (event: TypedOnChange) => dispatch(planAction.updateTitle(event.target.value)) }
+                      onBlur={ () => updatePlanFn(activePlan.id, activePlan.title) }
+               />
+               <p className={ style.plan_date }> { dateHelper(activePlan.lastModified).format("DD-MM-YYYY  , HH:mm") } </p>
+            </>
+         }
+
       </div>
    );
 }

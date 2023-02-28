@@ -5,12 +5,12 @@ import { v4 } from "uuid";
 import { AppRouter } from "../../../router";
 import { Button } from "../../../component";
 
-import style from "./Update-Email-Message.module.scss";
+import style from "./Change-Email-Message.module.scss";
 
-export function UpdateEmailMessage() {
+export function ChangeEmailMessage() {
 
    return (
-      <div className={ style.UpdateEmailMessage }>
+      <div className={ style.ChangeEmailMessage }>
          <Result
             className={ style.message }
             status="success"

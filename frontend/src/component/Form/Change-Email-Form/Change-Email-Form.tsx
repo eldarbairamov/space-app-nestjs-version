@@ -11,6 +11,7 @@ import { Button } from "../../../component";
 import { useAppSelector } from "../../../hook";
 
 import style from "./Change-Email-Form.module.scss";
+import { scrollToElement } from "../../../helper/scroll-to-element";
 
 export function ChangeEmailForm() {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ email: string }>({
@@ -29,6 +30,7 @@ export function ChangeEmailForm() {
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();
+      scrollToElement()
 
    }, [ username, name, surname ]);
 

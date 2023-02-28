@@ -1,0 +1,57 @@
+.NoteItemAdaptive {
+   display: flex;
+   align-items: flex-start;
+   justify-content: space-evenly;
+   flex-direction: column;
+   gap: 20px;
+
+   padding: 20px;
+   border-radius: 20px;
+   background: rgb(244, 244, 244);
+   height: 140px;
+   width: calc(100% / 2 - 15px);
+   position: relative;
+   cursor: pointer;
+   transition: .3s;
+
+   .note_title {
+      font-weight: 500;
+      font-size: 16px;
+      text-align: left;
+   }
+
+   .delete {
+      position: absolute;
+      right: 20px;
+      font-weight: 500;
+      cursor: pointer;
+   }
+
+   .note_body {
+      font-size: 14px;
+      text-align: left;
+      color: #7d7d7d;
+
+      width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   }
+
+   .note_date {
+      font-size: 13px;
+      color: #d78052;
+      font-weight: 500;
+      text-align: right;
+   }
+}
+
+.NoteItemAdaptive[data-active='true'] {
+   background: #fff5e7;
+}
+
+@media screen and (max-width: 600px) {
+   .NoteItemAdaptive {
+      width: 100%;
+   }
+}

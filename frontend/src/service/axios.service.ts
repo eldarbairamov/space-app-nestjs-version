@@ -29,12 +29,13 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
       const axiosError = e as AxiosApiError;
       const refreshToken = storageService.getRefreshToken();
 
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Unauthorized" && refreshToken && !isRefreshing) {
+      if (axiosError.response?.status === 401 && refreshToken && !isRefreshing) {
          isRefreshing = true;
 
          try {
             const { data } = await axiosInstance.post<Omit<IOAuth, "username">>(authRequests.refresh, { refreshToken });
             storageService.setTokens(data.accessToken, data.refreshToken);
+            isRefreshing = false
 
          } catch (e) {
             storageService.deleteTokens();

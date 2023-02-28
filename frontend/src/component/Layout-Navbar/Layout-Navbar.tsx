@@ -44,7 +44,7 @@ export function LayoutNavbar() {
 
          {/* Profile bar  */ }
          <div className={ style.logout }>
-            <LogoutOutlined onClick={ async () => logoutFn() } style={ { fontSize: "23px" } }/>
+            <LogoutOutlined onClick={ async () => logoutFn() } style={ { fontSize: "20px" } }/>
          </div>
 
       </div>

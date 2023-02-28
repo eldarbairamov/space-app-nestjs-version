@@ -4,6 +4,7 @@ import { unlink } from "fs/promises";
 import { fileNameValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
 import { UserDocument } from "../../model";
+import { STATIC_PATH } from "../../constant/static-path.constant";
 
 export const deleteAvatarService = async (userId: UserDocument["id"], body: { fileName: string }): Promise<void> => {
 
@@ -15,7 +16,7 @@ export const deleteAvatarService = async (userId: UserDocument["id"], body: { fi
    await UserRepository.findByIdAndUpdate(userId, { avatar: "" });
 
    // Delete image from hard drive
-   const imagePath = path.join(__dirname, "..", "..", "upload", body.fileName);
+   const imagePath = path.join(STATIC_PATH, body.fileName);
    await unlink(imagePath).catch(() => {
       throw new ApiException("No such image or directory", 500);
    });

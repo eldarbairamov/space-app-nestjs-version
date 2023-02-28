@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 
-import { IPlan, ITask } from "../../../interface";
+import { ITask } from "../../../interface";
 import { message } from "antd";
 import { addTaskService } from "../../../service";
 import { NoBgInput } from "../../UI/No-Bg-Input/No-Bg-Input";
 import { TypedOnChange } from "../../../interface/common.interface";
-import { useAppDispatch } from "../../../hook";
+import { useAppDispatch, useAppSelector } from "../../../hook";
 import { taskAction } from "../../../redux/slice/task.slice";
 
 import style from "./Task-Add.module.scss";
 
-interface ITaskAddProps {
-   plan: IPlan;
-}
-
-export function TaskAdd({ plan }: ITaskAddProps) {
+export function TaskAdd() {
    const [ messageApi, contextHolder ] = message.useMessage();
+
+   const {activePlan} = useAppSelector(state => state.planReducer)
 
    const dispatch = useAppDispatch();
 
@@ -26,7 +24,7 @@ export function TaskAdd({ plan }: ITaskAddProps) {
    const addTask = async () => {
       if (taskTitle !== "") {
          setTaskTitle("");
-         const newTask = { planId: plan.id, title: taskTitle };
+         const newTask = { planId: activePlan.id, title: taskTitle };
          const data = await addTaskFn(newTask) as ITask;
          dispatch(taskAction.addTask(data));
       }

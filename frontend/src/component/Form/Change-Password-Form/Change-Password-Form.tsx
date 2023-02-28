@@ -12,6 +12,7 @@ import { Button } from "../../../component";
 import { useAppSelector } from "../../../hook";
 
 import style from "./Change-Password-Form.module.scss";
+import { scrollToElement } from "../../../helper/scroll-to-element";
 
 export function ChangePasswordForm() {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IChangePasswordForm>({
@@ -40,6 +41,7 @@ export function ChangePasswordForm() {
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();
+      scrollToElement()
 
    }, [ username, name, surname ]);
 

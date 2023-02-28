@@ -8,6 +8,8 @@ export const UserRepository = {
       try {
          return UserModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -16,6 +18,8 @@ export const UserRepository = {
       try {
          return UserModel.findOne(filter);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -24,6 +28,8 @@ export const UserRepository = {
       try {
          return UserModel.findById(userId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -32,6 +38,8 @@ export const UserRepository = {
       try {
          return UserModel.findByIdAndUpdate(userId, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },

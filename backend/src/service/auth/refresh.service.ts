@@ -9,11 +9,11 @@ import { IAccessTokenPair } from "../../interface";
 export const refreshService = async (refreshToken: string): Promise<IAccessTokenPair> => {
 
    // Check is token exists in request
-   if (!refreshToken) throw new ApiException("Unauthorized", 401);
+   if (!refreshToken) throw new ApiException("Token invalid or expired", 401);
 
    // Check is token exists in DB
    const isRefreshTokenExists = await OAuthRepository.findOne({ refreshToken });
-   if (!isRefreshTokenExists) throw new ApiException("Unauthorized", 401);
+   if (!isRefreshTokenExists) throw new ApiException("Token invalid or expired", 401);
 
    // Verify and decode token
    const userId = jwtVerifyService(refreshToken, REFRESH_TOKEN_TYPE) as UserDocument["id"];

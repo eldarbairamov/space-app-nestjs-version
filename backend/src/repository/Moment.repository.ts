@@ -8,6 +8,8 @@ export const MomentRepository = {
       try {
          return MomentModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -17,6 +19,8 @@ export const MomentRepository = {
       try {
          return MomentModel.find(filterObj).sort({ createdAt: "desc" });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -25,6 +29,8 @@ export const MomentRepository = {
       try {
          return MomentModel.find({ ownerId: userId });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -33,6 +39,8 @@ export const MomentRepository = {
       try {
          return MomentModel.findById(momentId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -41,6 +49,8 @@ export const MomentRepository = {
       try {
          return MomentModel.findByIdAndUpdate(momentId, update, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -49,6 +59,8 @@ export const MomentRepository = {
       try {
          return MomentModel.findByIdAndDelete(momentId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -57,6 +69,8 @@ export const MomentRepository = {
       try {
          return MomentModel.count({ ownerId: userId });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },

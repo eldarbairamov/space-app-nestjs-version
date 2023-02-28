@@ -43,6 +43,14 @@ export class PlanService {
       return this.planPresenter.array(plans);
    }
 
+   async getOnePlan(planId: PlanDocument["id"]): Promise<IPlanResponse> {
+      // Find plan
+      const plan = await this.planRepository.findById(planId);
+
+      // Return presented data to client
+      return this.planPresenter.single(plan);
+   }
+
    async deletePlan(planId: PlanDocument["id"], userId: string): Promise<void> {
       // Delete plan
       await this.planRepository.findByIdAndDelete(planId);

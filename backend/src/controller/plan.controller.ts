@@ -3,6 +3,7 @@ import { Response } from "express";
 import { addPlanService, getPlansService, updatePlanService } from "../service";
 import { PlanRepository, UserRepository } from "../repository";
 import { IPlanResponse, IRequest } from "../interface";
+import { getOnePlanService } from "../service/plan/get-one-plan.service";
 
 export const planController = {
 
@@ -14,6 +15,11 @@ export const planController = {
    getPlans: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IPlanResponse[]>) => {
       const plans = await getPlansService(req.userId, req.query.searchKey);
       res.json(plans);
+   }),
+
+   getOnePlan: expressAsyncHandler(async (req: IRequest<any, { planId: string }, any>, res: Response<IPlanResponse>) => {
+      const plan = await getOnePlanService(req.params.planId);
+      res.json(plan);
    }),
 
    updatePlan: expressAsyncHandler(async (req: IRequest<{ title: string }, { planId: string }, any>, res: Response<{ message: string }>) => {

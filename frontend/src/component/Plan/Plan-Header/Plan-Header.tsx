@@ -14,6 +14,7 @@ export function PlanHeader() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { searchKey } = useAppSelector(state => state.planReducer);
+
    const dispatch = useAppDispatch();
 
    const { addPlanFn } = addPlanService(messageApi);
@@ -26,7 +27,7 @@ export function PlanHeader() {
 
          {/* Add plan */ }
          <img src={ add } alt={ "add" }/>
-         <NoBgButton text={ "Додати план" } hoverSubject={ "plan" } onClick={ () => addPlanFn() }/>
+         <NoBgButton text={ "Додати план" } hoverSubject={ "plan" } onClick={ addPlanFn }/>
 
          {/* Search bar */ }
          <div className={ style.search_bar }>

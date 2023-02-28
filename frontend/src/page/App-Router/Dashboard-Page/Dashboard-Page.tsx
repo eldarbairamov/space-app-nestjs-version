@@ -3,6 +3,7 @@ import React from "react";
 import { DashboardAvatar, DashboardEditProfile, DashboardGreeting, MomentCount, NoteCount, PlanCount } from "../../../component";
 import { message } from "antd";
 import { getUserService } from "../../../service";
+import 'moment/locale/uk.js'
 
 import style from "./Dashboard-Page.module.scss";
 

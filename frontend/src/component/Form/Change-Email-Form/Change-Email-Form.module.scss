@@ -11,3 +11,9 @@
    background: white;
    border-radius: 15px;
 }
+
+@media screen and (max-width: 600px) {
+   .ChangeEmailForm {
+      width: 450px;
+   }
+}

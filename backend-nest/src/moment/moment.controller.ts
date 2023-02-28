@@ -57,6 +57,7 @@ export class MomentController {
 
    // Upload photo
    @UseGuards(AccessGuard)
+   @UseGuards(ObjectCheckingGuard)
    @Patch(":momentId/photo_upload")
    @UseFilters(FileValidatorFilter)
    @UseInterceptors(FileInterceptor("photo"))

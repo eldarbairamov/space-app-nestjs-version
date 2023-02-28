@@ -29,6 +29,7 @@ export const plansRequests = {
    getAllPlans: "/plans",
    getPlansCount: "/plans/count",
    getPlansBySearch: "/plans/search",
+   getOnePlan: "/plans/get/",
 };
 
 export const momentsRequests = {

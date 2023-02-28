@@ -12,7 +12,7 @@ export const resetPasswordService = async (body: IResetPassword) => {
 
    // Delete action token
    const actionTokenInfo = await ActionTokenRepository.findOneAndDelete({ token: body.resetPasswordToken });
-   if (!actionTokenInfo) throw new ApiException("Invalid token", 401);
+   if (!actionTokenInfo) throw new ApiException("Token invalid or expired", 401);
 
    // Define token owner ID
    const ownerId = actionTokenInfo.ownerId;

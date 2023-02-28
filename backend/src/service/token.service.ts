@@ -11,7 +11,8 @@ export const accessTokenPairGenerator = (userId: UserDocument["id"]): IAccessTok
          refreshToken: jwt.sign({ userId }, config.SECRET_REFRESH_TOKEN_KEY, { expiresIn: "7d" }),
       };
    } catch (e) {
-      console.log(e);
+      const error = e as Error
+      console.log(error.message);
       throw new ApiException("JWT: Error", 500);
    }
 };

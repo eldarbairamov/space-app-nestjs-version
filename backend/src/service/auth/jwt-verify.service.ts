@@ -19,6 +19,6 @@ export const jwtVerifyService = (token: string, type: string) => {
       return userId;
 
    } catch (e) {
-      throw new ApiException("Unauthorized", 401);
+      throw new ApiException("Token invalid or expired", 401);
    }
 };

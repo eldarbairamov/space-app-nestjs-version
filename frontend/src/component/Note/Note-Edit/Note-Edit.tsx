@@ -22,6 +22,7 @@ export const NoteEdit: FC = () => {
       dispatch(noteActions.setDefaultNote(notes[0]));
    }, []);
 
+
    const handleInputs = (field: string, value: string) => {
       const updatedNote = {
          ...activeNote,
@@ -52,7 +53,7 @@ export const NoteEdit: FC = () => {
          {/* Text area */ }
          <div className={ style.textarea }>
             <textarea id={ "body" }
-                      value={ activeNote.body }
+                      value={ activeNote.body ? activeNote.body : "" }
                       placeholder={ "Розкажи мені щось цікаве..." }
                       onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
                       onBlur={ () => updateNoteFn(activeNote) }

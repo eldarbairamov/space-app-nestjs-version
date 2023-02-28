@@ -1,4 +1,4 @@
-import { IsArray, IsDate, IsOptional, IsString } from "class-validator";
+import { IsArray, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class UpdateMomentDto {
 
@@ -14,9 +14,9 @@ export class UpdateMomentDto {
    @IsOptional()
    readonly location: string;
 
-   @IsDate()
+   @IsNumber()
    @IsOptional()
-   readonly date: Date;
+   readonly date: number;
 
    @IsArray()
    @IsOptional()

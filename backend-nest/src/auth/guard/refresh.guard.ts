@@ -1,4 +1,4 @@
-import { ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
+import { ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 
 @Injectable()
@@ -8,7 +8,7 @@ export class RefreshGuard extends AuthGuard("refresh") {
    }
 
    handleRequest(err, data) {
-      if (err || !data) throw new UnauthorizedException("Unauthorized");
+      if (err || !data) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
       return data;
    }
 

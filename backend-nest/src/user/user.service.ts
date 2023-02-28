@@ -1,9 +1,7 @@
-import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UserRepository } from "./repository/user.repository";
-import { JwtService } from "@nestjs/jwt";
 import { EmailService } from "../auth/email.service";
 import * as path from "node:path";
-import { unlink } from "fs/promises";
 import { passComparer, passHasher } from "../auth/helper";
 import { ChangePasswordDto, ProfileUpdateDto } from "./dto";
 import { ActionTokenRepository } from "../auth/repository";
@@ -15,6 +13,11 @@ import { PlanRepository } from "../plan/repository/plan.repository";
 import { MomentRepository } from "../moment/repository/moment.repository";
 import { CHANGE_EMAIL } from "../common/constants/email-action.constant";
 import { EMAIL_CONFIRMATION_TOKEN_TYPE } from "../common/constants/token-type.constant";
+import * as process from "process";
+import { exists } from "../common/helper/exists";
+import { unlinker } from "../common/helper/unlinker";
+import { staticPath } from "../common/constants/static-path.constant";
+import { TokenService } from "../auth/token.service";
 
 @Injectable()
 export class UserService {
@@ -22,7 +25,7 @@ export class UserService {
    constructor(
       private userRepository: UserRepository,
       private actionTokenRepository: ActionTokenRepository,
-      private jwtService: JwtService,
+      private tokenService: TokenService,
       private emailService: EmailService,
       private noteRepository: NoteRepository,
       private planRepository: PlanRepository,
@@ -55,10 +58,7 @@ export class UserService {
 
    async changeEmailRequest(userId: UserDocument["id"], email: string): Promise<void> {
       // Generate link
-      const confirmationToken = this.jwtService.sign({ userId, email }, {
-         secret: "secret confirmation token key",
-         expiresIn: "1d",
-      });
+      const confirmationToken = this.tokenService.generate({ userId, email }, "confirmation token secret");
       const confirmationLink = `${ process.env.CLIENT_URL }/email_confirmation/new?token=${ confirmationToken }`;
 
       // Find user and save action token to DB
@@ -77,13 +77,15 @@ export class UserService {
 
    async changeEmail(token: string): Promise<void> {
       // Decoding token
-      const { userId, email } = this.jwtService
-         .verify(token, { secret: "secret confirmation token key" }) as { userId: string, email: string };
-      if (!userId && !email) throw new UnauthorizedException("Unauthorized");
+      const {
+         userId,
+         email,
+      } = this.tokenService.tokenVerify(token, "confirmation token secret") as { userId: string, email: string };
+      if (!userId && !email) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
       // Delete action token
       const actionToken = await this.actionTokenRepository.findOneAndDelete({ token });
-      if (!actionToken) throw new UnauthorizedException({ message: "Invalid token" });
+      if (!actionToken) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
       // Update email
       await this.userRepository.findByIdAndUpdate(userId, { email: email });
@@ -95,11 +97,11 @@ export class UserService {
 
       // Check is current password correct
       const isCurrentPassCorrect = await passComparer(dto.currentPassword, user.password);
-      if (!isCurrentPassCorrect) throw new BadRequestException({ message: "Current password is not valid" });
+      if (!isCurrentPassCorrect) throw new HttpException("Current password is not valid", HttpStatus.BAD_REQUEST);
 
       // Check is new password does not same with old
       const isNewPasswordSame = await passComparer(dto.newPassword, user.password);
-      if (isNewPasswordSame) throw new BadRequestException("Password is already in use");
+      if (isNewPasswordSame) throw new HttpException("Password is already in use", HttpStatus.BAD_REQUEST);
 
       // Hash password
       user.password = await passHasher(dto.newPassword);
@@ -120,6 +122,13 @@ export class UserService {
    }
 
    async uploadAvatar(fileName: string, userId: string): Promise<void> {
+      // Delete prev image from hard drive if exists
+      const { avatar } = await this.userRepository.findById(userId);
+      const imagePath = path.join(staticPath, (avatar ? avatar : "nothing"));
+      const isImageExists = await exists(imagePath);
+
+      if (isImageExists) await unlinker(imagePath);
+
       // Save avatar to DB
       await this.userRepository.findByIdAndUpdate(userId, { avatar: fileName });
    }
@@ -129,9 +138,8 @@ export class UserService {
       await this.userRepository.findByIdAndUpdate(userId, { avatar: "" });
 
       // Delete image from hard drive
-      const folderPath = path.join(__dirname, "..", "upload");
-      const filePath = path.resolve(folderPath, fileName);
-      await unlink(filePath);
+      const filePath = path.resolve(staticPath, fileName);
+      await unlinker(filePath);
    }
 
 }

@@ -10,34 +10,67 @@
 
    width: 85vw;
    height: calc(100vh - 170px);
+
+   .left_side {
+      @extend %flex;
+      justify-content: center;
+
+      height: 100%;
+      width: 25%;
+
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   }
+
+   .right_side {
+      @extend %flex;
+      justify-content: center;
+
+      height: 100%;
+      width: 75%;
+
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   }
 }
 
-.left_side {
+.NotesPageAdaptive {
    @extend %flex;
+   flex-direction: column;
    justify-content: center;
 
-   height: 100%;
-   width: 25%;
-
+   width: 85vw;
    background: white;
    border-radius: 15px;
+   height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-}
+   position: relative;
 
-.right_side {
-   @extend %flex;
-   justify-content: center;
-
-   height: 100%;
-   width: 75%;
-
-   background: white;
-   border-radius: 15px;
-   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   .note_list_wrapper {
+      overflow-y: scroll;
+      height: calc(100% - 60px);
+      width: 100%;
+   }
 }
 
 @media screen and (max-height: 800px) {
    .NotesPage {
       height: 800px;
+   }
+
+   .NotesPageAdaptive {
+      height: 800px;
+   }
+}
+
+@media screen and (max-width: 550px) {
+   .NotesPage {
+      width: 450px;
+   }
+
+   .NotesPageAdaptive {
+      width: 450px;
    }
 }

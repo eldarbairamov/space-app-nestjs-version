@@ -8,6 +8,8 @@ export const NoteRepository = {
       try {
          return NoteModel.create(body);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -17,6 +19,8 @@ export const NoteRepository = {
       try {
          return NoteModel.find(filterObj).sort({ updatedAt: "desc" });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -25,6 +29,8 @@ export const NoteRepository = {
       try {
          return NoteModel.findById(noteId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -33,6 +39,8 @@ export const NoteRepository = {
       try {
          return NoteModel.findByIdAndUpdate(noteId, body, { new: true });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -41,6 +49,8 @@ export const NoteRepository = {
       try {
          return NoteModel.findByIdAndDelete(noteId);
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },
@@ -49,6 +59,8 @@ export const NoteRepository = {
       try {
          return NoteModel.count({ ownerId: userId });
       } catch (e) {
+         const error = e as Error
+         console.log(error.message);
          throw ApiException.DatabaseError(e);
       }
    },

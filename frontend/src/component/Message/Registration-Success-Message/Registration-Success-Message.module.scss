@@ -28,26 +28,16 @@
    }
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 700px) {
    .RegistrationSuccessMessage {
-      .result {
-         width: 500px;
+      .message {
+         width: 450px;
       }
    }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-height: 800px) {
    .RegistrationSuccessMessage {
-      .result {
-         width: 320px;
-      }
-   }
-}
-
-@media screen and (max-width: 350px) {
-   .RegistrationSuccessMessage {
-      .result {
-         width: 270px;
-      }
+      height: 800px;
    }
 }
