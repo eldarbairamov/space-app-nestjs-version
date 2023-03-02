@@ -16,7 +16,7 @@ export class UserRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -26,7 +26,7 @@ export class UserRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -36,7 +36,7 @@ export class UserRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -46,7 +46,7 @@ export class UserRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 

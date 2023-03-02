@@ -12,10 +12,10 @@ export class ObjectCheckingGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const taskId = request.params.taskId;
 
-      if (!Types.ObjectId.isValid(taskId)) throw new BadRequestException({ message: "Id is not valid" });
+      if (!Types.ObjectId.isValid(taskId)) throw new BadRequestException({ message: "Object ID is not valid" });
 
       const isTaskExists = await this.taskRepository.findById(taskId);
-      if (!isTaskExists) throw new NotFoundException({ message: "Cannot find the object" });
+      if (!isTaskExists) throw new NotFoundException({ message: "Object does not exist" });
 
       return true;
    }

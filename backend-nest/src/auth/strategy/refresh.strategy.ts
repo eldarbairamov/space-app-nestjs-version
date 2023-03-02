@@ -3,16 +3,20 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { Request } from "express";
 import { OAuthRepository } from "../repository";
+import { ConfigService } from "@nestjs/config";
+import { IEnvironmentVariables } from "../../config/env-variables.interface";
 
 @Injectable()
 export class RefreshStrategy extends PassportStrategy(Strategy, "refresh") {
 
    constructor(
-      private oAuthRepository: OAuthRepository) {
+      private oAuthRepository: OAuthRepository,
+      private configService: ConfigService<IEnvironmentVariables>,
+   ) {
       super({
          jwtFromRequest: ExtractJwt.fromBodyField("refreshToken"),
          ignoreExpiration: false,
-         secretOrKey: "refresh-secret",
+         secretOrKey: configService.get('refreshToken'),
          passReqToCallback: true,
       });
    }

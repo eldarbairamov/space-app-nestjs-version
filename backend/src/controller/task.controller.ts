@@ -7,7 +7,7 @@ export const taskController = {
 
    addTask: expressAsyncHandler(async (req: IRequest<IAddTask, any, any>, res: Response<ITaskResponse>) => {
       const task = await addTaskService(req.userId, req.body);
-      res.json(task);
+      res.status(201).json(task);
    }),
 
    deleteTask: expressAsyncHandler(async (req: IRequest<any, { taskId: string }, any>, res: Response<{ message: string }>) => {

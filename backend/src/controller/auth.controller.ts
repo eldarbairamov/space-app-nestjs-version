@@ -8,17 +8,17 @@ export const authController = {
 
    registration: expressAsyncHandler(async (req: Request, res: Response<{ message: string }>) => {
       await registrationService(req.body);
-      res.json({ message: "Success" });
+      res.status(201).json({ message: "Success" });
    }),
 
    login: expressAsyncHandler(async (req: IRequest<ILogin, any, any>, res: Response<IOAuthResponse>) => {
       const accessTokenPair = await loginService(req.body, req.user!);
-      res.json(accessTokenPair);
+      res.status(201).json(accessTokenPair);
    }),
 
    refresh: expressAsyncHandler(async (req: IRequest<{ refreshToken: string }, any, any>, res: Response<IAccessTokenPair>) => {
       const accessTokenPair = await refreshService(req.body.refreshToken);
-      res.json(accessTokenPair);
+      res.status(201).json(accessTokenPair);
    }),
 
    activation: expressAsyncHandler(async (req: IRequest<{ activationCode: string }, any, any>, res: Response<{ message: string }>) => {

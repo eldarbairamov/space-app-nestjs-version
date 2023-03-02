@@ -5,9 +5,8 @@ import { User, UserSchema } from "./model/user.model";
 import { UserController } from "./user.controller";
 import { UserRepository } from "./repository/user.repository";
 import { JwtModule } from "@nestjs/jwt";
-import { EmailService } from "../auth/email.service";
 import { MulterModule } from "@nestjs/platform-express";
-import { fileStorage } from "../common/helper/file-storage";
+import { fileStorage } from "../common/helper";
 import { ActionToken, ActionTokenSchema } from "../auth/model";
 import { ActionTokenRepository } from "../auth/repository";
 import { MomentRepository } from "../moment/repository/moment.repository";
@@ -16,7 +15,9 @@ import { NoteRepository } from "../note/repository/note.repository";
 import { Moment, MomentSchema } from "../moment/model/moment.model";
 import { Plan, PlanSchema } from "../plan/model/plan.model";
 import { Note, NoteSchema } from "../note/model/note.model";
-import { TokenService } from "../auth/token.service";
+import { ConfigService } from "@nestjs/config";
+import { EmailService } from "../common/email.service";
+import { TokenService } from "../common/token.service";
 
 @Module({
 
@@ -31,7 +32,7 @@ import { TokenService } from "../auth/token.service";
       MulterModule.register(fileStorage),
    ],
 
-   providers: [ UserService, UserRepository, ActionTokenRepository, EmailService, MomentRepository, PlanRepository, NoteRepository, TokenService ],
+   providers: [ UserService, UserRepository, ActionTokenRepository, EmailService, MomentRepository, PlanRepository, NoteRepository, TokenService, ConfigService ],
    controllers: [ UserController ],
    exports: [ UserService ],
 

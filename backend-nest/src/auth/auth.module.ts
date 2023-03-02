@@ -7,11 +7,12 @@ import { JwtModule } from "@nestjs/jwt";
 import { User, UserSchema } from "../user/model/user.model";
 import { UserModule } from "../user/user.module";
 import { UserRepository } from "../user/repository/user.repository";
-import { EmailService } from "./email.service";
-import { TokenService } from "./token.service";
 import { ActionToken, ActionTokenSchema, OAuth, OAuthSchema } from "./model";
 import { ActionTokenRepository, OAuthRepository } from "./repository";
 import { AccessStrategy, LoginStrategy, RefreshStrategy } from "./strategy";
+import { ConfigService } from "@nestjs/config";
+import { EmailService } from "../common/email.service";
+import { TokenService } from "../common/token.service";
 
 
 @Module({
@@ -30,6 +31,7 @@ import { AccessStrategy, LoginStrategy, RefreshStrategy } from "./strategy";
    controllers: [ AuthController ],
 
    providers: [
+      ConfigService,
       AuthService,
       LoginStrategy,
       AccessStrategy,

@@ -1,7 +1,7 @@
-import { Types } from "mongoose";
+import { NoteDocument } from "../model/note.model";
 
-export class INoteResponse {
-   readonly id: string | Types.ObjectId;
+export interface INoteResponse {
+   readonly id: NoteDocument["id"];
    readonly title: string;
    readonly body: string;
    readonly lastModified: number;

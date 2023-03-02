@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Query, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Query, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AccessGuard } from "../auth/guard";
 import { MomentService } from "./moment.service";
 import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.interface";
@@ -8,7 +8,11 @@ import { FileValidatorFilter } from "../common/exception/file-validator.filter";
 import { User } from "../common/decorator/user.decorator";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { SharpPipe } from "../common/pipe/sharp.pipe";
+import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiQuery, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { DefaultError, FileSizeError, FileTypeError, MomentResponse, MomentsResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError, UpdateMomentBody, UploadImageResponse } from "../common/swagger";
+import { ApiFile } from "../common/decorator/api-file.decorator";
 
+@ApiTags("Moments")
 @Controller("moments")
 export class MomentController {
 
@@ -16,6 +20,11 @@ export class MomentController {
    }
 
    // Get all moments
+   @ApiOperation({ summary: "get all moment" })
+   @ApiQuery({ name: "searchKey", description: "Keyword for searching", required: false })
+   @ApiOkResponse({ description: "Success", type: MomentsResponse })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @Get()
    async getMoments(
@@ -26,8 +35,13 @@ export class MomentController {
    }
 
    // Add moment
+   @ApiOperation({ summary: "add moment" })
+   @ApiCreatedResponse({ description: "New moment was created", type: MomentResponse })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @Get("add")
+   @HttpCode(201)
    async addMoment(
       @User("userId") userId: string): Promise<IMomentResponse> {
 
@@ -35,6 +49,13 @@ export class MomentController {
    }
 
    // Get one moment
+   @ApiOperation({ summary: "get moment by id" })
+   @ApiParam({ name: "momentId", description: "moment id", example: "63dfe16eda233c96fc6e2604" })
+   @ApiCreatedResponse({ description: "Success", type: MomentResponse })
+   @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
+   @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @UseGuards(ObjectCheckingGuard)
    @Get(":momentId")
@@ -45,6 +66,14 @@ export class MomentController {
    }
 
    // Update moment
+   @ApiOperation({ summary: "update moment by id" })
+   @ApiParam({ name: "momentId", description: "moment id", example: "63dfe16eda233c96fc6e2604" })
+   @ApiBody({ type: UpdateMomentBody })
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
+   @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @Patch(":momentId")
    async updateMoment(
@@ -56,6 +85,17 @@ export class MomentController {
    }
 
    // Upload photo
+   @ApiOperation({ summary: "upload photo" })
+   @ApiParam({ name: "momentId", description: "moment id", example: "63dfe16eda233c96fc6e2604" })
+   @ApiConsumes("multipart/form-data")
+   @ApiFile("photo")
+   @ApiOkResponse({ description: "Success", type: UploadImageResponse })
+   @ApiPayloadTooLargeResponse({ description: "File size error", type: FileSizeError })
+   @ApiUnprocessableEntityResponse({ description: "Invalid file type", type: FileTypeError })
+   @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
+   @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @UseGuards(ObjectCheckingGuard)
    @Patch(":momentId/photo_upload")
@@ -70,6 +110,13 @@ export class MomentController {
    }
 
    // Delete moment
+   @ApiOperation({ summary: "delete moment by id" })
+   @ApiParam({ name: "momentId", description: "moment id", example: "63dfe16eda233c96fc6e2604" })
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
+   @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @Delete(":momentId")
    async deleteMoment(

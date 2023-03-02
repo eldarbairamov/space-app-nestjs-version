@@ -10,7 +10,7 @@ export const ActionTokenRepository = {
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
-         throw ApiException.DatabaseError(e);
+         throw ApiException.DatabaseError();
       }
    },
 
@@ -20,7 +20,7 @@ export const ActionTokenRepository = {
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
-         throw ApiException.DatabaseError(e);
+         throw ApiException.DatabaseError();
       }
    },
 

@@ -3,16 +3,20 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { Request } from "express";
 import { OAuthRepository } from "../repository";
+import { ConfigService } from "@nestjs/config";
+import { IEnvironmentVariables } from "../../config/env-variables.interface";
 
 @Injectable()
 export class AccessStrategy extends PassportStrategy(Strategy, "access") {
 
    constructor(
-      private oAuthRepository: OAuthRepository) {
+      private oAuthRepository: OAuthRepository,
+      private configService: ConfigService<IEnvironmentVariables>,
+   ) {
       super({
          jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
          ignoreExpiration: false,
-         secretOrKey: "access-secret",
+         secretOrKey: configService.get("accessToken"),
          passReqToCallback: true,
       });
    }

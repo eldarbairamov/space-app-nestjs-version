@@ -9,7 +9,7 @@ export const notesController = {
 
    addNote: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<INoteResponse>) => {
       const note = await addNoteService(req.userId);
-      res.json(note);
+      res.status(201).json(note);
    }),
 
    getNotes: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<INoteResponse[]>) => {

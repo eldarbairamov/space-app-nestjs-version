@@ -1,23 +1,21 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UserRepository } from "./repository/user.repository";
-import { EmailService } from "../auth/email.service";
-import * as path from "node:path";
 import { passComparer, passHasher } from "../auth/helper";
 import { ChangePasswordDto, ProfileUpdateDto } from "./dto";
 import { ActionTokenRepository } from "../auth/repository";
-import { IUpdateProfileResponse } from "./interface/update-profile-response.interface";
-import { IUserInfoResponse } from "./interface/user-info-response.interface";
 import { UserDocument } from "./model/user.model";
 import { NoteRepository } from "../note/repository/note.repository";
 import { PlanRepository } from "../plan/repository/plan.repository";
 import { MomentRepository } from "../moment/repository/moment.repository";
-import { CHANGE_EMAIL } from "../common/constants/email-action.constant";
-import { EMAIL_CONFIRMATION_TOKEN_TYPE } from "../common/constants/token-type.constant";
-import * as process from "process";
-import { exists } from "../common/helper/exists";
-import { unlinker } from "../common/helper/unlinker";
-import { staticPath } from "../common/constants/static-path.constant";
-import { TokenService } from "../auth/token.service";
+import { exists, unlinker } from "../common/helper";
+import { ConfigService } from "@nestjs/config";
+import { IEnvironmentVariables } from "../config/env-variables.interface";
+import { CHANGE_EMAIL, EMAIL_CONFIRMATION_TOKEN_TYPE, staticPath } from "../common/constants";
+import { IUpdateProfileResponse } from "./interface/update-profile-response.interface";
+import { IUserInfoResponse } from "./interface/user-info-response.interface";
+import { EmailService } from "../common/email.service";
+import { TokenService } from "../common/token.service";
+import path from "node:path";
 
 @Injectable()
 export class UserService {
@@ -30,6 +28,7 @@ export class UserService {
       private noteRepository: NoteRepository,
       private planRepository: PlanRepository,
       private momentRepository: MomentRepository,
+      private configService: ConfigService<IEnvironmentVariables>,
    ) {
    }
 
@@ -58,7 +57,7 @@ export class UserService {
 
    async changeEmailRequest(userId: UserDocument["id"], email: string): Promise<void> {
       // Generate link
-      const confirmationToken = this.tokenService.generate({ userId, email }, "confirmation token secret");
+      const confirmationToken = this.tokenService.generate({ userId, email }, this.configService.get("changeEmail"));
       const confirmationLink = `${ process.env.CLIENT_URL }/email_confirmation/new?token=${ confirmationToken }`;
 
       // Find user and save action token to DB
@@ -80,7 +79,7 @@ export class UserService {
       const {
          userId,
          email,
-      } = this.tokenService.tokenVerify(token, "confirmation token secret") as { userId: string, email: string };
+      } = this.tokenService.tokenVerify(token, this.configService.get("changeEmail")) as { userId: string, email: string };
       if (!userId && !email) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
       // Delete action token

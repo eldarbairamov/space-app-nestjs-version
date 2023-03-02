@@ -16,7 +16,7 @@ export class TaskRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -26,7 +26,7 @@ export class TaskRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -36,7 +36,7 @@ export class TaskRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -46,17 +46,17 @@ export class TaskRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
-   async findByIdAndDelete(taskId: TaskDocument["id"]): Promise<TaskDocument> {
+   async findByIdAndDelete(taskId: TaskDocument["id"]) {
       try {
          return this.taskModel.findByIdAndDelete(taskId);
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 

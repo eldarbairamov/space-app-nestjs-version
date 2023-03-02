@@ -8,7 +8,7 @@ export const momentController = {
 
    addMoment: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<IMomentResponse>) => {
       const moment = await addMomentService(req.userId);
-      res.json(moment);
+      res.status(201).json(moment);
    }),
 
    getMoments: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IMomentsResponse>) => {

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { config } from "../../../config/config";
 import user from "../../../asset/user.png";
+import { config } from "../../../config/config";
 import { useAppSelector } from "../../../hook";
 
 import style from "./Dashboard-Avatar.module.scss";

@@ -1,7 +1,7 @@
-import { Types } from "mongoose";
+import { PlanDocument } from "../model/plan.model";
 
-export class IPlanResponse {
-   readonly id: string | Types.ObjectId
-   readonly title: string
-   readonly lastModified: number
+export interface IPlanResponse {
+   readonly id: PlanDocument["id"];
+   readonly title: string;
+   readonly lastModified: number;
 }

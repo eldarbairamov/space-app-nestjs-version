@@ -10,18 +10,18 @@ planRouter.get(
    authMiddleware.isAccessExists,
    planController.getPlans);
 
-// Get one plan
-planRouter.get(
-   "/get/:planId",
-   authMiddleware.isAccessExists,
-   commonMiddleware.isObjectExists("plan"),
-   planController.getOnePlan);
-
 // Add plan
 planRouter.get(
    "/add",
    authMiddleware.isAccessExists,
    planController.addPlan);
+
+// Get one plan
+planRouter.get(
+   "/:planId",
+   authMiddleware.isAccessExists,
+   commonMiddleware.isObjectExists("plan"),
+   planController.getOnePlan);
 
 // Update plan
 planRouter.put(

@@ -12,9 +12,9 @@ export class LoginStrategy extends PassportStrategy(Strategy, "login") {
    async validate(email: string, password: string): Promise<any> {
       const user = await this.authService.validateUser(email, password);
 
-      if (!user.isActivated) throw new HttpException("Account is not activated", HttpStatus.FORBIDDEN);
-
       if (!user) throw new HttpException("Wrong email or password", HttpStatus.UNAUTHORIZED);
+
+      if (!user.isActivated) throw new HttpException("Account is not activated", HttpStatus.FORBIDDEN);
 
       return user;
    }

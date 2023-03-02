@@ -16,7 +16,7 @@ export class NoteRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -26,7 +26,7 @@ export class NoteRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -37,7 +37,7 @@ export class NoteRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -47,7 +47,7 @@ export class NoteRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -57,17 +57,17 @@ export class NoteRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
-   async findByIdAndDelete(noteId: NoteDocument["id"]): Promise<NoteDocument> {
+   async findByIdAndDelete(noteId: NoteDocument["id"]) {
       try {
          return this.noteModel.findByIdAndDelete(noteId);
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 

@@ -1,18 +1,29 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { IAccessTokenPair } from "./interface/refresh-response.interface";
+import { ConfigService } from "@nestjs/config";
+import { IEnvironmentVariables } from "../config/env-variables.interface";
+import { IAccessTokenPair } from "../auth/interface";
 
 @Injectable()
 export class TokenService {
 
-   constructor(private jwtService: JwtService) {
+   constructor(
+      private jwtService: JwtService,
+      private configService: ConfigService<IEnvironmentVariables>,
+   ) {
    }
 
    generatePair(payload: any): IAccessTokenPair {
       try {
          return {
-            accessToken: this.jwtService.sign(payload, { secret: "access-secret", expiresIn: "1d" }),
-            refreshToken: this.jwtService.sign(payload, { secret: "refresh-secret", expiresIn: "7d" }),
+            accessToken: this.jwtService.sign(payload, {
+               secret: this.configService.get("accessToken"),
+               expiresIn: "1d",
+            }),
+            refreshToken: this.jwtService.sign(payload, {
+               secret: this.configService.get("refreshToken"),
+               expiresIn: "7d",
+            }),
          };
 
       } catch (e) {

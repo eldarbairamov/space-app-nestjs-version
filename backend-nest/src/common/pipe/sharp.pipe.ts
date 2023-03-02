@@ -1,9 +1,9 @@
 import { Injectable, PipeTransform } from "@nestjs/common";
-import * as path from "path";
-import * as sharp from "sharp";
-import { exists } from "../helper/exists";
+import path from "path";
+import sharp from "sharp";
+import { exists } from "../helper";
 import { mkdir } from "fs/promises";
-import * as process from "process";
+import process from "process";
 
 @Injectable()
 export class SharpPipe implements PipeTransform<Express.Multer.File> {

@@ -12,8 +12,8 @@ export class ApiException extends Error {
       return new ApiException("Bad request", 400);
    }
 
-   static ObjectIsNotFound() {
-      return new ApiException("Object is not found", 404);
+   static NotExistError() {
+      return new ApiException("Object does not exist", 404);
    }
 
    static InvalidObjectId() {

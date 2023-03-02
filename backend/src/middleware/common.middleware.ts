@@ -17,18 +17,6 @@ export const commonMiddleware = {
    }),
 
    isObjectExists: (object: objectType) => expressAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-      if (object === "plan") {
-         const planId = req.params.planId;
-
-         if (!planId) throw ApiException.BadRequest();
-         if (!Types.ObjectId.isValid(planId)) throw ApiException.InvalidObjectId();
-
-         const isPlanExist = await PlanRepository.findById(planId);
-         if (!isPlanExist) throw ApiException.ObjectIsNotFound();
-
-         next();
-      }
-
       if (object === "task") {
          const taskId = req.params.taskId;
 
@@ -36,7 +24,19 @@ export const commonMiddleware = {
          if (!Types.ObjectId.isValid(taskId)) throw ApiException.InvalidObjectId();
 
          const isTaskExist = await TaskRepository.findById(taskId);
-         if (!isTaskExist) throw ApiException.ObjectIsNotFound();
+         if (!isTaskExist) throw ApiException.NotExistError();
+
+         next();
+      }
+
+      if (object === "plan") {
+         const planId = req.params.planId;
+
+         if (!planId) throw ApiException.BadRequest();
+         if (!Types.ObjectId.isValid(planId)) throw ApiException.InvalidObjectId();
+
+         const isPlanExist = await PlanRepository.findById(planId);
+         if (!isPlanExist) throw ApiException.NotExistError();
 
          next();
       }
@@ -48,7 +48,7 @@ export const commonMiddleware = {
          if (!Types.ObjectId.isValid(noteId)) throw ApiException.InvalidObjectId();
 
          const isNoteExist = await NoteRepository.findById(noteId);
-         if (!isNoteExist) throw ApiException.ObjectIsNotFound();
+         if (!isNoteExist) throw ApiException.NotExistError();
 
          next();
       }
@@ -60,7 +60,7 @@ export const commonMiddleware = {
          if (!Types.ObjectId.isValid(momentId)) throw ApiException.InvalidObjectId();
 
          const isNoteExist = await MomentRepository.findById(momentId);
-         if (!isNoteExist) throw ApiException.ObjectIsNotFound();
+         if (!isNoteExist) throw ApiException.NotExistError();
 
          next();
       }

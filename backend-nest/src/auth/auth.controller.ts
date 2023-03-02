@@ -3,37 +3,24 @@ import { AuthService } from "./auth.service";
 import { RequestWithUser } from "../common/interface/express.interface";
 import { AccessGuard, LoginGuard, RefreshGuard, RegistrationGuard } from "./guard";
 import { RegistrationDto, ResetPasswordDto } from "./dto";
-import { ILoginResponse } from "./interface/login-response.interface";
 import { User } from "../common/decorator/user.decorator";
-import { IAccessTokenPair } from "./interface/refresh-response.interface";
+import { IAccessTokenPair, ILoginResponse } from "./interface";
+import { ApiBearerAuth, ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiDefaultResponse, ApiForbiddenResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { ActivationBody, CodeIsNotValid, DefaultError, EmailInUse, ForgotPassBody, LoginBody, LoginResponse, RefreshBody, RefreshResponse, SuccessResponse, UnactivatedAccount, UnauthorizedError, UserIsNotFound, WrongEmailOrPass } from "../common/swagger";
 
+@ApiTags("Auth")
 @Controller("auth")
 export class AuthController {
 
    constructor(private authService: AuthService) {
    }
 
-   // Registration
-   @UseGuards(RegistrationGuard)
-   @Post("registration")
-   @HttpCode(201)
-   async registration(
-      @Body() dto: RegistrationDto): Promise<{ message: string }> {
-
-      await this.authService.registration(dto);
-      return { message: "Success" };
-   }
-
-   // Login
-   @UseGuards(LoginGuard)
-   @Post("login")
-   async login(
-      @Req() req: RequestWithUser): Promise<ILoginResponse> {
-
-      return this.authService.login(req.user);
-   }
-
    // Logout
+   @ApiOperation({ summary: "logout" })
+   @ApiBearerAuth()
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @UseGuards(AccessGuard)
    @Get("logout")
    async logout(
@@ -43,16 +30,42 @@ export class AuthController {
       return { message: "Success" };
    }
 
-   // Reset password
-   @Patch("password_reset")
-   async resetPassword(
-      @Body() dto: ResetPasswordDto): Promise<{ message: string }> {
+   // Registration
+   @ApiOperation({ summary: "registration" })
+   @ApiCreatedResponse({ description: "User account was created", type: SuccessResponse })
+   @ApiConflictResponse({ description: "Conflict", type: EmailInUse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @UseGuards(RegistrationGuard)
+   @Post("registration")
+   async registration(
+      @Body() dto: RegistrationDto): Promise<{ message: string }> {
 
-      await this.authService.resetPassword(dto);
+      await this.authService.registration(dto);
       return { message: "Success" };
    }
 
+   // Login
+   @ApiOperation({ summary: "login" })
+   @ApiBody({ type: LoginBody })
+   @ApiCreatedResponse({ description: "Access tokens was created", type: LoginResponse })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: WrongEmailOrPass })
+   @ApiForbiddenResponse({ description: "Forbidden", type: UnactivatedAccount })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @UseGuards(LoginGuard)
+   @Post("login")
+   async login(
+      @Req() req: RequestWithUser): Promise<ILoginResponse> {
+
+      return this.authService.login(req.user);
+   }
+
    // Forgot password
+   @ApiOperation({ summary: "forgot password" })
+   @ApiBody({ type: ForgotPassBody })
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UserIsNotFound })
+   @HttpCode(200)
    @Post("password_forgot")
    async forgotPassword(
       @Body("email") email: string): Promise<{ message: string }> {
@@ -62,6 +75,12 @@ export class AuthController {
    }
 
    // Account activation
+   @ApiOperation({ summary: "activation" })
+   @ApiBody({ type: ActivationBody })
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: CodeIsNotValid })
+   @HttpCode(200)
    @Post("activation")
    async activation(
       @Body("activationCode") activationCode: string): Promise<{ message: string }> {
@@ -71,12 +90,30 @@ export class AuthController {
    }
 
    // Refresh
+   @ApiOperation({ summary: "Refresh tokens" })
+   @ApiBody({ type: RefreshBody })
+   @ApiCreatedResponse({ description: "Access tokens was refreshed", type: RefreshResponse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @UseGuards(RefreshGuard)
    @Post("refresh")
    async refresh(
       @User() user: { userId: string, refreshToken: string }): Promise<IAccessTokenPair> {
 
       return this.authService.refresh(user.userId, user.refreshToken);
+   }
+
+   // Reset password
+   @ApiOperation({ summary: "reset password" })
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @Patch("password_reset")
+   async resetPassword(
+      @Body() dto: ResetPasswordDto): Promise<{ message: string }> {
+
+      await this.authService.resetPassword(dto);
+      return { message: "Success" };
    }
 
 }

@@ -1,12 +1,17 @@
-import * as nodemailer from "nodemailer";
+import nodemailer from "nodemailer";
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { EmailActionType } from "../common/type/email-action.type";
-import { emailTemplate } from "../common/email-template/email-template";
-import * as hbs from "nodemailer-express-handlebars";
-import * as path from "node:path";
+import { EmailActionType } from "./type/email-action.type";
+import { emailTemplate } from "./email-template/email-template";
+import hbs from "nodemailer-express-handlebars";
+import path from "node:path";
+import { ConfigService } from "@nestjs/config";
+import { IEnvironmentVariables } from "../config/env-variables.interface";
 
 @Injectable()
 export class EmailService {
+
+   constructor(private configService: ConfigService<IEnvironmentVariables>) {
+   }
 
    async send(to: string, emailAction: EmailActionType, context: any) {
       const template = emailTemplate[emailAction];
@@ -15,8 +20,8 @@ export class EmailService {
          service: "gmail",
          from: "no reply",
          auth: {
-            user: process.env.EMAIL_SERVICE_USER,
-            pass: process.env.EMAIL_SERVICE_PASS,
+            user: this.configService.get("user"),
+            pass: this.configService.get("pass"),
          },
       });
 

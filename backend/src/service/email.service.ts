@@ -1,5 +1,5 @@
-import * as nodemailer from "nodemailer";
-import { config } from "../config";
+import nodemailer from "nodemailer";
+import { configuration } from "../config";
 import { ApiException } from "../exception/api.exception";
 import hbs from "nodemailer-express-handlebars";
 import path from "node:path";
@@ -13,8 +13,8 @@ export const emailSender = async (to: string, emailAction: EmailActionType, cont
       service: "gmail",
       from: "no reply",
       auth: {
-         user: config.EMAIL_SERVICE_USER,
-         pass: config.EMAIL_SERVICE_PASS,
+         user: configuration.EMAIL_SERVICE_USER,
+         pass: configuration.EMAIL_SERVICE_PASS,
       },
    });
 

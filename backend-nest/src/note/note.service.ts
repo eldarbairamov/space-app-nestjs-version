@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { NotePresenter } from "./presenter/note.presenter";
 import { UserRepository } from "../user/repository/user.repository";
 import { NoteRepository } from "./repository/note.repository";
-import { CreateNoteDto } from "./dto";
+import { UpdateNoteDto } from "./dto";
 import { INoteResponse } from "./interface/note-response.interface";
 import { UserDocument } from "../user/model/user.model";
 import { NoteDocument } from "./model/note.model";
@@ -27,7 +27,7 @@ export class NoteService {
       return this.notePresenter.single(note);
    }
 
-   async updateNote(noteId: UserDocument["id"], dto: CreateNoteDto): Promise<INoteResponse> {
+   async updateNote(noteId: UserDocument["id"], dto: UpdateNoteDto): Promise<INoteResponse> {
       // Update note
       const note = await this.noteRepository.findByIdAndUpdate(noteId, dto);
 

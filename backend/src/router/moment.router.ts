@@ -32,14 +32,6 @@ momentRouter.patch(
    commonMiddleware.isObjectExists("moment"),
    momentController.updateMoment);
 
-// Upload photo
-momentRouter.patch(
-   "/:momentId/photo_upload",
-   authMiddleware.isAccessExists,
-   commonMiddleware.isObjectExists("moment"),
-   fileMiddleware.imageChecker,
-   momentController.uploadPhoto);
-
 // Delete moment
 momentRouter.delete(
    "/:momentId",
@@ -47,3 +39,10 @@ momentRouter.delete(
    commonMiddleware.isObjectExists("moment"),
    momentController.deleteMoment);
 
+// Upload photo
+momentRouter.patch(
+   "/:momentId/photo_upload",
+   authMiddleware.isAccessExists,
+   commonMiddleware.isObjectExists("moment"),
+   fileMiddleware.imageChecker,
+   momentController.uploadPhoto);

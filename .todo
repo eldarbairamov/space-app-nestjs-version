@@ -1,6 +1,12 @@
+EXPRESS:
 docker
 
-secret key constants
+REACT:
+docker
+dark theme
+quil
+app description after first login + db
 
-nest:
-swagger
+NEST:
+docker
+secret key constants

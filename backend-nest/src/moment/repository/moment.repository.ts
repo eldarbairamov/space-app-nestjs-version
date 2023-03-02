@@ -16,7 +16,7 @@ export class MomentRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -26,7 +26,7 @@ export class MomentRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -36,7 +36,7 @@ export class MomentRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -47,7 +47,7 @@ export class MomentRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -57,7 +57,7 @@ export class MomentRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 
@@ -67,17 +67,7 @@ export class MomentRepository {
       } catch (e) {
          const error = e as Error
          console.log(error.message);
-         databaseException(e);
-      }
-   }
-
-   async findByIdAndDelete(momentId: MomentDocument["id"]): Promise<MomentDocument> {
-      try {
-         return this.momentModel.findByIdAndDelete(momentId);
-      } catch (e) {
-         const error = e as Error
-         console.log(error.message);
-         databaseException(e);
+         databaseException();
       }
    }
 }

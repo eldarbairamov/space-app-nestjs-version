@@ -1,7 +1,7 @@
 import { CronJob } from "cron";
+import { OAuthRepository } from "../repository";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { OAuthRepository } from "../repository";
 
 dayjs.extend(utc);
 

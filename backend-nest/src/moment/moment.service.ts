@@ -6,10 +6,9 @@ import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.i
 import { MomentPresenter } from "./presenter/moment.presenter";
 import { MomentDocument } from "./model/moment.model";
 import { UpdateMomentDto } from "./dto";
-import * as path from "path";
-import { exists } from "../common/helper/exists";
-import { unlinker } from "../common/helper/unlinker";
-import { staticPath } from "../common/constants/static-path.constant";
+import { exists, unlinker } from "../common/helper";
+import { staticPath } from "../common/constants";
+import path from "path";
 
 @Injectable()
 export class MomentService {

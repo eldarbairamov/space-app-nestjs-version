@@ -3,14 +3,20 @@ import { UserDocument } from "../user/model/user.model";
 import { JwtService } from "@nestjs/jwt";
 import { v4 as uuid } from "uuid";
 import { UserRepository } from "../user/repository/user.repository";
-import { EmailService } from "./email.service";
-import { TokenService } from "./token.service";
 import { passComparer, passHasher } from "./helper";
 import { RegistrationDto, ResetPasswordDto } from "./dto";
 import { ActionTokenRepository, OAuthRepository } from "./repository";
-import { ILoginResponse } from "./interface/login-response.interface";
-import { FORGOT_PASSWORD, REGISTRATION } from "../common/constants/email-action.constant";
-import { ACTIVATION_TOKEN_TYPE, RESET_PASSWORD_TOKEN_TYPE } from "../common/constants/token-type.constant";
+import { ILoginResponse } from "./interface";
+import { Cron, CronExpression } from "@nestjs/schedule";
+import { ACTIVATION_TOKEN_TYPE, FORGOT_PASSWORD, REGISTRATION, RESET_PASSWORD_TOKEN_TYPE } from "../common/constants";
+import { IEnvironmentVariables } from "../config/env-variables.interface";
+import { ConfigService } from "@nestjs/config";
+import { EmailService } from "../common/email.service";
+import { TokenService } from "../common/token.service";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 @Injectable()
 export class AuthService {
@@ -22,7 +28,9 @@ export class AuthService {
       private actionTokenRepository: ActionTokenRepository,
       private oAuthRepository: OAuthRepository,
       private userRepository: UserRepository,
+      private configService: ConfigService<IEnvironmentVariables>,
    ) {
+
    }
 
    async registration(dto: RegistrationDto): Promise<void> {
@@ -88,7 +96,7 @@ export class AuthService {
 
       // Generate link
       const resetPasswordToken = this.jwtService.sign({ userId: user.id }, {
-         secret: "forgot password",
+         secret: this.configService.get("forgotPass"),
          expiresIn: "1d",
       });
       const resetPasswordLink = `${ process.env.CLIENT_URL }/password_reset/new?token=${ resetPasswordToken }`;
@@ -138,5 +146,20 @@ export class AuthService {
       // Return data to client
       return accessTokenPair;
    }
+
+   @Cron(CronExpression.EVERY_WEEK)
+   async oAuthCleaner() {
+      try {
+         const weekAgo = dayjs().utc().subtract(1, "week").format();
+         await this.oAuthRepository.deleteMany({ createdAt: { $lte: weekAgo } });
+
+         console.log("Clean old tokens");
+
+      } catch (e) {
+         const error = e as Error;
+         console.log(error.message);
+      }
+   }
+
 
 }

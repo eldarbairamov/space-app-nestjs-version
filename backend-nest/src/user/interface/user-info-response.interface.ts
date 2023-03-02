@@ -1,4 +1,4 @@
-export class IUserInfoResponse {
+export interface IUserInfoResponse {
    readonly name: string;
    readonly surname: string;
    readonly username: string;

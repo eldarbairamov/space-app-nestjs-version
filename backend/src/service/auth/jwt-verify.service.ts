@@ -1,6 +1,6 @@
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { ApiException } from "../../exception/api.exception";
-import { config } from "../../config";
+import { configuration } from "../../config";
 import { ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE } from "../../constant";
 import { Secret } from "jsonwebtoken";
 
@@ -10,8 +10,8 @@ export const jwtVerifyService = (token: string, type: string) => {
    let secretKey = "" as Secret;
 
    // Define the secret key value
-   if (type === ACCESS_TOKEN_TYPE) secretKey = config.SECRET_ACCESS_TOKEN_KEY;
-   if (type === REFRESH_TOKEN_TYPE) secretKey = config.SECRET_REFRESH_TOKEN_KEY;
+   if (type === ACCESS_TOKEN_TYPE) secretKey = configuration.SECRET_ACCESS_TOKEN_KEY;
+   if (type === REFRESH_TOKEN_TYPE) secretKey = configuration.SECRET_REFRESH_TOKEN_KEY;
 
    // Verify and decode the token
    try {

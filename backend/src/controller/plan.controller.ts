@@ -9,7 +9,7 @@ export const planController = {
 
    addPlan: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<IPlanResponse>) => {
       const plan = await addPlanService(req.userId);
-      res.json(plan);
+      res.status(201).json(plan);
    }),
 
    getPlans: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IPlanResponse[]>) => {

@@ -1,14 +1,14 @@
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { ApiException } from "../exception/api.exception";
 import { IAccessTokenPair } from "../interface";
-import { config } from "../config";
+import { configuration } from "../config";
 import { UserDocument } from "../model";
 
 export const accessTokenPairGenerator = (userId: UserDocument["id"]): IAccessTokenPair => {
    try {
       return {
-         accessToken: jwt.sign({ userId }, config.SECRET_ACCESS_TOKEN_KEY, { expiresIn: "1d" }),
-         refreshToken: jwt.sign({ userId }, config.SECRET_REFRESH_TOKEN_KEY, { expiresIn: "7d" }),
+         accessToken: jwt.sign({ userId }, configuration.SECRET_ACCESS_TOKEN_KEY, { expiresIn: "1d" }),
+         refreshToken: jwt.sign({ userId }, configuration.SECRET_REFRESH_TOKEN_KEY, { expiresIn: "7d" }),
       };
    } catch (e) {
       const error = e as Error
