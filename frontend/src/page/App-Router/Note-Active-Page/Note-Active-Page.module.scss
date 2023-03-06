@@ -1,44 +1,36 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .NoteActivePage {
-   @extend %flex;
-   justify-content: center;
-   flex-direction: column;
-
+   @extend %flex-align-justify-column;
    width: 60vw;
    height: calc(100vh - 170px);
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
    position: relative;
+   transition: $transition;
 
    .header {
-      @extend %flex;
-      justify-content: center;
-
-      border-bottom: 2px #d7d7d7 solid;
+      @extend %flex-align-justify;
+      border-bottom: 2px solid var(--decorative-grey);
       width: 100%;
       height: 60px;
       position: relative;
    }
 
    .textarea {
-      @extend %flex;
-      justify-content: center;
-
+      @extend %flex-align-justify;
       width: 100%;
       height: calc(100% - 60px);
 
       textarea {
+         background: transparent;
          width: 95%;
          height: 95%;
          border: 0;
          resize: none;
          outline: none;
-         color: #4e4e51;
+         color: var(--main-font);
       }
    }
 

@@ -3,14 +3,18 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { message } from "antd";
 import { AppLogo } from "../Logo/App-Logo/App-Logo";
-import { LogoutOutlined } from "@ant-design/icons";
 import { AppRouter } from "../../router";
 import { logoutService } from "../../service";
+import { useAppSelector } from "../../hook";
 
 import style from "./Layout-Navbar.module.scss";
+import logoutDark from '../../asset/logout-dark.svg'
+import logoutLight from '../../asset/logout-light.svg'
 
 export function LayoutNavbar() {
    const [ messageApi, contextHolder ] = message.useMessage();
+
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    const { logoutFn } = logoutService(messageApi, () => {
       AppRouter.navigate("/");
@@ -34,7 +38,7 @@ export function LayoutNavbar() {
             <div className={ style.notes_link }>
                <NavLink className={ style.category } to={ "/notes" }> Замітки </NavLink>
             </div>
-            <div className={ style.todo_link }>
+            <div className={ style.plans_link }>
                <NavLink className={ style.category } to={ "/plans" }> Плани </NavLink>
             </div>
             <div className={ style.moments_link }>
@@ -44,7 +48,7 @@ export function LayoutNavbar() {
 
          {/* Profile bar  */ }
          <div className={ style.logout }>
-            <LogoutOutlined onClick={ async () => logoutFn() } style={ { fontSize: "20px" } }/>
+            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={{width: "25px"}} onClick={ () => logoutFn() }/>
          </div>
 
       </div>

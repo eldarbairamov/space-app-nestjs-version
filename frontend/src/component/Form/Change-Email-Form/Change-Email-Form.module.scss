@@ -1,15 +1,14 @@
-.ChangeEmailForm {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   gap: 40px;
+@import "src/style/configuration";
 
+.ChangeEmailForm {
+   @extend %flex-align-justify-column;
+   gap: 40px;
    padding: 50px;
    width: 500px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
+   transition: $transition;
 }
 
 @media screen and (max-width: 600px) {

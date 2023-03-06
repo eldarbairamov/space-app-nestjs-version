@@ -9,7 +9,7 @@ import { FileValidatorFilter } from "../common/exception/file-validator.filter";
 import { User } from "../common/decorator/user.decorator";
 import { SharpPipe } from "../common/pipe/sharp.pipe";
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiDefaultResponse, ApiOkResponse, ApiOperation, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
-import { ChangeEmailAcceptBody, ChangeEmailRequest, ChangePasswordBody, DeleteAvatarBody, GetUserResponse, UpdateUser, DefaultError, FileSizeError, FileTypeError, SuccessResponse, UnauthorizedError, UploadImageResponse } from "../common/swagger";
+import { ChangeEmailAcceptBody, ChangeEmailRequest, ChangePasswordBody, DeleteAvatarBody, GetUserResponse, DefaultError, FileSizeError, FileTypeError, SuccessResponse, UnauthorizedError, UploadImageResponse } from "../common/swagger";
 import { ApiFile } from "../common/decorator/api-file.decorator";
 
 @ApiBearerAuth()
@@ -35,7 +35,7 @@ export class UserController {
 
    // Change email: request
    @ApiOperation({ summary: "change email request" })
-   @ApiBody({ type: ChangeEmailRequest })
+   @ApiBody({ type: ChangeEmailRequest, required: true })
    @ApiOkResponse({ description: "Success", type: SuccessResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
@@ -51,8 +51,7 @@ export class UserController {
 
    // Update user profile
    @ApiOperation({ summary: "update user" })
-   @ApiBody({ type: UpdateUser })
-   @ApiOkResponse({ description: "Success", type: UpdateUser })
+   @ApiOkResponse({ description: "Success", type: ProfileUpdateDto })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
@@ -66,7 +65,7 @@ export class UserController {
 
    // Accept new email
    @ApiOperation({ summary: "change email accept" })
-   @ApiBody({ type: ChangeEmailAcceptBody })
+   @ApiBody({ type: ChangeEmailAcceptBody, required: true })
    @ApiOkResponse({ description: "Success", type: SuccessResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
@@ -80,7 +79,7 @@ export class UserController {
 
    // Accept new password
    @ApiOperation({ summary: "change password" })
-   @ApiBody({ type: ChangePasswordBody })
+   @ApiBody({ type: ChangePasswordBody, required: true })
    @ApiOkResponse({ description: "Success", type: SuccessResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
@@ -117,7 +116,7 @@ export class UserController {
 
    // Send image name and delete it
    @ApiOperation({ summary: "send file name and delete avatar" })
-   @ApiBody({ type: DeleteAvatarBody })
+   @ApiBody({ type: DeleteAvatarBody, required: true })
    @ApiOkResponse({ description: "Success", type: SuccessResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })

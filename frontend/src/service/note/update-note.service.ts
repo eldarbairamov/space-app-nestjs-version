@@ -1,4 +1,4 @@
-import { notesRequests } from "../../config/config";
+import { notesRequests } from "../../config/configuration";
 import { INote } from "../../interface";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";

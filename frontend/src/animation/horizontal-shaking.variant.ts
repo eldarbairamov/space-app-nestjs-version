@@ -1,8 +1,8 @@
 export const horizontalShaking = {
-   hidden: {
+   initial: {
       x: -5,
    },
-   visible: {
+   animate: {
       x: 0,
       transition: { type: "spring", stiffness: 1000 },
    },

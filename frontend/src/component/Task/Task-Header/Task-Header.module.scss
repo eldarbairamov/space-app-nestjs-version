@@ -1,29 +1,18 @@
-.TaskHeader {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+@import "src/style/configuration";
 
+.TaskHeader {
+   @extend %flex-align-justify;
    position: relative;
    height: 60px;
    width: 100%;
-   border-bottom: 2px #d7d7d7 solid;
-
-   .plan_title {
-      font-weight: 500;
-      font-size: 18px;
-      text-align: center;
-      border: none;
-      outline: none;
-      width: 500px;
-      background: transparent;
-      color: #4e4e51;
-   }
+   border-bottom: 2px solid var(--decorative-grey);
+   transition: $transition;
 
    .plan_date {
       position: absolute;
       font-size: 13px;
       right: 30px;
       font-weight: 500;
-      color: #7d7d7d;
+      color: var(--second-font);
    }
 }

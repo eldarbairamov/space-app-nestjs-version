@@ -1,25 +1,30 @@
+@import "src/style/configuration.scss";
+
 .DashboardAvatar {
+   transition: $transition;
+
    img {
       width: 400px;
+      transition: $transition;
    }
 
    .avatar {
+      @extend %flex-align-justify;
       width: 350px;
       height: 350px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      transition: $transition;
    }
 
    .no_avatar {
       width: 350px;
+      transition: $transition;
    }
 
 }
 
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 600px) {
    .DashboardAvatar {
       img {
          width: 300px;

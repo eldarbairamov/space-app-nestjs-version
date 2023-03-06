@@ -1,14 +1,15 @@
 export interface IMoment {
-   id: string;
+   readonly id: string;
    readonly title: string;
    readonly photo: string;
    readonly date: number;
    readonly location: string;
    readonly tags: string[];
-   createdAt: number;
+   readonly createdAt: number;
 }
 
 export interface IMoments {
-   data: IMoment[];
+   readonly data: IMoment[];
    readonly tagsForFilter: (string | undefined)[];
+   readonly count: number;
 }

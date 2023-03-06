@@ -1,34 +1,50 @@
-import React, { FC } from "react";
+import React, { FC, useCallback, useRef } from "react";
 
 import { NoteItem } from "../Note-Item/Note-Item";
 import { v4 as uuid } from "uuid";
-import { message } from "antd";
-import { useAppSelector } from "../../../hook";
-import { Empty } from "antd/lib";
-import { getNotesService } from "../../../service";
+import { useAppDispatch, useAppSelector } from "../../../hook";
+import { noteActions } from "../../../redux/slice";
 
 import style from "./Note-List.module.scss";
+import emptyDark from "../../../asset/empty-dark.svg";
+import emptyLight from "../../../asset/empty-light.svg";
 
 export const NoteList: FC = () => {
-   const [ messageApi, contextHolder ] = message.useMessage();
-
    const { notes } = useAppSelector(state => state.noteReducer);
+   const { isDark } = useAppSelector(state => state.appReducer);
 
-   getNotesService(messageApi);
+   const dispatch = useAppDispatch();
+
+   const observer = useRef<any>();
+   const lastElemRef = useCallback((node: any) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(([ entry ]) => {
+         if (entry.isIntersecting) {
+            dispatch(noteActions.next());
+         }
+      });
+      if (node) observer.current.observe(node);
+   }, []);
 
    return (
-      <div className={ style.NoteList }>
-         { contextHolder }
-
-         { notes &&
-            notes.map(item => <NoteItem key={ uuid() } note={ item }/>)
-         }
-
-         { !notes.length &&
+      <>
+         { notes.length
+            ?
+            <div className={ style.NoteList }>
+               { notes && notes.map((item, index) => {
+                  if (notes.length === index + 1) {
+                     return <NoteItem ref={ lastElemRef } key={ uuid() } note={ item }/>;
+                  } else {
+                     return <NoteItem key={ uuid() } note={ item }/>;
+                  }
+               })
+               }
+            </div>
+            :
             <div className={ style.no_notes_wrapper }>
-               <Empty image={ Empty.PRESENTED_IMAGE_SIMPLE } description={ "" }/>
+               <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "50px" } }/>
             </div>
          }
-      </div>
+      </>
    );
 };

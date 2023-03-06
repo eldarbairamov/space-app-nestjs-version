@@ -10,7 +10,7 @@ export function PlanCount() {
 
    return (
       <div className={ style.PlanCount }>
-         <Divider> <span>Плани</span> </Divider>
+         <Divider> Плани </Divider>
          <p> { plansCount } </p>
       </div>
    );

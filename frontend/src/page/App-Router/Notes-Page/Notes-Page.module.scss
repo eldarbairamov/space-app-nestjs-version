@@ -1,52 +1,48 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .NotesPage {
-   @extend %flex;
-   justify-content: center;
+   @extend %flex-align-justify;
    gap: 20px;
-
    width: 85vw;
    height: calc(100vh - 170px);
+   transition: $transition;
+
+   ::-webkit-scrollbar-track {
+      background: transparent;
+   }
 
    .left_side {
-      @extend %flex;
-      justify-content: center;
-
+      @extend %flex-align-justify;
       height: 100%;
-      width: 25%;
-
-      background: white;
+      width: 28%;
+      background: var(--second-bg);
       border-radius: 15px;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
    }
 
    .right_side {
-      @extend %flex;
-      justify-content: center;
-
+      @extend %flex-align-justify;
       height: 100%;
-      width: 75%;
-
-      background: white;
+      width: 60%;
+      background: var(--second-bg);
       border-radius: 15px;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
    }
 }
 
 .NotesPageAdaptive {
-   @extend %flex;
-   flex-direction: column;
-   justify-content: center;
-
+   @extend %flex-align-justify-column;
    width: 85vw;
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
    height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
    position: relative;
+   transition: $transition;
+
+   ::-webkit-scrollbar-track {
+      background: transparent;
+   }
 
    .note_list_wrapper {
       overflow-y: scroll;

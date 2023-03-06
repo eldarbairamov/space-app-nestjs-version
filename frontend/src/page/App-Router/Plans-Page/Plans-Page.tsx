@@ -3,6 +3,8 @@ import React from "react";
 import { PlanHeader, PlanList } from "../../../component";
 import { message } from "antd";
 import { getPlansService } from "../../../service";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "../../../animation";
 
 import style from "./Plans-Page.module.scss";
 
@@ -12,7 +14,11 @@ export function PlansPage() {
    getPlansService(messageApi);
 
    return (
-      <div className={ style.PlansPage }>
+      <motion.div className={ style.PlansPage }
+                  variants={ horizontalPresent }
+                  initial={ "initial" }
+                  animate={ "animate" }
+      >
          { contextHolder }
 
          {/* Header */ }
@@ -23,6 +29,6 @@ export function PlansPage() {
             <PlanList/>
          </div>
 
-      </div>
+      </motion.div>
    );
 }

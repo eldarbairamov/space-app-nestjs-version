@@ -12,7 +12,7 @@ export const AppRouter = createBrowserRouter([
       children: [
          {
             index: true,
-            element: <DashboardPage/>,
+            element: <Navigate to={ "dashboard" }/>,
          },
          {
             path: "dashboard",
@@ -75,6 +75,10 @@ export const AppRouter = createBrowserRouter([
          {
             path: "*",
             element: <Navigate to={ "/" }/>,
+         },
+         {
+            path: "error",
+            element: <ErrorMessage/>,
          },
       ],
    },

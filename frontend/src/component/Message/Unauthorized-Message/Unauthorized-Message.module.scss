@@ -1,10 +1,10 @@
-.UnauthorizedMessage {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+@import "src/style/configuration";
 
+.UnauthorizedMessage {
+   @extend %flex-align-justify;
    width: 100vw;
    height: 100vh;
+   transition: $transition;
 
    div:nth-child(3) {
       font-size: 16px;

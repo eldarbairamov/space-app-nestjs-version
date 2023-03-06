@@ -1,13 +1,14 @@
+@import "src/style/configuration";
+
 .NoteItemAdaptive {
    display: flex;
    align-items: flex-start;
    justify-content: space-evenly;
    flex-direction: column;
    gap: 20px;
-
    padding: 20px;
    border-radius: 20px;
-   background: rgb(244, 244, 244);
+   background: var(--item-bg);
    height: 140px;
    width: calc(100% / 2 - 15px);
    position: relative;
@@ -30,7 +31,7 @@
    .note_body {
       font-size: 14px;
       text-align: left;
-      color: #7d7d7d;
+      color: var(--second-font);
 
       width: 80%;
       overflow: hidden;
@@ -47,7 +48,7 @@
 }
 
 .NoteItemAdaptive[data-active='true'] {
-   background: #fff5e7;
+   background: var(--item-bg-hover);
 }
 
 @media screen and (max-width: 600px) {

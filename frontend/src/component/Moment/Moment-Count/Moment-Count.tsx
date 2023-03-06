@@ -10,7 +10,7 @@ export function MomentCount() {
 
    return (
       <div className={ style.MomentCount }>
-         <Divider> <span>Моменти</span> </Divider>
+         <Divider> Моменти </Divider>
          <p> { momentsCount } </p>
       </div>
    );

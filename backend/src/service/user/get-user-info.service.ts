@@ -8,9 +8,9 @@ export const getUserInfoService = async (userId: UserDocument["id"]): Promise<IU
    const user = await UserRepository.findById(userId) as UserDocument;
 
    const [ notesCount, plansCount, momentsCount ] = await Promise.all([
-      NoteRepository.count(userId),
-      PlanRepository.count(userId),
-      MomentRepository.count(userId),
+      NoteRepository.count({ ownerId: userId }),
+      PlanRepository.count({ ownerId: userId }),
+      MomentRepository.count({ ownerId: userId }),
    ]);
 
    // Return presented date to client

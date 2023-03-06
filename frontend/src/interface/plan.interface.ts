@@ -4,3 +4,8 @@ export interface IPlan {
    readonly lastModified: number;
 }
 
+export interface IPlans {
+   readonly data: IPlan[];
+   readonly count: number;
+}
+

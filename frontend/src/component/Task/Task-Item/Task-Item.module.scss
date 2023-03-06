@@ -1,23 +1,16 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .TaskItem {
-   @extend %flex;
-   justify-content: center;
-
+   @extend %flex-align-justify;
    padding: 20px 20px;
-   background: #f2f9ff;
+   background: var(--task-item-bg);
    margin-bottom: 20px;
    border-radius: 10px;
-
    gap: 15px;
+   transition: $transition;
 
    .task_status {
-      @extend %flex;
-      justify-content: center;
-
+      @extend %flex-align-justify;
       width: 15%;
       height: 100%;
 
@@ -28,9 +21,7 @@
    }
 
    .task_title {
-      @extend %flex;
-      justify-content: center;
-
+      @extend %flex-align-justify;
       overflow-wrap: break-word;
 
       p {
@@ -40,5 +31,6 @@
 
    .delete {
       cursor: pointer;
+      color: var(--main-font);
    }
 }

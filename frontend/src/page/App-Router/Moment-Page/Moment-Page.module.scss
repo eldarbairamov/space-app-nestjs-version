@@ -1,18 +1,17 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .MomentPage {
-   @extend %flex;
-   justify-content: center;
-   flex-direction: column;
-
+   @extend %flex-align-justify-column;
    width: 85vw;
    height: calc(100vh - 170px);
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   transition: $transition;
+
+   ::-webkit-scrollbar-track {
+      background: transparent;
+   }
 
    .moment_list_wrapper {
       overflow-y: scroll;

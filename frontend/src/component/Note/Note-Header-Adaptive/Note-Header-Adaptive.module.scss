@@ -1,0 +1,20 @@
+@import "src/style/configuration";
+
+.NoteHeaderAdaptive {
+   @extend %flex-align-justify;
+   gap: 10px;
+   height: 60px;
+   width: 100%;
+   position: relative;
+   border-bottom: 2px solid var(--decorative-grey);
+   transition: $transition;
+
+   img {
+      height: 20px;
+   }
+
+   .search_bar {
+      position: absolute;
+      right: 30px;
+   }
+}

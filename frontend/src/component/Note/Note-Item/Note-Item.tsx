@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {  forwardRef } from "react";
 
 import { INote } from "../../../interface";
 import { useAppDispatch, useAppSelector } from "../../../hook";
@@ -14,7 +14,7 @@ interface INoteItem {
    note: INote;
 }
 
-export const NoteItem: FC<INoteItem> = ({ note }) => {
+export const NoteItem = forwardRef(({ note }: INoteItem, ref: any) => {
    const titleCondition = note.title && note.title.split("").length > 30;
 
    const [ messageApi, contextHolder ] = message.useMessage();
@@ -23,15 +23,15 @@ export const NoteItem: FC<INoteItem> = ({ note }) => {
 
    const { deleteNoteFn } = deleteNoteService(messageApi);
 
-   const { activeNote } = useAppSelector(state => state.noteReducer);
+   const { activeNote, total, searchKey } = useAppSelector(state => state.noteReducer);
 
    const deleteNote = async (noteId: INote["id"], e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
       e.stopPropagation();
-      await deleteNoteFn(noteId);
+      await deleteNoteFn(noteId, total, searchKey);
    };
 
    return (
-      <div className={ style.NoteItem }
+      <div ref={ref} className={ style.NoteItem }
            onClick={ () => dispatch(noteActions.setActiveNoteId(note.id)) }
            data-active={ note.id === activeNote?.id }
       >
@@ -61,4 +61,4 @@ export const NoteItem: FC<INoteItem> = ({ note }) => {
 
       </div>
    );
-};
+})

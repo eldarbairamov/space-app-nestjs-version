@@ -6,3 +6,8 @@ export interface INoteResponse {
    readonly body: string;
    readonly lastModified: number;
 }
+
+export interface INotesResponse {
+   readonly data: INoteResponse[];
+   readonly count: number;
+}

@@ -4,7 +4,7 @@ import { IMoment } from "../../interface";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { useDispatch } from "react-redux";
-import { momentsRequests } from "../../config/config";
+import { momentsRequests } from "../../config/configuration";
 import { momentActions } from "../../redux/slice";
 import { MessageInstance } from "antd/es/message/interface";
 

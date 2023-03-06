@@ -6,8 +6,10 @@ import { message } from "antd";
 import { getTasksService } from "../../../service";
 import { useParams } from "react-router-dom";
 import { getOnePlanService } from "../../../service/plan/get-one-plan.service";
+import { motion } from "framer-motion";
 
 import style from "./Tasks-Page.module.scss";
+import { horizontalPresent } from "../../../animation";
 
 export function TasksPage() {
    const { planId } = useParams<{ planId: IPlan["id"] }>();
@@ -19,7 +21,11 @@ export function TasksPage() {
    getTasksService(messageApi, planId!);
 
    return (
-      <div className={ style.TasksPage }>
+      <motion.div className={ style.TasksPage }
+                  variants={ horizontalPresent }
+                  initial={ "initial" }
+                  animate={ "animate" }
+      >
          { contextHolder }
 
          {/* Header */ }
@@ -35,6 +41,6 @@ export function TasksPage() {
             <TaskList/>
          </div>
 
-      </div>
+      </motion.div>
    );
 }

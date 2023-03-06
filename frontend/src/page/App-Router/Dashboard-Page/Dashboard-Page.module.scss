@@ -1,35 +1,39 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .DashboardPage {
-   @extend %flex;
-   flex-direction: column;
-   justify-content: center;
-
+   @extend %flex-align-justify-column;
    width: 85vw;
    height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
+   position: relative;
+   transition: $transition;
 }
 
 .top {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
+   @extend %flex-align-justify-column;
    gap: 20px;
-
    height: 65%;
    width: 100%;
+
+   .settings {
+      position: absolute;
+      left: 30px;
+      top: 20px;
+      cursor: pointer;
+   }
+
+   .switch {
+      position: absolute;
+      right: 30px;
+      top: 20px
+   }
 }
 
 .bottom {
-   @extend %flex;
+   @extend %flex-align;
    justify-content: space-evenly;
-
    height: 35%;
    width: 100%;
 }

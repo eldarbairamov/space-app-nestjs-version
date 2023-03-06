@@ -1,16 +1,12 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .MomentActivePage {
-   @extend %flex;
-   flex-direction: column;
-   justify-content: center;
+   @extend %flex-align-justify-column;
+   transition: $transition;
 
    width: 60vw;
    height: calc(100vh - 170px);
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
 
@@ -43,7 +39,7 @@
       }
 
       .save_moment {
-         background: #24292e;
+         background: var(--button-bg);
          right: 25px;
          top: 62px;
       }
@@ -55,9 +51,8 @@
       }
 
       .photo_wrapper {
-         @extend %flex;
-         justify-content: center;
-         background: rgb(244, 244, 244);
+         @extend %flex-align-justify;
+         background: var(--item-bg);
          height: 100%;
          width: 100%;
          position: relative;
@@ -93,8 +88,8 @@
          top: 25px;
          left: 25px;
          z-index: 1;
-         color: white;
-         background: #24292e;
+         color: var(--button-font);
+         background: var(--button-bg);
          padding: 5px 10px;
          border-radius: 5px;
          cursor: pointer;
@@ -130,8 +125,8 @@
          }
 
          .date, .location {
-            color: white;
-            background: #24292e;
+            color: var(--button-font);
+            background: var(--button-bg);
             padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
@@ -139,7 +134,7 @@
       }
 
       .tags_wrapper {
-         @extend %flex;
+         @extend %flex-align;
          gap: 10px;
 
          position: absolute;

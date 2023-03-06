@@ -1,7 +1,7 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { IRegistration } from "../../interface";
-import { authRequests } from "../../config/config";
+import { authRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 
 export function registrationService(messageApi: MessageInstance, next: () => any) {

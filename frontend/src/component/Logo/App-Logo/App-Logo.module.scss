@@ -1,8 +1,10 @@
+@import "src/style/configuration";
+
 .AppLogo {
-   display: flex;
-   align-items: center;
+   @extend %flex-align;
    cursor: default;
    gap: 8px;
+   transition: $transition;
 
    p {
       font-weight: 600;
@@ -20,7 +22,7 @@
 .second {
    --color-1: #DBAD4A;
    --color-2: #ACCFCB;
-   --color-3: #17494D;
+   --color-3: #63a1ba;
 }
 
 .third {

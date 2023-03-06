@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { FilterQuery, Model, UpdateQuery } from "mongoose";
 import { databaseException } from "../../common/exception/database.exception";
 import { Plan, PlanDocument } from "../model/plan.model";
+import { QueryDto } from "../../common/dto/query.dto";
 
 @Injectable()
 export class PlanRepository {
@@ -30,9 +31,10 @@ export class PlanRepository {
       }
    }
 
-   async count(filter: FilterQuery<Plan>): Promise<number> {
+   async count(filter: FilterQuery<Plan>, searchKey = ""): Promise<number> {
+      const filterObj = searchKey ? { ...filter, title: { $in: searchKey } } : { ...filter };
       try {
-         return this.planModel.count(filter);
+         return this.planModel.count(filterObj);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -40,10 +42,11 @@ export class PlanRepository {
       }
    }
 
-   async find(filter: FilterQuery<Plan>, searchKey: string): Promise<PlanDocument[]> {
+   async find(filter: FilterQuery<Plan>, queryDto = {} as QueryDto): Promise<PlanDocument[]> {
+      const { searchKey, limit } = queryDto;
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return this.planModel.find(filterObj).sort({ updatedAt: "desc" });
+         return this.planModel.find(filterObj).sort({ updatedAt: "desc" }).limit(limit);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

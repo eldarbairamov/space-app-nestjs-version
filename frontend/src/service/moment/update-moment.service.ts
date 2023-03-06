@@ -2,7 +2,7 @@ import { TypedSetState } from "../../interface/common.interface";
 import { IMoment } from "../../interface";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
-import { momentsRequests } from "../../config/config";
+import { momentsRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 
 export function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>, messageApi: MessageInstance) {

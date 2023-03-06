@@ -3,10 +3,9 @@ docker
 
 REACT:
 docker
-dark theme
-quil
 app description after first login + db
+
++ native
 
 NEST:
 docker
-secret key constants

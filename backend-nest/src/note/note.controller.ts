@@ -1,12 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { NoteService } from "./note.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { UpdateNoteDto } from "./dto";
 import { AccessGuard } from "../auth/guard";
-import { INoteResponse } from "./interface/note-response.interface";
+import { INoteResponse, INotesResponse } from "./interface/note-response.interface";
 import { User } from "../common/decorator/user.decorator";
-import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, NoteResponse } from "../common/swagger";
+import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, NoteResponse, NotesResponse, DeleteItemBody } from "../common/swagger";
+import { QueryDto } from "../common/dto/query.dto";
+import { DeleteItemDto } from "../common/dto/delete-item.dto";
 
 @ApiBearerAuth()
 @ApiTags("Notes")
@@ -18,17 +20,16 @@ export class NoteController {
 
    // Get all notes
    @ApiOperation({ summary: "get all notes" })
-   @ApiQuery({ name: "searchKey", description: "Keyword for searching", required: false })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
-   @ApiOkResponse({ description: "Success", type: [ NoteResponse ] })
+   @ApiOkResponse({ description: "Success", type: NotesResponse })
    @UseGuards(AccessGuard)
    @Get()
    async getNotes(
-      @Query("searchKey") searchKey: string,
-      @User("userId") userId: string): Promise<INoteResponse[]> {
+      @Query() queryDto: QueryDto,
+      @User("userId") userId: string): Promise<INotesResponse> {
 
-      return this.noteService.getNotes(userId, searchKey);
+      return this.noteService.getNotes(userId, queryDto);
    }
 
    // Add note
@@ -52,7 +53,6 @@ export class NoteController {
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
    @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
-   @ApiBody({ type: UpdateNoteDto })
    @UseGuards(AccessGuard)
    @UseGuards(ObjectCheckingGuard)
    @Put(":noteId")
@@ -63,23 +63,25 @@ export class NoteController {
       return this.noteService.updateNote(noteId, dto);
    }
 
-   // Delete note
-   @ApiOperation({ summary: "delete note by id" })
+   // Send prev request params and delete note
+   @ApiOperation({ summary: "send prev request params and delete note by id" })
    @ApiParam({ name: "noteId", description: "note id", example: "63dfe16eda233c96fc6e2604" })
-   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiBody({ type: DeleteItemBody, required: false })
+   @ApiOkResponse({ description: "Success", type: NotesResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
    @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
+   @HttpCode(200)
    @UseGuards(AccessGuard)
    @UseGuards(ObjectCheckingGuard)
-   @Delete(":noteId")
+   @Post(":noteId")
    async deleteNote(
       @User("userId") userId: string,
-      @Param("noteId") noteId: string): Promise<{ message: string }> {
+      @Body() dto: DeleteItemDto,
+      @Param("noteId") noteId: string): Promise<INotesResponse> {
 
-      await this.noteService.deleteNote(noteId, userId);
-      return { message: "Success" };
+      return this.noteService.deleteNote(noteId, userId, dto.limit, dto.searchKey);
    }
 
 }

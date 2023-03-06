@@ -1,5 +1,5 @@
 import { axiosInstance } from "../axios.service";
-import { tasksRequests } from "../../config/config";
+import { tasksRequests } from "../../config/configuration";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { MessageInstance } from "antd/es/message/interface";
 import { ITask } from "../../interface";

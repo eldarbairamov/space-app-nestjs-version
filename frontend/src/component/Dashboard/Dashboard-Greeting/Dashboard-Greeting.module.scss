@@ -1,12 +1,15 @@
+@import "src/style/configuration";
+
 .DashboardGreeting {
    margin-top: 20px;
    font-size: 35px;
    font-weight: bold;
    color: #df8281;
+   transition: $transition;
 
    span {
       font-family: 'Caveat', cursive;
       font-size: 45px;
-      color: #4e4e51;
+      color: var(--main-font);
    }
 }

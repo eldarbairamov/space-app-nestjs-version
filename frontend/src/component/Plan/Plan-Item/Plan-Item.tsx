@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -10,13 +10,16 @@ import { message } from "antd";
 
 import style from "./Plan-Item.module.scss";
 import brain from "../../../asset/brain.png";
+import { useAppSelector } from "../../../hook";
 
 interface IPlanItemProps {
    plan: IPlan;
 }
 
-export function PlanItem({ plan }: IPlanItemProps) {
+export const PlanItem = forwardRef(({ plan }: IPlanItemProps, ref: any) => {
    const [ messageApi, contextHolder ] = message.useMessage();
+
+   const { total, searchKey } = useAppSelector(state => state.planReducer);
 
    const titleCondition = plan && plan.title.split("").length > 16;
 
@@ -26,13 +29,13 @@ export function PlanItem({ plan }: IPlanItemProps) {
 
    const deletePlan = async (event: TypedOnClick<HTMLParagraphElement>, targetId: string) => {
       event.stopPropagation();
-      await deletePlanFn(targetId);
+      await deletePlanFn(targetId, total, searchKey);
    };
 
    const choosePlan = (plan: IPlan) => navigate(`/plans/${ plan.id }`);
 
    return (
-      <div className={ style.PlanItem }
+      <div ref={ ref } className={ style.PlanItem }
            onClick={ () => choosePlan(plan) }
       >
          { contextHolder }
@@ -40,8 +43,9 @@ export function PlanItem({ plan }: IPlanItemProps) {
          <p className={ style.plan_name }> { titleCondition ? plan.title.substring(0, 16) + "..." : plan.title }  </p>
 
          <p className={ style.delete }
-            onClick={ event => deletePlan(event, plan.id) }><DeleteOutlined
-            style={ { fontSize: "20px" } }/></p>
+            onClick={ event => deletePlan(event, plan.id) }>
+            <DeleteOutlined style={ { fontSize: "20px" } }/>
+         </p>
 
          <img src={ brain } alt="folder"/>
 
@@ -51,4 +55,4 @@ export function PlanItem({ plan }: IPlanItemProps) {
 
       </div>
    );
-}
+});

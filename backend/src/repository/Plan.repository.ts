@@ -1,4 +1,4 @@
-import { IPlan, PlanDocument, PlanModel, UserDocument } from "../model";
+import { IPlan, PlanDocument, PlanModel } from "../model";
 import { ApiException } from "../exception/api.exception";
 import { FilterQuery, UpdateQuery } from "mongoose";
 
@@ -8,18 +8,18 @@ export const PlanRepository = {
       try {
          return PlanModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
    },
 
-   find: async (filter: FilterQuery<IPlan>, searchKey: string): Promise<PlanDocument[]> => {
+   find: async (filter: FilterQuery<IPlan>, searchKey: string, limit: string | number): Promise<PlanDocument[]> => {
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return PlanModel.find(filterObj).sort({ updatedAt: "desc" });
+         return PlanModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -29,7 +29,7 @@ export const PlanRepository = {
       try {
          return PlanModel.findById(planId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -39,7 +39,7 @@ export const PlanRepository = {
       try {
          return PlanModel.findByIdAndUpdate(planId, update, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -49,7 +49,7 @@ export const PlanRepository = {
       try {
          return PlanModel.findOneAndUpdate(filter, update, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -59,17 +59,18 @@ export const PlanRepository = {
       try {
          return PlanModel.findByIdAndDelete(planId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
    },
 
-   count: async (userId: UserDocument["id"]): Promise<number> => {
+   count: async (filter: FilterQuery<IPlan>, searchKey = ""): Promise<number> => {
+      const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return PlanModel.count({ ownerId: userId });
+         return PlanModel.count(filterObj);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }

@@ -1,23 +1,20 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .TasksPage {
-   @extend %flex;
-   flex-direction: column;
-   justify-content: center;
-
+   @extend %flex-align-justify-column;
    width: 50vw;
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
    height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   transition: $transition;
+
+   ::-webkit-scrollbar-track {
+      background: transparent;
+   }
 
    .add_task_wrapper {
-      @extend %flex;
-      justify-content: center;
-
+      @extend %flex-align-justify;
       height: 100px;
       width: 100%;
    }

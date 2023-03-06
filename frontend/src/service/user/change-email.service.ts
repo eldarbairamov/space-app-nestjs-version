@@ -1,6 +1,6 @@
 import { MessageInstance } from "antd/es/message/interface";
 import { errorCatherFn } from "../../helper/error-catcher";
-import { userRequests } from "../../config/config";
+import { userRequests } from "../../config/configuration";
 import { axiosInstance } from "../axios.service";
 
 export function changeEmailService(messageApi: MessageInstance, next: () => any) {

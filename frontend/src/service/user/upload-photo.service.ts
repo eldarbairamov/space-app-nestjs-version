@@ -1,7 +1,7 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { MessageInstance } from "antd/es/message/interface";
 import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/config";
+import { userRequests } from "../../config/configuration";
 import { userActions } from "../../redux/slice";
 import { useAppDispatch } from "../../hook";
 

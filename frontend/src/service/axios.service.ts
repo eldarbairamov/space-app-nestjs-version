@@ -1,12 +1,12 @@
 import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-import { authRequests, config } from "../config/config";
+import { authRequests, configuration } from "../config/configuration";
 import { storageService } from "./storage.service";
 import { AppRouter } from "../router";
 import { IOAuth } from "../interface";
 
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 
-export const axiosInstance = axios.create({ baseURL: config.API_URL });
+export const axiosInstance = axios.create({ baseURL: configuration.API_URL });
 
 let isRefreshing = false;
 

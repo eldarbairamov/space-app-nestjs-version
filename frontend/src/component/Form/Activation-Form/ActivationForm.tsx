@@ -22,7 +22,7 @@ export function ActivationForm({ activationFn }: ActivationFormProps) {
       <div className={ style.ActivationForm }>
 
          {/* Message */ }
-         <p className={ style.message }> Будь ласка, введіть код активації </p>
+         <span className={ style.message }> Будь ласка, введіть код активації </span>
 
          {/* Input */ }
          <Input type="text"

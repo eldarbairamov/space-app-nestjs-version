@@ -7,13 +7,15 @@ import { useAppDispatch, useAppSelector } from "../../../hook";
 import { TypedOnChange } from "../../../interface/common.interface";
 import { noteActions } from "../../../redux/slice";
 
-import add from "../../../asset/note.png";
-import style from "./Note-Header.module.scss";
+import style from "./Note-Header-Adaptive.module.scss";
+import addLight from "../../../asset/add-light.svg";
+import addDark from "../../../asset/add-dark.svg";
 
 export function NoteHeader() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { searchKey } = useAppSelector(state => state.noteReducer);
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    const dispatch = useAppDispatch();
 
@@ -22,11 +24,11 @@ export function NoteHeader() {
    const handleInput = (event: TypedOnChange) => dispatch(noteActions.setSearchKey(event.target.value));
 
    return (
-      <div className={ style.NoteHeader }>
+      <div className={ style.NoteHeaderAdaptive }>
          { contextHolder }
 
          {/* Add note */ }
-         <img src={ add } alt={ "add" }/>
+         <img src={ isDark ? addLight : addDark } alt={ "add" }/>
          <NoBgButton text={ "Додати замітку" } hoverSubject={ "notes" } onClick={ addNoteFn }/>
 
          {/* Search bar */ }

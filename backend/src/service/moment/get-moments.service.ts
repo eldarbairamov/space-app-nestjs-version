@@ -3,11 +3,12 @@ import { MomentRepository } from "../../repository";
 import { allMomentsPresenter } from "../../presenter/moment.presenter";
 import { IMomentsResponse } from "../../interface";
 
-export const getMomentsService = async (userId: UserDocument["id"], searchKey: string): Promise<IMomentsResponse> => {
+export const getMomentsService = async (userId: UserDocument["id"], searchKey: string, limit: string | number): Promise<IMomentsResponse> => {
 
    // Find all moments / by search key
-   const [ moments, allMoments ] = await Promise.all([
-      MomentRepository.find({ ownerId: userId }, searchKey),
+   const [ moments, count, allMoments ] = await Promise.all([
+      MomentRepository.find({ ownerId: userId }, searchKey, limit),
+      MomentRepository.count({ ownerId: userId }, searchKey),
       MomentRepository.findAllByUserId(userId),
    ]);
 
@@ -16,7 +17,10 @@ export const getMomentsService = async (userId: UserDocument["id"], searchKey: s
    const uniqueTags = Array.from(new Set(tags?.flat()));
 
    // Return presented data to client
-   const presentedMoments = allMomentsPresenter(moments);
-   return { data: presentedMoments, tagsForFilter: uniqueTags };
+   return {
+      data: allMomentsPresenter(moments),
+      tagsForFilter: uniqueTags,
+      count,
+   };
 
 };

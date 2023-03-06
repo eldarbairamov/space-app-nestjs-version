@@ -9,7 +9,7 @@ import configuration from "./config/configuration";
 const start = async () => {
    const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-   app.useGlobalPipes(new ValidationPipe());
+   app.useGlobalPipes(new ValidationPipe({transform: true, transformOptions: {enableImplicitConversion: true}}));
    app.useStaticAssets(staticPath);
    app.setGlobalPrefix("api");
    app.enableCors();

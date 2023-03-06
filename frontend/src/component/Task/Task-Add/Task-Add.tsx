@@ -6,14 +6,17 @@ import { addTaskService } from "../../../service";
 import { NoBgInput } from "../../UI/No-Bg-Input/No-Bg-Input";
 import { TypedOnChange } from "../../../interface/common.interface";
 import { useAppDispatch, useAppSelector } from "../../../hook";
-import { taskAction } from "../../../redux/slice/task.slice";
+import { taskAction } from "../../../redux/slice";
 
 import style from "./Task-Add.module.scss";
+import addLight from "../../../asset/add-light.svg";
+import addDark from "../../../asset/add-dark.svg";
 
 export function TaskAdd() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const {activePlan} = useAppSelector(state => state.planReducer)
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    const dispatch = useAppDispatch();
 
@@ -34,13 +37,14 @@ export function TaskAdd() {
       <div className={ style.TaskAdd }>
          { contextHolder }
 
-         <p onClick={ addTask }> + </p>
+         <img onClick={ addTask } src={ isDark ? addLight : addDark } alt={ "add" }/>
+
          <NoBgInput type={ "text" }
                     id={ "taskTitle" }
                     style={ { textAlign: "left" } }
                     value={ taskTitle }
                     onChange={ (event: TypedOnChange) => setTaskTitle(event.target.value) }
-                    placeholder={ "Додати задачу" }
+                    placeholder={ "Що плануєш зробити?" }
          />
 
       </div>

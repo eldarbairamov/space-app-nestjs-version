@@ -1,19 +1,22 @@
+@import "src/style/configuration";
+
 .Button {
    margin-top: 10px;
    padding: 10px 20px;
    border: none;
    cursor: pointer;
-   background: #24292e;
+   background: var(--button-bg);
    color: white;
    border-radius: 5px;
    font-size: 16px;
+   transition: $transition;
 
    &:hover {
       background: #3D8DAE;
    }
 
    &:disabled {
-      background: rgba(36, 41, 46, 0.24);
+      background: var(--button-disbled-bg);
       cursor: inherit;
    }
 

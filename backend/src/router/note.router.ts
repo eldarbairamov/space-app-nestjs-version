@@ -24,8 +24,8 @@ notesRouter.put(
    commonMiddleware.isObjectExists("note"),
    notesController.updateNote);
 
-// Delete note
-notesRouter.delete(
+// Send prev request params and delete note
+notesRouter.post(
    "/:noteId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("note"),

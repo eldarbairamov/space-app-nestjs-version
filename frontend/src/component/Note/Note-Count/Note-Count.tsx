@@ -10,7 +10,7 @@ export const NoteCount: FC = () => {
 
    return (
       <div className={ style.NoteCount }>
-         <Divider> <span> Замітки </span> </Divider>
+         <Divider> Замітки </Divider>
          <p> { notesCount } </p>
       </div>
    );

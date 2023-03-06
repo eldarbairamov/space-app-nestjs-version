@@ -1,18 +1,16 @@
+@import "src/style/configuration";
+
 .PlanHeader {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   @extend %flex-align-justify;
    gap: 10px;
-
-   color: #4e4e51;
-
    height: 60px;
    width: 100%;
    position: relative;
-   border-bottom: 2px #d7d7d7 solid;
+   border-bottom: 2px solid var(--decorative-grey);
+   transition: $transition;
 
    img {
-      height: 25px;
+      height: 20px;
    }
 
    .search_bar {

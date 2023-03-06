@@ -1,27 +1,26 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .PlansPage {
-   @extend %flex;
-   flex-direction: column;
-   justify-content: center;
-
+   @extend %flex-align-justify-column;
    width: 85vw;
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
    height: calc(100vh - 170px);
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
    position: relative;
+   transition: $transition;
+
+   ::-webkit-scrollbar-track {
+      background: transparent;
+   }
 
    .plan_list_wrapper {
       overflow-y: scroll;
       height: calc(100% - 60px);
       width: 100%;
+      padding: 30px 0 30px 0;
    }
 }
-
 
 @media screen and (max-height: 800px) {
    .PlansPage {

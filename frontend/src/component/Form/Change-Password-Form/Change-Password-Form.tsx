@@ -10,9 +10,11 @@ import { message } from "antd";
 import { getUserService, changePasswordService } from "../../../service";
 import { Button } from "../../../component";
 import { useAppSelector } from "../../../hook";
+import { scrollToElement } from "../../../helper/scroll-to-element";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "../../../animation";
 
 import style from "./Change-Password-Form.module.scss";
-import { scrollToElement } from "../../../helper/scroll-to-element";
 
 export function ChangePasswordForm() {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IChangePasswordForm>({
@@ -41,12 +43,17 @@ export function ChangePasswordForm() {
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();
-      scrollToElement()
+      scrollToElement();
 
    }, [ username, name, surname ]);
 
    return (
-      <form className={ style.ChangePasswordForm } onSubmit={ handleSubmit(onSubmit) }>
+      <motion.form className={ style.ChangePasswordForm }
+                   onSubmit={ handleSubmit(onSubmit) }
+                   variants={ horizontalPresent }
+                   initial={ "initial" }
+                   animate={ "animate" }
+      >
          { contextHolder }
 
          {/* Form controls */ }
@@ -74,6 +81,6 @@ export function ChangePasswordForm() {
          {/* Submit button */ }
          <Button disabled={ !isValid } text={ "Зберегти" } style={ { width: "100%" } }/>
 
-      </form>
+      </motion.form>
    );
 }

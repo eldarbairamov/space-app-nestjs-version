@@ -2,11 +2,13 @@ import React, { useRef } from "react";
 
 import { Outlet } from "react-router-dom";
 import { useAppSelector } from "../../../hook";
-import { config } from "../../../config/config";
+import { configuration } from "../../../config/configuration";
 import { AppRouter } from "../../../router";
 import { message } from "antd";
 import { deletePhotoService, uploadPhotoService } from "../../../service";
 import { scrollToElement } from "../../../helper/scroll-to-element";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "../../../animation";
 
 import style from "./Profile-Settings-Page.module.scss";
 import user from "../../../asset/user.png";
@@ -24,7 +26,11 @@ export function ProfileSettingsPage() {
    const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => uploadPhotoFn((event.target.files as FileList)[0]);
 
    return (
-      <div className={ style.ProfileSettingsPage }>
+      <motion.div className={ style.ProfileSettingsPage }
+                  variants={ horizontalPresent }
+                  initial={ "initial" }
+                  animate={ "animate" }
+      >
          { contextHolder }
 
          {/* Left side */ }
@@ -35,7 +41,7 @@ export function ProfileSettingsPage() {
                <div>
                   { avatar &&
                      <div className={ style.avatar }>
-                        <img src={ config.SERVER_URL + avatar } alt="avatar"/>
+                        <img src={ configuration.SERVER_URL + avatar } alt="avatar"/>
                      </div> }
 
                   { !avatar && <img className={ style.no_avatar } src={ user } alt="no avatar"/> }
@@ -86,6 +92,6 @@ export function ProfileSettingsPage() {
             <Outlet/>
          </div>
 
-      </div>
+      </motion.div>
    );
 }

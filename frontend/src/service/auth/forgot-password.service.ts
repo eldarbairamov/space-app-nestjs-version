@@ -1,6 +1,6 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
-import { authRequests } from "../../config/config";
+import { authRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 
 export function forgotPasswordService(messageApi: MessageInstance, next: () => any) {

@@ -3,9 +3,10 @@ import { PlanPresenter } from "./presenter/plan.presenter";
 import { UserRepository } from "../user/repository/user.repository";
 import { PlanRepository } from "./repository/plan.repository";
 import { CreatePlanDto } from "./dto";
-import { IPlanResponse } from "./interface/plan-response.interface";
+import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
 import { UserDocument } from "../user/model/user.model";
 import { PlanDocument } from "./model/plan.model";
+import { QueryDto } from "../common/dto/query.dto";
 
 @Injectable()
 export class PlanService {
@@ -35,12 +36,18 @@ export class PlanService {
       return this.planPresenter.single(plan);
    }
 
-   async getPlans(userId: UserDocument["id"], searchKey: string): Promise<IPlanResponse[]> {
-      // Find plans
-      const plans = await this.planRepository.find({ ownerId: userId }, searchKey);
+   async getPlans(userId: UserDocument["id"], queryDto: QueryDto): Promise<IPlansResponse> {
+      // Find and count plans
+      const [ plans, count ] = await Promise.all([
+         this.planRepository.find({ ownerId: userId }, queryDto),
+         this.planRepository.count({ ownerId: userId }, queryDto.searchKey),
+      ]);
 
       // Return presented data to client
-      return this.planPresenter.array(plans);
+      return {
+         data: this.planPresenter.array(plans),
+         count,
+      };
    }
 
    async getOnePlan(planId: PlanDocument["id"]): Promise<IPlanResponse> {
@@ -51,12 +58,21 @@ export class PlanService {
       return this.planPresenter.single(plan);
    }
 
-   async deletePlan(planId: PlanDocument["id"], userId: string): Promise<void> {
+   async deletePlan(planId: PlanDocument["id"], userId: string, limit: number, searchKey: string): Promise<IPlansResponse> {
       // Delete plan
       await this.planRepository.findByIdAndDelete(planId);
 
-      // Update user
-      await this.userRepository.findByIdAndUpdate(userId, { $pull: { plansIds: planId } });
+      // Update user and return updated plan list
+      const [ plans, count ] = await Promise.all([
+         this.planRepository.find({ ownerId: userId }, { limit, searchKey }),
+         this.planRepository.count({ ownerId: userId }, searchKey),
+         this.userRepository.findByIdAndUpdate(userId, { $pull: { plansIds: planId } }),
+      ]);
+
+      return {
+         data: this.planPresenter.array(plans),
+         count,
+      };
    }
 
 

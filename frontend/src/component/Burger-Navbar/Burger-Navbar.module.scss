@@ -1,19 +1,15 @@
-%flex {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
+@import "src/style/configuration";
 
 .BurgerNavbar {
-   @extend %flex;
-
+   @extend %flex-align-justify;
    height: 70px;
    width: 85vw;
    margin: 0 auto;
-   background: white;
+   background: var(--second-bg);
    border-radius: 0 0 15px 15px;
    position: relative;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   transition: $transition;
 
    .menu {
       display: flex;
@@ -26,6 +22,6 @@
 
 @media screen and (max-width: 550px) {
    .BurgerNavbar {
-      width: 450px;
+      width: 400px;
    }
 }

@@ -1,4 +1,4 @@
-export const config = {
+export const configuration = {
    API_URL: import.meta.env.VITE_API_URL || "http://localhost:5400/api",
    SERVER_URL: import.meta.env.VITE_SERVER_URL || "http://localhost:5400/",
 };
@@ -29,7 +29,7 @@ export const plansRequests = {
    getAllPlans: "/plans",
    getPlansCount: "/plans/count",
    getPlansBySearch: "/plans/search",
-   getOnePlan: "/plans/get/",
+   getOnePlan: "/plans/",
 };
 
 export const momentsRequests = {

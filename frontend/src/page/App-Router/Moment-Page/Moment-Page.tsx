@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { MomentHeader, MomentList } from "../../../component";
 import { message } from "antd";
 import { addMomentService, getMomentsService } from "../../../service";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "../../../animation";
 
 import style from "./Moment-Page.module.scss";
 
@@ -16,7 +18,11 @@ export function MomentsPage() {
    const { addMomentFn } = addMomentService(messageApi);
 
    return (
-      <div className={ style.MomentPage }>
+      <motion.div className={ style.MomentPage }
+                  variants={ horizontalPresent }
+                  initial={ "initial" }
+                  animate={ "animate" }
+      >
          { contextHolder }
 
          {/* Header */ }
@@ -25,7 +31,7 @@ export function MomentsPage() {
          {/* Moment list wrapper */ }
          <div className={ style.moment_list_wrapper }><MomentList/></div>
 
-      </div>
+      </motion.div>
 
    );
 }

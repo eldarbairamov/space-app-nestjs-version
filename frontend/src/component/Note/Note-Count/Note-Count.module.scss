@@ -1,20 +1,22 @@
+@import "src/style/configuration";
+
 .NoteCount {
-   display: flex;
-   align-items: center;
+   @extend %flex-align;
    justify-content: space-evenly;
    flex-direction: column;
    font-size: 30px;
    font-weight: bold;
    height: 50%;
    width: 20%;
+   transition: $transition;
 
    span {
       font-size: 20px;
-      color: #DF8453;
+      color: var(--notes-color);
    }
 
    p {
-      color: #DF8453;
+      color: var(--notes-color);
    }
 }
 

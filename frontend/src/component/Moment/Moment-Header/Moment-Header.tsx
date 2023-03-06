@@ -6,7 +6,8 @@ import { TypedSetState } from "../../../interface/common.interface";
 import { useAppSelector } from "../../../hook";
 
 import style from "./Moment-Header.module.scss";
-import add from "../../../asset/note.png";
+import addLight from "../../../asset/add-light.svg";
+import addDark from "../../../asset/add-dark.svg";
 
 interface IMomentHeaderProps {
    addMomentFn: () => Promise<void>;
@@ -18,12 +19,13 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
    const [ isValueNull, setIsValueNull ] = useState<any>();
 
    const { tags } = useAppSelector(state => state.momentReducer);
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    return (
       <div className={ style.MomentHeader }>
          {/* Save moment */ }
          <div className={ style.save_moment }>
-            <img src={ add } alt={ "add" }/>
+            <img src={ isDark  ? addLight : addDark } alt={ "add" }/>
             <NoBgButton text={ "Зберегти момент" } hoverSubject={ "moment" } onClick={ async () => {
                await addMomentFn();
                select("");
@@ -34,6 +36,7 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
          {/* Select */ }
          <div className={ style.select_wrapper }>
             <Select style={ { width: 130 } }
+                    className={ style.select }
                     allowClear={ true }
                     placeholder="Фільтр"
                     notFoundContent={ "Пусто" }

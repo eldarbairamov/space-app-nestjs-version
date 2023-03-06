@@ -8,9 +8,10 @@ import { FileValidatorFilter } from "../common/exception/file-validator.filter";
 import { User } from "../common/decorator/user.decorator";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { SharpPipe } from "../common/pipe/sharp.pipe";
-import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiQuery, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { DefaultError, FileSizeError, FileTypeError, MomentResponse, MomentsResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError, UpdateMomentBody, UploadImageResponse } from "../common/swagger";
 import { ApiFile } from "../common/decorator/api-file.decorator";
+import { QueryDto } from "../common/dto/query.dto";
 
 @ApiTags("Moments")
 @Controller("moments")
@@ -21,17 +22,16 @@ export class MomentController {
 
    // Get all moments
    @ApiOperation({ summary: "get all moment" })
-   @ApiQuery({ name: "searchKey", description: "Keyword for searching", required: false })
    @ApiOkResponse({ description: "Success", type: MomentsResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @Get()
    async getMoments(
-      @Query("searchKey") searchKey: string,
+      @Query() queryDto: QueryDto,
       @User("userId") userId: string): Promise<IMomentsResponse> {
 
-      return this.momentService.getMoments(userId, searchKey);
+      return this.momentService.getMoments(userId, queryDto);
    }
 
    // Add moment
@@ -68,7 +68,7 @@ export class MomentController {
    // Update moment
    @ApiOperation({ summary: "update moment by id" })
    @ApiParam({ name: "momentId", description: "moment id", example: "63dfe16eda233c96fc6e2604" })
-   @ApiBody({ type: UpdateMomentBody })
+   @ApiBody({ type: UpdateMomentBody, required: true })
    @ApiOkResponse({ description: "Success", type: SuccessResponse })
    @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
    @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })

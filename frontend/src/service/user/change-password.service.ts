@@ -1,6 +1,6 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/config";
+import { userRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 import { pleaseWait } from "../../helper/please-wait";
 

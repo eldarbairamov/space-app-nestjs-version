@@ -1,6 +1,6 @@
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { ApiException } from "../exception/api.exception";
-import { INote, NoteDocument, NoteModel, UserDocument } from "../model";
+import { INote, NoteDocument, NoteModel } from "../model";
 
 export const NoteRepository = {
 
@@ -8,18 +8,18 @@ export const NoteRepository = {
       try {
          return NoteModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
    },
 
-   find: async (filter: FilterQuery<INote>, searchKey: string): Promise<NoteDocument[]> => {
+   find: async (filter: FilterQuery<INote>, searchKey: string, limit: string | number): Promise<NoteDocument[]> => {
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return NoteModel.find(filterObj).sort({ updatedAt: "desc" });
+         return NoteModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -29,7 +29,7 @@ export const NoteRepository = {
       try {
          return NoteModel.findById(noteId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -39,7 +39,7 @@ export const NoteRepository = {
       try {
          return NoteModel.findByIdAndUpdate(noteId, body, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -49,17 +49,18 @@ export const NoteRepository = {
       try {
          return NoteModel.findByIdAndDelete(noteId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
    },
 
-   count: async (userId: UserDocument["id"]): Promise<number> => {
+   count: async (filter: FilterQuery<INote>, searchKey = ""): Promise<number> => {
+      const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return NoteModel.count({ ownerId: userId });
+         return NoteModel.count(filterObj);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }

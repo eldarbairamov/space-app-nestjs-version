@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { notesRequests } from "../../config/config";
+import { notesRequests } from "../../config/configuration";
 import { useAppDispatch, useAppSelector } from "../../hook";
-import { INote } from "../../interface";
+import { INotes } from "../../interface";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { noteActions } from "../../redux/slice";
@@ -10,15 +10,22 @@ import { MessageInstance } from "antd/es/message/interface";
 import { useDebounce } from "../../hook";
 
 export function getNotesService(messageApi: MessageInstance) {
-   const { searchKey } = useAppSelector(state => state.noteReducer);
-   const debounced = useDebounce(searchKey);
-
+   const { searchKey, total } = useAppSelector(state => state.noteReducer);
    const dispatch = useAppDispatch();
+
+   const debounced = useDebounce(searchKey);
 
    const getNotesFn = async () => {
       try {
-         const { data } = await axiosInstance.get<INote[]>(notesRequests.getNotes, { params: { searchKey: debounced || null } });
+         const { data } = await axiosInstance.get<INotes>(notesRequests.getNotes, {
+            params: {
+               searchKey: searchKey ? debounced : null,
+               limit: total,
+            },
+         });
+
          dispatch(noteActions.setNotes(data));
+
       } catch (e) {
          messageApi.error(errorCatherFn(e));
       }
@@ -26,6 +33,6 @@ export function getNotesService(messageApi: MessageInstance) {
 
    useEffect(() => {
       getNotesFn();
-   }, [ debounced ]);
+   }, [ debounced, total ]);
 
 }

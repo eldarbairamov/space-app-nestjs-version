@@ -5,7 +5,7 @@ import { ITask } from "../../../interface";
 import { updateTaskService, deleteTaskService } from "../../../service";
 import { message } from "antd";
 import { useAppDispatch } from "../../../hook";
-import { taskAction } from "../../../redux/slice/task.slice";
+import { taskAction } from "../../../redux/slice";
 import { TypedOnClick } from "../../../interface/common.interface";
 
 import style from "./Task-Item.module.scss";

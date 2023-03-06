@@ -1,15 +1,14 @@
-.TaskAdd {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 10px;
+@import "src/style/configuration";
 
+.TaskAdd {
+   @extend %flex-align-justify;
+   gap: 10px;
    height: 60px;
    width: 280px;
+   transition: $transition;
 
-   p {
-      font-size: 21px;
-      font-weight: 500;
+   img {
+      height: 20px;
       cursor: pointer;
    }
 

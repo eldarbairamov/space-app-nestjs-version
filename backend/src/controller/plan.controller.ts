@@ -1,9 +1,10 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
 import { addPlanService, getPlansService, updatePlanService } from "../service";
-import { PlanRepository, UserRepository } from "../repository";
-import { IPlanResponse, IRequest } from "../interface";
+import { IPlanResponse, IPlansResponse, IRequest } from "../interface";
 import { getOnePlanService } from "../service/plan/get-one-plan.service";
+import { IDeleteItemBody, IQuery } from "../interface/common.interface";
+import { deletePlanService } from "../service/plan/delete-plan.service";
 
 export const planController = {
 
@@ -12,8 +13,8 @@ export const planController = {
       res.status(201).json(plan);
    }),
 
-   getPlans: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IPlanResponse[]>) => {
-      const plans = await getPlansService(req.userId, req.query.searchKey);
+   getPlans: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<IPlansResponse>) => {
+      const plans = await getPlansService(req.userId, req.query.searchKey, req.query.limit);
       res.json(plans);
    }),
 
@@ -27,10 +28,9 @@ export const planController = {
       res.json({ message: "Success" });
    }),
 
-   deletePlan: expressAsyncHandler(async (req: IRequest<any, { planId: string }, any>, res: Response<{ message: string }>) => {
-      await PlanRepository.findByIdAndDelete(req.params.planId);
-      await UserRepository.findByIdAndUpdate(req.userId, { $pull: { plansIds: req.params.planId } });
-      res.json({ message: "Success" });
+   deletePlan: expressAsyncHandler(async (req: IRequest<IDeleteItemBody, { planId: string }, any>, res: Response<IPlansResponse>) => {
+      const plans = await deletePlanService(req.body, req.params.planId, req.userId);
+      res.json(plans);
    }),
 
 };

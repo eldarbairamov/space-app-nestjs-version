@@ -2,7 +2,7 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 import { IMoment } from "../../../interface";
-import { config } from "../../../config/config";
+import { configuration } from "../../../config/configuration";
 import { v4 } from "uuid";
 import { useAppSelector } from "../../../hook";
 import { FloatButton, message, Tooltip } from "antd";
@@ -11,9 +11,12 @@ import { deleteMomentService, getMomentService, updateMomentService, uploadMomen
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import dateHelper from "moment";
 import { activeMomentService } from "../../../service/moment/active-moment.service";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "../../../animation";
 
-import no_photo from "../../../asset/no-photo.png";
 import style from "./Moment-Active-Page.module.scss";
+import noImageLight from "../../../asset/no-image-light.svg";
+import noImageDark from "../../../asset/no-image-dark.svg";
 
 export function MomentItemPage() {
    const text = <span> Для збереження інформації при редагуванні полів - клацай enter :) </span>;
@@ -23,6 +26,7 @@ export function MomentItemPage() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { activeMoment } = useAppSelector(state => state.momentReducer);
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    const { prevState, setPrevState } = getMomentService(momentId!, messageApi);
    const { uploadPhotoFn } = uploadMomentImageService(messageApi);
@@ -36,7 +40,11 @@ export function MomentItemPage() {
    } = activeMomentService(activeMoment);
 
    return (
-      <div className={ style.MomentActivePage }>
+      <motion.div className={ style.MomentActivePage }
+                  variants={ horizontalPresent }
+                  initial={ "initial" }
+                  animate={ "animate" }
+      >
          { contextHolder }
 
          { activeMoment &&
@@ -74,18 +82,18 @@ export function MomentItemPage() {
                   { activeMoment.photo ?
                      <>
                         <img className={ style.photo_background }
-                             src={ config.SERVER_URL + activeMoment.photo }
+                             src={ configuration.SERVER_URL + activeMoment.photo }
                              alt="background"
                              onClick={ closeInputsAndSave }/>
 
                         <img onClick={ handlePick }
                              className={ style.photo }
-                             src={ config.SERVER_URL + activeMoment.photo }
+                             src={ configuration.SERVER_URL + activeMoment.photo }
                              alt="photo"/>
                      </> :
                      <img onClick={ handlePick }
                           className={ style.no_image }
-                          src={ no_photo }
+                          src={ isDark ? noImageLight : noImageDark }
                           alt="no_image"/>
                   }
                </div>
@@ -156,10 +164,10 @@ export function MomentItemPage() {
             </div>
          }
 
-         <Tooltip placement="topLeft" title={ text } trigger={'click'}>
+         <Tooltip placement="topLeft" title={ text } trigger={ "click" }>
             <FloatButton icon={ <QuestionCircleOutlined/> } type="primary" style={ { right: 24 } }/>
          </Tooltip>
 
-      </div>
+      </motion.div>
    );
 }

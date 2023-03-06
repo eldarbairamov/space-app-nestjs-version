@@ -4,16 +4,18 @@ import { NoBgInput, NoBgButton } from "../../../component";
 import { addPlanService } from "../../../service";
 import { message } from "antd";
 import { useAppDispatch, useAppSelector } from "../../../hook";
-import { planAction } from "../../../redux/slice/plan.slice";
+import { planAction } from "../../../redux/slice";
 import { TypedOnChange } from "../../../interface/common.interface";
 
-import add from "../../../asset/note.png";
 import style from "./Plan-Header.module.scss";
+import addLight from "../../../asset/add-light.svg";
+import addDark from "../../../asset/add-dark.svg";
 
 export function PlanHeader() {
    const [ messageApi, contextHolder ] = message.useMessage();
 
    const { searchKey } = useAppSelector(state => state.planReducer);
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    const dispatch = useAppDispatch();
 
@@ -26,7 +28,7 @@ export function PlanHeader() {
          { contextHolder }
 
          {/* Add plan */ }
-         <img src={ add } alt={ "add" }/>
+         <img src={ isDark  ? addLight : addDark } alt={ "add" }/>
          <NoBgButton text={ "Додати план" } hoverSubject={ "plan" } onClick={ addPlanFn }/>
 
          {/* Search bar */ }

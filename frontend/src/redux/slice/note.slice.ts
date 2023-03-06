@@ -1,12 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { INote } from "../../interface";
+import { INote, INotes } from "../../interface";
 
 interface INoteInitialState {
-   activeNoteId: string,
-   notes: INote[],
-   activeNote: INote,
-   lastNote: INote,
-   searchKey: string
+   activeNoteId: string;
+   notes: INote[];
+   activeNote: INote;
+   lastNote: INote;
+   searchKey: string;
+   limit: number;
+   total: number;
+   count: number;
+   isLoading: boolean;
 }
 
 const initialState: INoteInitialState = {
@@ -15,6 +19,10 @@ const initialState: INoteInitialState = {
    activeNote: {} as INote,
    lastNote: {} as INote,
    searchKey: "",
+   limit: 30,
+   total: 30,
+   count: 0,
+   isLoading: false,
 };
 
 const noteSlice = createSlice({
@@ -44,9 +52,10 @@ const noteSlice = createSlice({
          state.searchKey = payload;
       },
 
-      setNotes: (state, { payload }: PayloadAction<INote[]>) => {
-         state.notes = payload;
-         state.activeNote = payload[0];
+      setNotes: (state, { payload }: PayloadAction<INotes>) => {
+         state.notes = payload.data;
+         state.activeNote = payload.data[0];
+         state.count = payload.count;
       },
 
       addNote: (state, { payload }: PayloadAction<INote>) => {
@@ -63,6 +72,16 @@ const noteSlice = createSlice({
          state.notes = state.notes.filter(item => item.id !== targetId);
          state.activeNoteId = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex].id : "";
          state.activeNote = state.notes[targetNoteIndex] ? state.notes[targetNoteIndex] : state.notes[targetNoteIndex - 1];
+      },
+
+      setIsLoading: (state, { payload }) => {
+         state.isLoading = payload;
+      },
+
+      next: (state) => {
+         if (state.total <= state.count) {
+            state.total = state.total + state.limit;
+         }
       },
 
    },

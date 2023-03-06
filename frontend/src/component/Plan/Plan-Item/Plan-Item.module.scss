@@ -1,12 +1,10 @@
-.PlanItem {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   gap: 28px;
+@import "src/style/configuration";
 
+.PlanItem {
+   @extend %flex-align-justify-column;
+   gap: 28px;
    border-radius: 20px;
-   background: rgb(244, 244, 244);
+   background: var(--item-bg);
    height: 230px;
    width: calc(100% / 4 - 22.5px);
    position: relative;
@@ -14,7 +12,7 @@
    transition: .3s;
 
    &:hover {
-      background: #f2f9ff;
+      background: var(--item-bg-hover);
    }
 
    .plan_name {
@@ -31,6 +29,8 @@
       position: absolute;
       right: 20px;
       top: 20px;
+      cursor: pointer;
+      color: var(--main-font);
    }
 
    img {

@@ -1,9 +1,9 @@
+@import "src/style/configuration";
+
 .WelcomePage {
+   @extend %flex-align-justify-column;
    min-height: 100vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
+   transition: $transition;
 
    div:nth-child(1) {
       cursor: pointer;
@@ -18,6 +18,12 @@
          font-family: 'Caveat', cursive;
          font-size: 30px;
       }
+   }
+
+   .switch {
+      position: absolute;
+      right: 30px;
+      top: 20px
    }
 }
 

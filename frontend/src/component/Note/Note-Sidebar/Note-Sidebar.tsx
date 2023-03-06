@@ -9,11 +9,14 @@ import { addNoteService } from "../../../service";
 import { TypedOnChange } from "../../../interface/common.interface";
 
 import style from "./Note-Sidebar.module.scss";
-import add from "../../../asset/note.png";
+import addLight from "../../../asset/add-light.svg";
+import addDark from "../../../asset/add-dark.svg";
 
 export const NoteSidebar: FC = () => {
    const [ messageApi, contextHolder ] = message.useMessage();
+
    const {searchKey} = useAppSelector(state => state.noteReducer)
+   const { isDark } = useAppSelector(state => state.appReducer);
 
    const dispatch = useAppDispatch();
 
@@ -29,7 +32,7 @@ export const NoteSidebar: FC = () => {
 
          {/* Header */ }
          <div className={ style.header }>
-            <img onClick={ () => addNoteFn() } src={ add } alt={ "add" }/>
+            <img onClick={ () => addNoteFn() } src={ isDark ? addLight : addDark } alt={ "add" }/>
          </div>
 
          {/* Note list */ }

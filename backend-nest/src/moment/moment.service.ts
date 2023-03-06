@@ -9,6 +9,7 @@ import { UpdateMomentDto } from "./dto";
 import { exists, unlinker } from "../common/helper";
 import { staticPath } from "../common/constants";
 import path from "path";
+import { QueryDto } from "../common/dto/query.dto";
 
 @Injectable()
 export class MomentService {
@@ -16,10 +17,11 @@ export class MomentService {
    constructor(private momentRepository: MomentRepository, private userRepository: UserRepository, private momentPresenter: MomentPresenter) {
    }
 
-   async getMoments(userId: UserDocument["id"], searchKey: string): Promise<IMomentsResponse> {
+   async getMoments(userId: UserDocument["id"], queryDto: QueryDto): Promise<IMomentsResponse> {
       // Find all moments / by search key
-      const [ moments, allMoments ] = await Promise.all([
-         this.momentRepository.find({ ownerId: userId }, searchKey),
+      const [ moments, count, allMoments ] = await Promise.all([
+         this.momentRepository.find({ ownerId: userId }, queryDto),
+         this.momentRepository.count({ ownerId: userId }, queryDto.searchKey),
          this.momentRepository.findAllByUserId(userId),
       ]);
 
@@ -29,7 +31,7 @@ export class MomentService {
 
       // Return presented data to client
       const presentedMoments = this.momentPresenter.array(moments);
-      return { data: presentedMoments, tagsForFilter: uniqueTags };
+      return { data: presentedMoments, count, tagsForFilter: uniqueTags };
    }
 
    async addMoment(userId: UserDocument["id"]): Promise<IMomentResponse> {

@@ -3,6 +3,7 @@ import { IRequest, IMomentsResponse, IUpdateMoment, IMomentResponse } from "../i
 import { Response } from "express";
 import { addMomentService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
 import { deleteMomentService, getOneMomentService } from "../service";
+import { IQuery } from "../interface/common.interface";
 
 export const momentController = {
 
@@ -11,8 +12,8 @@ export const momentController = {
       res.status(201).json(moment);
    }),
 
-   getMoments: expressAsyncHandler(async (req: IRequest<any, any, { searchKey: string }>, res: Response<IMomentsResponse>) => {
-      const moments = await getMomentsService(req.userId, req.query.searchKey);
+   getMoments: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<IMomentsResponse>) => {
+      const moments = await getMomentsService(req.userId, req.query.searchKey, req.query.limit);
       res.json(moments);
    }),
 

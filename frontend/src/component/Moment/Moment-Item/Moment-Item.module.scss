@@ -1,25 +1,19 @@
-%flex {
-   display: flex;
-   align-items: center;
-}
+@import "src/style/configuration";
 
 .MomentItem {
-   @extend %flex;
-   justify-content: center;
-
+   @extend %flex-align-justify;
    width: calc(100% / 3 - 20px);
    height: 350px;
-
    position: relative;
    border-radius: 20px;
    overflow: hidden;
-   transition: .3s;
    cursor: pointer;
-   background: rgb(244, 244, 244);
+   background: var(--item-bg);
+   transition: .3s;
 
    &:hover {
-      filter: brightness(90%);
-      -webkit-filter: brightness(90%);
+      filter: brightness(95%);
+      -webkit-filter: brightness(95%);
    }
 
    .photo_background {
@@ -39,7 +33,7 @@
 
    .no_image {
       position: absolute;
-      width: 100px;
+      width: 70px;
    }
 
 
@@ -48,8 +42,8 @@
       top: 15px;
       left: 20px;
       z-index: 1;
-      color: white;
-      background: #24292e;
+      color: var(--button-font);
+      background: var(--button-bg);
       padding: 5px 10px;
       border-radius: 5px;
       font-size: 14px;
@@ -64,8 +58,8 @@
       right: 20px;
 
       .date, .location {
-         color: white;
-         background: #24292e;
+         color: var(--button-font);
+         background: var(--button-bg);
          padding: 5px 10px;
          border-radius: 5px;
          font-size: 14px;
@@ -74,7 +68,7 @@
    }
 
    .tags_wrapper {
-      @extend %flex;
+      @extend %flex-align;
       gap: 10px;
 
       position: absolute;
@@ -82,8 +76,8 @@
       left: 20px;
 
       .tag {
-         color: white;
-         background: #7274d7;
+         color: var(--button-font);
+         background: var(--moments-color);
          padding: 5px 10px;
          border-radius: 5px;
          font-size: 14px;

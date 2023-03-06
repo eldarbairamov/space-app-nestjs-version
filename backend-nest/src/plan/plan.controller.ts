@@ -1,12 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { PlanService } from "./plan.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreatePlanDto } from "./dto";
 import { AccessGuard } from "../auth/guard";
-import { IPlanResponse } from "./interface/plan-response.interface";
+import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
 import { User } from "../common/decorator/user.decorator";
-import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, PlanResponse, UpdatePlanBody } from "../common/swagger";
+import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, PlanResponse, DeleteItemBody, PlansResponse } from "../common/swagger";
+import { QueryDto } from "../common/dto/query.dto";
+import { DeleteItemDto } from "../common/dto/delete-item.dto";
 
 @ApiTags("Plans")
 @Controller("plans")
@@ -17,17 +19,16 @@ export class PlanController {
 
    // Get all plans
    @ApiOperation({ summary: "get all plans" })
-   @ApiQuery({ name: "searchKey", description: "Keyword for searching", required: false })
    @ApiOkResponse({ description: "Success", type: [ PlanResponse ] })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @Get()
    async getPlans(
-      @Query("searchKey") searchKey: string,
-      @User("userId") userId: string): Promise<IPlanResponse[]> {
+      @Query() queryDto: QueryDto,
+      @User("userId") userId: string): Promise<IPlansResponse> {
 
-      return this.planService.getPlans(userId, searchKey);
+      return this.planService.getPlans(userId, queryDto);
    }
 
    // Add plan
@@ -63,7 +64,6 @@ export class PlanController {
    // Update plan
    @ApiOperation({ summary: "update plan by id" })
    @ApiParam({ name: "planId", description: "plan id", example: "63dfe16eda233c96fc6e2604" })
-   @ApiBody({ type: UpdatePlanBody })
    @ApiOkResponse({ description: "Success", type: SuccessResponse })
    @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
    @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
@@ -79,23 +79,24 @@ export class PlanController {
       return this.planService.updatePlan(noteId, dto);
    }
 
-   // Delete plan
-   @ApiOperation({ summary: "delete plan by id" })
+   // Send prev request params and delete plan
+   @ApiOperation({ summary: "send prev request params and delete plan by id" })
    @ApiParam({ name: "planId", description: "plan id", example: "63dfe16eda233c96fc6e2604" })
-   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiBody({ type: DeleteItemBody, required: false })
+   @ApiOkResponse({ description: "Success", type: PlansResponse })
    @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @UseGuards(ObjectCheckingGuard)
-   @Delete(":planId")
+   @Post(":planId")
    async deletePlan(
       @User("userId") userId: string,
-      @Param("planId") noteId: string): Promise<{ message: string }> {
+      @Body() dto: DeleteItemDto,
+      @Param("planId") noteId: string): Promise<IPlansResponse> {
 
-      await this.planService.deletePlan(noteId, userId);
-      return { message: "Success" };
+      return this.planService.deletePlan(noteId, userId, dto.limit, dto.searchKey);
    }
 
 }

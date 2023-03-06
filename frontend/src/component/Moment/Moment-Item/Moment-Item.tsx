@@ -1,21 +1,25 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { IMoment } from "../../../interface";
 import { v4 } from "uuid";
-import { config } from "../../../config/config";
+import { configuration } from "../../../config/configuration";
 import { AppRouter } from "../../../router";
 import dateHelper from "moment/moment";
+import { useAppSelector } from "../../../hook";
 
 import style from "./Moment-Item.module.scss";
-import no_photo from "../../../asset/no-photo.png";
+import noImageLight from "../../../asset/no-image-light.svg";
+import noImageDark from "../../../asset/no-image-dark.svg";
 
 interface IMomentItem {
    moment: IMoment;
 }
 
-export function MomentItem({ moment }: IMomentItem) {
+export const MomentItem = forwardRef(({ moment }: IMomentItem, ref: any) => {
+   const { isDark } = useAppSelector(state => state.appReducer);
+
    return (
-      <div className={ style.MomentItem } onClick={ () => AppRouter.navigate(`/moments/${ moment.id }`) }>
+      <div ref={ ref } className={ style.MomentItem } onClick={ () => AppRouter.navigate(`/moments/${ moment.id }`) }>
 
          {/* Title */ }
          <p className={ style.title }> { moment.title } </p>
@@ -24,17 +28,17 @@ export function MomentItem({ moment }: IMomentItem) {
          { moment.photo ?
             <>
                <img className={ style.photo_background }
-                    src={ config.SERVER_URL + moment.photo }
+                    src={ configuration.SERVER_URL + moment.photo }
                     alt="background"
                />
                <img className={ style.photo }
-                    src={ config.SERVER_URL + moment.photo }
+                    src={ configuration.SERVER_URL + moment.photo }
                     alt="photo"
                />
             </>
             :
             <img className={ style.no_image }
-                 src={ no_photo }
+                 src={ isDark ? noImageLight : noImageDark }
                  alt="no_image"
             />
          }
@@ -52,4 +56,4 @@ export function MomentItem({ moment }: IMomentItem) {
 
       </div>
    );
-}
+});

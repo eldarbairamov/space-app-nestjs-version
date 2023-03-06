@@ -1,6 +1,7 @@
+@import "src/style/configuration";
+
 .TaskList {
-   display: flex;
-   align-items: center;
-   flex-direction: column;
+   @extend %flex-align-justify-column;
+   transition: $transition;
    margin: 0 auto;
 }

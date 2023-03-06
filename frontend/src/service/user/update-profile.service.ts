@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../hook";
 import { IUpdateProfile, IUser } from "../../interface";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/config";
+import { userRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 
 export function updateProfileService(messageApi: MessageInstance) {

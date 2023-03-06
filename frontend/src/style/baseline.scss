@@ -1,3 +1,5 @@
+@import "src/style/configuration";
+
 * {
    box-sizing: border-box;
    margin: 0;
@@ -6,42 +8,76 @@
    letter-spacing: -0.8px;
    scrollbar-width: thin;
    scrollbar-color: #d0d0d0 transparent;
+   background: transparent;
+   transition: border-bottom-color $transition;
 
    &::-webkit-scrollbar {
+      height: 5px;
       width: 5px;
    }
 
    &::-webkit-scrollbar-track {
-      background: transparent;
-   }
-
-   &::-webkit-scrollbar {
-      width: 5px;
-   }
-
-   &::-webkit-scrollbar-track {
-      background: transparent;
-   }
-
-   &::-webkit-scrollbar {
-      width: 5px;
+      background: var(--scroll-track);
    }
 
    &::-webkit-scrollbar-thumb {
-      background-color: #d7d7d7;
+      background-color: var(--scroll-thumb);
       border-radius: 20px;
-   }
-
-   &::-webkit-scrollbar-track {
-      background: transparent;
    }
 }
 
-body {
-   cursor: default;
-   color: #4e4e51;
+span, p {
+   color: var(--main-font);
+   transition: color $transition;
+}
 
-   background-image: url("../asset/bg2.jpg");
-   background-size: cover;
-   background-position: center;
+html {
+   cursor: default;
+   transition: background $transition, color $transition;
+}
+
+html[data-dark="false"] {
+   @extend %light-bg;
+
+   --notes-color: #d78052;
+   --plans-color: #3D8DAE;
+   --moments-color: #7274d7;
+   //--main-bg: #dfe0e1;
+   --second-bg: whitesmoke;
+   --item-bg: #ededed;
+   --item-bg-hover: #dfdfdf;
+   --task-item-bg: #ededed;
+   --button-bg: #24292e;
+   --button-disbled-bg: #c1c1c1;
+   --decorative-grey: #d7d7d7;
+   --input-border: #e3e3e3;
+   --main-font: #4e4e51;
+   --button-font: whitesmoke;
+   --second-font: #7d7d7d;
+   --font-hover: #535353;
+   --scroll-thumb: #e1e1e1;
+   --scroll-track: whitesmoke;
+}
+
+html[data-dark='true'] {
+   @extend %dark-bg;
+
+   --notes-color: #d78052;
+   --plans-color: #3D8DAE;
+   --moments-color: #7274d7;
+   //--main-bg: #3b3f48;
+   --second-bg: #2d2f33;
+   --item-bg: #33353a;
+   --item-bg-hover: #41434a;
+   --task-item-bg: #41434a;
+   --button-bg: #4d5158;
+   --button-disbled-bg: #35373c;
+   --decorative-grey: #4d5158;
+   --input-border: #373a43;
+   --main-font: whitesmoke;
+   --button-font: whitesmoke;
+   --second-font: #acacac;
+   --font-hover: #7d7d7d;
+   --scroll-thumb: #43454c;
+   --scroll-track: #3b3f48;
 }

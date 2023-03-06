@@ -1,23 +1,30 @@
+@import "src/style/configuration";
+
 .FormControl {
    display: flex;
    flex-direction: column;
    width: 100%;
    gap: 15px;
+   transition: $transition;
 
    input {
       border: none;
       outline: none;
-      color: #24292e;
+      background: transparent;
+      color: var(--main-font);
       width: 90%;
       height: 100%;
    }
 
-   input:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0 30px white inset;
+   input:-webkit-autofill,
+   input:-webkit-autofill:hover,
+   input:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--main-font);
+      transition: background-color 5000s ease-in-out 0s;
    }
 
    label {
-      color: #68696b;
+      color: var(--second-font);
    }
 }
 
@@ -27,9 +34,8 @@
    justify-content: space-between;
    height: 25px;
    width: 96%;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+   border-bottom: 1px solid var(--input-border);
    margin: 0 auto;
-   transition: .1s;
 }
 
 .input_field[data-error='true'] {
@@ -43,11 +49,13 @@
    align-items: center;
 
    p {
-      color: #9b9b9b;
+      color: var(--second-font);
       cursor: pointer;
+      transition: .3s;
 
       &:hover {
-         color: #4e4e51;
+         color: var(--font-hover);
+
       }
    }
 }

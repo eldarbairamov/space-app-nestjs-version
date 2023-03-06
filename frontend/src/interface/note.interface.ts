@@ -5,7 +5,7 @@ export interface INote {
    readonly lastModified: number;
 }
 
-export interface IUpdateNote {
-   readonly title: string;
-   readonly body: string;
+export interface INotes {
+   readonly data: INote[];
+   readonly count: number;
 }

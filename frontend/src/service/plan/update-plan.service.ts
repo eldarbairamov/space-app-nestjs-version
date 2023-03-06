@@ -1,6 +1,6 @@
 import { IPlan } from "../../interface";
 import { axiosInstance } from "../axios.service";
-import { plansRequests } from "../../config/config";
+import { plansRequests } from "../../config/configuration";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { MessageInstance } from "antd/es/message/interface";
 

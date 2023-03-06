@@ -1,6 +1,6 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
-import { momentsRequests } from "../../config/config";
+import { momentsRequests } from "../../config/configuration";
 import { IMoment } from "../../interface";
 import { MessageInstance } from "antd/es/message/interface";
 import { momentActions } from "../../redux/slice";

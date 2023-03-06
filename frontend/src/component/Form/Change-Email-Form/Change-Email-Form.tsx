@@ -9,9 +9,11 @@ import { message } from "antd";
 import { changeEmailService, getUserService } from "../../../service";
 import { Button } from "../../../component";
 import { useAppSelector } from "../../../hook";
+import { scrollToElement } from "../../../helper/scroll-to-element";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "../../../animation";
 
 import style from "./Change-Email-Form.module.scss";
-import { scrollToElement } from "../../../helper/scroll-to-element";
 
 export function ChangeEmailForm() {
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<{ email: string }>({
@@ -35,7 +37,12 @@ export function ChangeEmailForm() {
    }, [ username, name, surname ]);
 
    return (
-      <form className={ style.ChangeEmailForm } onSubmit={ handleSubmit(onSubmit) }>
+      <motion.form className={ style.ChangeEmailForm }
+                   onSubmit={ handleSubmit(onSubmit) }
+                   variants={ horizontalPresent }
+                   initial={ "initial" }
+                   animate={ "animate" }
+      >
          { contextHolder }
 
          {/* Form controls */ }
@@ -48,6 +55,6 @@ export function ChangeEmailForm() {
          {/* Submit button */ }
          <Button disabled={ !isValid } style={ { width: "100%" } } text={ "Зберегти" }/>
 
-      </form>
+      </motion.form>
    );
 }

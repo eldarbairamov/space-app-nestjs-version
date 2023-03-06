@@ -7,6 +7,11 @@ export interface INoteResponse {
    readonly lastModified: number;
 }
 
+export interface INotesResponse {
+   readonly data: INoteResponse[];
+   readonly count: number;
+}
+
 export interface IUpdateNote {
    readonly title: string;
    readonly body: string;

@@ -1,8 +1,9 @@
 import React from "react";
 
-import user from "../../../asset/user.png";
-import { config } from "../../../config/config";
+import { configuration } from "../../../config/configuration";
 import { useAppSelector } from "../../../hook";
+
+import user from "../../../asset/user.png";
 
 import style from "./Dashboard-Avatar.module.scss";
 
@@ -12,11 +13,12 @@ export function DashboardAvatar() {
    return (
       <div className={ style.DashboardAvatar }>
 
-         { avatar &&
-            <div className={ style.avatar }><img src={ config.SERVER_URL + avatar } alt="avatar"/></div> }
-
-         { !avatar &&
-            <img className={ style.no_avatar } src={ user } alt="no avatar"/> }
+         { avatar
+            ?
+            <div className={ style.avatar }><img src={ configuration.SERVER_URL + avatar } alt="avatar"/></div>
+            :
+            <img className={ style.no_avatar } src={ user } alt="no avatar"/>
+         }
 
       </div>
    );

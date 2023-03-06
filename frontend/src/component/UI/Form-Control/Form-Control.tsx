@@ -2,12 +2,12 @@ import React, { CSSProperties, useState } from "react";
 
 import { motion } from "framer-motion";
 import { horizontalShaking } from "../../../animation";
-import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { UseFormRegister } from "react-hook-form/dist/types/form";
 import { ValidationToaster } from "../Validation-Toaster/Validation-Toaster";
 import { message } from "antd";
 
 import style from "./Form-Control.module.scss";
+import warning from '../../../asset/warning.svg'
 
 interface IInput {
    labelName: string,
@@ -52,13 +52,10 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
                { errorMessage &&
                   <motion.div
                      variants={ horizontalShaking }
-                     initial={ "hidden" }
-                     animate={ "visible" }
+                     initial={ "initial" }
+                     animate={ "animate" }
                   >
-                     <ExclamationCircleTwoTone
-                        onClick={ () => errorMessageWriter(errorMessage) }
-                        twoToneColor={ "#e19a99" }
-                        style={ { fontSize: "18px" } }/>
+                     <img src={warning} alt="warning" style={{width: "21px"}} onClick={ () => errorMessageWriter(errorMessage) }/>
                   </motion.div>
                }
             </div>

@@ -158,7 +158,8 @@
                         "properties": {
                            "activationCode": {
                               "type": "string",
-                              "example": "ca6e6401-3561-4b5c-9748-bd0b90ea22ce"
+                              "example": "ca6e6401-3561-4b5c-9748-bd0b90ea22ce",
+                              "required": true
                            }
                         }
                      }
@@ -332,7 +333,8 @@
                         "properties": {
                            "email": {
                               "type": "string",
-                              "example": "john_doe@gmail.com"
+                              "example": "john_doe@gmail.com",
+                              "required": true
                            }
                         }
                      }
@@ -472,11 +474,13 @@
                         "properties": {
                            "password": {
                               "type": "string",
-                              "example": 123456
+                              "example": 123456,
+                              "required": true
                            },
                            "resetPasswordToken": {
                               "type": "string",
-                              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZlMDhhMDA0MDNhMGY4YzZkZTVjYjciLCJpYXQiOjE2Nzc1OTM3NzYsImV4cCI6MTY3NzY4MDE3Nn0.WqHjhJFiTKpK_GvVW8V0e_drOukdQG0DDVZPkrKB62E"
+                              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZlMDhhMDA0MDNhMGY4YzZkZTVjYjciLCJpYXQiOjE2Nzc1OTM3NzYsImV4cCI6MTY3NzY4MDE3Nn0.WqHjhJFiTKpK_GvVW8V0e_drOukdQG0DDVZPkrKB62E",
+                              "required": true
                            }
                         }
                      }
@@ -584,7 +588,8 @@
                         "properties": {
                            "email": {
                               "type": "string",
-                              "example": "johndoe@gmail.com"
+                              "example": "johndoe@gmail.com",
+                              "required": true
                            }
                         }
                      }
@@ -730,7 +735,8 @@
                         "properties": {
                            "confirmationToken": {
                               "type": "string",
-                              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2RmZTA3Nzc0NjNjYjhlODE1NzUyODciLCJlbWFpbCI6ImVsZGFyaW8uYmF5cmFtb3ZAZ21haWwuY29tIiwiaWF0IjoxNjc1NjE2OTkzLCJleHAiOjE2NzU3MDMzOTN9.Mg7ahfZrBwUmqaZLqE4CWR1ALvPqYHmusf10IvKzzi4"
+                              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2RmZTA3Nzc0NjNjYjhlODE1NzUyODciLCJlbWFpbCI6ImVsZGFyaW8uYmF5cmFtb3ZAZ21haWwuY29tIiwiaWF0IjoxNjc1NjE2OTkzLCJleHAiOjE2NzU3MDMzOTN9.Mg7ahfZrBwUmqaZLqE4CWR1ALvPqYHmusf10IvKzzi4",
+                              "required": true
                            }
                         }
                      }
@@ -792,11 +798,13 @@
                         "properties": {
                            "currentPassword": {
                               "type": "string",
-                              "example": "currpass1"
+                              "example": "currpass1",
+                              "required": true
                            },
                            "newPassword": {
                               "type": "string",
-                              "example": "newpass2"
+                              "example": "newpass2",
+                              "required": true
                            }
                         }
                      }
@@ -858,7 +866,8 @@
                         "properties": {
                            "avatar": {
                               "type": "string",
-                              "format": "base64"
+                              "format": "base64",
+                              "required": true
                            }
                         }
                      }
@@ -966,7 +975,8 @@
                         "properties": {
                            "fileName": {
                               "type": "string",
-                              "example": "1675615755215.jpg"
+                              "example": "1675615755215.jpg",
+                              "required": true
                            }
                         }
                      }
@@ -1022,6 +1032,14 @@
                      "type": "string"
                   },
                   "description": "Keyword for searching"
+               },
+               {
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Notes limit"
                }
             ],
             "security": [
@@ -1142,11 +1160,13 @@
                         "properties": {
                            "title": {
                               "type": "string",
-                              "example": "Phasellus"
+                              "example": "Phasellus",
+                              "required": false
                            },
                            "body": {
                               "type": "string",
-                              "example": "Suspendisse ornare erat nec porttitor accumsan. Cras urna tellus, mattis in dui vel, fermentum tempus tortor. Aenean viverra ac augue non molestie. Phasellus id dapibus tellus. Vivamus venenatis nisi ac urna sollicitudin, at vehicula tellus tempus."
+                              "example": "Suspendisse ornare erat nec porttitor accumsan. Cras urna tellus, mattis in dui vel, fermentum tempus tortor. Aenean viverra ac augue non molestie. Phasellus id dapibus tellus. Vivamus venenatis nisi ac urna sollicitudin, at vehicula tellus tempus.",
+                              "required": false
                            }
                         }
                      }
@@ -1206,12 +1226,34 @@
                }
             }
          },
-         "delete": {
-            "summary": "delete note by id",
+         "post": {
+            "summary": "send prev request params and delete note by id",
             "tags": [
                "Notes"
             ],
             "operationId": "deleteNoteById",
+            "requestBody": {
+               "required": false,
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "limit": {
+                              "type": "number",
+                              "example": 31,
+                              "required": false
+                           },
+                           "searchKey": {
+                              "type": "string",
+                              "example": "Coffee",
+                              "required": false
+                           }
+                        }
+                     }
+                  }
+               }
+            },
             "parameters": [
                {
                   "name": "noteId",
@@ -1235,13 +1277,7 @@
                   "content": {
                      "application/json": {
                         "schema": {
-                           "type": "object",
-                           "properties": {
-                              "message": {
-                                 "type": "string",
-                                 "example": "Success"
-                              }
-                           }
+                           "$ref": "#/components/schemas/Notes"
                         }
                      }
                   }
@@ -1304,6 +1340,14 @@
                      "type": "string"
                   },
                   "description": "Keyword for searching"
+               },
+               {
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Notes limit"
                }
             ],
             "security": [
@@ -1500,7 +1544,8 @@
                         "properties": {
                            "title": {
                               "type": "string",
-                              "example": "English Plan"
+                              "example": "English Plan",
+                              "required": true
                            }
                         }
                      }
@@ -1560,12 +1605,34 @@
                }
             }
          },
-         "delete": {
-            "summary": "delete plan by id",
+         "post": {
+            "summary": "send prev request params and delete plan by id",
             "tags": [
                "Plans"
             ],
             "operationId": "deletePlanById",
+            "requestBody": {
+               "required": false,
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "limit": {
+                              "type": "number",
+                              "example": 31,
+                              "required": false
+                           },
+                           "searchKey": {
+                              "type": "string",
+                              "example": "Coffee",
+                              "required": false
+                           }
+                        }
+                     }
+                  }
+               }
+            },
             "parameters": [
                {
                   "name": "planId",
@@ -1589,7 +1656,7 @@
                   "content": {
                      "application/json": {
                         "schema": {
-                           "$ref": "#/components/schemas/Success"
+                           "$ref": "#/components/schemas/Plans"
                         }
                      }
                   }
@@ -1658,7 +1725,8 @@
                         "properties": {
                            "planId": {
                               "type": "string",
-                              "example": "63ffca12826b87decc6fee24"
+                              "example": "63ffca12826b87decc6fee24",
+                              "required": true
                            }
                         }
                      }
@@ -1720,11 +1788,13 @@
                         "properties": {
                            "title": {
                               "type": "string",
-                              "example": "Project"
+                              "example": "Project",
+                              "required": true
                            },
                            "planId": {
                               "type": "string",
-                              "example": "63ffca12826b87decc6fee24"
+                              "example": "63ffca12826b87decc6fee24",
+                              "required": true
                            }
                         }
                      }
@@ -1950,6 +2020,14 @@
                      "type": "string"
                   },
                   "description": "Keyword for searching"
+               },
+               {
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Notes limit"
                }
             ],
             "security": [
@@ -2146,21 +2224,25 @@
                         "properties": {
                            "title": {
                               "type": "string",
-                              "example": "Dubai morning"
+                              "example": "Dubai morning",
+                              "required": false
                            },
                            "date": {
                               "type": "number",
-                              "example": 1677517089217
+                              "example": 1677517089217,
+                              "required": false
                            },
                            "location": {
                               "type": "string",
-                              "example": "Dubai"
+                              "example": "Dubai",
+                              "required": false
                            },
                            "tags": {
                               "type": "array",
                               "items": {
                                  "type": "string",
-                                 "example": "family"
+                                 "example": "family",
+                                 "required": false
                               }
                            }
                         }
@@ -2331,7 +2413,8 @@
                         "properties": {
                            "photo": {
                               "type": "string",
-                              "format": "base64"
+                              "format": "base64",
+                              "required": true
                            }
                         }
                      }
@@ -2547,9 +2630,18 @@
             }
          },
          "Notes": {
-            "type": "array",
-            "items": {
-               "$ref": "#/components/schemas/Note"
+            "type": "object",
+            "properties": {
+               "data": {
+                  "type": "array",
+                  "items": {
+                     "$ref": "#/components/schemas/Note"
+                  }
+               },
+               "count": {
+                  "type": "number",
+                  "example": 30
+               }
             }
          },
          "Task": {
@@ -2593,9 +2685,18 @@
             }
          },
          "Plans": {
-            "type": "array",
-            "items": {
-               "$ref": "#/components/schemas/Plan"
+            "type": "object",
+            "properties": {
+               "data": {
+                  "type": "array",
+                  "items": {
+                     "$ref": "#/components/schemas/Plan"
+                  }
+               },
+               "count": {
+                  "type": "number",
+                  "example": 30
+               }
             }
          },
          "Moment": {
@@ -2649,6 +2750,10 @@
                      "type": "string",
                      "example": "tags"
                   }
+               },
+               "count": {
+                  "type": "number",
+                  "example": 30
                }
             }
          },

@@ -1,15 +1,13 @@
+@import "src/style/configuration";
+
 .ProfileUpdateForm {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
+   @extend %flex-align-justify-column;
    gap: 40px;
-
    padding: 50px;
+   transition: $transition;
    width: 500px;
-
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-   background: white;
+   background: var(--second-bg);
    border-radius: 15px;
 }
 

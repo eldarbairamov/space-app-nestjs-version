@@ -1,10 +1,10 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { IPlan } from "../../interface";
-import { plansRequests } from "../../config/config";
+import { plansRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 import { useAppDispatch } from "../../hook";
-import { planAction } from "../../redux/slice/plan.slice";
+import { planAction } from "../../redux/slice";
 
 export function addPlanService(messageApi: MessageInstance) {
    const dispatch = useAppDispatch();

@@ -1,15 +1,16 @@
+@import "src/style/configuration";
+
 .WelcomeLogo {
-   display: flex;
-   align-items: center;
+   @extend %flex-align;
    cursor: default;
    gap: 8px;
+   transition: $transition;
 
    p {
       font-weight: 600;
       animation: color-animation 4s linear infinite;
       font-size: 50px;
    }
-
 
    .first {
       --color-1: #DF8453;
@@ -20,7 +21,7 @@
    .second {
       --color-1: #DBAD4A;
       --color-2: #ACCFCB;
-      --color-3: #17494D;
+      --color-3: #63a1ba;
    }
 
    .third {

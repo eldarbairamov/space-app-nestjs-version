@@ -31,8 +31,8 @@ planRouter.put(
    commonMiddleware.isObjectExists("plan"),
    planController.updatePlan);
 
-// Delete plan
-planRouter.delete(
+// Send prev request params and delete plan
+planRouter.post(
    "/:planId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("plan"),

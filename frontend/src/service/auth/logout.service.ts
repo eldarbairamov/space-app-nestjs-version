@@ -1,7 +1,7 @@
 import { errorCatherFn } from "../../helper/error-catcher";
 import { axiosInstance } from "../axios.service";
 import { storageService } from "../storage.service";
-import { authRequests } from "../../config/config";
+import { authRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 
 export function logoutService(messageApi: MessageInstance, next: () => any) {

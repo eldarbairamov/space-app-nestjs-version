@@ -3,7 +3,7 @@ import { errorCatherFn } from "../../helper/error-catcher";
 import { AxiosApiError, axiosInstance } from "../axios.service";
 import { ILoginForm, IOAuth } from "../../interface";
 import { storageService } from "../storage.service";
-import { authRequests } from "../../config/config";
+import { authRequests } from "../../config/configuration";
 import { MessageInstance } from "antd/es/message/interface";
 import { WelcomeRouter } from "../../router";
 

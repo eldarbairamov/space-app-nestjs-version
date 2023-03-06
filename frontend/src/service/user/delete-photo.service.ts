@@ -3,7 +3,7 @@ import { IUser } from "../../interface";
 import { errorCatherFn } from "../../helper/error-catcher";
 import { useAppDispatch } from "../../hook";
 import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/config";
+import { userRequests } from "../../config/configuration";
 import { userActions } from "../../redux/slice";
 
 export function deletePhotoService(messageApi: MessageInstance) {

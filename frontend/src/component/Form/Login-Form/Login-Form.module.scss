@@ -1,22 +1,18 @@
-%flex {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
+@import "src/style/configuration";
 
 .LoginForm {
-   @extend %flex;
-   flex-direction: column;
-   background: white;
+   @extend %flex-align-justify-column;
+   background: var(--second-bg);
    padding: 50px;
    border-radius: 15px;
    width: 400px;
+   transition: $transition;
    gap: 40px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
 }
 
 .footer {
-   @extend %flex;
+   @extend %flex-align;
 
    gap: 20px;
    cursor: pointer;
@@ -33,19 +29,4 @@
       color: #d78052;
    }
 
-
 }
-
-//@media screen and (max-width: 550px) {
-//   .LoginForm {
-//      width: 320px;
-//      padding: 40px;
-//   }
-//}
-//
-//@media screen and (max-width: 350px) {
-//   .LoginForm {
-//      width: 270px;
-//      padding: 40px;
-//   }
-//}

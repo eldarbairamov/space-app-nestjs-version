@@ -5,3 +5,8 @@ export interface IPlanResponse {
    readonly title: string;
    readonly lastModified: number;
 }
+
+export interface IPlansResponse {
+   data: IPlanResponse[],
+   count: number
+}

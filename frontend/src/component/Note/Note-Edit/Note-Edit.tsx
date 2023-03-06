@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { noteActions } from "../../../redux/slice";
 import { INote } from "../../../interface";
-import { Empty, message } from "antd";
+import { message } from "antd";
 import { NoBgInput } from "../../../component";
 import { updateNoteService } from "../../../service";
 
@@ -33,7 +33,11 @@ export const NoteEdit: FC = () => {
       dispatch(noteActions.updateNote(updatedNote));
    };
 
-   if (!activeNote) return <div className={ style.no_notes_wrapper }><Empty description={ "Заміток  немає" }/></div>;
+   if (!activeNote) return (
+      <div className={ style.no_notes_wrapper }>
+         <p> Пусто.. </p>
+      </div>
+   );
 
    return (
       <div className={ style.NoteEdit }>
@@ -42,7 +46,7 @@ export const NoteEdit: FC = () => {
          {/* Header */ }
          <div className={ style.header }>
             <NoBgInput type={ "text" }
-                       style={ { fontSize: "18px", width: "500px", fontWeight: "500", color: "#4e4e51" } }
+                       style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
                        id={ "title" }
                        value={ activeNote.title }
                        onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
@@ -52,12 +56,12 @@ export const NoteEdit: FC = () => {
 
          {/* Text area */ }
          <div className={ style.textarea }>
-            <textarea id={ "body" }
-                      value={ activeNote.body ? activeNote.body : "" }
-                      placeholder={ "Розкажи мені щось цікаве..." }
-                      onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
-                      onBlur={ () => updateNoteFn(activeNote) }
-            />
+          <textarea id={ "body" }
+                    value={ activeNote.body ? activeNote.body : "" }
+                    placeholder={ "Розкажи мені щось цікаве..." }
+                    onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
+                    onBlur={ () => updateNoteFn(activeNote) }
+          />
          </div>
 
       </div>
