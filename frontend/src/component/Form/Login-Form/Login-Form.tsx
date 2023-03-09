@@ -1,12 +1,10 @@
-import React from "react";
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { ILoginForm } from "../../../interface";
-import { FormControl } from "../../UI/Form-Control/Form-Control";
-import { loginValidator } from "../../../validator/auth.validator";
-import { WelcomeRouter } from "../../../router";
-import { Button } from "../../../component";
+import { ILoginForm } from "@src/interface";
+import { FormControl } from "@src/component";
+import { loginValidator } from "@src/validator/auth.validator";
+import { WelcomeRouter } from "@src/router";
+import { Button } from "@src/component";
 
 import style from "./Login-Form.module.scss";
 

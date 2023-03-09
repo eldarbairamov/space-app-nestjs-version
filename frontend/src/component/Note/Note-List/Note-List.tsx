@@ -1,13 +1,13 @@
-import React, { FC, useCallback, useRef } from "react";
+import { FC, useCallback, useRef } from "react";
 
-import { NoteItem } from "../Note-Item/Note-Item";
+import { NoteItem } from "@src/component";
 import { v4 as uuid } from "uuid";
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { noteActions } from "../../../redux/slice";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { noteActions } from "@src/redux/slice";
 
 import style from "./Note-List.module.scss";
-import emptyDark from "../../../asset/empty-dark.svg";
-import emptyLight from "../../../asset/empty-light.svg";
+import emptyDark from "@src/asset/empty-dark.svg";
+import emptyLight from "@src/asset/empty-light.svg";
 
 export const NoteList: FC = () => {
    const { notes } = useAppSelector(state => state.noteReducer);

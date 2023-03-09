@@ -1,11 +1,11 @@
 export interface IMoment {
-   readonly id: string;
+   id: string;
    readonly title: string;
    readonly photo: string;
    readonly date: number;
    readonly location: string;
    readonly tags: string[];
-   readonly createdAt: number;
+   createdAt: number;
 }
 
 export interface IMoments {

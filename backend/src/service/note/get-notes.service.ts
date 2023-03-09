@@ -14,7 +14,7 @@ export const getNotesService = async (userId: UserDocument["id"], searchKey: str
    // Return presented data to client
    return {
       data: allNotesPresenter(notes),
-      count
+      count,
    };
 
 };

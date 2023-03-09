@@ -8,7 +8,7 @@ export const TaskRepository = {
       try {
          return TaskModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -18,7 +18,7 @@ export const TaskRepository = {
       try {
          return TaskModel.findByIdAndDelete(taskId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -29,7 +29,7 @@ export const TaskRepository = {
       try {
          return TaskModel.findByIdAndUpdate(taskId, update, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -40,7 +40,7 @@ export const TaskRepository = {
       try {
          return TaskModel.find(filter);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -51,7 +51,7 @@ export const TaskRepository = {
       try {
          return TaskModel.findById(taskId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }

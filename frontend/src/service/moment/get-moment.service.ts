@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 
-import { IMoment } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { useDispatch } from "react-redux";
-import { momentsRequests } from "../../config/configuration";
-import { momentActions } from "../../redux/slice";
-import { MessageInstance } from "antd/es/message/interface";
+import { IMoment } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { momentsRequests } from "@src/config/configuration";
+import { momentActions } from "@src/redux/slice";
+import { App } from "antd";
+import { useAppDispatch } from "@src/hook";
 
-export function getMomentService(momentId: IMoment["id"], messageApi: MessageInstance) {
+export function getMomentService(momentId: IMoment["id"]) {
    const [ prevState, setPrevState ] = useState<IMoment>();
+   const { message } = App.useApp();
 
-   const dispatch = useDispatch();
+   const dispatch = useAppDispatch();
 
    const getMomentFn = async () => {
       try {
@@ -20,7 +21,7 @@ export function getMomentService(momentId: IMoment["id"], messageApi: MessageIns
          setPrevState(data);
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

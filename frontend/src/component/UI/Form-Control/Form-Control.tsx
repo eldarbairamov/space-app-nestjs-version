@@ -1,13 +1,12 @@
-import React, { CSSProperties, useState } from "react";
+import { CSSProperties, useState } from "react";
 
 import { motion } from "framer-motion";
-import { horizontalShaking } from "../../../animation";
+import { horizontalShaking } from "@src/animation";
 import { UseFormRegister } from "react-hook-form/dist/types/form";
-import { ValidationToaster } from "../Validation-Toaster/Validation-Toaster";
-import { message } from "antd";
+import { ValidationToaster } from "@src/component";
 
 import style from "./Form-Control.module.scss";
-import warning from '../../../asset/warning.svg'
+import warning from "@src/asset/warning.svg";
 
 interface IInput {
    labelName: string,
@@ -22,8 +21,6 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
    const [ validationError, setValidationError ] = useState<{ message: string }>({ message: "" });
    const [ isPasswordHidden, setIsPasswordHidden ] = useState<boolean>(isPassword);
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
    const errorMessageWriter = (message: string) => {
       const errorMessage = { message };
       setValidationError({ ...errorMessage });
@@ -36,8 +33,7 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
 
    return (
       <>
-         <ValidationToaster error={ validationError } messageApi={ messageApi }/>
-         { contextHolder }
+         <ValidationToaster error={ validationError }/>
 
          {/* FormControl wrapper */ }
          <div className={ style.FormControl }>
@@ -55,7 +51,8 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
                      initial={ "initial" }
                      animate={ "animate" }
                   >
-                     <img src={warning} alt="warning" style={{width: "21px"}} onClick={ () => errorMessageWriter(errorMessage) }/>
+                     <img src={ warning } alt="warning" style={ { width: "21px" } }
+                          onClick={ () => errorMessageWriter(errorMessage) }/>
                   </motion.div>
                }
             </div>

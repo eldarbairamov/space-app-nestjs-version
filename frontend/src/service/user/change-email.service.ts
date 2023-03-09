@@ -1,20 +1,21 @@
-import { MessageInstance } from "antd/es/message/interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { userRequests } from "../../config/configuration";
-import { axiosInstance } from "../axios.service";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { userRequests } from "@src/config/configuration";
+import { axiosInstance } from "@src/service";
+import { App } from "antd";
 
-export function changeEmailService(messageApi: MessageInstance, next: () => any) {
+export function changeEmailService(next: () => any) {
+   const { message } = App.useApp();
 
    const updateEmailFn = async (email: string) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.post(userRequests.changeEmail, { email });
-         messageApi.destroy();
+         message.destroy();
          next();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

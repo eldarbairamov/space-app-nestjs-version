@@ -8,14 +8,14 @@ import { User, UserSchema } from "../user/model/user.model";
 import { UserRepository } from "../user/repository/user.repository";
 import { MomentPresenter } from "./presenter/moment.presenter";
 import { MulterModule } from "@nestjs/platform-express";
-import { fileStorage } from "../common/helper/file-storage";
+import { fileStorage } from "../common/helper";
 
 @Module({
    imports: [ MongooseModule.forFeature([
       { name: Moment.name, schema: MomentSchema },
       { name: User.name, schema: UserSchema },
    ]),
-      MulterModule.register(fileStorage)
+      MulterModule.register(fileStorage),
    ],
    providers: [ MomentService, MomentRepository, UserRepository, MomentPresenter ],
    controllers: [ MomentController ],

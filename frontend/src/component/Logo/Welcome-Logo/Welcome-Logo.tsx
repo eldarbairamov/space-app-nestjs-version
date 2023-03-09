@@ -1,6 +1,4 @@
-import React from "react";
-
-import { WelcomeRouter } from "../../../router";
+import { WelcomeRouter } from "@src/router";
 
 import style from "./Welcome-Logo.module.scss";
 

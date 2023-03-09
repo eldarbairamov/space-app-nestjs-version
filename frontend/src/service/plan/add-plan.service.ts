@@ -1,13 +1,14 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { IPlan } from "../../interface";
-import { plansRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
-import { useAppDispatch } from "../../hook";
-import { planAction } from "../../redux/slice";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { IPlan } from "@src/interface";
+import { plansRequests } from "@src/config/configuration";
+import { useAppDispatch } from "@src/hook";
+import { planAction } from "@src/redux/slice";
+import { App } from "antd";
 
-export function addPlanService(messageApi: MessageInstance) {
+export function addPlanService() {
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const addPlanFn = async () => {
       try {
@@ -15,7 +16,7 @@ export function addPlanService(messageApi: MessageInstance) {
          dispatch(planAction.addPlan(data));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

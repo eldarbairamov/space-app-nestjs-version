@@ -31,6 +31,12 @@
       top: 20px;
       cursor: pointer;
       color: var(--main-font);
+      transition: .2s;
+
+      &:hover {
+         filter: var(--icon-hover);
+         -webkit-filter: var(--icon-hover);
+      }
    }
 
    img {

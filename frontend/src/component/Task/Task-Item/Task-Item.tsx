@@ -1,16 +1,15 @@
 import React from "react";
 
 import { DeleteOutlined } from "@ant-design/icons";
-import { ITask } from "../../../interface";
-import { updateTaskService, deleteTaskService } from "../../../service";
-import { message } from "antd";
-import { useAppDispatch } from "../../../hook";
-import { taskAction } from "../../../redux/slice";
-import { TypedOnClick } from "../../../interface/common.interface";
+import { ITask } from "@src/interface";
+import { updateTaskService, deleteTaskService } from "@src/service";
+import { useAppDispatch } from "@src/hook";
+import { taskAction } from "@src/redux/slice";
+import { TypedOnClick } from "@src/interface/common.interface";
 
 import style from "./Task-Item.module.scss";
-import complete from "../../../asset/complete.svg";
-import incomplete from "../../../asset/incomplete.svg";
+import complete from "@src/asset/complete.svg";
+import incomplete from "@src/asset/incomplete.svg";
 
 interface ITaskItemProps {
    task: ITask;
@@ -19,10 +18,8 @@ interface ITaskItemProps {
 export function TaskItem({ task }: ITaskItemProps) {
    const dispatch = useAppDispatch();
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   const { updateTaskFn } = updateTaskService(messageApi);
-   const { deleteTaskFn } = deleteTaskService(messageApi);
+   const { updateTaskFn } = updateTaskService();
+   const { deleteTaskFn } = deleteTaskService();
 
    const setTaskStatus = async (taskId: string): Promise<void> => {
       await updateTaskFn(taskId, !task.isCompleted);
@@ -37,8 +34,6 @@ export function TaskItem({ task }: ITaskItemProps) {
 
    return (
       <div className={ style.TaskItem }>
-         { contextHolder }
-
          {/* Task status */ }
          <div className={ style.task_status }>
             { task.isCompleted ?

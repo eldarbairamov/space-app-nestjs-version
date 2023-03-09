@@ -9,7 +9,7 @@ export const OAuthRepository = {
       try {
          return OAuthModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -19,7 +19,7 @@ export const OAuthRepository = {
       try {
          return OAuthModel.deleteOne(filter);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -29,7 +29,7 @@ export const OAuthRepository = {
       try {
          return OAuthModel.deleteMany(filter);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }
@@ -39,7 +39,7 @@ export const OAuthRepository = {
       try {
          return OAuthModel.findOne(filter).lean();
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw ApiException.DatabaseError();
       }

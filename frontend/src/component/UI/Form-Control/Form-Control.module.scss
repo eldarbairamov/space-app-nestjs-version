@@ -16,13 +16,6 @@
       height: 100%;
    }
 
-   input:-webkit-autofill,
-   input:-webkit-autofill:hover,
-   input:-webkit-autofill:focus {
-      -webkit-text-fill-color: var(--main-font);
-      transition: background-color 5000s ease-in-out 0s;
-   }
-
    label {
       color: var(--second-font);
    }

@@ -1,10 +1,7 @@
-import React from "react";
+import { configuration } from "@src/config/configuration";
+import { useAppSelector } from "@src/hook";
 
-import { configuration } from "../../../config/configuration";
-import { useAppSelector } from "../../../hook";
-
-import user from "../../../asset/user.png";
-
+import user from "@src/asset/user.png";
 import style from "./Dashboard-Avatar.module.scss";
 
 export function DashboardAvatar() {

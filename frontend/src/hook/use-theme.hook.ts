@@ -14,15 +14,26 @@ export const useTheme = () => {
          colorText: isDark ? "whitesmoke" : "#4e4e51",
          colorTextPlaceholder: isDark ? "#acacac" : "#7d7d7d",
          colorTextBase: isDark ? "whitesmoke" : "#4e4e51",
-         colorBorderSecondary: isDark ? "#4d5158" : "#dfdfdf",
+         colorBorderSecondary: isDark ? "#4d5158" : "#d8d8d8",
          colorBgBase: isDark ? "#2d2f33" : "whitesmoke",
          colorPrimaryBg: isDark ? "#41434a" : "#dfdfdf",
       },
       components: {
          Switch: {
             colorPrimary: "#3D8DAE",
-         }
-      }
+            colorPrimaryHover: "#2f6b84",
+         },
+         FloatButton: {
+            colorPrimary: "#7274d7",
+            colorPrimaryHover: "#6566be",
+         },
+         Button: {
+            colorPrimary: "#24292e",
+         },
+         Tooltip: {
+            colorTextLightSolid: isDark ? "whitesmoke" : "#4e4e51",
+         },
+      },
    };
 
    useLayoutEffect(() => {

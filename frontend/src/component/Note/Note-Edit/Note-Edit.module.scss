@@ -30,6 +30,7 @@
          resize: none;
          outline: none;
          color: var(--main-font);
+         letter-spacing: 0;
 
          &::placeholder {
             color: var(--second-font);

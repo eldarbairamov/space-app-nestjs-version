@@ -1,22 +1,23 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
-import { pleaseWait } from "../../helper/please-wait";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { userRequests } from "@src/config/configuration";
+import { pleaseWait } from "@src/helper/please-wait";
+import { App } from "antd";
 
-export function changePasswordService(messageApi: MessageInstance, next: () => any) {
+export function changePasswordService(next: () => any) {
+   const { message } = App.useApp();
 
    const updatePasswordFn = async (newPassword: string, currentPassword: string) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.patch(userRequests.changePassword, { newPassword, currentPassword });
-         messageApi.destroy();
+         message.destroy();
          await pleaseWait(1000);
          next();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

@@ -4,138 +4,117 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d7e41d7-9aa2-44ea-949c-44bbbc495c42" name="Changes" comment="Finished work on theme switcher. Made some code refactoring.">
-      <change afterPath="$PROJECT_DIR$/backend-nest/src/common/dto/delete-item.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend-nest/src/common/dto/query.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/interface/common.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/service/note/delete-note.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/service/plan/delete-plan.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/animation/present.variant.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/add-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/add-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/bg2-dark.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/empty-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/empty-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/logout-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/logout-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/menu-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/menu-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/no-image-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/no-image-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/settings-dark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/settings-light.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/asset/warning.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/UI/Loader/Loader.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/component/UI/Loader/Loader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/hook/use-theme.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/redux/slice/app.silce.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/style/configuration.scss" afterDir="false" />
+    <list default="true" id="0d7e41d7-9aa2-44ea-949c-44bbbc495c42" name="Changes" comment="Main work is done. Next: Docker.">
+      <change afterPath="$PROJECT_DIR$/frontend/src/asset/laugh.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/Dashboard/Jokes/Jokes.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/Dashboard/Jokes/Jokes.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/Info/Info.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/Info/Info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/UI/Modal/Modal.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/component/UI/Modal/Modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/mock/jokes.mock.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.todo" beforeDir="false" afterPath="$PROJECT_DIR$/.todo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/nest-cli.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/nest-cli.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/dto/registration.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/dto/registration.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/dto/reset-password.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/dto/reset-password.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/auth.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/auth.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/common.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/common.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/moment.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/moment.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/note.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/note.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/plan.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/plan.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/task.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/task.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/swagger/user.swagger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/swagger/user.swagger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/config/configuration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/config/configuration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/guard/login.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/guard/login.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/helper/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/helper/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/interface/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/interface/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/interface/login-response.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/interface/login-response.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/repository/action-token.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/repository/action-token.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/auth/strategy/refresh.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/auth/strategy/refresh.strategy.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/helper/file-storage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/helper/file-storage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/helper/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/helper/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/helper/unlinker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/helper/unlinker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/common/type/email-action.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/common/type/email-action.type.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-nest/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/dto/delete-photo.dto.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/dto/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/dto/update-moment.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/dto/update-moment.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/interface/moment-response.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/interface/moment-response.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/moment.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/moment.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/moment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/moment.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/repository/moment.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/repository/moment.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/moment/moment.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/moment/moment.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend-nest/src/note/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/dto/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/note/dto/update-note.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/dto/update-note.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/note/interface/note-response.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/interface/note-response.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/note/note.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/note.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/note/note.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/note.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/note/repository/note.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/repository/note.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/dto/create-plan.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/dto/create-plan.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/interface/plan-response.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/interface/plan-response.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/plan.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/plan.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/plan.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/plan.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/repository/plan.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/repository/plan.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/task/dto/create-task.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/task/dto/create-task.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/task/task.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/task/task.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/user/dto/profile-update.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/user/dto/profile-update.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-nest/src/user/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/user/user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controller/moment.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controller/moment.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controller/notes.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controller/notes.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controller/plan.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controller/plan.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/interface/moment.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/interface/moment.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/interface/note.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/interface/note.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/interface/plan.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/interface/plan.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/repository/Moment.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/Moment.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/repository/Note.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/Note.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/repository/Plan.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/Plan.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/router/note.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/router/note.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/router/plan.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/router/plan.router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/service/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/service/moment/get-moments.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/moment/get-moments.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/note/model/note.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/note/model/note.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/dto/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/plan/guard/object-checking.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/plan/guard/object-checking.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/task/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/task/dto/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/task/repository/task.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/task/repository/task.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/user/dto/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/user/dto/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/user/repository/user.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/user/repository/user.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/src/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/src/user/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-nest/tsconfig.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend-nest/tsconfig.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/constant/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/constant/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/cron/oauth-cleaner.cron.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/cron/oauth-cleaner.cron.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/email-template/email-template.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/email-template/email-template.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helper/pass-comparer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/helper/pass-comparer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helper/pass-hasher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/helper/pass-hasher.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helper/unlinker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/helper/unlinker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/OAuth.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/OAuth.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/Task.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/Task.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/repository/User.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/repository/User.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/service/email.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/email.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/service/note/get-notes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/note/get-notes.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/service/plan/get-plans.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/plan/get-plans.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/service/user/get-user-info.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/user/get-user-info.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/service/token.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/token.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/service/user/change-email.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/service/user/change-email.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/type/email-action.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/type/email-action.type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/animation/horizontal-shaking.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/horizontal-shaking.variant.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/animation/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/asset/no-photo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/asset/note.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Burger-Navbar/Burger-Navbar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Burger-Navbar/Burger-Navbar.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Burger-Navbar/Burger-Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Burger-Navbar/Burger-Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Avatar/Dashboard-Avatar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Avatar/Dashboard-Avatar.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/animation/logo.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/logo.variant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/animation/p1.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/p1.variant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/animation/p2.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/p2.variant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/animation/p3.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/p3.variant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/animation/p4.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/p4.variant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/animation/present.variant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/animation/present.variant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/add-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/add-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/add-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/add-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/empty-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/empty-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/empty-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/empty-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/logout-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/logout-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/menu-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/menu-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/menu-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/menu-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/no-image-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/no-image-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/asset/no-image-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/asset/no-image-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Burger-Navbar/Burger-Navbar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Navbar/Burger-Navbar/Burger-Navbar.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Burger-Navbar/Burger-Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Navbar/Burger-Navbar/Burger-Navbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Avatar/Dashboard-Avatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Avatar/Dashboard-Avatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Edit-Profile/Dashboard-Edit-Profile.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Edit-Profile/Dashboard-Edit-Profile.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Greeting/Dashboard-Greeting.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Greeting/Dashboard-Greeting.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Activation-Form/ActivationForm.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Activation-Form/ActivationForm.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Greeting/Dashboard-Greeting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Dashboard/Dashboard-Greeting/Dashboard-Greeting.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Activation-Form/ActivationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Activation-Form/ActivationForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Change-Email-Form/Change-Email-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Change-Email-Form/Change-Email-Form.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Change-Email-Form/Change-Email-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Change-Email-Form/Change-Email-Form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Change-Password-Form/Change-Password-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Change-Password-Form/Change-Password-Form.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Change-Password-Form/Change-Password-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Change-Password-Form/Change-Password-Form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Forgot-Password-Form/Forgot-Password-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Forgot-Password-Form/Forgot-Password-Form.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Login-Form/Login-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Login-Form/Login-Form.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Profile-Update-Form/Profile-Update-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Profile-Update-Form/Profile-Update-Form.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Forgot-Password-Form/Forgot-Password-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Forgot-Password-Form/Forgot-Password-Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Login-Form/Login-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Login-Form/Login-Form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Profile-Update-Form/Profile-Update-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Profile-Update-Form/Profile-Update-Form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Registration-Form/Registration-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Registration-Form/Registration-Form.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Registration-Form/Registration-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Registration-Form/Registration-Form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Reset-Password-Form/Reset-Password-Form.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Reset-Password-Form/Reset-Password-Form.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Layout-Navbar/Layout-Navbar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Layout-Navbar/Layout-Navbar.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Layout-Navbar/Layout-Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Layout-Navbar/Layout-Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Logo/App-Logo/App-Logo.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Logo/App-Logo/App-Logo.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Logo/Welcome-Logo/Welcome-Logo.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Logo/Welcome-Logo/Welcome-Logo.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Change-Email-Message/Change-Email-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Change-Email-Message/Change-Email-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Change-Password-Message/Change-Password-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Change-Password-Message/Change-Password-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message (non-auth)/Email-Confirmation-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message (non-auth)/Email-Confirmation-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message/Email-Confirmation-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message/Email-Confirmation-Message.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Form/Reset-Password-Form/Reset-Password-Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Form/Reset-Password-Form/Reset-Password-Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Layout-Navbar/Layout-Navbar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Navbar/Layout-Navbar/Layout-Navbar.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Layout-Navbar/Layout-Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Navbar/Layout-Navbar/Layout-Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Logo/App-Logo/App-Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Logo/App-Logo/App-Logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Logo/Welcome-Logo/Welcome-Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Logo/Welcome-Logo/Welcome-Logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Change-Email-Message/Change-Email-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Change-Email-Message/Change-Email-Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Change-Password-Message/Change-Password-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Change-Password-Message/Change-Password-Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message (non-auth)/Email-Confirmation-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message (non-auth)/Email-Confirmation-Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message/Email-Confirmation-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Email-Confirmation-Message/Email-Confirmation-Message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Error-Message/Error-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Error-Message/Error-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Forgot-Password-Message/Forgot-Password-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Forgot-Password-Message/Forgot-Password-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Registration-Success-Message/Registration-Success-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Registration-Success-Message/Registration-Success-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Unauthorized-Message/Unauthorized-Message.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Unauthorized-Message/Unauthorized-Message.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Count/Moment-Count.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Count/Moment-Count.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Error-Message/Error-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Error-Message/Error-Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Forgot-Password-Message/Forgot-Password-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Forgot-Password-Message/Forgot-Password-Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Registration-Success-Message/Registration-Success-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Registration-Success-Message/Registration-Success-Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Message/Unauthorized-Message/Unauthorized-Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Message/Unauthorized-Message/Unauthorized-Message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Count/Moment-Count.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Count/Moment-Count.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Header/Moment-Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Header/Moment-Header.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Header/Moment-Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Header/Moment-Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Item/Moment-Item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Item/Moment-Item.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Item/Moment-Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-Item/Moment-Item.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-List/Moment-List.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-List/Moment-List.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-List/Moment-List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Moment/Moment-List/Moment-List.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Count/Note-Count.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Count/Note-Count.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Count/Note-Count.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Count/Note-Count.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Edit/Note-Edit.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Edit/Note-Edit.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Edit/Note-Edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Edit/Note-Edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Header/Note-Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Header/Note-Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item-Adaptive/Note-Item-Adaptive.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item-Adaptive/Note-Item-Adaptive.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item-Adaptive/Note-Item-Adaptive.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item-Adaptive/Note-Item-Adaptive.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item/Note-Item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item/Note-Item.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item/Note-Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Item/Note-Item.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-List-Adaptive/Note-List-Adaptive.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-List-Adaptive/Note-List-Adaptive.module.scss" afterDir="false" />
@@ -144,67 +123,56 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-List/Note-List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-List/Note-List.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Sidebar/Note-Sidebar.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Sidebar/Note-Sidebar.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Note/Note-Sidebar/Note-Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Note/Note-Sidebar/Note-Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Count/Plan-Count.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Count/Plan-Count.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Count/Plan-Count.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Count/Plan-Count.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Header/Plan-Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Header/Plan-Header.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Header/Plan-Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Header/Plan-Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Item/Plan-Item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Item/Plan-Item.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Item/Plan-Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-Item/Plan-Item.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-List/Plan-List.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-List/Plan-List.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-List/Plan-List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Plan/Plan-List/Plan-List.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-Add/Task-Add.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-Add/Task-Add.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-Add/Task-Add.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-Add/Task-Add.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-Header/Task-Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-Header/Task-Header.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-Header/Task-Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-Header/Task-Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-Item/Task-Item.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-Item/Task-Item.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-Item/Task-Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-Item/Task-Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-List/Task-List.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-List/Task-List.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/Task/Task-List/Task-List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/Task/Task-List/Task-List.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Button/Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Button/Button.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Button/Button.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Form-Control/Form-Control.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Form-Control/Form-Control.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Form-Control/Form-Control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Form-Control/Form-Control.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Button/No-Bg-Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Button/No-Bg-Button.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Input/No-Bg-Input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Input/No-Bg-Input.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Input/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Loader/Loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Loader/Loader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Button/No-Bg-Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Button/No-Bg-Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Input/No-Bg-Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/No-Bg-Input/No-Bg-Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/component/UI/Validation-Toaster/Validation-Toaster.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/UI/Validation-Toaster/Validation-Toaster.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/component/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/component/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/config/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/config/configuration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helper/error-catcher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helper/error-catcher.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hook/use-theme.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hook/use-theme.hook.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/interface/moment.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interface/moment.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/interface/note.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interface/note.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/interface/plan.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/interface/plan.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/Main-Layout/Main-Layout.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/Main-Layout/Main-Layout.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/Main-Layout/Main-Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/Main-Layout/Main-Layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Dashboard-Page/Dashboard-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Dashboard-Page/Dashboard-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Dashboard-Page/Dashboard-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Dashboard-Page/Dashboard-Page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Active-Page/Moment-Active-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Active-Page/Moment-Active-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Active-Page/Moment-Active-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Active-Page/Moment-Active-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Page/Moment-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Page/Moment-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Page/Moment-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Moment-Page/Moment-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Note-Active-Page/Note-Active-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Note-Active-Page/Note-Active-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Note-Active-Page/Note-Active-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Note-Active-Page/Note-Active-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Notes-Page/Notes-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Notes-Page/Notes-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Notes-Page/Notes-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Notes-Page/Notes-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Plans-Page/Plans-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Plans-Page/Plans-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Plans-Page/Plans-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Plans-Page/Plans-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Profile-Settings-Page/Profile-Settings-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Profile-Settings-Page/Profile-Settings-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Profile-Settings-Page/Profile-Settings-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Profile-Settings-Page/Profile-Settings-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Tasks-Page/Tasks-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Tasks-Page/Tasks-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/App-Router/Tasks-Page/Tasks-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/App-Router/Tasks-Page/Tasks-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Activation-Page/Activation-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Activation-Page/Activation-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Activation-Page/Activation-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Activation-Page/Activation-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Forgot-Password-Page/Forgot-Password-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Forgot-Password-Page/Forgot-Password-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Forgot-Password-Page/Forgot-Password-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Forgot-Password-Page/Forgot-Password-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Login-Page/Login-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Login-Page/Login-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Login-Page/Login-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Login-Page/Login-Page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Logo-Page/Logo-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Logo-Page/Logo-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Logo-Page/Logo-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Logo-Page/Logo-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Registration-Page/Registration-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Registration-Page/Registration-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Registration-Page/Registration-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Registration-Page/Registration-Page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Reset-Password-Page/Reset-Password-Page.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Reset-Password-Page/Reset-Password-Page.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Reset-Password-Page/Reset-Password-Page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/Welcome-Router/Reset-Password-Page/Reset-Password-Page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/page/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/page/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/redux/slice/app.silce.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/slice/app.silce.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/redux/slice/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/slice/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/slice/moment.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/slice/moment.slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/redux/slice/note.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/slice/note.slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/redux/slice/plan.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/slice/plan.slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/redux/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/App.router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/App.router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/Welcome.router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/Welcome.router.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/auth/activation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/auth/activation.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/auth/forgot-password.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/auth/forgot-password.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/auth/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/auth/login.service.ts" afterDir="false" />
@@ -212,6 +180,7 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/service/auth/registration.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/auth/registration.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/auth/reset-password.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/auth/reset-password.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/axios.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/axios.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/service/moment/active-moment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/moment/active-moment.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/moment/add-moment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/moment/add-moment.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/moment/delete-moment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/moment/delete-moment.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/moment/get-moment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/moment/get-moment.service.ts" afterDir="false" />
@@ -227,6 +196,7 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/service/plan/get-one-plan.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/plan/get-one-plan.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/plan/get-plans.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/plan/get-plans.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/plan/update-plan.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/plan/update-plan.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/service/storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/storage.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/task/add-task.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/task/add-task.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/task/delete-task.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/task/delete-task.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/task/get-tasks.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/task/get-tasks.service.ts" afterDir="false" />
@@ -239,6 +209,9 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/service/user/update-profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/user/update-profile.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/service/user/upload-photo.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/service/user/upload-photo.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/style/baseline.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/style/baseline.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/validator/user.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/validator/user.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,6 +226,9 @@
         <option value="SCSS File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -271,7 +247,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/virgildreams/IdeaProjects/space-app-final-project/backend/src/service/plan&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/virgildreams/IdeaProjects/space-app-final-project/frontend/src/asset&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -279,25 +255,28 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/virgildreams/IdeaProjects/space-app-final-project/backend/node_modules/typescript/lib&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/virgildreams/IdeaProjects/space-app-final-project/backend-nest/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/asset" />
       <recent name="$PROJECT_DIR$/backend/src/service/plan" />
       <recent name="$PROJECT_DIR$/backend-nest/src/common/dto" />
-      <recent name="$PROJECT_DIR$/frontend/src/asset" />
       <recent name="$PROJECT_DIR$/backend-nest/src/auth/dto" />
       <recent name="$PROJECT_DIR$/backend/src/constant" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/backend-nest/src/common/dto" />
+      <recent name="$PROJECT_DIR$/frontend/src/component/Navbar" />
+      <recent name="$PROJECT_DIR$/backend-nest/src/config" />
       <recent name="$PROJECT_DIR$/frontend/src/asset" />
+      <recent name="$PROJECT_DIR$/backend-nest/src/common/dto" />
       <recent name="$PROJECT_DIR$/frontend/src/constant" />
-      <recent name="$PROJECT_DIR$/backend-nest/src/common" />
-      <recent name="$PROJECT_DIR$/backend-nest/src/cron" />
     </key>
   </component>
   <component name="RunManager" selected="npm.nest:dev">
@@ -317,16 +296,6 @@
       <option name="specificationPath" value="$PROJECT_DIR$/backend/src/swagger.json" />
       <method v="2" />
     </configuration>
-    <configuration name="backend:build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/backend/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="backend:build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="express:dev" type="js.build_tools.npm" temporary="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
       <command value="run" />
@@ -337,11 +306,31 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="frontend:build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="frontend:build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="frontend:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
       <scripts>
         <script value="frontend:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="frontend:preview" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="frontend:preview" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -359,10 +348,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.frontend:dev" />
         <item itemvalue="npm.nest:dev" />
+        <item itemvalue="npm.frontend:dev" />
+        <item itemvalue="npm.frontend:preview" />
+        <item itemvalue="npm.frontend:build" />
         <item itemvalue="npm.express:dev" />
-        <item itemvalue="npm.backend:build" />
       </list>
     </recent_temporary>
   </component>
@@ -389,7 +379,11 @@
       <workItem from="1677976179383" duration="1603000" />
       <workItem from="1678021519262" duration="15743000" />
       <workItem from="1678045421277" duration="12679000" />
-      <workItem from="1678060495319" duration="14795000" />
+      <workItem from="1678060495319" duration="15439000" />
+      <workItem from="1678197453895" duration="34000" />
+      <workItem from="1678197513097" duration="22313000" />
+      <workItem from="1678225523052" duration="6460000" />
+      <workItem from="1678285798511" duration="13868000" />
     </task>
     <task id="LOCAL-00001" summary="Main work is almost done.">
       <created>1677202215868</created>
@@ -419,11 +413,132 @@
       <option name="project" value="LOCAL" />
       <updated>1677795135905</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finished work on theme switcher. Made some code refactoring.">
+      <created>1678133524555</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678133524555</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/backend-nest/src/app.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/main.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/note.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/note.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/note.controller.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/task.controller.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/task.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/task.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/config/env-variables.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/config/configuration.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/dto/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/dto/update-note.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/interface/note-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/repository/note.repository.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/guard/access.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/guard/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/guard/login.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/guard/registration.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/guard/refresh.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/repository/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/repository/o-auth.repository.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/repository/action-token.repository.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/interface/plan-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/dto/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/dto/create-task.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/presenter/task.presenter.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/interface/user-info-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/interface/update-profile-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/type/email-action.type.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/constants/upload-image.constant.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/constants/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/constants/static-path.constant.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/constants/token-type.constant.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/constants/email-action.constant.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/dto/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/dto/update-moment.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/presenter/moment.presenter.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/auth.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/auth.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/auth.controller.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/user.controller.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/user.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/user.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/moment.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/moment.controller.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/moment.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/model/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/model/action-token.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/model/o-auth.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/strategy/login.strategy.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/strategy/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/strategy/access.strategy.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/strategy/refresh.strategy.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/dto/create-plan.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/dto/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/presenter/plan.presenter.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/guard/object-checking.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/interface/task-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/dto/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/dto/change-password.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/dto/profile-update.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/dto/query.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/dto/delete-item.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/common.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/user.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/task.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/note.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/moment.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/plan.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/swagger/auth.swagger.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/guard/object-checking.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/interface/moment-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/plan.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/plan.module.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/plan.controller.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/token.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/email.service.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/guard/object-checking.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/model/note.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/note/presenter/note.presenter.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/dto/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/dto/registration.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/dto/reset-password.dto.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/helper/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/helper/pass-hasher.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/helper/pass-comparer.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/interface/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/interface/login-response.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/auth/interface/access-token-pair.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/guard/object-checking.guard.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/model/plan.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/plan/repository/plan.repository.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/model/task.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/task/repository/task.repository.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/model/user.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/user/repository/user.repository.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/pipe/sharp.pipe.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/helper/file-storage.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/helper/unlinker.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/helper/index.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/helper/exists.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/decorator/api-file.decorator.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/decorator/user.decorator.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/exception/database.exception.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/exception/file-validator.filter.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/interface/express.interface.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/common/email-template/email-template.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/model/moment.model.js" />
+        <option value="$PROJECT_DIR$/backend-nest/src/moment/repository/moment.repository.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -441,6 +556,19 @@
     <MESSAGE value="Finished swagger spec. for Express." />
     <MESSAGE value="Finished swagger spec. for NestJS." />
     <MESSAGE value="Finished work on theme switcher. Made some code refactoring." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished work on theme switcher. Made some code refactoring." />
+    <MESSAGE value="Main work is done. Next: Docker." />
+    <option name="LAST_COMMIT_MESSAGE" value="Main work is done. Next: Docker." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/src/page/Welcome-Router/Logo-Page/Logo-Page.tsx</url>
+          <line>29</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

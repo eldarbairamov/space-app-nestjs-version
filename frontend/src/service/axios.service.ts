@@ -1,14 +1,12 @@
 import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-import { authRequests, configuration } from "../config/configuration";
+import { authRequests, configuration } from "@src/config/configuration";
 import { storageService } from "./storage.service";
-import { AppRouter } from "../router";
-import { IOAuth } from "../interface";
+import { AppRouter } from "@src/router";
+import { IOAuth } from "@src/interface";
 
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 
 export const axiosInstance = axios.create({ baseURL: configuration.API_URL });
-
-let isRefreshing = false;
 
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
    const accessToken = storageService.getAccessToken();
@@ -28,14 +26,14 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
    async (e) => {
       const axiosError = e as AxiosApiError;
       const refreshToken = storageService.getRefreshToken();
+      const originalRequest = e.config;
 
-      if (axiosError.response?.status === 401 && refreshToken && !isRefreshing) {
-         isRefreshing = true;
+      if (axiosError.response?.status === 401 && refreshToken && !originalRequest._isRetry) {
+         originalRequest._isRetry = true;
 
          try {
             const { data } = await axiosInstance.post<Omit<IOAuth, "username">>(authRequests.refresh, { refreshToken });
             storageService.setTokens(data.accessToken, data.refreshToken);
-            isRefreshing = false
 
          } catch (e) {
             storageService.deleteTokens();
@@ -43,7 +41,7 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
             AppRouter.navigate(0);
          }
 
-         return axiosInstance(e.config);
+         return axiosInstance(originalRequest);
       }
 
       if (axiosError.message === "Network Error") {

@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
-import { MessageInstance } from "antd/es/message/interface";
+import { App } from "antd";
 
 interface ErrorModalProps {
    error: { message: string };
-   messageApi: MessageInstance;
 }
 
-export function ValidationToaster({ error, messageApi }: ErrorModalProps) {
+export function ValidationToaster({ error }: ErrorModalProps) {
+   const { message } = App.useApp();
+
    useEffect(() => {
-      error.message && messageApi.error(error.message);
+      error.message && message.error(error.message);
    }, [ error ]);
 
    return (<></>);

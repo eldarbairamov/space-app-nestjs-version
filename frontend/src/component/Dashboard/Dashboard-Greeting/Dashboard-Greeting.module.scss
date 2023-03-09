@@ -5,11 +5,20 @@
    font-size: 35px;
    font-weight: bold;
    color: #df8281;
+   position: relative;
    transition: $transition;
 
    span {
       font-family: 'Caveat', cursive;
       font-size: 45px;
       color: var(--main-font);
+   }
+
+   span:nth-child(2) {
+      @extend %flex-align-justify-column;
+
+      position: absolute;
+      font-size: 25px;
+      left: 190px;
    }
 }

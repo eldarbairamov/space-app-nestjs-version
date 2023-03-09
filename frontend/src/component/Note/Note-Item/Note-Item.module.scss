@@ -29,6 +29,12 @@
       right: 20px;
       font-weight: 500;
       cursor: pointer;
+      transition: .2s;
+
+      &:hover {
+         filter: var(--icon-hover);
+         -webkit-filter: var(--icon-hover);
+      }
    }
 
    .note_body {

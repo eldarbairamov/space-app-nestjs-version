@@ -14,7 +14,7 @@ export class ActionTokenRepository {
       try {
          return await this.actionTokenModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -22,9 +22,9 @@ export class ActionTokenRepository {
 
    async findByIdAndUpdate(id: string, update: UpdateQuery<ActionToken>): Promise<ActionTokenDocument> {
       try {
-         return await this.actionTokenModel.findByIdAndUpdate(id, update, {new: true});
+         return await this.actionTokenModel.findByIdAndUpdate(id, update, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -34,7 +34,7 @@ export class ActionTokenRepository {
       try {
          return await this.actionTokenModel.findOneAndDelete(filter);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }

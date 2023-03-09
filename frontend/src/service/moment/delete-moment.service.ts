@@ -1,13 +1,14 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { momentsRequests } from "../../config/configuration";
-import { IMoment } from "../../interface";
-import { MessageInstance } from "antd/es/message/interface";
-import { momentActions } from "../../redux/slice";
-import { useAppDispatch } from "../../hook";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { momentsRequests } from "@src/config/configuration";
+import { IMoment } from "@src/interface";
+import { momentActions } from "@src/redux/slice";
+import { useAppDispatch } from "@src/hook";
+import { App } from "antd";
 
-export function deleteMomentService(messageApi: MessageInstance, next: () => void) {
+export function deleteMomentService(next: () => void) {
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const deleteMomentFn = async (momentId: IMoment["id"]) => {
       try {
@@ -16,7 +17,7 @@ export function deleteMomentService(messageApi: MessageInstance, next: () => voi
          next();
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

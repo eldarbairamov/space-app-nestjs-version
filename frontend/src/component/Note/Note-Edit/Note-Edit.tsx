@@ -1,20 +1,17 @@
-import React, { ChangeEvent, FC, useEffect } from "react";
+import { ChangeEvent, FC, useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { noteActions } from "../../../redux/slice";
-import { INote } from "../../../interface";
-import { message } from "antd";
-import { NoBgInput } from "../../../component";
-import { updateNoteService } from "../../../service";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { noteActions } from "@src/redux/slice";
+import { INote } from "@src/interface";
+import { NoBgInput } from "@src/component";
+import { updateNoteService } from "@src/service";
 
 import style from "./Note-Edit.module.scss";
 
 export const NoteEdit: FC = () => {
    const { activeNote, notes } = useAppSelector(state => state.noteReducer);
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   const { updateNoteFn } = updateNoteService(messageApi);
+   const { updateNoteFn } = updateNoteService();
 
    const dispatch = useAppDispatch();
 
@@ -41,7 +38,6 @@ export const NoteEdit: FC = () => {
 
    return (
       <div className={ style.NoteEdit }>
-         { contextHolder }
 
          {/* Header */ }
          <div className={ style.header }>

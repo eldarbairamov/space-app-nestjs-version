@@ -10,8 +10,8 @@ export const emailTemplate = {
       templateName: "forgot-password",
    },
    [CHANGE_EMAIL]: {
-      subject: 'Зміна електронної пошти',
-      templateName: 'change-email'
-   }
+      subject: "Зміна електронної пошти",
+      templateName: "change-email",
+   },
 };
 

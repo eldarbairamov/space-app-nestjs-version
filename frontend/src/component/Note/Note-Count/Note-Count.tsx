@@ -1,11 +1,9 @@
-import React, { FC } from "react";
-
 import { Divider } from "antd";
-import { useAppSelector } from "../../../hook";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Note-Count.module.scss";
 
-export const NoteCount: FC = () => {
+export function NoteCount() {
    const { notesCount } = useAppSelector(state => state.userReducer);
 
    return (
@@ -14,4 +12,4 @@ export const NoteCount: FC = () => {
          <p> { notesCount } </p>
       </div>
    );
-};
+}

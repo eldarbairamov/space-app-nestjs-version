@@ -1,10 +1,11 @@
-import { notesRequests } from "../../config/configuration";
-import { INote } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { MessageInstance } from "antd/es/message/interface";
+import { notesRequests } from "@src/config/configuration";
+import { INote } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { App } from "antd";
 
-export function updateNoteService(messageApi: MessageInstance) {
+export function updateNoteService() {
+   const { message } = App.useApp();
 
    const updateNoteFn = async (activeNote: INote) => {
       try {
@@ -15,7 +16,7 @@ export function updateNoteService(messageApi: MessageInstance) {
          await axiosInstance.put<void>(notesRequests.saveNote + activeNote.id, noteToSave);
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

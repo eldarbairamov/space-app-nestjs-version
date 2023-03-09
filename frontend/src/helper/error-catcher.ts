@@ -46,6 +46,10 @@ export const errorCatherFn = (e: unknown) => {
          message = "Цей пароль вже використовується. Спробуйте інший";
          break;
 
+      case "There is nothing to change":
+         message = "Інформація не потребує змін";
+         break;
+
       default:
          message = `Непередбачена помилка: ${ axiosError.message }`;
          break;

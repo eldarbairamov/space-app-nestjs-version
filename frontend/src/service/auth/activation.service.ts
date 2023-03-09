@@ -1,23 +1,24 @@
-import { pleaseWait } from "../../helper/please-wait";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { authRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { pleaseWait } from "@src/helper/please-wait";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { authRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function activationService(messageApi: MessageInstance, next: () => any) {
+export function activationService(next: () => any) {
+   const { message } = App.useApp();
 
    const activationFn = async (body: string) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.post(authRequests.accountActivation, { activationCode: body });
-         messageApi.destroy();
-         messageApi.success("Ваш аккаунт активовано");
+         message.destroy();
+         message.success("Ваш аккаунт активовано");
          await pleaseWait(2000);
          next();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

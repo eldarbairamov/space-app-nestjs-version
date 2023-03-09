@@ -1,25 +1,26 @@
-import { userActions } from "../../redux/slice";
-import { useAppDispatch } from "../../hook";
-import { IUpdateProfile, IUser } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { userActions } from "@src/redux/slice";
+import { useAppDispatch } from "@src/hook";
+import { IUpdateProfile, IUser } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { userRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function updateProfileService(messageApi: MessageInstance) {
+export function updateProfileService() {
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const updateEmailFn = async (body: IUpdateProfile) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          const { data } = await axiosInstance.patch<IUser>(userRequests.profileUpdate, body);
          dispatch(userActions.setInfo(data));
-         messageApi.destroy();
-         messageApi.success("Ви успішно оновили профіль");
+         message.destroy();
+         message.success("Ви успішно оновили профіль");
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

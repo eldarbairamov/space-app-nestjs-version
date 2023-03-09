@@ -1,6 +1,4 @@
-import React from "react";
-
-import { useAppSelector } from "../../../hook";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Dashboard-Greeting.module.scss";
 
@@ -10,6 +8,7 @@ export function DashboardGreeting() {
    return (
       <div className={ style.DashboardGreeting }>
          <span> Привіт, </span> { username ? username : "завантажую..." }
+         <span> Ну, як ти? </span>
       </div>
    );
 }

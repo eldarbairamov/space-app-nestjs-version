@@ -1,10 +1,11 @@
-import { MessageInstance } from "antd/es/message/interface";
-import { axiosInstance } from "../axios.service";
-import { ITask } from "../../interface";
-import { tasksRequests } from "../../config/configuration";
-import { errorCatherFn } from "../../helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { ITask } from "@src/interface";
+import { tasksRequests } from "@src/config/configuration";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { App } from "antd";
 
-export function addTaskService(messageApi: MessageInstance) {
+export function addTaskService() {
+   const { message } = App.useApp();
 
    const addTaskFn = async (newTask: { planId: string, title: string }) => {
       try {
@@ -12,7 +13,7 @@ export function addTaskService(messageApi: MessageInstance) {
          return data;
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

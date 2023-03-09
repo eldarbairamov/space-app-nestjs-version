@@ -1,9 +1,7 @@
-import React from "react";
-
 import { Result } from "antd";
 import { v4 } from "uuid";
-import { AppRouter } from "../../../router";
-import { Button } from "../../../component";
+import { AppRouter } from "@src/router";
+import { Button } from "@src/component";
 
 import style from "./Change-Email-Message.module.scss";
 

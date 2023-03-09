@@ -1,11 +1,10 @@
 import React from "react";
 
 import { Outlet } from "react-router-dom";
-import { LayoutNavbar } from "../../component";
-import { useMatchMedia } from "../../hook";
+import { LayoutNavbar, BurgerNavbar } from "@src/component";
+import { useMatchMedia } from "@src/hook";
 
 import style from "./Main-Layout.module.scss";
-import { BurgerNavbar } from "../../component/Burger-Navbar/Burger-Navbar";
 
 export function MainLayout() {
    const { isWidth1000 } = useMatchMedia();

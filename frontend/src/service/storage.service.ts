@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constant/storage.constant";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "@src/constant/storage.constant";
 
 export const storageService = {
 

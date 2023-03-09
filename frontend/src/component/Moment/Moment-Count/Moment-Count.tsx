@@ -1,7 +1,5 @@
-import React from "react";
-
 import { Divider } from "antd";
-import { useAppSelector } from "../../../hook";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Moment-Count.module.scss";
 

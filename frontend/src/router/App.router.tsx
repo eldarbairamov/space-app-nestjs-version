@@ -1,8 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { MainLayout } from "../layout";
-import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, MomentItemPage } from "../page";
-import { EmailConfirmationMessage, ErrorMessage, ChangePasswordForm, ProfileUpdateForm, ChangeEmailMessage, ChangePasswordMessage, ChangeEmailForm } from "../component";
-import { NoteActivePage } from "../page/App-Router/Note-Active-Page/Note-Active-Page";
+import { MainLayout } from "@src/layout";
+import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, MomentItemPage, NoteActivePage } from "@src/page";
+import { EmailConfirmationMessage, ErrorMessage, ChangePasswordForm, ProfileUpdateForm, ChangeEmailMessage, ChangePasswordMessage, ChangeEmailForm } from "@src/component";
 
 export const AppRouter = createBrowserRouter([
    {
@@ -75,10 +74,6 @@ export const AppRouter = createBrowserRouter([
          {
             path: "*",
             element: <Navigate to={ "/" }/>,
-         },
-         {
-            path: "error",
-            element: <ErrorMessage/>,
          },
       ],
    },

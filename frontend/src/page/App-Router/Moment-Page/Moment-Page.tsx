@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { MomentHeader, MomentList } from "../../../component";
-import { message } from "antd";
-import { addMomentService, getMomentsService } from "../../../service";
+import { MomentHeader, MomentList } from "@src/component";
+import { addMomentService, getMomentsService } from "@src/service";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Moment-Page.module.scss";
 
 export function MomentsPage() {
    const [ searchKey, setSearchKey ] = useState<string>("");
 
-   const [ messageApi, contextHolder ] = message.useMessage();
+   getMomentsService(searchKey);
 
-   getMomentsService(searchKey, messageApi);
-
-   const { addMomentFn } = addMomentService(messageApi);
+   const { addMomentFn } = addMomentService();
 
    return (
       <motion.div className={ style.MomentPage }
@@ -23,7 +20,6 @@ export function MomentsPage() {
                   initial={ "initial" }
                   animate={ "animate" }
       >
-         { contextHolder }
 
          {/* Header */ }
          <MomentHeader addMomentFn={ addMomentFn } setSearchKey={ setSearchKey }/>

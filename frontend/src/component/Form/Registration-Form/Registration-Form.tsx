@@ -1,12 +1,10 @@
-import React from "react";
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { IRegistration, IRegistrationForm } from "../../../interface";
-import { FormControl } from "../../UI/Form-Control/Form-Control";
-import { registrationValidator } from "../../../validator/auth.validator";
-import { WelcomeRouter } from "../../../router";
-import { Button } from "../../../component";
+import { IRegistration, IRegistrationForm } from "@src/interface";
+import { FormControl } from "@src/component";
+import { registrationValidator } from "@src/validator/auth.validator";
+import { WelcomeRouter } from "@src/router";
+import { Button } from "@src/component";
 
 import style from "./Registration-Form.module.scss";
 

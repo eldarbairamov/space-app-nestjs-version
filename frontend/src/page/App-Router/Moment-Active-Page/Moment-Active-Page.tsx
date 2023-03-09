@@ -1,37 +1,33 @@
-import React from "react";
-
 import { useParams } from "react-router-dom";
-import { IMoment } from "../../../interface";
-import { configuration } from "../../../config/configuration";
+import { IMoment } from "@src/interface";
+import { configuration } from "@src/config/configuration";
 import { v4 } from "uuid";
-import { useAppSelector } from "../../../hook";
-import { FloatButton, message, Tooltip } from "antd";
-import { AppRouter } from "../../../router";
-import { deleteMomentService, getMomentService, updateMomentService, uploadMomentImageService } from "../../../service";
+import { useAppSelector } from "@src/hook";
+import { FloatButton, Tooltip } from "antd";
+import { AppRouter } from "@src/router";
+import { deleteMomentService, getMomentService, updateMomentService, uploadMomentImageService } from "@src/service";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import dateHelper from "moment";
-import { activeMomentService } from "../../../service/moment/active-moment.service";
+import { activeMomentService } from "@src/service/moment/active-moment.service";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Moment-Active-Page.module.scss";
-import noImageLight from "../../../asset/no-image-light.svg";
-import noImageDark from "../../../asset/no-image-dark.svg";
+import noImageLight from "@src/asset/no-image-light.svg";
+import noImageDark from "@src/asset/no-image-dark.svg";
 
 export function MomentItemPage() {
-   const text = <span> Для збереження інформації при редагуванні полів - клацай enter :) </span>;
+   const text = <span> Щоб закрити поле редагування - клацай enter </span>;
 
    const { momentId } = useParams<{ momentId: IMoment["id"] }>();
-
-   const [ messageApi, contextHolder ] = message.useMessage();
 
    const { activeMoment } = useAppSelector(state => state.momentReducer);
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const { prevState, setPrevState } = getMomentService(momentId!, messageApi);
-   const { uploadPhotoFn } = uploadMomentImageService(messageApi);
-   const { updateMomentFn } = updateMomentService(setPrevState, messageApi);
-   const { deleteMomentFn } = deleteMomentService(messageApi, () => AppRouter.navigate("/moments"));
+   const { prevState, setPrevState } = getMomentService(momentId!);
+   const { uploadPhotoFn } = uploadMomentImageService();
+   const { updateMomentFn } = updateMomentService(setPrevState);
+   const { deleteMomentFn } = deleteMomentService(() => AppRouter.navigate("/moments"));
    const {
       tagValue, setTagValue, setIsTagInputVisible, setIsTitleInputVisible, isDateInputVisible,
       setIsLocationInputVisible, setIsDateInputVisible, isLocationInputVisible, isTitleInputVisible,
@@ -45,8 +41,6 @@ export function MomentItemPage() {
                   initial={ "initial" }
                   animate={ "animate" }
       >
-         { contextHolder }
-
          { activeMoment &&
             <div className={ style.active_moment }>
                { (prevState !== activeMoment) &&
@@ -164,8 +158,15 @@ export function MomentItemPage() {
             </div>
          }
 
-         <Tooltip placement="topLeft" title={ text } trigger={ "click" }>
-            <FloatButton icon={ <QuestionCircleOutlined/> } type="primary" style={ { right: 24 } }/>
+         <Tooltip color={ isDark ? "#2d2f33" : "whitesmoke" }
+                  placement="topLeft"
+                  title={ text }
+                  trigger={ "click" }
+         >
+            <FloatButton icon={ <QuestionCircleOutlined/> }
+                         type="primary"
+                         style={ { right: 24 } }/>
+
          </Tooltip>
 
       </motion.div>

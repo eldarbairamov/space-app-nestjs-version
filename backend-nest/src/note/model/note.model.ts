@@ -7,7 +7,7 @@ export type NoteDocument = HydratedDocument<Note> & SchemaTimestampsConfig
 @Schema({ versionKey: false, timestamps: true })
 export class Note {
 
-   @Prop({default: 'Нова замітка'})
+   @Prop({ default: "Нова замітка" })
    title: string;
 
    @Prop()

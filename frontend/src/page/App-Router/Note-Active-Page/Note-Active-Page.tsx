@@ -1,23 +1,21 @@
 import { ChangeEvent, useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { Empty, message } from "antd";
-import { updateNoteService } from "../../../service";
-import { noteActions } from "../../../redux/slice";
-import { INote } from "../../../interface";
-import { NoBgInput } from "../../../component";
-import { AppRouter } from "../../../router";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { Empty } from "antd";
+import { updateNoteService } from "@src/service";
+import { noteActions } from "@src/redux/slice";
+import { INote } from "@src/interface";
+import { NoBgInput } from "@src/component";
+import { AppRouter } from "@src/router";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Note-Active-Page.module.scss";
 
 export function NoteActivePage() {
    const { activeNote, notes } = useAppSelector(state => state.noteReducer);
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   const { updateNoteFn } = updateNoteService(messageApi);
+   const { updateNoteFn } = updateNoteService();
 
    const dispatch = useAppDispatch();
 
@@ -43,7 +41,6 @@ export function NoteActivePage() {
                   initial={ "initial" }
                   animate={ "animate" }
       >
-         { contextHolder }
 
          {/* Header */ }
          <div className={ style.header }>

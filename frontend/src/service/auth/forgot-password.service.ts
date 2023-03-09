@@ -1,20 +1,21 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { authRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { authRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function forgotPasswordService(messageApi: MessageInstance, next: () => any) {
+export function forgotPasswordService(next: () => any) {
+   const { message } = App.useApp();
 
    const forgotPasswordFn = async (email: string) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.post<{ message: string }>(authRequests.forgotPassword, { email });
-         messageApi.destroy();
+         message.destroy();
          next();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

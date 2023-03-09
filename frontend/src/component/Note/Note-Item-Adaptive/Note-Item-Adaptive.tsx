@@ -1,28 +1,25 @@
-import React, { FC } from "react";
+import React from "react";
 
-import { INote } from "../../../interface";
-import { useAppDispatch, useAppSelector } from "../../../hook";
+import { INote } from "@src/interface";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 import { DeleteOutlined } from "@ant-design/icons";
-import { noteActions } from "../../../redux/slice";
+import { noteActions } from "@src/redux/slice";
 import dateHelper from "moment";
-import { message } from "antd";
-import { deleteNoteService } from "../../../service";
+import { deleteNoteService } from "@src/service";
+import { AppRouter } from "@src/router";
 
 import style from "./Note-Item-Adaptive.module.scss";
-import { AppRouter } from "../../../router";
 
 interface NoteItemAdaptive {
    note: INote;
 }
 
-export const NoteItemAdaptive: FC<NoteItemAdaptive> = ({ note }) => {
+export function NoteItemAdaptive({ note }: NoteItemAdaptive) {
    const titleCondition = note.title && note.title.split("").length > 30;
-
-   const [ messageApi, contextHolder ] = message.useMessage();
 
    const dispatch = useAppDispatch();
 
-   const { deleteNoteFn } = deleteNoteService(messageApi);
+   const { deleteNoteFn } = deleteNoteService();
 
    const { activeNote } = useAppSelector(state => state.noteReducer);
 
@@ -39,7 +36,6 @@ export const NoteItemAdaptive: FC<NoteItemAdaptive> = ({ note }) => {
            } }
            data-active={ note.id === activeNote?.id }
       >
-         { contextHolder }
 
          {/* Title */ }
          <p className={ style.note_title }>
@@ -65,4 +61,4 @@ export const NoteItemAdaptive: FC<NoteItemAdaptive> = ({ note }) => {
 
       </div>
    );
-};
+}

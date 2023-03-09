@@ -1,23 +1,24 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { storageService } from "../storage.service";
-import { authRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { storageService } from "@src/service";
+import { authRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function logoutService(messageApi: MessageInstance, next: () => any) {
+export function logoutService(next: () => any) {
+   const { message } = App.useApp();
 
    const logoutFn = async () => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.get(authRequests.logout);
 
          storageService.deleteTokens();
 
-         messageApi.destroy();
+         message.destroy();
          next();
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

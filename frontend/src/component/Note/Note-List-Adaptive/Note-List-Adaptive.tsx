@@ -1,30 +1,23 @@
-import React, { FC } from "react";
-
 import { v4 as uuid } from "uuid";
-import { message } from "antd";
-import { useAppSelector } from "../../../hook";
-import { getNotesService } from "../../../service";
+import { useAppSelector } from "@src/hook";
+import { getNotesService } from "@src/service";
 import { NoteItemAdaptive } from "../Note-Item-Adaptive/Note-Item-Adaptive";
 
 import style from "./Note-List-Adaptive.module.scss";
-import emptyDark from "../../../asset/empty-dark.svg";
-import emptyLight from "../../../asset/empty-light.svg";
+import emptyDark from "@src/asset/empty-dark.svg";
+import emptyLight from "@src/asset/empty-light.svg";
 
-export const NoteListAdaptive: FC = () => {
-   const [ messageApi, contextHolder ] = message.useMessage();
-
+export function NoteListAdaptive() {
    const { notes } = useAppSelector(state => state.noteReducer);
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   getNotesService(messageApi);
+   getNotesService();
 
    return (
       <>
          { notes.length
             ?
             <div className={ style.NoteListAdaptive }>
-               { contextHolder }
-
                { notes &&
                   notes.map(item => <NoteItemAdaptive key={ uuid() } note={ item }/>)
                }
@@ -37,4 +30,4 @@ export const NoteListAdaptive: FC = () => {
          }
       </>
    );
-};
+}

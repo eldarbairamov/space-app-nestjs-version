@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 
-import { notesRequests } from "../../config/configuration";
-import { useAppDispatch, useAppSelector } from "../../hook";
-import { INotes } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { noteActions } from "../../redux/slice";
-import { MessageInstance } from "antd/es/message/interface";
-import { useDebounce } from "../../hook";
+import { notesRequests } from "@src/config/configuration";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { INotes } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { noteActions } from "@src/redux/slice";
+import { useDebounce } from "@src/hook";
+import { App } from "antd";
 
-export function getNotesService(messageApi: MessageInstance) {
+export function getNotesService() {
    const { searchKey, total } = useAppSelector(state => state.noteReducer);
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const debounced = useDebounce(searchKey);
 
@@ -27,7 +28,7 @@ export function getNotesService(messageApi: MessageInstance) {
          dispatch(noteActions.setNotes(data));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

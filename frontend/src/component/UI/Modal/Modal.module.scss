@@ -1,0 +1,25 @@
+@import "src/style/configuration";
+
+.Modal {
+   position: absolute;
+   top: 0;
+
+   .overlay {
+      @extend %flex-align-justify;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.55);
+   }
+
+   .content {
+      @extend %flex-align-justify-column;
+      gap: 50px;
+      padding: 40px;
+      width: 500px;
+      background: var(--second-bg);
+      text-align: center;
+      border-radius: 15px;
+      z-index: 1;
+      color: var(--main-font);
+   }
+}

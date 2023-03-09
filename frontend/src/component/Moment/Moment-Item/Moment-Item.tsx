@@ -1,15 +1,15 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { IMoment } from "../../../interface";
+import { IMoment } from "@src/interface";
 import { v4 } from "uuid";
-import { configuration } from "../../../config/configuration";
-import { AppRouter } from "../../../router";
+import { configuration } from "@src/config/configuration";
+import { AppRouter } from "@src/router";
 import dateHelper from "moment/moment";
-import { useAppSelector } from "../../../hook";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Moment-Item.module.scss";
-import noImageLight from "../../../asset/no-image-light.svg";
-import noImageDark from "../../../asset/no-image-dark.svg";
+import noImageLight from "@src/asset/no-image-light.svg";
+import noImageDark from "@src/asset/no-image-dark.svg";
 
 interface IMomentItem {
    moment: IMoment;

@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { FormControl } from "../../UI/Form-Control/Form-Control";
-import { AppRouter } from "../../../router";
-import { IChangePasswordForm } from "../../../interface";
-import { changePasswordValidator } from "../../../validator/auth.validator";
-import { message } from "antd";
-import { getUserService, changePasswordService } from "../../../service";
-import { Button } from "../../../component";
-import { useAppSelector } from "../../../hook";
-import { scrollToElement } from "../../../helper/scroll-to-element";
+import { FormControl } from "@src/component";
+import { AppRouter } from "@src/router";
+import { IChangePasswordForm } from "@src/interface";
+import { changePasswordValidator } from "@src/validator/auth.validator";
+import { App } from "antd";
+import { getUserService, changePasswordService } from "@src/service";
+import { Button } from "@src/component";
+import { useAppSelector } from "@src/hook";
+import { scrollToElement } from "@src/helper/scroll-to-element";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Change-Password-Form.module.scss";
 
@@ -21,13 +21,12 @@ export function ChangePasswordForm() {
       resolver: joiResolver(changePasswordValidator),
       mode: "onTouched",
    });
+   const { message } = App.useApp();
 
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   const { getUserFn } = getUserService(messageApi);
-   const { updatePasswordFn } = changePasswordService(messageApi, () => AppRouter.navigate("/password_update/message", { replace: true }));
+   const { getUserFn } = getUserService();
+   const { updatePasswordFn } = changePasswordService(() => AppRouter.navigate("/password_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<IChangePasswordForm> = async (data) => {
       const newPassword = data.password;
@@ -37,7 +36,7 @@ export function ChangePasswordForm() {
       if (newPassword === repeatPassword) {
          await updatePasswordFn(newPassword, currentPassword);
       } else {
-         messageApi.error("Паролі не співпадають");
+         message.error("Паролі не співпадають");
       }
    };
 
@@ -54,8 +53,6 @@ export function ChangePasswordForm() {
                    initial={ "initial" }
                    animate={ "animate" }
       >
-         { contextHolder }
-
          {/* Form controls */ }
          <FormControl labelName={ "Введіть ваш поточний пароль" }
                       fieldName={ "current_password" }

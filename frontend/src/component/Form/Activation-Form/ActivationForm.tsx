@@ -1,6 +1,6 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
-import { Input, Button } from "../../../component";
+import { Input, Button } from "@src/component";
 
 import style from "./ActivationForm.module.scss";
 

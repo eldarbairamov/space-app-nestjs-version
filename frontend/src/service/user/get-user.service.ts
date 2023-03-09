@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 
-import { userActions } from "../../redux/slice";
-import { MessageInstance } from "antd/es/message/interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { userRequests } from "../../config/configuration";
-import { useAppDispatch } from "../../hook";
-import { axiosInstance } from "../axios.service";
-import { IUser } from "../../interface";
+import { userActions } from "@src/redux/slice";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { userRequests } from "@src/config/configuration";
+import { useAppDispatch } from "@src/hook";
+import { axiosInstance } from "@src/service";
+import { IUser } from "@src/interface";
+import { App } from "antd";
 
-export function getUserService(messageApi: MessageInstance) {
+export function getUserService() {
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const getUserFn = async () => {
       try {
@@ -17,7 +18,7 @@ export function getUserService(messageApi: MessageInstance) {
          dispatch(userActions.setInfo(data));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

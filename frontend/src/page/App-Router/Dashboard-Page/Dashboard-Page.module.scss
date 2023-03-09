@@ -9,33 +9,39 @@
    border-radius: 15px;
    position: relative;
    transition: $transition;
-}
 
-.top {
-   @extend %flex-align-justify-column;
-   gap: 20px;
-   height: 65%;
-   width: 100%;
+   .top {
+      @extend %flex-align-justify-column;
+      gap: 20px;
+      height: 65%;
+      width: 100%;
 
-   .settings {
-      position: absolute;
-      left: 30px;
-      top: 20px;
-      cursor: pointer;
+      .settings {
+         position: absolute;
+         left: 30px;
+         top: 70px;
+         cursor: pointer;
+         transition: .2s;
+
+         &:hover {
+            filter: var(--icon-hover);
+            -webkit-filter: var(--icon-hover);
+         }
+      }
+
+      .switch {
+         position: absolute;
+         right: 30px;
+         top: 20px
+      }
    }
 
-   .switch {
-      position: absolute;
-      right: 30px;
-      top: 20px
+   .bottom {
+      @extend %flex-align;
+      justify-content: space-evenly;
+      height: 35%;
+      width: 100%;
    }
-}
-
-.bottom {
-   @extend %flex-align;
-   justify-content: space-evenly;
-   height: 35%;
-   width: 100%;
 }
 
 @media screen and (max-height: 800px) {

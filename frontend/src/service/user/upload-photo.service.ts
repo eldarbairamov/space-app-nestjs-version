@@ -1,26 +1,27 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { MessageInstance } from "antd/es/message/interface";
-import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/configuration";
-import { userActions } from "../../redux/slice";
-import { useAppDispatch } from "../../hook";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { userRequests } from "@src/config/configuration";
+import { userActions } from "@src/redux/slice";
+import { useAppDispatch } from "@src/hook";
+import { App } from "antd";
 
-export function uploadPhotoService(messageApi: MessageInstance) {
+export function uploadPhotoService() {
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const uploadPhotoFn = async (image: File) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          const formData = new FormData();
          formData.append("avatar", image);
 
          const { data } = await axiosInstance.patch<{ image: string }>(userRequests.uploadAvatar, formData);
          dispatch(userActions.setAvatar(data.image));
-         messageApi.destroy();
+         message.destroy();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

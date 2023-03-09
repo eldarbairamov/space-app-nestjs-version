@@ -1,0 +1,21 @@
+.Jokes {
+   position: absolute;
+   left: 29px;
+   top: 20px;
+   transition: .3s;
+
+   &:hover {
+      filter: var(--icon-hover);
+      -webkit-filter: var(--icon-hover);
+   }
+
+   .smaller {
+      width: 35px;
+      cursor: pointer;
+      transition: .3s;
+   }
+}
+
+.bigger {
+   width: 200px;
+}

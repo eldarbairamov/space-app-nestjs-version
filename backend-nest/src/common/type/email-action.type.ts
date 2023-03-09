@@ -1,1 +1,1 @@
-export type EmailActionType = 'registration' | 'forgot password' | 'change email'
+export type EmailActionType = "registration" | "forgot password" | "change email"

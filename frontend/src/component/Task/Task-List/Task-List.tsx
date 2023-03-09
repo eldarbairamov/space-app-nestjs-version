@@ -1,7 +1,5 @@
-import React from "react";
-
-import { TaskItem } from "../Task-Item/Task-Item";
-import { useAppSelector } from "../../../hook";
+import { TaskItem } from "@src/component";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Task-List.module.scss";
 

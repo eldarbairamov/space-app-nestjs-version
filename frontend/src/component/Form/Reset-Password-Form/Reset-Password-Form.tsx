@@ -1,22 +1,21 @@
-import React from "react";
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { MessageInstance } from "antd/es/message/interface";
-import { resetPasswordValidator } from "../../../validator/auth.validator";
-import { FormControl } from "../../UI/Form-Control/Form-Control";
-import { IResetPasswordForm } from "../../../interface";
-import { Button } from "../../../component";
+import { resetPasswordValidator } from "@src/validator/auth.validator";
+import { FormControl } from "@src/component";
+import { IResetPasswordForm } from "@src/interface";
+import { Button } from "@src/component";
+import { App } from "antd";
 
 import style from "./Reset-Password-Form.module.scss";
 
 interface IResetPasswordFormProps {
-   messageApi: MessageInstance;
    resetPasswordFn: (password: string, token: string) => Promise<void>;
    resetPasswordToken: string;
 }
 
-export function ResetPasswordForm({ resetPasswordFn, messageApi, resetPasswordToken }: IResetPasswordFormProps) {
+export function ResetPasswordForm({ resetPasswordFn, resetPasswordToken }: IResetPasswordFormProps) {
+   const { message } = App.useApp();
+
    const { register, handleSubmit, formState: { errors, isValid } } = useForm<IResetPasswordForm>({
       resolver: joiResolver(resetPasswordValidator),
       mode: "onTouched",
@@ -29,7 +28,7 @@ export function ResetPasswordForm({ resetPasswordFn, messageApi, resetPasswordTo
       if ((password && resetPasswordToken) && (password === repeatPassword)) {
          await resetPasswordFn(password, resetPasswordToken!);
       } else {
-         messageApi.error("Паролі не співпадають");
+         message.error("Паролі не співпадають");
       }
    };
 

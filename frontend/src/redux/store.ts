@@ -8,7 +8,7 @@ export const store = configureStore({
       momentReducer,
       planReducer,
       taskReducer,
-      appReducer
+      appReducer,
    },
 });
 

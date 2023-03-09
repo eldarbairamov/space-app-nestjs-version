@@ -39,7 +39,7 @@ export const emailSender = async (to: string, emailAction: EmailActionType, cont
    return transporter
       .sendMail(mail)
       .catch((e) => {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          throw new ApiException("Nodemailer: Error", 500);
       });

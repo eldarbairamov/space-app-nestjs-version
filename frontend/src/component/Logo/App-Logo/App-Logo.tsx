@@ -1,5 +1,3 @@
-import React from "react";
-
 import style from "./App-Logo.module.scss";
 
 export function AppLogo() {

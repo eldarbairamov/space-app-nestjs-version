@@ -1,10 +1,8 @@
-import React from "react";
-
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { emailValidator } from "../../../validator/auth.validator";
-import { FormControl } from "../../UI/Form-Control/Form-Control";
-import { Button } from "../../../component";
+import { emailValidator } from "@src/validator/auth.validator";
+import { FormControl } from "@src/component";
+import { Button } from "@src/component";
 
 import style from "./Forgot-Password-Form.module.scss";
 

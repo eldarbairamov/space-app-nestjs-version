@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 
-import { momentActions } from "../../redux/slice";
-import { useAppDispatch } from "../../hook";
-import { IMoment } from "../../interface";
-import { TypedSetState } from "../../interface/common.interface";
+import { momentActions } from "@src/redux/slice";
+import { useAppDispatch } from "@src/hook";
+import { IMoment } from "@src/interface";
+import { TypedSetState } from "@src/interface/common.interface";
 
 export function activeMomentService(activeMoment: IMoment | null) {
    const dispatch = useAppDispatch();
@@ -84,7 +84,7 @@ export function activeMomentService(activeMoment: IMoment | null) {
       setIsTitleInputVisible,
       setIsLocationInputVisible,
       setIsDateInputVisible,
-      setIsTagInputVisible
+      setIsTagInputVisible,
    };
 
 }

@@ -14,7 +14,7 @@ export class UserRepository {
       try {
          return this.userModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -24,7 +24,7 @@ export class UserRepository {
       try {
          return this.userModel.findById(userId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -34,7 +34,7 @@ export class UserRepository {
       try {
          return this.userModel.findOne(filter);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -44,7 +44,7 @@ export class UserRepository {
       try {
          return this.userModel.findByIdAndUpdate(userId, update, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }

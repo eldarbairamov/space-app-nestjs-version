@@ -1,5 +1,3 @@
-import React from "react";
-
 import style from "./No-Bg-Input.module.scss";
 
 export function NoBgInput({ ...props }) {

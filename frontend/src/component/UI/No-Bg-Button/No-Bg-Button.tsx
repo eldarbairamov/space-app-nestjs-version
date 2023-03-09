@@ -1,10 +1,8 @@
-import React from "react";
-
 import style from "./No-Bg-Button.module.scss";
 
 interface IInvisibleButtonProps {
    text: string;
-   hoverSubject: string;
+   hoverSubject?: string;
    onClick: () => Promise<void>;
 }
 

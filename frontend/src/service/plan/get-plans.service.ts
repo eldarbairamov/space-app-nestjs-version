@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 
-import { MessageInstance } from "antd/es/message/interface";
-import { IPlans } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { plansRequests } from "../../config/configuration";
-import { useDebounce } from "../../hook";
-import { useAppDispatch, useAppSelector } from "../../hook";
-import { planAction } from "../../redux/slice";
+import { IPlans } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { plansRequests } from "@src/config/configuration";
+import { useDebounce } from "@src/hook";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { planAction } from "@src/redux/slice";
+import { App } from "antd";
 
-export function getPlansService(messageApi: MessageInstance) {
+export function getPlansService() {
    const { searchKey, total } = useAppSelector(state => state.planReducer);
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const debounced = useDebounce(searchKey);
 
@@ -27,7 +28,7 @@ export function getPlansService(messageApi: MessageInstance) {
          dispatch(planAction.setPlans(data));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

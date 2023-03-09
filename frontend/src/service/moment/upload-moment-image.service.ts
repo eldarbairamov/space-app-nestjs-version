@@ -1,15 +1,16 @@
 import React from "react";
 
-import { useDispatch } from "react-redux";
-import { IMoment } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { momentsRequests } from "../../config/configuration";
-import { momentActions } from "../../redux/slice";
-import { MessageInstance } from "antd/es/message/interface";
+import { IMoment } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { momentsRequests } from "@src/config/configuration";
+import { momentActions } from "@src/redux/slice";
+import { App } from "antd";
+import { useAppDispatch } from "@src/hook";
 
-export function uploadMomentImageService(messageApi: MessageInstance) {
-   const dispatch = useDispatch();
+export function uploadMomentImageService() {
+   const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const uploadPhotoFn = async (event: React.ChangeEvent<HTMLInputElement>, momentId: IMoment["id"]) => {
       try {
@@ -20,7 +21,7 @@ export function uploadMomentImageService(messageApi: MessageInstance) {
          dispatch(momentActions.setPhoto({ photo: data.image }));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

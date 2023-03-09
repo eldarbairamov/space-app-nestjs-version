@@ -1,17 +1,12 @@
-import React from "react";
-
-import { PlanHeader, PlanList } from "../../../component";
-import { message } from "antd";
-import { getPlansService } from "../../../service";
+import { PlanHeader, PlanList } from "@src/component";
+import { getPlansService } from "@src/service";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Plans-Page.module.scss";
 
 export function PlansPage() {
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   getPlansService(messageApi);
+   getPlansService();
 
    return (
       <motion.div className={ style.PlansPage }
@@ -19,7 +14,6 @@ export function PlansPage() {
                   initial={ "initial" }
                   animate={ "animate" }
       >
-         { contextHolder }
 
          {/* Header */ }
          <PlanHeader/>

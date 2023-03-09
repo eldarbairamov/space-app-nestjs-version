@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Select } from "antd";
-import { NoBgButton } from "../../../component";
-import { TypedSetState } from "../../../interface/common.interface";
-import { useAppSelector } from "../../../hook";
+import { NoBgButton } from "@src/component";
+import { TypedSetState } from "@src/interface/common.interface";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Moment-Header.module.scss";
-import addLight from "../../../asset/add-light.svg";
-import addDark from "../../../asset/add-dark.svg";
+import addLight from "@src/asset/add-light.svg";
+import addDark from "@src/asset/add-dark.svg";
 
 interface IMomentHeaderProps {
    addMomentFn: () => Promise<void>;
@@ -25,7 +25,7 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
       <div className={ style.MomentHeader }>
          {/* Save moment */ }
          <div className={ style.save_moment }>
-            <img src={ isDark  ? addLight : addDark } alt={ "add" }/>
+            <img src={ isDark ? addLight : addDark } alt={ "add" }/>
             <NoBgButton text={ "Зберегти момент" } hoverSubject={ "moment" } onClick={ async () => {
                await addMomentFn();
                select("");

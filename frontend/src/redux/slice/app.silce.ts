@@ -5,7 +5,7 @@ export interface IInitialState {
 }
 
 const initialState: IInitialState = {
-   isDark: localStorage.getItem("isDark") === 'true',
+   isDark: localStorage.getItem("isDark") === "true",
 };
 
 const appSlice = createSlice({

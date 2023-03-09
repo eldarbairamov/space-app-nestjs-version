@@ -1,11 +1,12 @@
 import { BadRequestException, CanActivate, ExecutionContext, Injectable, NotFoundException } from "@nestjs/common";
-import {  Types } from "mongoose";
+import { Types } from "mongoose";
 import { PlanRepository } from "../repository/plan.repository";
 
 @Injectable()
 export class ObjectCheckingGuard implements CanActivate {
 
-   constructor(private planRepository: PlanRepository) {}
+   constructor(private planRepository: PlanRepository) {
+   }
 
    async canActivate(context: ExecutionContext): Promise<boolean> {
       const request = context.switchToHttp().getRequest();

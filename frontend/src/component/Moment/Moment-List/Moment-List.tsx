@@ -1,12 +1,12 @@
-import React, { useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
 
-import { MomentItem } from "../Moment-Item/Moment-Item";
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { momentActions } from "../../../redux/slice";
+import { MomentItem } from "@src/component";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { momentActions } from "@src/redux/slice";
 
 import style from "./Moment-List.module.scss";
-import emptyDark from "../../../asset/empty-dark.svg";
-import emptyLight from "../../../asset/empty-light.svg";
+import emptyDark from "@src/asset/empty-dark.svg";
+import emptyLight from "@src/asset/empty-light.svg";
 
 export function MomentList() {
    const { moments } = useAppSelector(state => state.momentReducer);

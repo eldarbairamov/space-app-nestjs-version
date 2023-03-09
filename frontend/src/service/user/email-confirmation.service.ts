@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { MessageInstance } from "antd/es/message/interface";
-import { userRequests } from "../../config/configuration";
-import { axiosInstance } from "../axios.service";
 
-export function emailConfirmationService(messageApi: MessageInstance, token: string) {
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { userRequests } from "@src/config/configuration";
+import { axiosInstance } from "@src/service";
+import { App } from "antd";
+
+export function emailConfirmationService(token: string) {
    const [ isSuccess, setIsSuccess ] = useState<boolean>(false);
    const [ errorMessage, setErrorMessage ] = useState<string>("");
+   const { message } = App.useApp();
 
    const confirmEmailFn = async () => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.patch(userRequests.changeEmailAccept, { confirmationToken: token });
-         messageApi.destroy();
+         message.destroy();
          setIsSuccess(true);
 
       } catch (e) {
-         messageApi.destroy();
+         message.destroy();
          setErrorMessage(errorCatherFn(e));
          setIsSuccess(false);
       }

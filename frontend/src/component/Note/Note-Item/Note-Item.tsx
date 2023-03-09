@@ -1,12 +1,11 @@
-import React, {  forwardRef } from "react";
+import React, { forwardRef } from "react";
 
-import { INote } from "../../../interface";
-import { useAppDispatch, useAppSelector } from "../../../hook";
+import { INote } from "@src/interface";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 import { DeleteOutlined } from "@ant-design/icons";
-import { noteActions } from "../../../redux/slice";
+import { noteActions } from "@src/redux/slice";
 import dateHelper from "moment";
-import { message } from "antd";
-import { deleteNoteService } from "../../../service";
+import { deleteNoteService } from "@src/service";
 
 import style from "./Note-Item.module.scss";
 
@@ -17,11 +16,9 @@ interface INoteItem {
 export const NoteItem = forwardRef(({ note }: INoteItem, ref: any) => {
    const titleCondition = note.title && note.title.split("").length > 30;
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
    const dispatch = useAppDispatch();
 
-   const { deleteNoteFn } = deleteNoteService(messageApi);
+   const { deleteNoteFn } = deleteNoteService();
 
    const { activeNote, total, searchKey } = useAppSelector(state => state.noteReducer);
 
@@ -31,11 +28,10 @@ export const NoteItem = forwardRef(({ note }: INoteItem, ref: any) => {
    };
 
    return (
-      <div ref={ref} className={ style.NoteItem }
+      <div ref={ ref } className={ style.NoteItem }
            onClick={ () => dispatch(noteActions.setActiveNoteId(note.id)) }
            data-active={ note.id === activeNote?.id }
       >
-         { contextHolder }
 
          {/* Title */ }
          <p className={ style.note_title }>
@@ -61,4 +57,4 @@ export const NoteItem = forwardRef(({ note }: INoteItem, ref: any) => {
 
       </div>
    );
-})
+});

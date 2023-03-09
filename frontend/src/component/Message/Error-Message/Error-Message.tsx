@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { Result } from "antd";
 import { useRouteError } from "react-router-dom";
-import { storageService } from "../../../service";
-import { WelcomeRouter } from "../../../router";
+import { storageService } from "@src/service";
+import { WelcomeRouter } from "@src/router";
 
 import style from "./Error-Message.module.scss";
 
@@ -19,6 +19,7 @@ export function ErrorMessage() {
       <div>
          <div className={ style.ErrorMessage }>
             <Result
+               className={style.background}
                status="500"
                title="Ой.."
                subTitle={ error.message ? `Несподівана помилка: ${ error.message }` : "Несподівана помилка" }

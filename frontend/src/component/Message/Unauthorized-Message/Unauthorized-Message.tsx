@@ -1,9 +1,7 @@
-import React from "react";
-
 import { Result } from "antd";
-import { WelcomeRouter } from "../../../router";
+import { WelcomeRouter } from "@src/router";
 import { v4 } from "uuid";
-import { Button } from "../../../component/";
+import { Button } from "@src/component";
 
 import style from "./Unauthorized-Message.module.scss";
 

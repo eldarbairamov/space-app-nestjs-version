@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPlan, IPlans } from "../../interface";
+import { IPlan, IPlans } from "@src/interface";
 
 interface IPlanInitialState {
    searchKey: string;
@@ -35,7 +35,7 @@ const planSlice = createSlice({
 
       setPlans: (state, { payload }: PayloadAction<IPlans>) => {
          state.plans = payload.data;
-         state.count = payload.count
+         state.count = payload.count;
       },
 
       setSearchKey: (state, { payload }: PayloadAction<string>) => {

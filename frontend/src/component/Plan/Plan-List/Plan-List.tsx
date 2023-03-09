@@ -1,14 +1,14 @@
-import React, { FC, useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
 
-import { PlanItem } from "../Plan-Item/Plan-Item";
-import { useAppDispatch, useAppSelector } from "../../../hook";
-import { planAction } from "../../../redux/slice";
+import { PlanItem } from "@src/component";
+import { useAppDispatch, useAppSelector } from "@src/hook";
+import { planAction } from "@src/redux/slice";
 
 import style from "./Plan-List.module.scss";
-import emptyDark from "../../../asset/empty-dark.svg";
-import emptyLight from "../../../asset/empty-light.svg";
+import emptyDark from "@src/asset/empty-dark.svg";
+import emptyLight from "@src/asset/empty-light.svg";
 
-export const PlanList: FC = () => {
+export function PlanList() {
    const { plans } = useAppSelector(state => state.planReducer);
    const { isDark } = useAppSelector(state => state.appReducer);
 
@@ -46,4 +46,4 @@ export const PlanList: FC = () => {
          }
       </>
    );
-};
+}

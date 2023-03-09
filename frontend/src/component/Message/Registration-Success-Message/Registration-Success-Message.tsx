@@ -1,10 +1,8 @@
-import React from "react";
-
 import { Result } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { v4 } from "uuid";
-import { WelcomeRouter } from "../../../router";
-import { Button } from "../../../component/";
+import { WelcomeRouter } from "@src/router";
+import { Button } from "@src/component";
 
 import style from "./Registration-Success-Message.module.scss";
 

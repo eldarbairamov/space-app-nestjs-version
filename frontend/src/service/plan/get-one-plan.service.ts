@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { MessageInstance } from "antd/es/message/interface";
-import { IPlan } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { plansRequests } from "../../config/configuration";
-import { useAppDispatch } from "../../hook";
-import { planAction } from "../../redux/slice";
+import { IPlan } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { plansRequests } from "@src/config/configuration";
+import { useAppDispatch } from "@src/hook";
+import { planAction } from "@src/redux/slice";
+import { App } from "antd";
 
-export function getOnePlanService(messageApi: MessageInstance, planId: IPlan["id"]) {
+export function getOnePlanService(planId: IPlan["id"]) {
    const [ planTitle, setPlanTitle ] = useState<string>("");
+   const { message } = App.useApp();
 
    const dispatch = useAppDispatch();
 
@@ -19,7 +20,7 @@ export function getOnePlanService(messageApi: MessageInstance, planId: IPlan["id
          dispatch(planAction.setActivePlan(data));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

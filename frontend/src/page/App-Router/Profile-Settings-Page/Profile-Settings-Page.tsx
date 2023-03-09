@@ -1,29 +1,27 @@
-import React, { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 
 import { Outlet } from "react-router-dom";
-import { useAppSelector } from "../../../hook";
-import { configuration } from "../../../config/configuration";
-import { AppRouter } from "../../../router";
-import { message } from "antd";
-import { deletePhotoService, uploadPhotoService } from "../../../service";
-import { scrollToElement } from "../../../helper/scroll-to-element";
+import { useAppSelector } from "@src/hook";
+import { configuration } from "@src/config/configuration";
+import { AppRouter } from "@src/router";
+import { deletePhotoService, uploadPhotoService } from "@src/service";
+import { scrollToElement } from "@src/helper/scroll-to-element";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Profile-Settings-Page.module.scss";
-import user from "../../../asset/user.png";
+import user from "@src/asset/user.png";
 
 export function ProfileSettingsPage() {
    const { username, name, surname, avatar } = useAppSelector(state => state.userReducer);
-   const [ messageApi, contextHolder ] = message.useMessage();
 
    const filePicker = useRef<HTMLInputElement>(null);
    const handlePick = () => filePicker.current!.click();
 
-   const { uploadPhotoFn } = uploadPhotoService(messageApi);
-   const { deletePhotoFn } = deletePhotoService(messageApi);
+   const { uploadPhotoFn } = uploadPhotoService();
+   const { deletePhotoFn } = deletePhotoService();
 
-   const uploadPhoto = async (event: React.ChangeEvent<HTMLInputElement>) => uploadPhotoFn((event.target.files as FileList)[0]);
+   const uploadPhoto = async (event: ChangeEvent<HTMLInputElement>) => uploadPhotoFn((event.target.files as FileList)[0]);
 
    return (
       <motion.div className={ style.ProfileSettingsPage }
@@ -31,7 +29,6 @@ export function ProfileSettingsPage() {
                   initial={ "initial" }
                   animate={ "animate" }
       >
-         { contextHolder }
 
          {/* Left side */ }
          <div className={ style.left_side }>

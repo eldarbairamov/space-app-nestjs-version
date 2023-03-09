@@ -1,11 +1,12 @@
-import { TypedSetState } from "../../interface/common.interface";
-import { IMoment } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { momentsRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { TypedSetState } from "@src/interface/common.interface";
+import { IMoment } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { momentsRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>, messageApi: MessageInstance) {
+export function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>) {
+   const { message } = App.useApp();
 
    const updateMomentFn = async (activeMoment: IMoment) => {
       try {
@@ -14,11 +15,11 @@ export function updateMomentService(setPrevState: TypedSetState<IMoment | undefi
          delete clone.createdAt;
          await axiosInstance.patch(momentsRequests.updateMoment + activeMoment.id, clone);
          setPrevState(activeMoment as IMoment);
-         messageApi.success("Збережено");
+         message.success("Збережено");
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

@@ -1,17 +1,18 @@
-import { IPlan } from "../../interface";
-import { axiosInstance } from "../axios.service";
-import { plansRequests } from "../../config/configuration";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { MessageInstance } from "antd/es/message/interface";
+import { IPlan } from "@src/interface";
+import { axiosInstance } from "@src/service";
+import { plansRequests } from "@src/config/configuration";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { App } from "antd";
 
-export function updatePlanService(messageApi: MessageInstance) {
+export function updatePlanService() {
+   const { message } = App.useApp();
 
    const updatePlanFn = async (planId: IPlan["id"], title: IPlan["title"]): Promise<void> => {
       try {
          await axiosInstance.put(plansRequests.updatePlan + planId, { title });
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

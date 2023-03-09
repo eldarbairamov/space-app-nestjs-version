@@ -1,21 +1,22 @@
-import { MessageInstance } from "antd/es/message/interface";
-import { IUser } from "../../interface";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { useAppDispatch } from "../../hook";
-import { axiosInstance } from "../axios.service";
-import { userRequests } from "../../config/configuration";
-import { userActions } from "../../redux/slice";
+import { IUser } from "@src/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { useAppDispatch } from "@src/hook";
+import { axiosInstance } from "@src/service";
+import { userRequests } from "@src/config/configuration";
+import { userActions } from "@src/redux/slice";
+import { App } from "antd";
 
-export function deletePhotoService(messageApi: MessageInstance) {
+export function deletePhotoService() {
    const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const deletePhotoFn = async (avatar: IUser["avatar"]) => {
       try {
          await axiosInstance.patch(userRequests.deleteAvatar, { fileName: avatar });
          dispatch(userActions.unsetAvatar());
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

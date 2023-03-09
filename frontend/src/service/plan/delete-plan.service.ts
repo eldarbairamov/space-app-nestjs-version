@@ -1,13 +1,14 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { IPlan, IPlans } from "../../interface";
-import { plansRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
-import { useDispatch } from "react-redux";
-import { planAction } from "../../redux/slice";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { IPlan, IPlans } from "@src/interface";
+import { plansRequests } from "@src/config/configuration";
+import { planAction } from "@src/redux/slice";
+import { App } from "antd";
+import { useAppDispatch } from "@src/hook";
 
-export function deletePlanService(messageApi: MessageInstance) {
-   const dispatch = useDispatch();
+export function deletePlanService() {
+   const dispatch = useAppDispatch();
+   const { message } = App.useApp();
 
    const deletePlanFn = async (targetId: IPlan["id"], total: number, searchKey: string) => {
       try {
@@ -21,7 +22,7 @@ export function deletePlanService(messageApi: MessageInstance) {
          dispatch(planAction.setPlans(data));
 
       } catch (e) {
-         messageApi.error(errorCatherFn(e));
+         message.error(errorCatherFn(e));
       }
    };
 

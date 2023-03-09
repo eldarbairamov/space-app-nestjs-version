@@ -14,7 +14,7 @@ export class TaskRepository {
       try {
          return this.taskModel.create(body);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -24,7 +24,7 @@ export class TaskRepository {
       try {
          return this.taskModel.findById(taskId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -34,7 +34,7 @@ export class TaskRepository {
       try {
          return this.taskModel.find(filter);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -44,7 +44,7 @@ export class TaskRepository {
       try {
          return this.taskModel.findByIdAndUpdate(taskId, update, { new: true });
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }
@@ -54,7 +54,7 @@ export class TaskRepository {
       try {
          return this.taskModel.findByIdAndDelete(taskId);
       } catch (e) {
-         const error = e as Error
+         const error = e as Error;
          console.log(error.message);
          databaseException();
       }

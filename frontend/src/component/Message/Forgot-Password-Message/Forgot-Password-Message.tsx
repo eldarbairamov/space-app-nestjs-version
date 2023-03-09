@@ -1,12 +1,10 @@
-import React from "react";
-
 import { Result } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
+import { Button } from "@src/component";
+import { v4 } from "uuid";
+import { AppRouter } from "@src/router";
 
 import style from "./Forgot-Password-Message.module.scss";
-import { Button } from "../../UI/Button/Button";
-import { v4 } from "uuid";
-import { AppRouter } from "../../../router";
 
 export function ForgotPasswordMessage() {
    return (

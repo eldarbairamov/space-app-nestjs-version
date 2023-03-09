@@ -110,8 +110,19 @@ export class UserService {
    }
 
    async profileUpdate(userId: UserDocument["id"], dto: ProfileUpdateDto): Promise<IUpdateProfileResponse> {
+      // Check if there is nothing to change
+      const userFromDb = await this.userRepository.findOne({ id: userId });
+
+      const objToCompare = {
+         username: userFromDb!.username,
+         name: userFromDb!.name,
+         surname: userFromDb!.surname,
+      };
+
+      if (JSON.stringify(dto) === JSON.stringify(objToCompare)) throw new HttpException("There is nothing to change", HttpStatus.BAD_REQUEST);
+
       // Update user
-      const updatedUser = await this.userRepository.findByIdAndUpdate(userId, dto);
+      const updatedUser = await userFromDb.update(dto);
 
       return {
          username: updatedUser.username,

@@ -1,25 +1,26 @@
-import { pleaseWait } from "../../helper/please-wait";
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { authRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { pleaseWait } from "@src/helper/please-wait";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { authRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function resetPasswordService(messageApi: MessageInstance, next: () => any) {
+export function resetPasswordService(next: () => any) {
+   const { message } = App.useApp();
 
    const resetPasswordFn = async (password: string, token: string) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.patch(authRequests.resetPassword, { resetPasswordToken: token, password });
 
-         messageApi.destroy();
-         messageApi.success("Вітаємо! У вас новий пароль.");
+         message.destroy();
+         message.success("Вітаємо! У вас новий пароль.");
          await pleaseWait(2000);
 
          next();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

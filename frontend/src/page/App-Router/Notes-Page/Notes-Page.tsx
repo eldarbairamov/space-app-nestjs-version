@@ -1,12 +1,9 @@
-import React from "react";
-
-import { NoteEdit, NoteSidebar } from "../../../component";
-import { useMatchMedia } from "../../../hook";
-import { NoteHeader } from "../../../component/Note/Note-Header-Adaptive/Note-Header-Adaptive";
-import { NoteListAdaptive } from "../../../component/Note/Note-List-Adaptive/Note-List-Adaptive";
-import { getNotesService } from "../../../service";
-import { message } from "antd";
-import { horizontalPresent } from "../../../animation";
+import { NoteEdit, NoteSidebar } from "@src/component";
+import { useMatchMedia } from "@src/hook";
+import { NoteHeader } from "@src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive";
+import { NoteListAdaptive } from "@src/component/Note/Note-List-Adaptive/Note-List-Adaptive";
+import { getNotesService } from "@src/service";
+import { horizontalPresent } from "@src/animation";
 import { motion } from "framer-motion";
 
 import style from "./Notes-Page.module.scss";
@@ -14,13 +11,10 @@ import style from "./Notes-Page.module.scss";
 export function NotesPage() {
    const { isWidth1000 } = useMatchMedia();
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   getNotesService(messageApi);
+   getNotesService();
 
    return (
       <>
-         { contextHolder }
          { !isWidth1000
             ?
             <motion.div className={ style.NotesPage }

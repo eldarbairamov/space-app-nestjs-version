@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { FormControl } from "../../UI/Form-Control/Form-Control";
-import { AppRouter } from "../../../router";
-import { emailValidator } from "../../../validator/auth.validator";
-import { message } from "antd";
-import { changeEmailService, getUserService } from "../../../service";
-import { Button } from "../../../component";
-import { useAppSelector } from "../../../hook";
-import { scrollToElement } from "../../../helper/scroll-to-element";
+import { FormControl } from "@src/component";
+import { AppRouter } from "@src/router";
+import { emailValidator } from "@src/validator/auth.validator";
+import { changeEmailService, getUserService } from "@src/service";
+import { Button } from "@src/component";
+import { useAppSelector } from "@src/hook";
+import { scrollToElement } from "@src/helper/scroll-to-element";
 import { motion } from "framer-motion";
-import { horizontalPresent } from "../../../animation";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Change-Email-Form.module.scss";
 
@@ -23,16 +22,14 @@ export function ChangeEmailForm() {
 
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   const { getUserFn } = getUserService(messageApi);
-   const { updateEmailFn } = changeEmailService(messageApi, () => AppRouter.navigate("/email_update/message", { replace: true }));
+   const { getUserFn } = getUserService();
+   const { updateEmailFn } = changeEmailService(() => AppRouter.navigate("/email_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => updateEmailFn(email);
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();
-      scrollToElement()
+      scrollToElement();
 
    }, [ username, name, surname ]);
 
@@ -43,7 +40,6 @@ export function ChangeEmailForm() {
                    initial={ "initial" }
                    animate={ "animate" }
       >
-         { contextHolder }
 
          {/* Form controls */ }
          <FormControl labelName={ "Введіть нову адресу електронної пошти" }

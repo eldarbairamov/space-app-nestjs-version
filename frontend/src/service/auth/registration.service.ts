@@ -1,20 +1,21 @@
-import { errorCatherFn } from "../../helper/error-catcher";
-import { axiosInstance } from "../axios.service";
-import { IRegistration } from "../../interface";
-import { authRequests } from "../../config/configuration";
-import { MessageInstance } from "antd/es/message/interface";
+import { errorCatherFn } from "@src/helper/error-catcher";
+import { axiosInstance } from "@src/service";
+import { IRegistration } from "@src/interface";
+import { authRequests } from "@src/config/configuration";
+import { App } from "antd";
 
-export function registrationService(messageApi: MessageInstance, next: () => any) {
+export function registrationService(next: () => any) {
+   const { message } = App.useApp();
 
    const registrationFn = async (body: IRegistration) => {
       try {
-         messageApi.loading("Лоудінг..");
+         message.loading("Лоудінг..");
          await axiosInstance.post(authRequests.registration, body);
          next();
 
       } catch (e) {
-         messageApi.destroy();
-         messageApi.error(errorCatherFn(e));
+         message.destroy();
+         message.error(errorCatherFn(e));
       }
    };
 

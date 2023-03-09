@@ -1,11 +1,9 @@
-import React from "react";
-
-import { message, Result } from "antd";
+import { Result } from "antd";
 import { v4 } from "uuid";
-import { AppRouter } from "../../../router";
+import { AppRouter } from "@src/router";
 import { useSearchParams } from "react-router-dom";
-import { emailConfirmationService } from "../../../service";
-import { Button } from "../../UI/Button/Button";
+import { emailConfirmationService } from "@src/service";
+import { Button } from "@src/component";
 
 import style from "./Email-Confirmation-Message.module.scss";
 
@@ -13,13 +11,10 @@ export function EmailConfirmationMessage() {
    const [ searchParams ] = useSearchParams();
    const confirmationToken = searchParams.get("token");
 
-   const [ messageApi, contextHolder ] = message.useMessage();
-
-   const { isSuccess } = emailConfirmationService(messageApi, confirmationToken!);
+   const { isSuccess } = emailConfirmationService(confirmationToken!);
 
    return (
       <div className={ style.EmailConfirmationMessage }>
-         { contextHolder }
 
          { isSuccess &&
             <Result
