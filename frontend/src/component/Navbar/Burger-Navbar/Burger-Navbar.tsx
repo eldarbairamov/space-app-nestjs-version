@@ -1,24 +1,20 @@
-import React from "react";
-
-import { Dropdown, MenuProps, message } from "antd";
-import { AppLogo } from "../Logo/App-Logo/App-Logo";
-import { AppRouter } from "../../router";
-import { logoutService } from "../../service";
+import { Dropdown, MenuProps } from "antd";
+import { AppLogo } from "@src/component";
+import { AppRouter } from "@src/router";
+import { logoutService } from "@src/service";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../hook";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Burger-Navbar.module.scss";
-import menuDark from "../../asset/menu-dark.svg";
-import menuLight from "../../asset/menu-light.svg";
-import logoutLight from "../../asset/logout-light.svg";
-import logoutDark from "../../asset/logout-dark.svg";
+import menuDark from "@src/asset/menu-dark.svg";
+import menuLight from "@src/asset/menu-light.svg";
+import logoutLight from "@src/asset/logout-light.svg";
+import logoutDark from "@src/asset/logout-dark.svg";
 
 export function BurgerNavbar() {
-   const [ messageApi, contextHolder ] = message.useMessage();
-
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const { logoutFn } = logoutService(messageApi, () => {
+   const { logoutFn } = logoutService(() => {
       AppRouter.navigate("/");
       AppRouter.navigate(0);
    });
@@ -60,8 +56,6 @@ export function BurgerNavbar() {
 
    return (
       <div className={ style.BurgerNavbar }>
-         { contextHolder }
-
          {/* LogoPage */ }
          <div className={ style.logo }>
             <AppLogo/>
@@ -72,7 +66,8 @@ export function BurgerNavbar() {
             <Dropdown menu={ { items } } placement="bottomRight" trigger={ [ "click" ] }>
                <img src={ isDark ? menuLight : menuDark } alt="as" style={ { width: "30px" } }/>
             </Dropdown>
-            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={{width: "25px"}} onClick={ () => logoutFn() }/>
+            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={ { width: "25px" } }
+                 onClick={ () => logoutFn() }/>
          </div>
 
 

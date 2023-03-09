@@ -99,6 +99,12 @@
       position: absolute;
       right: 35px;
       cursor: pointer;
+      transition: .2s;
+
+      &:hover {
+         filter: var(--icon-hover);
+         -webkit-filter: var(--icon-hover);
+      }
    }
 
 }

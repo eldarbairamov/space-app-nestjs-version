@@ -16,6 +16,17 @@
       gap: 20px;
       position: absolute;
       right: 35px;
+
+   }
+
+   img {
+      transition: .2s;
+      cursor: pointer;
+
+      &:hover {
+         filter: var(--icon-hover);
+         -webkit-filter: var(--icon-hover);
+      }
    }
 
 }

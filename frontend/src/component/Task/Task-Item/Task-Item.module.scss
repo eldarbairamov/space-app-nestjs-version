@@ -32,5 +32,10 @@
    .delete {
       cursor: pointer;
       color: var(--main-font);
+
+      &:hover {
+         filter: var(--icon-hover);
+         -webkit-filter: var(--icon-hover);
+      }
    }
 }

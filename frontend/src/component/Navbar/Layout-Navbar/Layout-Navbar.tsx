@@ -1,29 +1,23 @@
-import React from "react";
-
 import { NavLink } from "react-router-dom";
-import { message } from "antd";
-import { AppLogo } from "../Logo/App-Logo/App-Logo";
-import { AppRouter } from "../../router";
-import { logoutService } from "../../service";
-import { useAppSelector } from "../../hook";
+import { AppLogo } from "@src/component";
+import { AppRouter } from "@src/router";
+import { logoutService } from "@src/service";
+import { useAppSelector } from "@src/hook";
 
 import style from "./Layout-Navbar.module.scss";
-import logoutDark from '../../asset/logout-dark.svg'
-import logoutLight from '../../asset/logout-light.svg'
+import logoutDark from "@src/asset/logout-dark.svg";
+import logoutLight from "@src/asset/logout-light.svg";
 
 export function LayoutNavbar() {
-   const [ messageApi, contextHolder ] = message.useMessage();
-
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const { logoutFn } = logoutService(messageApi, () => {
+   const { logoutFn } = logoutService(() => {
       AppRouter.navigate("/");
       AppRouter.navigate(0);
    });
 
    return (
       <div className={ style.LayoutNavbar }>
-         { contextHolder }
 
          {/* LogoPage */ }
          <div className={ style.logo }>
@@ -48,7 +42,8 @@ export function LayoutNavbar() {
 
          {/* Profile bar  */ }
          <div className={ style.logout }>
-            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={{width: "25px"}} onClick={ () => logoutFn() }/>
+            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={ { width: "25px" } }
+                 onClick={ () => logoutFn() }/>
          </div>
 
       </div>
