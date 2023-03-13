@@ -21,3 +21,9 @@
       font-size: 30px;
    }
 }
+
+@media screen and (max-width: 900px) {
+   .PlanList {
+      width: 90%;
+   }
+}

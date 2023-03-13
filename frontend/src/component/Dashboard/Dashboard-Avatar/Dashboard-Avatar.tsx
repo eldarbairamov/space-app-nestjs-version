@@ -1,5 +1,5 @@
-import { configuration } from "@src/config/configuration";
 import { useAppSelector } from "@src/hook";
+import { configuration } from "@src/config/configuration";
 
 import user from "@src/asset/user.png";
 import style from "./Dashboard-Avatar.module.scss";
@@ -12,7 +12,7 @@ export function DashboardAvatar() {
 
          { avatar
             ?
-            <div className={ style.avatar }><img src={ configuration.SERVER_URL + avatar } alt="avatar"/></div>
+            <div className={ style.avatar }><img src={ `${ configuration.API_URL }/${ avatar }` } alt="avatar"/></div>
             :
             <img className={ style.no_avatar } src={ user } alt="no avatar"/>
          }

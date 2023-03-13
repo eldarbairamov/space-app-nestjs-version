@@ -11,6 +11,7 @@ export function registrationService(next: () => any) {
       try {
          message.loading("Лоудінг..");
          await axiosInstance.post(authRequests.registration, body);
+         message.destroy()
          next();
 
       } catch (e) {

@@ -5,6 +5,8 @@ import { FormControl } from "@src/component";
 import { loginValidator } from "@src/validator/auth.validator";
 import { WelcomeRouter } from "@src/router";
 import { Button } from "@src/component";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Login-Form.module.scss";
 
@@ -21,7 +23,12 @@ export function LoginForm({ loginFn }: ILoginFormProps) {
    const onSubmit: SubmitHandler<ILoginForm> = async (data) => loginFn(data);
 
    return (
-      <form className={ style.LoginForm } onSubmit={ handleSubmit(onSubmit) }>
+      <motion.form className={ style.LoginForm }
+                   onSubmit={ handleSubmit(onSubmit) }
+                   variants={ horizontalPresent }
+                   initial={ "initial" }
+                   animate={ "animate" }
+      >
 
          {/* Form controls */ }
          <FormControl labelName={ "Електронна пошта" }
@@ -45,6 +52,6 @@ export function LoginForm({ loginFn }: ILoginFormProps) {
             <p onClick={ () => WelcomeRouter.navigate("/registration", { replace: true }) }> Створити аккаунт </p>
          </div>
 
-      </form>
+      </motion.form>
    );
 }

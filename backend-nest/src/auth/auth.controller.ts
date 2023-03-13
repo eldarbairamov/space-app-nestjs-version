@@ -15,21 +15,6 @@ export class AuthController {
    constructor(private authService: AuthService) {
    }
 
-   // Logout
-   @ApiOperation({ summary: "logout" })
-   @ApiBearerAuth()
-   @ApiOkResponse({ description: "Success", type: SuccessResponse })
-   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
-   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
-   @UseGuards(AccessGuard)
-   @Get("logout")
-   async logout(
-      @User("token") token: string): Promise<{ message: string }> {
-
-      await this.authService.logout(token);
-      return { message: "Success" };
-   }
-
    // Registration
    @ApiOperation({ summary: "registration" })
    @ApiCreatedResponse({ description: "User account was created", type: SuccessResponse })
@@ -113,6 +98,21 @@ export class AuthController {
       @Body() dto: ResetPasswordDto): Promise<{ message: string }> {
 
       await this.authService.resetPassword(dto);
+      return { message: "Success" };
+   }
+
+   // Logout
+   @ApiOperation({ summary: "logout" })
+   @ApiBearerAuth()
+   @ApiOkResponse({ description: "Success", type: SuccessResponse })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @UseGuards(AccessGuard)
+   @Get("logout")
+   async logout(
+      @User("token") token: string): Promise<{ message: string }> {
+
+      await this.authService.logout(token);
       return { message: "Success" };
    }
 

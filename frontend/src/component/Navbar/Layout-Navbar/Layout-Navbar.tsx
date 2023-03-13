@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { AppLogo } from "@src/component";
-import { AppRouter } from "@src/router";
+import { WelcomeRouter } from "@src/router";
 import { logoutService } from "@src/service";
 import { useAppSelector } from "@src/hook";
 
@@ -12,8 +12,8 @@ export function LayoutNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);
 
    const { logoutFn } = logoutService(() => {
-      AppRouter.navigate("/");
-      AppRouter.navigate(0);
+      WelcomeRouter.navigate("login");
+      WelcomeRouter.navigate(0);
    });
 
    return (

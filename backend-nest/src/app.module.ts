@@ -12,8 +12,11 @@ import configuration from "./config/configuration";
 
 @Module({
    imports: [
-      MongooseModule.forRoot("mongodb://localhost:27017/space-app-nestjs"),
-      ConfigModule.forRoot({ load: [ configuration ] }),
+      MongooseModule.forRoot(configuration().mongodb_uri),
+      ConfigModule.forRoot({
+         load: [ configuration ],
+         envFilePath: ".env",
+      }),
       ScheduleModule.forRoot(),
       AuthModule, NoteModule, UserModule, PlanModule, TaskModule, MomentModule,
    ],

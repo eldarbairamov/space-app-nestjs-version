@@ -3,6 +3,8 @@ import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { emailValidator } from "@src/validator/auth.validator";
 import { FormControl } from "@src/component";
 import { Button } from "@src/component";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Forgot-Password-Form.module.scss";
 
@@ -19,7 +21,12 @@ export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProp
    const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => forgotPasswordFn(email);
 
    return (
-      <form className={ style.ForgotPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
+      <motion.form className={ style.ForgotPasswordForm }
+                   onSubmit={ handleSubmit(onSubmit) }
+                   variants={ horizontalPresent }
+                   initial={ "initial" }
+                   animate={ "animate" }
+      >
 
          {/* Message  */ }
          <p className={ style.message }>
@@ -39,6 +46,6 @@ export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProp
          {/* Submit button */ }
          <Button disabled={ !isValid } text={ "Надіслати" } style={ { width: "100%" } }/>
 
-      </form>
+      </motion.form>
    );
 }

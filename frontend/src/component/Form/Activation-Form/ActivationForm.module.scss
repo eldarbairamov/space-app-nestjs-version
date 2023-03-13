@@ -5,14 +5,14 @@
    background: var(--second-bg);
    padding: 60px;
    border-radius: 15px;
-   width: 600px;
+   width: 500px;
    gap: 40px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
    transition: $transition;
 
    .message {
       text-align: center;
-      font-size: 19px;
+      font-size: 17px;
    }
 }
 

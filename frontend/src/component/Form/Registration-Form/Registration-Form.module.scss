@@ -13,10 +13,7 @@
 
 .footer {
    @extend %flex-align;
-
-   span {
-      margin-right: 3px;
-   }
+   gap: 10px;
 
    span:nth-child(2) {
       color: #d78052;

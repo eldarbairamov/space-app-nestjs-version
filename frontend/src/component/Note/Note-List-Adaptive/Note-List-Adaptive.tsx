@@ -1,7 +1,8 @@
 import { v4 as uuid } from "uuid";
-import { useAppSelector } from "@src/hook";
-import { getNotesService } from "@src/service";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 import { NoteItemAdaptive } from "../Note-Item-Adaptive/Note-Item-Adaptive";
+import { useCallback, useRef } from "react";
+import { noteActions } from "@src/redux/slice";
 
 import style from "./Note-List-Adaptive.module.scss";
 import emptyDark from "@src/asset/empty-dark.svg";
@@ -11,7 +12,18 @@ export function NoteListAdaptive() {
    const { notes } = useAppSelector(state => state.noteReducer);
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   getNotesService();
+   const dispatch = useAppDispatch();
+
+   const observer = useRef<any>();
+   const lastElemRef = useCallback((node: any) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(([ entry ]) => {
+         if (entry.isIntersecting) {
+            dispatch(noteActions.next());
+         }
+      });
+      if (node) observer.current.observe(node);
+   }, []);
 
    return (
       <>
@@ -19,7 +31,13 @@ export function NoteListAdaptive() {
             ?
             <div className={ style.NoteListAdaptive }>
                { notes &&
-                  notes.map(item => <NoteItemAdaptive key={ uuid() } note={ item }/>)
+                  notes.map((item, index) => {
+                     if (notes.length === index + 1) {
+                        return <NoteItemAdaptive ref={ lastElemRef } key={ uuid() } note={ item }/>
+                     } else {
+                        return <NoteItemAdaptive key={ uuid() } note={ item }/>
+                     }
+                  })
                }
             </div>
             :

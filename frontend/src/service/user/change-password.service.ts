@@ -11,8 +11,8 @@ export function changePasswordService(next: () => any) {
       try {
          message.loading("Лоудінг..");
          await axiosInstance.patch(userRequests.changePassword, { newPassword, currentPassword });
-         message.destroy();
          await pleaseWait(1000);
+         message.destroy();
          next();
 
       } catch (e) {

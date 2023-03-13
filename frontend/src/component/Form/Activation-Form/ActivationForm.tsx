@@ -1,6 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import { Input, Button } from "@src/component";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./ActivationForm.module.scss";
 
@@ -19,7 +21,11 @@ export function ActivationForm({ activationFn }: ActivationFormProps) {
    };
 
    return (
-      <div className={ style.ActivationForm }>
+      <motion.div className={ style.ActivationForm }
+                  variants={ horizontalPresent }
+                  initial={ "initial" }
+                  animate={ "animate" }
+      >
 
          {/* Message */ }
          <span className={ style.message }> Будь ласка, введіть код активації </span>
@@ -37,6 +43,6 @@ export function ActivationForm({ activationFn }: ActivationFormProps) {
                  onClick={ (e: FormEvent<HTMLButtonElement>) => handleSubmit(e) }
          />
 
-      </div>
+      </motion.div>
    );
 }

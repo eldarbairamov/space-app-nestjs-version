@@ -10,11 +10,12 @@
       font-size: 16px;
    }
 
-   .background {
+   .message {
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
       background: var(--second-bg);
       border-radius: 15px;
       position: relative;
       transition: $transition;
+      padding: 50px 100px;
    }
 }

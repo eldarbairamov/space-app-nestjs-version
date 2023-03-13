@@ -9,6 +9,7 @@ export function UnauthorizedMessage() {
    return (
       <div className={ style.UnauthorizedMessage }>
          <Result
+            className={style.message}
             status="403"
             title="Упс.."
             subTitle="Ви не авторизовані."

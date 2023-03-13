@@ -3,6 +3,7 @@ import { type AxiosApiError } from "../service";
 export const errorCatherFn = (e: unknown) => {
    const axiosError = e as AxiosApiError;
    const response = axiosError.response?.data.message as string;
+
    let message;
 
    switch (response) {
@@ -10,7 +11,7 @@ export const errorCatherFn = (e: unknown) => {
          message = "Невірно вказаний поточний пароль";
          break;
 
-      case "User with this email is already exists":
+      case "This email is already in use":
          message = "Користувач з такою електронною поштою вже існує";
          break;
 
@@ -55,7 +56,7 @@ export const errorCatherFn = (e: unknown) => {
          break;
    }
 
-   console.log(response ? response : axiosError.message);
+   // console.log(response ? response : axiosError.message);
 
    return message;
 };

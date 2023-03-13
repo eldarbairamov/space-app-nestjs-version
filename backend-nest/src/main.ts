@@ -11,7 +11,6 @@ const start = async () => {
 
    app.useGlobalPipes(new ValidationPipe({ transform: true, transformOptions: { enableImplicitConversion: true } }));
    app.useStaticAssets(staticPath);
-   app.setGlobalPrefix("api");
    app.enableCors();
 
    const config = new DocumentBuilder()

@@ -1,12 +1,13 @@
 import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-import { authRequests, configuration } from "@src/config/configuration";
+import { authRequests } from "@src/config/configuration";
 import { storageService } from "./storage.service";
-import { AppRouter } from "@src/router";
+import { WelcomeRouter } from "@src/router";
 import { IOAuth } from "@src/interface";
+import { pleaseWait } from "@src/helper/please-wait";
 
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 
-export const axiosInstance = axios.create({ baseURL: configuration.API_URL });
+export const axiosInstance = axios.create({ baseURL: 'http://localhost:3010' });
 
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
    const accessToken = storageService.getAccessToken();
@@ -37,8 +38,9 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
 
          } catch (e) {
             storageService.deleteTokens();
-            AppRouter.navigate("/", { state: { status: "unauthorized" }, replace: true });
-            AppRouter.navigate(0);
+            await pleaseWait(1000);
+            WelcomeRouter.navigate("/unauthorized");
+            WelcomeRouter.navigate(0);
          }
 
          return axiosInstance(originalRequest);

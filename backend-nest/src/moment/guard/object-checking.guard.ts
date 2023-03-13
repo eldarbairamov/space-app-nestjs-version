@@ -15,7 +15,7 @@ export class ObjectCheckingGuard implements CanActivate {
       if (!Types.ObjectId.isValid(momentId)) throw new BadRequestException({ message: "Object ID is not valid" });
 
       const isObjectExists = await this.momentRepository.findById(momentId);
-      if (!isObjectExists) throw new NotFoundException({ message: "Cannot find the object" });
+      if (!isObjectExists) throw new NotFoundException({ message: "Object does not exist" });
 
       return true;
    }

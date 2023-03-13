@@ -30,6 +30,7 @@ export function loginService(next: () => any) {
          const responseMessage = (e as AxiosApiError).response?.data.message;
          if (responseMessage === "Account is not activated") {
             await pleaseWait(2000);
+            message.destroy();
             WelcomeRouter.navigate("/activation");
          }
       }

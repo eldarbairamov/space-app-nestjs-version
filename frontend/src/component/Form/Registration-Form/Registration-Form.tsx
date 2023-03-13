@@ -5,6 +5,8 @@ import { FormControl } from "@src/component";
 import { registrationValidator } from "@src/validator/auth.validator";
 import { WelcomeRouter } from "@src/router";
 import { Button } from "@src/component";
+import { motion } from "framer-motion";
+import { horizontalPresent } from "@src/animation";
 
 import style from "./Registration-Form.module.scss";
 
@@ -21,7 +23,12 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
    const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => registrationFn(data);
 
    return (
-      <form className={ style.RegistrationForm } onSubmit={ handleSubmit(onSubmit) }>
+      <motion.form className={ style.RegistrationForm }
+                   onSubmit={ handleSubmit(onSubmit) }
+                   variants={ horizontalPresent }
+                   initial={ "initial" }
+                   animate={ "animate" }
+      >
 
          {/* FormControlDate fields */ }
          <FormControl labelName={ "Ім'я користувача" }
@@ -50,7 +57,7 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
             <span onClick={ () => WelcomeRouter.navigate("/login") }> Увійти </span>
          </div>
 
-      </form>
+      </motion.form>
    );
 }
 

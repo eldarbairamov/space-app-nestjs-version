@@ -1,7 +1,6 @@
 export const configuration = {
-   API_URL: import.meta.env.VITE_API_URL || "http://localhost:5400/api",
-   SERVER_URL: import.meta.env.VITE_SERVER_URL || "http://localhost:5400/",
-};
+   API_URL: "http://localhost:3010",
+}
 
 export const userRequests = {
    profileUpdate: "/user/profile_update",

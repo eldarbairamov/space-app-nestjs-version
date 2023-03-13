@@ -23,7 +23,7 @@ export function NoteHeader() {
 
          {/* Add note */ }
          <img src={ isDark ? addLight : addDark } alt={ "add" }/>
-         <NoBgButton text={ "Додати замітку" } hoverSubject={ "notes" } onClick={ addNoteFn }/>
+         <NoBgButton text={ "Додати" } hoverSubject={ "notes" } onClick={ addNoteFn }/>
 
          {/* Search bar */ }
          <div className={ style.search_bar }>

@@ -2,10 +2,10 @@ import { forwardRef } from "react";
 
 import { IMoment } from "@src/interface";
 import { v4 } from "uuid";
-import { configuration } from "@src/config/configuration";
 import { AppRouter } from "@src/router";
 import dateHelper from "moment/moment";
 import { useAppSelector } from "@src/hook";
+import { configuration } from "@src/config/configuration";
 
 import style from "./Moment-Item.module.scss";
 import noImageLight from "@src/asset/no-image-light.svg";
@@ -28,11 +28,11 @@ export const MomentItem = forwardRef(({ moment }: IMomentItem, ref: any) => {
          { moment.photo ?
             <>
                <img className={ style.photo_background }
-                    src={ configuration.SERVER_URL + moment.photo }
+                    src={ `${ configuration.API_URL }/${ moment.photo }` }
                     alt="background"
                />
                <img className={ style.photo }
-                    src={ configuration.SERVER_URL + moment.photo }
+                    src={ `${ configuration.API_URL }/${ moment.photo }` }
                     alt="photo"
                />
             </>

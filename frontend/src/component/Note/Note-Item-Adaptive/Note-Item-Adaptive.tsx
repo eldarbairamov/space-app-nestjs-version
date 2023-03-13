@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { INote } from "@src/interface";
 import { useAppDispatch, useAppSelector } from "@src/hook";
@@ -14,7 +14,7 @@ interface NoteItemAdaptive {
    note: INote;
 }
 
-export function NoteItemAdaptive({ note }: NoteItemAdaptive) {
+export const NoteItemAdaptive = forwardRef(({ note }: NoteItemAdaptive, ref: any) => {
    const titleCondition = note.title && note.title.split("").length > 30;
 
    const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export function NoteItemAdaptive({ note }: NoteItemAdaptive) {
    };
 
    return (
-      <div className={ style.NoteItemAdaptive }
+      <div ref={ ref } className={ style.NoteItemAdaptive }
            onClick={ () => {
               AppRouter.navigate("/notes/edit");
               dispatch(noteActions.setActiveNoteId(note.id));
@@ -61,4 +61,4 @@ export function NoteItemAdaptive({ note }: NoteItemAdaptive) {
 
       </div>
    );
-}
+})

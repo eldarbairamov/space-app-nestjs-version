@@ -19,7 +19,7 @@ export function ErrorMessage() {
       <div>
          <div className={ style.ErrorMessage }>
             <Result
-               className={style.background}
+               className={style.message}
                status="500"
                title="Ой.."
                subTitle={ error.message ? `Несподівана помилка: ${ error.message }` : "Несподівана помилка" }

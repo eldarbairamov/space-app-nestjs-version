@@ -23,10 +23,11 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
 
    return (
       <div className={ style.MomentHeader }>
+
          {/* Save moment */ }
          <div className={ style.save_moment }>
             <img src={ isDark ? addLight : addDark } alt={ "add" }/>
-            <NoBgButton text={ "Зберегти момент" } hoverSubject={ "moment" } onClick={ async () => {
+            <NoBgButton text={ "Додати" } hoverSubject={ "moment" } onClick={ async () => {
                await addMomentFn();
                select("");
                setIsValueNull(null);
@@ -35,8 +36,7 @@ export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) 
 
          {/* Select */ }
          <div className={ style.select_wrapper }>
-            <Select style={ { width: 130 } }
-                    className={ style.select }
+            <Select style={ { width: 100 } }
                     allowClear={ true }
                     placeholder="Фільтр"
                     notFoundContent={ "Пусто" }

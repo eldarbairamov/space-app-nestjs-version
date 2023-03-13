@@ -5,6 +5,8 @@ export interface IEnvironmentVariables {
    user: string;
    pass: string;
 
+   mongodb_uri: string;
+
    accessToken: string;
    refreshToken: string;
    forgotPass: string;

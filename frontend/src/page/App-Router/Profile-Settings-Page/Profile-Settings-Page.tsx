@@ -2,12 +2,12 @@ import { ChangeEvent, useRef } from "react";
 
 import { Outlet } from "react-router-dom";
 import { useAppSelector } from "@src/hook";
-import { configuration } from "@src/config/configuration";
 import { AppRouter } from "@src/router";
 import { deletePhotoService, uploadPhotoService } from "@src/service";
 import { scrollToElement } from "@src/helper/scroll-to-element";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
+import { configuration } from "@src/config/configuration";
 
 import style from "./Profile-Settings-Page.module.scss";
 import user from "@src/asset/user.png";
@@ -38,7 +38,7 @@ export function ProfileSettingsPage() {
                <div>
                   { avatar &&
                      <div className={ style.avatar }>
-                        <img src={ configuration.SERVER_URL + avatar } alt="avatar"/>
+                        <img src={ `${ configuration.API_URL }/${ avatar }` } alt="avatar"/>
                      </div> }
 
                   { !avatar && <img className={ style.no_avatar } src={ user } alt="no avatar"/> }

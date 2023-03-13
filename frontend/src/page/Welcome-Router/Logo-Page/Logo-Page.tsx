@@ -1,25 +1,15 @@
-import { useEffect } from "react";
-
 import { WelcomeLogo } from "@src/component";
-import { useLocation } from "react-router";
 import { WelcomeRouter } from "@src/router";
 import { motion } from "framer-motion";
 import { p1, p2, p3, p4, logo } from "@src/animation";
 import { FloatButton, Switch } from "antd";
 import { appActions } from "@src/redux/slice";
 import { useAppDispatch, useAppSelector } from "@src/hook";
-
-import style from "./Logo-Page.module.scss";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
+import style from "./Logo-Page.module.scss";
+
 export function LogoPage() {
-   const location = useLocation();
-
-   useEffect(() => {
-      if (location.state && location.state.status === "unauthorized") WelcomeRouter.navigate("/unauthorized", { replace: true });
-      if (location.state && location.state.status === "change password") WelcomeRouter.navigate("/login", { replace: true });
-   }, []);
-
    const { isDark } = useAppSelector(state => state.appReducer);
 
    const dispatch = useAppDispatch();

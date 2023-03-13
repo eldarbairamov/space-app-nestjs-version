@@ -122,12 +122,12 @@ export class UserService {
       if (JSON.stringify(dto) === JSON.stringify(objToCompare)) throw new HttpException("There is nothing to change", HttpStatus.BAD_REQUEST);
 
       // Update user
-      const updatedUser = await userFromDb.update(dto);
+      await userFromDb.updateOne(dto);
 
       return {
-         username: updatedUser.username,
-         name: updatedUser.name,
-         surname: updatedUser.surname,
+         username: dto.username,
+         name: dto.name,
+         surname: dto.surname,
       };
    }
 

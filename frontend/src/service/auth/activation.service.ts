@@ -14,6 +14,7 @@ export function activationService(next: () => any) {
          message.destroy();
          message.success("Ваш аккаунт активовано");
          await pleaseWait(2000);
+         message.destroy();
          next();
 
       } catch (e) {
