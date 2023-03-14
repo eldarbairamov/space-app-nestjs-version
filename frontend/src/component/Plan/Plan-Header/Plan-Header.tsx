@@ -20,9 +20,12 @@ export function PlanHeader() {
 
    return (
       <div className={ style.PlanHeader }>
+
          {/* Add plan */ }
-         <img src={ isDark ? addLight : addDark } alt={ "add" }/>
-         <NoBgButton text={ "Додати" } hoverSubject={ "plan" } onClick={ addPlanFn }/>
+         <div className={style.add}>
+            <img src={ isDark ? addLight : addDark } alt={ "add" }/>
+            <NoBgButton text={ "Додати" } hoverSubject={ "plan" } onClick={ addPlanFn }/>
+         </div>
 
          {/* Search bar */ }
          <div className={ style.search_bar }>

@@ -36,3 +36,9 @@
       width: 400px;
    }
 }
+
+@media screen and (max-width: 499px) {
+   .BurgerNavbar {
+      width: 95vw;
+   }
+}

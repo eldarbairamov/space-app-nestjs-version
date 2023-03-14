@@ -46,6 +46,7 @@
 
 @media screen and (max-height: 800px) {
    .DashboardPage {
+      margin: 50px 0 50px 0;
       height: 800px;
    }
 }
@@ -53,5 +54,11 @@
 @media screen and (max-width: 550px) {
    .DashboardPage {
       width: 450px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .DashboardPage {
+      width: 95vw;
    }
 }

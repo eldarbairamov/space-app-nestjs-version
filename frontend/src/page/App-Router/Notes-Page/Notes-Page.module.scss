@@ -49,14 +49,17 @@
       height: calc(100% - 60px);
       width: 100%;
    }
+
 }
 
 @media screen and (max-height: 800px) {
    .NotesPage {
       height: 800px;
+      margin: 50px 0 50px 0;
    }
 
    .NotesPageAdaptive {
+      margin: 50px 0 50px 0;
       height: 800px;
    }
 }
@@ -68,5 +71,11 @@
 
    .NotesPageAdaptive {
       width: 450px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .NotesPageAdaptive {
+      width: 95vw;
    }
 }

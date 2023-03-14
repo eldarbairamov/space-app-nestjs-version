@@ -64,9 +64,9 @@ export function BurgerNavbar() {
 
          <div className={ style.menu }>
             <Dropdown menu={ { items } } placement="bottomRight" trigger={ [ "click" ] }>
-               <img src={ isDark ? menuLight : menuDark } alt="as" style={ { width: "30px" } }/>
+               <img src={ isDark ? menuLight : menuDark } alt="as" style={ { width: "25px" } }/>
             </Dropdown>
-            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={ { width: "25px" } }
+            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={ { width: "20px" } }
                  onClick={ () => logoutFn() }/>
          </div>
 

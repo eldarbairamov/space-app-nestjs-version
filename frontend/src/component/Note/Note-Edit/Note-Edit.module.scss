@@ -1,8 +1,7 @@
 @import "src/style/configuration";
 
 .NoteEdit {
-   @extend %flex-align;
-   flex-direction: column;
+   @extend %flex-align-justify-column;
    height: 100%;
    width: 100%;
    position: relative;

@@ -163,6 +163,7 @@
 
 @media screen and (max-height: 800px) {
    .MomentActivePage {
+      margin: 50px 0 50px 0;
       height: 800px;
    }
 }
@@ -181,6 +182,16 @@
 @media screen and (max-width: 1000px) {
    .MomentActivePage {
       width: 85vw;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .MomentActivePage {
+      width: 95vw;
+
+      .date_and_location_wrapper {
+         flex-direction: column;
+      }
    }
 }
 

@@ -19,7 +19,7 @@ export const authMiddleware = {
 
    isEmailUnique: expressAsyncHandler(async (req: IRequest<{ email: string }, any, any>, res: Response, next: NextFunction) => {
       const user = await UserRepository.findOne({ email: req.body.email });
-      if (user) throw new ApiException("User with this email is already exists", 409);
+      if (user) throw new ApiException("This email is already in use", 409);
 
       next();
    }),

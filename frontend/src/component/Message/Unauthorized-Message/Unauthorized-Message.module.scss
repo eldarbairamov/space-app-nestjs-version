@@ -19,3 +19,11 @@
       padding: 50px 100px;
    }
 }
+
+@media screen and (max-width: 499px) {
+   .UnauthorizedMessage {
+      .message {
+         padding: 50px;
+      }
+   }
+}

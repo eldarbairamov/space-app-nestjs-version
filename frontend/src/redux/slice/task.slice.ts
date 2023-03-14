@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ITask } from "../../interface";
+import { ITask } from "@src/interface";
 
 interface ITaskInitialState {
    searchKey: string;
    tasks: ITask[];
+   isLoading: boolean;
 }
 
 const initialState: ITaskInitialState = {
    tasks: [],
    searchKey: "",
+   isLoading: false
 };
 
 const taskSlice = createSlice({
@@ -35,6 +37,10 @@ const taskSlice = createSlice({
       updateTask: (state, { payload }: PayloadAction<string>) => {
          const task = state.tasks.find(item => item.id === payload) as ITask;
          task.isCompleted = !task.isCompleted;
+      },
+
+      setIsLoading: (state, { payload }) => {
+         state.isLoading = payload;
       },
 
    },

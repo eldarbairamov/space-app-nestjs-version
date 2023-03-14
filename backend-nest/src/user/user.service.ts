@@ -55,20 +55,24 @@ export class UserService {
 
    }
 
-   async changeEmailRequest(userId: UserDocument["id"], email: string): Promise<void> {
-      // Generate link
-      const confirmationToken = this.tokenService.generate({ userId, email }, this.configService.get("changeEmail"));
-      const confirmationLink = `${ process.env.CLIENT_URL }/email_confirmation/new?token=${ confirmationToken }`;
+   async changeEmailRequest(email: string): Promise<void> {
+      // Check is new email unique
+      const user = await this.userRepository.findOne({ email })
+      if (user) throw new HttpException('This email is already in use', HttpStatus.CONFLICT)
 
-      // Find user and save action token to DB
-      const [ user ] = await Promise.all([
-         this.userRepository.findById(userId),
-         this.actionTokenRepository.create({
-            token: confirmationToken,
-            tokenType: EMAIL_CONFIRMATION_TOKEN_TYPE,
-            ownerId: userId,
-         }),
-      ]);
+      // Generate link
+      const confirmationToken = this.tokenService.generate({
+         userId: user.id,
+         email
+      }, this.configService.get("changeEmail"));
+      const confirmationLink = `${ this.configService.get('clientUrl') }/email_confirmation/new?token=${ confirmationToken }`;
+
+      // Save action token to DB
+      await this.actionTokenRepository.create({
+         token: confirmationToken,
+         tokenType: EMAIL_CONFIRMATION_TOKEN_TYPE,
+         ownerId: user.id,
+      })
 
       // Send email
       await this.emailService.send(email, CHANGE_EMAIL, { confirmationLink, username: user.username });

@@ -15,4 +15,20 @@
       font-weight: 500;
       color: var(--second-font);
    }
+
+
+}
+
+@media screen and (max-width: 499px) {
+   .TaskHeader {
+      gap: 20px;
+
+      .plan_date {
+         position: static;
+      }
+
+      p {
+         width: 500px;
+      }
+   }
 }

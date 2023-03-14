@@ -39,3 +39,14 @@
       }
    }
 }
+@media screen and (max-width: 499px) {
+   .TaskItem {
+      width: 90%;
+
+      .task_title {
+         p {
+            width: 200px;
+         }
+      }
+   }
+}

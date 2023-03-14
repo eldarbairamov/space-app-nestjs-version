@@ -23,11 +23,18 @@
 @media screen and (max-height: 800px) {
    .MomentPage {
       height: 800px;
+      margin: 50px 0 50px 0;
    }
 }
 
 @media screen and (max-width: 550px) {
    .MomentPage {
       width: 450px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .MomentPage {
+      width: 95vw;
    }
 }

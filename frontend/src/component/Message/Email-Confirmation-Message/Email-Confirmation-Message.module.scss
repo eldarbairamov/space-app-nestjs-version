@@ -39,3 +39,14 @@
       }
    }
 }
+
+@media screen and (max-width: 499px) {
+   .EmailConfirmationMessage {
+      height: 0;
+      width: 95vw;
+
+      .message {
+         width: 95vw;
+      }
+   }
+}

@@ -8,6 +8,7 @@ interface IPlanInitialState {
    limit: number;
    total: number;
    count: number;
+   isLoading: boolean;
 }
 
 const initialState: IPlanInitialState = {
@@ -17,6 +18,7 @@ const initialState: IPlanInitialState = {
    limit: 30,
    total: 30,
    count: 0,
+   isLoading: false,
 };
 
 const planSlice = createSlice({
@@ -48,6 +50,10 @@ const planSlice = createSlice({
 
       updateTitle: (state, { payload }: PayloadAction<string>) => {
          state.activePlan.title = payload;
+      },
+
+      setIsLoading: (state, { payload }) => {
+         state.isLoading = payload;
       },
 
       next: (state) => {

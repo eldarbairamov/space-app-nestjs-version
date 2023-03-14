@@ -9,24 +9,31 @@
    transition: $transition;
    gap: 40px;
    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
-}
 
-.footer {
-   @extend %flex-align;
+   .footer {
+      @extend %flex-align;
 
-   gap: 20px;
-   cursor: pointer;
+      gap: 20px;
+      cursor: pointer;
 
-   p {
-      font-size: 15px;
+      p {
+         font-size: 15px;
 
-      &:hover {
-         color: #DF8453;
+         &:hover {
+            color: #DF8453;
+         }
       }
-   }
 
-   p:nth-child(2) {
-      color: #d78052;
-   }
+      p:nth-child(2) {
+         color: #d78052;
+      }
 
+   }
 }
+
+@media screen and (max-width: 499px) {
+   .LoginForm {
+      width: 95vw;
+   }
+}
+

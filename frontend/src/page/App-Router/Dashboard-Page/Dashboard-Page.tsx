@@ -10,6 +10,7 @@ import { horizontalPresent } from "@src/animation";
 import style from "./Dashboard-Page.module.scss";
 import settingsDark from "@src/asset/settings-dark.svg";
 import settingsLight from "@src/asset/settings-light.svg";
+import { Loader } from "@src/component/UI/Loader/Loader";
 
 export function DashboardPage() {
    const { isDark } = useAppSelector(state => state.appReducer);
@@ -18,38 +19,45 @@ export function DashboardPage() {
 
    const dispatch = useAppDispatch();
 
-   getUserService();
+   const { isLoading } = getUserService();
 
    return (
-      <motion.div className={ style.DashboardPage }
-                  variants={ horizontalPresent }
-                  initial={ "initial" }
-                  animate={ "animate" }
-      >
-         <div className={ style.top }>
-            <DashboardAvatar/>
+      <>
+         <motion.div className={ style.DashboardPage }
+                     variants={ horizontalPresent }
+                     initial={ "initial" }
+                     animate={ "animate" }
+         >
+            { isLoading ? <Loader/> :
+               <>
+                  <div className={ style.top }>
+                     <DashboardAvatar/>
 
-            <DashboardGreeting/>
+                     <DashboardGreeting/>
 
-            <Switch className={ style.switch }
-                    defaultChecked={ isDark }
-                    size={ "small" }
-                    onChange={ () => dispatch(appActions.switchTheme(!isDark)) }/>
+                     <Switch className={ style.switch }
+                             defaultChecked={ isDark }
+                             size={ "small" }
+                             onChange={ () => dispatch(appActions.switchTheme(!isDark)) }/>
 
-            <Jokes/>
+                     <Jokes/>
 
-            <img className={ style.settings }
-                 src={ isDark ? settingsLight : settingsDark }
-                 alt="settings" onClick={ editProfile }
-                 style={ { width: "30px" } }/>
-         </div>
+                     <img className={ style.settings }
+                          src={ isDark ? settingsLight : settingsDark }
+                          alt="settings"
+                          onClick={ editProfile }
+                          style={ { width: "30px" } }/>
 
-         <div className={ style.bottom }>
-            <NoteCount/>
-            <PlanCount/>
-            <MomentCount/>
-         </div>
+                  </div>
 
-      </motion.div>
+                  <div className={ style.bottom }>
+                     <NoteCount/>
+                     <PlanCount/>
+                     <MomentCount/>
+                  </div>
+               </> }
+
+         </motion.div>
+      </>
    );
 }

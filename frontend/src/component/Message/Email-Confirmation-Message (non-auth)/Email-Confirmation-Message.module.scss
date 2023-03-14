@@ -28,3 +28,13 @@
       height: 800px;
    }
 }
+
+@media screen and (max-width: 499px) {
+   .EmailConfirmationMessagePage {
+      width: 95vw;
+
+      .message {
+         width: 95vw;
+      }
+   }
+}

@@ -31,3 +31,13 @@
       }
    }
 }
+
+@media screen and (max-width: 700px) {
+   .ChangeEmailMessage {
+      width: 95vw;
+
+      .message {
+         width: 95vw;
+      }
+   }
+}

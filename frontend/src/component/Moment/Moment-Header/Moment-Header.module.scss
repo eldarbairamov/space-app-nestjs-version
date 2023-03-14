@@ -32,3 +32,14 @@
       }
    }
 }
+
+@media screen and (max-width: 499px) {
+   .MomentHeader {
+      gap: 30px;
+
+      .select_wrapper {
+         position: static;
+         right: 50px;
+      }
+   }
+}

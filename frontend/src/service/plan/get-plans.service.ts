@@ -18,6 +18,7 @@ export function getPlansService() {
 
    const getPlansFn = async () => {
       try {
+         dispatch(planAction.setIsLoading(true))
          const { data } = await axiosInstance.get<IPlans>(plansRequests.getAllPlans, {
             params: {
                searchKey: searchKey ? debounced : null,
@@ -28,7 +29,10 @@ export function getPlansService() {
          dispatch(planAction.setPlans(data));
 
       } catch (e) {
+         dispatch(planAction.setIsLoading(false))
          message.error(errorCatherFn(e));
+      } finally {
+         dispatch(planAction.setIsLoading(false))
       }
    };
 

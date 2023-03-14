@@ -7,9 +7,10 @@ import { NoBgInput } from "@src/component";
 import { updateNoteService } from "@src/service";
 
 import style from "./Note-Edit.module.scss";
+import { Loader } from "@src/component/UI/Loader/Loader";
 
 export const NoteEdit: FC = () => {
-   const { activeNote, notes } = useAppSelector(state => state.noteReducer);
+   const { activeNote, notes, isLoading } = useAppSelector(state => state.noteReducer);
 
    const { updateNoteFn } = updateNoteService();
 
@@ -39,26 +40,30 @@ export const NoteEdit: FC = () => {
    return (
       <div className={ style.NoteEdit }>
 
-         {/* Header */ }
-         <div className={ style.header }>
-            <NoBgInput type={ "text" }
-                       style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
-                       id={ "title" }
-                       value={ activeNote.title }
-                       onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
-                       onBlur={ () => updateNoteFn(activeNote) }
-            />
-         </div>
+         { isLoading ? <Loader/> :
 
-         {/* Text area */ }
-         <div className={ style.textarea }>
-          <textarea id={ "body" }
-                    value={ activeNote.body ? activeNote.body : "" }
-                    placeholder={ "Розкажи мені щось цікаве..." }
-                    onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
-                    onBlur={ () => updateNoteFn(activeNote) }
-          />
-         </div>
+            <>
+               {/* Header */ }
+               <div className={ style.header }>
+                  <NoBgInput type={ "text" }
+                             style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
+                             id={ "title" }
+                             value={ activeNote.title }
+                             onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
+                             onBlur={ () => updateNoteFn(activeNote) }
+                  />
+               </div>
+
+               {/* Text area */ }
+               <div className={ style.textarea }>
+                  <textarea id={ "body" }
+                            value={ activeNote.body ? activeNote.body : "" }
+                            placeholder={ "Розкажи мені щось цікаве..." }
+                            onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
+                            onBlur={ () => updateNoteFn(activeNote) }
+                  />
+               </div>
+            </> }
 
       </div>
    );

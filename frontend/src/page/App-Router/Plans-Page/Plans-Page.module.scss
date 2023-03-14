@@ -25,11 +25,18 @@
 @media screen and (max-height: 800px) {
    .PlansPage {
       height: 800px;
+      margin: 50px 0 50px 0;
    }
 }
 
 @media screen and (max-width: 550px) {
    .PlansPage {
       width: 450px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .PlansPage {
+      width: 95vw;
    }
 }

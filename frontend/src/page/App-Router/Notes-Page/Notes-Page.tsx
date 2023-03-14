@@ -1,15 +1,17 @@
 import { NoteEdit, NoteSidebar } from "@src/component";
-import { useMatchMedia } from "@src/hook";
+import { useAppSelector, useMatchMedia } from "@src/hook";
 import { NoteHeader } from "@src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive";
 import { NoteListAdaptive } from "@src/component/Note/Note-List-Adaptive/Note-List-Adaptive";
 import { getNotesService } from "@src/service";
 import { horizontalPresent } from "@src/animation";
 import { motion } from "framer-motion";
+import { Loader } from "@src/component/UI/Loader/Loader";
 
 import style from "./Notes-Page.module.scss";
 
 export function NotesPage() {
    const { isWidth1000 } = useMatchMedia();
+   const { isLoading } = useAppSelector(state => state.noteReducer);
 
    getNotesService();
 
@@ -36,11 +38,15 @@ export function NotesPage() {
                         initial={ "initial" }
                         animate={ "animate" }
             >
-               <NoteHeader/>
+               { isLoading ? <Loader/> :
+                  <>
+                     <NoteHeader/>
 
-               <div className={ style.note_list_wrapper }>
-                  <NoteListAdaptive/>
-               </div>
+                     <div className={ style.note_list_wrapper }>
+                        <NoteListAdaptive/>
+                     </div>
+                  </>
+               }
             </motion.div>
          }
 

@@ -37,3 +37,11 @@
       height: 800px;
    }
 }
+
+@media screen and (max-width: 499px) {
+   .RegistrationSuccessMessage {
+      .message {
+         width: 95vw;
+      }
+   }
+}

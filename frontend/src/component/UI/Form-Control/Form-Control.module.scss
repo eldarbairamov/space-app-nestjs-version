@@ -19,36 +19,46 @@
    label {
       color: var(--second-font);
    }
-}
 
-.input_field {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   height: 25px;
-   width: 96%;
-   border-bottom: 1px solid var(--input-border);
-   margin: 0 auto;
-}
+   .input_field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 25px;
+      width: 96%;
+      border-bottom: 1px solid var(--input-border);
+      margin: 0 auto;
+   }
 
-.input_field[data-error='true'] {
-   border-bottom: 2px solid #df8281;
-}
+   .input_field[data-error='true'] {
+      border-bottom: 2px solid #df8281;
+   }
 
 
-.password_wrapper {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+   .password_wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-   p {
-      color: var(--second-font);
-      cursor: pointer;
-      transition: .3s;
+      p {
+         color: var(--second-font);
+         cursor: pointer;
+         transition: .3s;
 
-      &:hover {
-         color: var(--font-hover);
+         &:hover {
+            color: var(--font-hover);
 
+         }
       }
    }
 }
+
+@media screen and (max-width: 499px) {
+   .FormControl {
+      label {
+         width: 150px;
+      }
+   }
+}
+
+

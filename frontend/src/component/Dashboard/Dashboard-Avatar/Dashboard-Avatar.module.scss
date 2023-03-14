@@ -3,7 +3,7 @@
 .DashboardAvatar {
    @extend %flex-align-justify;
    transition: $transition;
-   min-height: 350px;
+   min-height: 250px;
 
    img {
       width: 400px;

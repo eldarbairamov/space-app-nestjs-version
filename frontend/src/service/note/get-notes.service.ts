@@ -18,6 +18,7 @@ export function getNotesService() {
 
    const getNotesFn = async () => {
       try {
+         dispatch(noteActions.setIsLoading(true))
          const { data } = await axiosInstance.get<INotes>(notesRequests.getNotes, {
             params: {
                searchKey: searchKey ? debounced : null,
@@ -28,7 +29,11 @@ export function getNotesService() {
          dispatch(noteActions.setNotes(data));
 
       } catch (e) {
+         dispatch(noteActions.setIsLoading(false))
          message.error(errorCatherFn(e));
+
+      } finally {
+         dispatch(noteActions.setIsLoading(false))
       }
    };
 

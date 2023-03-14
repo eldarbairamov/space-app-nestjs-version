@@ -12,7 +12,6 @@ export function Loader() {
                   animate={ "animate" }
       >
          <Spin size="large"/>
-         <p>Одну секундочку..</p>
       </motion.div>
    );
 }

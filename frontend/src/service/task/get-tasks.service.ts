@@ -14,11 +14,17 @@ export function getTasksService(planId: IPlan["id"]) {
 
    const getTasksFn = async () => {
       try {
+         dispatch(taskAction.setIsLoading(true))
+
          const { data } = await axiosInstance.post<ITask[]>(tasksRequests.getAllTasks, { planId });
          dispatch(taskAction.setTasks(data));
 
       } catch (e) {
+         dispatch(taskAction.setIsLoading(false))
          message.error(errorCatherFn(e));
+
+      } finally {
+         dispatch(taskAction.setIsLoading(false))
       }
    };
 

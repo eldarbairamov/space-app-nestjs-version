@@ -16,3 +16,9 @@
       width: 450px;
    }
 }
+
+@media screen and (max-width: 499px) {
+   .ProfileUpdateForm {
+      width: 95vw;
+   }
+}

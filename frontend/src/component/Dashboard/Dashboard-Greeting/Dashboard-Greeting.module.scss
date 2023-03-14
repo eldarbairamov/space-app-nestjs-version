@@ -16,9 +16,22 @@
 
    span:nth-child(2) {
       @extend %flex-align-justify-column;
-
       position: absolute;
       font-size: 25px;
       left: 190px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .DashboardGreeting {
+      font-size: 30px;
+
+      span {
+         font-size: 40px;
+      }
+
+      span:nth-child(2) {
+         font-size: 22px;
+      }
    }
 }

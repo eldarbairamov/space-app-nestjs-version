@@ -30,6 +30,7 @@
 @media screen and (max-height: 800px) {
    .TasksPage {
       height: 800px;
+      margin: 50px 0 50px 0;
    }
 }
 
@@ -44,5 +45,11 @@
 @media screen and (max-width: 550px) {
    .TasksPage {
       width: 450px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .TasksPage {
+      width: 95vw;
    }
 }

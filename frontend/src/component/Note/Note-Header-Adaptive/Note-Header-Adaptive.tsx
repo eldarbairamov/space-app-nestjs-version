@@ -22,8 +22,10 @@ export function NoteHeader() {
       <div className={ style.NoteHeaderAdaptive }>
 
          {/* Add note */ }
-         <img src={ isDark ? addLight : addDark } alt={ "add" }/>
-         <NoBgButton text={ "Додати" } hoverSubject={ "notes" } onClick={ addNoteFn }/>
+         <div className={style.add}>
+            <img src={ isDark ? addLight : addDark } alt={ "add" }/>
+            <NoBgButton text={ "Додати" } hoverSubject={ "notes" } onClick={ addNoteFn }/>
+         </div>
 
          {/* Search bar */ }
          <div className={ style.search_bar }>

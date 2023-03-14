@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { userActions } from "@src/redux/slice";
 import { errorCatherFn } from "@src/helper/error-catcher";
@@ -12,13 +12,19 @@ export function getUserService() {
    const dispatch = useAppDispatch();
    const { message } = App.useApp();
 
+   const [ isLoading, setIsLoading ] = useState<boolean>(true)
+
    const getUserFn = async () => {
       try {
          const { data } = await axiosInstance.get<IUser>(userRequests.getUser);
          dispatch(userActions.setInfo(data));
 
       } catch (e) {
+         setIsLoading(false)
          message.error(errorCatherFn(e));
+
+      } finally {
+         setIsLoading(false)
       }
    };
 
@@ -26,5 +32,5 @@ export function getUserService() {
       getUserFn();
    }, []);
 
-   return { getUserFn };
+   return { getUserFn, isLoading };
 }

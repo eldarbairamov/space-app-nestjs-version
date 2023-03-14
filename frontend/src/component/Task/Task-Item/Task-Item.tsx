@@ -34,6 +34,7 @@ export function TaskItem({ task }: ITaskItemProps) {
 
    return (
       <div className={ style.TaskItem }>
+
          {/* Task status */ }
          <div className={ style.task_status }>
             { task.isCompleted ?

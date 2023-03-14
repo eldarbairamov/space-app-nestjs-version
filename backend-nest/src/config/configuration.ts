@@ -1,5 +1,6 @@
 export default () => ({
    port: parseInt(process.env.PORT) || 5400,
+   clientUrl: "http://localhost:5173",
 
    user: "your.space.application@gmail.com",
    pass: "doyfhkvwcyctpdzb",

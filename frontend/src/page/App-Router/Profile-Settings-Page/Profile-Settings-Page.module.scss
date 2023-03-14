@@ -133,7 +133,15 @@
 
 @media screen and (max-height: 800px) {
    .ProfileSettingsPage {
-      margin-top: 0;
-      margin-bottom: 0;
+      margin: 50px 0 50px 0;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .ProfileSettingsPage {
+
+      .left_side {
+         width: 95vw;
+      }
    }
 }

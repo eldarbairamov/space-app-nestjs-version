@@ -40,7 +40,7 @@ span, p {
 
 html {
    cursor: default;
-   transition: background $transition, color $transition,;
+   transition: background $transition, color $transition;
 }
 
 html[data-dark="false"] {

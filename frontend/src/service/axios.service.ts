@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
-import { authRequests } from "@src/config/configuration";
+import { authRequests, configuration } from "@src/config/configuration";
 import { storageService } from "./storage.service";
 import { WelcomeRouter } from "@src/router";
 import { IOAuth } from "@src/interface";
@@ -7,7 +7,7 @@ import { pleaseWait } from "@src/helper/please-wait";
 
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 
-export const axiosInstance = axios.create({ baseURL: 'http://localhost:3010' });
+export const axiosInstance = axios.create({ baseURL: configuration.API_URL });
 
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
    const accessToken = storageService.getAccessToken();

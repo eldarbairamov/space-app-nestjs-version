@@ -26,3 +26,13 @@
       width: min-content;
    }
 }
+
+@media screen and (max-width: 499px) {
+   .PlanCount {
+      font-size: 25px;
+
+      span {
+         font-size: 17px;
+      }
+   }
+}

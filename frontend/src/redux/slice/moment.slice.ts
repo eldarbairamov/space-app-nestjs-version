@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IMoment, IMoments } from "../../interface";
+import { IMoment, IMoments } from "@src/interface";
 
 interface IMomentInitialState {
    moments: IMoment[];
@@ -9,6 +9,7 @@ interface IMomentInitialState {
    tags: (string | undefined)[];
    limit: number;
    total: number;
+   isLoading: boolean;
 }
 
 const initialState: IMomentInitialState = {
@@ -19,6 +20,7 @@ const initialState: IMomentInitialState = {
    tags: [],
    limit: 30,
    total: 30,
+   isLoading: false
 };
 
 const momentSlice = createSlice({
@@ -65,6 +67,10 @@ const momentSlice = createSlice({
 
       setPhoto: (state, { payload }: PayloadAction<{ photo: string }>) => {
          state.activeMoment!.photo = payload.photo;
+      },
+
+      setIsLoading: (state, { payload }) => {
+         state.isLoading = payload;
       },
 
       next: (state) => {

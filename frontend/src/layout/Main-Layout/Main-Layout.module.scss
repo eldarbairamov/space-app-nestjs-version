@@ -6,9 +6,6 @@
    min-height: calc(100vh - 70px);
 }
 
-@media screen and (max-height: 800px) {
-   .body {
-      margin-top: 50px;
-      margin-bottom: 50px;
-   }
+.image_loader {
+   display: none;
 }

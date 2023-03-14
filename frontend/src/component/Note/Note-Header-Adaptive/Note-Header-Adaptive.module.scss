@@ -9,12 +9,29 @@
    border-bottom: 2px solid var(--decorative-grey);
    transition: $transition;
 
-   img {
-      height: 20px;
+   .add {
+      @extend %flex-align-justify;
+      gap: 10px;
+
+      img {
+         height: 20px;
+      }
    }
 
    .search_bar {
       position: absolute;
       right: 30px;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .NoteHeaderAdaptive {
+      gap: 30px;
+
+      .search_bar {
+         position: static;
+         right: 30px;
+      }
+
    }
 }
