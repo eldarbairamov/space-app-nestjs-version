@@ -4,11 +4,10 @@ import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { UpdateNoteDto } from "./dto";
 import { AccessGuard } from "../auth/guard";
 import { INoteResponse, INotesResponse } from "./interface/note-response.interface";
-import { User } from "../common/decorator/user.decorator";
 import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, NoteResponse, NotesResponse, DeleteItemBody } from "../common/swagger";
-import { QueryDto } from "../common/dto/query.dto";
-import { DeleteItemDto } from "../common/dto/delete-item.dto";
+import { DeleteItemDto, QueryDto } from "../common/dto";
+import { User } from "../common/decorator";
 
 @ApiBearerAuth()
 @ApiTags("Notes")

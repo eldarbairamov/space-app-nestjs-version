@@ -4,7 +4,7 @@ import { FilterQuery, Model, UpdateQuery } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { Moment, MomentDocument } from "../model/moment.model";
 import { UserDocument } from "../../user/model/user.model";
-import { QueryDto } from "../../common/dto/query.dto";
+import { QueryDto } from "../../common/dto";
 
 @Injectable()
 export class MomentRepository {
@@ -32,7 +32,7 @@ export class MomentRepository {
    }
 
    async count(filter: FilterQuery<MomentDocument>, searchKey = ""): Promise<number> {
-      const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
       try {
          return this.momentModel.count(filterObj);
       } catch (e) {
@@ -44,7 +44,7 @@ export class MomentRepository {
 
    async find(filter: FilterQuery<MomentDocument>, queryDto = {} as QueryDto): Promise<MomentDocument[]> {
       const { searchKey, limit } = queryDto;
-      const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
       try {
          return this.momentModel.find(filterObj).sort({ createdAt: "desc" }).limit(limit);
       } catch (e) {

@@ -25,7 +25,7 @@ export class FileSizeError {
    @ApiProperty({ example: 413, type: Number })
    readonly statusCode: number;
 
-   @ApiProperty({ example: "File size must be less than 3 mb", type: String })
+   @ApiProperty({ example: "File size must be less than 10 mb", type: String })
    readonly message: string;
 }
 

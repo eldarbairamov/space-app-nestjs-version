@@ -914,7 +914,7 @@
                               },
                               "message": {
                                  "type": "string",
-                                 "example": "File size must be less than 3 mb"
+                                 "example": "File size must be less than 10 mb"
                               }
                            }
                         }
@@ -2478,7 +2478,7 @@
                               },
                               "message": {
                                  "type": "string",
-                                 "example": "File size must be less than 3 mb"
+                                 "example": "File size must be less than 10 mb"
                               }
                            }
                         }

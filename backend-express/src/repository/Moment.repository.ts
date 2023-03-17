@@ -15,7 +15,7 @@ export const MomentRepository = {
    },
 
    find: async (filter: FilterQuery<IMoment>, searchKey: string, limit: string | number): Promise<MomentDocument[]> => {
-      const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
       try {
          return MomentModel.find(filterObj).sort({ createdAt: "desc" }).limit(Number(limit));
       } catch (e) {
@@ -66,7 +66,7 @@ export const MomentRepository = {
    },
 
    count: async (filter: FilterQuery<IMoment>, searchKey = ""): Promise<number> => {
-      const filterObj = searchKey ? { ...filter, tags: { $in: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
       try {
          return MomentModel.count(filterObj);
       } catch (e) {

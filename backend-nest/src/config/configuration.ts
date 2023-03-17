@@ -1,5 +1,5 @@
 export default () => ({
-   PORT: process.env.PORT || 5400,
+   PORT: process.env.PORT || 3010,
 
    CLIENT_URL: "http://localhost:5173",
 

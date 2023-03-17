@@ -1,5 +1,5 @@
 export const configuration = {
-   PORT: process.env.PORT || 5400,
+   PORT: process.env.PORT || 3010,
    MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/space-app-express",
 
    CLIENT_URL: "http://localhost:5173",

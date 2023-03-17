@@ -13,7 +13,7 @@ import { horizontalPresent } from "@src/animation";
 import style from "./Note-Active-Page.module.scss";
 
 export function NoteActivePage() {
-   const { activeNote, notes } = useAppSelector(state => state.noteReducer);
+   const { activeNote, notes, font } = useAppSelector(state => state.noteReducer);
 
    const { updateNoteFn } = updateNoteService();
 
@@ -51,11 +51,19 @@ export function NoteActivePage() {
                        onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
                        onBlur={ () => updateNoteFn(activeNote) }
             />
+
+            <div className={ style.font_options }>
+               <p onClick={ () => dispatch(noteActions.changeFont('Roboto')) }> Roboto </p>
+               <p> | </p>
+               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }> Caveat </p>
+            </div>
+
          </div>
 
          {/* Text area */ }
          <div className={ style.textarea }>
             <textarea id={ "body" }
+                      data-font={ font }
                       value={ activeNote.body }
                       placeholder={ "Розкажи мені щось цікаве..." }
                       onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }

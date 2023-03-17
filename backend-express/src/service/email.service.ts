@@ -5,6 +5,7 @@ import hbs from "nodemailer-express-handlebars";
 import path from "node:path";
 import { emailTemplate } from "../email-template/email-template";
 import { EmailActionType } from "../type/email-action.type";
+import { EMAIL_TEMPLATES_PATH } from "../constant/email-templates-path.constant";
 
 export const emailSender = async (to: string, emailAction: EmailActionType, context: any) => {
    const template = emailTemplate[emailAction];
@@ -21,12 +22,12 @@ export const emailSender = async (to: string, emailAction: EmailActionType, cont
    transporter.use("compile", hbs({
       viewEngine: {
          defaultLayout: "main",
-         layoutsDir: path.join(__dirname, "..", "email-template", "layout"),
-         partialsDir: path.join(__dirname, "..", "email-template", "partial"),
+         layoutsDir: path.join(EMAIL_TEMPLATES_PATH, "layout"),
+         partialsDir: path.join(EMAIL_TEMPLATES_PATH, "partial"),
          extname: ".hbs",
       },
       extName: ".hbs",
-      viewPath: path.join(__dirname, "..", "email-template", "view"),
+      viewPath: path.join(EMAIL_TEMPLATES_PATH, "view"),
    }));
 
    const mail = {

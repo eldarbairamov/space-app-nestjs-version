@@ -8,7 +8,7 @@ import process from "process";
 @Injectable()
 export class SharpPipe implements PipeTransform<Express.Multer.File> {
 
-   async transform(image: Express.Multer.File, metadata): Promise<string> {
+   async transform(image: Express.Multer.File): Promise<string> {
       const ext = path.extname(image.originalname);
       const fileName = Date.now() + ext;
       const uploadPath = path.join(process.cwd(), "client");

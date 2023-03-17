@@ -11,6 +11,7 @@ interface INoteInitialState {
    total: number;
    count: number;
    isLoading: boolean;
+   font: 'Roboto' | "Caveat";
 }
 
 const initialState: INoteInitialState = {
@@ -23,6 +24,7 @@ const initialState: INoteInitialState = {
    total: 30,
    count: 0,
    isLoading: false,
+   font: 'Roboto'
 };
 
 const noteSlice = createSlice({
@@ -83,6 +85,10 @@ const noteSlice = createSlice({
             state.total = state.total + state.limit;
          }
       },
+
+      changeFont: (state, { payload }: PayloadAction<"Roboto" | "Caveat">) => {
+         state.font = payload
+      }
 
    },
 

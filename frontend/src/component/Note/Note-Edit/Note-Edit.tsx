@@ -10,7 +10,7 @@ import { TypedOnChange } from "@src/interface/common.interface";
 import style from "./Note-Edit.module.scss";
 
 export const NoteEdit: FC = () => {
-   const { activeNote, notes } = useAppSelector(state => state.noteReducer);
+   const { activeNote, notes, font } = useAppSelector(state => state.noteReducer);
 
    const { updateNoteFn } = updateNoteService();
 
@@ -49,11 +49,19 @@ export const NoteEdit: FC = () => {
                        onChange={ (event: TypedOnChange) => handleInputs("title", event.target.value) }
                        onBlur={ () => updateNoteFn(activeNote) }
             />
+
+            <div className={ style.font_options }>
+               <p onClick={ () => dispatch(noteActions.changeFont('Roboto')) }> Roboto </p>
+               <p> | </p>
+               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }> Caveat </p>
+            </div>
+
          </div>
 
          {/* Text area */ }
          <div className={ style.textarea }>
                   <textarea id={ "body" }
+                            data-font={font}
                             value={ activeNote.body ? activeNote.body : "" }
                             placeholder={ "Розкажи мені щось цікаве..." }
                             onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", event.target.value) }
