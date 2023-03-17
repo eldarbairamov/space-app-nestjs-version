@@ -6,7 +6,7 @@ import { Tooltip } from "antd";
 import { useAppSelector } from "@src/hook";
 
 import style from "./Jokes.module.scss";
-import laugh from "@src/asset/laugh.png";
+import laugh from "/laugh.png";
 
 export function Jokes() {
    const [ isOpen, setIsOpen ] = useState<boolean>(false);
@@ -14,9 +14,7 @@ export function Jokes() {
 
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const toggleModal = () => {
-      setIsOpen(!isOpen);
-   };
+   const toggleModal = () => setIsOpen(!isOpen);
 
    const generateJoke = async () => {
       const randomIndex = Math.floor(Math.random() * jokes.length);
@@ -40,6 +38,7 @@ export function Jokes() {
 
          <Modal isOpen={ isOpen }
                 onClose={ toggleModal }
+                isBg={true}
          >
             <>
                <img className={ style.bigger }

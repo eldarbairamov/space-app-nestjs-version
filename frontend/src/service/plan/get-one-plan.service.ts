@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { IPlan } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { plansRequests } from "@src/config/configuration";
 import { useAppDispatch } from "@src/hook";
 import { planAction } from "@src/redux/slice";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function getOnePlanService(planId: IPlan["id"]) {
    const [ planTitle, setPlanTitle ] = useState<string>("");

@@ -1,14 +1,15 @@
 export default () => ({
-   port: parseInt(process.env.PORT) || 5400,
-   clientUrl: "http://localhost:5173",
+   PORT: process.env.PORT || 5400,
 
-   user: "your.space.application@gmail.com",
-   pass: "doyfhkvwcyctpdzb",
+   CLIENT_URL: "http://localhost:5173",
 
-   mongodb_uri: process.env.MONGO_URI || "mongodb://localhost:27017/space-app-nestjs",
+   EMAIL_SERVICE_USER: "your.space.application@gmail.com",
+   EMAIL_SERVICE_PASS: "doyfhkvwcyctpdzb",
 
-   accessToken: process.env.SECRET_ACCESS_TOKEN_KEY || "secret access token key",
-   refreshToken: process.env.SECRET_REFRESH_TOKEN_KEY || "secret access refresh key",
-   forgotPass: process.env.SECRET_FORGOT_PASS_KEY || "secret forgot pass key",
-   changeEmail: process.env.SECRET_CHANGE_EMAIL_KEY || "secret change email key",
+   MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/space-app-nestjs",
+
+   SECRET_ACCESS_TOKEN_KEY: process.env.SECRET_ACCESS_TOKEN_KEY || "secret access token key",
+   SECRET_REFRESH_TOKEN_KEY: process.env.SECRET_REFRESH_TOKEN_KEY || "secret access refresh key",
+   SECRET_FORGOT_PASS_KEY: process.env.SECRET_FORGOT_PASS_KEY || "secret forgot pass key",
+   SECRET_CHANGE_EMAIL_KEY: process.env.SECRET_CHANGE_EMAIL_KEY || "secret change email key",
 })

@@ -24,6 +24,7 @@
       height: calc(100% - 60px);
 
       textarea {
+         padding: 0 15px 0 0;
          background: transparent;
          width: 95%;
          height: 95%;
@@ -31,6 +32,7 @@
          resize: none;
          outline: none;
          color: var(--main-font);
+         letter-spacing: 0;
       }
    }
 

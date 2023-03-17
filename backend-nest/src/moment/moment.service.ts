@@ -26,8 +26,8 @@ export class MomentService {
       ]);
 
       // Defined unique tags
-      const tags = allMoments?.map(moment => moment.tags.map(tag => tag));
-      const uniqueTags = Array.from(new Set(tags?.flat()));
+      const tags = allMoments.map(moment => moment.tag);
+      const uniqueTags = Array.from(new Set(tags.flat()));
 
       // Return presented data to client
       const presentedMoments = this.momentPresenter.array(moments);

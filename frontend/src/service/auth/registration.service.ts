@@ -1,8 +1,8 @@
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { IRegistration } from "@src/interface";
 import { authRequests } from "@src/config/configuration";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function registrationService(next: () => any) {
    const { message } = App.useApp();
@@ -12,6 +12,7 @@ export function registrationService(next: () => any) {
          message.loading("Лоудінг..");
          await axiosInstance.post(authRequests.registration, body);
          message.destroy()
+
          next();
 
       } catch (e) {

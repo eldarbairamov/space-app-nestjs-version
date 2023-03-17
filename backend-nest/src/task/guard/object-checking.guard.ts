@@ -1,4 +1,4 @@
-import { BadRequestException, CanActivate, ExecutionContext, Injectable, NotFoundException } from "@nestjs/common";
+import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Types } from "mongoose";
 import { TaskRepository } from "../repository/task.repository";
 
@@ -12,10 +12,10 @@ export class ObjectCheckingGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const taskId = request.params.taskId;
 
-      if (!Types.ObjectId.isValid(taskId)) throw new BadRequestException({ message: "Object ID is not valid" });
+      if (!Types.ObjectId.isValid(taskId)) throw new HttpException("Object ID is not valid", HttpStatus.BAD_REQUEST);
 
       const isTaskExists = await this.taskRepository.findById(taskId);
-      if (!isTaskExists) throw new NotFoundException({ message: "Object does not exist" });
+      if (!isTaskExists) throw new HttpException("Object does not exist", HttpStatus.NOT_FOUND);
 
       return true;
    }

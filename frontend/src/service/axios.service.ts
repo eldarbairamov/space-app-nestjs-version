@@ -3,7 +3,7 @@ import { authRequests, configuration } from "@src/config/configuration";
 import { storageService } from "./storage.service";
 import { WelcomeRouter } from "@src/router";
 import { IOAuth } from "@src/interface";
-import { pleaseWait } from "@src/helper/please-wait";
+import { pleaseWait } from "@src/helper";
 
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 
@@ -44,10 +44,6 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
          }
 
          return axiosInstance(originalRequest);
-      }
-
-      if (axiosError.message === "Network Error") {
-         throw new Error(`Непередбачена помилка: ${ axiosError.message }`);
       }
 
       return Promise.reject(e);

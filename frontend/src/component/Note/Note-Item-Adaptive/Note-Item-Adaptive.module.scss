@@ -31,12 +31,14 @@
    .note_body {
       font-size: 14px;
       text-align: left;
-      color: var(--second-font);
-
       width: 80%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+
+      p {
+         color: var(--second-font);
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+      }
    }
 
    .note_date {

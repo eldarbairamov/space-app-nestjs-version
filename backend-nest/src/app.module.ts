@@ -12,7 +12,7 @@ import configuration from "./config/configuration";
 
 @Module({
    imports: [
-      MongooseModule.forRoot(configuration().mongodb_uri),
+      MongooseModule.forRoot(configuration().MONGO_URI),
       ConfigModule.forRoot({
          load: [ configuration ],
          envFilePath: ".env",

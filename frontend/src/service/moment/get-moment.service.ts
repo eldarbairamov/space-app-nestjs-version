@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { IMoment } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { momentsRequests } from "@src/config/configuration";
 import { momentActions } from "@src/redux/slice";
 import { App } from "antd";
 import { useAppDispatch } from "@src/hook";
+import { errorCatherFn } from "@src/helper";
 
 export function getMomentService(momentId: IMoment["id"]) {
    const [ prevState, setPrevState ] = useState<IMoment>();
@@ -17,7 +17,6 @@ export function getMomentService(momentId: IMoment["id"]) {
    const getMomentFn = async () => {
       try {
          dispatch(momentActions.setIsLoading(true))
-
          const { data } = await axiosInstance.get<IMoment>(momentsRequests.getOneMoment + momentId);
          dispatch(momentActions.setActiveMoment(data));
          setPrevState(data);

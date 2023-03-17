@@ -1,7 +1,7 @@
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { authRequests } from "@src/config/configuration";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function forgotPasswordService(next: () => any) {
    const { message } = App.useApp();
@@ -11,6 +11,7 @@ export function forgotPasswordService(next: () => any) {
          message.loading("Лоудінг..");
          await axiosInstance.post<{ message: string }>(authRequests.forgotPassword, { email });
          message.destroy();
+
          next();
 
       } catch (e) {

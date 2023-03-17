@@ -40,6 +40,16 @@ export class TaskRepository {
       }
    }
 
+   async deleteMany(filter: FilterQuery<Task>) {
+      try {
+         return this.taskModel.deleteMany(filter)
+      } catch (e) {
+         const error = e as Error;
+         console.log(error.message);
+         databaseException();
+      }
+   }
+
    async findByIdAndUpdate(taskId: TaskDocument["id"], update: UpdateQuery<Task>): Promise<TaskDocument> {
       try {
          return this.taskModel.findByIdAndUpdate(taskId, update, { new: true });

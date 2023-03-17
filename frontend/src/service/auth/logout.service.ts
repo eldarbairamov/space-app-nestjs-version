@@ -1,9 +1,8 @@
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { storageService } from "@src/service";
 import { authRequests } from "@src/config/configuration";
 import { App } from "antd";
-import { pleaseWait } from "@src/helper/please-wait";
+import { errorCatherFn, pleaseWait } from "@src/helper";
 
 export function logoutService(next: () => any) {
    const { message } = App.useApp();
@@ -15,6 +14,7 @@ export function logoutService(next: () => any) {
          storageService.deleteTokens();
          await pleaseWait(1000)
          message.destroy();
+
          next();
 
       } catch (e) {

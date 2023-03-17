@@ -20,8 +20,8 @@ export class EmailService {
          service: "gmail",
          from: "no reply",
          auth: {
-            user: this.configService.get("user"),
-            pass: this.configService.get("pass"),
+            user: this.configService.get("EMAIL_SERVICE_USER"),
+            pass: this.configService.get("EMAIL_SERVICE_PASS"),
          },
       });
 

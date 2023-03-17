@@ -1,15 +1,14 @@
 import { forwardRef } from "react";
 
 import { IMoment } from "@src/interface";
-import { v4 } from "uuid";
 import { AppRouter } from "@src/router";
 import dateHelper from "moment/moment";
 import { useAppSelector } from "@src/hook";
 import { configuration } from "@src/config/configuration";
 
 import style from "./Moment-Item.module.scss";
-import noImageLight from "@src/asset/no-image-light.svg";
-import noImageDark from "@src/asset/no-image-dark.svg";
+import noImageLight from "/no-image-light.svg";
+import noImageDark from "/no-image-dark.svg";
 
 interface IMomentItem {
    moment: IMoment;
@@ -43,7 +42,7 @@ export const MomentItem = forwardRef(({ moment }: IMomentItem, ref: any) => {
             />
          }
 
-         {/* Date nad location wrapper */ }
+         {/* Date and location wrapper */ }
          <div className={ style.date_and_location_wrapper }>
             { moment.location && <p className={ style.location }> { moment.location } </p> }
             { moment.date && <p className={ style.date }> { dateHelper(moment.date).format("DD-MM-YYYY") } </p> }
@@ -51,7 +50,7 @@ export const MomentItem = forwardRef(({ moment }: IMomentItem, ref: any) => {
 
          {/* Tags wrapper */ }
          <div className={ style.tags_wrapper }>
-            { moment.tags.map(tag => <p key={ v4() } className={ style.tag }> { tag } </p>) }
+            <p className={ style.tag }> { moment.tag } </p>
          </div>
 
       </div>

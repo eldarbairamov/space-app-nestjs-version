@@ -1,10 +1,10 @@
 import { IUser } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { useAppDispatch } from "@src/hook";
 import { axiosInstance } from "@src/service";
 import { userRequests } from "@src/config/configuration";
 import { userActions } from "@src/redux/slice";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function deletePhotoService() {
    const dispatch = useAppDispatch();

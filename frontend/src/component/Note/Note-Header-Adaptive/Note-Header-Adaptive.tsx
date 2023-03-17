@@ -5,10 +5,10 @@ import { TypedOnChange } from "@src/interface/common.interface";
 import { noteActions } from "@src/redux/slice";
 
 import style from "./Note-Header-Adaptive.module.scss";
-import addLight from "@src/asset/add-light.svg";
-import addDark from "@src/asset/add-dark.svg";
+import addLight from "/add-light.svg";
+import addDark from "/add-dark.svg";
 
-export function NoteHeader() {
+export function NoteHeaderAdaptive() {
    const { searchKey } = useAppSelector(state => state.noteReducer);
    const { isDark } = useAppSelector(state => state.appReducer);
 

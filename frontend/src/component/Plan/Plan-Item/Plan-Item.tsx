@@ -9,7 +9,7 @@ import { deletePlanService } from "@src/service";
 import { useAppSelector } from "@src/hook";
 
 import style from "./Plan-Item.module.scss";
-import brain from "@src/asset/brain.png";
+import brain from "/brain.png";
 
 interface IPlanItemProps {
    plan: IPlan;

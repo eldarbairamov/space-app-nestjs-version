@@ -5,12 +5,12 @@ import { noteActions } from "@src/redux/slice";
 import { INote } from "@src/interface";
 import { NoBgInput } from "@src/component";
 import { updateNoteService } from "@src/service";
+import { TypedOnChange } from "@src/interface/common.interface";
 
 import style from "./Note-Edit.module.scss";
-import { Loader } from "@src/component/UI/Loader/Loader";
 
 export const NoteEdit: FC = () => {
-   const { activeNote, notes, isLoading } = useAppSelector(state => state.noteReducer);
+   const { activeNote, notes } = useAppSelector(state => state.noteReducer);
 
    const { updateNoteFn } = updateNoteService();
 
@@ -40,30 +40,26 @@ export const NoteEdit: FC = () => {
    return (
       <div className={ style.NoteEdit }>
 
-         { isLoading ? <Loader/> :
+         {/* Header */ }
+         <div className={ style.header }>
+            <NoBgInput type={ "text" }
+                       style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
+                       id={ "title" }
+                       value={ activeNote.title }
+                       onChange={ (event: TypedOnChange) => handleInputs("title", event.target.value) }
+                       onBlur={ () => updateNoteFn(activeNote) }
+            />
+         </div>
 
-            <>
-               {/* Header */ }
-               <div className={ style.header }>
-                  <NoBgInput type={ "text" }
-                             style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
-                             id={ "title" }
-                             value={ activeNote.title }
-                             onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
-                             onBlur={ () => updateNoteFn(activeNote) }
-                  />
-               </div>
-
-               {/* Text area */ }
-               <div className={ style.textarea }>
+         {/* Text area */ }
+         <div className={ style.textarea }>
                   <textarea id={ "body" }
                             value={ activeNote.body ? activeNote.body : "" }
                             placeholder={ "Розкажи мені щось цікаве..." }
-                            onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
+                            onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", event.target.value) }
                             onBlur={ () => updateNoteFn(activeNote) }
                   />
-               </div>
-            </> }
+         </div>
 
       </div>
    );

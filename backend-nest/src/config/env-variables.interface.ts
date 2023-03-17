@@ -1,14 +1,14 @@
 export interface IEnvironmentVariables {
-   clientUrl: string;
-   port: number;
+   CLIENT_URL: string;
+   PORT: number;
 
-   user: string;
-   pass: string;
+   EMAIL_SERVICE_USER: string;
+   EMAIL_SERVICE_PASS: string;
 
-   mongodb_uri: string;
+   MONGO_URI: string;
 
-   accessToken: string;
-   refreshToken: string;
-   forgotPass: string;
-   changeEmail: string;
+   SECRET_ACCESS_TOKEN_KEY: string;
+   SECRET_REFRESH_TOKEN_KEY: string;
+   SECRET_FORGOT_PASS_KEY: string;
+   SECRET_CHANGE_EMAIL_KEY: string;
 }

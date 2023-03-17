@@ -1,4 +1,4 @@
-import { BadRequestException, CanActivate, ExecutionContext, Injectable, NotFoundException } from "@nestjs/common";
+import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Types } from "mongoose";
 import { MomentRepository } from "../repository/moment.repository";
 
@@ -12,10 +12,10 @@ export class ObjectCheckingGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const momentId = request.params.momentId;
 
-      if (!Types.ObjectId.isValid(momentId)) throw new BadRequestException({ message: "Object ID is not valid" });
+      if (!Types.ObjectId.isValid(momentId)) throw new HttpException("Object ID is not valid", HttpStatus.BAD_REQUEST);
 
       const isObjectExists = await this.momentRepository.findById(momentId);
-      if (!isObjectExists) throw new NotFoundException({ message: "Object does not exist" });
+      if (!isObjectExists) throw new HttpException("Object does not exist", HttpStatus.NOT_FOUND);
 
       return true;
    }

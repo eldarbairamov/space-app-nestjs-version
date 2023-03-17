@@ -8,8 +8,8 @@ import { taskAction } from "@src/redux/slice";
 import { TypedOnClick } from "@src/interface/common.interface";
 
 import style from "./Task-Item.module.scss";
-import complete from "@src/asset/complete.svg";
-import incomplete from "@src/asset/incomplete.svg";
+import complete from "/complete.svg";
+import incomplete from "/incomplete.svg";
 
 interface ITaskItemProps {
    task: ITask;

@@ -21,13 +21,14 @@ import { TokenService } from "../common/token.service";
 
 @Module({
 
-   imports: [ MongooseModule.forFeature([
-      { name: User.name, schema: UserSchema },
-      { name: ActionToken.name, schema: ActionTokenSchema },
-      { name: Moment.name, schema: MomentSchema },
-      { name: Plan.name, schema: PlanSchema },
-      { name: Note.name, schema: NoteSchema },
-   ]),
+   imports: [
+      MongooseModule.forFeature([
+         { name: User.name, schema: UserSchema },
+         { name: ActionToken.name, schema: ActionTokenSchema },
+         { name: Moment.name, schema: MomentSchema },
+         { name: Plan.name, schema: PlanSchema },
+         { name: Note.name, schema: NoteSchema },
+      ]),
       JwtModule.register({}),
       MulterModule.register(fileStorage),
    ],

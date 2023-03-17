@@ -22,8 +22,8 @@ export class Moment {
    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
    ownerId: User;
 
-   @Prop({ default: [ "тег" ] })
-   tags: string[];
+   @Prop({ default: "тег" })
+   tag: string;
 
 }
 

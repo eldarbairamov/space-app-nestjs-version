@@ -37,9 +37,9 @@ export class UserService {
       const user = await this.userRepository.findById(userId);
 
       const [ notesCount, plansCount, momentsCount ] = await Promise.all([
-         this.noteRepository.count(userId),
-         this.planRepository.count(userId),
-         this.momentRepository.count(userId),
+         this.noteRepository.count({ ownerId: userId }),
+         this.planRepository.count({ ownerId: userId }),
+         this.momentRepository.count({ ownerId: userId }),
       ]);
 
       // Return presented date to client
@@ -64,8 +64,8 @@ export class UserService {
       const confirmationToken = this.tokenService.generate({
          userId: user.id,
          email
-      }, this.configService.get("changeEmail"));
-      const confirmationLink = `${ this.configService.get('clientUrl') }/email_confirmation/new?token=${ confirmationToken }`;
+      }, this.configService.get("SECRET_CHANGE_EMAIL_KEY"));
+      const confirmationLink = `${ this.configService.get('CLIENT_URL') }/email_confirmation/new?token=${ confirmationToken }`;
 
       // Save action token to DB
       await this.actionTokenRepository.create({
@@ -83,7 +83,7 @@ export class UserService {
       const {
          userId,
          email,
-      } = this.tokenService.tokenVerify(token, this.configService.get("changeEmail")) as { userId: string, email: string };
+      } = this.tokenService.tokenVerify(token, this.configService.get("SECRET_CHANGE_EMAIL_KEY")) as { userId: string, email: string };
       if (!userId && !email) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
       // Delete action token

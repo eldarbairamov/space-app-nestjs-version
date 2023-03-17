@@ -1,8 +1,8 @@
 import { notesRequests } from "@src/config/configuration";
 import { INote } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function updateNoteService() {
    const { message } = App.useApp();

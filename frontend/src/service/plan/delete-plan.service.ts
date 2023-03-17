@@ -1,10 +1,10 @@
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { IPlan, IPlans } from "@src/interface";
 import { plansRequests } from "@src/config/configuration";
 import { planAction } from "@src/redux/slice";
 import { App } from "antd";
 import { useAppDispatch } from "@src/hook";
+import { errorCatherFn } from "@src/helper";
 
 export function deletePlanService() {
    const dispatch = useAppDispatch();
@@ -12,6 +12,7 @@ export function deletePlanService() {
 
    const deletePlanFn = async (targetId: IPlan["id"], total: number, searchKey: string) => {
       try {
+         message.loading("Лоудінг..");
          const { data } = await axiosInstance.post<IPlans>(plansRequests.deletePlan + targetId, {
             params: {
                searchKey,
@@ -20,6 +21,7 @@ export function deletePlanService() {
          });
          dispatch(planAction.deletePlan(targetId));
          dispatch(planAction.setPlans(data));
+         message.destroy();
 
       } catch (e) {
          message.error(errorCatherFn(e));

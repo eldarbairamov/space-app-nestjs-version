@@ -9,6 +9,8 @@ export * from "./Note/Note-Count/Note-Count";
 export * from "./Note/Note-Item/Note-Item";
 export * from "./Note/Note-List/Note-List";
 export * from "./Note/Note-Sidebar/Note-Sidebar";
+export * from './Note/Note-Header-Adaptive/Note-Header-Adaptive'
+export * from './Note/Note-List-Adaptive/Note-List-Adaptive'
 
 export * from "./Moment/Moment-Count/Moment-Count";
 export * from "./Moment/Moment-Item/Moment-Item";
@@ -44,6 +46,8 @@ export * from "./UI/No-Bg-Input/No-Bg-Input";
 export * from "./UI/No-Bg-Button/No-Bg-Button";
 export * from "./UI/Button/Button";
 export * from "./UI/Input/Input";
+export * from './UI/Modal/Modal'
+export * from './UI/Loader/Loader'
 
 export * from "./Message/Error-Message/Error-Message";
 export * from "./Message/Unauthorized-Message/Unauthorized-Message";

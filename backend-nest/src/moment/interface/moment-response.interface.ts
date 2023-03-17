@@ -4,7 +4,7 @@ export interface IMomentResponse {
    readonly date: number;
    readonly photo: string,
    readonly location: string;
-   readonly tags: string[];
+   readonly tag: string;
    readonly createdAt: number;
 }
 

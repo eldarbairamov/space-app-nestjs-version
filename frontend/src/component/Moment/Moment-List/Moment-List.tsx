@@ -1,12 +1,11 @@
-import { useCallback, useRef } from "react";
-
 import { MomentItem } from "@src/component";
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { momentActions } from "@src/redux/slice";
+import { useObserver } from "@src/hook/use-observer";
 
 import style from "./Moment-List.module.scss";
-import emptyDark from "@src/asset/empty-dark.svg";
-import emptyLight from "@src/asset/empty-light.svg";
+import emptyDark from "/empty-dark.svg";
+import emptyLight from "/empty-light.svg";
 
 export function MomentList() {
    const { moments } = useAppSelector(state => state.momentReducer);
@@ -14,21 +13,12 @@ export function MomentList() {
 
    const dispatch = useAppDispatch();
 
-   const observer = useRef<any>();
-   const lastElemRef = useCallback((node: any) => {
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(([ entry ]) => {
-         if (entry.isIntersecting) {
-            dispatch(momentActions.next());
-         }
-      });
-      if (node) observer.current.observe(node);
-   }, []);
+   const { lastElemRef } = useObserver(() => dispatch(momentActions.next()))
 
    return (
       <>
-         { moments.length
-            ?
+         { moments.length !== 0 &&
+
             <div className={ style.MomentList }>
                { moments && moments.map((moment, index) => {
                   if (moments.length === index + 1) {
@@ -38,13 +28,13 @@ export function MomentList() {
                   }
                })
                }
-            </div>
-            :
+            </div> }
+
+         { !moments.length &&
             <div className={ style.no_moments_wrapper }>
                <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "80px" } }/>
                <p> Пусто.. </p>
-            </div>
-         }
+            </div> }
       </>
    );
 }

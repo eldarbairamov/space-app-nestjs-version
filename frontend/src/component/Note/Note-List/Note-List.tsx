@@ -1,13 +1,14 @@
-import { FC, useCallback, useRef } from "react";
+import { FC } from "react";
 
 import { NoteItem } from "@src/component";
 import { v4 as uuid } from "uuid";
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { noteActions } from "@src/redux/slice";
+import { useObserver } from "@src/hook/use-observer";
 
 import style from "./Note-List.module.scss";
-import emptyDark from "@src/asset/empty-dark.svg";
-import emptyLight from "@src/asset/empty-light.svg";
+import emptyDark from "/empty-dark.svg";
+import emptyLight from "/empty-light.svg";
 
 export const NoteList: FC = () => {
    const { notes } = useAppSelector(state => state.noteReducer);
@@ -15,21 +16,11 @@ export const NoteList: FC = () => {
 
    const dispatch = useAppDispatch();
 
-   const observer = useRef<any>();
-   const lastElemRef = useCallback((node: any) => {
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(([ entry ]) => {
-         if (entry.isIntersecting) {
-            dispatch(noteActions.next());
-         }
-      });
-      if (node) observer.current.observe(node);
-   }, []);
+   const { lastElemRef } = useObserver(() => dispatch(noteActions.next()))
 
    return (
       <>
-         { notes.length
-            ?
+         { notes.length !== 0 &&
             <div className={ style.NoteList }>
                { notes && notes.map((item, index) => {
                   if (notes.length === index + 1) {
@@ -39,12 +30,14 @@ export const NoteList: FC = () => {
                   }
                })
                }
-            </div>
-            :
+            </div> }
+
+         { !notes.length &&
             <div className={ style.no_notes_wrapper }>
                <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "50px" } }/>
             </div>
          }
+
       </>
    );
 };

@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { notesRequests } from "@src/config/configuration";
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { INotes } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { noteActions } from "@src/redux/slice";
 import { useDebounce } from "@src/hook";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function getNotesService() {
    const { searchKey, total } = useAppSelector(state => state.noteReducer);

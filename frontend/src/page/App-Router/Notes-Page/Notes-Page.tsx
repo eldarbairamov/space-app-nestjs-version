@@ -1,24 +1,27 @@
-import { NoteEdit, NoteSidebar } from "@src/component";
+import { useState } from "react";
+
+import { NoteEdit, NoteSidebar, Modal, Loader, NoteHeaderAdaptive, NoteListAdaptive } from "@src/component";
 import { useAppSelector, useMatchMedia } from "@src/hook";
-import { NoteHeader } from "@src/component/Note/Note-Header-Adaptive/Note-Header-Adaptive";
-import { NoteListAdaptive } from "@src/component/Note/Note-List-Adaptive/Note-List-Adaptive";
 import { getNotesService } from "@src/service";
 import { horizontalPresent } from "@src/animation";
 import { motion } from "framer-motion";
-import { Loader } from "@src/component/UI/Loader/Loader";
 
 import style from "./Notes-Page.module.scss";
 
 export function NotesPage() {
    const { isWidth1000 } = useMatchMedia();
+
    const { isLoading } = useAppSelector(state => state.noteReducer);
+
+   const [ isOpen, setIsOpen ] = useState<boolean>(false);
+
+   const toggleModal = () => !isLoading && setIsOpen(!isOpen)
 
    getNotesService();
 
    return (
       <>
-         { !isWidth1000
-            ?
+         { !isWidth1000 &&
             <motion.div className={ style.NotesPage }
                         variants={ horizontalPresent }
                         initial={ "initial" }
@@ -31,24 +34,27 @@ export function NotesPage() {
                <div className={ style.right_side }>
                   <NoteEdit/>
                </div>
-            </motion.div>
-            :
+            </motion.div> }
+
+         { isWidth1000 &&
             <motion.div className={ style.NotesPageAdaptive }
                         variants={ horizontalPresent }
                         initial={ "initial" }
                         animate={ "animate" }
             >
-               { isLoading ? <Loader/> :
-                  <>
-                     <NoteHeader/>
 
-                     <div className={ style.note_list_wrapper }>
-                        <NoteListAdaptive/>
-                     </div>
-                  </>
-               }
+               <NoteHeaderAdaptive/>
+
+               <div className={ style.note_list_wrapper }>
+                  <NoteListAdaptive/>
+               </div>
+
             </motion.div>
          }
+
+         <Modal isOpen={ isLoading } onClose={ toggleModal } isBg={ false }>
+            <Loader/>
+         </Modal>
 
       </>
    );

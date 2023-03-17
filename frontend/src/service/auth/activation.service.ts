@@ -1,8 +1,7 @@
-import { pleaseWait } from "@src/helper/please-wait";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { authRequests } from "@src/config/configuration";
 import { App } from "antd";
+import { errorCatherFn, pleaseWait } from "@src/helper";
 
 export function activationService(next: () => any) {
    const { message } = App.useApp();
@@ -15,6 +14,7 @@ export function activationService(next: () => any) {
          message.success("Ваш аккаунт активовано");
          await pleaseWait(2000);
          message.destroy();
+
          next();
 
       } catch (e) {

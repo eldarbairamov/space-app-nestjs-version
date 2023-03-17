@@ -10,7 +10,7 @@ import { horizontalPresent } from "@src/animation";
 import { configuration } from "@src/config/configuration";
 
 import style from "./Profile-Settings-Page.module.scss";
-import user from "@src/asset/user.png";
+import user from "/user.png";
 
 export function ProfileSettingsPage() {
    const { username, name, surname, avatar } = useAppSelector(state => state.userReducer);

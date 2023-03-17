@@ -7,6 +7,7 @@ import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interfa
 import { UserDocument } from "../user/model/user.model";
 import { PlanDocument } from "./model/plan.model";
 import { QueryDto } from "../common/dto/query.dto";
+import { TaskRepository } from "../task/repository/task.repository";
 
 @Injectable()
 export class PlanService {
@@ -14,7 +15,8 @@ export class PlanService {
    constructor(
       private planPresenter: PlanPresenter,
       private userRepository: UserRepository,
-      private planRepository: PlanRepository) {
+      private planRepository: PlanRepository,
+      private taskRepository: TaskRepository) {
    }
 
    async addPlan(userId: UserDocument["id"]): Promise<IPlanResponse> {
@@ -66,6 +68,7 @@ export class PlanService {
       const [ plans, count ] = await Promise.all([
          this.planRepository.find({ ownerId: userId }, { limit, searchKey }),
          this.planRepository.count({ ownerId: userId }, searchKey),
+         this.taskRepository.deleteMany({ planId }),
          this.userRepository.findByIdAndUpdate(userId, { $pull: { plansIds: planId } }),
       ]);
 

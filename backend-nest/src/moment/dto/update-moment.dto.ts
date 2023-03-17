@@ -1,4 +1,4 @@
-import { IsArray, IsNumber, IsOptional, IsString } from "class-validator";
+import {  IsNumber, IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateMomentDto {
@@ -17,9 +17,9 @@ export class UpdateMomentDto {
    @IsOptional()
    readonly date: number;
 
-   @ApiProperty({ example: [ "tag" ], required: false, type: [ String ] })
-   @IsArray()
+   @ApiProperty({ example: "tag", required: false, type: String })
+   @IsString()
    @IsOptional()
-   readonly tags: string[];
+   readonly tag: string;
 
 }

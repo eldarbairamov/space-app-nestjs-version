@@ -20,8 +20,8 @@ export class MomentResponse implements IMomentResponse {
    @ApiProperty({ example: 1677517089217, type: Number })
    readonly createdAt: number;
 
-   @ApiProperty({ example: [ "tag" ], type: [ String ] })
-   readonly tags: string[];
+   @ApiProperty({ example: "tag", type: String })
+   readonly tag: string;
 }
 
 export class MomentsResponse implements IMomentsResponse {
@@ -45,6 +45,6 @@ export class UpdateMomentBody {
    @ApiProperty({ example: "Location", required: false, type: String })
    readonly location: string;
 
-   @ApiProperty({ example: [ "tag" ], required: false, type: [ String ] })
-   readonly tags: string[];
+   @ApiProperty({ example: "tag", required: false, type: String })
+   readonly tag: string;
 }

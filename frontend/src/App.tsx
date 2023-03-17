@@ -5,8 +5,8 @@ import { ConfigProvider } from "antd";
 import { useTheme } from "@src/hook/use-theme.hook";
 import { App as AntdContext } from "antd";
 
-import bg from "@src/asset/bg2.jpg";
-import bgDark from "@src/asset/bg2-dark.jpeg";
+import bg from "/background-light.jpeg";
+import bgDark from "/background-dark.jpeg";
 
 export function App() {
    const isLogin = storageService.getAccessToken();

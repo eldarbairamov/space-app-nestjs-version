@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
 import { IPlans } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { plansRequests } from "@src/config/configuration";
 import { useDebounce } from "@src/hook";
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { planAction } from "@src/redux/slice";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function getPlansService() {
    const { searchKey, total } = useAppSelector(state => state.planReducer);
@@ -31,6 +31,7 @@ export function getPlansService() {
       } catch (e) {
          dispatch(planAction.setIsLoading(false))
          message.error(errorCatherFn(e));
+
       } finally {
          dispatch(planAction.setIsLoading(false))
       }

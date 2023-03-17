@@ -6,8 +6,8 @@ import { TypedSetState } from "@src/interface/common.interface";
 import { useAppSelector } from "@src/hook";
 
 import style from "./Moment-Header.module.scss";
-import addLight from "@src/asset/add-light.svg";
-import addDark from "@src/asset/add-dark.svg";
+import addLight from "/add-light.svg";
+import addDark from "/add-dark.svg";
 
 interface IMomentHeaderProps {
    addMomentFn: () => Promise<void>;

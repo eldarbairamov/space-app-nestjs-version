@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { userActions } from "@src/redux/slice";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { userRequests } from "@src/config/configuration";
 import { useAppDispatch } from "@src/hook";
 import { axiosInstance } from "@src/service";
 import { IUser } from "@src/interface";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function getUserService() {
    const dispatch = useAppDispatch();

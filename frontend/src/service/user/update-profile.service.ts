@@ -1,10 +1,10 @@
 import { userActions } from "@src/redux/slice";
 import { useAppDispatch } from "@src/hook";
 import { IUpdateProfile, IUser } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { userRequests } from "@src/config/configuration";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function updateProfileService() {
    const dispatch = useAppDispatch();

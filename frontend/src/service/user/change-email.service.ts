@@ -1,7 +1,7 @@
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { userRequests } from "@src/config/configuration";
 import { axiosInstance } from "@src/service";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function changeEmailService(next: () => any) {
    const { message } = App.useApp();

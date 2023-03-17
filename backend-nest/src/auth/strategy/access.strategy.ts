@@ -16,7 +16,7 @@ export class AccessStrategy extends PassportStrategy(Strategy, "access") {
       super({
          jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
          ignoreExpiration: false,
-         secretOrKey: configService.get("accessToken"),
+         secretOrKey: configService.get("SECRET_ACCESS_TOKEN_KEY"),
          passReqToCallback: true,
       });
    }

@@ -1,9 +1,9 @@
 import { TypedSetState } from "@src/interface/common.interface";
 import { IMoment } from "@src/interface";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { momentsRequests } from "@src/config/configuration";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>) {
    const { message } = App.useApp();
@@ -12,6 +12,7 @@ export function updateMomentService(setPrevState: TypedSetState<IMoment | undefi
       try {
          const clone = Object.assign({}, activeMoment) as Partial<IMoment>;
          delete clone.id;
+         delete clone.photo;
          delete clone.createdAt;
          await axiosInstance.patch(momentsRequests.updateMoment + activeMoment.id, clone);
          setPrevState(activeMoment as IMoment);

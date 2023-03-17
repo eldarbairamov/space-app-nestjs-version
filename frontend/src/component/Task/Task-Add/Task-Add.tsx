@@ -8,8 +8,8 @@ import { useAppDispatch, useAppSelector } from "@src/hook";
 import { taskAction } from "@src/redux/slice";
 
 import style from "./Task-Add.module.scss";
-import addLight from "@src/asset/add-light.svg";
-import addDark from "@src/asset/add-dark.svg";
+import addLight from "/add-light.svg";
+import addDark from "/add-dark.svg";
 
 export function TaskAdd() {
    const { activePlan } = useAppSelector(state => state.planReducer);

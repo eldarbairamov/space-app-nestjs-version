@@ -27,7 +27,7 @@ export const errorCatherFn = (e: unknown) => {
          message = "Невірний пароль або електронна пошта";
          break;
 
-      case "File size must be less than 3 mb":
+      case "File size must be less than 10 mb":
          message = "Розмір файлу не має перевищувати 3МБ";
          break;
 

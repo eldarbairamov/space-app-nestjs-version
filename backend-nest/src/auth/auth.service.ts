@@ -96,7 +96,7 @@ export class AuthService {
 
       // Generate link
       const resetPasswordToken = this.jwtService.sign({ userId: user.id }, {
-         secret: this.configService.get("forgotPass"),
+         secret: this.configService.get("SECRET_FORGOT_PASS_KEY"),
          expiresIn: "1d",
       });
       const resetPasswordLink = `${ process.env.CLIENT_URL }/password_reset/new?token=${ resetPasswordToken }`;

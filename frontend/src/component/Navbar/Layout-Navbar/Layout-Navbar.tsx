@@ -5,8 +5,8 @@ import { logoutService } from "@src/service";
 import { useAppSelector } from "@src/hook";
 
 import style from "./Layout-Navbar.module.scss";
-import logoutDark from "@src/asset/logout-dark.svg";
-import logoutLight from "@src/asset/logout-light.svg";
+import logoutDark from "/logout-dark.svg";
+import logoutLight from "/logout-light.svg";
 
 export function LayoutNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);

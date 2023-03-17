@@ -10,9 +10,10 @@ interface IModal {
    isOpen: boolean,
    onClose: () => void
    children: React.ReactNode
+   isBg: boolean
 }
 
-export function Modal({ isOpen, onClose, children }: IModal) {
+export function Modal({ isOpen, onClose, children, isBg }: IModal) {
    return createPortal(
       <AnimatePresence>
          { isOpen &&
@@ -22,8 +23,8 @@ export function Modal({ isOpen, onClose, children }: IModal) {
                         animate={ "animate" }
                         exit={ "exit" }
             >
-               <div className={ style.overlay } onClick={ onClose } data-open={ isOpen }>
-                  <div className={ style.content }>
+               <div className={ style.overlay } onClick={ onClose }>
+                  <div className={ style.content } data-bg={ isBg }>
                      { children }
                   </div>
                </div>

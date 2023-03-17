@@ -3,12 +3,13 @@
 .Modal {
    position: absolute;
    top: 0;
+   z-index: 1;
 
    .overlay {
       @extend %flex-align-justify;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.61);
+      background: rgba(0, 0, 0, 0.55);
    }
 
    .content {
@@ -16,15 +17,21 @@
       gap: 50px;
       padding: 40px;
       width: 500px;
-      background: var(--second-bg);
       text-align: center;
       border-radius: 15px;
-      z-index: 1;
+      z-index: 2;
       color: var(--main-font);
    }
+
+   .content[data-bg=true] {
+      background: var(--second-bg);
+   }
+
 }
 
-@media screen and (max-width: 499px) {
+
+
+@media screen and (max-width: 500px) {
    .Modal {
       .content {
          width: 90vw;

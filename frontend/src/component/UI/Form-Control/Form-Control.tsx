@@ -6,7 +6,7 @@ import { UseFormRegister } from "react-hook-form/dist/types/form";
 import { ValidationToaster } from "@src/component";
 
 import style from "./Form-Control.module.scss";
-import warning from "@src/asset/warning.svg";
+import warning from "/warning.svg";
 
 interface IInput {
    labelName: string,

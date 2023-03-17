@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { IPlan, ITask } from "@src/interface";
 import { axiosInstance } from "@src/service";
 import { tasksRequests } from "@src/config/configuration";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { useAppDispatch } from "@src/hook";
 import { taskAction } from "@src/redux/slice";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function getTasksService(planId: IPlan["id"]) {
    const dispatch = useAppDispatch();

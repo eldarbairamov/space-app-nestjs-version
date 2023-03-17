@@ -1,17 +1,21 @@
 import { useState } from "react";
 
-import { MomentHeader, MomentList } from "@src/component";
+import { MomentHeader, MomentList, Loader, Modal } from "@src/component";
 import { addMomentService, getMomentsService } from "@src/service";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 import { useAppSelector } from "@src/hook";
 
 import style from "./Moment-Page.module.scss";
-import { Loader } from "@src/component/UI/Loader/Loader";
 
 export function MomentsPage() {
    const [ searchKey, setSearchKey ] = useState<string>("");
+
    const { isLoading } = useAppSelector(state => state.momentReducer)
+
+   const [ isOpen, setIsOpen ] = useState<boolean>(false);
+
+   const toggleModal = () => !isLoading && setIsOpen(!isOpen)
 
    getMomentsService(searchKey);
 
@@ -24,16 +28,19 @@ export function MomentsPage() {
                   animate={ "animate" }
       >
 
-         { isLoading ? <Loader/> :
-            <>
-               {/* Header */ }
-               <MomentHeader addMomentFn={ addMomentFn } setSearchKey={ setSearchKey }/>
+         {/* Header */ }
+         <MomentHeader addMomentFn={ addMomentFn } setSearchKey={ setSearchKey }/>
 
-               {/* Moment list wrapper */ }
-               <div className={ style.moment_list_wrapper }><MomentList/></div>
-            </>
-         }
+         {/* Moment list wrapper */ }
+         <div className={ style.moment_list_wrapper }><MomentList/></div>
+
+
+         <Modal isOpen={ isLoading } onClose={ toggleModal } isBg={ false }>
+            <Loader/>
+         </Modal>
+
       </motion.div>
 
-   );
+   )
+      ;
 }

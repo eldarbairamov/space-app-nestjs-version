@@ -11,10 +11,11 @@ import { MulterModule } from "@nestjs/platform-express";
 import { fileStorage } from "../common/helper";
 
 @Module({
-   imports: [ MongooseModule.forFeature([
-      { name: Moment.name, schema: MomentSchema },
-      { name: User.name, schema: UserSchema },
-   ]),
+   imports: [
+      MongooseModule.forFeature([
+         { name: Moment.name, schema: MomentSchema },
+         { name: User.name, schema: UserSchema },
+      ]),
       MulterModule.register(fileStorage),
    ],
    providers: [ MomentService, MomentRepository, UserRepository, MomentPresenter ],

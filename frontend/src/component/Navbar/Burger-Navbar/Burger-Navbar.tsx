@@ -6,10 +6,10 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "@src/hook";
 
 import style from "./Burger-Navbar.module.scss";
-import menuDark from "@src/asset/menu-dark.svg";
-import menuLight from "@src/asset/menu-light.svg";
-import logoutLight from "@src/asset/logout-light.svg";
-import logoutDark from "@src/asset/logout-dark.svg";
+import menuDark from "/menu-dark.svg";
+import menuLight from "/menu-light.svg";
+import logoutLight from "/logout-light.svg";
+import logoutDark from "/logout-dark.svg";
 
 export function BurgerNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);

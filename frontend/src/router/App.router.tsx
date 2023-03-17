@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "@src/layout";
-import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, MomentItemPage, NoteActivePage } from "@src/page";
+import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, MomentActivePage, NoteActivePage } from "@src/page";
 import { EmailConfirmationMessage, ErrorMessage, ChangePasswordForm, ProfileUpdateForm, ChangeEmailMessage, ChangePasswordMessage, ChangeEmailForm } from "@src/component";
 
 export const AppRouter = createBrowserRouter([
@@ -69,7 +69,7 @@ export const AppRouter = createBrowserRouter([
          },
          {
             path: "moments/:momentId",
-            element: <MomentItemPage/>,
+            element: <MomentActivePage/>,
          },
          {
             path: "*",

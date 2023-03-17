@@ -12,7 +12,7 @@ export class Plan {
    title: string;
 
    @Prop({ type: [ { type: mongoose.Schema.Types.ObjectId, ref: "Task" } ] })
-   tasksId: Task[];
+   tasksIds: Task[];
 
    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "User" })
    ownerId: User;

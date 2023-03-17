@@ -46,9 +46,9 @@ export const NoteItem = forwardRef(({ note }: INoteItem, ref: any) => {
          </p>
 
          {/* Text preview */ }
-         <p className={ style.note_body }>
-            { note.body }
-         </p>
+         <div className={ style.note_body }>
+            <p>{ note.body }</p>
+         </div>
 
          {/* Date */ }
          <p className={ style.note_date }>

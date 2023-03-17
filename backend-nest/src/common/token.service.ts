@@ -17,11 +17,11 @@ export class TokenService {
       try {
          return {
             accessToken: this.jwtService.sign(payload, {
-               secret: this.configService.get("accessToken"),
+               secret: this.configService.get("SECRET_ACCESS_TOKEN_KEY"),
                expiresIn: "1d",
             }),
             refreshToken: this.jwtService.sign(payload, {
-               secret: this.configService.get("refreshToken"),
+               secret: this.configService.get("SECRET_REFRESH_TOKEN_KEY"),
                expiresIn: "7d",
             }),
          };

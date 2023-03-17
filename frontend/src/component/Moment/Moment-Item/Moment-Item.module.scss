@@ -12,15 +12,15 @@
    transition: .3s;
 
    &:hover {
-      filter: brightness(95%);
-      -webkit-filter: brightness(95%);
+      filter: brightness(92%);
+      -webkit-filter: brightness(92%);
    }
 
    .photo_background {
       position: absolute;
       width: 800px;
-      filter: blur(10px) contrast(80%);
-      -webkit-filter: blur(10px) contrast(80%);
+      filter: blur(10px) contrast(80%)  brightness(80%);
+      -webkit-filter: blur(10px) contrast(80%) brightness(80%);
    }
 
    .photo {

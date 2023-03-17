@@ -1,8 +1,7 @@
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { userRequests } from "@src/config/configuration";
-import { pleaseWait } from "@src/helper/please-wait";
 import { App } from "antd";
+import { errorCatherFn, pleaseWait } from "@src/helper";
 
 export function changePasswordService(next: () => any) {
    const { message } = App.useApp();

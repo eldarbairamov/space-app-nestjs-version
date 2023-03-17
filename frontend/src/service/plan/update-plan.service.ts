@@ -1,8 +1,8 @@
 import { IPlan } from "@src/interface";
 import { axiosInstance } from "@src/service";
 import { plansRequests } from "@src/config/configuration";
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function updatePlanService() {
    const { message } = App.useApp();

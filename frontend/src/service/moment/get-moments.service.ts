@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-import { errorCatherFn } from "@src/helper/error-catcher";
 import { axiosInstance } from "@src/service";
 import { IMoments } from "@src/interface";
 import { useDispatch } from "react-redux";
@@ -8,6 +7,7 @@ import { momentsRequests } from "@src/config/configuration";
 import { momentActions } from "@src/redux/slice";
 import { useAppSelector } from "@src/hook";
 import { App } from "antd";
+import { errorCatherFn } from "@src/helper";
 
 export function getMomentsService(searchKey: string) {
    const { total } = useAppSelector(state => state.momentReducer);

@@ -16,7 +16,8 @@ export * from "./moment/delete-moment.service";
 export * from "./moment/get-moment.service";
 export * from "./moment/update-moment.service";
 export * from "./moment/add-moment.service";
-export * from "./moment/upload-moment-image.service";
+export * from "./moment/upload-moment-photo.service";
+export * from './moment/active-moment.service'
 
 export * from "./auth/activation.service";
 export * from "./auth/login.service";

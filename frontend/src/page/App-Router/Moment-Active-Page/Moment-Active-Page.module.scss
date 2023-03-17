@@ -12,12 +12,14 @@
    position: relative;
 
    input {
-      padding: 6px;
-      background: var(--moment-input-bg);
+      color: var(--button-font);
       border-radius: 5px;
+      background: var(--button-bg);
+      padding: 8px;
       border: none;
       outline: none;
       text-align: center;
+      cursor: pointer;
    }
 
    .active_moment {
@@ -28,27 +30,34 @@
       overflow: hidden;
       transition: .5s;
 
-      .save_moment, .delete_moment {
+      .save_delete_wrapper {
+         @extend %flex-align-justify-column;
+         align-items: end;
+         gap: 10px;
          position: absolute;
-         z-index: 1;
-         color: white;
-         padding: 5px 10px;
-         border-radius: 5px;
-         font-size: 15px;
-         cursor: pointer;
-      }
-
-      .save_moment {
-         background: var(--button-bg);
-         right: 25px;
-         top: 62px;
-      }
-
-      .delete_moment {
-         background: indianred;
          right: 25px;
          top: 25px;
+         z-index: 1;
+
+         .save_moment, .delete_moment {
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            width: 90px;
+            text-align: center;
+         }
+
+         .save_moment {
+            background: var(--button-bg);
+         }
+
+         .delete_moment {
+            background: indianred;
+         }
       }
+
 
       .photo_wrapper {
          @extend %flex-align-justify;
@@ -64,8 +73,8 @@
          .photo_background {
             position: absolute;
             width: 1800px;
-            filter: blur(10px) contrast(80%);
-            -webkit-filter: blur(10px) contrast(80%);
+            filter: blur(10px) contrast(80%) brightness(80%);
+            -webkit-filter: blur(10px) contrast(80%) brightness(80%);
          }
 
          .photo {
@@ -89,74 +98,55 @@
          top: 25px;
          left: 25px;
          z-index: 1;
-         color: var(--button-font);
-         background: var(--button-bg);
-         padding: 5px 10px;
-         border-radius: 5px;
-         cursor: pointer;
-      }
-
-      .title_input {
-         z-index: 1;
-         position: absolute;
-         top: 60px;
-         left: 26px;
-         width: 150px;
+         width: 120px;
       }
 
       .date_and_location_wrapper {
-         display: flex;
+         @extend %flex-align-justify-column;
+         align-items: end;
          gap: 10px;
-
          position: absolute;
          bottom: 25px;
          right: 25px;
 
-         .date_input {
-            position: absolute;
-            bottom: 40px;
-            right: 3px;
+         .date {
+            width: 120px;
          }
 
-         .location_input {
-            position: absolute;
-            bottom: 40px;
-            right: 102px;
-            width: 100px;
+         .location {
+            width: 120px;
          }
 
-         .date, .location {
-            color: var(--button-font);
-            background: var(--button-bg);
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-         }
       }
 
-      .tags_wrapper {
-         @extend %flex-align;
-         gap: 10px;
 
+      .tag_wrapper {
+         @extend %flex-align-justify;
+         background: #7274d7;
+         border-radius: 5px;
          position: absolute;
          bottom: 25px;
          left: 25px;
 
-         .tag_input {
-            position: absolute;
-            bottom: 40px;
-            width: 100px;
+         .tag {
+            color: white;
+            width: 60px;
+            background: transparent;
+
+            &::placeholder {
+               color: #cacaca;
+            }
          }
 
-         .add_tag, .tag {
-            color: white;
+         span {
+            font-weight: bold;
             background: #7274d7;
+            text-align: center;
             padding: 5px 10px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
             cursor: pointer;
+            border-radius: 5px;
          }
+
       }
    }
 }
@@ -164,13 +154,14 @@
 @media screen and (max-height: 800px) {
    .MomentActivePage {
       margin: 50px 0 50px 0;
-      height: 800px;
+      height: 0;
    }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 650px) {
    .MomentActivePage {
       width: 450px;
+      height: 600px;
 
       .active_moment .photo_wrapper .photo {
          width: 300px;
@@ -188,10 +179,6 @@
 @media screen and (max-width: 499px) {
    .MomentActivePage {
       width: 95vw;
-
-      .date_and_location_wrapper {
-         flex-direction: column;
-      }
    }
 }
 

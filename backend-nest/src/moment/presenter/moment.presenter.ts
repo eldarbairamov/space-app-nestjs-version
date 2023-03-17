@@ -15,7 +15,7 @@ export class MomentPresenter {
          photo: document.photo,
          date: date,
          location: document.location,
-         tags: document.tags,
+         tag: document.tag,
          createdAt: date,
       };
    };

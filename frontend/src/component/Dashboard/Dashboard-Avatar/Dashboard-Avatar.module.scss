@@ -6,7 +6,7 @@
    min-height: 250px;
 
    img {
-      width: 400px;
+      width: 550px;
       transition: $transition;
    }
 
@@ -46,7 +46,7 @@
 @media screen and (max-height: 1000px) {
    .DashboardAvatar {
       img {
-         width: 300px;
+         width: 400px;
       }
 
       .avatar {
