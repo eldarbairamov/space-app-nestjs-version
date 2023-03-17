@@ -4,7 +4,7 @@ import { unlink } from "fs/promises";
 import { fileNameValidator } from "../../validator";
 import { ApiException } from "../../exception/api.exception";
 import { UserDocument } from "../../model";
-import { STATIC_PATH } from "../../constant/static-path.constant";
+import { STATIC_PATH } from "../../constant";
 
 export const deleteAvatarService = async (userId: UserDocument["id"], body: { fileName: string }): Promise<void> => {
 

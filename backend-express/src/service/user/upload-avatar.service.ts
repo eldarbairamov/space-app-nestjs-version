@@ -7,7 +7,7 @@ import sharp from "sharp";
 import { exists } from "../../helper/exists";
 import { mkdir } from "fs/promises";
 import { unlinker } from "../../helper/unlinker";
-import { STATIC_PATH } from "../../constant/static-path.constant";
+import { STATIC_PATH } from "../../constant";
 
 export const uploadAvatarService = async (image: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
    try {
