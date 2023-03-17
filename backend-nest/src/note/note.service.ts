@@ -6,7 +6,7 @@ import { UpdateNoteDto } from "./dto";
 import { INoteResponse, INotesResponse } from "./interface/note-response.interface";
 import { UserDocument } from "../user/model/user.model";
 import { NoteDocument } from "./model/note.model";
-import { QueryDto } from "../common/dto/query.dto";
+import { QueryDto } from "../common/dto";
 
 @Injectable()
 export class NoteService {

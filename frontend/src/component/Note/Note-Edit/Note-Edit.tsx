@@ -51,9 +51,21 @@ export const NoteEdit: FC = () => {
             />
 
             <div className={ style.font_options }>
-               <p onClick={ () => dispatch(noteActions.changeFont('Roboto')) }> Roboto </p>
+               <p
+                  onClick={ () => dispatch(noteActions.changeFont('Roboto')) }
+                  data-active={ font }
+               >
+                  Normal
+               </p>
+
                <p> | </p>
-               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }> Caveat </p>
+
+               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }
+                  data-active={ font }
+               >
+                  Handwrite
+               </p>
+
             </div>
 
          </div>
@@ -61,7 +73,7 @@ export const NoteEdit: FC = () => {
          {/* Text area */ }
          <div className={ style.textarea }>
                   <textarea id={ "body" }
-                            data-font={font}
+                            data-font={ font }
                             value={ activeNote.body ? activeNote.body : "" }
                             placeholder={ "Розкажи мені щось цікаве..." }
                             onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", event.target.value) }

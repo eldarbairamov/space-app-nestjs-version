@@ -7,6 +7,7 @@ import { store } from "@src/redux";
 
 import "@src/style/normalize.scss";
 import "@src/style/baseline.scss";
+import '/Lionelofparis.ttf'
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
    <Provider store={ store }>

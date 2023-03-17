@@ -5,13 +5,12 @@ import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.i
 import { UpdateMomentDto } from "./dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { FileValidatorFilter } from "../common/exception/file-validator.filter";
-import { User } from "../common/decorator/user.decorator";
+import { User, ApiFile } from "../common/decorator";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { SharpPipe } from "../common/pipe/sharp.pipe";
 import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { DefaultError, FileSizeError, FileTypeError, MomentResponse, MomentsResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError, UpdateMomentBody, UploadImageResponse } from "../common/swagger";
-import { ApiFile } from "../common/decorator/api-file.decorator";
-import { QueryDto } from "../common/dto/query.dto";
+import { QueryDto } from "../common/dto";
 
 @ApiTags("Moments")
 @Controller("moments")

@@ -9,7 +9,7 @@ import { UpdateMomentDto } from "./dto";
 import { exists, unlinker } from "../common/helper";
 import { staticPath } from "../common/constants";
 import path from "path";
-import { QueryDto } from "../common/dto/query.dto";
+import { QueryDto } from "../common/dto";
 
 @Injectable()
 export class MomentService {

@@ -53,9 +53,9 @@ export function NoteActivePage() {
             />
 
             <div className={ style.font_options }>
-               <p onClick={ () => dispatch(noteActions.changeFont('Roboto')) }> Roboto </p>
+               <p onClick={ () => dispatch(noteActions.changeFont('Roboto')) }> Normal </p>
                <p> | </p>
-               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }> Caveat </p>
+               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }> Handwrite </p>
             </div>
 
          </div>

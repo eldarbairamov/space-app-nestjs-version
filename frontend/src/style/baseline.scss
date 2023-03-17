@@ -26,6 +26,12 @@
    }
 }
 
+@font-face {
+   font-family: "Lionelofparis";
+   src: local("Lionelofparis"),
+   url("../../public/Lionelofparis.ttf") format("truetype");
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

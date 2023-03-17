@@ -4,11 +4,10 @@ import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreatePlanDto } from "./dto";
 import { AccessGuard } from "../auth/guard";
 import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
-import { User } from "../common/decorator/user.decorator";
+import { User } from "../common/decorator";
 import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, PlanResponse, DeleteItemBody, PlansResponse } from "../common/swagger";
-import { QueryDto } from "../common/dto/query.dto";
-import { DeleteItemDto } from "../common/dto/delete-item.dto";
+import { DeleteItemDto, QueryDto } from "../common/dto";
 
 @ApiTags("Plans")
 @Controller("plans")

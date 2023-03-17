@@ -6,7 +6,7 @@ import { CreatePlanDto } from "./dto";
 import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
 import { UserDocument } from "../user/model/user.model";
 import { PlanDocument } from "./model/plan.model";
-import { QueryDto } from "../common/dto/query.dto";
+import { QueryDto } from "../common/dto";
 import { TaskRepository } from "../task/repository/task.repository";
 
 @Injectable()

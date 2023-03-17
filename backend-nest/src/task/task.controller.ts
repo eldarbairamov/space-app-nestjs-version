@@ -4,7 +4,7 @@ import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreateTaskDto } from "./dto";
 import { AccessGuard } from "../auth/guard";
 import { ITaskResponse } from "./interface/task-response.interface";
-import { User } from "../common/decorator/user.decorator";
+import { User } from "../common/decorator";
 import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { DefaultError, UnauthorizedError, GetTasksBody, TaskResponse, SuccessResponse, ObjectIdError, ObjNotExistError, UpdateTaskBody } from "../common/swagger";
 
