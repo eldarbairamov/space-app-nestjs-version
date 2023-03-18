@@ -1,7 +1,7 @@
-import { updatePlanValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { PlanRepository } from "../../repository";
-import { PlanDocument } from "../../model";
+import { PlanRepository } from "@src/repository";
+import { updatePlanValidator } from "@src/validator";
+import { PlanDocument } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const updatePlanService = async (planId: PlanDocument["id"], body: { title: string }) => {
 

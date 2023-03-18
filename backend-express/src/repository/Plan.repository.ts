@@ -1,12 +1,12 @@
-import { IPlan, PlanDocument, PlanModel } from "../model";
-import { ApiException } from "../exception/api.exception";
 import { FilterQuery, UpdateQuery } from "mongoose";
+import { IPlan, PlanDocument, PlanModel } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const PlanRepository = {
 
    create: async (body: Partial<IPlan>): Promise<PlanDocument> => {
       try {
-         return PlanModel.create(body);
+         return await PlanModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -17,7 +17,7 @@ export const PlanRepository = {
    find: async (filter: FilterQuery<IPlan>, searchKey: string, limit: string | number): Promise<PlanDocument[]> => {
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return PlanModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
+         return await PlanModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -27,7 +27,7 @@ export const PlanRepository = {
 
    findById: async (planId: PlanDocument["id"]): Promise<PlanDocument | null> => {
       try {
-         return PlanModel.findById(planId);
+         return await PlanModel.findById(planId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -37,7 +37,7 @@ export const PlanRepository = {
 
    findByIdAndUpdate: async (planId: PlanDocument["id"], update: UpdateQuery<IPlan>): Promise<PlanDocument | null> => {
       try {
-         return PlanModel.findByIdAndUpdate(planId, update, { new: true });
+         return await PlanModel.findByIdAndUpdate(planId, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -47,7 +47,7 @@ export const PlanRepository = {
 
    findOneAndUpdate: async (filter: FilterQuery<IPlan>, update: UpdateQuery<IPlan>): Promise<PlanDocument | null> => {
       try {
-         return PlanModel.findOneAndUpdate(filter, update, { new: true });
+         return await PlanModel.findOneAndUpdate(filter, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -57,7 +57,7 @@ export const PlanRepository = {
 
    findByIdAndDelete: async (planId: PlanDocument["id"]): Promise<PlanDocument | null> => {
       try {
-         return PlanModel.findByIdAndDelete(planId);
+         return await PlanModel.findByIdAndDelete(planId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -68,7 +68,7 @@ export const PlanRepository = {
    count: async (filter: FilterQuery<IPlan>, searchKey = ""): Promise<number> => {
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return PlanModel.count(filterObj);
+         return await PlanModel.count(filterObj);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

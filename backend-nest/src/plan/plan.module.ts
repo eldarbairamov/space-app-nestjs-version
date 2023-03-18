@@ -3,12 +3,12 @@ import { PlanController } from "./plan.controller";
 import { PlanService } from "./plan.service";
 import { MongooseModule } from "@nestjs/mongoose";
 import { Plan, PlanSchema } from "./model/plan.model";
-import { User, UserSchema } from "../user/model/user.model";
 import { PlanPresenter } from "./presenter/plan.presenter";
-import { UserRepository } from "../user/repository/user.repository";
 import { PlanRepository } from "./repository/plan.repository";
-import { TaskRepository } from "../task/repository/task.repository";
-import { Task, TaskSchema } from "../task/model/task.model";
+import { Task, TaskSchema } from "@src/task/model/task.model";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { TaskRepository } from "@src/task/repository/task.repository";
+import { User, UserSchema } from "@src/user/model/user.model";
 
 @Module({
 

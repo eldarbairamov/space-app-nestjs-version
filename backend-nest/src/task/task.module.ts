@@ -4,9 +4,9 @@ import { TaskService } from "./task.service";
 import { MongooseModule } from "@nestjs/mongoose";
 import { Task, TaskSchema } from "./model/task.model";
 import { TaskPresenter } from "./presenter/task.presenter";
-import { Plan, PlanSchema } from "../plan/model/plan.model";
 import { TaskRepository } from "./repository/task.repository";
-import { PlanRepository } from "../plan/repository/plan.repository";
+import { PlanRepository } from "@src/plan/repository/plan.repository";
+import { Plan, PlanSchema } from "@src/plan/model/plan.model";
 
 @Module({
 

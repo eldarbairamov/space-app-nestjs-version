@@ -1,7 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
-import { addTaskService, deleteTaskService, getTasksService, updateTaskService } from "../service";
-import { IAddTask, ITaskResponse, IRequest } from "../interface";
+import { addTaskService, deleteTaskService, getTasksService, updateTaskService } from "@src/service";
+import { IAddTask, IRequest, ITaskResponse } from "@src/interface";
 
 export const taskController = {
 

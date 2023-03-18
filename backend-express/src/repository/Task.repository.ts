@@ -1,12 +1,12 @@
-import { ITask, TaskDocument, TaskModel } from "../model";
-import { ApiException } from "../exception/api.exception";
 import { FilterQuery, UpdateQuery } from "mongoose";
+import { ITask, TaskDocument, TaskModel } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const TaskRepository = {
 
    create: async (body: Partial<ITask>): Promise<TaskDocument> => {
       try {
-         return TaskModel.create(body);
+         return await TaskModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -16,7 +16,7 @@ export const TaskRepository = {
 
    findByIdAndDelete: async (taskId: TaskDocument["id"]): Promise<TaskDocument | null> => {
       try {
-         return TaskModel.findByIdAndDelete(taskId);
+         return await TaskModel.findByIdAndDelete(taskId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -27,7 +27,7 @@ export const TaskRepository = {
 
    findByIdAndUpdate: async (taskId: TaskDocument["id"], update: UpdateQuery<ITask>): Promise<TaskDocument | null> => {
       try {
-         return TaskModel.findByIdAndUpdate(taskId, update, { new: true });
+         return await TaskModel.findByIdAndUpdate(taskId, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -38,7 +38,7 @@ export const TaskRepository = {
 
    find: async (filter: FilterQuery<ITask>): Promise<TaskDocument[]> => {
       try {
-         return TaskModel.find(filter);
+         return await TaskModel.find(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -49,7 +49,7 @@ export const TaskRepository = {
 
    findById: async (taskId: TaskDocument["id"]): Promise<TaskDocument | null> => {
       try {
-         return TaskModel.findById(taskId);
+         return await TaskModel.findById(taskId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -59,7 +59,7 @@ export const TaskRepository = {
 
    deleteMany: async (filter: FilterQuery<ITask>) => {
       try {
-         return TaskModel.deleteMany(filter)
+         return await TaskModel.deleteMany(filter)
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

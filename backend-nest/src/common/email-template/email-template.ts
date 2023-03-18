@@ -1,4 +1,4 @@
-import { CHANGE_EMAIL, FORGOT_PASSWORD, REGISTRATION } from "../constants/email-action.constant";
+import { CHANGE_EMAIL, FORGOT_PASSWORD, REGISTRATION } from "@src/common/constants";
 
 export const emailTemplate = {
    [REGISTRATION]: {

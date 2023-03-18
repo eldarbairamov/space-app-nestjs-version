@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { databaseException } from "../../common/exception/database.exception";
+import { databaseException } from "@src/common/exception/database.exception";
 import { FilterQuery, Model, UpdateQuery } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { Moment, MomentDocument } from "../model/moment.model";
-import { UserDocument } from "../../user/model/user.model";
-import { QueryDto } from "../../common/dto";
+import { UserDocument } from "@src/user/model/user.model";
+import { QueryDto } from "@src/common/dto";
 
 @Injectable()
 export class MomentRepository {
@@ -13,7 +13,7 @@ export class MomentRepository {
 
    async create(body): Promise<MomentDocument> {
       try {
-         return this.momentModel.create(body);
+         return await this.momentModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -23,7 +23,7 @@ export class MomentRepository {
 
    async findById(momentId: MomentDocument["id"]): Promise<MomentDocument> {
       try {
-         return this.momentModel.findById(momentId);
+         return await this.momentModel.findById(momentId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -34,7 +34,7 @@ export class MomentRepository {
    async count(filter: FilterQuery<MomentDocument>, searchKey = ""): Promise<number> {
       const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
       try {
-         return this.momentModel.count(filterObj);
+         return await this.momentModel.count(filterObj);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -46,7 +46,7 @@ export class MomentRepository {
       const { searchKey, limit } = queryDto;
       const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
       try {
-         return this.momentModel.find(filterObj).sort({ createdAt: "desc" }).limit(limit);
+         return await this.momentModel.find(filterObj).sort({ createdAt: "desc" }).limit(limit);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -56,7 +56,7 @@ export class MomentRepository {
 
    async findAllByUserId(userId: UserDocument["id"]) {
       try {
-         return this.momentModel.find({ ownerId: userId });
+         return await this.momentModel.find({ ownerId: userId });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -66,7 +66,7 @@ export class MomentRepository {
 
    async findByIdAndUpdate(momentId: MomentDocument["id"], update: UpdateQuery<MomentDocument>): Promise<MomentDocument> {
       try {
-         return this.momentModel.findByIdAndUpdate(momentId, update, { new: true });
+         return await this.momentModel.findByIdAndUpdate(momentId, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

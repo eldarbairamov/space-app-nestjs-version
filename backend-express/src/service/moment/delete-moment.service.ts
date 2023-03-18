@@ -1,9 +1,8 @@
-import { MomentDocument, UserDocument } from "../../model";
-import { MomentRepository, UserRepository } from "../../repository";
 import path from "node:path";
-import { exists } from "../../helper/exists";
-import { unlinker } from "../../helper/unlinker";
-import { STATIC_PATH } from "../../constant/static-path.constant";
+import { MomentDocument, UserDocument } from "@src/model";
+import { MomentRepository, UserRepository } from "@src/repository";
+import { STATIC_PATH } from "@src/constant";
+import { exists, unlinker } from "@src/helper";
 
 export const deleteMomentService = async (userId: UserDocument["id"], momentId: MomentDocument["id"]) => {
    // Find moment in DB

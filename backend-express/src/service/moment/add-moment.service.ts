@@ -1,6 +1,6 @@
-import { UserDocument } from "../../model";
-import { MomentRepository, UserRepository } from "../../repository";
-import { momentPresenter } from "../../presenter/moment.presenter";
+import { MomentRepository, UserRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { momentPresenter } from "@src/presenter/moment.presenter";
 
 export const addMomentService = async (userId: UserDocument["id"]) => {
 

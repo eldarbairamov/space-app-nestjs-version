@@ -1,4 +1,4 @@
-import { IMomentResponse, IMomentsResponse } from "../../moment/interface/moment-response.interface";
+import { IMomentResponse, IMomentsResponse } from "@src/moment/interface/moment-response.interface";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class MomentResponse implements IMomentResponse {

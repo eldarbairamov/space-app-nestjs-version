@@ -1,5 +1,5 @@
-import { MomentDocument } from "../model";
-import { IMomentResponse } from "../interface";
+import { MomentDocument } from "@src/model";
+import { IMomentResponse } from "@src/interface";
 
 export const momentPresenter = (document: MomentDocument): IMomentResponse => {
 

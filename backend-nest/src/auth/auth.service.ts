@@ -1,20 +1,20 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { UserDocument } from "../user/model/user.model";
 import { JwtService } from "@nestjs/jwt";
 import { v4 as uuid } from "uuid";
-import { UserRepository } from "../user/repository/user.repository";
 import { passComparer, passHasher } from "./helper";
 import { RegistrationDto, ResetPasswordDto } from "./dto";
 import { ActionTokenRepository, OAuthRepository } from "./repository";
 import { ILoginResponse } from "./interface";
 import { Cron, CronExpression } from "@nestjs/schedule";
-import { ACTIVATION_TOKEN_TYPE, FORGOT_PASSWORD, REGISTRATION, RESET_PASSWORD_TOKEN_TYPE } from "../common/constants";
-import { IEnvironmentVariables } from "../config/env-variables.interface";
 import { ConfigService } from "@nestjs/config";
-import { EmailService } from "../common/email.service";
-import { TokenService } from "../common/token.service";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { UserDocument } from "@src/user/model/user.model";
+import { ACTIVATION_TOKEN_TYPE, FORGOT_PASSWORD, REGISTRATION, RESET_PASSWORD_TOKEN_TYPE } from "@src/common/constants";
+import { EmailService } from "@src/common/email.service";
+import { TokenService } from "@src/common/token.service";
+import { IEnvironmentVariables } from "@src/config/env-variables.interface";
 
 dayjs.extend(utc);
 

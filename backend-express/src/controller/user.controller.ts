@@ -1,7 +1,7 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
-import { changeEmailService, uploadAvatarService, updateProfileService, deleteAvatarService, changePasswordService, getUserInfoService, changeEmailReqService } from "../service";
-import { IChangePassword, IUpdateProfile, IUserInfoResponse, IRequest } from "../interface";
+import { changeEmailReqService, changeEmailService, changePasswordService, deleteAvatarService, getUserInfoService, updateProfileService, uploadAvatarService } from "@src/service";
+import { IChangePassword, IRequest, IUpdateProfile, IUserInfoResponse } from "@src/interface";
 
 export const userController = {
 

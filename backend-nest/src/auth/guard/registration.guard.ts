@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { RegistrationDto } from "../dto";
-import { UserRepository } from "../../user/repository/user.repository";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { RegistrationDto } from "@src/auth/dto";
 
 @Injectable()
 export class RegistrationGuard implements CanActivate {

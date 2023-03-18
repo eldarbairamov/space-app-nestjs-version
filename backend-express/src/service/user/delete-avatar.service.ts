@@ -1,10 +1,10 @@
-import { UserRepository } from "../../repository";
 import path from "node:path";
 import { unlink } from "fs/promises";
-import { fileNameValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { UserDocument } from "../../model";
-import { STATIC_PATH } from "../../constant";
+import { UserRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { STATIC_PATH } from "@src/constant";
+import { fileNameValidator } from "@src/validator";
+import { ApiException } from "@src/exception/api.exception";
 
 export const deleteAvatarService = async (userId: UserDocument["id"], body: { fileName: string }): Promise<void> => {
 

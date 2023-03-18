@@ -1,5 +1,5 @@
-import { INoteResponse } from "../../note/interface/note-response.interface";
-import { NoteDocument } from "../../note/model/note.model";
+import { INoteResponse } from "@src/note/interface/note-response.interface";
+import { NoteDocument } from "@src/note/model/note.model";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class NoteResponse implements INoteResponse {

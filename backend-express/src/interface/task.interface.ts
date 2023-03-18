@@ -1,4 +1,4 @@
-import { PlanDocument, TaskDocument } from "../model";
+import { PlanDocument, TaskDocument } from "@src/model";
 
 export interface ITaskResponse {
    readonly id: TaskDocument["id"];

@@ -1,13 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { PlanPresenter } from "./presenter/plan.presenter";
-import { UserRepository } from "../user/repository/user.repository";
 import { PlanRepository } from "./repository/plan.repository";
 import { CreatePlanDto } from "./dto";
 import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
-import { UserDocument } from "../user/model/user.model";
 import { PlanDocument } from "./model/plan.model";
-import { QueryDto } from "../common/dto";
-import { TaskRepository } from "../task/repository/task.repository";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { UserDocument } from "@src/user/model/user.model";
+import { TaskRepository } from "@src/task/repository/task.repository";
+import { QueryDto } from "@src/common/dto";
 
 @Injectable()
 export class PlanService {

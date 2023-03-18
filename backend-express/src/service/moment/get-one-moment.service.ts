@@ -1,7 +1,7 @@
-import { MomentDocument } from "../../model";
-import { IMomentResponse } from "../../interface";
-import { MomentRepository } from "../../repository";
-import { momentPresenter } from "../../presenter/moment.presenter";
+import { MomentDocument } from "@src/model";
+import { momentPresenter } from "@src/presenter/moment.presenter";
+import { MomentRepository } from "@src/repository";
+import { IMomentResponse } from "@src/interface";
 
 export const getOneMomentService = async (momentId: MomentDocument["id"]): Promise<IMomentResponse> => {
 

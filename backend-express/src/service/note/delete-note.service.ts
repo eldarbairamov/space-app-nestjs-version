@@ -1,8 +1,8 @@
-import { NoteRepository, UserRepository } from "../../repository";
-import { IDeleteItemBody } from "../../interface/common.interface";
-import { NoteDocument, UserDocument } from "../../model";
-import { INotesResponse } from "../../interface";
-import { allNotesPresenter } from "../../presenter";
+import { INotesResponse } from "@src/interface";
+import { NoteRepository, UserRepository } from "@src/repository";
+import { NoteDocument, UserDocument } from "@src/model";
+import { IDeleteItemBody } from "@src/interface/common.interface";
+import { allNotesPresenter } from "@src/presenter";
 
 export const deleteNoteService = async (body: IDeleteItemBody, noteId: NoteDocument["id"], userId: UserDocument["id"]): Promise<INotesResponse> => {
    // Delete note

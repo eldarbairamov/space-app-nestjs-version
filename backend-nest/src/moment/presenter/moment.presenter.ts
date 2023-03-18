@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { MomentDocument } from "../model/moment.model";
-import { IMomentResponse } from "../interface/moment-response.interface";
+import { MomentDocument } from "@src/moment/model/moment.model";
+import { IMomentResponse } from "@src/moment/interface/moment-response.interface";
 
 @Injectable()
 export class MomentPresenter {

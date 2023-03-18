@@ -4,15 +4,15 @@ import { AuthService } from "./auth.service";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
-import { User, UserSchema } from "../user/model/user.model";
-import { UserModule } from "../user/user.module";
-import { UserRepository } from "../user/repository/user.repository";
 import { ActionToken, ActionTokenSchema, OAuth, OAuthSchema } from "./model";
 import { ActionTokenRepository, OAuthRepository } from "./repository";
 import { AccessStrategy, LoginStrategy, RefreshStrategy } from "./strategy";
 import { ConfigService } from "@nestjs/config";
-import { EmailService } from "../common/email.service";
-import { TokenService } from "../common/token.service";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { UserModule } from "@src/user/user.module";
+import { EmailService } from "@src/common/email.service";
+import { User, UserSchema } from "@src/user/model/user.model";
+import { TokenService } from "@src/common/token.service";
 
 
 @Module({

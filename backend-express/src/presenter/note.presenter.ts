@@ -1,5 +1,5 @@
-import { INoteResponse } from "../interface";
-import { NoteDocument } from "../model";
+import { INoteResponse } from "@src/interface";
+import { NoteDocument } from "@src/model";
 
 export const notePresenter = (document: NoteDocument): INoteResponse => {
 

@@ -1,11 +1,11 @@
-import { ActionTokenRepository, UserRepository } from "../../repository";
-import { emailSender } from "../email.service";
 import jwt from "jsonwebtoken";
-import { CHANGE_EMAIL, EMAIL_CONFIRMATION_TOKEN_TYPE } from "../../constant";
-import { emailValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { UserDocument } from "../../model";
-import { configuration } from "../../config";
+import { ActionTokenRepository, UserRepository } from "@src/repository";
+import { CHANGE_EMAIL, EMAIL_CONFIRMATION_TOKEN_TYPE } from "@src/constant";
+import { UserDocument } from "@src/model";
+import { configuration } from "@src/config";
+import { emailValidator } from "@src/validator";
+import { emailSender } from "@src/service";
+import { ApiException } from "@src/exception/api.exception";
 
 export const changeEmailReqService = async (userId: UserDocument["id"], email: string): Promise<void> => {
 

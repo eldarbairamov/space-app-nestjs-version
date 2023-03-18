@@ -1,11 +1,11 @@
 import nodemailer from "nodemailer";
-import { configuration } from "../config";
-import { ApiException } from "../exception/api.exception";
 import hbs from "nodemailer-express-handlebars";
 import path from "node:path";
-import { emailTemplate } from "../email-template/email-template";
-import { EmailActionType } from "../type/email-action.type";
-import { EMAIL_TEMPLATES_PATH } from "../constant/email-templates-path.constant";
+import { configuration } from "@src/config";
+import { emailTemplate } from "@src/email-template/email-template";
+import { EmailActionType } from "@src/type/email-action.type";
+import { EMAIL_TEMPLATES_PATH } from "@src/constant/email-templates-path.constant";
+import { ApiException } from "@src/exception/api.exception";
 
 export const emailSender = async (to: string, emailAction: EmailActionType, context: any) => {
    const template = emailTemplate[emailAction];

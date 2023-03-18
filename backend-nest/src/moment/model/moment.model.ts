@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { HydratedDocument, SchemaTimestampsConfig } from "mongoose";
-import { User } from "../../user/model/user.model";
+import { User } from "@src/user/model/user.model";
 
 export type MomentDocument = HydratedDocument<Moment> & SchemaTimestampsConfig
 

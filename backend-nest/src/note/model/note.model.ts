@@ -1,6 +1,6 @@
 import mongoose, { HydratedDocument, SchemaTimestampsConfig } from "mongoose";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { User } from "../../user/model/user.model";
+import { User } from "@src/user/model/user.model";
 
 export type NoteDocument = HydratedDocument<Note> & SchemaTimestampsConfig
 

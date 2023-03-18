@@ -1,7 +1,7 @@
-import { PlanRepository } from "../../repository";
-import { allPlansPresenter } from "../../presenter";
-import { IPlansResponse } from "../../interface";
-import { UserDocument } from "../../model";
+import { PlanRepository } from "@src/repository";
+import { allPlansPresenter } from "@src/presenter";
+import { UserDocument } from "@src/model";
+import { IPlansResponse } from "@src/interface";
 
 export const getPlansService = async (userId: UserDocument["id"], searchKey: string, limit: string | number): Promise<IPlansResponse> => {
 

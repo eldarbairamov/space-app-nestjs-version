@@ -15,6 +15,8 @@ declare global {
          EMAIL_SERVICE_PASS: string
          SECRET_ACCESS_TOKEN_KEY: Secret,
          SECRET_REFRESH_TOKEN_KEY: Secret,
+         SECRET_FORGOT_PASS_KEY: Secret,
+         SECRET_CHANGE_EMAIL_KEY: Secret,
       }
    }
 }

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { planController } from "../controller";
-import { authMiddleware, commonMiddleware } from "../middleware";
+import { authMiddleware, commonMiddleware } from "@src/middleware";
+import { planController } from "@src/controller";
 
 export const planRouter = Router();
 

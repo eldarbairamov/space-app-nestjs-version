@@ -4,7 +4,7 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 import { Request } from "express";
 import { OAuthRepository } from "../repository";
 import { ConfigService } from "@nestjs/config";
-import { IEnvironmentVariables } from "../../config/env-variables.interface";
+import { IEnvironmentVariables } from "@src/config/env-variables.interface";
 
 @Injectable()
 export class AccessStrategy extends PassportStrategy(Strategy, "access") {

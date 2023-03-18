@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { ApiException } from "../../exception/api.exception";
-import { configuration } from "../../config";
-import { ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE } from "../../constant";
 import { Secret } from "jsonwebtoken";
+import { ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE } from "@src/constant";
+import { configuration } from "@src/config";
+import { ApiException } from "@src/exception/api.exception";
 
 export const jwtVerifyService = (token: string, type: string) => {
 

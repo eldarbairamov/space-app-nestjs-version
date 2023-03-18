@@ -1,6 +1,6 @@
-import { MomentRepository, NoteRepository, PlanRepository, UserRepository } from "../../repository";
-import { IUserInfoResponse } from "../../interface";
-import { UserDocument } from "../../model";
+import { MomentRepository, NoteRepository, PlanRepository, UserRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { IUserInfoResponse } from "@src/interface";
 
 export const getUserInfoService = async (userId: UserDocument["id"]): Promise<IUserInfoResponse> => {
 

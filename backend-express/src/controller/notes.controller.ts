@@ -1,8 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
-import { addNoteService, getNotesService, deleteNoteService, updateNoteService } from "../service";
-import { IRequest, INoteResponse, IUpdateNote, INotesResponse } from "../interface";
-import { IDeleteItemBody, IQuery } from "../interface/common.interface";
+import { addNoteService, deleteNoteService, getNotesService, updateNoteService } from "@src/service";
+import { IDeleteItemBody, IQuery } from "@src/interface/common.interface";
+import { INoteResponse, INotesResponse, IRequest, IUpdateNote } from "@src/interface";
 
 export const notesController = {
 

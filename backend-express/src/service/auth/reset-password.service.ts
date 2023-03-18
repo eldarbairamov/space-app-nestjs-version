@@ -1,8 +1,8 @@
-import { ApiException } from "../../exception/api.exception";
-import { ActionTokenRepository, UserRepository } from "../../repository";
-import { passHasher } from "../../helper";
-import { resetPasswordValidator } from "../../validator";
-import { IResetPassword } from "../../interface";
+import { passHasher } from "@src/helper";
+import { resetPasswordValidator } from "@src/validator";
+import { ActionTokenRepository, UserRepository } from "@src/repository";
+import { IResetPassword } from "@src/interface";
+import { ApiException } from "@src/exception/api.exception";
 
 export const resetPasswordService = async (body: IResetPassword) => {
 

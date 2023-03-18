@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Types } from "mongoose";
-import { MomentRepository } from "../repository/moment.repository";
+import { MomentRepository } from "@src/moment/repository/moment.repository";
 
 @Injectable()
 export class ObjectCheckingGuard implements CanActivate {

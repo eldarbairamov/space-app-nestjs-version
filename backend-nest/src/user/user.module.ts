@@ -6,18 +6,18 @@ import { UserController } from "./user.controller";
 import { UserRepository } from "./repository/user.repository";
 import { JwtModule } from "@nestjs/jwt";
 import { MulterModule } from "@nestjs/platform-express";
-import { fileStorage } from "../common/helper";
 import { ActionToken, ActionTokenSchema } from "../auth/model";
-import { ActionTokenRepository } from "../auth/repository";
-import { MomentRepository } from "../moment/repository/moment.repository";
-import { PlanRepository } from "../plan/repository/plan.repository";
-import { NoteRepository } from "../note/repository/note.repository";
-import { Moment, MomentSchema } from "../moment/model/moment.model";
-import { Plan, PlanSchema } from "../plan/model/plan.model";
-import { Note, NoteSchema } from "../note/model/note.model";
 import { ConfigService } from "@nestjs/config";
-import { EmailService } from "../common/email.service";
-import { TokenService } from "../common/token.service";
+import { fileStorage } from "@src/common/helper";
+import { Note, NoteSchema } from "@src/note/model/note.model";
+import { ActionTokenRepository } from "@src/auth/repository";
+import { NoteRepository } from "@src/note/repository/note.repository";
+import { Plan, PlanSchema } from "@src/plan/model/plan.model";
+import { PlanRepository } from "@src/plan/repository/plan.repository";
+import { Moment, MomentSchema } from "@src/moment/model/moment.model";
+import { EmailService } from "@src/common/email.service";
+import { MomentRepository } from "@src/moment/repository/moment.repository";
+import { TokenService } from "@src/common/token.service";
 
 @Module({
 

@@ -1,13 +1,13 @@
 import { FilterQuery } from "mongoose";
-import { IOAuth, OAuthDocument, OAuthModel } from "../model";
-import { ApiException } from "../exception/api.exception";
 import { DeleteResult } from "mongodb";
+import { IOAuth, OAuthDocument, OAuthModel } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const OAuthRepository = {
 
    create: async (body: IOAuth): Promise<OAuthDocument> => {
       try {
-         return OAuthModel.create(body);
+         return await OAuthModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -17,7 +17,7 @@ export const OAuthRepository = {
 
    deleteOne: async (filter: FilterQuery<OAuthDocument>): Promise<DeleteResult> => {
       try {
-         return OAuthModel.deleteOne(filter);
+         return await OAuthModel.deleteOne(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -27,7 +27,7 @@ export const OAuthRepository = {
 
    deleteMany: async (filter: FilterQuery<OAuthDocument>): Promise<DeleteResult> => {
       try {
-         return OAuthModel.deleteMany(filter);
+         return await OAuthModel.deleteMany(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -37,7 +37,7 @@ export const OAuthRepository = {
 
    findOne: async (filter: FilterQuery<OAuthDocument>): Promise<OAuthDocument | null> => {
       try {
-         return OAuthModel.findOne(filter).lean();
+         return await OAuthModel.findOne(filter).lean();
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

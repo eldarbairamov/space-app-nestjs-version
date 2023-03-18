@@ -1,15 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { MomentRepository } from "./repository/moment.repository";
-import { UserDocument } from "../user/model/user.model";
-import { UserRepository } from "../user/repository/user.repository";
 import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.interface";
 import { MomentPresenter } from "./presenter/moment.presenter";
 import { MomentDocument } from "./model/moment.model";
 import { UpdateMomentDto } from "./dto";
-import { exists, unlinker } from "../common/helper";
-import { staticPath } from "../common/constants";
 import path from "path";
-import { QueryDto } from "../common/dto";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { UserDocument } from "@src/user/model/user.model";
+import { QueryDto } from "@src/common/dto";
+import { staticPath } from "@src/common/constants";
+import { exists, unlinker } from "@src/common/helper";
 
 @Injectable()
 export class MomentService {

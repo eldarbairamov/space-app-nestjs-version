@@ -1,5 +1,5 @@
-import { IPlanResponse } from "../interface";
-import { PlanDocument } from "../model";
+import { PlanDocument } from "@src/model";
+import { IPlanResponse } from "@src/interface";
 
 export const planPresenter = (document: PlanDocument): IPlanResponse => {
 

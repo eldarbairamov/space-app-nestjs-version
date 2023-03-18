@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { ApiException } from "../exception/api.exception";
-import { IAccessTokenPair } from "../interface";
-import { configuration } from "../config";
-import { UserDocument } from "../model";
+import { UserDocument } from "@src/model";
+import { configuration } from "@src/config";
+import { IAccessTokenPair } from "@src/interface";
+import { ApiException } from "@src/exception/api.exception";
 
 export const accessTokenPairGenerator = (userId: UserDocument["id"]): IAccessTokenPair => {
    try {

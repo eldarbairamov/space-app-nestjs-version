@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { Types } from "mongoose";
-import { PlanRepository } from "../repository/plan.repository";
+import { PlanRepository } from "@src/plan/repository/plan.repository";
 
 @Injectable()
 export class ObjectCheckingGuard implements CanActivate {

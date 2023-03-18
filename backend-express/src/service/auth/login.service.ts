@@ -1,10 +1,10 @@
-import { accessTokenPairGenerator } from "../token.service";
-import { ApiException } from "../../exception/api.exception";
-import { OAuthRepository } from "../../repository";
-import { passComparer } from "../../helper";
-import { loginValidator } from "../../validator";
-import { ILogin, IOAuthResponse } from "../../interface";
-import { UserDocument } from "../../model";
+import { ILogin, IOAuthResponse } from "@src/interface";
+import { UserDocument } from "@src/model";
+import { passComparer } from "@src/helper";
+import { accessTokenPairGenerator } from "@src/service";
+import { OAuthRepository } from "@src/repository";
+import { loginValidator } from "@src/validator";
+import { ApiException } from "@src/exception/api.exception";
 
 export const loginService = async (body: ILogin, userFromDb: UserDocument): Promise<IOAuthResponse> => {
 

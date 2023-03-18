@@ -1,10 +1,9 @@
 import expressAsyncHandler from "express-async-handler";
 import { Response } from "express";
-import { addPlanService, getPlansService, updatePlanService } from "../service";
-import { IPlanResponse, IPlansResponse, IRequest } from "../interface";
-import { getOnePlanService } from "../service/plan/get-one-plan.service";
-import { IDeleteItemBody, IQuery } from "../interface/common.interface";
-import { deletePlanService } from "../service/plan/delete-plan.service";
+import { addPlanService, getOnePlanService, getPlansService, updatePlanService } from "@src/service";
+import { IDeleteItemBody, IQuery } from "@src/interface/common.interface";
+import { IPlanResponse, IPlansResponse, IRequest } from "@src/interface";
+import { deletePlanService } from "@src/service/plan/delete-plan.service";
 
 export const planController = {
 

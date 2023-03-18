@@ -18,6 +18,7 @@ export function App() {
          <AntdContext>
             <RouterProvider router={ isLogin ? AppRouter : WelcomeRouter }/>
 
+            {/* Bgs pre-load */}
             <div style={ { display: "none" } }>
                <img src={ bg } alt=""/>
                <img src={ bgDark } alt=""/>

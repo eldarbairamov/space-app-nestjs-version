@@ -1,9 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
-import { IRequest, IMomentsResponse, IUpdateMoment, IMomentResponse } from "../interface";
 import { Response } from "express";
-import { addMomentService, getMomentsService, updateMomentService, uploadPhotoService } from "../service";
-import { deleteMomentService, getOneMomentService } from "../service";
-import { IQuery } from "../interface/common.interface";
+import { addMomentService, deleteMomentService, getMomentsService, getOneMomentService, updateMomentService, uploadPhotoService } from "@src/service";
+import { IQuery } from "@src/interface/common.interface";
+import { IMomentResponse, IMomentsResponse, IRequest, IUpdateMoment } from "@src/interface";
 
 export const momentController = {
 

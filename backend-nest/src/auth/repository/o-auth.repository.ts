@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { FilterQuery, Model, UpdateQuery } from "mongoose";
 import { OAuth, OAuthDocument } from "../model";
 import { InjectModel } from "@nestjs/mongoose";
-import { databaseException } from "../../common/exception/database.exception";
+import { databaseException } from "@src/common/exception/database.exception";
 
 @Injectable()
 export class OAuthRepository {
@@ -12,7 +12,7 @@ export class OAuthRepository {
 
    async create(body): Promise<OAuthDocument> {
       try {
-         return this.oAuthModel.create(body);
+         return await this.oAuthModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -22,7 +22,7 @@ export class OAuthRepository {
 
    async deleteOne(filter: FilterQuery<OAuthDocument>) {
       try {
-         return this.oAuthModel.deleteOne(filter);
+         return await this.oAuthModel.deleteOne(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -32,7 +32,7 @@ export class OAuthRepository {
 
    async deleteMany(filter: FilterQuery<OAuthDocument>) {
       try {
-         return this.oAuthModel.deleteMany(filter);
+         return await this.oAuthModel.deleteMany(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -52,7 +52,7 @@ export class OAuthRepository {
 
    async findByIdAndUpdate(id: string, update: UpdateQuery<OAuth>): Promise<OAuthDocument> {
       try {
-         return this.oAuthModel.findByIdAndUpdate(id, update, { new: true });
+         return await this.oAuthModel.findByIdAndUpdate(id, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

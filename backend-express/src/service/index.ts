@@ -14,6 +14,7 @@ export * from "./note/update-note.service";
 export * from "./plan/get-plans.service";
 export * from "./plan/add-plan.service";
 export * from "./plan/update-plan.service";
+export * from './plan/get-one-plan.service'
 
 export * from "./moment/add-moment.service";
 export * from "./moment/get-moments.service";

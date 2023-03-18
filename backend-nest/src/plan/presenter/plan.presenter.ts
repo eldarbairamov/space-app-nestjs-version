@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { PlanDocument } from "../model/plan.model";
-import { IPlanResponse } from "../interface/plan-response.interface";
+import { PlanDocument } from "@src/plan/model/plan.model";
+import { IPlanResponse } from "@src/plan/interface/plan-response.interface";
 
 @Injectable()
 export class PlanPresenter {

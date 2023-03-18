@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
-import { IEnvironmentVariables } from "../config/env-variables.interface";
 import { IAccessTokenPair } from "../auth/interface";
+import { IEnvironmentVariables } from "@src/config/env-variables.interface";
 
 @Injectable()
 export class TokenService {

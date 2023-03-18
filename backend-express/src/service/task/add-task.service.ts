@@ -1,9 +1,9 @@
-import { PlanRepository, TaskRepository } from "../../repository";
-import { taskPresenter } from "../../presenter";
-import { IAddTask, ITaskResponse } from "../../interface";
-import { addTaskValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { UserDocument } from "../../model";
+import { PlanRepository, TaskRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { IAddTask, ITaskResponse } from "@src/interface";
+import { taskPresenter } from "@src/presenter";
+import { addTaskValidator } from "@src/validator";
+import { ApiException } from "@src/exception/api.exception";
 
 export const addTaskService = async (userId: UserDocument["id"], body: IAddTask): Promise<ITaskResponse> => {
 

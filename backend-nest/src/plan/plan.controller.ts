@@ -2,12 +2,12 @@ import { Body, Controller, Get, Param, Post, Put, Query, UseGuards } from "@nest
 import { PlanService } from "./plan.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreatePlanDto } from "./dto";
-import { AccessGuard } from "../auth/guard";
 import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
-import { User } from "../common/decorator";
 import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, PlanResponse, DeleteItemBody, PlansResponse } from "../common/swagger";
-import { DeleteItemDto, QueryDto } from "../common/dto";
+import { DefaultError, DeleteItemBody, ObjectIdError, ObjNotExistError, PlanResponse, PlansResponse, SuccessResponse, UnauthorizedError } from "@src/common/swagger";
+import { DeleteItemDto, QueryDto } from "@src/common/dto";
+import { AccessGuard } from "@src/auth/guard";
+import { User } from "@src/common/decorator";
 
 @ApiTags("Plans")
 @Controller("plans")

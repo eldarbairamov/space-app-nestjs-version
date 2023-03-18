@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { TaskPresenter } from "./presenter/task.presenter";
 import { TaskRepository } from "./repository/task.repository";
-import { PlanRepository } from "../plan/repository/plan.repository";
 import { CreateTaskDto } from "./dto";
 import { ITaskResponse } from "./interface/task-response.interface";
+import { PlanRepository } from "@src/plan/repository/plan.repository";
 
 @Injectable()
 export class TaskService {

@@ -2,11 +2,11 @@ import { Body, Controller, Delete, HttpCode, Param, Patch, Post, UseGuards } fro
 import { TaskService } from "./task.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreateTaskDto } from "./dto";
-import { AccessGuard } from "../auth/guard";
 import { ITaskResponse } from "./interface/task-response.interface";
-import { User } from "../common/decorator";
 import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, UnauthorizedError, GetTasksBody, TaskResponse, SuccessResponse, ObjectIdError, ObjNotExistError, UpdateTaskBody } from "../common/swagger";
+import { DefaultError, GetTasksBody, ObjectIdError, ObjNotExistError, SuccessResponse, TaskResponse, UnauthorizedError, UpdateTaskBody } from "@src/common/swagger";
+import { AccessGuard } from "@src/auth/guard";
+import { User } from "@src/common/decorator";
 
 @ApiTags("Tasks")
 @Controller("tasks")

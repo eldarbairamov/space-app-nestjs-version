@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { momentController } from "../controller";
-import { authMiddleware, commonMiddleware, fileMiddleware } from "../middleware";
+import { authMiddleware, commonMiddleware, fileMiddleware } from "@src/middleware";
+import { momentController } from "@src/controller";
 
 export const momentRouter = Router();
 

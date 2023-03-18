@@ -1,6 +1,6 @@
 import { type Request } from "express";
 import fileUpload from "express-fileupload";
-import { type UserDocument } from "../model";
+import { UserDocument } from "@src/model";
 
 export interface IRequest<B, P, Q> extends Request<P, {}, B, Q> {
    body: B;

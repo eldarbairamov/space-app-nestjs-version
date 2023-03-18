@@ -1,9 +1,9 @@
-import { UserRepository } from "../../repository";
-import { ApiException } from "../../exception/api.exception";
-import { changePasswordValidator } from "../../validator";
-import { IChangePassword } from "../../interface";
-import { passComparer, passHasher } from "../../helper";
-import { UserDocument } from "../../model";
+import { passComparer, passHasher } from "@src/helper";
+import { UserRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { IChangePassword } from "@src/interface";
+import { changePasswordValidator } from "@src/validator";
+import { ApiException } from "@src/exception/api.exception";
 
 export const changePasswordService = async (userId: UserDocument["id"], body: IChangePassword): Promise<void> => {
 

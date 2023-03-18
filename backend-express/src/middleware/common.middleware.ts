@@ -1,8 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
 import { NextFunction, Request, Response } from "express";
-import { ApiException } from "../exception/api.exception";
 import { Types } from "mongoose";
-import { MomentRepository, NoteRepository, PlanRepository, TaskRepository } from "../repository";
+import { MomentRepository, NoteRepository, PlanRepository, TaskRepository } from "@src/repository";
+import { ApiException } from "@src/exception/api.exception";
 
 type objectType = "taskId" | "noteId" | "planId" | "momentId"
 

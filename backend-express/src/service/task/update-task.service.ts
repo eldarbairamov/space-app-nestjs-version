@@ -1,7 +1,7 @@
-import { updateTaskValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { TaskRepository } from "../../repository";
-import { TaskDocument } from "../../model";
+import { TaskDocument } from "@src/model";
+import { updateTaskValidator } from "@src/validator";
+import { TaskRepository } from "@src/repository";
+import { ApiException } from "@src/exception/api.exception";
 
 export const updateTaskService = async (taskId: TaskDocument["id"], body: { isCompleted: string }) => {
 

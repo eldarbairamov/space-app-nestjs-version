@@ -1,12 +1,12 @@
 import { FilterQuery, UpdateQuery } from "mongoose";
-import { ApiException } from "../exception/api.exception";
-import { INote, NoteDocument, NoteModel } from "../model";
+import { INote, NoteDocument, NoteModel } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const NoteRepository = {
 
    create: async (body: Partial<INote>): Promise<NoteDocument> => {
       try {
-         return NoteModel.create(body);
+         return await NoteModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -17,7 +17,7 @@ export const NoteRepository = {
    find: async (filter: FilterQuery<INote>, searchKey: string, limit: string | number): Promise<NoteDocument[]> => {
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return NoteModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
+         return await NoteModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -27,7 +27,7 @@ export const NoteRepository = {
 
    findById: async (noteId: NoteDocument["id"]): Promise<NoteDocument | null> => {
       try {
-         return NoteModel.findById(noteId);
+         return await NoteModel.findById(noteId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -37,7 +37,7 @@ export const NoteRepository = {
 
    findByIdAndUpdate: async (noteId: NoteDocument["id"], body: UpdateQuery<INote>): Promise<NoteDocument | null> => {
       try {
-         return NoteModel.findByIdAndUpdate(noteId, body, { new: true });
+         return await NoteModel.findByIdAndUpdate(noteId, body, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -47,7 +47,7 @@ export const NoteRepository = {
 
    findByIdAndDelete: async (noteId: NoteDocument["id"]): Promise<NoteDocument | null> => {
       try {
-         return NoteModel.findByIdAndDelete(noteId);
+         return await NoteModel.findByIdAndDelete(noteId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -58,7 +58,7 @@ export const NoteRepository = {
    count: async (filter: FilterQuery<INote>, searchKey = ""): Promise<number> => {
       const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
       try {
-         return NoteModel.count(filterObj);
+         return await NoteModel.count(filterObj);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

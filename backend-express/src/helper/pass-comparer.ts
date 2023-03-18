@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { ApiException } from "../exception/api.exception";
+import { ApiException } from "@src/exception/api.exception";
 
 export const passComparer = async (dry: string, hashed: string): Promise<boolean> => {
    try {

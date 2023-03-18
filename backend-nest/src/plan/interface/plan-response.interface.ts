@@ -1,4 +1,4 @@
-import { PlanDocument } from "../model/plan.model";
+import { PlanDocument } from "@src/plan/model/plan.model";
 
 export interface IPlanResponse {
    readonly id: PlanDocument["id"];

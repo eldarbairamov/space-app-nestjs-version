@@ -1,13 +1,12 @@
 import fileUpload from "express-fileupload";
 import path from "node:path";
-import { UserRepository } from "../../repository";
-import { ApiException } from "../../exception/api.exception";
-import { UserDocument } from "../../model";
 import sharp from "sharp";
-import { exists } from "../../helper/exists";
 import { mkdir } from "fs/promises";
-import { unlinker } from "../../helper/unlinker";
-import { STATIC_PATH } from "../../constant";
+import { UserRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { STATIC_PATH } from "@src/constant";
+import { exists, unlinker } from "@src/helper";
+import { ApiException } from "@src/exception/api.exception";
 
 export const uploadAvatarService = async (image: fileUpload.FileArray | null | undefined, userId: UserDocument["id"]): Promise<string> => {
    try {

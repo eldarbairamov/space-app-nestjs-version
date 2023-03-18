@@ -1,5 +1,5 @@
-import { IPlanResponse } from "../../plan/interface/plan-response.interface";
-import { PlanDocument } from "../../plan/model/plan.model";
+import { IPlanResponse } from "@src/plan/interface/plan-response.interface";
+import { PlanDocument } from "@src/plan/model/plan.model";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class PlanResponse implements IPlanResponse {

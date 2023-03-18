@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { TaskDocument } from "../model/task.model";
-import { ITaskResponse } from "../interface/task-response.interface";
+import { TaskDocument } from "@src/task/model/task.model";
+import { ITaskResponse } from "@src/task/interface/task-response.interface";
 
 @Injectable()
 export class TaskPresenter {

@@ -1,13 +1,12 @@
 import fileUpload from "express-fileupload";
-import { MomentDocument } from "../../model";
 import path from "node:path";
-import { MomentRepository } from "../../repository";
-import { ApiException } from "../../exception/api.exception";
-import { exists } from "../../helper/exists";
-import { unlinker } from "../../helper/unlinker";
 import sharp from "sharp";
 import { mkdir } from "fs/promises";
-import { STATIC_PATH } from "../../constant";
+import { MomentDocument } from "@src/model";
+import { STATIC_PATH } from "@src/constant";
+import { MomentRepository } from "@src/repository";
+import { exists, unlinker } from "@src/helper";
+import { ApiException } from "@src/exception/api.exception";
 
 export const uploadPhotoService = async (image: fileUpload.FileArray | null | undefined, momentId: MomentDocument["id"]) => {
    try {

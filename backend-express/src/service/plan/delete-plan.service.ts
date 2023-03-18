@@ -1,8 +1,8 @@
-import { PlanRepository, TaskRepository, UserRepository } from "../../repository";
-import { IDeleteItemBody } from "../../interface/common.interface";
-import { PlanDocument, UserDocument } from "../../model";
-import { IPlansResponse } from "../../interface";
-import { allPlansPresenter } from "../../presenter";
+import { PlanRepository, TaskRepository, UserRepository } from "@src/repository";
+import { allPlansPresenter } from "@src/presenter";
+import { PlanDocument, UserDocument } from "@src/model";
+import { IPlansResponse } from "@src/interface";
+import { IDeleteItemBody } from "@src/interface/common.interface";
 
 export const deletePlanService = async (body: IDeleteItemBody, planId: PlanDocument["id"], userId: UserDocument["id"]): Promise<IPlansResponse> => {
    // Delete note

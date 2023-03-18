@@ -1,7 +1,7 @@
-import { NoteRepository, UserRepository } from "../../repository";
-import { notePresenter } from "../../presenter";
-import { INoteResponse } from "../../interface";
-import { UserDocument } from "../../model";
+import { INoteResponse } from "@src/interface";
+import { NoteRepository, UserRepository } from "@src/repository";
+import { UserDocument } from "@src/model";
+import { notePresenter } from "@src/presenter";
 
 export const addNoteService = async (userId: UserDocument["id"]): Promise<INoteResponse> => {
 

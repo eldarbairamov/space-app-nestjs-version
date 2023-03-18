@@ -1,6 +1,6 @@
-import { EMAIL_REGEXP, ONLY_LETTERS_REGEXP } from "../constant";
 import Joi from "joi";
-import { IChangePassword, IResetPassword, IUpdateProfile } from "../interface";
+import { EMAIL_REGEXP, ONLY_LETTERS_REGEXP } from "@src/constant";
+import { IChangePassword, IResetPassword, IUpdateProfile } from "@src/interface";
 
 export const updateProfileValidator = Joi.object<IUpdateProfile>({
 

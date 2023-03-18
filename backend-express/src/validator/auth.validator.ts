@@ -1,6 +1,6 @@
 import Joi from "joi";
-import { EMAIL_REGEXP } from "../constant";
-import { ILogin, IRegistration } from "../interface";
+import { ILogin, IRegistration } from "@src/interface";
+import { EMAIL_REGEXP } from "@src/constant";
 
 export const registrationValidator = Joi.object<IRegistration>({
 

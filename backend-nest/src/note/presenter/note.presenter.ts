@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { NoteDocument } from "../model/note.model";
-import { INoteResponse } from "../interface/note-response.interface";
+import { INoteResponse } from "@src/note/interface/note-response.interface";
+import { NoteDocument } from "@src/note/model/note.model";
 
 @Injectable()
 export class NotePresenter {

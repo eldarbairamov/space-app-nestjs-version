@@ -1,21 +1,21 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UserRepository } from "./repository/user.repository";
-import { passComparer, passHasher } from "../auth/helper";
 import { ChangePasswordDto, ProfileUpdateDto } from "./dto";
-import { ActionTokenRepository } from "../auth/repository";
 import { UserDocument } from "./model/user.model";
-import { NoteRepository } from "../note/repository/note.repository";
-import { PlanRepository } from "../plan/repository/plan.repository";
-import { MomentRepository } from "../moment/repository/moment.repository";
-import { exists, unlinker } from "../common/helper";
 import { ConfigService } from "@nestjs/config";
-import { IEnvironmentVariables } from "../config/env-variables.interface";
-import { CHANGE_EMAIL, EMAIL_CONFIRMATION_TOKEN_TYPE, staticPath } from "../common/constants";
 import { IUpdateProfileResponse } from "./interface/update-profile-response.interface";
 import { IUserInfoResponse } from "./interface/user-info-response.interface";
-import { EmailService } from "../common/email.service";
-import { TokenService } from "../common/token.service";
 import path from "node:path";
+import { passComparer, passHasher } from "@src/auth/helper";
+import { ActionTokenRepository } from "@src/auth/repository";
+import { NoteRepository } from "@src/note/repository/note.repository";
+import { PlanRepository } from "@src/plan/repository/plan.repository";
+import { CHANGE_EMAIL, EMAIL_CONFIRMATION_TOKEN_TYPE, staticPath } from "@src/common/constants";
+import { IEnvironmentVariables } from "@src/config/env-variables.interface";
+import { exists, unlinker } from "@src/common/helper";
+import { EmailService } from "@src/common/email.service";
+import { MomentRepository } from "@src/moment/repository/moment.repository";
+import { TokenService } from "@src/common/token.service";
 
 @Injectable()
 export class UserService {

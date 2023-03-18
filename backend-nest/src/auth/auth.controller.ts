@@ -1,12 +1,12 @@
 import { Body, Controller, Get, HttpCode, Patch, Post, Req, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { RequestWithUser } from "../common/interface/express.interface";
 import { AccessGuard, LoginGuard, RefreshGuard, RegistrationGuard } from "./guard";
 import { RegistrationDto, ResetPasswordDto } from "./dto";
-import { User } from "../common/decorator/user.decorator";
+import { User } from "@src/common/decorator";
 import { IAccessTokenPair, ILoginResponse } from "./interface";
 import { ApiBearerAuth, ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiDefaultResponse, ApiForbiddenResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { ActivationBody, CodeIsNotValid, DefaultError, EmailInUse, ForgotPassBody, LoginBody, LoginResponse, RefreshBody, RefreshResponse, SuccessResponse, UnactivatedAccount, UnauthorizedError, UserIsNotFound, WrongEmailOrPass } from "../common/swagger";
+import { RequestWithUser } from "@src/common/interface/express.interface";
+import { ActivationBody, CodeIsNotValid, DefaultError, EmailInUse, ForgotPassBody, LoginBody, LoginResponse, RefreshBody, RefreshResponse, SuccessResponse, UnactivatedAccount, UnauthorizedError, UserIsNotFound, WrongEmailOrPass } from "@src/common/swagger";
 
 @ApiTags("Auth")
 @Controller("auth")

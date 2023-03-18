@@ -1,4 +1,4 @@
-import { IUserInfoResponse } from "../../user/interface/user-info-response.interface";
+import { IUserInfoResponse } from "@src/user/interface/user-info-response.interface";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class GetUserResponse implements IUserInfoResponse {

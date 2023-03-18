@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { NotePresenter } from "./presenter/note.presenter";
-import { UserRepository } from "../user/repository/user.repository";
 import { NoteRepository } from "./repository/note.repository";
 import { UpdateNoteDto } from "./dto";
 import { INoteResponse, INotesResponse } from "./interface/note-response.interface";
-import { UserDocument } from "../user/model/user.model";
 import { NoteDocument } from "./model/note.model";
-import { QueryDto } from "../common/dto";
+import { UserRepository } from "@src/user/repository/user.repository";
+import { UserDocument } from "@src/user/model/user.model";
+import { QueryDto } from "@src/common/dto";
 
 @Injectable()
 export class NoteService {

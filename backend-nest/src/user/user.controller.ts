@@ -2,15 +2,14 @@ import { Body, Controller, Get, Patch, Post, UploadedFile, UseFilters, UseGuards
 import { UserService } from "./user.service";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ChangePasswordDto, ProfileUpdateDto } from "./dto";
-import { AccessGuard } from "../auth/guard";
 import { IUserInfoResponse } from "./interface/user-info-response.interface";
 import { IUpdateProfileResponse } from "./interface/update-profile-response.interface";
-import { FileValidatorFilter } from "../common/exception/file-validator.filter";
-import { User } from "../common/decorator/user.decorator";
-import { SharpPipe } from "../common/pipe/sharp.pipe";
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiDefaultResponse, ApiOkResponse, ApiOperation, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
-import { ChangeEmailAcceptBody, ChangeEmailRequest, ChangePasswordBody, DeleteAvatarBody, GetUserResponse, DefaultError, FileSizeError, FileTypeError, SuccessResponse, UnauthorizedError, UploadImageResponse } from "../common/swagger";
-import { ApiFile } from "../common/decorator/api-file.decorator";
+import { ChangeEmailAcceptBody, ChangeEmailRequest, ChangePasswordBody, DefaultError, DeleteAvatarBody, FileSizeError, FileTypeError, GetUserResponse, SuccessResponse, UnauthorizedError, UploadImageResponse } from "@src/common/swagger";
+import { SharpPipe } from "@src/common/pipe/sharp.pipe";
+import { FileValidatorFilter } from "@src/common/exception/file-validator.filter";
+import { ApiFile, User } from "@src/common/decorator";
+import { AccessGuard } from "@src/auth/guard";
 
 @ApiBearerAuth()
 @ApiTags("User")

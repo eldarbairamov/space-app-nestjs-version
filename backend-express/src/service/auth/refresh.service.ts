@@ -1,10 +1,9 @@
-import { ApiException } from "../../exception/api.exception";
-import { OAuthRepository } from "../../repository";
-import { jwtVerifyService } from "./jwt-verify.service";
-import { REFRESH_TOKEN_TYPE } from "../../constant";
-import { accessTokenPairGenerator } from "../token.service";
-import { UserDocument } from "../../model";
-import { IAccessTokenPair } from "../../interface";
+import { UserDocument } from "@src/model";
+import { accessTokenPairGenerator, jwtVerifyService } from "@src/service";
+import { IAccessTokenPair } from "@src/interface";
+import { OAuthRepository } from "@src/repository";
+import { REFRESH_TOKEN_TYPE } from "@src/constant";
+import { ApiException } from "@src/exception/api.exception";
 
 export const refreshService = async (refreshToken: string): Promise<IAccessTokenPair> => {
 

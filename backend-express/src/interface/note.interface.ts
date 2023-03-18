@@ -1,4 +1,4 @@
-import { NoteDocument } from "../model";
+import { NoteDocument } from "@src/model";
 
 export interface INoteResponse {
    readonly id: NoteDocument["id"];

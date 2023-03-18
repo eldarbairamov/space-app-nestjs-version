@@ -1,11 +1,11 @@
-import { emailSender } from "../email.service";
-import { ActionTokenRepository } from "../../repository";
 import jwt from "jsonwebtoken";
-import { FORGOT_PASSWORD, RESET_PASSWORD_TOKEN_TYPE } from "../../constant";
-import { emailValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { UserDocument } from "../../model";
-import { configuration } from "../../config";
+import { UserDocument } from "@src/model";
+import { configuration } from "@src/config";
+import { ActionTokenRepository } from "@src/repository";
+import { FORGOT_PASSWORD, RESET_PASSWORD_TOKEN_TYPE } from "@src/constant";
+import { emailValidator } from "@src/validator";
+import { emailSender } from "@src/service";
+import { ApiException } from "@src/exception/api.exception";
 
 export const forgotPasswordService = async (emailFromReq: string, userFromDb: UserDocument) => {
 

@@ -1,5 +1,5 @@
-import { PlanRepository, TaskRepository } from "../../repository";
-import { TaskDocument } from "../../model";
+import { TaskDocument } from "@src/model";
+import { PlanRepository, TaskRepository } from "@src/repository";
 
 export const deleteTaskService = async (taskId: TaskDocument["id"]) => {
 

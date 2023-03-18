@@ -1,8 +1,8 @@
-import { OAuthRepository } from "../repository";
 import expressAsyncHandler from "express-async-handler";
 import { type Response, type Request } from "express";
-import { activationService, forgotPasswordService, loginService, registrationService, resetPasswordService, refreshService } from "../service";
-import { ILogin, IOAuthResponse, IResetPassword, IRequest, IAccessTokenPair } from "../interface";
+import { activationService, forgotPasswordService, loginService, refreshService, registrationService, resetPasswordService } from "@src/service";
+import { IAccessTokenPair, ILogin, IOAuthResponse, IRequest, IResetPassword } from "@src/interface";
+import { OAuthRepository } from "@src/repository";
 
 export const authController = {
 

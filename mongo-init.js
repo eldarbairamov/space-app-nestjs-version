@@ -1,6 +1,6 @@
 db.createUser(
    {
-      USER: 'eldar',
+      user: 'eldar',
       pwd: 'eldar010596',
       roles: [
          {

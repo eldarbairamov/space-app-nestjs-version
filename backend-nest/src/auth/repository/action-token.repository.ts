@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { FilterQuery, Model, UpdateQuery } from "mongoose";
-import { ActionToken, ActionTokenDocument } from "../model";
 import { InjectModel } from "@nestjs/mongoose";
-import { databaseException } from "../../common/exception/database.exception";
+import { ActionToken, ActionTokenDocument } from "@src/auth/model";
+import { databaseException } from "@src/common/exception/database.exception";
 
 @Injectable()
 export class ActionTokenRepository {

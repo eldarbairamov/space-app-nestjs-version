@@ -1,5 +1,5 @@
-import { ITaskResponse } from "../interface";
-import { TaskDocument } from "../model";
+import { TaskDocument } from "@src/model";
+import { ITaskResponse } from "@src/interface";
 
 export const taskPresenter = (document: TaskDocument): ITaskResponse => {
 

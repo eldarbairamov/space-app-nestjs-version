@@ -1,8 +1,8 @@
-import { MomentDocument } from "../../model";
-import { IUpdateMoment } from "../../interface";
-import { updateMomentValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
-import { MomentRepository } from "../../repository";
+import { MomentDocument } from "@src/model";
+import { IUpdateMoment } from "@src/interface";
+import { updateMomentValidator } from "@src/validator";
+import { MomentRepository } from "@src/repository";
+import { ApiException } from "@src/exception/api.exception";
 
 export const updateMomentService = async (momentId: MomentDocument["id"], body: IUpdateMoment) => {
 

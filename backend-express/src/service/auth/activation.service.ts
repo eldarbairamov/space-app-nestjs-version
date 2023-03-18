@@ -1,6 +1,6 @@
-import { ApiException } from "../../exception/api.exception";
-import { ActionTokenRepository, UserRepository } from "../../repository";
-import { activationValidator } from "../../validator";
+import { ActionTokenRepository, UserRepository } from "@src/repository";
+import { activationValidator } from "@src/validator";
+import { ApiException } from "@src/exception/api.exception";
 
 export const activationService = async (activationCode: string) => {
 

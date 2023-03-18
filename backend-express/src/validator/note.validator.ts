@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IUpdateNote } from "../interface";
+import { IUpdateNote } from "@src/interface";
 
 export const updateNoteValidator = Joi.object<IUpdateNote>({
 

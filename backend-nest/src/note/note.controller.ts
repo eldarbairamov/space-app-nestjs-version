@@ -2,12 +2,12 @@ import { Body, Controller, Get, HttpCode, Param, Post, Put, Query, UseGuards } f
 import { NoteService } from "./note.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { UpdateNoteDto } from "./dto";
-import { AccessGuard } from "../auth/guard";
 import { INoteResponse, INotesResponse } from "./interface/note-response.interface";
 import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, ObjNotExistError, ObjectIdError, SuccessResponse, UnauthorizedError, NoteResponse, NotesResponse, DeleteItemBody } from "../common/swagger";
-import { DeleteItemDto, QueryDto } from "../common/dto";
-import { User } from "../common/decorator";
+import { DefaultError, DeleteItemBody, NoteResponse, NotesResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError } from "@src/common/swagger";
+import { DeleteItemDto, QueryDto } from "@src/common/dto";
+import { AccessGuard } from "@src/auth/guard";
+import { User } from "@src/common/decorator";
 
 @ApiBearerAuth()
 @ApiTags("Notes")

@@ -1,11 +1,11 @@
 import { v4 as uuid } from "uuid";
-import { emailSender } from "../email.service";
-import { UserRepository, ActionTokenRepository } from "../../repository";
-import { passHasher } from "../../helper";
-import { ACTIVATION_TOKEN_TYPE, REGISTRATION } from "../../constant";
-import { IRegistration } from "../../interface";
-import { registrationValidator } from "../../validator";
-import { ApiException } from "../../exception/api.exception";
+import { passHasher } from "@src/helper";
+import { ActionTokenRepository, UserRepository } from "@src/repository";
+import { ACTIVATION_TOKEN_TYPE, REGISTRATION } from "@src/constant";
+import { registrationValidator } from "@src/validator";
+import { IRegistration } from "@src/interface";
+import { emailSender } from "@src/service";
+import { ApiException } from "@src/exception/api.exception";
 
 export const registrationService = async (body: IRegistration) => {
 

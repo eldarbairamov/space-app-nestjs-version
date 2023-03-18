@@ -1,16 +1,16 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Query, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
-import { AccessGuard } from "../auth/guard";
+import { AccessGuard } from "@src/auth/guard";
 import { MomentService } from "./moment.service";
 import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.interface";
 import { UpdateMomentDto } from "./dto";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { FileValidatorFilter } from "../common/exception/file-validator.filter";
-import { User, ApiFile } from "../common/decorator";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
-import { SharpPipe } from "../common/pipe/sharp.pipe";
 import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
-import { DefaultError, FileSizeError, FileTypeError, MomentResponse, MomentsResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError, UpdateMomentBody, UploadImageResponse } from "../common/swagger";
-import { QueryDto } from "../common/dto";
+import { DefaultError, FileSizeError, FileTypeError, MomentResponse, MomentsResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError, UpdateMomentBody, UploadImageResponse } from "@src/common/swagger";
+import { QueryDto } from "@src/common/dto";
+import { SharpPipe } from "@src/common/pipe/sharp.pipe";
+import { FileValidatorFilter } from "@src/common/exception/file-validator.filter";
+import { ApiFile, User } from "@src/common/decorator";
 
 @ApiTags("Moments")
 @Controller("moments")

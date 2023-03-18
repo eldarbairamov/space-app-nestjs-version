@@ -1,12 +1,12 @@
-import { IUser, UserDocument, UserModel } from "../model";
 import { FilterQuery, UpdateQuery } from "mongoose";
-import { ApiException } from "../exception/api.exception";
+import { IUser, UserDocument, UserModel } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const UserRepository = {
 
    create: async (body: Partial<IUser>): Promise<UserDocument> => {
       try {
-         return UserModel.create(body);
+         return await UserModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -16,7 +16,7 @@ export const UserRepository = {
 
    findOne: async (filter: FilterQuery<IUser>): Promise<UserDocument | null> => {
       try {
-         return UserModel.findOne(filter);
+         return await UserModel.findOne(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -26,7 +26,7 @@ export const UserRepository = {
 
    findById: async (userId: UserDocument["id"]): Promise<UserDocument | null> => {
       try {
-         return UserModel.findById(userId);
+         return await UserModel.findById(userId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -36,7 +36,7 @@ export const UserRepository = {
 
    findByIdAndUpdate: async (userId: UserDocument["id"], update: UpdateQuery<IUser>): Promise<UserDocument | null> => {
       try {
-         return UserModel.findByIdAndUpdate(userId, update, { new: true });
+         return await UserModel.findByIdAndUpdate(userId, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

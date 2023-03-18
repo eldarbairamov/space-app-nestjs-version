@@ -1,8 +1,8 @@
 import expressAsyncHandler from "express-async-handler";
-import { ApiException } from "../exception/api.exception";
-import { IMAGE_MAX_SIZE, IMAGE_MIMETYPES } from "../constant";
-import { IImage, IRequest } from "../interface";
 import { NextFunction, Response } from "express";
+import { IMAGE_MAX_SIZE, IMAGE_MIMETYPES } from "@src/constant";
+import { IImage, IRequest } from "@src/interface";
+import { ApiException } from "@src/exception/api.exception";
 
 export const fileMiddleware = {
    imageChecker: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response, next: NextFunction) => {

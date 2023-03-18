@@ -1,12 +1,12 @@
-import { IMoment, MomentDocument, MomentModel, UserDocument } from "../model";
-import { ApiException } from "../exception/api.exception";
 import { FilterQuery, UpdateQuery } from "mongoose";
+import { IMoment, MomentDocument, MomentModel, UserDocument } from "@src/model";
+import { ApiException } from "@src/exception/api.exception";
 
 export const MomentRepository = {
 
    create: async (body: Partial<IMoment>): Promise<MomentDocument> => {
       try {
-         return MomentModel.create(body);
+         return await MomentModel.create(body);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -17,7 +17,7 @@ export const MomentRepository = {
    find: async (filter: FilterQuery<IMoment>, searchKey: string, limit: string | number): Promise<MomentDocument[]> => {
       const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
       try {
-         return MomentModel.find(filterObj).sort({ createdAt: "desc" }).limit(Number(limit));
+         return await MomentModel.find(filterObj).sort({ createdAt: "desc" }).limit(Number(limit));
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -27,7 +27,7 @@ export const MomentRepository = {
 
    findAllByUserId: async (userId: UserDocument["id"]): Promise<MomentDocument[] | null> => {
       try {
-         return MomentModel.find({ ownerId: userId });
+         return await MomentModel.find({ ownerId: userId });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -37,7 +37,7 @@ export const MomentRepository = {
 
    findById: async (momentId: MomentDocument["id"]): Promise<MomentDocument | null> => {
       try {
-         return MomentModel.findById(momentId);
+         return await MomentModel.findById(momentId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -47,7 +47,7 @@ export const MomentRepository = {
 
    findByIdAndUpdate: async (momentId: MomentDocument["id"], update: UpdateQuery<IMoment>): Promise<MomentDocument | null> => {
       try {
-         return MomentModel.findByIdAndUpdate(momentId, update, { new: true });
+         return await MomentModel.findByIdAndUpdate(momentId, update, { new: true });
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -57,7 +57,7 @@ export const MomentRepository = {
 
    findByIdAndDelete: async (momentId: MomentDocument["id"]): Promise<MomentDocument | null> => {
       try {
-         return MomentModel.findByIdAndDelete(momentId);
+         return await MomentModel.findByIdAndDelete(momentId);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);
@@ -66,9 +66,9 @@ export const MomentRepository = {
    },
 
    count: async (filter: FilterQuery<IMoment>, searchKey = ""): Promise<number> => {
-      const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
       try {
-         return MomentModel.count(filterObj);
+         return await MomentModel.count(filterObj);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

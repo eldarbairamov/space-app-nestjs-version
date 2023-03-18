@@ -5,7 +5,7 @@ import { emailTemplate } from "./email-template/email-template";
 import hbs from "nodemailer-express-handlebars";
 import path from "node:path";
 import { ConfigService } from "@nestjs/config";
-import { IEnvironmentVariables } from "../config/env-variables.interface";
+import { IEnvironmentVariables } from "@src/config/env-variables.interface";
 
 @Injectable()
 export class EmailService {
