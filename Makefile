@@ -21,3 +21,14 @@ frontend_build:
 
 frontend_preview:
 	cd ./frontend && npm run preview
+
+
+
+frontend_npm:
+	cd ./frontend && npm install
+
+express_npm:
+	cd ./backend-express && npm install
+
+nest_npm:
+	cd ./backend-nest && npm install
