@@ -1,6 +1,6 @@
 import { Dropdown, MenuProps } from "antd";
 import { AppLogo } from "@src/component";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 import { logoutService } from "@src/service";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "@src/hook";
@@ -15,8 +15,8 @@ export function BurgerNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);
 
    const { logoutFn } = logoutService(() => {
-      AppRouter.navigate("/");
-      AppRouter.navigate(0);
+      AuthorizedRouter.navigate("/");
+      AuthorizedRouter.navigate(0);
    });
 
    const items: MenuProps["items"] = [
@@ -56,18 +56,24 @@ export function BurgerNavbar() {
 
    return (
       <div className={ style.BurgerNavbar }>
-         {/* LogoPage */ }
+
+         {/* App logo */ }
          <div className={ style.logo }>
             <AppLogo/>
          </div>
 
-
+         {/* Menu */}
          <div className={ style.menu }>
+
             <Dropdown menu={ { items } } placement="bottomRight" trigger={ [ "click" ] }>
-               <img src={ isDark ? menuLight : menuDark } alt="as" style={ { width: "25px" } }/>
+               <img src={ isDark ? menuLight : menuDark } alt={ "menu" } style={ { width: "25px" } }/>
             </Dropdown>
-            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={ { width: "20px" } }
+
+            <img src={ isDark ? logoutLight : logoutDark }
+                 alt={ "logout" }
+                 style={ { width: "20px" } }
                  onClick={ () => logoutFn() }/>
+
          </div>
 
 

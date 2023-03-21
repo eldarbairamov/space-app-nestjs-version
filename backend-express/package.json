@@ -3,12 +3,13 @@
    "version": "1.0.0",
    "description": "Final fullstack project for Okten School",
    "author": "Eldar Bayramov",
+   "private": true,
    "keywords": [],
    "license": "ISC",
    "scripts": {
       "build": "rimraf ./build && tsc",
-      "start:dev": "nodemon ./src/app.ts",
-      "start:prod": "npm run build && node ./dist/app.js"
+      "start:dev": "nodemon -r tsconfig-paths/register ./src/app.ts",
+      "start:prod": "npm run build && node -r ./prod-path.js ./dist/app.js"
    },
    "devDependencies": {
       "@types/bcrypt": "^5.0.0",
@@ -39,15 +40,12 @@
       "express-fileupload": "^1.4.0",
       "joi": "^17.7.0",
       "jsonwebtoken": "^9.0.0",
-      "module-alias": "^2.2.2",
       "mongoose": "^6.8.2",
       "nodemailer": "^6.8.0",
       "nodemailer-express-handlebars": "^6.0.0",
       "sharp": "^0.31.3",
       "swagger-ui-express": "^4.6.2",
+      "tsconfig-paths": "^4.1.2",
       "uuid": "^9.0.0"
-   },
-   "_moduleAliases": {
-      "@src": "dist/"
    }
 }

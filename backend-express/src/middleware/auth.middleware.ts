@@ -10,7 +10,7 @@ export const authMiddleware = {
 
    isUserExists: expressAsyncHandler(async (req: IRequest<{ email: string }, any, any>, res: Response, next: NextFunction) => {
       const user = await UserRepository.findOne({ email: req.body.email });
-      if (!user) throw new ApiException("User is not found", 401);
+      if (!user) throw new ApiException("Wrong email or password", 401);
 
       req.user = user;
 

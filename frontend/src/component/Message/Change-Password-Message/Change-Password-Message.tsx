@@ -1,6 +1,6 @@
 import { Result } from "antd";
 import { v4 } from "uuid";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { logoutService } from "@src/service";
 import { Button } from "@src/component";
 
@@ -8,8 +8,8 @@ import style from "./Change-Password-Message.module.scss";
 
 export function ChangePasswordMessage() {
    const { logoutFn } = logoutService(() => {
-      WelcomeRouter.navigate("/login");
-      WelcomeRouter.navigate(0);
+      UnauthorizedRouter.navigate("/login");
+      UnauthorizedRouter.navigate(0);
    });
 
    return (

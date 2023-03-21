@@ -17,7 +17,7 @@ export function PlanList() {
 
    return (
       <>
-         { plans.length !== 0 &&
+         { !!plans.length &&
             <div className={ style.PlanList }>
                { plans && plans.map((item, index) => {
                   if (plans.length == index + 1) {
@@ -30,7 +30,7 @@ export function PlanList() {
 
          { !plans.length &&
             <div className={ style.no_plans_wrapper }>
-               <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "80px" } }/>
+               <img src={ isDark ? emptyLight : emptyDark } alt={ "empty" } style={ { width: "80px" } }/>
                <p> Пусто.. </p>
             </div> }
       </>

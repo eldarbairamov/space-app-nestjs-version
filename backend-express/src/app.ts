@@ -1,4 +1,3 @@
-import 'module-alias/register'
 import "dotenv/config";
 import { errorMiddleware } from "./middleware";
 import { configuration } from "./config";

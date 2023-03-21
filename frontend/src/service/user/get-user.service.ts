@@ -6,7 +6,8 @@ import { useAppDispatch } from "@src/hook";
 import { axiosInstance } from "@src/service";
 import { IUser } from "@src/interface";
 import { App } from "antd";
-import { errorCatherFn } from "@src/helper";
+import { errorCatherFn, pleaseWait } from "@src/helper";
+import { delay } from "@src/constant/delay.constant";
 
 export function getUserService() {
    const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ export function getUserService() {
    const getUserFn = async () => {
       try {
          const { data } = await axiosInstance.get<IUser>(userRequests.getUser);
+         await pleaseWait(delay)
          dispatch(userActions.setInfo(data));
 
       } catch (e) {

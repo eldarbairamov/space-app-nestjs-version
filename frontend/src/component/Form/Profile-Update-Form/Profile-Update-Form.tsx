@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
-import { FormControl } from "@src/component";
+import { FormControl, Loader, Modal } from "@src/component";
 import { updateProfile } from "@src/validator/user.validator";
 import { useAppSelector } from "@src/hook";
 import { IUpdateProfileForm } from "@src/interface";
@@ -18,9 +18,13 @@ export function ProfileUpdateForm() {
    });
 
    const { updateEmailFn } = updateProfileService();
-   const { getUserFn } = getUserService();
+   const { getUserFn, isLoading } = getUserService();
 
    const { username, name, surname } = useAppSelector(state => state.userReducer);
+
+   const [ isOpen, setIsOpen ] = useState<boolean>(false);
+
+   const toggleModal = () => !isLoading && setIsOpen(!isOpen)
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();
@@ -58,6 +62,10 @@ export function ProfileUpdateForm() {
          {/* Submit button */ }
          <Button text={ "Зберегти" } style={ { width: "100%" } }/>
 
+         {/* Modal window */}
+         <Modal isOpen={ isLoading } onClose={ toggleModal } isBg={ false }>
+            <Loader/>
+         </Modal>
       </form>
    );
 }

@@ -15,8 +15,9 @@ interface IMomentHeaderProps {
 }
 
 export function MomentHeader({ addMomentFn, setSearchKey }: IMomentHeaderProps) {
-   const select = (value: string) => setSearchKey(value);
    const [ isValueNull, setIsValueNull ] = useState<any>();
+
+   const select = (value: string) => setSearchKey(value);
 
    const { tags } = useAppSelector(state => state.momentReducer);
    const { isDark } = useAppSelector(state => state.appReducer);

@@ -18,7 +18,7 @@ export function NoteListAdaptive() {
 
    return (
       <>
-         { notes.length !== 0 &&
+         { !!notes.length &&
             <div className={ style.NoteListAdaptive }>
                { notes &&
                   notes.map((item, index) => {
@@ -33,7 +33,7 @@ export function NoteListAdaptive() {
 
          { !notes.length &&
             <div className={ style.no_notes_wrapper }>
-               <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "80px" } }/>
+               <img src={ isDark ? emptyLight : emptyDark } alt={ "empty" } style={ { width: "80px" } }/>
                <p> Пусто.. </p>
             </div> }
 

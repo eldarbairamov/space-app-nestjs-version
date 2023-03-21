@@ -6,7 +6,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { noteActions } from "@src/redux/slice";
 import dateHelper from "moment";
 import { deleteNoteService } from "@src/service";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 
 import style from "./Note-Item-Adaptive.module.scss";
 
@@ -31,7 +31,7 @@ export const NoteItemAdaptive = forwardRef(({ note }: NoteItemAdaptive, ref: any
    return (
       <div ref={ ref } className={ style.NoteItemAdaptive }
            onClick={ () => {
-              AppRouter.navigate("/notes/edit");
+              AuthorizedRouter.navigate("/notes/edit");
               dispatch(noteActions.setActiveNoteId(note.id));
            } }
            data-active={ note.id === activeNote?.id }

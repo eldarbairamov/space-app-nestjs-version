@@ -20,7 +20,7 @@ export const NoteList: FC = () => {
 
    return (
       <>
-         { notes.length !== 0 &&
+         { !!notes.length &&
             <div className={ style.NoteList }>
                { notes && notes.map((item, index) => {
                   if (notes.length === index + 1) {

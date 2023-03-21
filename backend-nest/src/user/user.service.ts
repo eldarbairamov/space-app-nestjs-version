@@ -55,14 +55,17 @@ export class UserService {
 
    }
 
-   async changeEmailRequest(email: string): Promise<void> {
+   async changeEmailRequest(email: string, userId: UserDocument["id"]): Promise<void> {
       // Check is new email unique
-      const user = await this.userRepository.findOne({ email })
-      if (user) throw new HttpException('This email is already in use', HttpStatus.CONFLICT)
+      const [ isEmailUnique, user ] = await Promise.all([
+         this.userRepository.findOne({ email }),
+         this.userRepository.findById(userId)
+      ])
+      if (isEmailUnique) throw new HttpException('This email is already in use', HttpStatus.CONFLICT)
 
       // Generate link
       const confirmationToken = this.tokenService.generate({
-         userId: user.id,
+         userId,
          email
       }, this.configService.get("SECRET_CHANGE_EMAIL_KEY"));
       const confirmationLink = `${ this.configService.get('CLIENT_URL') }/email_confirmation/new?token=${ confirmationToken }`;
@@ -71,7 +74,7 @@ export class UserService {
       await this.actionTokenRepository.create({
          token: confirmationToken,
          tokenType: EMAIL_CONFIRMATION_TOKEN_TYPE,
-         ownerId: user.id,
+         ownerId: userId,
       })
 
       // Send email

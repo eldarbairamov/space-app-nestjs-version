@@ -6,7 +6,8 @@ import { momentsRequests } from "@src/config/configuration";
 import { momentActions } from "@src/redux/slice";
 import { App } from "antd";
 import { useAppDispatch } from "@src/hook";
-import { errorCatherFn } from "@src/helper";
+import { errorCatherFn, pleaseWait } from "@src/helper";
+import { delay } from "@src/constant/delay.constant";
 
 export function getMomentService(momentId: IMoment["id"]) {
    const [ prevState, setPrevState ] = useState<IMoment>();
@@ -19,6 +20,7 @@ export function getMomentService(momentId: IMoment["id"]) {
          dispatch(momentActions.setIsLoading(true))
          const { data } = await axiosInstance.get<IMoment>(momentsRequests.getOneMoment + momentId);
          dispatch(momentActions.setActiveMoment(data));
+         await pleaseWait(delay)
          setPrevState(data);
 
       } catch (e) {

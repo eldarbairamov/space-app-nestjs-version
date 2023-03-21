@@ -2,7 +2,7 @@ import { Result } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { Button } from "@src/component";
 import { v4 } from "uuid";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 
 import style from "./Forgot-Password-Message.module.scss";
 
@@ -17,7 +17,7 @@ export function ForgotPasswordMessage() {
             extra={
                <Button key={ v4() }
                        text={ "Окей" }
-                       onClick={ () => AppRouter.navigate("/login", { replace: true }) }/>
+                       onClick={ () => AuthorizedRouter.navigate("/login", { replace: true }) }/>
             }
          />
       </div>

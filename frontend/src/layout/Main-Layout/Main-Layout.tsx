@@ -11,6 +11,7 @@ export function MainLayout() {
 
    return (
       <div className={ style.MainLayout }>
+
          {/* Navbar */ }
          { !isWidth1000 ? <LayoutNavbar/> : <BurgerNavbar/> }
 

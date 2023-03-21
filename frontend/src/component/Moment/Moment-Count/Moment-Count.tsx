@@ -9,7 +9,10 @@ export function MomentCount() {
    return (
       <div className={ style.MomentCount }>
          <Divider> Моменти </Divider>
-         <p> { momentsCount } </p>
+
+         <div className={style.count_wrapper}>
+            <p> { momentsCount } </p>
+         </div>
       </div>
    );
 }

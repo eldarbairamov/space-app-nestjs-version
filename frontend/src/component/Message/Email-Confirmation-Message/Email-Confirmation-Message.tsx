@@ -1,6 +1,6 @@
 import { Result } from "antd";
 import { v4 } from "uuid";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 import { useSearchParams } from "react-router-dom";
 import { emailConfirmationService } from "@src/service";
 import { Button } from "@src/component";
@@ -25,7 +25,7 @@ export function EmailConfirmationMessage() {
                extra={
                   <Button key={ v4() }
                           text={ "Увійти" }
-                          onClick={ () => AppRouter.navigate("/login", { replace: true }) }/>
+                          onClick={ () => AuthorizedRouter.navigate("/login", { replace: true }) }/>
                }
             />
          }

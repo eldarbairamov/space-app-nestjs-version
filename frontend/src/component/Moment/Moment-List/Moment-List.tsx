@@ -17,7 +17,7 @@ export function MomentList() {
 
    return (
       <>
-         { moments.length !== 0 &&
+         { !!moments.length &&
 
             <div className={ style.MomentList }>
                { moments && moments.map((moment, index) => {

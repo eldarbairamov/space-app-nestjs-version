@@ -15,7 +15,7 @@ export const changeEmailReqService = async (userId: UserDocument["id"], email: s
 
    // Generate link
    const confirmationToken = jwt.sign({ userId, email }, configuration.SECRET_CHANGE_EMAIL_KEY, { expiresIn: "1d" });
-   const confirmationLink = `${ process.env.CLIENT_URL }/email_confirmation/new?token=${ confirmationToken }`;
+   const confirmationLink = `${ configuration.CLIENT_URL }/email_confirmation/new?token=${ confirmationToken }`;
 
    // Find user and save action token to DB
    const [ user ] = await Promise.all([
@@ -28,6 +28,6 @@ export const changeEmailReqService = async (userId: UserDocument["id"], email: s
    ]);
 
    // Send email
-   await emailSender(email, CHANGE_EMAIL, { confirmationLink, username: user?.username });
+   user && await emailSender(email, CHANGE_EMAIL, { confirmationLink, username: user.username });
 
 };

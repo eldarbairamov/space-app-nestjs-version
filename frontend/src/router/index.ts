@@ -1,2 +1,2 @@
-export * from "./App.router";
-export * from "./Welcome.router";
+export * from "./Authorized.router";
+export * from "./Unauthorized.router";

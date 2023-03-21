@@ -5,19 +5,27 @@
    align-items: center;
    justify-content: space-evenly;
    flex-direction: column;
-   font-size: 30px;
-   font-weight: bold;
    height: 50%;
    width: 20%;
    transition: $transition;
 
    span {
       font-size: 20px;
-      color: #3D8DAE;
+      color: var(--main-font);
+   }
+
+   .count_wrapper {
+      @extend %flex-align-justify;
+      background: rgba(61, 141, 174, 0.9);
+      height: 40px;
+      width: 40px;
+      border-radius: 100%;
    }
 
    p {
-      color: #3D8DAE;
+      color: whitesmoke;
+      font-size: 18px;
+      font-weight: 500;
    }
 }
 

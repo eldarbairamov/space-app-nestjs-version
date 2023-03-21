@@ -7,7 +7,8 @@ import { useDebounce } from "@src/hook";
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { planAction } from "@src/redux/slice";
 import { App } from "antd";
-import { errorCatherFn } from "@src/helper";
+import { errorCatherFn, pleaseWait } from "@src/helper";
+import { delay } from "@src/constant/delay.constant";
 
 export function getPlansService() {
    const { searchKey, total } = useAppSelector(state => state.planReducer);
@@ -25,7 +26,7 @@ export function getPlansService() {
                limit: total,
             },
          });
-
+         await pleaseWait(delay)
          dispatch(planAction.setPlans(data));
 
       } catch (e) {

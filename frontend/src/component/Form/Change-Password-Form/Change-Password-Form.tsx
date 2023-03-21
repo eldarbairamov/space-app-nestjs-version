@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { FormControl } from "@src/component";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 import { IChangePasswordForm } from "@src/interface";
 import { changePasswordValidator } from "@src/validator/auth.validator";
 import { App } from "antd";
@@ -26,7 +26,7 @@ export function ChangePasswordForm() {
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
    const { getUserFn } = getUserService();
-   const { updatePasswordFn } = changePasswordService(() => AppRouter.navigate("/password_update/message", { replace: true }));
+   const { updatePasswordFn } = changePasswordService(() => AuthorizedRouter.navigate("/password_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<IChangePasswordForm> = async (data) => {
       const newPassword = data.password;

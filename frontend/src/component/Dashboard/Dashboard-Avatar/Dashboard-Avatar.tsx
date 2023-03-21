@@ -10,14 +10,12 @@ export function DashboardAvatar() {
    return (
       <div className={ style.DashboardAvatar }>
 
-         { avatar
-            ?
-            <div className={ style.avatar }>
-               <img src={ `${ configuration.API_URL }/${ avatar }` } alt="avatar"/>
-            </div>
-            :
-            <img className={ style.no_avatar } src={ user } alt="no avatar"/>
-         }
+         <div className={ avatar ? style.avatar : undefined }>
+            <img src={ avatar ? `${ configuration.API_URL }/${ avatar }` : user }
+                 alt={ avatar ? "avatar" : 'user' }
+                 className={ !avatar ? style.no_avatar : undefined }
+            />
+         </div>
 
       </div>
    );

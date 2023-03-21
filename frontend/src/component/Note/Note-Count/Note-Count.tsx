@@ -9,7 +9,10 @@ export function NoteCount() {
    return (
       <div className={ style.NoteCount }>
          <Divider> Замітки </Divider>
-         <p> { notesCount } </p>
+
+         <div className={style.count_wrapper}>
+            <p> { notesCount } </p>
+         </div>
       </div>
    );
 }

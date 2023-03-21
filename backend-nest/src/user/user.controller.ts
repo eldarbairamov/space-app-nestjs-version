@@ -41,9 +41,10 @@ export class UserController {
    @UseGuards(AccessGuard)
    @Post("email_change")
    async changeEmailRequest(
+      @User("userId") userId: string,
       @Body("email") email: string): Promise<{ message: string }> {
 
-      await this.userService.changeEmailRequest(email);
+      await this.userService.changeEmailRequest(email, userId);
       return { message: "Success" };
    }
 

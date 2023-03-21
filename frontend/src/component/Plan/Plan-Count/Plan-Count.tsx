@@ -9,7 +9,10 @@ export function PlanCount() {
    return (
       <div className={ style.PlanCount }>
          <Divider> Плани </Divider>
-         <p> { plansCount } </p>
+
+         <div className={style.count_wrapper}>
+            <p> { plansCount } </p>
+         </div>
       </div>
    );
 }

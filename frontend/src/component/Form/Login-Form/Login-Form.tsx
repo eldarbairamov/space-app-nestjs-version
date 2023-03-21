@@ -3,7 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { ILoginForm } from "@src/interface";
 import { FormControl } from "@src/component";
 import { loginValidator } from "@src/validator/auth.validator";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { Button } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
@@ -48,8 +48,8 @@ export function LoginForm({ loginFn }: ILoginFormProps) {
 
          {/* Footer */ }
          <div className={ style.footer }>
-            <p onClick={ () => WelcomeRouter.navigate("/password_forgot", { replace: true }) }> Забув пароль? </p>
-            <p onClick={ () => WelcomeRouter.navigate("/registration", { replace: true }) }> Створити аккаунт </p>
+            <p onClick={ () => UnauthorizedRouter.navigate("/password_forgot", { replace: true }) }> Забув пароль? </p>
+            <p onClick={ () => UnauthorizedRouter.navigate("/registration", { replace: true }) }> Створити аккаунт </p>
          </div>
 
       </motion.form>

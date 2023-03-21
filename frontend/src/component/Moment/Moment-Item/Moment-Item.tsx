@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { IMoment } from "@src/interface";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 import dateHelper from "moment/moment";
 import { useAppSelector } from "@src/hook";
 import { configuration } from "@src/config/configuration";
@@ -18,7 +18,7 @@ export const MomentItem = forwardRef(({ moment }: IMomentItem, ref: any) => {
    const { isDark } = useAppSelector(state => state.appReducer);
 
    return (
-      <div ref={ ref } className={ style.MomentItem } onClick={ () => AppRouter.navigate(`/moments/${ moment.id }`) }>
+      <div ref={ ref } className={ style.MomentItem } onClick={ () => AuthorizedRouter.navigate(`/moments/${ moment.id }`) }>
 
          {/* Title */ }
          <p className={ style.title }> { moment.title } </p>

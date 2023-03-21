@@ -3,7 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { IRegistration, IRegistrationForm } from "@src/interface";
 import { FormControl } from "@src/component";
 import { registrationValidator } from "@src/validator/auth.validator";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { Button } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
@@ -54,7 +54,7 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
          {/*  Footer */ }
          <div className={ style.footer }>
             <span> Є аккаунт? </span>
-            <span onClick={ () => WelcomeRouter.navigate("/login") }> Увійти </span>
+            <span onClick={ () => UnauthorizedRouter.navigate("/login") }> Увійти </span>
          </div>
 
       </motion.form>

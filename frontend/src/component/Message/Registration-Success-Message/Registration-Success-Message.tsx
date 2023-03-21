@@ -1,7 +1,7 @@
 import { Result } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { v4 } from "uuid";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { Button } from "@src/component";
 
 import style from "./Registration-Success-Message.module.scss";
@@ -17,7 +17,7 @@ export function RegistrationSuccessMessage() {
             extra={
                <Button text={ "Перейти до активації" }
                        key={ v4() }
-                       onClick={ () => WelcomeRouter.navigate("/activation", { replace: true }) }/>
+                       onClick={ () => UnauthorizedRouter.navigate("/activation", { replace: true }) }/>
             }
          />
       </div>

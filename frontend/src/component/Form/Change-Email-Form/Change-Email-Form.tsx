@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { FormControl } from "@src/component";
-import { AppRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 import { emailValidator } from "@src/validator/auth.validator";
 import { changeEmailService, getUserService } from "@src/service";
 import { Button } from "@src/component";
@@ -23,7 +23,7 @@ export function ChangeEmailForm() {
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
    const { getUserFn } = getUserService();
-   const { updateEmailFn } = changeEmailService(() => AppRouter.navigate("/email_update/message", { replace: true }));
+   const { updateEmailFn } = changeEmailService(() => AuthorizedRouter.navigate("/email_update/message", { replace: true }));
 
    const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => updateEmailFn(email);
 

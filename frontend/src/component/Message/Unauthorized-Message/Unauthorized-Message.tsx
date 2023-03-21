@@ -1,5 +1,5 @@
 import { Result } from "antd";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { v4 } from "uuid";
 import { Button } from "@src/component";
 
@@ -14,7 +14,10 @@ export function UnauthorizedMessage() {
             title="Упс.."
             subTitle="Ви не авторизовані."
             extra={
-               <Button key={ v4() } text={ "Увійти" } onClick={ () => WelcomeRouter.navigate("/login") }/>
+               <Button key={ v4() } text={ "Увійти" } onClick={ () => {
+                  UnauthorizedRouter.navigate("/login")
+                  UnauthorizedRouter.navigate(0)
+               } }/>
             }
          />
       </div>

@@ -46,7 +46,6 @@ html {
 
 html[data-dark="false"] {
    @extend %light-bg;
-
    --notes-color: #d78052;
    --plans-color: #3D8DAE;
    --moments-color: #7274d7;

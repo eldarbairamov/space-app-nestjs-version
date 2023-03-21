@@ -2,7 +2,7 @@ import { AxiosApiError, axiosInstance } from "@src/service";
 import { ILoginForm, IOAuth } from "@src/interface";
 import { storageService } from "@src/service";
 import { authRequests } from "@src/config/configuration";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
 
@@ -28,7 +28,7 @@ export function loginService(next: () => any) {
          if (responseMessage === "Account is not activated") {
             await pleaseWait(2000);
             message.destroy();
-            WelcomeRouter.navigate("/activation");
+            UnauthorizedRouter.navigate("/activation");
          }
       }
    };

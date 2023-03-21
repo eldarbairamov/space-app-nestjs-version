@@ -50,6 +50,7 @@ export const NoteEdit: FC = () => {
                        onBlur={ () => updateNoteFn(activeNote) }
             />
 
+            {/* Font options */}
             <div className={ style.font_options }>
                <p
                   onClick={ () => dispatch(noteActions.changeFont('Roboto')) }

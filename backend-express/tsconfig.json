@@ -3,7 +3,6 @@
       "target": "es2018",
       "module": "commonjs",
       "removeComments": true,
-      "rootDir": "./src",
       "moduleResolution": "node",
       "typeRoots": [
          "./node_modules/@types",
@@ -22,6 +21,6 @@
          "@src/*": [
             "src/*"
          ]
-      },
+      }
    }
 }

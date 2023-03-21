@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import { AppRouter, WelcomeRouter } from "@src/router";
+import { AuthorizedRouter, UnauthorizedRouter } from "@src/router";
 import { storageService } from "@src/service";
 import { ConfigProvider } from "antd";
 import { useTheme } from "@src/hook/use-theme.hook";
@@ -14,7 +14,7 @@ export function App() {
    return (
       <ConfigProvider theme={ theme }>
          <AntdContext>
-            <RouterProvider router={ isLogin ? AppRouter : WelcomeRouter }/>
+            <RouterProvider router={ isLogin ? AuthorizedRouter : UnauthorizedRouter }/>
             <BgPreload/>
          </AntdContext>
       </ConfigProvider>

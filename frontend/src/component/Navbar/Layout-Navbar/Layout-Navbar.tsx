@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { AppLogo } from "@src/component";
-import { WelcomeRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { logoutService } from "@src/service";
 import { useAppSelector } from "@src/hook";
 
@@ -12,8 +12,8 @@ export function LayoutNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);
 
    const { logoutFn } = logoutService(() => {
-      WelcomeRouter.navigate("login");
-      WelcomeRouter.navigate(0);
+      UnauthorizedRouter.navigate("login");
+      UnauthorizedRouter.navigate(0);
    });
 
    return (
@@ -40,9 +40,9 @@ export function LayoutNavbar() {
             </div>
          </div>
 
-         {/* Profile bar  */ }
+         {/* Logout  */ }
          <div className={ style.logout }>
-            <img src={ isDark ? logoutLight : logoutDark } alt="logout" style={ { width: "25px" } }
+            <img src={ isDark ? logoutLight : logoutDark } alt={ "logout" } style={ { width: "25px" } }
                  onClick={ () => logoutFn() }/>
          </div>
 

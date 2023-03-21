@@ -7,7 +7,8 @@ import { axiosInstance } from "@src/service";
 import { noteActions } from "@src/redux/slice";
 import { useDebounce } from "@src/hook";
 import { App } from "antd";
-import { errorCatherFn } from "@src/helper";
+import { errorCatherFn, pleaseWait } from "@src/helper";
+import { delay } from "@src/constant/delay.constant";
 
 export function getNotesService() {
    const { searchKey, total } = useAppSelector(state => state.noteReducer);
@@ -25,7 +26,7 @@ export function getNotesService() {
                limit: total,
             },
          });
-
+         await pleaseWait(delay)
          dispatch(noteActions.setNotes(data));
 
       } catch (e) {

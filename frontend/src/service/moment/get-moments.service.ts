@@ -7,7 +7,8 @@ import { momentsRequests } from "@src/config/configuration";
 import { momentActions } from "@src/redux/slice";
 import { useAppSelector } from "@src/hook";
 import { App } from "antd";
-import { errorCatherFn } from "@src/helper";
+import { errorCatherFn, pleaseWait } from "@src/helper";
+import { delay } from "@src/constant/delay.constant";
 
 export function getMomentsService(searchKey: string) {
    const { total } = useAppSelector(state => state.momentReducer);
@@ -24,6 +25,7 @@ export function getMomentsService(searchKey: string) {
             },
          });
          dispatch(momentActions.setMoments(data));
+         await pleaseWait(delay)
 
       } catch (e) {
          dispatch(momentActions.setIsLoading(false))

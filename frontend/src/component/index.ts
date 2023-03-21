@@ -38,7 +38,6 @@ export * from "./Form/Change-Password-Form/Change-Password-Form";
 
 export * from "./Dashboard/Dashboard-Avatar/Dashboard-Avatar";
 export * from "./Dashboard/Dashboard-Greeting/Dashboard-Greeting";
-export * from "./Dashboard/Jokes/Jokes";
 
 export * from "./UI/Form-Control/Form-Control";
 export * from "./UI/Validation-Toaster/Validation-Toaster";
