@@ -54,21 +54,21 @@ export function ChangePasswordForm() {
                    animate={ "animate" }
       >
          {/* Form controls */ }
-         <FormControl labelName={ "Введіть ваш поточний пароль" }
+         <FormControl labelName={ "Поточний пароль" }
                       fieldName={ "current_password" }
                       register={ register }
                       errorMessage={ errors.current_password?.message }
                       isPassword={ true }
          />
 
-         <FormControl labelName={ "Введіть ваш новий пароль" }
+         <FormControl labelName={ "Новий пароль" }
                       fieldName={ "password" }
                       register={ register }
                       errorMessage={ errors.password?.message }
                       isPassword={ true }
          />
 
-         <FormControl labelName={ "Введіть пароль ще раз" }
+         <FormControl labelName={ "Повторіть пароль" }
                       fieldName={ "repeat_password" }
                       register={ register }
                       errorMessage={ errors.repeat_password?.message }
