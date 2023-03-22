@@ -4,7 +4,7 @@ import { Input, Button } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 
-import style from "./ActivationForm.module.scss";
+import style from "./Activation-Form.module.scss";
 
 interface ActivationFormProps {
    activationFn: (body: string) => Promise<void>;
