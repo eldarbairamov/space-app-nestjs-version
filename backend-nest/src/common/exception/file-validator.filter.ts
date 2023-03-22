@@ -6,6 +6,7 @@ export class FileValidatorFilter implements ExceptionFilter {
    catch(exception: any, host: ArgumentsHost) {
 
       const statusCode = exception.status;
+      const message = exception.message
       const response = host.switchToHttp().getResponse<Response>();
 
       if (statusCode === 413) response.status(413).json({
@@ -17,6 +18,8 @@ export class FileValidatorFilter implements ExceptionFilter {
          statusCode: 422,
          message: "Invalid file type"
       });
+
+      response.status(statusCode).json({statusCode, message })
 
    }
 }

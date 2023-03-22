@@ -23,6 +23,7 @@ export class AccessStrategy extends PassportStrategy(Strategy, "access") {
 
    async validate(req: Request, decoded: any) {
       const accessToken = req.headers.authorization?.split(" ")[1];
+
       const isTokenActual = await this.oAuthRepository.findOne({ accessToken });
       if (!isTokenActual) throw new HttpException("Invalid or expired token", HttpStatus.UNAUTHORIZED);
 
