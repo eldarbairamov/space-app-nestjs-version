@@ -12,11 +12,14 @@ export const updateProfile = Joi.object<IUpdateProfileForm>({
 
    name: Joi.string().pattern(onlyLettersRegex).trim().optional().allow(null, "").messages({
       "string.pattern.base": "Недопустимий формат. Тільки букви",
-
+      "string.max": "Не більше 20-и символів",
+      "string.min": "Не менше 2-х символів",
    }),
 
    surname: Joi.string().pattern(onlyLettersRegex).trim().optional().allow(null, "").messages({
       "string.pattern.base": "Недопустимий формат. Тільки букви",
+      "string.max": "Не більше 20-и символів",
+      "string.min": "Не менше 2-х символів",
    }),
 
 });
