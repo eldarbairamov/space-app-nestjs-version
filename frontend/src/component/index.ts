@@ -29,7 +29,7 @@ export * from "./Task/Task-List/Task-List";
 
 export * from "./Form/Registration-Form/Registration-Form";
 export * from "./Form/Login-Form/Login-Form";
-export * from "./Form/Activation-Form/ActivationForm";
+export * from "./Form/Activation-Form/Activation-Form";
 export * from "./Form/Reset-Password-Form/Reset-Password-Form";
 export * from "./Form/Forgot-Password-Form/Forgot-Password-Form";
 export * from "./Form/Change-Email-Form/Change-Email-Form";
