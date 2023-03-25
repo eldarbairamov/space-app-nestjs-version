@@ -1,5 +1,5 @@
 import { ResetPasswordForm, WelcomeLogo } from "@src/component";
-import { useAppDispatch, useAppSelector, useMatchMedia } from "@src/hook";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 import { useSearchParams } from "react-router-dom";
 import { Switch } from "antd";
 import { UnauthorizedRouter } from "@src/router";
@@ -9,8 +9,6 @@ import { appActions } from "@src/redux/slice";
 import style from "./Reset-Password-Page.module.scss";
 
 export function ResetPasswordPage() {
-   const { isDesktop, isTablet } = useMatchMedia();
-
    const [ searchParams ] = useSearchParams();
    const resetPasswordToken = searchParams.get("token");
 
@@ -22,7 +20,7 @@ export function ResetPasswordPage() {
 
    return (
       <div className={ style.ResetPasswordPage }>
-         { (isDesktop || isTablet) && <WelcomeLogo/> }
+         <WelcomeLogo/>
 
          <ResetPasswordForm resetPasswordFn={ resetPasswordFn }
                             resetPasswordToken={ resetPasswordToken! }/>
