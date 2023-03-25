@@ -99,7 +99,7 @@ export class AuthService {
          secret: this.configService.get("SECRET_FORGOT_PASS_KEY"),
          expiresIn: "1d",
       });
-      const resetPasswordLink = `${ process.env.CLIENT_URL }/password_reset/new?token=${ resetPasswordToken }`;
+      const resetPasswordLink = `${ this.configService.get('CLIENT_URL') }/password_reset/new?token=${ resetPasswordToken }`;
 
       // Save action token to DB
       await this.actionTokenRepository.create({
