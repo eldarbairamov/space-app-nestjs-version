@@ -95,10 +95,7 @@ export class AuthService {
       if (!user) throw new HttpException("User is not found", HttpStatus.UNAUTHORIZED);
 
       // Generate link
-      const resetPasswordToken = this.jwtService.sign({ userId: user.id }, {
-         secret: this.configService.get("SECRET_FORGOT_PASS_KEY"),
-         expiresIn: "1d",
-      });
+      const resetPasswordToken = this.tokenService.generate({ userId: user.id }, this.configService.get("SECRET_FORGOT_PASS_KEY"))
       const resetPasswordLink = `${ this.configService.get('CLIENT_URL') }/password_reset/new?token=${ resetPasswordToken }`;
 
       // Save action token to DB
