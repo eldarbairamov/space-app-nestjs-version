@@ -8,7 +8,7 @@ services:
 #    volumes:
 #      - ./frontend/src:/app/src
 
-  api:
+  api_nest:
     command: npm run start:dev
     volumes:
       - ./backend-nest/src:/app/src
