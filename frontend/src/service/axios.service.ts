@@ -40,7 +40,6 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
             storageService.deleteTokens();
             await pleaseWait(1000);
             UnauthorizedRouter.navigate("/unauthorized");
-            // UnauthorizedRouter.navigate(0);
          }
 
          return axiosInstance(originalRequest);
