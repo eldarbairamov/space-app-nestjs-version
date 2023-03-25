@@ -12,7 +12,7 @@ export function UnauthorizedMessage() {
             className={style.message}
             status="403"
             title="Упс.."
-            subTitle="Ви не авторизовані."
+            subTitle="Ви не авторизовані"
             extra={
                <Button key={ v4() } text={ "Увійти" } onClick={ () => {
                   UnauthorizedRouter.navigate("/login")
