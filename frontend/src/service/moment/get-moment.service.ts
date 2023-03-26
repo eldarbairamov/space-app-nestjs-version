@@ -19,8 +19,8 @@ export function getMomentService(momentId: IMoment["id"]) {
       try {
          dispatch(momentActions.setIsLoading(true))
          const { data } = await axiosInstance.get<IMoment>(momentsRequests.getOneMoment + momentId);
-         dispatch(momentActions.setActiveMoment(data));
          await pleaseWait(delay)
+         dispatch(momentActions.setActiveMoment(data));
          setPrevState(data);
 
       } catch (e) {
