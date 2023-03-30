@@ -5,9 +5,12 @@ import { authRequests } from "@src/config/configuration";
 import { UnauthorizedRouter } from "@src/router";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
+import { useAppDispatch } from "@src/hook";
+import { authActions } from "@src/redux/slice";
 
 export function loginService(next: () => any) {
    const { message } = App.useApp();
+   const dispatch = useAppDispatch()
 
    const loginFn = async (body: ILoginForm) => {
       try {
@@ -17,6 +20,8 @@ export function loginService(next: () => any) {
          message.destroy();
          message.success(`Привіт, ${ data.username }`);
          await pleaseWait(2000);
+         dispatch(authActions.setIsLogin(true))
+         message.destroy();
 
          next();
 

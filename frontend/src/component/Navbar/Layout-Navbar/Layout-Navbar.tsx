@@ -11,10 +11,7 @@ import logoutLight from "/logout-light.svg";
 export function LayoutNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const { logoutFn } = logoutService(() => {
-      UnauthorizedRouter.navigate("login");
-      UnauthorizedRouter.navigate(0);
-   });
+   const { logoutFn } = logoutService(() => UnauthorizedRouter.navigate("/login"))
 
    return (
       <div className={ style.LayoutNavbar }>

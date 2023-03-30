@@ -80,5 +80,6 @@ export const AuthorizedRouter = createBrowserRouter([
    {
       path: "/unauthorized",
       element: <UnauthorizedMessage/>,
+      errorElement: <ErrorMessage/>,
    },
 ]);

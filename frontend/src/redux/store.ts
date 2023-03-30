@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducer, noteReducer, momentReducer, appReducer, taskReducer, planReducer } from "./slice";
+import { userReducer, noteReducer, momentReducer, appReducer, taskReducer, planReducer, authReducer } from "./slice";
 
 export const store = configureStore({
    reducer: {
@@ -9,6 +9,7 @@ export const store = configureStore({
       planReducer,
       taskReducer,
       appReducer,
+      authReducer
    },
 });
 

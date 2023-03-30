@@ -1,6 +1,6 @@
 import { LoginForm, WelcomeLogo } from "@src/component";
 import { Switch } from "antd";
-import { UnauthorizedRouter } from "@src/router";
+import { AuthorizedRouter } from "@src/router";
 import { loginService } from "@src/service";
 import { appActions } from "@src/redux/slice";
 import { useAppDispatch, useAppSelector } from "@src/hook";
@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@src/hook";
 import style from "./Login-Page.module.scss";
 
 export function LoginPage() {
-   const { loginFn } = loginService(() => UnauthorizedRouter.navigate(0));
+   const { loginFn } = loginService(() => AuthorizedRouter.navigate('/'));
 
    const { isDark } = useAppSelector(state => state.appReducer);
 

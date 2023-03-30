@@ -1,6 +1,6 @@
 import { Dropdown, MenuProps } from "antd";
 import { AppLogo } from "@src/component";
-import { AuthorizedRouter } from "@src/router";
+import { UnauthorizedRouter } from "@src/router";
 import { logoutService } from "@src/service";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "@src/hook";
@@ -14,10 +14,7 @@ import logoutDark from "/logout-dark.svg";
 export function BurgerNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const { logoutFn } = logoutService(() => {
-      AuthorizedRouter.navigate("/");
-      AuthorizedRouter.navigate(0);
-   });
+   const { logoutFn } = logoutService(() => UnauthorizedRouter.navigate("/login"))
 
    const items: MenuProps["items"] = [
       {
