@@ -12,12 +12,14 @@ import { Button } from "@src/component";
 import style from "./Profile-Update-Form.module.scss";
 
 export function ProfileUpdateForm() {
-   const { register, handleSubmit, formState: { errors }, setValue } = useForm<IUpdateProfileForm>({
+   const { register, handleSubmit, formState: { errors, isValid }, setValue } = useForm<IUpdateProfileForm>({
       resolver: joiResolver(updateProfile),
       mode: "onTouched",
    });
 
-   const { updateEmailFn } = updateProfileService();
+   console.log(isValid);
+
+   const { updateProfileFn } = updateProfileService();
    const { getUserFn, isLoading } = getUserService();
 
    const { username, name, surname } = useAppSelector(state => state.userReducer);
@@ -35,12 +37,11 @@ export function ProfileUpdateForm() {
 
    }, [ username, name, surname ]);
 
-   const onSubmit: SubmitHandler<IUpdateProfileForm> = async (data) => updateEmailFn(data);
+   const onSubmit: SubmitHandler<IUpdateProfileForm> = async (data) => updateProfileFn(data);
 
    return (
       <form className={ style.ProfileUpdateForm } onSubmit={ handleSubmit(onSubmit) }>
 
-         {/* Form controls */ }
          <FormControl labelName={ "Ім'я користувача" }
                       fieldName={ "username" }
                       errorMessage={ errors.username?.message }
@@ -59,13 +60,16 @@ export function ProfileUpdateForm() {
                       isPassword={ false }
                       register={ register }/>
 
-         {/* Submit button */ }
-         <Button text={ "Зберегти" } style={ { width: "100%" } }/>
+         <Button text={ "Зберегти" }
+                 style={ { width: "100%" } }
+                 disabled={ !isValid }/>
 
-         {/* Modal window */}
-         <Modal isOpen={ isLoading } onClose={ toggleModal } isBg={ false }>
+         <Modal isOpen={ isLoading }
+                onClose={ toggleModal }
+                isBg={ false }>
             <Loader/>
          </Modal>
+
       </form>
    );
 }

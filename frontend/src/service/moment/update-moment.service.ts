@@ -5,7 +5,7 @@ import { momentsRequests } from "@src/config/configuration";
 import { App } from "antd";
 import { errorCatherFn } from "@src/helper";
 
-export function updateMomentService(setPrevState: TypedSetState<IMoment | undefined>) {
+export function updateMomentService(setPrevState: TypedSetState<IMoment>) {
    const { message } = App.useApp();
 
    const updateMomentFn = async (activeMoment: IMoment) => {

@@ -8,9 +8,12 @@ export function TaskList() {
 
    return (
       <div className={ style.TaskList }>
-         { tasks && tasks.map(task => (
-            <TaskItem key={ task.id } task={ task }/>
-         )) }
+         <div className={ style.task_list }>
+            { tasks && tasks.map(task => (
+               <TaskItem key={ task.id }
+                         task={ task }/>
+            )) }
+         </div>
       </div>
    );
 }

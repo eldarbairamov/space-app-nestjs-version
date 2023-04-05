@@ -21,10 +21,11 @@ export function Modal({ isOpen, onClose, children, isBg }: IModal) {
                         variants={ fadePresent }
                         initial={ "initial" }
                         animate={ "animate" }
-                        exit={ "exit" }
-            >
-               <div className={ style.overlay } onClick={ onClose }>
-                  <div className={ style.content } data-bg={ isBg }>
+                        exit={ "exit" }>
+               <div className={ style.overlay }
+                    onClick={ onClose }>
+                  <div className={ style.content }
+                       data-bg={ isBg }>
                      { children }
                   </div>
                </div>

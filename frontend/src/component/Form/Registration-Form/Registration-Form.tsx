@@ -27,10 +27,8 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
                    onSubmit={ handleSubmit(onSubmit) }
                    variants={ horizontalPresent }
                    initial={ "initial" }
-                   animate={ "animate" }
-      >
+                   animate={ "animate" }>
 
-         {/* FormControlDate fields */ }
          <FormControl labelName={ "Ім'я користувача" }
                       fieldName={ "username" }
                       register={ register }
@@ -48,10 +46,10 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>
 
-         {/* Submit button */ }
-         <Button disabled={ !isValid } text={ "Зареєструватись" } style={ { width: "100%" } }/>
+         <Button disabled={ !isValid }
+                 text={ "Зареєструватись" }
+                 style={ { width: "100%" } }/>
 
-         {/*  Footer */ }
          <div className={ style.footer }>
             <span> Є аккаунт? </span>
             <span onClick={ () => UnauthorizedRouter.navigate("/login") }> Увійти </span>

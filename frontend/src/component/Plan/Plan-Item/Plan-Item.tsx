@@ -1,7 +1,6 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { DeleteOutlined } from "@ant-design/icons";
 import { IPlan } from "@src/interface";
 import dateHelper from "moment/moment";
 import { TypedOnClick } from "@src/interface/common.interface";
@@ -10,6 +9,8 @@ import { useAppSelector } from "@src/hook";
 
 import style from "./Plan-Item.module.scss";
 import brain from "/brain.png";
+import deleteDark from '/delete-dark.svg'
+import deleteLight from '/delete-light.svg'
 
 interface IPlanItemProps {
    plan: IPlan;
@@ -29,19 +30,20 @@ export const PlanItem = forwardRef(({ plan }: IPlanItemProps, ref: any) => {
       await deletePlanFn(targetId, total, searchKey);
    };
 
+   const { isDark } = useAppSelector(state => state.appReducer);
+
    const choosePlan = (plan: IPlan) => navigate(`/plans/${ plan.id }`);
 
    return (
       <div ref={ ref } className={ style.PlanItem }
-           onClick={ () => choosePlan(plan) }
-      >
+           onClick={ () => choosePlan(plan) }>
 
          <p className={ style.plan_name }> { titleCondition ? plan.title.substring(0, 16) + "..." : plan.title }  </p>
 
-         <p className={ style.delete }
-            onClick={ event => deletePlan(event, plan.id) }>
-            <DeleteOutlined style={ { fontSize: "20px" } }/>
-         </p>
+         <img className={ style.delete }
+              src={ isDark ? deleteLight : deleteDark }
+              alt={ "delete" }
+              onClick={ event => deletePlan(event, plan.id) }/>
 
          <img src={ brain } alt="folder"/>
 

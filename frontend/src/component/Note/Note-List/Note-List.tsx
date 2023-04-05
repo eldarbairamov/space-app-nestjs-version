@@ -21,21 +21,31 @@ export const NoteList: FC = () => {
    return (
       <>
          { !!notes.length &&
+
             <div className={ style.NoteList }>
                { notes && notes.map((item, index) => {
                   if (notes.length === index + 1) {
-                     return <NoteItem ref={ lastElemRef } key={ uuid() } note={ item }/>;
+                     return <NoteItem ref={ lastElemRef }
+                                      key={ uuid() }
+                                      note={ item }/>;
                   } else {
-                     return <NoteItem key={ uuid() } note={ item }/>;
+                     return <NoteItem key={ uuid() }
+                                      note={ item }/>;
                   }
                })
                }
-            </div> }
+            </div>
+
+         }
 
          { !notes.length &&
+
             <div className={ style.no_notes_wrapper }>
-               <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "50px" } }/>
+               <img src={ isDark ? emptyLight : emptyDark }
+                    alt="empty"
+                    style={ { width: "50px" } }/>
             </div>
+
          }
 
       </>

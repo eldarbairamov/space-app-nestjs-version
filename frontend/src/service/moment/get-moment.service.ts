@@ -10,7 +10,7 @@ import { errorCatherFn, pleaseWait } from "@src/helper";
 import { delay } from "@src/constant/delay.constant";
 
 export function getMomentService(momentId: IMoment["id"]) {
-   const [ prevState, setPrevState ] = useState<IMoment>();
+   const [ prevState, setPrevState ] = useState<IMoment>({} as IMoment);
    const { message } = App.useApp();
 
    const dispatch = useAppDispatch();

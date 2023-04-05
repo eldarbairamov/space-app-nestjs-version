@@ -23,9 +23,9 @@ export function ChangeEmailForm() {
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
    const { getUserFn } = getUserService();
-   const { updateEmailFn } = changeEmailService(() => AuthorizedRouter.navigate("/email_update/message", { replace: true }));
+   const { changeEmailFn } = changeEmailService(() => AuthorizedRouter.navigate("/email_update/message", { replace: true }));
 
-   const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => updateEmailFn(email);
+   const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => changeEmailFn(email);
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();
@@ -38,18 +38,17 @@ export function ChangeEmailForm() {
                    onSubmit={ handleSubmit(onSubmit) }
                    variants={ horizontalPresent }
                    initial={ "initial" }
-                   animate={ "animate" }
-      >
+                   animate={ "animate" }>
 
-         {/* Form controls */ }
          <FormControl labelName={ "Введіть нову адресу електронної пошти" }
                       fieldName={ "email" }
                       register={ register }
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 
-         {/* Submit button */ }
-         <Button disabled={ !isValid } style={ { width: "100%" } } text={ "Зберегти" }/>
+         <Button disabled={ !isValid }
+                 style={ { width: "100%" } }
+                 text={ "Зберегти" }/>
 
       </motion.form>
    );

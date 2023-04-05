@@ -8,7 +8,8 @@ interface IInvisibleButtonProps {
 
 export function NoBgButton({ text, hoverSubject, ...props }: IInvisibleButtonProps) {
    return (
-      <button className={ style.NoBgButton } data-hover={ hoverSubject } { ...props } >
+      <button className={ style.NoBgButton }
+              data-hover={ hoverSubject } { ...props } >
          { text }
       </button>
    );

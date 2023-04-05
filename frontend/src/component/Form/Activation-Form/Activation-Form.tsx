@@ -24,24 +24,18 @@ export function ActivationForm({ activationFn }: ActivationFormProps) {
       <motion.div className={ style.ActivationForm }
                   variants={ horizontalPresent }
                   initial={ "initial" }
-                  animate={ "animate" }
-      >
+                  animate={ "animate" }>
 
-         {/* Message */ }
          <span className={ style.message }> Будь ласка, введіть код активації </span>
 
-         {/* Input */ }
          <Input type="text"
                 value={ value }
                 onChange={ (e: ChangeEvent<HTMLInputElement>) => handleChange(e.target.value) }/>
 
-
-         {/* Submit button */ }
          <Button disabled={ !value }
                  text={ "Надіслати" }
                  style={ { width: "100%" } }
-                 onClick={ (e: FormEvent<HTMLButtonElement>) => handleSubmit(e) }
-         />
+                 onClick={ (e: FormEvent<HTMLButtonElement>) => handleSubmit(e) }/>
 
       </motion.div>
    );

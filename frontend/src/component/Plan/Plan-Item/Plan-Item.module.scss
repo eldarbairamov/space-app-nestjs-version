@@ -3,7 +3,7 @@
 .PlanItem {
    @extend %flex-align-justify-column;
    gap: 28px;
-   border-radius: 20px;
+   border-radius: 10px;
    background: var(--item-bg);
    height: 230px;
    width: calc(100% / 4 - 22.5px);
@@ -23,6 +23,7 @@
    .plan_date {
       font-weight: 500;
       font-size: 13px;
+      color: var(--plans-color);
    }
 
    .delete {
@@ -30,7 +31,8 @@
       right: 20px;
       top: 20px;
       cursor: pointer;
-      color: var(--main-font);
+      width: 25px;
+      height: 25px;
       transition: .2s;
 
       &:hover {

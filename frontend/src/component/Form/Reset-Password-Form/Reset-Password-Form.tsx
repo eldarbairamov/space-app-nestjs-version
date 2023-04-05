@@ -35,23 +35,21 @@ export function ResetPasswordForm({ resetPasswordFn, resetPasswordToken }: IRese
    return (
       <form className={ style.ResetPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
 
-         {/* Form controls */ }
          <FormControl labelName={ "Введіть ваш новий пароль" }
                       fieldName={ "password" }
                       register={ register }
                       errorMessage={ errors.password?.message }
-                      isPassword={ true }
-         />
+                      isPassword={ true }/>
 
          <FormControl labelName={ "Введіть пароль ще раз" }
                       fieldName={ "repeat_password" }
                       register={ register }
                       errorMessage={ errors.repeat_password?.message }
-                      isPassword={ true }
-         />
+                      isPassword={ true }/>
 
-         {/* Submit button */ }
-         <Button disabled={ !isValid } style={ { width: "100%" } } text={ "Зберегти" }/>
+         <Button disabled={ !isValid }
+                 style={ { width: "100%" } }
+                 text={ "Зберегти" }/>
 
       </form>
    );

@@ -1,44 +1,53 @@
 @import "src/style/configuration";
 
 .NoteSidebar {
-   @extend %flex-align-justify-column;
+   @extend %flex-align-justify;
    height: 100%;
-   width: 100%;
-   transition: $transition;
+   width: 28%;
+   background: var(--second-bg);
+   border-radius: 10px;
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
 
-   .header {
-      @extend %flex-align-justify;
+   .note_sidebar {
+      @extend %flex-align-justify-column;
+      height: 100%;
       width: 100%;
-      height: 60px;
-      border-bottom: 2px solid var(--decorative-grey);
-      color: var(--notes-color);
+      transition: $transition;
 
-      img {
-         height: 26px;
-         cursor: pointer;
-         transition: .2s;
+      .header {
+         @extend %flex-align-justify;
+         width: 100%;
+         height: 60px;
+         border-bottom: 2px solid var(--decorative-grey);
+         color: var(--notes-color);
 
-         &:hover {
-            filter: var(--icon-hover);
-            -webkit-filter: var(--icon-hover);
+         img {
+            height: 26px;
+            cursor: pointer;
+            transition: .2s;
+
+            &:hover {
+               filter: var(--icon-hover);
+               -webkit-filter: var(--icon-hover);
+            }
          }
       }
-   }
 
-   .middle {
-      @extend %flex-align;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-      height: calc(100% - 110px);
-      overflow-y: scroll;
-   }
+      .middle {
+         @extend %flex-align;
+         flex-direction: column;
+         gap: 10px;
+         width: 100%;
+         height: calc(100% - 110px);
+         overflow-y: scroll;
+      }
 
-   .bottom {
-      @extend %flex-align-justify;
-      border-top: 2px solid var(--decorative-grey);
-      width: 100%;
-      height: 50px;
+      .bottom {
+         @extend %flex-align-justify;
+         border-top: 2px solid var(--decorative-grey);
+         width: 100%;
+         height: 50px;
+      }
    }
 }
 

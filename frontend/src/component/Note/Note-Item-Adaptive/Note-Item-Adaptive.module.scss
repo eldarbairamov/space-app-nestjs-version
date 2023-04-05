@@ -1,52 +1,75 @@
 @import "src/style/configuration";
 
 .NoteItemAdaptive {
-   display: flex;
-   align-items: flex-start;
-   justify-content: space-evenly;
-   flex-direction: column;
-   gap: 20px;
+   @extend %flex-align;
    padding: 20px;
-   border-radius: 20px;
    background: var(--item-bg);
-   height: 140px;
-   width: calc(100% / 2 - 15px);
-   position: relative;
+   border-radius: 10px;
    cursor: pointer;
+   position: relative;
+   overflow: hidden;
+   background: var(--item-bg);
+   height: 120px;
+   width: calc(100% / 2 - 15px);
+
    transition: .3s;
 
-   .note_title {
-      font-weight: 500;
-      font-size: 16px;
-      text-align: left;
-   }
-
-   .delete {
-      position: absolute;
-      right: 20px;
-      font-weight: 500;
-      cursor: pointer;
-   }
-
-   .note_body {
-      font-size: 14px;
-      text-align: left;
+   .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       width: 80%;
+      height: 100%;
 
-      p {
-         color: var(--second-font);
+      .note_title {
+         font-weight: 500;
+         font-size: 16px;
+         text-align: left;
+         width: 85%;
          overflow: hidden;
          text-overflow: ellipsis;
          white-space: nowrap;
       }
+
+      .note_body {
+         font-size: 14px;
+         text-align: left;
+
+         p {
+            color: var(--second-font);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+         }
+      }
+
+      .note_date {
+         font-size: 13px;
+         color: #d78052;
+         font-weight: 500;
+         text-align: left;
+      }
    }
 
-   .note_date {
-      font-size: 13px;
-      color: #d78052;
-      font-weight: 500;
-      text-align: right;
+   .right {
+      @extend %flex-align;
+      justify-content: flex-end;
+      width: 20%;
+      height: 100%;
+
+      .delete {
+         cursor: pointer;
+         width: 25px;
+         height: 25px;
+         transition: .2s;
+
+         &:hover {
+            filter: var(--icon-hover);
+            -webkit-filter: var(--icon-hover);
+         }
+      }
    }
+
 }
 
 .NoteItemAdaptive[data-active='true'] {

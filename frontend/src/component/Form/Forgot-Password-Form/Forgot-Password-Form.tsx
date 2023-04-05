@@ -25,26 +25,23 @@ export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProp
                    onSubmit={ handleSubmit(onSubmit) }
                    variants={ horizontalPresent }
                    initial={ "initial" }
-                   animate={ "animate" }
-      >
+                   animate={ "animate" }>
 
-         {/* Message  */ }
          <p className={ style.message }>
             Введіть адресу електронної пошти вашого аккаунту і ми пришлемо вам посилання на скидання пароля
          </p>
 
-         {/* Form control */ }
          <FormControl
             labelName={ "" }
             fieldName={ "email" }
             style={ { textAlign: "center" } }
             register={ register }
             errorMessage={ errors.email?.message }
-            isPassword={ false }
-         />
+            isPassword={ false }/>
 
-         {/* Submit button */ }
-         <Button disabled={ !isValid } text={ "Надіслати" } style={ { width: "100%" } }/>
+         <Button disabled={ !isValid }
+                 text={ "Надіслати" }
+                 style={ { width: "100%" } }/>
 
       </motion.form>
    );

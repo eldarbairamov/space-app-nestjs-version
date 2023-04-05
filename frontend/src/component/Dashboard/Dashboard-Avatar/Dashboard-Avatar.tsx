@@ -13,8 +13,7 @@ export function DashboardAvatar() {
          <div className={ avatar ? style.avatar : undefined }>
             <img src={ avatar ? `${ configuration.API_URL }/${ avatar }` : user }
                  alt={ avatar ? "avatar" : 'user' }
-                 className={ !avatar ? style.no_avatar : undefined }
-            />
+                 className={ !avatar ? style.no_avatar : undefined }/>
          </div>
 
       </div>

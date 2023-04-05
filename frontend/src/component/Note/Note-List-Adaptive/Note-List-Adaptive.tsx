@@ -17,26 +17,32 @@ export function NoteListAdaptive() {
    const { lastElemRef } = useObserver(() => dispatch(noteActions.next()))
 
    return (
-      <>
+      <div className={ style.NoteListAdaptive }>
          { !!notes.length &&
-            <div className={ style.NoteListAdaptive }>
+            <div className={ style.note_list_adaptive }>
                { notes &&
                   notes.map((item, index) => {
                      if (notes.length === index + 1) {
-                        return <NoteItemAdaptive ref={ lastElemRef } key={ uuid() } note={ item }/>
+                        return <NoteItemAdaptive ref={ lastElemRef }
+                                                 key={ uuid() }
+                                                 note={ item }/>
                      } else {
-                        return <NoteItemAdaptive key={ uuid() } note={ item }/>
+                        return <NoteItemAdaptive key={ uuid() }
+                                                 note={ item }/>
                      }
                   })
                }
-            </div> }
+            </div>
+         }
 
          { !notes.length &&
             <div className={ style.no_notes_wrapper }>
-               <img src={ isDark ? emptyLight : emptyDark } alt={ "empty" } style={ { width: "80px" } }/>
+               <img src={ isDark ? emptyLight : emptyDark }
+                    alt={ "empty" }
+                    style={ { width: "80px" } }/>
                <p> Пусто.. </p>
-            </div> }
-
-      </>
+            </div>
+         }
+      </div>
    );
 }

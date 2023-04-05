@@ -7,8 +7,14 @@ export function DashboardGreeting() {
 
    return (
       <div className={ style.DashboardGreeting }>
-         <span> Привіт, </span> { username ? username : "завантажую..." }
-         <span> Ну, як ти? </span>
+         <div className={ style.top_line }>
+            <span className={ style.hello }> Привіт, </span>
+            <span className={ style.username }>{ username ? username : "завантажую..." }</span>
+         </div>
+
+         <div className={ style.bottom_line }>
+            <span className={ style.how_are_you }> Ну, як ти? </span>
+         </div>
       </div>
    );
 }

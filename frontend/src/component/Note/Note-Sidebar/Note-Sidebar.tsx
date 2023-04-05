@@ -21,26 +21,25 @@ export function NoteSidebar() {
 
    return (
       <div className={ style.NoteSidebar }>
-         {/* Header */ }
-         <div className={ style.header }>
-            <img onClick={ () => addNoteFn() } src={ isDark ? addLight : addDark } alt={ "add" }/>
-         </div>
+         <div className={ style.note_sidebar }>
+            <div className={ style.header }>
+               <img onClick={ () => addNoteFn() }
+                    src={ isDark ? addLight : addDark }
+                    alt={ "add" }/>
+            </div>
 
-         {/* Note list */ }
-         <div className={ style.middle }>
-            <NoteList/>
-         </div>
+            <div className={ style.middle }>
+               <NoteList/>
+            </div>
 
-         {/* Search bar */ }
-         <div className={ style.bottom }>
-            <NoBgInput type="text"
-                       value={ searchKey }
-                       placeholder={ "Пошук" }
-                       onChange={ handleInput }
-                       style={ { fontSize: "15px" } }
-            />
+            <div className={ style.bottom }>
+               <NoBgInput type="text"
+                          value={ searchKey }
+                          placeholder={ "Пошук" }
+                          onChange={ handleInput }
+                          style={ { fontSize: "15px" } }/>
+            </div>
          </div>
-
       </div>
    );
 }

@@ -27,10 +27,8 @@ export function LoginForm({ loginFn }: ILoginFormProps) {
                    onSubmit={ handleSubmit(onSubmit) }
                    variants={ horizontalPresent }
                    initial={ "initial" }
-                   animate={ "animate" }
-      >
+                   animate={ "animate" }>
 
-         {/* Form controls */ }
          <FormControl labelName={ "Електронна пошта" }
                       fieldName={ "email" }
                       register={ register }
@@ -43,10 +41,10 @@ export function LoginForm({ loginFn }: ILoginFormProps) {
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>
 
-         {/* Submit button*/ }
-         <Button disabled={ !isValid } style={ { width: "100%" } } text={ "Увійти" }/>
+         <Button disabled={ !isValid }
+                 style={ { width: "100%" } }
+                 text={ "Увійти" }/>
 
-         {/* Footer */ }
          <div className={ style.footer }>
             <p onClick={ () => UnauthorizedRouter.navigate("/password_forgot", { replace: true }) }> Забув пароль? </p>
             <p onClick={ () => UnauthorizedRouter.navigate("/registration", { replace: true }) }> Створити аккаунт </p>

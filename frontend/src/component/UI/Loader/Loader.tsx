@@ -9,8 +9,7 @@ export function Loader() {
       <motion.div className={ style.Loader }
                   variants={ fadePresent }
                   initial={ "initial" }
-                  animate={ "animate" }
-      >
+                  animate={ "animate" }>
          <Spin size="large"/>
          <p> Одну секундочку... </p>
       </motion.div>

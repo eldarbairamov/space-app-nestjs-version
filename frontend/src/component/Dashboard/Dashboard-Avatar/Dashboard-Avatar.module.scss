@@ -22,6 +22,8 @@
    .no_avatar {
       width: 350px;
       transition: $transition;
+      border: #9d9d9d 5px solid;
+      border-radius: 50%;
    }
 
 }

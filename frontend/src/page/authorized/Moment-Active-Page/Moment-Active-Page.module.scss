@@ -1,0 +1,64 @@
+@import "src/style/configuration";
+
+.MomentActivePage {
+   @extend %flex-align-justify-column;
+   transition: width $transition, height $transition;
+
+   width: 60vw;
+   height: calc(100vh - 170px);
+   background: var(--second-bg);
+   border-radius: 10px;
+   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+   position: relative;
+
+   input {
+      color: var(--button-font);
+      border-radius: 5px;
+      background: var(--button-bg);
+      padding: 8px;
+      border: none;
+      outline: none;
+      text-align: center;
+      cursor: pointer;
+   }
+
+   .moment {
+      width: 90%;
+      height: 90%;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: .5s;
+   }
+}
+
+@media screen and (max-height: 800px) {
+   .MomentActivePage {
+      margin: 50px 0 50px 0;
+      height: 0;
+   }
+}
+
+@media screen and (max-width: 650px) {
+   .MomentActivePage {
+      width: 450px;
+      height: 600px;
+
+      .active_moment  {
+         width: 350px;
+      }
+   }
+}
+
+@media screen and (max-width: 1000px) {
+   .MomentActivePage {
+      width: 85vw;
+   }
+}
+
+@media screen and (max-width: 499px) {
+   .MomentActivePage {
+      width: 95vw;
+   }
+}
+

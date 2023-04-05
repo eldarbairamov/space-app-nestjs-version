@@ -14,8 +14,8 @@ export function emailConfirmationService(token: string) {
       try {
          message.loading("Лоудінг..");
          await axiosInstance.patch(userRequests.changeEmailAccept, { confirmationToken: token });
-         message.destroy();
          setIsSuccess(true);
+         message.destroy();
 
       } catch (e) {
          message.destroy();

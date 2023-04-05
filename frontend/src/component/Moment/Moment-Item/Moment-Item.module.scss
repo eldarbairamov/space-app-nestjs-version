@@ -5,7 +5,7 @@
    width: calc(100% / 3 - 20px);
    height: 350px;
    position: relative;
-   border-radius: 20px;
+   border-radius: 10px;
    overflow: hidden;
    cursor: pointer;
    background: var(--item-bg);
@@ -19,7 +19,7 @@
    .photo_background {
       position: absolute;
       width: 800px;
-      filter: blur(10px) contrast(80%)  brightness(80%);
+      filter: blur(10px) contrast(80%) brightness(80%);
       -webkit-filter: blur(10px) contrast(80%) brightness(80%);
    }
 
@@ -36,10 +36,9 @@
       width: 70px;
    }
 
-
    .title {
       position: absolute;
-      top: 15px;
+      top: 20px;
       left: 20px;
       z-index: 1;
       color: var(--button-font);
@@ -54,7 +53,7 @@
       gap: 10px;
 
       position: absolute;
-      bottom: 15px;
+      bottom: 20px;
       right: 20px;
 
       .date, .location {
@@ -72,7 +71,7 @@
       gap: 10px;
 
       position: absolute;
-      bottom: 15px;
+      bottom: 20px;
       left: 20px;
 
       .tag {
@@ -89,7 +88,6 @@
 @media screen and (max-width: 1600px) {
    .MomentItem {
       width: calc(100% / 2 - 15px);
-
    }
 }
 

@@ -16,25 +16,31 @@ export function MomentList() {
    const { lastElemRef } = useObserver(() => dispatch(momentActions.next()))
 
    return (
-      <>
+      <div className={ style.MomentList }>
          { !!moments.length &&
-
-            <div className={ style.MomentList }>
+            <div className={ style.list }>
                { moments && moments.map((moment, index) => {
                   if (moments.length === index + 1) {
-                     return <MomentItem ref={ lastElemRef } key={ moment.id } moment={ moment }/>;
+                     return <MomentItem ref={ lastElemRef }
+                                        key={ moment.id }
+                                        moment={ moment }/>;
                   } else {
-                     return <MomentItem key={ moment.id } moment={ moment }/>;
+                     return <MomentItem key={ moment.id }
+                                        moment={ moment }/>;
                   }
                })
                }
-            </div> }
+            </div>
+         }
 
          { !moments.length &&
             <div className={ style.no_moments_wrapper }>
-               <img src={ isDark ? emptyLight : emptyDark } alt="empty" style={ { width: "80px" } }/>
+               <img src={ isDark ? emptyLight : emptyDark }
+                    alt="empty"
+                    style={ { width: "80px" } }/>
                <p> Пусто.. </p>
-            </div> }
-      </>
+            </div>
+         }
+      </div>
    );
 }

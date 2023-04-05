@@ -16,23 +16,30 @@ export function PlanList() {
    const { lastElemRef } = useObserver(() => dispatch(planAction.next()))
 
    return (
-      <>
+      <div className={ style.PlanList }>
          { !!plans.length &&
-            <div className={ style.PlanList }>
+            <div className={ style.plan_list }>
                { plans && plans.map((item, index) => {
                   if (plans.length == index + 1) {
-                     return <PlanItem ref={ lastElemRef } key={ item.id } plan={ item }/>;
+                     return <PlanItem ref={ lastElemRef }
+                                      key={ item.id }
+                                      plan={ item }/>;
                   } else {
-                     return <PlanItem key={ item.id } plan={ item }/>;
+                     return <PlanItem key={ item.id }
+                                      plan={ item }/>;
                   }
                }) }
-            </div> }
+            </div>
+         }
 
          { !plans.length &&
             <div className={ style.no_plans_wrapper }>
-               <img src={ isDark ? emptyLight : emptyDark } alt={ "empty" } style={ { width: "80px" } }/>
+               <img src={ isDark ? emptyLight : emptyDark }
+                    alt={ "empty" }
+                    style={ { width: "80px" } }/>
                <p> Пусто.. </p>
-            </div> }
-      </>
+            </div>
+         }
+      </div>
    );
 }

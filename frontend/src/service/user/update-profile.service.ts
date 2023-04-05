@@ -10,7 +10,7 @@ export function updateProfileService() {
    const dispatch = useAppDispatch();
    const { message } = App.useApp();
 
-   const updateEmailFn = async (body: IUpdateProfile) => {
+   const updateProfileFn = async (body: IUpdateProfile) => {
       try {
          message.loading("Лоудінг..");
          const { data } = await axiosInstance.patch<IUser>(userRequests.profileUpdate, body);
@@ -24,6 +24,6 @@ export function updateProfileService() {
       }
    };
 
-   return { updateEmailFn };
+   return { updateProfileFn };
 
 }

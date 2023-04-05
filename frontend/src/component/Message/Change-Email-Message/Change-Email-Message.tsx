@@ -15,7 +15,9 @@ export function ChangeEmailMessage() {
             title="Ура!"
             subTitle={ "Лист із подальшою інструкцією вже летить на вказану електронну пошту" }
             extra={
-               <Button key={ v4() } text={ "Окей" } onClick={ () => AuthorizedRouter.navigate("/") }/>
+               <Button key={ v4() }
+                       text={ "Окей" }
+                       onClick={ () => AuthorizedRouter.navigate("/") }/>
             }
          />
       </div>

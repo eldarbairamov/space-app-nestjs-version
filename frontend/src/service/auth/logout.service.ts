@@ -16,8 +16,8 @@ export function logoutService(next: () => any) {
          await axiosInstance.get(authRequests.logout);
          storageService.deleteTokens();
          await pleaseWait(1000)
-         message.destroy();
          dispatch(authActions.setIsLogin(false))
+         message.destroy();
 
          next();
 

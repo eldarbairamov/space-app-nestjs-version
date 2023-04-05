@@ -1,0 +1,34 @@
+@import "src/style/configuration";
+
+.FontOptions {
+   @extend %flex-align-justify;
+   position: absolute;
+   right: 30px;
+   gap: 10px;
+
+   p {
+      font-size: 14px;
+   }
+
+   p:nth-child(1)[data-active='Roboto'] {
+      color: var(--notes-color);
+   }
+
+   p:nth-child(odd) {
+      cursor: pointer;
+
+      &:hover {
+         color: var(--notes-color);
+      }
+   }
+
+   p:nth-child(3) {
+      font-family: Caveat, cursive;
+      font-size: 21px;
+
+      &[data-active='Caveat'] {
+         color: var(--notes-color);
+      }
+   }
+
+}

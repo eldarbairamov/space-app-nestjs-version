@@ -51,32 +51,29 @@ export function ChangePasswordForm() {
                    onSubmit={ handleSubmit(onSubmit) }
                    variants={ horizontalPresent }
                    initial={ "initial" }
-                   animate={ "animate" }
-      >
-         {/* Form controls */ }
+                   animate={ "animate" }>
+
          <FormControl labelName={ "Поточний пароль" }
                       fieldName={ "current_password" }
                       register={ register }
                       errorMessage={ errors.current_password?.message }
-                      isPassword={ true }
-         />
+                      isPassword={ true }/>
 
          <FormControl labelName={ "Новий пароль" }
                       fieldName={ "password" }
                       register={ register }
                       errorMessage={ errors.password?.message }
-                      isPassword={ true }
-         />
+                      isPassword={ true }/>
 
          <FormControl labelName={ "Повторіть пароль" }
                       fieldName={ "repeat_password" }
                       register={ register }
                       errorMessage={ errors.repeat_password?.message }
-                      isPassword={ true }
-         />
+                      isPassword={ true }/>
 
-         {/* Submit button */ }
-         <Button disabled={ !isValid } text={ "Зберегти" } style={ { width: "100%" } }/>
+         <Button disabled={ !isValid }
+                 text={ "Зберегти" }
+                 style={ { width: "100%" } }/>
 
       </motion.form>
    );

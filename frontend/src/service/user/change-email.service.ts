@@ -6,11 +6,12 @@ import { errorCatherFn } from "@src/helper";
 export function changeEmailService(next: () => any) {
    const { message } = App.useApp();
 
-   const updateEmailFn = async (email: string) => {
+   const changeEmailFn = async (email: string) => {
       try {
          message.loading("Лоудінг..");
          await axiosInstance.post(userRequests.changeEmail, { email });
          message.destroy();
+
          next();
 
       } catch (e) {
@@ -19,6 +20,6 @@ export function changeEmailService(next: () => any) {
       }
    };
 
-   return { updateEmailFn };
+   return { changeEmailFn };
 
 }

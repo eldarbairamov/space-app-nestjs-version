@@ -21,20 +21,20 @@ export function NoteHeaderAdaptive() {
    return (
       <div className={ style.NoteHeaderAdaptive }>
 
-         {/* Add note */ }
-         <div className={style.add}>
-            <img src={ isDark ? addLight : addDark } alt={ "add" }/>
-            <NoBgButton text={ "Додати" } hoverSubject={ "notes" } onClick={ addNoteFn }/>
+         <div className={ style.add }>
+            <img src={ isDark ? addLight : addDark }
+                 alt={ "add" }/>
+            <NoBgButton text={ "Додати" }
+                        hoverSubject={ "notes" }
+                        onClick={ addNoteFn }/>
          </div>
 
-         {/* Search bar */ }
          <div className={ style.search_bar }>
             <NoBgInput type="text"
                        style={ { fontSize: "15px" } }
                        value={ searchKey }
                        onChange={ handleInput }
-                       placeholder={ "Пошук" }
-            />
+                       placeholder={ "Пошук" }/>
          </div>
 
       </div>

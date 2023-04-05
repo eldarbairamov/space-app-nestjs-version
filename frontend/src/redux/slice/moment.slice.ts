@@ -4,7 +4,7 @@ import { IMoment, IMoments } from "@src/interface";
 interface IMomentInitialState {
    moments: IMoment[];
    count: number;
-   activeMoment: IMoment | null;
+   activeMoment: IMoment;
    searchKey: string;
    tags: (string | undefined)[];
    limit: number;
@@ -15,7 +15,7 @@ interface IMomentInitialState {
 const initialState: IMomentInitialState = {
    moments: [],
    count: 0,
-   activeMoment: null,
+   activeMoment: {} as IMoment,
    searchKey: "",
    tags: [],
    limit: 30,
@@ -29,7 +29,7 @@ const momentSlice = createSlice({
    reducers: {
 
       setMoments: (state, { payload }: PayloadAction<IMoments>) => {
-         state.activeMoment = null;
+         state.activeMoment = {} as IMoment;
          state.moments = payload.data;
          state.tags = payload.tagsForFilter;
          state.count = payload.count;
@@ -46,7 +46,7 @@ const momentSlice = createSlice({
          state.moments = state.moments.filter(moment => moment.id !== payload.momentId);
       },
 
-      setActiveMoment: (state, { payload }: PayloadAction<IMoment | null>) => {
+      setActiveMoment: (state, { payload }: PayloadAction<IMoment>) => {
          state.activeMoment = payload;
       },
 

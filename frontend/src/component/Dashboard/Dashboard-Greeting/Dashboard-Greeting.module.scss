@@ -8,18 +8,33 @@
    position: relative;
    transition: $transition;
 
-   span {
+   .hello, .how_are_you {
       font-family: 'Caveat', cursive;
+   }
+
+   .top_line {
+      @extend %flex-align-justify;
+      gap: 10px;
+      min-width: 400px;
+   }
+
+   .hello {
       font-size: 45px;
-      color: var(--main-font);
+   }
+
+   .username {
+      color: #9d9d9d;
+   }
+
+   .how_are_you {
+      font-size: 25px;
+      position: absolute;
+      right: 50px;
    }
 
    span:nth-child(2) {
       @extend %flex-align-justify-column;
-      position: absolute;
-      font-size: 25px;
-      left: 150px;
-      width: 200px;
+
    }
 }
 

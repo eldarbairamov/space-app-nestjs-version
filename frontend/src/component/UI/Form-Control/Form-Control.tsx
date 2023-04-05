@@ -35,23 +35,24 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
       <>
          <ValidationToaster error={ validationError }/>
 
-         {/* FormControl wrapper */ }
          <div className={ style.FormControl }>
             <div className={ style.password_wrapper }>
                <label htmlFor={ "password" }> { labelName } </label>
                { isPassword && <p onClick={ showHiddenPassword }> { passwordValueCondition } </p> }
             </div>
             <div data-error={ !!errorMessage } className={ style.input_field }>
-               <input id={ labelName } { ...props } type={ passwordCondition } { ...register(fieldName) }/>
+               <input id={ labelName } { ...props }
+                      type={ passwordCondition }
+                      { ...register(fieldName) }/>
 
-               {/* Error icon */ }
                { errorMessage &&
                   <motion.div
                      variants={ horizontalShaking }
                      initial={ "initial" }
-                     animate={ "animate" }
-                  >
-                     <img src={ warning } alt="warning" style={ { width: "21px" } }
+                     animate={ "animate" }>
+                     <img src={ warning }
+                          alt="warning"
+                          style={ { width: "21px" } }
                           onClick={ () => errorMessageWriter(errorMessage) }/>
                   </motion.div>
                }

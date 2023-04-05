@@ -1,9 +1,9 @@
-import { ChangeEvent, FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { noteActions } from "@src/redux/slice";
 import { INote } from "@src/interface";
-import { NoBgInput } from "@src/component";
+import { FontOptions, NoBgInput, TextArea } from "@src/component";
 import { updateNoteService } from "@src/service";
 import { TypedOnChange } from "@src/interface/common.interface";
 
@@ -39,49 +39,26 @@ export const NoteEdit: FC = () => {
 
    return (
       <div className={ style.NoteEdit }>
+         <div className={style.note_edit}>
 
-         {/* Header */ }
-         <div className={ style.header }>
-            <NoBgInput type={ "text" }
-                       style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
-                       id={ "title" }
-                       value={ activeNote.title }
-                       onChange={ (event: TypedOnChange) => handleInputs("title", event.target.value) }
-                       onBlur={ () => updateNoteFn(activeNote) }
-            />
+            <div className={ style.header }>
 
-            {/* Font options */}
-            <div className={ style.font_options }>
-               <p
-                  onClick={ () => dispatch(noteActions.changeFont('Roboto')) }
-                  data-active={ font }
-               >
-                  Normal
-               </p>
+               <NoBgInput type={ "text" }
+                          style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
+                          id={ "title" }
+                          value={ activeNote.title }
+                          onChange={ (event: TypedOnChange) => handleInputs("title", event.target.value) }
+                          onBlur={ () => updateNoteFn(activeNote) }/>
 
-               <p> | </p>
-
-               <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }
-                  data-active={ font }
-               >
-                  Handwrite
-               </p>
+               <FontOptions font={ font }/>
 
             </div>
 
+            <TextArea updateNoteFn={ updateNoteFn }
+                      activeNote={ activeNote }
+                      handleInputs={ handleInputs }
+                      font={ font }/>
          </div>
-
-         {/* Text area */ }
-         <div className={ style.textarea }>
-                  <textarea id={ "body" }
-                            data-font={ font }
-                            value={ activeNote.body ? activeNote.body : "" }
-                            placeholder={ "Розкажи мені щось цікаве..." }
-                            onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", event.target.value) }
-                            onBlur={ () => updateNoteFn(activeNote) }
-                  />
-         </div>
-
       </div>
    );
 };

@@ -53,17 +53,18 @@ export function BurgerNavbar() {
 
    return (
       <div className={ style.BurgerNavbar }>
-
-         {/* App logo */ }
          <div className={ style.logo }>
             <AppLogo/>
          </div>
 
-         {/* Menu */}
          <div className={ style.menu }>
 
-            <Dropdown menu={ { items } } placement="bottomRight" trigger={ [ "click" ] }>
-               <img src={ isDark ? menuLight : menuDark } alt={ "menu" } style={ { width: "25px" } }/>
+            <Dropdown menu={ { items } }
+                      placement="bottomRight"
+                      trigger={ [ "click" ] }>
+               <img src={ isDark ? menuLight : menuDark }
+                    alt={ "menu" }
+                    style={ { width: "25px" } }/>
             </Dropdown>
 
             <img src={ isDark ? logoutLight : logoutDark }

@@ -20,7 +20,9 @@ export function ChangePasswordMessage() {
             title="Ви успішно оновили свій пароль"
             subTitle="Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані"
             extra={
-               <Button onClick={ logoutFn } text={ "Увійти" } key={ v4() }/>
+               <Button onClick={ logoutFn }
+                       text={ "Увійти" }
+                       key={ v4() }/>
             }
          />
 
