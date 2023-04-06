@@ -52,7 +52,7 @@ export const AuthorizedRouter = createBrowserRouter([
             element: <NotesPage/>,
          },
          {
-            path: "notes/edit",
+            path: "notes/:noteId",
             element: <NoteActivePage/>,
          },
          {

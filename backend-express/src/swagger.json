@@ -1323,8 +1323,85 @@
                   }
                }
             }
+         },
+         "get": {
+            "summary": "get note by id",
+            "tags": [
+               "Notes"
+            ],
+            "operationId": "getNoteById",
+            "parameters": [
+               {
+                  "name": "noteId",
+                  "in": "path",
+                  "required": true,
+                  "description": "note id",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "example": "63dfe16eda233c96fc6e2604"
+               }
+            ],
+            "security": [
+               {
+                  "Authorization": []
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/Note"
+                        }
+                     }
+                  }
+               },
+               "400": {
+                  "description": "Invalid ObjectID",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/ObjectIdError"
+                        }
+                     }
+                  }
+               },
+               "401": {
+                  "description": "Unauthorized",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/UnauthorizedError"
+                        }
+                     }
+                  }
+               },
+               "404": {
+                  "description": "Not found",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/NotExistError"
+                        }
+                     }
+                  }
+               },
+               "default": {
+                  "description": "Unexpected errors",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "$ref": "#/components/schemas/DefaultError"
+                        }
+                     }
+                  }
+               }
+            }
          }
       },
+
       "/plans": {
          "get": {
             "summary": "get all plans",

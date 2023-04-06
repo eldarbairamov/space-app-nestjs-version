@@ -1,24 +1,44 @@
 import { noteActions } from "@src/redux/slice";
-import { useAppDispatch } from "@src/hook";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 
 import style from './Font-Options.module.scss'
+import { Dropdown, MenuProps } from "antd";
+import fontDark from "/font-dark.svg";
+import fontLight from "/font-light.svg";
 
-export function FontOptions({ font }: { font: string }) {
+export function FontOptions() {
    const dispatch = useAppDispatch();
+   const { isDark } = useAppSelector(state => state.appReducer);
+
+   const items: MenuProps["items"] = [
+      {
+         key: "1",
+         label: (
+            <p className={ style.normal } onClick={ () => dispatch(noteActions.changeFont('Roboto')) }>
+               Normal
+            </p>
+         ),
+      },
+      {
+         key: "2",
+         label: (
+            <p className={ style.caveat } onClick={ () => dispatch(noteActions.changeFont('Caveat')) }>
+               Handwrite
+            </p>
+         ),
+      },
+   ];
 
    return (
       <div className={ style.FontOptions }>
-         <p onClick={ () => dispatch(noteActions.changeFont('Roboto')) }
-            data-active={ font }>
-            Normal
-         </p>
-
-         <p> | </p>
-
-         <p onClick={ () => dispatch(noteActions.changeFont('Caveat')) }
-            data-active={ font }>
-            Handwrite
-         </p>
+         <Dropdown menu={ { items } }
+                   placement="bottomRight"
+                   trigger={ [ "click" ] }>
+            <img src={ isDark ? fontLight : fontDark }
+                 className={ style.font_img }
+                 alt={ "menu" }
+                 style={ { width: 15 } }/>
+         </Dropdown>
       </div>
    )
 }

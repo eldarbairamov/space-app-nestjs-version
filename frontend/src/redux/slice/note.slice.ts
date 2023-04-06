@@ -37,6 +37,10 @@ const noteSlice = createSlice({
          state.activeNote = state.notes.find(({ id }) => id === state.activeNoteId)!;
       },
 
+      setActiveNote: (state, { payload }: PayloadAction<INote>) => {
+         state.activeNote = payload
+      },
+
       updateNote: (state, { payload }: PayloadAction<INote>) => {
          state.notes = state.notes.map(note => {
             if (note.id === payload.id) return payload;
@@ -44,6 +48,10 @@ const noteSlice = createSlice({
          });
          state.activeNote = state.notes.find(({ id }) => id === payload.id)!;
          state.notes = state.notes.sort((a, b) => b.lastModified - a.lastModified);
+      },
+
+      updateNoteAdaptive: (state, { payload }: PayloadAction<INote>) => {
+         state.activeNote = payload
       },
 
       setDefaultNote: (state, { payload }: PayloadAction<INote>) => {

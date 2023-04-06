@@ -16,7 +16,7 @@ export function TextArea({ font, activeNote, handleInputs, updateNoteFn }: IText
       <div className={ style.TextArea }>
             <textarea id={ "body" }
                       data-font={ font }
-                      value={ activeNote.body }
+                      value={ activeNote.body !== undefined ? activeNote.body : "" }
                       placeholder={ "Розкажи мені щось цікаве..." }
                       onChange={ (e: ChangeEvent<HTMLTextAreaElement>) => handleInputs("body", e.target.value) }
                       onBlur={ () => updateNoteFn(activeNote) }/>

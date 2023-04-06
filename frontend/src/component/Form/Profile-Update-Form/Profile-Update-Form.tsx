@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { FormControl, Loader, Modal } from "@src/component";
 import { updateProfile } from "@src/validator/user.validator";
-import { useAppSelector } from "@src/hook";
+import { useAppSelector, useModal } from "@src/hook";
 import { IUpdateProfileForm } from "@src/interface";
 import { getUserService, updateProfileService } from "@src/service";
 import { Button } from "@src/component";
@@ -17,16 +17,12 @@ export function ProfileUpdateForm() {
       mode: "onTouched",
    });
 
-   console.log(isValid);
-
    const { updateProfileFn } = updateProfileService();
    const { getUserFn, isLoading } = getUserService();
 
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
-   const [ isOpen, setIsOpen ] = useState<boolean>(false);
-
-   const toggleModal = () => !isLoading && setIsOpen(!isOpen)
+   const { toggleModal } = useModal(isLoading)
 
    useEffect(() => {
       if (!(username && name && username)) getUserFn();

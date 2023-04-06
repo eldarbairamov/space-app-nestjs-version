@@ -39,7 +39,7 @@ export const NoteEdit: FC = () => {
 
    return (
       <div className={ style.NoteEdit }>
-         <div className={style.note_edit}>
+         <div className={ style.note_edit }>
 
             <div className={ style.header }>
 
@@ -50,7 +50,7 @@ export const NoteEdit: FC = () => {
                           onChange={ (event: TypedOnChange) => handleInputs("title", event.target.value) }
                           onBlur={ () => updateNoteFn(activeNote) }/>
 
-               <FontOptions font={ font }/>
+               <FontOptions/>
 
             </div>
 

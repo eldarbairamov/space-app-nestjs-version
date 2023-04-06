@@ -5,30 +5,11 @@
    position: absolute;
    right: 30px;
    gap: 10px;
+   cursor: pointer;
 
-   p {
-      font-size: 14px;
-   }
-
-   p:nth-child(1)[data-active='Roboto'] {
-      color: var(--notes-color);
-   }
-
-   p:nth-child(odd) {
-      cursor: pointer;
-
-      &:hover {
-         color: var(--notes-color);
-      }
-   }
-
-   p:nth-child(3) {
-      font-family: Caveat, cursive;
-      font-size: 21px;
-
-      &[data-active='Caveat'] {
-         color: var(--notes-color);
-      }
+   .font_img:hover {
+      filter: var(--icon-hover);
+      -webkit-filter: var(--icon-hover);
    }
 
 }

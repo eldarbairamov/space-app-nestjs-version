@@ -28,7 +28,15 @@ export class NoteService {
       return this.notePresenter.single(note);
    }
 
-   async updateNote(noteId: UserDocument["id"], dto: UpdateNoteDto): Promise<INoteResponse> {
+   async getNote(noteId: NoteDocument["id"]): Promise<INoteResponse> {
+      // Find note
+      const note = await this.noteRepository.findById(noteId)
+
+      // Return presented data to client
+      return this.notePresenter.single(note);
+   }
+
+   async updateNote(noteId: NoteDocument["id"], dto: UpdateNoteDto): Promise<INoteResponse> {
       // Update note
       const note = await this.noteRepository.findByIdAndUpdate(noteId, dto);
 

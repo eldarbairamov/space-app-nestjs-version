@@ -16,6 +16,13 @@ notesRouter.get(
    authMiddleware.isAccessExists,
    notesController.addNote);
 
+// Get note
+notesRouter.get(
+   "/:noteId",
+   authMiddleware.isAccessExists,
+   commonMiddleware.isObjectExists("noteId"),
+   notesController.getNote)
+
 // Update note
 notesRouter.put(
    "/:noteId",

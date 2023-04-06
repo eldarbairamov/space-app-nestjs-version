@@ -44,6 +44,22 @@ export class NoteController {
       return this.noteService.addNote(userId);
    }
 
+   // Get note
+   @ApiOperation({ summary: "get note by id" })
+   @ApiParam({ name: "noteId", description: "note id", example: "63dfe16eda233c96fc6e2604" })
+   @ApiOkResponse({ description: "Success", type: NoteResponse })
+   @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
+   @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
+   @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
+   @ApiNotFoundResponse({ description: "Not found", type: ObjNotExistError })
+   @UseGuards(AccessGuard)
+   @UseGuards(ObjectCheckingGuard)
+   @Get(':noteId')
+   async getNote(
+      @Param('noteId') noteId: string) {
+      return this.noteService.getNote(noteId)
+   }
+
    // Update note
    @ApiOperation({ summary: "update note by id" })
    @ApiParam({ name: "noteId", description: "note id", example: "63dfe16eda233c96fc6e2604" })

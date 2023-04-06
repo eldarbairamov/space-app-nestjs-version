@@ -5,6 +5,7 @@ export * from "./note/add-note.service";
 export * from "./note/get-notes.service";
 export * from "./note/delete-note.service";
 export * from "./note/update-note.service";
+export * from './note/get-note.service'
 
 export * from "./task/get-tasks.service";
 export * from "./task/add-task.service";

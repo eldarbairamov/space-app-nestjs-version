@@ -3,12 +3,18 @@ import { Response } from "express";
 import { addNoteService, deleteNoteService, getNotesService, updateNoteService } from "@src/service";
 import { IDeleteItemBody, IQuery } from "@src/interface/common.interface";
 import { INoteResponse, INotesResponse, IRequest, IUpdateNote } from "@src/interface";
+import { getNoteService } from "@src/service/note/get-note.service";
 
 export const notesController = {
 
    addNote: expressAsyncHandler(async (req: IRequest<any, any, any>, res: Response<INoteResponse>) => {
       const note = await addNoteService(req.userId);
       res.status(201).json(note);
+   }),
+
+   getNote: expressAsyncHandler(async (req: IRequest<any, { noteId: string }, any>, res: Response<INoteResponse>) => {
+      const note = await getNoteService(req.params.noteId)
+      res.json(note)
    }),
 
    getNotes: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<INotesResponse>) => {

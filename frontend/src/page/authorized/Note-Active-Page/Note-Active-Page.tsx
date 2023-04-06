@@ -1,29 +1,26 @@
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 
-import { useAppDispatch, useAppSelector } from "@src/hook";
-import { Empty } from "antd";
-import { updateNoteService } from "@src/service";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector, useModal } from "@src/hook";
+import { getNoteService, updateNoteService } from "@src/service";
 import { noteActions } from "@src/redux/slice";
 import { INote } from "@src/interface";
-import { NoBgInput } from "@src/component";
-import { AuthorizedRouter } from "@src/router";
+import { FontOptions, Loader, Modal, NoBgInput, TextArea } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 
 import style from "./Note-Active-Page.module.scss";
-import { FontOptions } from "@src/component/Note/Font-Options/Font-Options";
-import { TextArea } from "@src/component/Note/Text-Area/Text-Area";
 
 export function NoteActivePage() {
-   const { activeNote, notes, font } = useAppSelector(state => state.noteReducer);
+   const { noteId } = useParams<{ noteId: string }>()
 
-   const { updateNoteFn } = updateNoteService();
+   getNoteService(noteId!)
 
    const dispatch = useAppDispatch();
 
-   useEffect(() => {
-      if (!notes.length) AuthorizedRouter.navigate("/notes");
-   }, [ notes ]);
+   const { activeNote, font, isLoading } = useAppSelector(state => state.noteReducer);
+
+   const { updateNoteFn } = updateNoteService();
 
    const handleInputs = (field: string, value: string) => {
       const updatedNote = {
@@ -32,10 +29,10 @@ export function NoteActivePage() {
          lastModified: Date.now(),
       } as INote;
 
-      dispatch(noteActions.updateNote(updatedNote));
+      dispatch(noteActions.updateNoteAdaptive(updatedNote));
    };
 
-   if (!activeNote) return <div className={ style.no_notes_wrapper }><Empty description={ "Заміток  немає" }/></div>;
+   const { toggleModal } = useModal(isLoading)
 
    return (
       <motion.div className={ style.NoteActivePage }
@@ -45,13 +42,13 @@ export function NoteActivePage() {
 
          <div className={ style.header }>
             <NoBgInput type={ "text" }
-                       style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
+                       style={ { fontSize: "18px", width: 500, fontWeight: "500" } }
                        id={ "title" }
-                       value={ activeNote.title }
+                       value={ activeNote.title ? activeNote.title : '' }
                        onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
                        onBlur={ () => updateNoteFn(activeNote) }/>
 
-            <FontOptions font={ font }/>
+            <FontOptions/>
 
          </div>
 
@@ -59,6 +56,12 @@ export function NoteActivePage() {
                    updateNoteFn={ updateNoteFn }
                    font={ font }
                    activeNote={ activeNote }/>
+
+         <Modal isOpen={ isLoading }
+                onClose={ toggleModal }
+                isBg={ false }>
+            <Loader/>
+         </Modal>
 
       </motion.div>
    );

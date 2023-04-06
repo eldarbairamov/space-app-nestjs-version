@@ -34,7 +34,7 @@ export const NoteItemAdaptive = forwardRef(({ note }: NoteItemAdaptive, ref: any
    return (
       <div ref={ ref } className={ style.NoteItemAdaptive }
            onClick={ () => {
-              AuthorizedRouter.navigate("/notes/edit");
+              AuthorizedRouter.navigate(`/notes/${ note.id }`);
               dispatch(noteActions.setActiveNoteId(note.id));
            } }
            data-active={ note.id === activeNote?.id }>

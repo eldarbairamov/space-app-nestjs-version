@@ -1,7 +1,5 @@
-import { useState } from "react";
-
 import { NoteEdit, NoteSidebar, Modal, Loader, NoteHeaderAdaptive, NoteListAdaptive } from "@src/component";
-import { useAppSelector, useMatchMedia } from "@src/hook";
+import { useAppSelector, useMatchMedia, useModal } from "@src/hook";
 import { getNotesService } from "@src/service";
 import { horizontalPresent } from "@src/animation";
 import { motion } from "framer-motion";
@@ -13,9 +11,7 @@ export function NotesPage() {
 
    const { isLoading } = useAppSelector(state => state.noteReducer);
 
-   const [ isOpen, setIsOpen ] = useState<boolean>(false);
-
-   const toggleModal = () => !isLoading && setIsOpen(!isOpen)
+   const { toggleModal } = useModal(isLoading)
 
    getNotesService();
 

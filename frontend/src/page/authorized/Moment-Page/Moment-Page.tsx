@@ -1,19 +1,15 @@
-import { useState } from "react";
-
 import { MomentHeader, MomentList, Loader, Modal } from "@src/component";
 import { addMomentService, getMomentsService } from "@src/service";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
-import { useAppSelector } from "@src/hook";
+import { useAppSelector, useModal } from "@src/hook";
 
 import style from "./Moment-Page.module.scss";
 
 export function MomentsPage() {
    const { isLoading } = useAppSelector(state => state.momentReducer)
 
-   const [ isOpen, setIsOpen ] = useState<boolean>(false);
-
-   const toggleModal = () => !isLoading && setIsOpen(!isOpen)
+   const { toggleModal } = useModal(isLoading)
 
    getMomentsService();
 

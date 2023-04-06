@@ -15,6 +15,7 @@ export const userRequests = {
 export const notesRequests = {
    addNote: "/notes/add",
    getNotes: "/notes",
+   getNote: "/notes/",
    getNotesCount: "/notes/count",
    saveNote: "/notes/",
    deleteNote: "/notes/",
