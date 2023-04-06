@@ -28,9 +28,7 @@ export function NoteSidebar() {
                     alt={ "add" }/>
             </div>
 
-            <div className={ style.middle }>
-               <NoteList/>
-            </div>
+            <NoteList/>
 
             <div className={ style.bottom }>
                <NoBgInput type="text"

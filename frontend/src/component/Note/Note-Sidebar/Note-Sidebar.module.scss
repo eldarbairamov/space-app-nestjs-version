@@ -17,12 +17,12 @@
       .header {
          @extend %flex-align-justify;
          width: 100%;
-         height: 60px;
+         height: 50px;
          border-bottom: 2px solid var(--decorative-grey);
          color: var(--notes-color);
 
          img {
-            height: 26px;
+            height: 30px;
             cursor: pointer;
             transition: .2s;
 
@@ -31,15 +31,6 @@
                -webkit-filter: var(--icon-hover);
             }
          }
-      }
-
-      .middle {
-         @extend %flex-align;
-         flex-direction: column;
-         gap: 10px;
-         width: 100%;
-         height: calc(100% - 110px);
-         overflow-y: scroll;
       }
 
       .bottom {

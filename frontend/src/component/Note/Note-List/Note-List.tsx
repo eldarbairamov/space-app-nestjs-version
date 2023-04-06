@@ -19,10 +19,10 @@ export const NoteList: FC = () => {
    const { lastElemRef } = useObserver(() => dispatch(noteActions.next()))
 
    return (
-      <>
+      <div className={style.NoteList}>
          { !!notes.length &&
 
-            <div className={ style.NoteList }>
+            <div className={ style.note_list }>
                { notes && notes.map((item, index) => {
                   if (notes.length === index + 1) {
                      return <NoteItem ref={ lastElemRef }
@@ -48,6 +48,6 @@ export const NoteList: FC = () => {
 
          }
 
-      </>
+      </div>
    );
 };

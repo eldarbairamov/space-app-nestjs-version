@@ -2,12 +2,20 @@
 
 .NoteList {
    @extend %flex-align;
-   justify-content: start;
    flex-direction: column;
-   gap: 10px;
-   position: relative;
    width: 100%;
-   padding: 15px 0 15px 0;
+   height: calc(100% - 100px);
+   overflow-y: scroll;
+
+   .note_list {
+      @extend %flex-align;
+      justify-content: start;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      width: 100%;
+      padding: 15px 0 15px 0;
+   }
 }
 
 .no_notes_wrapper {

@@ -3,7 +3,7 @@
 .MomentHeader {
    @extend %flex-align-justify;
    gap: 10px;
-   height: 60px;
+   height: 50px;
    width: 100%;
    position: relative;
    border-bottom: 2px solid var(--decorative-grey);
@@ -28,7 +28,7 @@
       padding: 15px;
 
       img {
-         height: 20px;
+         height: 30px;
       }
    }
 }

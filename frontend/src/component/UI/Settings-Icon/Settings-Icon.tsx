@@ -15,6 +15,6 @@ export function SettingsIcon() {
            src={ isDark ? settingsLight : settingsDark }
            alt="settings"
            onClick={ editProfile }
-           style={ { width: "30px" } }/>
+           style={ { width: "25px" } }/>
    )
 }

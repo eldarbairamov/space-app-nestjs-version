@@ -1,12 +1,8 @@
 @import "src/style/configuration";
 
-.note_list_wrapper {
-
-}
-
 .NoteListAdaptive {
    overflow-y: scroll;
-   height: calc(100% - 60px);
+   height: calc(100% - 50px);
    width: 100%;
 
    .note_list_adaptive {

@@ -64,12 +64,12 @@ export function BurgerNavbar() {
                       trigger={ [ "click" ] }>
                <img src={ isDark ? menuLight : menuDark }
                     alt={ "menu" }
-                    style={ { width: "25px" } }/>
+                    style={ { width: "30px" } }/>
             </Dropdown>
 
             <img src={ isDark ? logoutLight : logoutDark }
                  alt={ "logout" }
-                 style={ { width: "20px" } }
+                 style={ { width: "25px" } }
                  onClick={ () => logoutFn() }/>
 
          </div>
