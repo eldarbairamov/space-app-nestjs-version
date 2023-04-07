@@ -20,6 +20,12 @@
       color: var(--second-font);
    }
 
+   .label_and_star {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+   }
+
    .input_field {
       display: flex;
       align-items: center;

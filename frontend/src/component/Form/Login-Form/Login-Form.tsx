@@ -32,12 +32,14 @@ export function LoginForm({ loginFn }: ILoginFormProps) {
          <FormControl labelName={ "Електронна пошта" }
                       fieldName={ "email" }
                       register={ register }
+                      isRequired={ true }
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 
          <FormControl labelName={ "Пароль" }
                       fieldName={ "password" }
                       register={ register }
+                      isRequired={ true }
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>
 

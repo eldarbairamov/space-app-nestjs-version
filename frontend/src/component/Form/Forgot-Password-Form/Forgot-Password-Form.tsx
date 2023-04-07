@@ -35,6 +35,7 @@ export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProp
             labelName={ "" }
             fieldName={ "email" }
             style={ { textAlign: "center" } }
+            isRequired={true}
             register={ register }
             errorMessage={ errors.email?.message }
             isPassword={ false }/>

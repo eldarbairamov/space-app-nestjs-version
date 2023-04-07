@@ -4,14 +4,14 @@
    overflow-y: scroll;
    height: calc(100% - 50px);
    width: 100%;
-   padding: 30px 0 30px 0;
+   padding: 20px;
 
    .plan_list {
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start;
-      gap: 30px;
-      width: 95%;
+      gap: 20px;
+      width: 100%;
       position: relative;
       margin: 0 auto;
    }
@@ -29,8 +29,3 @@
    }
 }
 
-@media screen and (max-width: 900px) {
-   .plan_list {
-      width: 90%;
-   }
-}

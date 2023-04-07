@@ -3,7 +3,7 @@
 .TaskHeader {
    @extend %flex-align-justify;
    position: relative;
-   height: 60px;
+   height: 50px;
    width: 100%;
    border-bottom: 2px solid var(--decorative-grey);
    transition: $transition;

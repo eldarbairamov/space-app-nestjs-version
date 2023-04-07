@@ -18,7 +18,7 @@ export function MomentList() {
    return (
       <div className={ style.MomentList }>
          { !!moments.length &&
-            <div className={ style.list }>
+            <div className={ style.moment_list }>
                { moments && moments.map((moment, index) => {
                   if (moments.length === index + 1) {
                      return <MomentItem ref={ lastElemRef }

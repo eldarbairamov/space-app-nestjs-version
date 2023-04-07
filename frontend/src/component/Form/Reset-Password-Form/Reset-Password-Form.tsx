@@ -38,12 +38,14 @@ export function ResetPasswordForm({ resetPasswordFn, resetPasswordToken }: IRese
          <FormControl labelName={ "Введіть ваш новий пароль" }
                       fieldName={ "password" }
                       register={ register }
+                      isRequired={true}
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>
 
          <FormControl labelName={ "Введіть пароль ще раз" }
                       fieldName={ "repeat_password" }
                       register={ register }
+                      isRequired={true}
                       errorMessage={ errors.repeat_password?.message }
                       isPassword={ true }/>
 

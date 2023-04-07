@@ -22,7 +22,7 @@
       width: 450px;
       filter: contrast(90%);
       -webkit-filter: contrast(90%);
-      border-radius: 20px;
+      border-radius: 15px;
       cursor: pointer;
       transition: $transition;
    }
@@ -35,7 +35,17 @@
 }
 
 @media screen and (max-width: 650px) {
-   .Photo, .photo_exist {
-      width: 350px;
+   .Photo {
+      .photo_exist {
+         width: 100%;
+      }
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .Photo {
+      .photo_exist {
+         width: 120%;
+      }
    }
 }

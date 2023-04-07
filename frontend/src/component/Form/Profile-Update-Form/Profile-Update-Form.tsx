@@ -41,6 +41,7 @@ export function ProfileUpdateForm() {
          <FormControl labelName={ "Ім'я користувача" }
                       fieldName={ "username" }
                       errorMessage={ errors.username?.message }
+                      isRequired={true}
                       isPassword={ false }
                       register={ register }/>
 

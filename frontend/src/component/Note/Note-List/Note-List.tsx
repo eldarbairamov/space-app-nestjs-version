@@ -21,7 +21,6 @@ export const NoteList: FC = () => {
    return (
       <div className={style.NoteList}>
          { !!notes.length &&
-
             <div className={ style.note_list }>
                { notes && notes.map((item, index) => {
                   if (notes.length === index + 1) {
@@ -39,13 +38,11 @@ export const NoteList: FC = () => {
          }
 
          { !notes.length &&
-
             <div className={ style.no_notes_wrapper }>
                <img src={ isDark ? emptyLight : emptyDark }
                     alt="empty"
                     style={ { width: "50px" } }/>
             </div>
-
          }
 
       </div>

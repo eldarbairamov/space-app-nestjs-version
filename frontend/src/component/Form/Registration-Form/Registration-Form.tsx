@@ -31,17 +31,20 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
 
          <FormControl labelName={ "Ім'я користувача" }
                       fieldName={ "username" }
+                      isRequired={true}
                       register={ register }
                       errorMessage={ errors.username?.message } isPassword={ false }/>
 
          <FormControl labelName={ "Електронна пошта" }
                       fieldName={ "email" }
+                      isRequired={true}
                       register={ register }
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 
          <FormControl labelName={ "Пароль" }
                       fieldName={ "password" }
+                      isRequired={true}
                       register={ register }
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>

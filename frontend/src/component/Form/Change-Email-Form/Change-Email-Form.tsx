@@ -40,9 +40,10 @@ export function ChangeEmailForm() {
                    initial={ "initial" }
                    animate={ "animate" }>
 
-         <FormControl labelName={ "Введіть нову адресу електронної пошти" }
+         <FormControl labelName={ "Електронна пошта" }
                       fieldName={ "email" }
                       register={ register }
+                      isRequired={true}
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 

@@ -1,20 +1,18 @@
 @import "src/style/configuration";
 
 .NoteList {
-   @extend %flex-align;
-   flex-direction: column;
    width: 100%;
    height: calc(100% - 100px);
    overflow-y: scroll;
 
    .note_list {
-      @extend %flex-align;
+      display: flex;
       justify-content: start;
       flex-direction: column;
-      gap: 12px;
+      gap: 13px;
       position: relative;
       width: 100%;
-      padding: 15px 0 15px 0;
+      padding: 20px;
    }
 }
 

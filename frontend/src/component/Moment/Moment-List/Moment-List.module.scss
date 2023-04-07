@@ -1,20 +1,19 @@
 @import "src/style/configuration";
 
-
 .MomentList {
    overflow-y: scroll;
    height: calc(100% - 50px);
    width: 100%;
 
-   .list {
+   .moment_list {
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start;
-      gap: 30px;
+      gap: 20px;
       position: relative;
-      width: 95%;
+      width: 100%;
       margin: 0 auto;
-      padding: 30px 0 30px 0;
+      padding: 20px;
    }
 }
 
@@ -27,11 +26,5 @@
    p {
       font-family: 'Caveat', cursive;
       font-size: 30px;
-   }
-}
-
-@media screen and (max-width: 900px) {
-   .MomentList {
-      width: 90%;
    }
 }

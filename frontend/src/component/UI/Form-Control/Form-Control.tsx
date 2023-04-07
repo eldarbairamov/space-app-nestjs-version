@@ -14,10 +14,19 @@ interface IInput {
    errorMessage: string | undefined,
    isPassword: boolean
    register: UseFormRegister<any>,
-   style?: CSSProperties
+   style?: CSSProperties,
+   isRequired?: boolean,
 }
 
-export function FormControl({ register, errorMessage, fieldName, labelName, isPassword, ...props }: IInput) {
+export function FormControl({
+                               register,
+                               errorMessage,
+                               isRequired,
+                               fieldName,
+                               labelName,
+                               isPassword,
+                               ...props
+                            }: IInput) {
    const [ validationError, setValidationError ] = useState<{ message: string }>({ message: "" });
    const [ isPasswordHidden, setIsPasswordHidden ] = useState<boolean>(isPassword);
 
@@ -37,7 +46,10 @@ export function FormControl({ register, errorMessage, fieldName, labelName, isPa
 
          <div className={ style.FormControl }>
             <div className={ style.password_wrapper }>
-               <label htmlFor={ "password" }> { labelName } </label>
+               <div className={ style.label_and_star }>
+                  <label htmlFor={ "password" }> { labelName } </label>
+                  { (isRequired && labelName) && <p style={ { color: 'indianred' } }> * </p> }
+               </div>
                { isPassword && <p onClick={ showHiddenPassword }> { passwordValueCondition } </p> }
             </div>
             <div data-error={ !!errorMessage } className={ style.input_field }>

@@ -56,11 +56,13 @@ export function ChangePasswordForm() {
          <FormControl labelName={ "Поточний пароль" }
                       fieldName={ "current_password" }
                       register={ register }
+                      isRequired={true}
                       errorMessage={ errors.current_password?.message }
                       isPassword={ true }/>
 
          <FormControl labelName={ "Новий пароль" }
                       fieldName={ "password" }
+                      isRequired={true}
                       register={ register }
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>
@@ -68,6 +70,7 @@ export function ChangePasswordForm() {
          <FormControl labelName={ "Повторіть пароль" }
                       fieldName={ "repeat_password" }
                       register={ register }
+                      isRequired={true}
                       errorMessage={ errors.repeat_password?.message }
                       isPassword={ true }/>
 
