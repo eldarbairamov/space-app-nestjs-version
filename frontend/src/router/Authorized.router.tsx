@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "@src/layout";
-import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, ProfileSettingsPage, MomentActivePage, NoteActivePage } from "@src/page";
+import { DashboardPage, TasksPage, MomentsPage, NotesPage, PlansPage, SettingsPage, MomentEditPage, NoteEditPage } from "@src/page";
 import { EmailConfirmationMessage, ErrorMessage, ChangePasswordForm, ProfileUpdateForm, ChangeEmailMessage, ChangePasswordMessage, ChangeEmailForm, UnauthorizedMessage } from "@src/component";
 
 export const AuthorizedRouter = createBrowserRouter([
@@ -19,7 +19,7 @@ export const AuthorizedRouter = createBrowserRouter([
          },
          {
             path: "settings",
-            element: <ProfileSettingsPage/>,
+            element: <SettingsPage/>,
             children: [
                {
                   index: true,
@@ -53,7 +53,7 @@ export const AuthorizedRouter = createBrowserRouter([
          },
          {
             path: "notes/:noteId",
-            element: <NoteActivePage/>,
+            element: <NoteEditPage/>,
          },
          {
             path: "moments",
@@ -69,7 +69,7 @@ export const AuthorizedRouter = createBrowserRouter([
          },
          {
             path: "moments/:momentId",
-            element: <MomentActivePage/>,
+            element: <MomentEditPage/>,
          },
          {
             path: "*",

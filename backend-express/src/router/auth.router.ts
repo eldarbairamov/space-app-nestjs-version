@@ -29,8 +29,7 @@ authRouter.post(
    "/password_forgot",
    commonMiddleware.isRequestEmpty,
    authMiddleware.isUserExists,
-   authController.forgotPassword,
-);
+   authController.forgotPassword,);
 
 // Refresh
 authRouter.post(

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { AppLogo } from "@src/component";
-import { UnauthorizedRouter } from "@src/router";
+import { UnauthorizedRouter, UnauthorizedRoutesEnum } from "@src/router";
 import { logoutService } from "@src/service";
 import { useAppSelector } from "@src/hook";
 
@@ -11,7 +11,7 @@ import logoutLight from "/logout-light.svg";
 export function LayoutNavbar() {
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const { logoutFn } = logoutService(() => UnauthorizedRouter.navigate("/login"))
+   const { logoutFn } = logoutService(() => UnauthorizedRouter.navigate(UnauthorizedRoutesEnum.LoginPage))
 
    return (
       <div className={ style.LayoutNavbar }>

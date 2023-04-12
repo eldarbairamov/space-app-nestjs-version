@@ -8,6 +8,7 @@ import fontLight from "/font-light.svg";
 
 export function FontOptions() {
    const dispatch = useAppDispatch();
+
    const { isDark } = useAppSelector(state => state.appReducer);
 
    const items: MenuProps["items"] = [

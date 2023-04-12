@@ -1,6 +1,6 @@
 @import "src/style/configuration";
 
-.MomentActivePage {
+.MomentEditPage {
    @extend %flex-align-justify-column;
    transition: width $transition, height $transition;
    width: 60vw;
@@ -33,27 +33,27 @@
 }
 
 @media screen and (max-height: 800px) {
-   .MomentActivePage {
+   .MomentEditPage {
       margin: 50px 0 50px 0;
       height: 0;
    }
 }
 
 @media screen and (max-width: 650px) {
-   .MomentActivePage {
+   .MomentEditPage {
       width: 450px;
       height: 600px;
    }
 }
 
 @media screen and (max-width: 1000px) {
-   .MomentActivePage {
+   .MomentEditPage {
       width: 85vw;
    }
 }
 
 @media screen and (max-width: 499px) {
-   .MomentActivePage {
+   .MomentEditPage {
       width: 95vw;
    }
 }

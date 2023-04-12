@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { noteActions } from "@src/redux/slice";
-import { NoteList } from "@src/component";
+import { NoBgButton, NoteList } from "@src/component";
 import { NoBgInput } from "@src/component";
 import { addNoteService } from "@src/service";
 import { TypedOnChange } from "@src/interface/common.interface";
@@ -23,9 +23,11 @@ export function NoteSidebar() {
       <div className={ style.NoteSidebar }>
          <div className={ style.note_sidebar }>
             <div className={ style.header }>
-               <img onClick={ () => addNoteFn() }
-                    src={ isDark ? addLight : addDark }
+               <img src={ isDark ? addLight : addDark }
                     alt={ "add" }/>
+               <NoBgButton text={ "Додати" }
+                           hoverSubject={ "notes" }
+                           onClick={ addNoteFn }/>
             </div>
 
             <NoteList/>

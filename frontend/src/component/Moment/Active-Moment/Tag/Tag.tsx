@@ -7,9 +7,7 @@ import { IMoment } from "@src/interface";
 export function Tag({ activeMoment }: { activeMoment: IMoment }) {
    const dispatch = useAppDispatch();
 
-   const handleTag = (event: TypedOnChange) => {
-      dispatch(momentActions.editTag(event.target.value))
-   }
+   const handleTag = (event: TypedOnChange) => dispatch(momentActions.editTag(event.target.value))
 
    return (
       <div className={ style.Tag }>

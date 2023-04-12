@@ -1,5 +1,5 @@
 import { scrollToElement } from "@src/helper";
-import { AuthorizedRouter } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 
 import style from './Auth-Settings.module.scss'
 
@@ -8,14 +8,14 @@ export function AuthSettings() {
       <div className={ style.AuthSettings }>
          <p onClick={ () => {
             scrollToElement();
-            AuthorizedRouter.navigate("/settings/password");
+            AuthorizedRouter.navigate(AuthorizedRoutesEnum.PasswordSettings);
          } }>
             Змінити пароль
          </p>
 
          <p onClick={ () => {
             scrollToElement();
-            AuthorizedRouter.navigate("/settings/email");
+            AuthorizedRouter.navigate(AuthorizedRoutesEnum.EmailSettings);
          } }>
             Змінити електронну пошту
          </p>

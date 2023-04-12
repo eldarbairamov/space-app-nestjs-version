@@ -21,32 +21,26 @@ export function ResetPasswordForm({ resetPasswordFn, resetPasswordToken }: IRese
       mode: "onTouched",
    });
 
-   const onSubmit: SubmitHandler<IResetPasswordForm> = async (data) => {
-      const password = data.password;
-      const repeatPassword = data.repeat_password;
-
-      if ((password && resetPasswordToken) && (password === repeatPassword)) {
-         await resetPasswordFn(password, resetPasswordToken!);
-      } else {
-         message.error("Паролі не співпадають");
-      }
+   const onSubmit: SubmitHandler<IResetPasswordForm> = async ({ newPassword, repeatPassword }: IResetPasswordForm) => {
+      if ((newPassword && resetPasswordToken) && (newPassword === repeatPassword)) await resetPasswordFn(newPassword, resetPasswordToken!)
+      else message.error("Паролі не співпадають")
    };
 
    return (
       <form className={ style.ResetPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
 
          <FormControl labelName={ "Введіть ваш новий пароль" }
-                      fieldName={ "password" }
+                      fieldName={ "newPassword" }
                       register={ register }
-                      isRequired={true}
-                      errorMessage={ errors.password?.message }
+                      isRequired={ true }
+                      errorMessage={ errors.newPassword?.message }
                       isPassword={ true }/>
 
          <FormControl labelName={ "Введіть пароль ще раз" }
-                      fieldName={ "repeat_password" }
+                      fieldName={ "repeatPassword" }
                       register={ register }
-                      isRequired={true}
-                      errorMessage={ errors.repeat_password?.message }
+                      isRequired={ true }
+                      errorMessage={ errors.repeatPassword?.message }
                       isPassword={ true }/>
 
          <Button disabled={ !isValid }

@@ -17,6 +17,7 @@
       .header {
          @extend %flex-align-justify;
          width: 100%;
+         gap: 10px;
          height: 50px;
          border-bottom: 2px solid var(--decorative-grey);
          color: var(--notes-color);

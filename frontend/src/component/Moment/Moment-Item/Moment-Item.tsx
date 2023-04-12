@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 
 import { IMoment } from "@src/interface";
-import { AuthorizedRouter } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 import dateHelper from "moment/moment";
 import { useAppSelector } from "@src/hook";
 import { configuration } from "@src/config/configuration";
@@ -20,7 +20,7 @@ export const MomentItem = forwardRef(({ moment }: IMomentItem, ref: any) => {
    return (
       <div ref={ ref }
            className={ style.MomentItem }
-           onClick={ () => AuthorizedRouter.navigate(`/moments/${ moment.id }`) }>
+           onClick={ () => AuthorizedRouter.navigate(AuthorizedRoutesEnum.MomentEditPage + moment.id) }>
 
          <p className={ style.title }> { moment.title } </p>
 

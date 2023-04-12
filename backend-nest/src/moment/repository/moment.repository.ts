@@ -32,7 +32,7 @@ export class MomentRepository {
    }
 
    async count(filter: FilterQuery<MomentDocument>, searchKey = ""): Promise<number> {
-      const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
       try {
          return await this.momentModel.count(filterObj);
       } catch (e) {
@@ -44,7 +44,7 @@ export class MomentRepository {
 
    async find(filter: FilterQuery<MomentDocument>, queryDto = {} as QueryDto): Promise<MomentDocument[]> {
       const { searchKey, limit } = queryDto;
-      const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
       try {
          return await this.momentModel.find(filterObj).sort({ createdAt: "desc" }).limit(limit);
       } catch (e) {

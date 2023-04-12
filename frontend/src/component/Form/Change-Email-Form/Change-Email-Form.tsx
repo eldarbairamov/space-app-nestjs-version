@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { FormControl } from "@src/component";
-import { AuthorizedRouter } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 import { emailValidator } from "@src/validator/auth.validator";
 import { changeEmailService, getUserService } from "@src/service";
 import { Button } from "@src/component";
@@ -23,7 +23,7 @@ export function ChangeEmailForm() {
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
    const { getUserFn } = getUserService();
-   const { changeEmailFn } = changeEmailService(() => AuthorizedRouter.navigate("/email_update/message", { replace: true }));
+   const { changeEmailFn } = changeEmailService(() => AuthorizedRouter.navigate(AuthorizedRoutesEnum.ChangeEmailMessage, { replace: true }));
 
    const onSubmit: SubmitHandler<{ email: string }> = async ({ email }) => changeEmailFn(email);
 
@@ -40,10 +40,10 @@ export function ChangeEmailForm() {
                    initial={ "initial" }
                    animate={ "animate" }>
 
-         <FormControl labelName={ "Електронна пошта" }
+         <FormControl labelName={ "Нова адреса електронної пошти" }
                       fieldName={ "email" }
                       register={ register }
-                      isRequired={true}
+                      isRequired={ true }
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 

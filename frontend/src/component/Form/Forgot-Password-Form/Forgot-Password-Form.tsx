@@ -31,14 +31,13 @@ export function ForgotPasswordForm({ forgotPasswordFn }: IForgotPasswordFormProp
             Введіть адресу електронної пошти вашого аккаунту і ми пришлемо вам посилання на скидання пароля
          </p>
 
-         <FormControl
-            labelName={ "" }
-            fieldName={ "email" }
-            style={ { textAlign: "center" } }
-            isRequired={true}
-            register={ register }
-            errorMessage={ errors.email?.message }
-            isPassword={ false }/>
+         <FormControl labelName={ "" }
+                      fieldName={ "email" }
+                      style={ { textAlign: "center" } }
+                      isRequired={ true }
+                      register={ register }
+                      errorMessage={ errors.email?.message }
+                      isPassword={ false }/>
 
          <Button disabled={ !isValid }
                  text={ "Надіслати" }

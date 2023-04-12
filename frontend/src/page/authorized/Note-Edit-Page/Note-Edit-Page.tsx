@@ -9,9 +9,9 @@ import { FontOptions, Loader, Modal, NoBgInput, TextArea } from "@src/component"
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 
-import style from "./Note-Active-Page.module.scss";
+import style from "./Note-Edit-Page.module.scss";
 
-export function NoteActivePage() {
+export function NoteEditPage() {
    const { noteId } = useParams<{ noteId: string }>()
 
    getNoteService(noteId!)
@@ -35,7 +35,7 @@ export function NoteActivePage() {
    const { toggleModal } = useModal(isLoading)
 
    return (
-      <motion.div className={ style.NoteActivePage }
+      <motion.div className={ style.NoteEditPage }
                   variants={ horizontalPresent }
                   initial={ "initial" }
                   animate={ "animate" }>

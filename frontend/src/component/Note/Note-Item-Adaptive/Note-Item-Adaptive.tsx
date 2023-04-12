@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@src/hook";
 import { noteActions } from "@src/redux/slice";
 import dateHelper from "moment";
 import { deleteNoteService } from "@src/service";
-import { AuthorizedRouter } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 
 import style from "./Note-Item-Adaptive.module.scss";
 import deleteDark from '/delete-dark.svg'
@@ -34,7 +34,7 @@ export const NoteItemAdaptive = forwardRef(({ note }: NoteItemAdaptive, ref: any
    return (
       <div ref={ ref } className={ style.NoteItemAdaptive }
            onClick={ () => {
-              AuthorizedRouter.navigate(`/notes/${ note.id }`);
+              AuthorizedRouter.navigate(AuthorizedRoutesEnum.NoteEditPage + note.id);
               dispatch(noteActions.setActiveNoteId(note.id));
            } }
            data-active={ note.id === activeNote?.id }>

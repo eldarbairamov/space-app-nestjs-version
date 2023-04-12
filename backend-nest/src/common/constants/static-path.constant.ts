@@ -1,4 +1,4 @@
 import process from "process";
 import path from "node:path";
 
-export const staticPath = path.join(process.cwd(), "client");
+export const STATIC_PATH = path.join(process.cwd(), "client");

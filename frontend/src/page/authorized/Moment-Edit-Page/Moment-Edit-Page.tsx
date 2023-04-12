@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { DateAndLocation, Loader, Modal, Photo, SaveAndDelete, Tag, Title } from "@src/component";
 import { momentActions } from "@src/redux/slice";
 
-import style from "./Moment-Active-Page.module.scss";
+import style from "./Moment-Edit-Page.module.scss";
 
-export function MomentActivePage() {
+export function MomentEditPage() {
    const { momentId } = useParams<{ momentId: string }>();
 
    const { activeMoment, isLoading } = useAppSelector(state => state.momentReducer);
@@ -33,7 +33,7 @@ export function MomentActivePage() {
    };
 
    return (
-      <motion.div className={ style.MomentActivePage }
+      <motion.div className={ style.MomentEditPage }
                   initial={ { x: -10 } }
                   animate={ { x: 0 } }>
 

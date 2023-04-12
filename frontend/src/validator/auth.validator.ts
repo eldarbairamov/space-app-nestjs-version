@@ -4,15 +4,15 @@ import { ILoginForm, IRegistrationForm, IResetPasswordForm, IChangePasswordForm 
 
 export const registrationValidator = Joi.object<IRegistrationForm>({
 
-   username: Joi.string().max(20).required().trim().messages({
+   username: Joi.string().max(15).required().trim().messages({
       "any.required": "Поле обов'язкове для заповнення",
       "string.empty": "Поле неповинно залишитись пустим",
-      "string.max": "Не більше 20-и символів",
+      "string.max": "Не більше 15-и символів",
       "string.min": "Не менше 2-х символів",
    }),
 
    email: Joi.string().pattern(emailRegex).required().trim().messages({
-      "string.pattern.base": "Недопустимий формат. Тільки букви",
+      "string.pattern.base": "Недопустимий формат електронної пошти",
       "string.empty": "Поле неповинно залишитись пустим",
       "any.required": "Поле обов'язкове для заповнення",
    }),
@@ -29,7 +29,7 @@ export const registrationValidator = Joi.object<IRegistrationForm>({
 export const loginValidator = Joi.object<ILoginForm>({
 
    email: Joi.string().pattern(emailRegex).required().trim().messages({
-      "string.pattern.base": "Недопустимий формат. Тільки букви",
+      "string.pattern.base": "Недопустимий формат електронної пошти",
       "string.empty": "Поле неповинно залишитись пустим",
       "any.required": "Поле обов'язкове для заповнення",
    }),
@@ -46,7 +46,7 @@ export const loginValidator = Joi.object<ILoginForm>({
 export const emailValidator = Joi.object<{ email: string }>({
 
    email: Joi.string().pattern(emailRegex).required().trim().messages({
-      "string.pattern.base": "Недопустимий формат",
+      "string.pattern.base": "Недопустимий формат електронної пошти",
       "string.empty": "Поле неповинно залишитись пустим",
       "any.required": "Поле обов'язкове для заповнення",
    }),

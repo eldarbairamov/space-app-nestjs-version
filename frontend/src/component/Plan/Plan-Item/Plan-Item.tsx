@@ -11,6 +11,7 @@ import style from "./Plan-Item.module.scss";
 import brain from "/brain.png";
 import deleteDark from '/delete-dark.svg'
 import deleteLight from '/delete-light.svg'
+import { AuthorizedRoutesEnum } from "@src/router";
 
 interface IPlanItemProps {
    plan: IPlan;
@@ -32,7 +33,7 @@ export const PlanItem = forwardRef(({ plan }: IPlanItemProps, ref: any) => {
 
    const { isDark } = useAppSelector(state => state.appReducer);
 
-   const choosePlan = (plan: IPlan) => navigate(`/plans/${ plan.id }`);
+   const choosePlan = (plan: IPlan) => navigate(AuthorizedRoutesEnum.TasksPage = plan.id);
 
    return (
       <div ref={ ref } className={ style.PlanItem }

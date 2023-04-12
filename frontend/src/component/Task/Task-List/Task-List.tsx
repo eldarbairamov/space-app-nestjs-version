@@ -1,5 +1,6 @@
 import { TaskItem } from "@src/component";
 import { useAppSelector } from "@src/hook";
+import { v4 as uuid } from "uuid";
 
 import style from "./Task-List.module.scss";
 
@@ -10,7 +11,7 @@ export function TaskList() {
       <div className={ style.TaskList }>
          <div className={ style.task_list }>
             { tasks && tasks.map(task => (
-               <TaskItem key={ task.id }
+               <TaskItem key={ uuid() }
                          task={ task }/>
             )) }
          </div>

@@ -12,11 +12,13 @@ export class RegistrationGuard implements CanActivate {
       const request = context.switchToHttp().getRequest();
       const candidate = request.body as RegistrationDto;
 
-      const IsEmailUnique = await this.userRepository.findOne({ email: candidate.email });
+      const [ email, username ] = await Promise.all([
+         this.userRepository.findOne({ email: candidate.email }),
+         this.userRepository.findOne({ username: candidate.username })
+      ])
 
-      if (IsEmailUnique) {
-         throw new HttpException("This email is already in use", HttpStatus.CONFLICT);
-      }
+      if (email) throw new HttpException("This email is already in use", HttpStatus.CONFLICT)
+      if (username) throw new HttpException("This username is already in use", HttpStatus.CONFLICT)
 
       return true;
    }

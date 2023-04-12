@@ -15,6 +15,10 @@ export const errorCatherFn = (e: unknown) => {
          message = "Користувач з такою електронною поштою вже існує";
          break;
 
+      case "This username is already in use":
+         message = "Це імʼя користувача вже зайняте";
+         break;
+
       case "Account is not activated":
          message = "Активуйте аккаунт";
          break;

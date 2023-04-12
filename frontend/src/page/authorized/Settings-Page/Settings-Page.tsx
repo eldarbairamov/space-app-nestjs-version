@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 import { AuthSettings, EditPhoto, NameSection, UserPhoto } from "@src/component";
 
-import style from "./Profile-Settings-Page.module.scss";
+import style from "./Settings-Page.module.scss";
 
-export function ProfileSettingsPage() {
+export function SettingsPage() {
 
    return (
-      <motion.div className={ style.ProfileSettingsPage }
+      <motion.div className={ style.SettingsPage }
                   variants={ horizontalPresent }
                   initial={ "initial" }
                   animate={ "animate" }>

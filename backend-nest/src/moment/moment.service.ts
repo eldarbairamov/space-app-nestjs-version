@@ -8,7 +8,7 @@ import path from "path";
 import { UserRepository } from "@src/user/repository/user.repository";
 import { UserDocument } from "@src/user/model/user.model";
 import { QueryDto } from "@src/common/dto";
-import { staticPath } from "@src/common/constants";
+import { STATIC_PATH } from "@src/common/constants";
 import { exists, unlinker } from "@src/common/helper";
 
 @Injectable()
@@ -62,7 +62,7 @@ export class MomentService {
       const moment = await this.momentRepository.findById(momentId);
 
       // Define image path, check if image exists and delete
-      const imagePath = path.join(staticPath, (moment.photo ? moment.photo : "nothing"));
+      const imagePath = path.join(STATIC_PATH, (moment.photo ? moment.photo : "nothing"));
       const isImageExists = await exists(imagePath);
       if (isImageExists) await unlinker(imagePath);
 
@@ -78,7 +78,7 @@ export class MomentService {
       const moment = await this.momentRepository.findById(momentId);
 
       // Delete prev image from hard drive if exists
-      const imagePath = path.join(staticPath, (moment.photo ? moment.photo : "nothing"));
+      const imagePath = path.join(STATIC_PATH, (moment.photo ? moment.photo : "nothing"));
       const isImageExists = await exists(imagePath);
 
       if (isImageExists) await unlinker(imagePath);

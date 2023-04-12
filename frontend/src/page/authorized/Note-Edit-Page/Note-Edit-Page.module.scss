@@ -1,6 +1,6 @@
 @import "src/style/configuration";
 
-.NoteActivePage {
+.NoteEditPage {
    @extend %flex-align-justify-column;
    width: 60vw;
    height: calc(100vh - 170px);
@@ -25,26 +25,26 @@
 }
 
 @media screen and (max-width: 1000px) {
-   .NoteActivePage {
+   .NoteEditPage {
       width: 85vw;
    }
 }
 
 @media screen and (max-height: 800px) {
-   .NoteActivePage {
+   .NoteEditPage {
       height: 800px;
       margin: 50px 0 50px 0;
    }
 }
 
 @media screen and (max-width: 550px) {
-   .NoteActivePage {
+   .NoteEditPage {
       width: 450px;
    }
 }
 
 @media screen and (max-width: 499px) {
-   .NoteActivePage {
+   .NoteEditPage {
       width: 95vw;
    }
 }

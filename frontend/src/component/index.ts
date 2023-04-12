@@ -57,6 +57,9 @@ export * from './UI/Modal/Modal'
 export * from './UI/Loader/Loader'
 export * from './UI/Switch-Button/Switch-Button'
 export * from './UI/Settings-Icon/Settings-Icon'
+export * from './UI/Lock-Icon/Lock-Icon'
+export * from './UI/Success-Icon/Success-Icon'
+export * from './UI/Unsuccess-Icon/Unsuccess-Icon'
 
 export * from "./Message/Error-Message/Error-Message";
 export * from "./Message/Unauthorized-Message/Unauthorized-Message";

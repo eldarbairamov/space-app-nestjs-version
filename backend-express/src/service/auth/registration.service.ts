@@ -13,6 +13,10 @@ export const registrationService = async (body: IRegistration) => {
    const validation = registrationValidator.validate({ ...body });
    if (validation.error) throw new ApiException(validation.error.message, 400);
 
+   // Check is username unique
+   const username = await UserRepository.findOne({ username: body.username });
+   if (username) throw new ApiException("This username is already in use", 409);
+
    // Hash password
    const hashedPassword = await passHasher(body.password!);
 

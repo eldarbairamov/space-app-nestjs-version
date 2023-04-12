@@ -3,7 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { IRegistration, IRegistrationForm } from "@src/interface";
 import { FormControl } from "@src/component";
 import { registrationValidator } from "@src/validator/auth.validator";
-import { UnauthorizedRouter } from "@src/router";
+import { UnauthorizedRouter, UnauthorizedRoutesEnum } from "@src/router";
 import { Button } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
@@ -31,20 +31,20 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
 
          <FormControl labelName={ "Ім'я користувача" }
                       fieldName={ "username" }
-                      isRequired={true}
+                      isRequired={ true }
                       register={ register }
                       errorMessage={ errors.username?.message } isPassword={ false }/>
 
          <FormControl labelName={ "Електронна пошта" }
                       fieldName={ "email" }
-                      isRequired={true}
+                      isRequired={ true }
                       register={ register }
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 
          <FormControl labelName={ "Пароль" }
                       fieldName={ "password" }
-                      isRequired={true}
+                      isRequired={ true }
                       register={ register }
                       errorMessage={ errors.password?.message }
                       isPassword={ true }/>
@@ -55,7 +55,7 @@ export function RegistrationForm({ registrationFn }: IRegistrationFormProps) {
 
          <div className={ style.footer }>
             <span> Є аккаунт? </span>
-            <span onClick={ () => UnauthorizedRouter.navigate("/login") }> Увійти </span>
+            <span onClick={ () => UnauthorizedRouter.navigate(UnauthorizedRoutesEnum.LoginPage) }> Увійти </span>
          </div>
 
       </motion.form>

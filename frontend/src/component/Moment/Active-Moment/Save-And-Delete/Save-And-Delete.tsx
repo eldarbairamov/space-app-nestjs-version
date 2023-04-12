@@ -1,5 +1,5 @@
 import { deleteMomentService, updateMomentService } from "@src/service";
-import { AuthorizedRouter } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 import { IMoment } from "@src/interface";
 import { TypedSetState } from "@src/interface/common.interface";
 
@@ -14,7 +14,7 @@ interface ISaveAndDeleteProps {
 
 export function SaveAndDelete({ momentId, activeMoment, setPrevState, prevState }: ISaveAndDeleteProps) {
    const { updateMomentFn } = updateMomentService(setPrevState);
-   const { deleteMomentFn } = deleteMomentService(() => AuthorizedRouter.navigate("/moments"));
+   const { deleteMomentFn } = deleteMomentService(() => AuthorizedRouter.navigate(AuthorizedRoutesEnum.MomentsPage));
 
    return (
       <div className={ style.SaveAndDelete }>

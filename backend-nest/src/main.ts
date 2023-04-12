@@ -3,7 +3,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { ValidationPipe } from "@nestjs/common";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import { staticPath } from "./common/constants";
+import { STATIC_PATH } from "./common/constants";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import configuration from "./config/configuration";
 
@@ -11,7 +11,7 @@ const start = async () => {
    const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
    app.useGlobalPipes(new ValidationPipe({ transform: true, transformOptions: { enableImplicitConversion: true } }));
-   app.useStaticAssets(staticPath);
+   app.useStaticAssets(STATIC_PATH);
    app.enableCors();
 
    const config = new DocumentBuilder()

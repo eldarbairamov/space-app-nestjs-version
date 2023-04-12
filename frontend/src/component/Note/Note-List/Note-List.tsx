@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { NoteItem } from "@src/component";
 import { v4 as uuid } from "uuid";
 import { useAppDispatch, useAppSelector } from "@src/hook";
@@ -10,7 +8,7 @@ import style from "./Note-List.module.scss";
 import emptyDark from "/empty-dark.svg";
 import emptyLight from "/empty-light.svg";
 
-export const NoteList: FC = () => {
+export function NoteList() {
    const { notes } = useAppSelector(state => state.noteReducer);
    const { isDark } = useAppSelector(state => state.appReducer);
 
@@ -19,8 +17,8 @@ export const NoteList: FC = () => {
    const { lastElemRef } = useObserver(() => dispatch(noteActions.next()))
 
    return (
-      <div className={style.NoteList}>
-         { !!notes.length &&
+      <div className={ style.NoteList }>
+         { Boolean(notes.length) &&
             <div className={ style.note_list }>
                { notes && notes.map((item, index) => {
                   if (notes.length === index + 1) {
@@ -37,7 +35,7 @@ export const NoteList: FC = () => {
 
          }
 
-         { !notes.length &&
+         { Boolean(!notes.length) &&
             <div className={ style.no_notes_wrapper }>
                <img src={ isDark ? emptyLight : emptyDark }
                     alt="empty"
@@ -47,4 +45,4 @@ export const NoteList: FC = () => {
 
       </div>
    );
-};
+}

@@ -1,7 +1,7 @@
 export interface IChangePasswordForm {
-   current_password: string;
-   password: string;
-   repeat_password: string;
+   newPassword: string;
+   currentPassword: string;
+   repeatPassword: string;
 }
 
 export interface IUpdateProfileForm {
@@ -22,6 +22,6 @@ export interface IRegistrationForm {
 }
 
 export interface IResetPasswordForm {
-   password: string;
-   repeat_password: string;
+   newPassword: string;
+   repeatPassword: string;
 }

@@ -6,7 +6,7 @@ export const emailTemplate = {
       templateName: "registration",
    },
    [FORGOT_PASSWORD]: {
-      subject: "Забув пароль?",
+      subject: "Забули пароль?",
       templateName: "forgot-password",
    },
    [CHANGE_EMAIL]: {

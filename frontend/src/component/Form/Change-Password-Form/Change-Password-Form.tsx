@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi/dist/joi";
 import { FormControl } from "@src/component";
-import { AuthorizedRouter } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 import { IChangePasswordForm } from "@src/interface";
 import { changePasswordValidator } from "@src/validator/auth.validator";
 import { App } from "antd";
@@ -26,18 +26,11 @@ export function ChangePasswordForm() {
    const { username, name, surname } = useAppSelector(state => state.userReducer);
 
    const { getUserFn } = getUserService();
-   const { updatePasswordFn } = changePasswordService(() => AuthorizedRouter.navigate("/password_update/message", { replace: true }));
+   const { updatePasswordFn } = changePasswordService(() => AuthorizedRouter.navigate(AuthorizedRoutesEnum.ChangePasswordMessage, { replace: true }));
 
-   const onSubmit: SubmitHandler<IChangePasswordForm> = async (data) => {
-      const newPassword = data.password;
-      const currentPassword = data.current_password;
-      const repeatPassword = data.repeat_password;
-
-      if (newPassword === repeatPassword) {
-         await updatePasswordFn(newPassword, currentPassword);
-      } else {
-         message.error("Паролі не співпадають");
-      }
+   const onSubmit: SubmitHandler<IChangePasswordForm> = async ({ repeatPassword, newPassword, currentPassword }: IChangePasswordForm) => {
+      if (newPassword === repeatPassword) await updatePasswordFn(newPassword, currentPassword);
+      else message.error("Паролі не співпадають");
    };
 
    useEffect(() => {
@@ -54,24 +47,24 @@ export function ChangePasswordForm() {
                    animate={ "animate" }>
 
          <FormControl labelName={ "Поточний пароль" }
-                      fieldName={ "current_password" }
+                      fieldName={ "currentPassword" }
                       register={ register }
-                      isRequired={true}
-                      errorMessage={ errors.current_password?.message }
+                      isRequired={ true }
+                      errorMessage={ errors.currentPassword?.message }
                       isPassword={ true }/>
 
          <FormControl labelName={ "Новий пароль" }
-                      fieldName={ "password" }
-                      isRequired={true}
+                      fieldName={ "newPassword" }
+                      isRequired={ true }
                       register={ register }
-                      errorMessage={ errors.password?.message }
+                      errorMessage={ errors.newPassword?.message }
                       isPassword={ true }/>
 
          <FormControl labelName={ "Повторіть пароль" }
-                      fieldName={ "repeat_password" }
+                      fieldName={ "repeatPassword" }
                       register={ register }
-                      isRequired={true}
-                      errorMessage={ errors.repeat_password?.message }
+                      isRequired={ true }
+                      errorMessage={ errors.repeatPassword?.message }
                       isPassword={ true }/>
 
          <Button disabled={ !isValid }
