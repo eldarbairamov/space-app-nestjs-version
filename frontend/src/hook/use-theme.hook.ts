@@ -33,9 +33,6 @@ export const useTheme = () => {
          Tooltip: {
             colorTextLightSolid: isDark ? "whitesmoke" : "#4e4e51",
          },
-         Spin: {
-            colorPrimary: '#ff8949'
-         }
       },
    };
 

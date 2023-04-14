@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { noteActions } from "@src/redux/slice";
 import { axiosInstance } from "@src/service";
 import { INote } from "@src/interface";
 import { notesRequests } from "@src/config/configuration";
 import { errorCatherFn } from "@src/helper";
-import { useAppDispatch } from "@src/hook";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 import { App } from "antd";
 
 export function getNoteService(noteId: string) {
-   const dispatch = useAppDispatch();
-   const { message } = App.useApp();
+   const { activeNote, font, isLoading } = useAppSelector(state => state.noteReducer);
 
-   const [note, setNote] = useState<INote>()
+   const dispatch = useAppDispatch();
+
+   const { message } = App.useApp();
 
    const getNoteFn = async () => {
       try {
-         dispatch(noteActions.setIsLoading(true))
-         const { data } = await axiosInstance.get<INote>(notesRequests.getNote + noteId)
-         dispatch(noteActions.setActiveNote(data))
-         setNote(data)
+         dispatch(noteActions.setIsLoading(true));
+         const { data } = await axiosInstance.get<INote>(notesRequests.getNote + noteId);
+         dispatch(noteActions.setActiveNote(data));
 
       } catch (e) {
-         dispatch(noteActions.setIsLoading(false))
+         dispatch(noteActions.setIsLoading(false));
          message.error(errorCatherFn(e));
 
       } finally {
-         dispatch(noteActions.setIsLoading(false))
+         dispatch(noteActions.setIsLoading(false));
       }
-   }
+   };
 
    useEffect(() => {
-      getNoteFn()
-   }, [])
+      getNoteFn();
+   }, []);
 
-   return {note}
+   return { activeNote, font, isLoading };
 
 }

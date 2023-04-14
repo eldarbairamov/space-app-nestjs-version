@@ -8,7 +8,8 @@ interface IUserInitialState {
    avatar: string,
    notesCount: number,
    momentsCount: number,
-   plansCount: number
+   plansCount: number,
+   isLoading: boolean;
 }
 
 const initialState: IUserInitialState = {
@@ -19,6 +20,7 @@ const initialState: IUserInitialState = {
    momentsCount: 0,
    notesCount: 0,
    plansCount: 0,
+   isLoading: false
 };
 
 const userSlice = createSlice({
@@ -42,6 +44,10 @@ const userSlice = createSlice({
          state.momentsCount = payload.momentsCount;
          state.plansCount = payload.plansCount;
          state.notesCount = payload.notesCount;
+      },
+
+      setIsLoading: (state, { payload }) => {
+         state.isLoading = payload;
       },
 
    },

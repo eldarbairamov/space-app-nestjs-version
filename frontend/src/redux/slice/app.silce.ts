@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IS_DARK } from "@src/constant/storage.constant";
 
 export interface IInitialState {
    isDark: boolean;
 }
 
 const initialState: IInitialState = {
-   isDark: localStorage.getItem("isDark") === "true",
+   isDark: localStorage.getItem(IS_DARK) === "true",
 };
 
 const appSlice = createSlice({
@@ -14,7 +15,7 @@ const appSlice = createSlice({
    reducers: {
       switchTheme: (state, { payload }) => {
          state.isDark = payload;
-         localStorage.setItem("isDark", String(payload));
+         localStorage.setItem(IS_DARK, String(payload));
       },
    },
 });

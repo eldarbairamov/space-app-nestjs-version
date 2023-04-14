@@ -1,12 +1,13 @@
 @import "src/style/configuration";
 
 .DashboardGreeting {
-   margin-top: 20px;
    font-size: 35px;
    font-weight: bold;
    color: #9d9d9d;
    position: relative;
+   top: 40px;
    transition: $transition;
+   width: 100%;
 
    .hello, .how_are_you {
       font-family: 'Caveat', cursive;
@@ -15,7 +16,6 @@
    .top_line {
       @extend %flex-align-justify;
       gap: 10px;
-      min-width: 400px;
    }
 
    .hello {
@@ -27,9 +27,9 @@
    }
 
    .how_are_you {
+      @extend %flex-align-justify;
       font-size: 25px;
-      position: absolute;
-      right: 50px;
+      width: 100%;
    }
 
    span:nth-child(2) {
@@ -42,12 +42,8 @@
    .DashboardGreeting {
       font-size: 30px;
 
-      span {
+      .hello {
          font-size: 40px;
-      }
-
-      span:nth-child(2) {
-         font-size: 22px;
       }
    }
 }

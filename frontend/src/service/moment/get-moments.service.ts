@@ -12,12 +12,16 @@ import { delay } from "@src/constant/delay.constant";
 
 export function getMomentsService() {
    const { total, searchKey } = useAppSelector(state => state.momentReducer);
+
+   const { isLoading } = useAppSelector(state => state.momentReducer);
+
    const dispatch = useDispatch();
+
    const { message } = App.useApp();
 
    const getMomentsFn = async () => {
       try {
-         dispatch(momentActions.setIsLoading(true))
+         dispatch(momentActions.setIsLoading(true));
          const { data } = await axiosInstance.get<IMoments>(momentsRequests.getAllMoments, {
             params: {
                searchKey: searchKey ? searchKey : null,
@@ -25,19 +29,21 @@ export function getMomentsService() {
             },
          });
          dispatch(momentActions.setMoments(data));
-         await pleaseWait(delay)
+         await pleaseWait(delay);
 
       } catch (e) {
-         dispatch(momentActions.setIsLoading(false))
+         dispatch(momentActions.setIsLoading(false));
          message.error(errorCatherFn(e));
 
       } finally {
-         dispatch(momentActions.setIsLoading(false))
+         dispatch(momentActions.setIsLoading(false));
       }
    };
 
    useEffect(() => {
       getMomentsFn();
    }, [ searchKey, total ]);
+
+   return { isLoading };
 
 }

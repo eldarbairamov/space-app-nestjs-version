@@ -5,37 +5,42 @@ import { horizontalPresent } from "@src/animation";
 import { useModal } from "@src/hook";
 
 import style from "./Dashboard-Page.module.scss";
+import { DASHBOARD_COLOR } from "@src/constant/color.constant";
 
 export function DashboardPage() {
    const { isLoading } = getUserService();
 
-   const { toggleModal } = useModal(isLoading)
+   const { toggleModal } = useModal(isLoading);
 
    return (
-      <motion.div className={ style.DashboardPage }
-                  variants={ horizontalPresent }
-                  initial={ "initial" }
-                  animate={ "animate" }>
+      <>
+         { !isLoading &&
+            <motion.div className={ style.DashboardPage }
+                        variants={ horizontalPresent }
+                        initial={ "initial" }
+                        animate={ "animate" }>
 
-         <div className={ style.top }>
-            <DashboardAvatar/>
-            <DashboardGreeting/>
-            <SwitchButton/>
-            <SettingsIcon/>
-         </div>
+               <div className={ style.top }>
+                  <DashboardAvatar/>
+                  <DashboardGreeting/>
+                  <SwitchButton/>
+                  <SettingsIcon/>
+               </div>
 
-         <div className={ style.bottom }>
-            <NoteCount/>
-            <PlanCount/>
-            <MomentCount/>
-         </div>
+               <div className={ style.bottom }>
+                  <NoteCount/>
+                  <PlanCount/>
+                  <MomentCount/>
+               </div>
+
+            </motion.div>
+         }
 
          <Modal isOpen={ isLoading }
                 onClose={ toggleModal }
                 isBg={ false }>
-            <Loader/>
+            <Loader color={ DASHBOARD_COLOR }/>
          </Modal>
-
-      </motion.div>
+      </>
    );
 }

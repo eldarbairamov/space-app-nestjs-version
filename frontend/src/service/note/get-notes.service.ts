@@ -12,6 +12,9 @@ import { delay } from "@src/constant/delay.constant";
 
 export function getNotesService() {
    const { searchKey, total } = useAppSelector(state => state.noteReducer);
+
+   const { isLoading } = useAppSelector(state => state.noteReducer);
+
    const dispatch = useAppDispatch();
    const { message } = App.useApp();
 
@@ -19,27 +22,29 @@ export function getNotesService() {
 
    const getNotesFn = async () => {
       try {
-         dispatch(noteActions.setIsLoading(true))
+         dispatch(noteActions.setIsLoading(true));
          const { data } = await axiosInstance.get<INotes>(notesRequests.getNotes, {
             params: {
                searchKey: searchKey ? debounced : null,
                limit: total,
             },
          });
-         await pleaseWait(delay)
+         await pleaseWait(delay);
          dispatch(noteActions.setNotes(data));
 
       } catch (e) {
-         dispatch(noteActions.setIsLoading(false))
+         dispatch(noteActions.setIsLoading(false));
          message.error(errorCatherFn(e));
 
       } finally {
-         dispatch(noteActions.setIsLoading(false))
+         dispatch(noteActions.setIsLoading(false));
       }
    };
 
    useEffect(() => {
       getNotesFn();
    }, [ debounced, total ]);
+
+   return { isLoading };
 
 }

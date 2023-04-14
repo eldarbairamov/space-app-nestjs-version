@@ -1,23 +1,22 @@
 import { useParams } from "react-router-dom";
 import { IMoment } from "@src/interface";
-import { useAppDispatch, useAppSelector, useModal } from "@src/hook";
+import { useAppDispatch, useModal } from "@src/hook";
 import { getMomentService } from "@src/service";
 import { motion } from "framer-motion";
 import { DateAndLocation, Loader, Modal, Photo, SaveAndDelete, Tag, Title } from "@src/component";
 import { momentActions } from "@src/redux/slice";
+import { MOMENTS_COLOR } from "@src/constant/color.constant";
 
 import style from "./Moment-Edit-Page.module.scss";
 
 export function MomentEditPage() {
    const { momentId } = useParams<{ momentId: string }>();
 
-   const { activeMoment, isLoading } = useAppSelector(state => state.momentReducer);
+   const { prevState, setPrevState, isLoading, activeMoment } = getMomentService(momentId!);
 
-   const isActiveMomentHasKeys = Object.keys(activeMoment).length
+   const isActiveMomentHasKeys = Object.keys(activeMoment).length;
 
-   const { toggleModal } = useModal(isLoading)
-
-   const { prevState, setPrevState } = getMomentService(momentId!)
+   const { toggleModal } = useModal(isLoading);
 
    const dispatch = useAppDispatch();
 
@@ -33,37 +32,42 @@ export function MomentEditPage() {
    };
 
    return (
-      <motion.div className={ style.MomentEditPage }
-                  initial={ { x: -10 } }
-                  animate={ { x: 0 } }>
+      <>
+         { !isLoading &&
+            <motion.div className={ style.MomentEditPage }
+                        initial={ { x: -10 } }
+                        animate={ { x: 0 } }>
 
-         { isActiveMomentHasKeys &&
-            <div className={ style.moment }>
-               <SaveAndDelete momentId={ momentId! }
-                              activeMoment={ activeMoment }
-                              setPrevState={ setPrevState }
-                              prevState={ prevState }/>
+               { isActiveMomentHasKeys &&
+                  <div className={ style.moment }>
+                     <SaveAndDelete momentId={ momentId! }
+                                    activeMoment={ activeMoment }
+                                    setPrevState={ setPrevState }
+                                    prevState={ prevState }/>
 
-               <Title activeMoment={ activeMoment }
-                      handleInputs={ handleInputs }/>
+                     <Title activeMoment={ activeMoment }
+                            handleInputs={ handleInputs }/>
 
-               <Photo momentId={ momentId! }
-                      activeMoment={ activeMoment }/>
+                     <Photo momentId={ momentId! }
+                            activeMoment={ activeMoment }/>
 
-               <DateAndLocation
-                  handleInputs={ handleInputs }
-                  activeMoment={ activeMoment }/>
+                     <DateAndLocation
+                        handleInputs={ handleInputs }
+                        activeMoment={ activeMoment }/>
 
-               <Tag activeMoment={ activeMoment }/>
-            </div>
+                     <Tag activeMoment={ activeMoment }/>
+                  </div>
+               }
+
+            </motion.div>
          }
 
          <Modal isOpen={ isLoading }
                 onClose={ toggleModal }
                 isBg={ false }>
-            <Loader/>
+            <Loader color={ MOMENTS_COLOR }/>
          </Modal>
 
-      </motion.div>
+      </>
    );
 }

@@ -2,10 +2,10 @@
 
 .NoteItem {
    @extend %flex-align;
-   padding: 20px;
+   padding: 15px;
    background: var(--item-bg);
    width: 100%;
-   height: 120px;
+   height: 110px;
    border-radius: 10px;
    cursor: pointer;
    position: relative;

@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { fadePresent } from "@src/animation";
-import { Spin } from "antd";
+import { ConfigProvider, Spin } from "antd";
 
 import style from "./Loader.module.scss";
 
-export function Loader() {
+export function Loader({ color }: { color: string }) {
    return (
       <motion.div className={ style.Loader }
                   variants={ fadePresent }
                   initial={ "initial" }
                   animate={ "animate" }>
-         <Spin size="large"/>
-         <p> Одну секундочку... </p>
+         <ConfigProvider theme={ { components: { Spin: { colorPrimary: color } } } }>
+            <Spin size="large"/>
+         </ConfigProvider>
       </motion.div>
    );
 }

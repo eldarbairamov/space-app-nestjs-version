@@ -5,30 +5,33 @@ import { axiosInstance } from "@src/service";
 import { momentsRequests } from "@src/config/configuration";
 import { momentActions } from "@src/redux/slice";
 import { App } from "antd";
-import { useAppDispatch } from "@src/hook";
+import { useAppDispatch, useAppSelector } from "@src/hook";
 import { errorCatherFn, pleaseWait } from "@src/helper";
 import { delay } from "@src/constant/delay.constant";
 
 export function getMomentService(momentId: IMoment["id"]) {
+   const { isLoading, activeMoment } = useAppSelector(state => state.momentReducer);
+
    const [ prevState, setPrevState ] = useState<IMoment>({} as IMoment);
+
    const { message } = App.useApp();
 
    const dispatch = useAppDispatch();
 
    const getMomentFn = async () => {
       try {
-         dispatch(momentActions.setIsLoading(true))
+         dispatch(momentActions.setIsLoading(true));
          const { data } = await axiosInstance.get<IMoment>(momentsRequests.getOneMoment + momentId);
-         await pleaseWait(delay)
+         await pleaseWait(delay);
          dispatch(momentActions.setActiveMoment(data));
          setPrevState(data);
 
       } catch (e) {
-         dispatch(momentActions.setIsLoading(false))
+         dispatch(momentActions.setIsLoading(false));
          message.error(errorCatherFn(e));
 
       } finally {
-         dispatch(momentActions.setIsLoading(false))
+         dispatch(momentActions.setIsLoading(false));
       }
    };
 
@@ -37,5 +40,5 @@ export function getMomentService(momentId: IMoment["id"]) {
    }, []);
 
 
-   return { prevState, setPrevState };
+   return { prevState, setPrevState, isLoading, activeMoment };
 }

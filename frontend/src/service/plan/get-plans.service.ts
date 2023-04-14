@@ -12,29 +12,33 @@ import { delay } from "@src/constant/delay.constant";
 
 export function getPlansService() {
    const { searchKey, total } = useAppSelector(state => state.planReducer);
+
+   const { isLoading } = useAppSelector(state => state.planReducer);
+
    const dispatch = useAppDispatch();
+
    const { message } = App.useApp();
 
    const debounced = useDebounce(searchKey);
 
    const getPlansFn = async () => {
       try {
-         dispatch(planAction.setIsLoading(true))
+         dispatch(planAction.setIsLoading(true));
          const { data } = await axiosInstance.get<IPlans>(plansRequests.getAllPlans, {
             params: {
                searchKey: searchKey ? debounced : null,
                limit: total,
             },
          });
-         await pleaseWait(delay)
+         await pleaseWait(delay);
          dispatch(planAction.setPlans(data));
 
       } catch (e) {
-         dispatch(planAction.setIsLoading(false))
+         dispatch(planAction.setIsLoading(false));
          message.error(errorCatherFn(e));
 
       } finally {
-         dispatch(planAction.setIsLoading(false))
+         dispatch(planAction.setIsLoading(false));
       }
    };
 
@@ -42,4 +46,5 @@ export function getPlansService() {
       getPlansFn();
    }, [ debounced, total ]);
 
+   return { isLoading };
 }
