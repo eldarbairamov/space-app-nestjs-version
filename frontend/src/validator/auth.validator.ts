@@ -55,14 +55,14 @@ export const emailValidator = Joi.object<{ email: string }>({
 
 export const resetPasswordValidator = Joi.object<IResetPasswordForm>({
 
-   password: Joi.string().min(6).max(20).required().trim().messages({
+   newPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Не більше 20-и символів",
       "string.min": "Не менше 6-и символів",
       "string.empty": "Поле неповинно залишитись пустим",
       "any.required": "Поле обов'язкове для заповнення",
    }),
 
-   repeat_password: Joi.string().min(6).max(20).required().trim().messages({
+   repeatPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Не більше 20-и символів",
       "string.min": "Не менше 6-и символів",
       "string.empty": "Поле неповинно залишитись пустим",
@@ -73,21 +73,21 @@ export const resetPasswordValidator = Joi.object<IResetPasswordForm>({
 
 export const changePasswordValidator = Joi.object<IChangePasswordForm>({
 
-   password: Joi.string().min(6).max(20).required().trim().messages({
+   newPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Не більше 20-и символів",
       "string.min": "Не менше 6-и символів",
       "string.empty": "Поле неповинно залишитись пустим",
       "any.required": "Поле обов'язкове для заповнення",
    }),
 
-   current_password: Joi.string().min(6).max(20).required().trim().messages({
+   currentPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Не більше 20-и символів",
       "string.min": "Не менше 6-и символів",
       "string.empty": "Поле неповинно залишитись пустим",
       "any.required": "Поле обов'язкове для заповнення",
    }),
 
-   repeat_password: Joi.string().min(6).max(20).required().trim().messages({
+   repeatPassword: Joi.string().min(6).max(20).required().trim().messages({
       "string.max": "Не більше 20-и символів",
       "string.min": "Не менше 6-и символів",
       "string.empty": "Поле неповинно залишитись пустим",
