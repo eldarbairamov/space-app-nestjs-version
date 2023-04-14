@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { emailRegex } from "../constant/regexp.constant";
+import { emailRegex } from "../constant";
 import { ILoginForm, IRegistrationForm, IResetPasswordForm, IChangePasswordForm } from "../interface";
 
 export const registrationValidator = Joi.object<IRegistrationForm>({

@@ -3,9 +3,9 @@ import { getUserService } from "@src/service";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 import { useModal } from "@src/hook";
+import { DASHBOARD_COLOR } from "@src/constant";
 
 import style from "./Dashboard-Page.module.scss";
-import { DASHBOARD_COLOR } from "@src/constant/color.constant";
 
 export function DashboardPage() {
    const { isLoading } = getUserService();

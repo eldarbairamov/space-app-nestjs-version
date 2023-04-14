@@ -7,7 +7,7 @@ import { axiosInstance } from "@src/service";
 import { IUser } from "@src/interface";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
-import { delay } from "@src/constant/delay.constant";
+import { delay } from "@src/constant";
 
 export function getUserService() {
    const { isLoading } = useAppSelector(state => state.userReducer);

@@ -4,9 +4,9 @@ import { horizontalPresent } from "@src/animation";
 import { AuthSettings, EditPhoto, Loader, Modal, NameSection, UserPhoto } from "@src/component";
 import { useModal } from "@src/hook";
 import { getUserService } from "@src/service";
+import { DASHBOARD_COLOR } from "@src/constant";
 
 import style from "./Settings-Page.module.scss";
-import { DASHBOARD_COLOR } from "@src/constant/color.constant";
 
 export function SettingsPage() {
    const { isLoading } = getUserService();

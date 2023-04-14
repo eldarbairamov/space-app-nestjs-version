@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { onlyLettersRegex } from "@src/constant/regexp.constant";
+import { onlyLettersRegex } from "@src/constant";
 import { IUpdateProfileForm } from "@src/interface";
 
 export const updateProfile = Joi.object<IUpdateProfileForm>({

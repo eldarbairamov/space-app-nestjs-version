@@ -3,7 +3,7 @@ import { useMatchMedia, useModal } from "@src/hook";
 import { getNotesService } from "@src/service";
 import { horizontalPresent } from "@src/animation";
 import { motion } from "framer-motion";
-import { NOTES_COLOR } from "@src/constant/color.constant";
+import { NOTES_COLOR } from "@src/constant";
 
 import style from "./Notes-Page.module.scss";
 

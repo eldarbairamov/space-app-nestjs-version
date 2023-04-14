@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IS_DARK } from "@src/constant/storage.constant";
+import { IS_DARK } from "@src/constant";
 
 export interface IInitialState {
    isDark: boolean;

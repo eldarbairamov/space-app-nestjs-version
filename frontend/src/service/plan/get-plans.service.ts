@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@src/hook";
 import { planAction } from "@src/redux/slice";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
-import { delay } from "@src/constant/delay.constant";
+import { delay } from "@src/constant";
 
 export function getPlansService() {
    const { searchKey, total } = useAppSelector(state => state.planReducer);

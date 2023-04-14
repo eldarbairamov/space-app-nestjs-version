@@ -8,7 +8,7 @@ import { noteActions } from "@src/redux/slice";
 import { useDebounce } from "@src/hook";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
-import { delay } from "@src/constant/delay.constant";
+import { delay } from "@src/constant";
 
 export function getNotesService() {
    const { searchKey, total } = useAppSelector(state => state.noteReducer);

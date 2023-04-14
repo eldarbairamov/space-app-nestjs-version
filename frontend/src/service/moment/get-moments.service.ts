@@ -8,7 +8,7 @@ import { momentActions } from "@src/redux/slice";
 import { useAppSelector } from "@src/hook";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
-import { delay } from "@src/constant/delay.constant";
+import { delay } from "@src/constant";
 
 export function getMomentsService() {
    const { total, searchKey } = useAppSelector(state => state.momentReducer);

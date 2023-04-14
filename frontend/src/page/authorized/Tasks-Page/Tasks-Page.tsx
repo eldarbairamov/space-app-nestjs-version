@@ -6,7 +6,7 @@ import { getOnePlanService } from "@src/service/plan/get-one-plan.service";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 import { useModal } from "@src/hook";
-import { PLANS_COLOR } from "@src/constant/color.constant";
+import { PLANS_COLOR } from "@src/constant";
 
 import style from "./Tasks-Page.module.scss";
 

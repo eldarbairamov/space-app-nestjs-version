@@ -8,7 +8,7 @@ import { INote } from "@src/interface";
 import { FontOptions, Loader, Modal, NoBgInput, TextArea } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
-import { NOTES_COLOR } from "@src/constant/color.constant";
+import { NOTES_COLOR } from "@src/constant";
 
 import style from "./Note-Edit-Page.module.scss";
 

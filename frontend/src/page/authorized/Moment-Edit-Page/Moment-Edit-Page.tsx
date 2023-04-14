@@ -5,7 +5,7 @@ import { getMomentService } from "@src/service";
 import { motion } from "framer-motion";
 import { DateAndLocation, Loader, Modal, Photo, SaveAndDelete, Tag, Title } from "@src/component";
 import { momentActions } from "@src/redux/slice";
-import { MOMENTS_COLOR } from "@src/constant/color.constant";
+import { MOMENTS_COLOR } from "@src/constant";
 
 import style from "./Moment-Edit-Page.module.scss";
 

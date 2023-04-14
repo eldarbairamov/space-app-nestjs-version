@@ -7,7 +7,7 @@ import { momentActions } from "@src/redux/slice";
 import { App } from "antd";
 import { useAppDispatch, useAppSelector } from "@src/hook";
 import { errorCatherFn, pleaseWait } from "@src/helper";
-import { delay } from "@src/constant/delay.constant";
+import { delay } from "@src/constant";
 
 export function getMomentService(momentId: IMoment["id"]) {
    const { isLoading, activeMoment } = useAppSelector(state => state.momentReducer);

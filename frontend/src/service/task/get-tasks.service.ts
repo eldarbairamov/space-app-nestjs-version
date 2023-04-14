@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "@src/hook";
 import { taskAction } from "@src/redux/slice";
 import { App } from "antd";
 import { errorCatherFn, pleaseWait } from "@src/helper";
-import { delay } from "@src/constant/delay.constant";
+import { delay } from "@src/constant";
 
 export function getTasksService(planId: IPlan["id"]) {
    const { isLoading } = useAppSelector(state => state.taskReducer);
