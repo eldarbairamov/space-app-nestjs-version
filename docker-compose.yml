@@ -1,17 +1,6 @@
 version: "3"
 
 services:
-#  frontend:
-#    container_name: frontend
-#    build: ./frontend
-#    command: npm run preview
-#    env_file:
-#      - frontend/.env
-#    restart: unless-stopped
-#    depends_on:
-#      - api
-#      - db
-
   api_nest:
     container_name: api_nest
     build: ./backend-nest
@@ -28,22 +17,6 @@ services:
     volumes:
       - ./backend-nest/client:/app/client
 
-  db:
-    image: mongo:latest
-    container_name: mongo_db
-    command: mongod --quiet --logpath /dev/null
-    restart: unless-stopped
-    ports:
-      - "27019:27017"
-    environment:
-      - MONGO_INITDB_DATABASE=space-app
-      - MONGO_INITDB_ROOT_USERNAME=eldar
-      - MONGO_INITDB_ROOT_PASSWORD=eldar010596
-    volumes:
-      - ./backend-nest/mongo_db:/data/db
-#      - ./backend-express/mongo_db:/data/db
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-
 #  api_express:
 #    container_name: api_express
 #    build: ./backend-express
@@ -59,6 +32,22 @@ services:
 #      - db
 #    volumes:
 #      - ./backend-express/client:/app/client
+
+  db:
+    image: mongo:latest
+    container_name: mongo_db
+    command: mongod --quiet --logpath /dev/null
+    restart: unless-stopped
+    ports:
+      - "27019:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=space-app
+      - MONGO_INITDB_ROOT_USERNAME=eldar
+      - MONGO_INITDB_ROOT_PASSWORD=eldar010596
+    volumes:
+      - ./backend-nest/mongo_db:/data/db
+#      - ./backend-express/mongo_db:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   nginx:
     image: nginx:alpine
