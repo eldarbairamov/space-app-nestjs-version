@@ -38,7 +38,6 @@ export function PlanList() {
                <img src={ isDark ? emptyLight : emptyDark }
                     alt={ "empty" }
                     style={ { width: "80px" } }/>
-               <p> Пусто.. </p>
             </div>
          }
       </div>
