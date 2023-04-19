@@ -14,6 +14,7 @@ export function addPlanService() {
       try {
          message.loading("Лоудінг..");
          const { data } = await axiosInstance.get<IPlan>(plansRequests.addPlan);
+         dispatch(planAction.setSearchKey(""));
          dispatch(planAction.addPlan(data));
          message.destroy();
 

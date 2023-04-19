@@ -14,6 +14,7 @@ export function addNoteService() {
       try {
          message.loading("Лоудінг..");
          const { data } = await axiosInstance.get<INote>(notesRequests.addNote);
+         dispatch(noteActions.setSearchKey(""));
          dispatch(noteActions.addNote(data));
          message.destroy();
 
