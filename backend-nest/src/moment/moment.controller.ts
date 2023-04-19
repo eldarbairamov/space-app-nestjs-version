@@ -5,13 +5,14 @@ import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.i
 import { UpdateMomentDto } from "./dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
-import { ApiBadRequestResponse, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiConsumes, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiPayloadTooLargeResponse, ApiTags, ApiUnauthorizedResponse, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { DefaultError, FileSizeError, FileTypeError, MomentResponse, MomentsResponse, ObjectIdError, ObjNotExistError, SuccessResponse, UnauthorizedError, UpdateMomentBody, UploadImageResponse } from "@src/common/swagger";
 import { QueryDto } from "@src/common/dto";
 import { SharpPipe } from "@src/common/pipe/sharp.pipe";
 import { FileValidatorFilter } from "@src/common/exception/file-validator.filter";
 import { ApiFile, User } from "@src/common/decorator";
 
+@ApiBearerAuth()
 @ApiTags("Moments")
 @Controller("moments")
 export class MomentController {

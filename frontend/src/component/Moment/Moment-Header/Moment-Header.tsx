@@ -42,7 +42,7 @@ export function MomentHeader({ addMomentFn }: IMomentHeaderProps) {
          <div className={ style.select_wrapper }>
             <Select style={ { width: 100 } }
                     allowClear={ true }
-                    placeholder="Фільтр"
+                    placeholder={ "фільтр" }
                     notFoundContent={ "Пусто" }
                     bordered={ false }
                     value={ isValueNull && null }

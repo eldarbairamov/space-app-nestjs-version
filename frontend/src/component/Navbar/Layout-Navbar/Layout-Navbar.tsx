@@ -1,17 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { AppLogo } from "@src/component";
-import { UnauthorizedRouter, UnauthorizedRoutesEnum } from "@src/router";
-import { logoutService } from "@src/service";
-import { useAppSelector } from "@src/hook";
+import { AppLogo, LogoutIcon } from "@src/component";
 
 import style from "./Layout-Navbar.module.scss";
-import logoutDark from "/logout-dark.svg";
-import logoutLight from "/logout-light.svg";
 
 export function LayoutNavbar() {
-   const { isDark } = useAppSelector(state => state.appReducer);
-
-   const { logoutFn } = logoutService(() => UnauthorizedRouter.navigate(UnauthorizedRoutesEnum.LoginPage))
 
    return (
       <div className={ style.LayoutNavbar }>
@@ -47,10 +39,7 @@ export function LayoutNavbar() {
          </div>
 
          <div className={ style.logout }>
-            <img src={ isDark ? logoutLight : logoutDark }
-                 alt={ "logout" }
-                 style={ { width: "25px" } }
-                 onClick={ () => logoutFn() }/>
+            <LogoutIcon/>
          </div>
 
       </div>

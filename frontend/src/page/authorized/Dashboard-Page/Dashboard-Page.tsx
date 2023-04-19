@@ -1,8 +1,7 @@
-import { DashboardAvatar, DashboardGreeting, MomentCount, NoteCount, PlanCount, Modal, Loader, SwitchButton, SettingsIcon } from "@src/component";
+import { DashboardAvatar, DashboardGreeting, MomentCount, NoteCount, PlanCount, SwitchButton, SettingsIcon, ModalWLoader } from "@src/component";
 import { getUserService } from "@src/service";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
-import { useModal } from "@src/hook";
 import { DASHBOARD_COLOR } from "@src/constant";
 
 import style from "./Dashboard-Page.module.scss";
@@ -10,37 +9,29 @@ import style from "./Dashboard-Page.module.scss";
 export function DashboardPage() {
    const { isLoading } = getUserService();
 
-   const { toggleModal } = useModal(isLoading);
-
    return (
       <>
-         { !isLoading &&
-            <motion.div className={ style.DashboardPage }
-                        variants={ horizontalPresent }
-                        initial={ "initial" }
-                        animate={ "animate" }>
+         <motion.div className={ style.DashboardPage }
+                     variants={ horizontalPresent }
+                     initial={ "initial" }
+                     animate={ "animate" }>
 
-               <div className={ style.top }>
-                  <DashboardAvatar/>
-                  <DashboardGreeting/>
-                  <SwitchButton/>
-                  <SettingsIcon/>
-               </div>
+            <div className={ style.top }>
+               <DashboardAvatar/>
+               <DashboardGreeting/>
+               <SwitchButton/>
+               <SettingsIcon/>
+            </div>
 
-               <div className={ style.bottom }>
-                  <NoteCount/>
-                  <PlanCount/>
-                  <MomentCount/>
-               </div>
+            <div className={ style.bottom }>
+               <NoteCount/>
+               <PlanCount/>
+               <MomentCount/>
+            </div>
 
-            </motion.div>
-         }
+         </motion.div>
 
-         <Modal isOpen={ isLoading }
-                onClose={ toggleModal }
-                isBg={ false }>
-            <Loader color={ DASHBOARD_COLOR }/>
-         </Modal>
+         <ModalWLoader isLoading={ isLoading } color={ DASHBOARD_COLOR }/>
       </>
    );
 }

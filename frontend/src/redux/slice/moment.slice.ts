@@ -3,10 +3,10 @@ import { IMoment, IMoments } from "@src/interface";
 
 interface IMomentInitialState {
    moments: IMoment[];
-   count: number;
    activeMoment: IMoment;
    searchKey: string;
    tags: (string | undefined)[];
+   count: number;
    limit: number;
    total: number;
    isLoading: boolean;
@@ -14,10 +14,10 @@ interface IMomentInitialState {
 
 const initialState: IMomentInitialState = {
    moments: [],
-   count: 0,
    activeMoment: {} as IMoment,
    searchKey: "",
    tags: [],
+   count: 0,
    limit: 30,
    total: 30,
    isLoading: false

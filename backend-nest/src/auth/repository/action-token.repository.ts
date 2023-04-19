@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { FilterQuery, Model, UpdateQuery } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
-import { ActionToken, ActionTokenDocument } from "@src/auth/model";
+import { ActionToken, ActionTokenDocument, OAuthDocument } from "@src/auth/model";
 import { databaseException } from "@src/common/exception/database.exception";
 
 @Injectable()
@@ -33,6 +33,16 @@ export class ActionTokenRepository {
    async findOneAndDelete(filter: FilterQuery<ActionToken>): Promise<ActionTokenDocument> {
       try {
          return await this.actionTokenModel.findOneAndDelete(filter);
+      } catch (e) {
+         const error = e as Error;
+         console.log(error.message);
+         databaseException();
+      }
+   }
+
+   async deleteMany(filter: FilterQuery<OAuthDocument>) {
+      try {
+         return await this.actionTokenModel.deleteMany(filter);
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

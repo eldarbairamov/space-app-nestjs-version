@@ -1,0 +1,13 @@
+@import "src/style/configuration";
+
+.BackIcon {
+   @extend %flex-align-justify;
+   position: absolute;
+   cursor: pointer;
+   left: 30px;
+
+   &:hover {
+      filter: var(--icon-hover);
+      -webkit-filter: var(--icon-hover);
+   }
+}

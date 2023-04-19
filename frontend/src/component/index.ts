@@ -9,21 +9,21 @@ export * from "./Note/Note-Count/Note-Count";
 export * from "./Note/Note-Item/Note-Item";
 export * from "./Note/Note-List/Note-List";
 export * from "./Note/Note-Sidebar/Note-Sidebar";
-export * from './Note/Note-Header-Adaptive/Note-Header-Adaptive'
-export * from './Note/Note-List-Adaptive/Note-List-Adaptive'
-export * from './Note/Font-Options/Font-Options'
-export * from './Note/Text-Area/Text-Area'
+export * from "./Note/Note-Header-Adaptive/Note-Header-Adaptive";
+export * from "./Note/Note-List-Adaptive/Note-List-Adaptive";
+export * from "./Note/Font-Options/Font-Options";
+export * from "./Note/Text-Area/Text-Area";
 
 export * from "./Moment/Moment-Count/Moment-Count";
 export * from "./Moment/Moment-Item/Moment-Item";
 export * from "./Moment/Moment-Header/Moment-Header";
 export * from "./Moment/Moment-List/Moment-List";
 
-export * from './Moment/Active-Moment/Tag/Tag'
-export * from './Moment/Active-Moment/Photo/Photo'
-export * from './Moment/Active-Moment/Title/Title'
-export * from './Moment/Active-Moment/Date-And-Location/Date-And-Location'
-export * from './Moment/Active-Moment/Save-And-Delete/Save-And-Delete'
+export * from "./Moment/Active-Moment/Tag/Tag";
+export * from "./Moment/Active-Moment/Photo/Photo";
+export * from "./Moment/Active-Moment/Title/Title";
+export * from "./Moment/Active-Moment/Date-And-Location/Date-And-Location";
+export * from "./Moment/Active-Moment/Save-And-Delete/Save-And-Delete";
 
 export * from "./Plan/Plan-Item/Plan-Item";
 export * from "./Plan/Plan-Count/Plan-Count";
@@ -53,13 +53,17 @@ export * from "./UI/No-Bg-Input/No-Bg-Input";
 export * from "./UI/No-Bg-Button/No-Bg-Button";
 export * from "./UI/Button/Button";
 export * from "./UI/Input/Input";
-export * from './UI/Modal/Modal'
-export * from './UI/Loader/Loader'
-export * from './UI/Switch-Button/Switch-Button'
-export * from './UI/Settings-Icon/Settings-Icon'
-export * from './UI/Lock-Icon/Lock-Icon'
-export * from './UI/Success-Icon/Success-Icon'
-export * from './UI/Unsuccess-Icon/Unsuccess-Icon'
+export * from "./UI/Modal/Modal";
+export * from "./UI/Loader/Loader";
+export * from "./UI/Switch-Button/Switch-Button";
+export * from "./UI/Settings-Icon/Settings-Icon";
+export * from "./UI/Lock-Icon/Lock-Icon";
+export * from "./UI/Success-Icon/Success-Icon";
+export * from "./UI/Unsuccess-Icon/Unsuccess-Icon";
+export * from "./UI/Modal-w-Loader/Modal-w-Loader";
+export * from "./UI/Logout-Icon/Logout-Icon";
+export * from "./UI/Menu-Dropdown/Menu-Dropdown";
+export * from "./UI/Back-Icon/Back-Icon";
 
 export * from "./Message/Error-Message/Error-Message";
 export * from "./Message/Unauthorized-Message/Unauthorized-Message";
@@ -69,7 +73,7 @@ export * from "./Message/Email-Confirmation-Message/Email-Confirmation-Message";
 export * from "./Message/Change-Email-Message/Change-Email-Message";
 export * from "./Message/Change-Password-Message/Change-Password-Message";
 
-export * from './Profile-Settings/Photo/User-Photo'
-export * from './Profile-Settings/Auth-Settings/Auth-Settings'
-export * from './Profile-Settings/Edit-Photo/Edit-Photo'
-export * from './Profile-Settings/Name-Section/Name-Section'
+export * from "./Profile-Settings/Photo/User-Photo";
+export * from "./Profile-Settings/Auth-Settings/Auth-Settings";
+export * from "./Profile-Settings/Edit-Photo/Edit-Photo";
+export * from "./Profile-Settings/Name-Section/Name-Section";

@@ -11,8 +11,9 @@ export function Loader({ color }: { color: string }) {
                   initial={ "initial" }
                   animate={ "animate" }>
          <ConfigProvider theme={ { components: { Spin: { colorPrimary: color } } } }>
-            <Spin size="large"/>
+            <Spin size={ "large" }/>
          </ConfigProvider>
+         <p>Секундочку...</p>
       </motion.div>
    );
 }

@@ -43,7 +43,6 @@ export function ChangeEmailForm() {
          <FormControl labelName={ "Нова адреса електронної пошти" }
                       fieldName={ "email" }
                       register={ register }
-                      isRequired={ true }
                       errorMessage={ errors.email?.message }
                       isPassword={ false }/>
 

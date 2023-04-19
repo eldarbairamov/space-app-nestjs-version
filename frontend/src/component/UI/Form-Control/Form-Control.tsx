@@ -45,13 +45,18 @@ export function FormControl({
          <ValidationToaster error={ validationError }/>
 
          <div className={ style.FormControl }>
+
             <div className={ style.password_wrapper }>
+
                <div className={ style.label_and_star }>
                   <label htmlFor={ "password" }> { labelName } </label>
                   { (isRequired && labelName) && <p style={ { color: 'indianred' } }> * </p> }
                </div>
+
                { isPassword && <p onClick={ showHiddenPassword }> { passwordValueCondition } </p> }
+
             </div>
+
             <div data-error={ !!errorMessage } className={ style.input_field }>
                <input id={ labelName } { ...props }
                       type={ passwordCondition }
@@ -69,6 +74,7 @@ export function FormControl({
                   </motion.div>
                }
             </div>
+
          </div>
 
       </>

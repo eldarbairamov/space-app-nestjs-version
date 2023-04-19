@@ -10,7 +10,7 @@ export function deletePlanService() {
    const dispatch = useAppDispatch();
    const { message } = App.useApp();
 
-   const deletePlanFn = async (targetId: IPlan["id"], total: number, searchKey: string) => {
+   const deletePlanFn = async (targetId: IPlan["id"], total = 30, searchKey = "") => {
       try {
          message.loading("Лоудінг..");
          const { data } = await axiosInstance.post<IPlans>(plansRequests.deletePlan + targetId, {

@@ -66,7 +66,7 @@ export const MomentRepository = {
    },
 
    count: async (filter: FilterQuery<IMoment>, searchKey = ""): Promise<number> => {
-      const filterObj = searchKey ? { ...filter, tags: { $regex: searchKey } } : { ...filter };
+      const filterObj = searchKey ? { ...filter, tag: { $regex: searchKey } } : { ...filter };
       try {
          return await MomentModel.count(filterObj);
       } catch (e) {

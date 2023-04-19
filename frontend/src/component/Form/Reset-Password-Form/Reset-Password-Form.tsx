@@ -29,14 +29,14 @@ export function ResetPasswordForm({ resetPasswordFn, resetPasswordToken }: IRese
    return (
       <form className={ style.ResetPasswordForm } onSubmit={ handleSubmit(onSubmit) }>
 
-         <FormControl labelName={ "Введіть ваш новий пароль" }
+         <FormControl labelName={ "Новий пароль" }
                       fieldName={ "newPassword" }
                       register={ register }
                       isRequired={ true }
                       errorMessage={ errors.newPassword?.message }
                       isPassword={ true }/>
 
-         <FormControl labelName={ "Введіть пароль ще раз" }
+         <FormControl labelName={ "Повторіть пароль" }
                       fieldName={ "repeatPassword" }
                       register={ register }
                       isRequired={ true }

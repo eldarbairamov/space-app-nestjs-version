@@ -4,7 +4,7 @@ import { User } from "@src/user/model/user.model";
 
 export type ActionTokenDocument = HydratedDocument<ActionToken>
 
-@Schema()
+@Schema({ versionKey: false, timestamps: true })
 export class ActionToken {
 
    @Prop()

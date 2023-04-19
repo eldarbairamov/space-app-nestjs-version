@@ -21,6 +21,7 @@ export function NoteSidebar() {
 
    return (
       <div className={ style.NoteSidebar }>
+
          <div className={ style.note_sidebar }>
             <div className={ style.header }>
                <img src={ isDark ? addLight : addDark }
@@ -33,9 +34,9 @@ export function NoteSidebar() {
             <NoteList/>
 
             <div className={ style.bottom }>
-               <NoBgInput type="text"
+               <NoBgInput type={ "text" }
                           value={ searchKey }
-                          placeholder={ "Пошук" }
+                          placeholder={ "пошук" }
                           onChange={ handleInput }
                           style={ { fontSize: "15px" } }/>
             </div>

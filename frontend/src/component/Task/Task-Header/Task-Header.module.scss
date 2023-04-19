@@ -9,6 +9,7 @@
    transition: $transition;
 
    .plan_date {
+      @extend %flex-align-justify;
       position: absolute;
       font-size: 13px;
       right: 30px;
@@ -16,7 +17,6 @@
       color: var(--second-font);
       text-align: center;
    }
-
 
 }
 

@@ -16,6 +16,7 @@ export function getNotesService() {
    const { isLoading } = useAppSelector(state => state.noteReducer);
 
    const dispatch = useAppDispatch();
+
    const { message } = App.useApp();
 
    const debounced = useDebounce(searchKey);

@@ -5,7 +5,7 @@ import { useAppDispatch, useModal } from "@src/hook";
 import { getNoteService, updateNoteService } from "@src/service";
 import { noteActions } from "@src/redux/slice";
 import { INote } from "@src/interface";
-import { FontOptions, Loader, Modal, NoBgInput, TextArea } from "@src/component";
+import { BackIcon, FontOptions, Loader, Modal, NoBgInput, TextArea } from "@src/component";
 import { motion } from "framer-motion";
 import { horizontalPresent } from "@src/animation";
 import { NOTES_COLOR } from "@src/constant";
@@ -35,30 +35,30 @@ export function NoteEditPage() {
 
    return (
       <>
-         { !isLoading &&
-            <motion.div className={ style.NoteEditPage }
-                        variants={ horizontalPresent }
-                        initial={ "initial" }
-                        animate={ "animate" }>
+         <motion.div className={ style.NoteEditPage }
+                     variants={ horizontalPresent }
+                     initial={ "initial" }
+                     animate={ "animate" }>
 
-               <div className={ style.header }>
-                  <NoBgInput type={ "text" }
-                             style={ { fontSize: "18px", width: 500, fontWeight: "500" } }
-                             id={ "title" }
-                             value={ activeNote.title ? activeNote.title : "" }
-                             onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
-                             onBlur={ () => updateNoteFn(activeNote) }/>
+            <div className={ style.header }>
+               <BackIcon/>
+               <NoBgInput type={ "text" }
+                          maxLength={30}
+                          style={ { fontSize: "18px", width: 500, fontWeight: "500" } }
+                          id={ "title" }
+                          value={ activeNote.title ? activeNote.title : "" }
+                          onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
+                          onBlur={ () => updateNoteFn(activeNote) }/>
 
-                  <FontOptions/>
+               <FontOptions/>
 
-               </div>
+            </div>
 
-               <TextArea handleInputs={ handleInputs }
-                         updateNoteFn={ updateNoteFn }
-                         font={ font }
-                         activeNote={ activeNote }/>
-            </motion.div>
-         }
+            <TextArea handleInputs={ handleInputs }
+                      updateNoteFn={ updateNoteFn }
+                      font={ font }
+                      activeNote={ activeNote }/>
+         </motion.div>
 
          <Modal isOpen={ isLoading }
                 onClose={ toggleModal }

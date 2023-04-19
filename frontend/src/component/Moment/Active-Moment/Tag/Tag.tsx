@@ -12,7 +12,7 @@ export function Tag({ activeMoment }: { activeMoment: IMoment }) {
    return (
       <div className={ style.Tag }>
          <input className={ style.tag }
-                style={ { minWidth: activeMoment.tag.length * 10 } }
+                style={ { minWidth: activeMoment.tag.length * 12 } }
                 type="text"
                 value={ activeMoment.tag }
                 placeholder={ 'тег' }

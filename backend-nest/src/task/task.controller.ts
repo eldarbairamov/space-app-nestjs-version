@@ -3,11 +3,12 @@ import { TaskService } from "./task.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreateTaskDto } from "./dto";
 import { ITaskResponse } from "./interface/task-response.interface";
-import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { DefaultError, GetTasksBody, ObjectIdError, ObjNotExistError, SuccessResponse, TaskResponse, UnauthorizedError, UpdateTaskBody } from "@src/common/swagger";
 import { AccessGuard } from "@src/auth/guard";
 import { User } from "@src/common/decorator";
 
+@ApiBearerAuth()
 @ApiTags("Tasks")
 @Controller("tasks")
 export class TaskController {

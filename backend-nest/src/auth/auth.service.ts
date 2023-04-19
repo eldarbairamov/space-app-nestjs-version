@@ -95,8 +95,8 @@ export class AuthService {
       if (!user) throw new HttpException("User is not found", HttpStatus.UNAUTHORIZED);
 
       // Generate link
-      const resetPasswordToken = this.tokenService.generate({ userId: user.id }, this.configService.get("SECRET_FORGOT_PASS_KEY"))
-      const resetPasswordLink = `${ this.configService.get('CLIENT_URL') }/password_reset/new?token=${ resetPasswordToken }`;
+      const resetPasswordToken = this.tokenService.generate({ userId: user.id }, this.configService.get("SECRET_FORGOT_PASS_KEY"));
+      const resetPasswordLink = `${ this.configService.get("CLIENT_URL") }/password_reset/new?token=${ resetPasswordToken }`;
 
       // Save action token to DB
       await this.actionTokenRepository.create({
@@ -148,9 +148,13 @@ export class AuthService {
    async oAuthCleaner() {
       try {
          const weekAgo = dayjs().utc().subtract(1, "week").format();
-         await this.oAuthRepository.deleteMany({ createdAt: { $lte: weekAgo } });
 
-         console.log("Clean old tokens");
+         await Promise.all([
+            this.oAuthRepository.deleteMany({ createdAt: { $lte: weekAgo } }),
+            this.actionTokenRepository.deleteMany({ createdAt: { $lte: weekAgo } })
+         ]);
+
+         console.log("Old tokens are cleaned");
 
       } catch (e) {
          const error = e as Error;

@@ -30,11 +30,11 @@ export function PlanHeader() {
          </div>
 
          <div className={ style.search_bar }>
-            <NoBgInput type="text"
+            <NoBgInput type={ "text" }
                        style={ { fontSize: "15px" } }
                        value={ searchKey }
                        onChange={ handleInput }
-                       placeholder={ "Пошук" }/>
+                       placeholder={ "пошук" }/>
          </div>
 
       </div>

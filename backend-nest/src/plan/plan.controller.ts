@@ -3,12 +3,13 @@ import { PlanService } from "./plan.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreatePlanDto } from "./dto";
 import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
-import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { DefaultError, DeleteItemBody, ObjectIdError, ObjNotExistError, PlanResponse, PlansResponse, SuccessResponse, UnauthorizedError } from "@src/common/swagger";
 import { DeleteItemDto, QueryDto } from "@src/common/dto";
 import { AccessGuard } from "@src/auth/guard";
 import { User } from "@src/common/decorator";
 
+@ApiBearerAuth()
 @ApiTags("Plans")
 @Controller("plans")
 export class PlanController {
@@ -18,7 +19,7 @@ export class PlanController {
 
    // Get all plans
    @ApiOperation({ summary: "get all plans" })
-   @ApiOkResponse({ description: "Success", type: [ PlanResponse ] })
+   @ApiOkResponse({ description: "Success", type: PlansResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)

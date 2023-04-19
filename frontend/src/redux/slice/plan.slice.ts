@@ -50,6 +50,14 @@ const planSlice = createSlice({
 
       updateTitle: (state, { payload }: PayloadAction<string>) => {
          state.activePlan.title = payload;
+         state.activePlan.lastModified = Date.now();
+         state.plans = state.plans.map(p => {
+            if (p.id === state.activePlan.id) {
+               p.title = payload;
+               return p;
+            }
+            return p;
+         });
       },
 
       setIsLoading: (state, { payload }) => {
