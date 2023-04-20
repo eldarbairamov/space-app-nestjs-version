@@ -7,16 +7,16 @@ import { IMoment } from "@src/interface";
 export function Tag({ activeMoment }: { activeMoment: IMoment }) {
    const dispatch = useAppDispatch();
 
-   const handleTag = (event: TypedOnChange) => dispatch(momentActions.editTag(event.target.value))
+   const handleTag = (event: TypedOnChange) => dispatch(momentActions.editTag(event.target.value));
 
    return (
       <div className={ style.Tag }>
          <input className={ style.tag }
                 style={ { minWidth: activeMoment.tag.length * 12 } }
-                type="text"
+                type={ "text" }
                 value={ activeMoment.tag }
-                placeholder={ 'тег' }
+                placeholder={ "тег" }
                 onChange={ handleTag }/>
       </div>
-   )
+   );
 }

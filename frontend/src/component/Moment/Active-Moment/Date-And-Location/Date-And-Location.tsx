@@ -23,13 +23,13 @@ export function DateAndLocation({ handleInputs, activeMoment }: IDateAndLocation
       <div className={ style.DateAndLocation }>
          <input className={ style.location }
                 style={ { minWidth: activeMoment.location.length * 10 } }
-                type="text"
+                type={ "text" }
                 placeholder={ 'Локація' }
                 value={ activeMoment.location }
                 onChange={ event => handleInputs("location", event.target.value) }/>
 
          <input className={ style.date }
-                type="date"
+                type={ "date" }
                 defaultValue={ dateHelper(activeMoment.date).format("YYYY-MM-DD") }
                 onChange={ setDate }/>
       </div>

@@ -10,6 +10,7 @@ import express, { type Application } from "express";
 import fileUpload from "express-fileupload";
 import swaggerUI from "swagger-ui-express";
 import swaggerJson from "./swagger.json";
+import { pleaseWait } from "@src/helper";
 
 const app: Application = express();
 mongoose.set("strictQuery", false);
@@ -21,11 +22,25 @@ app.use(express.json())
    .use(express.static(STATIC_PATH))
    .use("/", apiRouter)
    .use(errorMiddleware)
-   .use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerJson))
+   .use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerJson));
 
-// Start server:
+const dbConnection = async () => {
+   let connection = false;
+
+   while (!connection) {
+      try {
+         await mongoose.connect(`${ configuration.MONGO_URI }`);
+         connection = true;
+
+      } catch (e) {
+         console.log("Database is unavailable. Restarting...");
+         await pleaseWait(3000);
+      }
+   }
+};
+
 const start = async () => {
-   await mongoose.connect(`${ configuration.MONGO_URI }`);
+   await dbConnection();
    app.listen(configuration.PORT);
    cronRunner();
 };

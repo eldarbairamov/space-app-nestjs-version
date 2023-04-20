@@ -10,7 +10,7 @@ interface ITitleProps {
 export function Title({ activeMoment, handleInputs }: ITitleProps) {
    return (
       <input className={ style.Title }
-             type="text"
+             type={ "text" }
              placeholder={ 'Новий момент' }
              value={ activeMoment.title }
              style={ { minWidth: activeMoment.title.length * 10 } }
