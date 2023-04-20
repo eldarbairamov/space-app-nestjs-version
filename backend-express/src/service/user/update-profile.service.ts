@@ -14,7 +14,7 @@ export const updateProfileService = async (userId: UserDocument["id"], body: IUp
    const [ userFromDb, username ] = await Promise.all([
       UserRepository.findOne({ _id: userId }),
       UserRepository.findOne({ username: body.username })
-   ])
+   ]);
 
    // Check if there is nothing to change
    const objToCompare = {
@@ -26,7 +26,7 @@ export const updateProfileService = async (userId: UserDocument["id"], body: IUp
    if (JSON.stringify(body) === JSON.stringify(objToCompare)) throw new ApiException("There is nothing to change", 400);
 
    // Check is username unique
-   if (username) throw new ApiException("This username is already in use", 409);
+   if (username && username.username !== body.username) throw new ApiException("This username is already in use", 409);
 
    // Update user
    const updatedUser = await UserRepository.findByIdAndUpdate(userId, body) as UserDocument;
