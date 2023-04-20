@@ -15,7 +15,7 @@ export const forgotPasswordService = async (emailFromReq: string, userFromDb: Us
 
    // Generate link
    const resetPasswordToken = jwt.sign({ userId: userFromDb._id }, configuration.SECRET_FORGOT_PASS_KEY, { expiresIn: "1d" });
-   const resetPasswordLink = `${ process.env.CLIENT_URL }/password_reset/new?token=${ resetPasswordToken }`;
+   const resetPasswordLink = `${ configuration.CLIENT_URL }/password_reset/new?token=${ resetPasswordToken }`;
 
    // Save action token to DB
    await ActionTokenRepository.create({
