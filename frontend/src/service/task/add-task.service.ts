@@ -17,7 +17,7 @@ export function addTaskService(setTaskTitle: TypedSetState<string>) {
          const newTask = { planId, title };
 
          try {
-            message.loading("Лоудінг..");
+            message.loading("Лоудінг...");
             const { data } = await axiosInstance.post<ITask>(tasksRequests.addTask, newTask);
             dispatch(taskAction.addTask(data));
             message.destroy();

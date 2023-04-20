@@ -13,7 +13,7 @@ export function uploadMomentPhotoService() {
 
    const uploadPhotoFn = async (event: TypedOnChange, momentId: IMoment["id"]) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          const image = (event.target.files as FileList)[0];
          const formData = new FormData();
          formData.append("photo", image);

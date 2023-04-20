@@ -12,7 +12,7 @@ export function addPlanService() {
 
    const addPlanFn = async () => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          const { data } = await axiosInstance.get<IPlan>(plansRequests.addPlan);
          dispatch(planAction.setSearchKey(""));
          dispatch(planAction.addPlan(data));

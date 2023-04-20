@@ -11,7 +11,7 @@ export function uploadPhotoService() {
 
    const uploadPhotoFn = async (image: File) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          const formData = new FormData();
          formData.append("avatar", image);
 

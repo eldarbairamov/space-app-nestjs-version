@@ -12,7 +12,7 @@ export function deleteTaskService() {
 
    const deleteTaskFn = async (taskId: ITask["id"]) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.delete(tasksRequests.deleteTask + taskId);
          dispatch(taskAction.deleteTask(taskId));
          message.destroy();

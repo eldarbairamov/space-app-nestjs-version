@@ -8,7 +8,7 @@ export function activationService(next: () => any) {
 
    const activationFn = async (body: string) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.post(authRequests.accountActivation, { activationCode: body });
          message.destroy();
          message.success("Ваш аккаунт активовано");

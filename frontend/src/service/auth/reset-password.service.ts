@@ -8,7 +8,7 @@ export function resetPasswordService(next: () => any) {
 
    const resetPasswordFn = async (password: string, token: string) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.patch(authRequests.resetPassword, { resetPasswordToken: token, password });
          message.destroy();
          message.success("Вітаємо! У вас новий пароль");

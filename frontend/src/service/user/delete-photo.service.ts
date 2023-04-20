@@ -12,7 +12,7 @@ export function deletePhotoService() {
 
    const deletePhotoFn = async (avatar: IUser["avatar"]) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.patch(userRequests.deleteAvatar, { fileName: avatar });
          dispatch(userActions.unsetAvatar());
          message.destroy();

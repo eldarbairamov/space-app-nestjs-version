@@ -8,7 +8,7 @@ export function changeEmailService(next: () => any) {
 
    const changeEmailFn = async (email: string) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.post(userRequests.changeEmail, { email });
          message.destroy();
 

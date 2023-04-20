@@ -14,7 +14,7 @@ export function loginService(next: () => any) {
 
    const loginFn = async (body: ILoginForm) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          const { data } = await axiosInstance.post<IOAuth>(authRequests.login, body);
          storageService.setTokens(data.accessToken, data.refreshToken);
          message.destroy();

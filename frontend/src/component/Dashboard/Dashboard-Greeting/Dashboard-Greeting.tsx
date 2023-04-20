@@ -9,7 +9,7 @@ export function DashboardGreeting() {
       <div className={ style.DashboardGreeting }>
          <div className={ style.top_line }>
             <span className={ style.hello }> Привіт, </span>
-            <span className={ style.username }>{ username ? username : "завантажую..." }</span>
+            <span className={ style.username }>{ username ? username : "завантажую" }</span>
          </div>
 
          <div className={ style.bottom_line }>

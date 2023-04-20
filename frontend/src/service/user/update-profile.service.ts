@@ -12,7 +12,7 @@ export function updateProfileService() {
 
    const updateProfileFn = async (body: IUpdateProfile) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          const { data } = await axiosInstance.patch<IUser>(userRequests.profileUpdate, body);
          dispatch(userActions.setInfo(data));
          message.destroy();

@@ -12,7 +12,7 @@ export function logoutService(next: () => any) {
 
    const logoutFn = async () => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.get(authRequests.logout);
          storageService.deleteTokens();
          await pleaseWait(1000)

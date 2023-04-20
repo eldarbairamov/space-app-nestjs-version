@@ -12,7 +12,7 @@ export function deleteMomentService(next: () => void) {
 
    const deleteMomentFn = async (momentId: IMoment["id"]) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.delete(momentsRequests.deleteMoment + momentId);
          dispatch(momentActions.deleteMoment({ momentId: momentId! }));
          message.destroy();

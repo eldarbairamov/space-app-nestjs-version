@@ -12,7 +12,7 @@ export function updateTaskService() {
 
    const updateTaskFn = async (taskId: ITask["id"], status: boolean) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.patch(tasksRequests.updateTask + taskId, { isCompleted: status });
          dispatch(taskAction.updateTask(taskId));
          message.destroy();

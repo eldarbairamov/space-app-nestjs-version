@@ -9,7 +9,7 @@ export function registrationService(next: () => any) {
 
    const registrationFn = async (body: IRegistration) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.post(authRequests.registration, body);
          message.destroy()
 

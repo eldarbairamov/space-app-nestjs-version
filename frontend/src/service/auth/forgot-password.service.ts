@@ -8,7 +8,7 @@ export function forgotPasswordService(next: () => any) {
 
    const forgotPasswordFn = async (email: string) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.post<{ message: string }>(authRequests.forgotPassword, { email });
          message.destroy();
 

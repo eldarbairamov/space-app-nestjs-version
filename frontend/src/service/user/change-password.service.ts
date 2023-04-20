@@ -8,7 +8,7 @@ export function changePasswordService(next: () => any) {
 
    const updatePasswordFn = async (newPassword: string, currentPassword: string) => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.patch(userRequests.changePassword, { newPassword, currentPassword });
          await pleaseWait(1000);
          message.destroy();

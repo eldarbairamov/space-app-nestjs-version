@@ -12,7 +12,7 @@ export function emailConfirmationService(token: string) {
 
    const confirmEmailFn = async () => {
       try {
-         message.loading("Лоудінг..");
+         message.loading("Лоудінг...");
          await axiosInstance.patch(userRequests.changeEmailAccept, { confirmationToken: token });
          setIsSuccess(true);
          message.destroy();
