@@ -2,8 +2,6 @@ export const configuration = {
    PORT: process.env.PORT || 3010,
    MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/space-app-express",
 
-   CLIENT_URL: "http://localhost:5173",
-
    EMAIL_SERVICE_USER: "your.space.application@gmail.com",
    EMAIL_SERVICE_PASS: "doyfhkvwcyctpdzb",
 

@@ -2,7 +2,7 @@ import { type AxiosApiError } from "../service";
 
 export const errorCatherFn = (e: unknown) => {
    const axiosError = e as AxiosApiError;
-   const response = axiosError.response?.data.message as string;
+   const response = axiosError.response?.data.message;
 
    let message;
 
@@ -60,7 +60,17 @@ export const errorCatherFn = (e: unknown) => {
          break;
    }
 
-   // console.log(response ? response : axiosError.message);
+   if (Array.isArray(response)) {
+      response.forEach(item => {
+         if (item.includes("not be empty")) {
+            message = "Поле неповинно залишитись пустим";
+         }
+      });
+   }
+
+   if ((response as string).includes("is not allowed to be empty")) {
+      message = "Поле неповинно залишитись пустим";
+   }
 
    return message;
 };

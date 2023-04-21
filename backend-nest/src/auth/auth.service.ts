@@ -89,14 +89,14 @@ export class AuthService {
       await this.userRepository.findByIdAndUpdate(actionTokenInfo.ownerId, { isActivated: true });
    }
 
-   async forgotPassword(email: string) {
+   async forgotPassword(email: string, clientUrl: string) {
       // Find user
       const user = await this.userRepository.findOne({ email });
       if (!user) throw new HttpException("User is not found", HttpStatus.UNAUTHORIZED);
 
       // Generate link
       const resetPasswordToken = this.tokenService.generate({ userId: user.id }, this.configService.get("SECRET_FORGOT_PASS_KEY"));
-      const resetPasswordLink = `${ this.configService.get("CLIENT_URL") }/password_reset/new?token=${ resetPasswordToken }`;
+      const resetPasswordLink = `${ clientUrl }/password_reset/new?token=${ resetPasswordToken }`;
 
       // Save action token to DB
       await this.actionTokenRepository.create({

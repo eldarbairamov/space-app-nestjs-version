@@ -3,24 +3,24 @@ import { IUpdateMoment } from "@src/interface";
 
 export const updateMomentValidator = Joi.object<IUpdateMoment>({
 
-   title: Joi.string().optional().allow(null, "").messages({
+   title: Joi.string().messages({
       "string.base": "title: value must be a string",
+      "string.empty": "title: is not allowed to be empty",
    }),
 
-   photo: Joi.string().optional().allow(null, "").messages({
-      "string.base": "photo: value must be a string",
-   }),
-
-   location: Joi.string().optional().allow(null, "").messages({
+   location: Joi.string().messages({
       "string.base": "location: value must be a string",
+      "string.empty": "location: is not allowed to be empty",
    }),
 
-   date: Joi.number().optional().allow(null, "").messages({
+   date: Joi.number().messages({
       "number.base": "date: value must be a number",
+      "number.empty": "date: is not allowed to be empty",
    }),
 
-   tag: Joi.string().optional().allow(null, "").messages({
+   tag: Joi.string().messages({
       "string.base": "tag: value must be a string",
+      "string.empty": "tag: is not allowed to be empty",
    }),
 
 });

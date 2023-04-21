@@ -11,7 +11,7 @@ notesRouter.get(
    notesController.getNotes);
 
 // Add note
-notesRouter.get(
+notesRouter.post(
    "/add",
    authMiddleware.isAccessExists,
    notesController.addNote);
@@ -31,8 +31,8 @@ notesRouter.put(
    commonMiddleware.isObjectExists("noteId"),
    notesController.updateNote);
 
-// Send prev request params and delete note
-notesRouter.post(
+// Delete note
+notesRouter.delete(
    "/:noteId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("noteId"),

@@ -1,25 +1,25 @@
-import {  IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateMomentDto {
-   @ApiProperty({ example: "My birthday", required: false, type: String })
+   @ApiProperty({ example: "My birthday", type: String })
+   @IsNotEmpty()
    @IsString()
-   @IsOptional()
    readonly title: string;
 
-   @ApiProperty({ example: "Location", required: false, type: String })
+   @ApiProperty({ example: "Location",  type: String })
+   @IsNotEmpty()
    @IsString()
-   @IsOptional()
    readonly location: string;
 
-   @ApiProperty({ example: 1677517089217, required: false, type: Number })
+   @ApiProperty({ example: 1677517089217, type: Number })
+   @IsNotEmpty()
    @IsNumber()
-   @IsOptional()
    readonly date: number;
 
-   @ApiProperty({ example: "tag", required: false, type: String })
+   @ApiProperty({ example: "tag",  type: String })
+   @IsNotEmpty()
    @IsString()
-   @IsOptional()
    readonly tag: string;
 
 }

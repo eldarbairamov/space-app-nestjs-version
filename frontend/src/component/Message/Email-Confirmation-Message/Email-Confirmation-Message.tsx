@@ -33,7 +33,7 @@ export function EmailConfirmationMessage() {
          { !isSuccess &&
             <Result className={ style.message }
                     icon={ <UnsuccessIcon/> }
-                    title={ "Упс.." }
+                    title={ "Упс..." }
                     subTitle={ "Посилання більше не актуальне" }/>
          }
 

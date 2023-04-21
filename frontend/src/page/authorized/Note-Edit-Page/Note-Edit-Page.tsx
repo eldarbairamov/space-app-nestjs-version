@@ -43,9 +43,10 @@ export function NoteEditPage() {
             <div className={ style.header }>
                <BackIcon/>
                <NoBgInput type={ "text" }
-                          maxLength={30}
+                          maxLength={ 30 }
                           style={ { fontSize: "18px", width: 500, fontWeight: "500" } }
                           id={ "title" }
+                          placeholder={ "Заголовок" }
                           value={ activeNote.title ? activeNote.title : "" }
                           onChange={ (e: ChangeEvent<HTMLInputElement>) => handleInputs("title", e.target.value) }
                           onBlur={ () => updateNoteFn(activeNote) }/>

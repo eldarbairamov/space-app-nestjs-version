@@ -17,7 +17,7 @@ export function ErrorMessage() {
          <div className={ style.ErrorMessage }>
             <Result className={ style.message }
                     icon={ <UnsuccessIcon/> }
-                    title={ "Ой.." }
+                    title={ "Ой..." }
                     subTitle={ "Несподівана помилка" }
                     extra={
                        <Button key={ v4() }

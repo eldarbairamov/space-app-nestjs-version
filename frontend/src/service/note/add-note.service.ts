@@ -13,7 +13,7 @@ export function addNoteService() {
    const addNoteFn = async () => {
       try {
          message.loading("Лоудінг...");
-         const { data } = await axiosInstance.get<INote>(notesRequests.addNote);
+         const { data } = await axiosInstance.post<INote>(notesRequests.addNote);
          dispatch(noteActions.setSearchKey(""));
          dispatch(noteActions.addNote(data));
          message.destroy();

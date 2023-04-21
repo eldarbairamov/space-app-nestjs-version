@@ -1,6 +1,7 @@
 import { FilterQuery, UpdateQuery } from "mongoose";
 import { INote, NoteDocument, NoteModel } from "@src/model";
 import { ApiException } from "@src/exception/api.exception";
+import { IQuery } from "@src/interface/common.interface";
 
 export const NoteRepository = {
 
@@ -14,10 +15,10 @@ export const NoteRepository = {
       }
    },
 
-   find: async (filter: FilterQuery<INote>, searchKey: string, limit: string | number): Promise<NoteDocument[]> => {
-      const filterObj = searchKey ? { ...filter, title: { $regex: searchKey, $options: "i" } } : { ...filter };
+   find: async (filter: FilterQuery<INote>, query: IQuery): Promise<NoteDocument[]> => {
+      const filterObj = query.searchKey ? { ...filter, title: { $regex: query.searchKey, $options: "i" } } : { ...filter };
       try {
-         return await NoteModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(limit));
+         return await NoteModel.find(filterObj).sort({ updatedAt: "desc" }).limit(Number(query.limit));
       } catch (e) {
          const error = e as Error;
          console.log(error.message);

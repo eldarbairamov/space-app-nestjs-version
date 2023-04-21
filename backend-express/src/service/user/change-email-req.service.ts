@@ -7,7 +7,7 @@ import { emailValidator } from "@src/validator";
 import { emailSender } from "@src/service";
 import { ApiException } from "@src/exception/api.exception";
 
-export const changeEmailReqService = async (userId: UserDocument["id"], email: string): Promise<void> => {
+export const changeEmailReqService = async (userId: UserDocument["id"], email: string, clientUrl: string): Promise<void> => {
 
    // Validation
    const validation = emailValidator.validate({ email });
@@ -15,7 +15,7 @@ export const changeEmailReqService = async (userId: UserDocument["id"], email: s
 
    // Generate link
    const confirmationToken = jwt.sign({ userId, email }, configuration.SECRET_CHANGE_EMAIL_KEY, { expiresIn: "1d" });
-   const confirmationLink = `${ configuration.CLIENT_URL }/email_confirmation/new?token=${ confirmationToken }`;
+   const confirmationLink = `${ clientUrl }/email_confirmation/new?token=${ confirmationToken }`;
 
    // Find user and save action token to DB
    const [ user ] = await Promise.all([

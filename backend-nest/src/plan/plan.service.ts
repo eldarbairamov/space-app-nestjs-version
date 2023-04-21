@@ -60,14 +60,14 @@ export class PlanService {
       return this.planPresenter.single(plan);
    }
 
-   async deletePlan(planId: PlanDocument["id"], userId: string, limit: number, searchKey: string): Promise<IPlansResponse> {
+   async deletePlan(planId: PlanDocument["id"], userId: string, queryDto: QueryDto): Promise<IPlansResponse> {
       // Delete plan
       await this.planRepository.findByIdAndDelete(planId);
 
       // Update user and return updated plan list
       const [ plans, count ] = await Promise.all([
-         this.planRepository.find({ ownerId: userId }, { limit, searchKey }),
-         this.planRepository.count({ ownerId: userId }, searchKey),
+         this.planRepository.find({ ownerId: userId }, queryDto),
+         this.planRepository.count({ ownerId: userId }, queryDto.searchKey),
          this.taskRepository.deleteMany({ planId }),
          this.userRepository.findByIdAndUpdate(userId, { $pull: { plansIds: planId } }),
       ]);

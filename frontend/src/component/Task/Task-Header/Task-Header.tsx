@@ -24,6 +24,7 @@ export function TaskHeader() {
                           style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
                           id={ "title" }
                           maxLength={ 25 }
+                          placeholder={'Назва плану'}
                           value={ activePlan.title ? activePlan.title : "" }
                           onChange={ (event: TypedOnChange) => dispatch(planAction.updateTitle(event.target.value)) }
                           onBlur={ () => updatePlanFn(activePlan.id, activePlan.title) }/>

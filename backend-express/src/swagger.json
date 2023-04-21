@@ -1082,7 +1082,7 @@
          }
       },
       "/notes/add": {
-         "get": {
+         "post": {
             "summary": "add note",
             "tags": [
                "Notes"
@@ -1161,7 +1161,7 @@
                            "title": {
                               "type": "string",
                               "example": "Phasellus",
-                              "required": false
+                              "required": true
                            },
                            "body": {
                               "type": "string",
@@ -1226,35 +1226,29 @@
                }
             }
          },
-         "post": {
-            "summary": "send prev request params and delete note by id",
+         "delete": {
+            "summary": "delete note by id",
             "tags": [
                "Notes"
             ],
             "operationId": "deleteNoteById",
-            "requestBody": {
-               "required": false,
-               "content": {
-                  "application/json": {
-                     "schema": {
-                        "type": "object",
-                        "properties": {
-                           "limit": {
-                              "type": "number",
-                              "example": 31,
-                              "required": false
-                           },
-                           "searchKey": {
-                              "type": "string",
-                              "example": "Coffee",
-                              "required": false
-                           }
-                        }
-                     }
-                  }
-               }
-            },
             "parameters": [
+               {
+                  "in": "query",
+                  "name": "searchKey",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Keyword for searching"
+               },
+               {
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Notes limit"
+               },
                {
                   "name": "noteId",
                   "in": "path",
@@ -1467,7 +1461,7 @@
          }
       },
       "/plans/add": {
-         "get": {
+         "post": {
             "summary": "add plan",
             "tags": [
                "Plans"
@@ -1682,35 +1676,29 @@
                }
             }
          },
-         "post": {
-            "summary": "send prev request params and delete plan by id",
+         "delete": {
+            "summary": "delete plan by id",
             "tags": [
                "Plans"
             ],
             "operationId": "deletePlanById",
-            "requestBody": {
-               "required": false,
-               "content": {
-                  "application/json": {
-                     "schema": {
-                        "type": "object",
-                        "properties": {
-                           "limit": {
-                              "type": "number",
-                              "example": 31,
-                              "required": false
-                           },
-                           "searchKey": {
-                              "type": "string",
-                              "example": "Coffee",
-                              "required": false
-                           }
-                        }
-                     }
-                  }
-               }
-            },
             "parameters": [
+               {
+                  "in": "query",
+                  "name": "searchKey",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Keyword for searching"
+               },
+               {
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "Plans limit"
+               },
                {
                   "name": "planId",
                   "in": "path",
@@ -2302,22 +2290,22 @@
                            "title": {
                               "type": "string",
                               "example": "Dubai morning",
-                              "required": false
+                              "required": true
                            },
                            "date": {
                               "type": "number",
                               "example": 1677517089217,
-                              "required": false
+                              "required": true
                            },
                            "location": {
                               "type": "string",
                               "example": "Dubai",
-                              "required": false
+                              "required": true
                            },
                            "tag": {
                               "type": "string",
                               "example": "family",
-                              "required": false
+                              "required": true
                            }
                         }
                      }

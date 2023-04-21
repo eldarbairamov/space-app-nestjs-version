@@ -47,6 +47,7 @@ export const NoteEdit: FC = () => {
                           style={ { fontSize: "18px", width: "500px", fontWeight: "500" } }
                           id={ "title" }
                           maxLength={30}
+                          placeholder={'Заголовок'}
                           value={ activeNote.title }
                           onChange={ (event: TypedOnChange) => handleInputs("title", event.target.value) }
                           onBlur={ () => updateNoteFn(activeNote) }/>

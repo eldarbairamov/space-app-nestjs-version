@@ -32,7 +32,7 @@ export function EmailConfirmationMessage() {
          { !isSuccess &&
             <Result className={ style.message }
                     status="404"
-                    title="Упс.."
+                    title="Упс..."
                     subTitle="Посилання більше не актуальне"
             />
          }

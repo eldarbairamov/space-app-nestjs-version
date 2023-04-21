@@ -11,7 +11,7 @@ planRouter.get(
    planController.getPlans);
 
 // Add plan
-planRouter.get(
+planRouter.post(
    "/add",
    authMiddleware.isAccessExists,
    planController.addPlan);
@@ -31,8 +31,8 @@ planRouter.put(
    commonMiddleware.isObjectExists("planId"),
    planController.updatePlan);
 
-// Send prev request params and delete plan
-planRouter.post(
+// Delete plan
+planRouter.delete(
    "/:planId",
    authMiddleware.isAccessExists,
    commonMiddleware.isObjectExists("planId"),

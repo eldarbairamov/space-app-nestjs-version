@@ -1,8 +1,6 @@
 export default () => ({
    PORT: process.env.PORT || 3010,
 
-   CLIENT_URL: "http://localhost:5173",
-
    EMAIL_SERVICE_USER: "your.space.application@gmail.com",
    EMAIL_SERVICE_PASS: "doyfhkvwcyctpdzb",
 

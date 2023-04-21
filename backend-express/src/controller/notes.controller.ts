@@ -13,12 +13,12 @@ export const notesController = {
    }),
 
    getNote: expressAsyncHandler(async (req: IRequest<any, { noteId: string }, any>, res: Response<INoteResponse>) => {
-      const note = await getNoteService(req.params.noteId)
-      res.json(note)
+      const note = await getNoteService(req.params.noteId);
+      res.json(note);
    }),
 
    getNotes: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<INotesResponse>) => {
-      const notes = await getNotesService(req.userId, req.query.searchKey, req.query.limit);
+      const notes = await getNotesService(req.userId, req.query);
       res.json(notes);
    }),
 
@@ -27,8 +27,8 @@ export const notesController = {
       res.json({ message: "Success" });
    }),
 
-   deleteNote: (expressAsyncHandler(async (req: IRequest<IDeleteItemBody, { noteId: string }, any>, res: Response<INotesResponse>) => {
-      const notes = await deleteNoteService(req.body, req.params.noteId, req.userId);
+   deleteNote: (expressAsyncHandler(async (req: IRequest<IDeleteItemBody, { noteId: string }, any | IQuery>, res: Response<INotesResponse>) => {
+      const notes = await deleteNoteService(req.params.noteId, req.userId, req.query);
       res.json(notes);
    })),
 

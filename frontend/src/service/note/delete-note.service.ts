@@ -13,9 +13,11 @@ export function deleteNoteService() {
    const deleteNoteFn = async (noteId: INote["id"], total = 30, searchKey = "") => {
       try {
          message.loading("Лоудінг...");
-         const { data } = await axiosInstance.post<INotes>(notesRequests.deleteNote + noteId, {
-            limit: total,
-            searchKey: searchKey ? searchKey : null,
+         const { data } = await axiosInstance.delete<INotes>(notesRequests.deleteNote + noteId, {
+            params: {
+               searchKey,
+               limit: total,
+            },
          });
          dispatch(noteActions.deleteNote(noteId));
          dispatch(noteActions.setNotes(data));

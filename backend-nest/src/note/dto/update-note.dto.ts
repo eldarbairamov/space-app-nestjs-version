@@ -1,11 +1,11 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateNoteDto {
 
    @ApiProperty({ example: "Phasellus", required: false })
    @IsString()
-   @IsOptional()
+   @IsNotEmpty()
    readonly title: string;
 
    @ApiProperty({

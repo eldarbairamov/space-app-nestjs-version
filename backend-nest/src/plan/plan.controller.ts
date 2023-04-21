@@ -1,13 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { PlanService } from "./plan.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreatePlanDto } from "./dto";
 import { IPlanResponse, IPlansResponse } from "./interface/plan-response.interface";
-import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, DeleteItemBody, ObjectIdError, ObjNotExistError, PlanResponse, PlansResponse, SuccessResponse, UnauthorizedError } from "@src/common/swagger";
-import { DeleteItemDto, QueryDto } from "@src/common/dto";
+import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { DefaultError, ObjectIdError, ObjNotExistError, PlanResponse, PlansResponse, SuccessResponse, UnauthorizedError } from "@src/common/swagger";
 import { AccessGuard } from "@src/auth/guard";
 import { User } from "@src/common/decorator";
+import { QueryDto } from "@src/common/dto";
 
 @ApiBearerAuth()
 @ApiTags("Plans")
@@ -37,7 +37,7 @@ export class PlanController {
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
-   @Get("add")
+   @Post("add")
    async addPlan(
       @User("userId") userId: string): Promise<IPlanResponse> {
 
@@ -79,10 +79,9 @@ export class PlanController {
       return this.planService.updatePlan(noteId, dto);
    }
 
-   // Send prev request params and delete plan
-   @ApiOperation({ summary: "send prev request params and delete plan by id" })
+   // Delete plan
+   @ApiOperation({ summary: "delete plan by id" })
    @ApiParam({ name: "planId", description: "plan id", example: "63dfe16eda233c96fc6e2604" })
-   @ApiBody({ type: DeleteItemBody, required: false })
    @ApiOkResponse({ description: "Success", type: PlansResponse })
    @ApiBadRequestResponse({ description: "Invalid ObjectID", type: ObjectIdError })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
@@ -90,13 +89,13 @@ export class PlanController {
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @UseGuards(ObjectCheckingGuard)
-   @Post(":planId")
+   @Delete(":planId")
    async deletePlan(
       @User("userId") userId: string,
-      @Body() dto: DeleteItemDto,
+      @Query() queryDto: QueryDto,
       @Param("planId") noteId: string): Promise<IPlansResponse> {
 
-      return this.planService.deletePlan(noteId, userId, dto.limit, dto.searchKey);
+      return this.planService.deletePlan(noteId, userId, queryDto);
    }
 
 }

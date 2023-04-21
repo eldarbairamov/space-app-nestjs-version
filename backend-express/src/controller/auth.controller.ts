@@ -27,7 +27,8 @@ export const authController = {
    }),
 
    forgotPassword: expressAsyncHandler(async (req: IRequest<{ email: string }, any, any>, res: Response<{ message: string }>) => {
-      await forgotPasswordService(req.body.email, req.user!);
+      const clientUrl = req.headers.origin;
+      await forgotPasswordService(req.body.email, req.user!, clientUrl!);
       res.json({ message: "Success" });
    }),
 

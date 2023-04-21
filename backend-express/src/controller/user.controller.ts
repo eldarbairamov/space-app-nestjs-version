@@ -16,7 +16,8 @@ export const userController = {
    }),
 
    changeEmailRequest: expressAsyncHandler(async (req: IRequest<{ email: string }, any, any>, res: Response<{ message: string }>) => {
-      await changeEmailReqService(req.userId, req.body.email);
+      const clientUrl = req.headers.origin;
+      await changeEmailReqService(req.userId, req.body.email, clientUrl!);
       res.json({ message: "Success" });
    }),
 

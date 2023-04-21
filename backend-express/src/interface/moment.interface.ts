@@ -16,7 +16,6 @@ export interface IMomentsResponse {
 
 export interface IUpdateMoment {
    readonly title: string,
-   readonly photo: string,
    readonly location: string,
    readonly date: number
    readonly tag: string

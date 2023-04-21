@@ -11,7 +11,7 @@ export function RegistrationSuccessMessage() {
          <Result className={ style.message }
                  icon={ <SuccessIcon/> }
                  title={ "Ви успішно зареєструвались" }
-                 subTitle={ "Посилання на активацію аккаунту вже летить на вказану електронну пошту" }
+                 subTitle={ "Код активації вже летить на вказану електронну пошту" }
                  extra={
                     <Button text={ "Перейти до активації" }
                             key={ v4() }

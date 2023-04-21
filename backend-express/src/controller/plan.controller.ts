@@ -13,7 +13,7 @@ export const planController = {
    }),
 
    getPlans: expressAsyncHandler(async (req: IRequest<any, any, IQuery>, res: Response<IPlansResponse>) => {
-      const plans = await getPlansService(req.userId, req.query.searchKey, req.query.limit);
+      const plans = await getPlansService(req.userId, req.query);
       res.json(plans);
    }),
 
@@ -27,8 +27,8 @@ export const planController = {
       res.json({ message: "Success" });
    }),
 
-   deletePlan: expressAsyncHandler(async (req: IRequest<IDeleteItemBody, { planId: string }, any>, res: Response<IPlansResponse>) => {
-      const plans = await deletePlanService(req.body, req.params.planId, req.userId);
+   deletePlan: expressAsyncHandler(async (req: IRequest<IDeleteItemBody, { planId: string }, any | IQuery>, res: Response<IPlansResponse>) => {
+      const plans = await deletePlanService(req.params.planId, req.userId, req.query);
       res.json(plans);
    }),
 

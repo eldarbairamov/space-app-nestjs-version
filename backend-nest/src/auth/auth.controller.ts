@@ -7,6 +7,7 @@ import { IAccessTokenPair, ILoginResponse } from "./interface";
 import { ApiBearerAuth, ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiDefaultResponse, ApiForbiddenResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { RequestWithUser } from "@src/common/interface/express.interface";
 import { ActivationBody, CodeIsNotValid, DefaultError, EmailInUse, ForgotPassBody, LoginBody, LoginResponse, RefreshBody, RefreshResponse, SuccessResponse, UnactivatedAccount, UnauthorizedError, UserIsNotFound, WrongEmailOrPass } from "@src/common/swagger";
+import { Request } from "express";
 
 @ApiTags("Auth")
 @Controller("auth")
@@ -53,9 +54,12 @@ export class AuthController {
    @HttpCode(200)
    @Post("password_forgot")
    async forgotPassword(
+      @Req() request: Request,
       @Body("email") email: string): Promise<{ message: string }> {
 
-      await this.authService.forgotPassword(email);
+      const clientUrl = request.headers.origin;
+
+      await this.authService.forgotPassword(email, clientUrl);
       return { message: "Success" };
    }
 
