@@ -1,14 +1,17 @@
 @import "src/style/configuration";
 
-.BackIcon {
-   @extend %flex-align-justify;
+.wrapper {
    position: absolute;
-   cursor: pointer;
    left: 30px;
 
-   &:hover {
-      filter: var(--icon-hover);
-      -webkit-filter: var(--icon-hover);
+   .BackIcon {
+      @extend %flex-align-justify;
+      cursor: pointer;
+
+      &:hover {
+         filter: var(--icon-hover);
+         -webkit-filter: var(--icon-hover);
+      }
    }
 }
 
@@ -16,5 +19,4 @@
    color: var(--button-font);
    border-radius: 5px;
    background: var(--button-bg);
-   padding: 1px 5px;
 }

@@ -13,12 +13,12 @@ export function BackIcon({ isBg, style }: { isBg?: any, style?: React.CSSPropert
    const navigate = useNavigate();
 
    return (
-      <div className={ styles.wrapper } data-bg={ isBg }>
+      <div className={ styles.wrapper } data-bg={ isBg } style={ style }>
          <img className={ styles.BackIcon }
               src={ isBg ? backLight : isDark ? backLight : backDark }
               alt={ "back" }
               onClick={ () => navigate(-1) }
-              style={ style ? style : { width: "30px" } }/>
+              style={ { width: "30px" } }/>
       </div>
    );
 }

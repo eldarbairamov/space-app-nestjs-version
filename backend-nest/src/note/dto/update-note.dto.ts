@@ -1,4 +1,4 @@
-import { IsString, NotEquals } from "class-validator";
+import { IsString, NotEquals, ValidateIf } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateNoteDto {
@@ -6,6 +6,7 @@ export class UpdateNoteDto {
    @ApiProperty({ example: "Phasellus", required: false })
    @IsString()
    @NotEquals(null)
+   @ValidateIf((object, value) => value === null)
    readonly title: string;
 
    @ApiProperty({
@@ -14,6 +15,7 @@ export class UpdateNoteDto {
    })
    @IsString()
    @NotEquals(null)
+   @ValidateIf((object, value) => value === null)
    readonly body: string;
 
 }
