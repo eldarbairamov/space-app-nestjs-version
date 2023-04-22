@@ -1,11 +1,11 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsString, NotEquals } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateNoteDto {
 
    @ApiProperty({ example: "Phasellus", required: false })
    @IsString()
-   @IsNotEmpty()
+   @NotEquals(null)
    readonly title: string;
 
    @ApiProperty({
@@ -13,7 +13,7 @@ export class UpdateNoteDto {
       required: false,
    })
    @IsString()
-   @IsOptional()
+   @NotEquals(null)
    readonly body: string;
 
 }

@@ -11,7 +11,7 @@ momentRouter.get(
    momentController.getMoments);
 
 // Add moment
-momentRouter.get(
+momentRouter.post(
    "/add",
    authMiddleware.isAccessExists,
    momentController.addMoment);

@@ -11,3 +11,10 @@
       -webkit-filter: var(--icon-hover);
    }
 }
+
+.wrapper[data-bg='true'] {
+   color: var(--button-font);
+   border-radius: 5px;
+   background: var(--button-bg);
+   padding: 1px 5px;
+}

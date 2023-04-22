@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Query, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Query, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AccessGuard } from "@src/auth/guard";
 import { MomentService } from "./moment.service";
 import { IMomentResponse, IMomentsResponse } from "./interface/moment-response.interface";
@@ -40,7 +40,7 @@ export class MomentController {
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
-   @Get("add")
+   @Post("add")
    @HttpCode(201)
    async addMoment(
       @User("userId") userId: string): Promise<IMomentResponse> {

@@ -1161,7 +1161,7 @@
                            "title": {
                               "type": "string",
                               "example": "Phasellus",
-                              "required": true
+                              "required": false
                            },
                            "body": {
                               "type": "string",
@@ -1616,7 +1616,7 @@
                            "title": {
                               "type": "string",
                               "example": "English Plan",
-                              "required": true
+                              "required": false
                            }
                         }
                      }
@@ -2135,7 +2135,7 @@
          }
       },
       "/moments/add": {
-         "get": {
+         "post": {
             "summary": "add moment",
             "tags": [
                "Moments"

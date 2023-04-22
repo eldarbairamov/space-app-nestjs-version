@@ -3,7 +3,7 @@ import { IMoment } from "@src/interface";
 import { useAppDispatch } from "@src/hook";
 import { getMomentService } from "@src/service";
 import { motion } from "framer-motion";
-import { DateAndLocation, ModalWLoader, Photo, SaveAndDelete, Tag, Title } from "@src/component";
+import { BackIcon, DateAndLocation, ModalWLoader, Photo, SaveAndDelete, Tag, Title } from "@src/component";
 import { momentActions } from "@src/redux/slice";
 import { MOMENTS_COLOR } from "@src/constant";
 
@@ -42,8 +42,11 @@ export function MomentEditPage() {
                                  setPrevState={ setPrevState }
                                  prevState={ prevState }/>
 
-                  <Title activeMoment={ activeMoment }
-                         handleInputs={ handleInputs }/>
+                  <div className={ style.title_and_back }>
+                     <BackIcon isBg={ true } style={ { position: "initial", width: 30 } }/>
+                     <Title activeMoment={ activeMoment }
+                            handleInputs={ handleInputs }/>
+                  </div>
 
                   <Photo momentId={ momentId! }
                          activeMoment={ activeMoment }/>

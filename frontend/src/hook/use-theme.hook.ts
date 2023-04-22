@@ -7,7 +7,6 @@ export const useTheme = () => {
 
    const theme: ThemeConfig = {
       token: {
-         fontSize: 15,
          colorError: "#df8281",
          colorPrimary: "#7d7d7d",
          colorSuccess: "#90be8e",

@@ -1,9 +1,8 @@
 import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from "axios";
 import { authRequests, configuration } from "@src/config/configuration";
 import { storageService } from "./storage.service";
-import { AuthorizedRouter, AuthorizedRoutesEnum, UnauthorizedRouter, UnauthorizedRoutesEnum } from "@src/router";
+import { AuthorizedRouter, AuthorizedRoutesEnum } from "@src/router";
 import { IOAuth } from "@src/interface";
-import { pleaseWait } from "@src/helper";
 
 export type AxiosApiError = AxiosError<{ message: string, status: number }>
 
@@ -37,16 +36,14 @@ axiosInstance.interceptors.response.use((config: AxiosResponse) => {
             storageService.setTokens(data.accessToken, data.refreshToken);
 
          } catch (e) {
-            storageService.deleteTokens();
-            await pleaseWait(1000);
-            UnauthorizedRouter.navigate(UnauthorizedRoutesEnum.UnauthorizedMessage);
+            AuthorizedRouter.navigate(AuthorizedRoutesEnum.UnauthorizedMessage);
          }
 
          return axiosInstance(originalRequest);
       }
 
-      if (axiosError.response?.status === 401 && axiosError.response?.data.message === 'Token invalid or expired') {
-         AuthorizedRouter.navigate(AuthorizedRoutesEnum.UnauthorizedMessage)
+      if (axiosError.response?.status === 401 && axiosError.response?.data.message === "Token invalid or expired") {
+         AuthorizedRouter.navigate(AuthorizedRoutesEnum.UnauthorizedMessage);
       }
 
       return Promise.reject(e);

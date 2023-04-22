@@ -3,7 +3,6 @@
 .AuthSettings {
    @extend %flex-align-justify-column;
    gap: 5px;
-   font-size: 15px;
 
    p {
       color: var(--second-font);

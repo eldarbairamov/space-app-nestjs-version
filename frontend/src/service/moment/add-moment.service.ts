@@ -13,7 +13,7 @@ export function addMomentService() {
    const addMomentFn = async () => {
       try {
          message.loading("Лоудінг...");
-         const { data } = await axiosInstance.get<IMoment>(momentsRequests.addMoment);
+         const { data } = await axiosInstance.post<IMoment>(momentsRequests.addMoment);
          dispatch(momentActions.addMoment(data));
          message.destroy();
 
