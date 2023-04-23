@@ -8,8 +8,8 @@ import { useAppSelector } from "@src/hook";
 import style from "./Task-Add.module.scss";
 import addLight from "/add-light.svg";
 import addDark from "/add-dark.svg";
-import addLightDisabled from "/add-light-disable.svg";
-import addDarkDisabled from "/add-dark-disable.svg";
+import addLightDisabled from "/add-light-disabled.svg";
+import addDarkDisabled from "/add-dark-disabled.svg";
 
 export function TaskAdd() {
    const { activePlan } = useAppSelector(state => state.planReducer);
