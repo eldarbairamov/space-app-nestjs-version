@@ -16,5 +16,9 @@
          height: 25px;
          cursor: pointer;
       }
+
+      img[data-disable=''] {
+         cursor: default;
+      }
    }
 }

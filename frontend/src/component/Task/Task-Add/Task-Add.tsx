@@ -8,6 +8,8 @@ import { useAppSelector } from "@src/hook";
 import style from "./Task-Add.module.scss";
 import addLight from "/add-light.svg";
 import addDark from "/add-dark.svg";
+import addLightDisabled from "/add-light-disable.svg";
+import addDarkDisabled from "/add-dark-disable.svg";
 
 export function TaskAdd() {
    const { activePlan } = useAppSelector(state => state.planReducer);
@@ -17,11 +19,14 @@ export function TaskAdd() {
 
    const { addTaskFn } = addTaskService(setTaskTitle);
 
+   const lightCondition = taskTitle === "" ? addLightDisabled : addDark;
+   const darkCondition = taskTitle === "" ? addDarkDisabled : addLight;
+
    return (
       <div className={ style.TaskAdd }>
          <div className={ style.task_add }>
-            <img onClick={ () => addTaskFn(activePlan.id, taskTitle) }
-                 src={ isDark ? addLight : addDark }
+            <img data-disable={ taskTitle } onClick={ () => addTaskFn(activePlan.id, taskTitle) }
+                 src={ isDark ? darkCondition : lightCondition }
                  alt={ "add" }/>
 
             <NoBgInput type={ "text" }
