@@ -7,6 +7,7 @@
    .BackIcon {
       @extend %flex-align-justify;
       cursor: pointer;
+      transition: .2s;
 
       &:hover {
          filter: var(--icon-hover);

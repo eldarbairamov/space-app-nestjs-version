@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Post, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Patch, Post, Req, UploadedFile, UseFilters, UseGuards, UseInterceptors } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ChangePasswordDto, ProfileUpdateDto } from "./dto";
@@ -10,6 +10,7 @@ import { SharpPipe } from "@src/common/pipe/sharp.pipe";
 import { FileValidatorFilter } from "@src/common/exception/file-validator.filter";
 import { ApiFile, User } from "@src/common/decorator";
 import { AccessGuard } from "@src/auth/guard";
+import { Request } from "express";
 
 @ApiBearerAuth()
 @ApiTags("User")
@@ -42,9 +43,12 @@ export class UserController {
    @Post("email_change")
    async changeEmailRequest(
       @User("userId") userId: string,
+      @Req() request: Request,
       @Body("email") email: string): Promise<{ message: string }> {
 
-      await this.userService.changeEmailRequest(email, userId);
+      const clientUrl = request.headers.origin;
+
+      await this.userService.changeEmailRequest(email, userId, clientUrl);
       return { message: "Success" };
    }
 

@@ -55,24 +55,24 @@ export class UserService {
 
    }
 
-   async changeEmailRequest(email: string, userId: UserDocument["id"]): Promise<void> {
+   async changeEmailRequest(email: string, userId: UserDocument["id"], clientUrl: string): Promise<void> {
       // Check is new email unique
       const [ isEmailDoesNotUnique, user ] = await Promise.all([
          this.userRepository.findOne({ email }),
          this.userRepository.findById(userId)
-      ])
-      if (isEmailDoesNotUnique) throw new HttpException('This email is already in use', HttpStatus.CONFLICT)
+      ]);
+      if (isEmailDoesNotUnique) throw new HttpException("This email is already in use", HttpStatus.CONFLICT);
 
       // Generate link
       const confirmationToken = this.tokenService.generate({ userId, email }, this.configService.get("SECRET_CHANGE_EMAIL_KEY"));
-      const confirmationLink = `${ this.configService.get('CLIENT_URL') }/email_confirmation/new?token=${ confirmationToken }`;
+      const confirmationLink = `${ clientUrl }/email_confirmation/new?token=${ confirmationToken }`;
 
       // Save action token to DB
       await this.actionTokenRepository.create({
          token: confirmationToken,
          tokenType: EMAIL_CONFIRMATION_TOKEN_TYPE,
          ownerId: userId,
-      })
+      });
 
       // Send email
       await this.emailService.send(email, CHANGE_EMAIL, { confirmationLink, username: user.username });
@@ -117,7 +117,7 @@ export class UserService {
       const [ userFromDb, username ] = await Promise.all([
          this.userRepository.findOne({ id: userId }),
          this.userRepository.findOne({ username: dto.username })
-      ])
+      ]);
 
       // Check if there is nothing to change
       const objToCompare = {
@@ -129,7 +129,7 @@ export class UserService {
       if (JSON.stringify(dto) === JSON.stringify(objToCompare)) throw new HttpException("There is nothing to change", HttpStatus.BAD_REQUEST);
 
       // Check is username is unique
-      if (username && username.username !== dto.username) throw new HttpException("This username is already in use", HttpStatus.CONFLICT)
+      if (username && username.username !== dto.username) throw new HttpException("This username is already in use", HttpStatus.CONFLICT);
 
       // Update user
       await userFromDb.updateOne(dto);

@@ -43,7 +43,7 @@ export function MomentEditPage() {
                                  prevState={ prevState }/>
 
                   <div className={ style.title_and_back }>
-                     <BackIcon isBg={ true } style={ { position: "initial", padding: "1px 5px" } }/>
+                     <BackIcon isBg={ true } style={ { position: "initial", padding: "3px 5px" } }/>
                      <Title activeMoment={ activeMoment }
                             handleInputs={ handleInputs }/>
                   </div>
