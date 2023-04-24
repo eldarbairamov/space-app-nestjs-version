@@ -22,8 +22,6 @@ export const NoteItemAdaptive = forwardRef(({ note }: NoteItemAdaptive, ref: any
 
    const { deleteNoteFn } = deleteNoteService();
 
-   const { activeNote } = useAppSelector(state => state.noteReducer);
-
    const deleteNote = async (noteId: INote["id"], e: React.MouseEvent<HTMLParagraphElement>): Promise<void> => {
       e.stopPropagation();
       await deleteNoteFn(noteId);
@@ -36,8 +34,7 @@ export const NoteItemAdaptive = forwardRef(({ note }: NoteItemAdaptive, ref: any
            onClick={ () => {
               AuthorizedRouter.navigate(AuthorizedRoutesEnum.NoteEditPage + note.id);
               dispatch(noteActions.setActiveNoteId(note.id));
-           } }
-           data-active={ note.id === activeNote?.id }>
+           } }>
 
          <div className={ style.left }>
             <p className={ style.note_title }>

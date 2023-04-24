@@ -13,6 +13,10 @@
    width: calc(100% / 2 - 10px);
    transition: .3s;
 
+   &:hover {
+      background: var(--item-bg-hover);
+   }
+
    .left {
       display: flex;
       flex-direction: column;
@@ -68,10 +72,6 @@
       }
    }
 
-}
-
-.NoteItemAdaptive[data-active='true'] {
-   background: var(--item-bg-hover);
 }
 
 @media screen and (max-width: 600px) {
