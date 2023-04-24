@@ -14,7 +14,7 @@ export function ChangePasswordMessage() {
          <Result className={ style.message }
                  icon={ <SuccessIcon/> }
                  title={ "Ви успішно оновили свій пароль" }
-                 subTitle={ "Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані" }
+                 subTitle={ "Будь ласка, виконайте вхід до аккаунту використовуючи оновлені дані" }
                  extra={
                     <Button onClick={ logoutFn }
                             text={ "Увійти" }

@@ -20,7 +20,7 @@ export function EmailConfirmationMessage() {
             <Result className={ style.message }
                     icon={ <SuccessIcon/> }
                     title={ "Ви успішно оновили адресу електронної пошти" }
-                    subTitle={ "Будь ласка, виконайте вхід до аккаунту використовуючи оновленні дані" }
+                    subTitle={ "Будь ласка, виконайте вхід до аккаунту використовуючи оновлені дані" }
                     extra={
                        <Button key={ v4() }
                                text={ "Увійти" }
