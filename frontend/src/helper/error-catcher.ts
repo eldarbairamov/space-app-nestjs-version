@@ -62,10 +62,14 @@ export const errorCatherFn = (e: unknown) => {
 
    if (Array.isArray(response)) {
       response.forEach(item => {
-         if (item.includes("not be empty")) {
+         if (item.includes("empty")) {
             message = "Поля неповинні залишитись пустими";
          }
       });
+   }
+
+   if (response?.includes("empty")) {
+      message = "Поля неповинні залишитись пустими";
    }
 
    return message;
