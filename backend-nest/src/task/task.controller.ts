@@ -1,10 +1,10 @@
-import { Body, Controller, Delete, HttpCode, Param, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import { TaskService } from "./task.service";
 import { ObjectCheckingGuard } from "./guard/object-checking.guard";
 import { CreateTaskDto } from "./dto";
 import { ITaskResponse } from "./interface/task-response.interface";
 import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiDefaultResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { DefaultError, GetTasksBody, ObjectIdError, ObjNotExistError, SuccessResponse, TaskResponse, UnauthorizedError, UpdateTaskBody } from "@src/common/swagger";
+import { DefaultError, ObjectIdError, ObjNotExistError, SuccessResponse, TaskResponse, UnauthorizedError, UpdateTaskBody } from "@src/common/swagger";
 import { AccessGuard } from "@src/auth/guard";
 import { User } from "@src/common/decorator";
 
@@ -18,15 +18,14 @@ export class TaskController {
 
    // Get all tasks
    @ApiOperation({ summary: "get all tasks" })
-   @ApiBody({ type: GetTasksBody, required: true })
    @ApiOkResponse({ type: [ TaskResponse ] })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
    @UseGuards(AccessGuard)
    @HttpCode(200)
-   @Post()
+   @Get()
    async getTasks(
-      @Body("planId") planId: string): Promise<ITaskResponse[]> {
+      @Query("planId") planId: string): Promise<ITaskResponse[]> {
 
       return this.taskService.getTasks(planId);
    }

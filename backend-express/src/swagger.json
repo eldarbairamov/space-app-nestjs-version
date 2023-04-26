@@ -1770,34 +1770,27 @@
          }
       },
       "/tasks": {
-         "post": {
-            "summary": "get all notes",
+         "get": {
+            "summary": "get all tasks",
             "tags": [
                "Tasks"
             ],
             "operationId": "getAllTasks",
+            "parameters": [
+               {
+                  "in": "query",
+                  "name": "planId",
+                  "schema": {
+                     "type": "string"
+                  },
+                  "description": "plan id"
+               }
+            ],
             "security": [
                {
                   "Authorization": []
                }
             ],
-            "requestBody": {
-               "required": true,
-               "content": {
-                  "application/json": {
-                     "schema": {
-                        "type": "object",
-                        "properties": {
-                           "planId": {
-                              "type": "string",
-                              "example": "63ffca12826b87decc6fee24",
-                              "required": true
-                           }
-                        }
-                     }
-                  }
-               }
-            },
             "responses": {
                "200": {
                   "description": "Success",
