@@ -28,8 +28,8 @@ export function getMomentsService() {
                limit: total,
             },
          });
-         dispatch(momentActions.setMoments(data));
          await pleaseWait(delay);
+         dispatch(momentActions.setMoments(data));
 
       } catch (e) {
          dispatch(momentActions.setIsLoading(false));
