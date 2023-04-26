@@ -36,7 +36,6 @@ export class TaskController {
    @ApiCreatedResponse({ description: "New task was created", type: TaskResponse })
    @ApiUnauthorizedResponse({ description: "Unauthorized", type: UnauthorizedError })
    @ApiDefaultResponse({ description: "Unexpected errors", type: DefaultError })
-   // Add note
    @UseGuards(AccessGuard)
    @Post("add")
    async addTask(
