@@ -16,7 +16,7 @@ export class TaskService {
    }
 
    async addTask(dto: CreateTaskDto, userId: string): Promise<ITaskResponse> {
-      //Create task
+      // Create task
       const task = await this.taskRepository.create({ ownerId: userId, planId: dto.planId, title: dto.title });
 
       // Update plan
@@ -36,6 +36,10 @@ export class TaskService {
    }
 
    async getTasks(planId: string): Promise<ITaskResponse[]> {
+      // Check is plan exists
+      const isPlanExists = await this.planRepository.findById(planId);
+      if (!isPlanExists) throw new HttpException("Object does not exist", HttpStatus.NOT_FOUND);
+
       // Find tasks
       const tasks = await this.taskRepository.find({ planId });
 
