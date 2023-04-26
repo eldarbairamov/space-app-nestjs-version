@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { TaskPresenter } from "./presenter/task.presenter";
 import { TaskRepository } from "./repository/task.repository";
 import { CreateTaskDto } from "./dto";
@@ -20,7 +20,8 @@ export class TaskService {
       const task = await this.taskRepository.create({ ownerId: userId, planId: dto.planId, title: dto.title });
 
       // Update plan
-      await this.planRepository.findByIdAndUpdate(dto.planId, { $push: { tasksIds: task.id } });
+      const plan = await this.planRepository.findByIdAndUpdate(dto.planId, { $push: { tasksIds: task.id } });
+      if (!plan) throw new HttpException("Object does not exist", HttpStatus.NOT_FOUND);
 
       // Return presented data to client
       return this.taskPresenter.single(task);

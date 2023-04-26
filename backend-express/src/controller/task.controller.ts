@@ -20,8 +20,8 @@ export const taskController = {
       res.json({ message: "Success" });
    }),
 
-   getAllTasks: expressAsyncHandler(async (req: IRequest<{ planId: string }, any, any>, res: Response<Partial<ITaskResponse>[]>) => {
-      const tasks = await getTasksService(req.userId, req.body.planId);
+   getAllTasks: expressAsyncHandler(async (req: IRequest<any, any, { planId: string }>, res: Response<Partial<ITaskResponse>[]>) => {
+      const tasks = await getTasksService(req.userId, req.query.planId);
       res.json(tasks);
    }),
 

@@ -14,8 +14,9 @@ export const addTaskService = async (userId: UserDocument["id"], body: IAddTask)
    // Save task to DB
    const task = await TaskRepository.create({ ownerId: userId, planId: body.planId, title: body.title });
 
-   // Push task ref to the Plan document
-   await PlanRepository.findByIdAndUpdate(body.planId, { $push: { tasksIds: task._id } });
+   // Update plan
+   const plan = await PlanRepository.findByIdAndUpdate(body.planId, { $push: { tasksIds: task._id } });
+   if (!plan) throw ApiException.NotExistError();
 
    // Return presented data to client
    return taskPresenter(task);

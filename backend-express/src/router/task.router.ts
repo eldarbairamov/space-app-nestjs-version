@@ -4,8 +4,8 @@ import { taskController } from "@src/controller";
 
 export const taskRouter = Router();
 
-// Get all tacks
-taskRouter.post(
+// Get all tasks
+taskRouter.get(
    "/",
    authMiddleware.isAccessExists,
    taskController.getAllTasks);
