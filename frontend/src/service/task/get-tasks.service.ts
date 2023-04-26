@@ -18,6 +18,7 @@ export function getTasksService(planId: IPlan["id"]) {
 
    const getTasksFn = async () => {
       try {
+         dispatch(taskAction.setTasks([] as ITask[]));
          dispatch(taskAction.setIsLoading(true));
          const { data } = await axiosInstance.get<ITask[]>(tasksRequests.getAllTasks, { params: { planId } });
          await pleaseWait(delay);

@@ -12,9 +12,9 @@ import style from "./Tasks-Page.module.scss";
 export function TasksPage() {
    const { planId } = useParams<{ planId: IPlan["id"] }>();
 
-   const { isLoading } = getTasksService(planId!);
+   getOnePlanService(planId!)
 
-   getOnePlanService(planId!);
+   const { isLoading } = getTasksService(planId!);
 
    return (
       <>
