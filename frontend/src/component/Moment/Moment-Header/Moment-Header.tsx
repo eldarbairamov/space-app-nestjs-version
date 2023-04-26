@@ -16,7 +16,7 @@ interface IMomentHeaderProps {
 export function MomentHeader({ addMomentFn }: IMomentHeaderProps) {
    const [ isValueNull, setIsValueNull ] = useState<any>();
 
-   const dispatch = useAppDispatch()
+   const dispatch = useAppDispatch();
 
    const select = (value: string) => dispatch(momentActions.setSearchKey(value));
 
@@ -40,7 +40,7 @@ export function MomentHeader({ addMomentFn }: IMomentHeaderProps) {
          </div>
 
          <div className={ style.select_wrapper }>
-            <Select style={ { width: 100 } }
+            <Select style={ { width: 120 } }
                     allowClear={ true }
                     placeholder={ "фільтр" }
                     notFoundContent={ "Пусто" }

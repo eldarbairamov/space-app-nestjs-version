@@ -7,7 +7,7 @@
 
    textarea {
       background: transparent;
-      font-size: 16px;
+      font-size: 15px;
       width: 95%;
       height: 95%;
       border: 0;
@@ -17,17 +17,17 @@
       letter-spacing: 0;
 
       &::placeholder {
-         font-size: 16px;
+         font-size: 15px;
          color: var(--second-font);
       }
    }
 
    textarea[data-font='Caveat'] {
       font-family: 'Caveat', cursive;
-      font-size: 25px;
+      font-size: 24px;
 
       &::placeholder {
-         font-size: 22px;
+         font-size: 21px;
       }
    }
 }

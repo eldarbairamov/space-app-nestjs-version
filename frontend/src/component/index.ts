@@ -19,11 +19,11 @@ export * from "./Moment/Moment-Item/Moment-Item";
 export * from "./Moment/Moment-Header/Moment-Header";
 export * from "./Moment/Moment-List/Moment-List";
 
-export * from "./Moment/Active-Moment/Tag/Tag";
-export * from "./Moment/Active-Moment/Photo/Photo";
-export * from "./Moment/Active-Moment/Title/Title";
-export * from "./Moment/Active-Moment/Date-And-Location/Date-And-Location";
-export * from "./Moment/Active-Moment/Save-And-Delete/Save-And-Delete";
+export * from "./Moment/Moment-Edit/Tag/Tag";
+export * from "./Moment/Moment-Edit/Photo/Photo";
+export * from "./Moment/Moment-Edit/Title/Title";
+export * from "./Moment/Moment-Edit/Date-And-Location/Date-And-Location";
+export * from "./Moment/Moment-Edit/Save-And-Delete/Save-And-Delete";
 
 export * from "./Plan/Plan-Item/Plan-Item";
 export * from "./Plan/Plan-Count/Plan-Count";
