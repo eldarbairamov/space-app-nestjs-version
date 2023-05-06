@@ -5,10 +5,14 @@ import { ACCESS_TOKEN_TYPE } from "@src/constant";
 import { jwtVerifyService } from "@src/service";
 import { IRequest } from "@src/interface";
 import { ApiException } from "@src/exception/api.exception";
+import { emailValidator } from "@src/validator";
 
 export const authMiddleware = {
 
    isUserExists: expressAsyncHandler(async (req: IRequest<{ email: string }, any, any>, res: Response, next: NextFunction) => {
+      const validation = emailValidator.validate({ email: req.body.email });
+      if (validation.error) throw new ApiException(validation.error.message, 400);
+
       const user = await UserRepository.findOne({ email: req.body.email });
       if (!user) throw new ApiException("Wrong email or password", 401);
 
