@@ -2,13 +2,11 @@
 
 .DashboardAvatar {
    @extend %flex-align-justify;
-   transition: $transition;
    min-height: 250px;
    margin-top: 30px;
 
    img {
       width: 550px;
-      transition: $transition;
    }
 
    .avatar {
@@ -22,7 +20,6 @@
 
    .no_avatar {
       width: 350px;
-      transition: $transition;
       border: #9d9d9d 5px solid;
       border-radius: 50%;
    }
