@@ -4,10 +4,10 @@ import { ILoginForm, IRegistrationForm, IResetPasswordForm, IChangePasswordForm 
 
 export const registrationValidator = Joi.object<IRegistrationForm>({
 
-   username: Joi.string().max(15).required().trim().messages({
+   username: Joi.string().max(20).required().trim().messages({
       "any.required": "Поле обов'язкове для заповнення",
       "string.empty": "Поле неповинно залишитись пустим",
-      "string.max": "Не більше 15-и символів",
+      "string.max": "Не більше 20-и символів",
       "string.min": "Не менше 2-х символів",
    }),
 
