@@ -5,7 +5,7 @@ db.createUser(
       roles: [
          {
             role: 'readWrite',
-            db: 'space-app'
+            db: 'space-app-nestjs'
          }
       ]
    }

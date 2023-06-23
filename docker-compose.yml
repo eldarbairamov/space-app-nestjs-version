@@ -3,35 +3,19 @@ version: "3"
 services:
   api_nest:
     container_name: api_nest
-    build: ./backend-nest
+    build: server
     command: npm run start:prod
     restart: unless-stopped
     ports:
       - "3010:3010"
     env_file:
-      - backend-nest/.env
+      - server/.env
     environment:
-      - MONGO_URI=mongodb://eldar:eldar010596@db:27017/space-app
+      - MONGO_URI=mongodb://eldar:eldar010596@db:27017/space-app-nestjs
     depends_on:
       - db
     volumes:
       - ./backend-nest/client:/app/client
-
-#  api_express:
-#    container_name: api_express
-#    build: ./backend-express
-#    command: npm run start:prod
-#    restart: unless-stopped
-#    ports:
-#      - "3010:3010"
-#    env_file:
-#      - backend-express/.env
-#    environment:
-#      - MONGO_URI=mongodb://eldar:eldar010596@db:27017/space-app
-#    depends_on:
-#      - db
-#    volumes:
-#      - ./backend-express/client:/app/client
 
   db:
     image: mongo:latest
@@ -46,7 +30,6 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=eldar010596
     volumes:
       - ./backend-nest/mongo_db:/data/db
-#      - ./backend-express/mongo_db:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   nginx:
