@@ -34,11 +34,13 @@
   <img src="https://skillicons.dev/icons?i=express" height="50" alt="express logo"  />
   <img width="5" />
   <img src="https://skillicons.dev/icons?i=docker" height="50" alt="docker logo"  />
+  <img width="5" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg" height="50" alt="nestjs logo"  />
 </div>
 
 ###
 
-<p align="center">Back-end part of the application is built on Node.js platform using Express.js framework on TypeScript and Mongo database via Mongoose ODM. Also we have Nest.js task scheduling tool - @nestjs/schedule, that cleans out-of-date login records from the database once a week.<br><br>Front-end part is built with React using TypeScript via Vite and Redux Toolkit state manager. The CSS styles are described using SCSS syntax and features.<br><br>The application can run in Docker containers. All instructions for this are already described in Dockerfile's and Docker Compose.</p>
+<p align="center">Back-end part of the application is built on Node.js platform using Nest framework and Mongo database via Mongoose ODM. Also we have Nest.js task scheduling tool - @nestjs/schedule, that cleans out-of-date login records from the database once a week.<br><br>Front-end part is built with React using TypeScript via Vite and Redux Toolkit state manager. The CSS styles are described using SCSS syntax and features.<br><br>The application can run in Docker containers. All instructions for this are already described in Dockerfile's and Docker Compose.</p>
 
 ###
 
