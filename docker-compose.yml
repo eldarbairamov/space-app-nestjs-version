@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./backend-nest/client:/app/client
+      - ./server/client:/app/client
 
   db:
     image: mongo:latest
