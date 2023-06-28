@@ -31,4 +31,4 @@ const start = async () => {
    await app.listen( configuration().PORT );
 };
 
-start().then( () => console.log( `Server started on port ${ configuration().PORT }` ) );
+start().then( () => console.log( `Database is connected. Server is started on port ${ configuration().PORT }` ) );
