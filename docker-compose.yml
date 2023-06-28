@@ -11,7 +11,7 @@ services:
     env_file:
       - server/.env
     environment:
-      - MONGO_URI=mongodb://eldar:eldar010596@db:27017/space-app-nestjs
+      - MONGO_URI=mongodb://eldar:eldar010596@db:27017/space-app
     depends_on:
       - db
     volumes:
