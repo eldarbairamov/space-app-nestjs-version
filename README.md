@@ -55,4 +55,4 @@
 <h1 align="center"></h1>
 <h3 align="center">Video preview :</h3>
 
-[<img src="https://i.ytimg.com/vi/RUUxV8lsMEM/maxresdefault.jpg" width="100%">]([https://youtu.be/RUUxV8lsMEM](https://youtu.be/RUUxV8lsMEM) "Space")
+[<img src="https://i.ytimg.com/vi/RUUxV8lsMEM/maxresdefault.jpg" width="100%">](https://youtu.be/RUUxV8lsMEM "Space")
